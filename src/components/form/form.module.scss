@@ -1,0 +1,33 @@
+@import "@/styles/vars";
+
+.Custom-checkbox {
+  border: 2px solid $primary;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: $main;
+  transition: all 0.2s linear;
+
+  &:after {
+    content: "";
+    background-image: url("../../assets/icons/check.svg");
+    display: block;
+    width: 16px;
+    height: 9px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    scale: 0;
+  }
+}
+
+.Origin-checkbox {
+  &:checked ~ .Custom-checkbox {
+    background: $primary;
+    &:after {
+      scale: 1.2;
+    }
+    transition: all 0.2s linear;
+  }
+}

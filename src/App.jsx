@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
@@ -7,7 +8,7 @@ const App = () => {
         <h1 className={`text-center`}>Hello Header</h1>
       </header>
       <main>
-        <h1 className={`text-center`}>Hello Main</h1>
+        <Outlet />
       </main>
       <footer>
         <h1 className={`text-center`}>Hello Footer</h1>
