@@ -1,0 +1,51 @@
+@import "@/styles/vars";
+
+.logo {
+  &__imageholder {
+    img,
+    picture {
+      height: 100%;
+    }
+  }
+}
+
+.Header {
+  box-shadow: 0 4px 4px 0 #00000040;
+
+  &__mode-active {
+    background: $info;
+    color: $main;
+  }
+}
+
+.user {
+  &__avatar {
+    border: 2px solid #dfe0eb;
+  }
+}
+
+.Tenant {
+  img,
+  picture {
+    height: 100%;
+  }
+}
+
+.Menu {
+  width: 248px;
+  border-radius: 10px 10px 0 0;
+  background: #fbfbfb;
+
+  &__top {
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background: #f9f9f9;
+    cursor: pointer;
+  }
+
+  &__links {
+    & > * {
+      display: flex !important;
+      width: 100% !important;
+    }
+  }
+}

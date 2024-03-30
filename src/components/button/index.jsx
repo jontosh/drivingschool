@@ -46,7 +46,6 @@ const ButtonComponent = ({
               defaultHoverBorderColor,
               defaultHoverColor,
               controlHeight,
-              // colorText,
             },
           },
         }}
@@ -81,12 +80,13 @@ export const IconComponent = ({
   defaultHoverBg = "#fff",
   fontSize = 12,
   fontWeight = 500,
+  href,
   ...props
 }) => {
   className = classNames([
     ButtonStyle["Icon"],
     className,
-    `inline-flex align-center`,
+    `inline-flex items-center`,
   ]);
   return (
     <Fragment>
@@ -104,6 +104,7 @@ export const IconComponent = ({
               defaultHoverBg,
               fontSize,
               fontWeight,
+              colorIcon: "red",
             },
           },
         }}
@@ -112,6 +113,7 @@ export const IconComponent = ({
           className={className}
           icon={icon}
           children={children}
+          href={href}
           {...props}
         />
       </ConfigProvider>
