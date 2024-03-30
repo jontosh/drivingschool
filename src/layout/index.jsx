@@ -276,7 +276,7 @@ const Layout = ({}) => {
             </div>
           </nav>
         </aside>
-        <article className={`bg-slate-100 rounded-lg flex-1`}>
+        <article className={`bg-slate-100 rounded-lg flex-1 py-5`}>
           <Outlet />
         </article>
       </main>

@@ -1,0 +1,77 @@
+@import "@/styles/vars";
+
+.Dashboard {
+  &__form {
+    &-input {
+      box-shadow: 0 4px 4px 0 #00000040;
+    }
+
+    &-search {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__overview {
+    box-shadow: 0px 10px 60px 0px #e2ecf980;
+    width: 673px;
+
+    &-icon {
+      background: #efc1ff;
+      color: #a923d8;
+    }
+  }
+
+  &__links {
+    width: 533px;
+  }
+
+  &__statistics {
+    & > * + * {
+      &:before {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -50%;
+        transform: translateX(-50%);
+        border: 1px solid #f0f0f0;
+      }
+    }
+    &-item {
+      &__icon {
+        box-shadow: 0 4px 4px 0 #00000040;
+      }
+      &__money {
+        background: linear-gradient(201.18deg, #d3ffe7 3.14%, #effff6 86.04%);
+      }
+      &__studying {
+        background: linear-gradient(201.18deg, #caf1ff 3.14%, #cdf4ff 86.04%);
+      }
+      &__registration {
+        background: linear-gradient(201.18deg, #ffa3cf 3.14%, #ffd5f3 86.04%);
+      }
+    }
+  }
+
+  &__teachers {
+    &-list {
+      &__item {
+        &-imageholder {
+          picture,
+          img {
+            height: 100%;
+            object-position: center;
+          }
+        }
+      }
+    }
+  }
+
+  &__data-tab {
+    & > *:first-child {
+      width: 25px;
+    }
+  }
+}
