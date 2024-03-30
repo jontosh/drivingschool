@@ -10,6 +10,7 @@ const Title = ({
   level = 1,
   fontSize,
   fontWeightStrong = 600,
+  ...props
 }) => {
   className = classNames([TypographyStyle["Title"], className]);
   return (
@@ -26,7 +27,7 @@ const Title = ({
           },
         }}
       >
-        <Typography.Title className={className} level={level}>
+        <Typography.Title className={className} level={level} {...props}>
           <span className={fontSize}>{children}</span>
         </Typography.Title>
       </ConfigProvider>
