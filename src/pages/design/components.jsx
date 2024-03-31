@@ -368,7 +368,7 @@ const Components = () => {
 
       <Typography.Title>Typography</Typography.Title>
 
-      <div className="mb-3 space-y-2">
+      <div className="mb-3 space-y-2 mode-dark">
         <Title level={1} fontWeightStrong={400} fontSize={"text-3xl"}>
           Title level - 1 text-3xl
         </Title>
@@ -407,7 +407,9 @@ const Components = () => {
         <div className={"flex gap-2 items-center"}>
           <CustomInput
             size={"medium"}
-            className={"w-96"}
+            className={"w-96 mode-dark"}
+            hoverBg={"mode-dark"}
+            activeBg={"mode-dark"}
           />
           <Title level={2}>
             Default
@@ -416,7 +418,9 @@ const Components = () => {
         <div className={"flex gap-2 items-center"}>
           <CustomInput
             size={"medium"}
-            className={"w-96"}
+            className={"w-96 mode-dark"}
+            hoverBg={"mode-dark"}
+            activeBg={"mode-dark"}
           />
           <Title level={2}>
             Hover
@@ -426,7 +430,9 @@ const Components = () => {
           <CustomInput
             size={"medium"}
             placeholder={"Something..."}
-            className={"w-96"}
+            className={"w-96 mode-dark"}
+            hoverBg={"mode-dark"}
+            activeBg={"mode-dark"}
           />
           <Title level={2}>
             Active
@@ -452,7 +458,8 @@ const Components = () => {
           <CustomSelect
             options={options}
             placeholder={"Select"}
-            className={"w-96 bor"}
+            className={"w-96 mode-dark"}
+            dropdownClassName={"border border-blue-500 mode-dark"}
           />
         </div>
       </div>
@@ -462,10 +469,10 @@ const Components = () => {
         </Typography.Title>
         <div className={"flex items-center gap-4"}>
           <ButtonComponent
-              defaultBg={"#1890FF"}
-              defaultHoverBg={"#1890FF"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#1890FF"}
+            defaultHoverBg={"#1890FF"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Edit Appointments
           </ButtonComponent>
@@ -473,28 +480,28 @@ const Components = () => {
             Default
           </Title>
           <ButtonComponent
-              defaultBg={"#24C18F"}
-              defaultHoverBg={"#24C18F"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#24C18F"}
+            defaultHoverBg={"#24C18F"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Export
           </ButtonComponent>
           <ButtonComponent
-              defaultBg={"#FF333F"}
-              defaultHoverBg={"#FF333F"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#FF333F"}
+            defaultHoverBg={"#FF333F"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Edit Appointments
           </ButtonComponent>
         </div>
         <div className={"flex items-center gap-4"}>
           <ButtonComponent
-              defaultBg={"#4BA9FF"}
-              defaultHoverBg={"#4BA9FF"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#4BA9FF"}
+            defaultHoverBg={"#4BA9FF"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Edit Appointments
           </ButtonComponent>
@@ -502,28 +509,28 @@ const Components = () => {
             Hover
           </Title>
           <ButtonComponent
-              defaultBg={"#3CE3AE"}
-              defaultHoverBg={"#3CE3AE"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#3CE3AE"}
+            defaultHoverBg={"#3CE3AE"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Export
           </ButtonComponent>
           <ButtonComponent
-              defaultBg={"#FF7179"}
-              defaultHoverBg={"#FF7179"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#FF7179"}
+            defaultHoverBg={"#FF7179"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Delete appointments
           </ButtonComponent>
         </div>
         <div className={"flex items-center gap-4"}>
           <ButtonComponent
-              defaultBg={"#1890FF"}
-              defaultHoverBg={"#1890FF"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#1890FF"}
+            defaultHoverBg={"#1890FF"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Edit Appointments
           </ButtonComponent>
@@ -531,29 +538,29 @@ const Components = () => {
             Active
           </Title>
           <ButtonComponent
-              defaultBg={"#24C18F"}
-              defaultHoverBg={"#24C18F"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#24C18F"}
+            defaultHoverBg={"#24C18F"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Export
           </ButtonComponent>
           <ButtonComponent
-              defaultBg={"#FF333F"}
-              defaultHoverBg={"#FF333F"}
-              paddingInline={30}
-              controlHeight={39}
+            defaultBg={"#FF333F"}
+            defaultHoverBg={"#FF333F"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Delete appointments
           </ButtonComponent>
         </div>
         <div className={"flex items-center gap-4"}>
           <ButtonComponent
-              disabled={"disabled"}
-              defaultBg={"CFE8FF"}
-              defaultColor={"#000000"}
-              paddingInline={30}
-              controlHeight={39}
+            disabled={"disabled"}
+            defaultBg={"CFE8FF"}
+            defaultColor={"#000000"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Edit Appointments
           </ButtonComponent>
@@ -561,19 +568,19 @@ const Components = () => {
             Disable
           </Title>
           <ButtonComponent
-              disabled={"disabled"}
-              defaultBg={"#24C18F"}
-              defaultHoverBg={"#24C18F"}
-              paddingInline={30}
-              controlHeight={39}
+            disabled={"disabled"}
+            defaultBg={"#24C18F"}
+            defaultHoverBg={"#24C18F"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Export
           </ButtonComponent>
           <ButtonComponent
-              disabled={"disabled"}
-              defaultBg={"#FFB7BB"}
-              paddingInline={30}
-              controlHeight={39}
+            disabled={"disabled"}
+            defaultBg={"#FFB7BB"}
+            paddingInline={30}
+            controlHeight={39}
           >
             Delete appointments
           </ButtonComponent>
@@ -584,21 +591,21 @@ const Components = () => {
               Default
             </Title>
             <ButtonComponent
-                controlHeight={39}
-                defaultBg={"#00000040"}
-                defaultHoverBg={"#00000040"}
-                paddingInline={60}
+              controlHeight={39}
+              defaultBg={"#00000040"}
+              defaultHoverBg={"#00000040"}
+              paddingInline={60}
             >
               Close
             </ButtonComponent>
             <ButtonComponent
-                controlHeight={39}
-                defaultBg={"#FFFFFF"}
-                defaultHoverBg={"#FFFFFF"}
-                defaultColor={"#5F66E9"}
-                defaultHoverColor={"#5F66E9"}
-                defaultBorderColor={"#5F66E9"}
-                paddingInline={60}
+              controlHeight={39}
+              defaultBg={"#FFFFFF"}
+              defaultHoverBg={"#FFFFFF"}
+              defaultColor={"#5F66E9"}
+              defaultHoverColor={"#5F66E9"}
+              defaultBorderColor={"#5F66E9"}
+              paddingInline={60}
             >
               Reset
             </ButtonComponent>
@@ -608,21 +615,21 @@ const Components = () => {
               Hover
             </Title>
             <ButtonComponent
-                controlHeight={39}
-                defaultBg={"#5F5F5F40"}
-                defaultHoverBg={"#5F5F5F40"}
-                paddingInline={60}
+              controlHeight={39}
+              defaultBg={"#5F5F5F40"}
+              defaultHoverBg={"#5F5F5F40"}
+              paddingInline={60}
             >
               Close
             </ButtonComponent>
             <ButtonComponent
-                controlHeight={39}
-                defaultBg={"#FFFFFF"}
-                defaultHoverBg={"#FFFFFF"}
-                defaultColor={"#000CEF"}
-                defaultHoverColor={"#000CEF"}
-                defaultBorderColor={"#000CEF"}
-                paddingInline={60}
+              controlHeight={39}
+              defaultBg={"#FFFFFF"}
+              defaultHoverBg={"#FFFFFF"}
+              defaultColor={"#000CEF"}
+              defaultHoverColor={"#000CEF"}
+              defaultBorderColor={"#000CEF"}
+              paddingInline={60}
             >
               Reset
             </ButtonComponent>
@@ -632,21 +639,21 @@ const Components = () => {
               Active
             </Title>
             <ButtonComponent
-                controlHeight={39}
-                defaultBg={"#BFBFBF"}
-                defaultHoverBg={"#BFBFBF"}
-                paddingInline={60}
+              controlHeight={39}
+              defaultBg={"#BFBFBF"}
+              defaultHoverBg={"#BFBFBF"}
+              paddingInline={60}
             >
               Close
             </ButtonComponent>
             <ButtonComponent
-                controlHeight={39}
-                defaultBg={"#FFFFFF"}
-                defaultHoverBg={"#FFFFFF"}
-                defaultColor={"#5F66E9"}
-                defaultHoverColor={"#5F66E9"}
-                defaultBorderColor={"#5F66E9"}
-                paddingInline={60}
+              controlHeight={39}
+              defaultBg={"#FFFFFF"}
+              defaultHoverBg={"#FFFFFF"}
+              defaultColor={"#5F66E9"}
+              defaultHoverColor={"#5F66E9"}
+              defaultBorderColor={"#5F66E9"}
+              paddingInline={60}
             >
               Reset
             </ButtonComponent>
@@ -656,18 +663,18 @@ const Components = () => {
               Disable
             </Title>
             <ButtonComponent
-                disabled={"disabled"}
-                controlHeight={39}
-                defaultBg={"#5F5F5F40"}
-                defaultHoverBg={"#5F5F5F40"}
-                paddingInline={60}
+              disabled={"disabled"}
+              controlHeight={39}
+              defaultBg={"#5F5F5F40"}
+              defaultHoverBg={"#5F5F5F40"}
+              paddingInline={60}
             >
               Close
             </ButtonComponent>
             <ButtonComponent
-                disabled={"disabled"}
-                controlHeight={39}
-                paddingInline={60}
+              disabled={"disabled"}
+              controlHeight={39}
+              paddingInline={60}
             >
               Reset
             </ButtonComponent>
