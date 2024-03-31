@@ -10,11 +10,11 @@ body,
 }
 
 .root {
-  & > * {
+  &>* {
     flex-shrink: 0;
   }
 
-  & > main {
+  &>main {
     flex-grow: 1;
   }
 }
@@ -42,4 +42,25 @@ a {
 svg {
   width: 100%;
   height: auto;
+}
+
+.mode-dark {
+  color: #FFFFFF;
+  background-color: #262626;
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  title,
+  text,
+  .Paragraph,
+  .Text,
+  .Title,
+  span {
+    color: #FFFFFF;
+  }
 }

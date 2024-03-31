@@ -5,7 +5,7 @@ const Design = () => {
   return (
     <Fragment>
       <section className="Design">
-        <div className="container px-4 mx-auto">
+        <div className="container px-4 mx-auto mode-dark">
           <Outlet />
         </div>
       </section>

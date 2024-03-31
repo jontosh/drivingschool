@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Fragment } from "react";
 import FormStyle from "./form.module.scss";
-import { Input, Select } from "antd";
+import { ConfigProvider, Input, Select } from "antd";
 const { Option } = Select;
 
 export const CustomCheckBox = ({
@@ -44,22 +44,35 @@ export const CustomInput = ({
   size,
   onChange,
   spanText,
+  hoverBg = '#ffffff',
+  activeBg = '#ffffff',
 }) => {
   return (
     <Fragment>
-      <div className={"flex flex-col"}>
-        <Input
-          className={className}
-          type="text"
-          value={value}
-          name={name}
-          placeholder={placeholder}
-          status={status}
-          size={size}
-          onChange={onChange}
-        />
-        <span className={`${className} text-base text-red-500`}>{spanText}</span>
-      </div>
+      <ConfigProvider
+        theme={{
+          components: {
+            Input: {
+              hoverBg,
+              activeBg,
+            }
+          }
+        }}
+      >
+        <div className={"flex flex-col"}>
+          <Input
+            className={className}
+            type="text"
+            value={value}
+            name={name}
+            placeholder={placeholder}
+            status={status}
+            size={size}
+            onChange={onChange}
+          />
+          <span className={`${className} text-base text-red-500`}>{spanText}</span>
+        </div>
+      </ConfigProvider>
     </Fragment>
   );
 };
@@ -69,8 +82,8 @@ export const CustomSelect = ({
   value,
   onChange,
   options,
-  placeholder
-
+  placeholder,
+  dropdownClassName
 }) => {
   return (
     <Fragment>
@@ -79,7 +92,7 @@ export const CustomSelect = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        dropdownClassName={"border border-blue-500"}
+        dropdownClassName={dropdownClassName}
       >
         {options.map(option => (
           <Option key={option.value} value={option.value}>{option.label}</Option>
