@@ -103,7 +103,7 @@ const Layout = ({}) => {
           </div>
         </div>
       </header>
-      <main className={`py-5 px-4 flex gap-x-4`}>
+      <main className={`py-5 px-4 flex gap-x-4 max-w-full`}>
         <aside>
           <div
             className={`${LayoutStyle["Tenant"]} flex gap-x-5 items-center mb-6`}
@@ -276,7 +276,7 @@ const Layout = ({}) => {
             </div>
           </nav>
         </aside>
-        <article className={`bg-slate-100 rounded-lg flex-1 py-5`}>
+        <article className={`bg-slate-100 rounded-lg py-5 max-w-full w-full`}>
           <Outlet />
         </article>
       </main>

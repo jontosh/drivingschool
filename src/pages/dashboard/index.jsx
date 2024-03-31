@@ -2,9 +2,9 @@ import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Checkbox } from "antd";
+import { Button, Checkbox, ConfigProvider } from "antd";
 import { Formik } from "formik";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
   AiOutlineCloudUpload,
@@ -12,7 +12,8 @@ import {
   AiOutlineSearch,
   AiOutlineSolution,
 } from "react-icons/ai";
-import { FaRegListAlt } from "react-icons/fa";
+import { BsPlusCircleFill } from "react-icons/bs";
+import { FaBars, FaRegListAlt } from "react-icons/fa";
 import { VscGraph } from "react-icons/vsc";
 import DashboardStyle from "./dashboard.module.scss";
 import DollarIcon from "../../assets/icons/Dollar.svg";
@@ -153,17 +154,22 @@ const DashboardTeachers = () => {
 };
 
 const Dashboard = () => {
+  const date = new Date();
   const { colorsObject } = useContext(ColorsContext);
-  const Day = new Date();
+
+  const [ShowCalendar, setSowCalendar] = useState(false);
+
   const data = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "San"],
     datasets: [
       {
-        label: "Lessons",
+        label: "Sign ups per day",
         data: [5, 7, 6, 8, 7, 5, 7],
         backgroundColor: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "San"].map(
           (item, index) => {
-            return index === Day.getDay() ? "#5F66E973" : "#D2D2D2BF";
+            index += 1;
+
+            return index === date.getDay() ? "#5F66E973" : "#D2D2D2BF";
           },
         ),
       },
@@ -184,12 +190,17 @@ const Dashboard = () => {
       },
     },
   };
+
+  const handleClickTeacher = () => setSowCalendar((prev) => !prev);
+
   return (
     <Fragment>
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
-      <section className={`${DashboardStyle["Dashboard"]} px-11 space-y-5`}>
+      <section
+        className={`${DashboardStyle["Dashboard"]} px-11 space-y-5 max-w-full`}
+      >
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -285,7 +296,9 @@ const Dashboard = () => {
           {/*statistics end*/}
         </div>
 
-        <div className={`${DashboardStyle["Dashboard__extra"]} flex gap-11`}>
+        <div
+          className={`${DashboardStyle["Dashboard__extra"]} flex flex-wrap gap-11`}
+        >
           <div
             className={`${DashboardStyle["Dashboard__overview"]} bg-white rounded-lg p-5 space-y-2.5`}
           >
@@ -388,223 +401,325 @@ const Dashboard = () => {
             </ul>
           </div>
         </div>
-        <div
-          className={`${DashboardStyle["Dashboard__teachers"]} p-5 bg-white rounded-lg`}
-        >
-          <DashboardTeachers />
-
+        <div>
           <div
-            className={`${DashboardStyle["Dashboard__teachers-list"]} px-6 flex gap-x-14`}
+            className={`${DashboardStyle["Dashboard__teachers"]} p-5 bg-white rounded-lg`}
           >
-            {/*Teacher Avatar Start*/}
+            <DashboardTeachers />
             <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+              className={`${DashboardStyle["Dashboard__teachers-list"]} px-6 flex gap-x-14`}
             >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
+              {/*Teacher Avatar end*/}
 
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
+              {/*Teacher Avatar Start*/}
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
+                onClick={handleClickTeacher}
               >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                >
+                  <Image
+                    src={TeacherAvatar}
+                    srcSet={TeacherAvatar}
+                    alt={"Teacher Avatar"}
+                  />
+                </div>
+                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
+                  Kate Park
+                </Title>
               </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
+              {/*Teacher Avatar end*/}
             </div>
-            {/*Teacher Avatar end*/}
-
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-              >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
-              </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
-
-            {/*Teacher Avatar Start*/}
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-            >
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-              >
-                <Image
-                  src={TeacherAvatar}
-                  srcSet={TeacherAvatar}
-                  alt={"Teacher Avatar"}
-                />
-              </div>
-              <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                Kate Park
-              </Title>
-            </div>
-            {/*Teacher Avatar end*/}
           </div>
+          {/*Result*/}
+          {ShowCalendar && (
+            <Fragment>
+              <div
+                className={`${DashboardStyle["Dashboard__teachers-result"]} px-7 py-8 bg-white -mt-1.5`}
+              >
+                <div className="flex justify-between mb-9">
+                  <div className={`gap-4 flex items-center`}>
+                    <Title level={3} fontSize={"text-3xl"}>
+                      Katie Park
+                    </Title>
+
+                    <Paragraph fontSize={`text-xl text-gray-600`}>
+                      +8800 555 35 35
+                    </Paragraph>
+
+                    <Paragraph
+                      fontWeightStrong={500}
+                      fontSize={`text-xl text-black`}
+                    >
+                      120h on week
+                    </Paragraph>
+                  </div>
+
+                  <div className={`flex gap-x-8`}>
+                    <ButtonComponent
+                      controlHeight={32}
+                      defaultBg={`#24C18F`}
+                      defaultHoverBg={`#24C18F`}
+                      fontSize={"text-xs"}
+                      paddingBlock={4}
+                      paddingInline={4}
+                    >
+                      Edit information
+                    </ButtonComponent>
+
+                    <ButtonComponent
+                      controlHeight={32}
+                      defaultBg={`#24C18F`}
+                      defaultHoverBg={`#24C18F`}
+                      fontSize={"text-xs"}
+                      paddingBlock={4}
+                      paddingInline={25}
+                    >
+                      Time log
+                    </ButtonComponent>
+
+                    <ButtonComponent
+                      controlHeight={32}
+                      defaultBg={`#24C18F`}
+                      defaultHoverBg={`#24C18F`}
+                      fontSize={"text-xs"}
+                      paddingBlock={4}
+                      paddingInline={13}
+                    >
+                      Add time off
+                    </ButtonComponent>
+
+                    <ButtonComponent
+                      controlHeight={32}
+                      defaultBg={`#24C18F`}
+                      defaultHoverBg={`#24C18F`}
+                      fontSize={"text-xs"}
+                      paddingBlock={4}
+                      paddingInline={24}
+                    >
+                      Add Slots
+                    </ButtonComponent>
+                  </div>
+                </div>
+
+                <div
+                  className={`${DashboardStyle["Dashboard__teachers-result__calendar"]} border-2 border-sky-500 rounded-lg px-4 py-3`}
+                >
+                  <div
+                    className={`${DashboardStyle["Dashboard__teachers-result__calendar-top"]} flex px-7 justify-between `}
+                  >
+                    <div className="flex gap-4 items-center ">
+                      <button className={`p-3`}>
+                        <FaBars />
+                      </button>
+
+                      <Title
+                        level={4}
+                        fontSize={"text-lg text-stone-900"}
+                        fontWeightStrong={500}
+                      >
+                        01-07 January 2024
+                      </Title>
+
+                      <div>Select</div>
+                    </div>
+
+                    <div className={"gap-x-4 inline-flex items-center"}>
+                      <ConfigProvider
+                        theme={{
+                          components: {
+                            Button: {
+                              defaultBg: "#F5F5F5",
+                              defaultHoverBg: "#F5F5F5",
+                            },
+                          },
+                        }}
+                      >
+                        <Button shape={"circle"} icon={<AiOutlineSearch />} />
+                      </ConfigProvider>
+
+                      <button
+                        className={
+                          "inline-flex p-2 gap-x-4 bg-[#0C41FF] text-white"
+                        }
+                      >
+                        <Text
+                          fontWeightStrong={500}
+                          fontSize={12}
+                          className={"text-white"}
+                        >
+                          Add event
+                        </Text>{" "}
+                        <BsPlusCircleFill className={"w-4"} />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>@todo Calendar</div>
+                </div>
+              </div>
+            </Fragment>
+          )}
+          {/*Result*/}
         </div>
 
         <div
