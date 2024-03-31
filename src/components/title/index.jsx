@@ -68,7 +68,12 @@ export const Paragraph = ({
   );
 };
 
-export const Text = ({ children, className, fontSize = 10 }) => {
+export const Text = ({
+  children,
+  className,
+  fontSize = 10,
+  fontWeightStrong = 400,
+}) => {
   className = classNames([className, TypographyStyle["Text"]]);
   return (
     <ConfigProvider
@@ -77,6 +82,7 @@ export const Text = ({ children, className, fontSize = 10 }) => {
           Typography: {
             fontFamily: "inherit",
             fontSize,
+            fontWeightStrong,
           },
         },
       }}

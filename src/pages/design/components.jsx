@@ -1,5 +1,9 @@
 import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
-import { CustomInput, CustomCheckBox, CustomSelect } from "@/components/form/index.jsx";
+import {
+  CustomInput,
+  CustomCheckBox,
+  CustomSelect,
+} from "@/components/form/index.jsx";
 import { Icons } from "@/components/icons/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -35,13 +39,13 @@ import { WiTime5 } from "react-icons/wi";
 import DesignStyle from "./design.module.scss";
 
 const options = [
-  { value: '', label: '' },
-  { value: '', label: '' },
-  { value: '', label: '' },
-  { value: '', label: '' },
-  { value: '', label: '' },
-  { value: '', label: '' }
-]
+  { value: "", label: "" },
+  { value: "", label: "" },
+  { value: "", label: "" },
+  { value: "", label: "" },
+  { value: "", label: "" },
+  { value: "", label: "" },
+];
 
 const Components = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -401,9 +405,7 @@ const Components = () => {
         <CustomCheckBox>Custom CheckBox</CustomCheckBox>
       </div>
       <div className={" flex flex-col gap-3 mb-3"}>
-        <Typography.Title>
-          Input
-        </Typography.Title>
+        <Typography.Title>Input</Typography.Title>
         <div className={"flex gap-2 items-center"}>
           <CustomInput
             size={"medium"}
@@ -411,9 +413,7 @@ const Components = () => {
             hoverBg={"mode-dark"}
             activeBg={"mode-dark"}
           />
-          <Title level={2}>
-            Default
-          </Title>
+          <Title level={2}>Default</Title>
         </div>
         <div className={"flex gap-2 items-center"}>
           <CustomInput
@@ -422,9 +422,7 @@ const Components = () => {
             hoverBg={"mode-dark"}
             activeBg={"mode-dark"}
           />
-          <Title level={2}>
-            Hover
-          </Title>
+          <Title level={2}>Hover</Title>
         </div>
         <div className={"flex gap-2 items-center"}>
           <CustomInput
@@ -434,9 +432,7 @@ const Components = () => {
             hoverBg={"mode-dark"}
             activeBg={"mode-dark"}
           />
-          <Title level={2}>
-            Active
-          </Title>
+          <Title level={2}>Active</Title>
         </div>
         <div className={"flex gap-2 items-center"}>
           <CustomInput
@@ -445,28 +441,22 @@ const Components = () => {
             className={"w-96"}
             spanText={"Error input is wrong"}
           />
-          <Title level={2}>
-            Error
-          </Title>
+          <Title level={2}>Error</Title>
         </div>
       </div>
       <div className={"flex flex-col gap-3 mb-3"}>
-        <Typography.Title>
-          Select
-        </Typography.Title>
+        <Typography.Title>Select</Typography.Title>
         <div>
           <CustomSelect
             options={options}
             placeholder={"Select"}
-            className={"w-96 mode-dark"}
+            className={"w-96 mode-light"}
             dropdownClassName={"border border-blue-500 mode-dark"}
           />
         </div>
       </div>
       <div className={"mb-3 flex flex-col gap-4"}>
-        <Typography.Title>
-          Buttons
-        </Typography.Title>
+        <Typography.Title>Buttons</Typography.Title>
         <div className={"flex items-center gap-4"}>
           <ButtonComponent
             defaultBg={"#1890FF"}
@@ -476,9 +466,7 @@ const Components = () => {
           >
             Edit Appointments
           </ButtonComponent>
-          <Title level={2}>
-            Default
-          </Title>
+          <Title level={2}>Default</Title>
           <ButtonComponent
             defaultBg={"#24C18F"}
             defaultHoverBg={"#24C18F"}
@@ -505,9 +493,7 @@ const Components = () => {
           >
             Edit Appointments
           </ButtonComponent>
-          <Title level={2}>
-            Hover
-          </Title>
+          <Title level={2}>Hover</Title>
           <ButtonComponent
             defaultBg={"#3CE3AE"}
             defaultHoverBg={"#3CE3AE"}
@@ -534,9 +520,7 @@ const Components = () => {
           >
             Edit Appointments
           </ButtonComponent>
-          <Title level={2}>
-            Active
-          </Title>
+          <Title level={2}>Active</Title>
           <ButtonComponent
             defaultBg={"#24C18F"}
             defaultHoverBg={"#24C18F"}
@@ -564,9 +548,7 @@ const Components = () => {
           >
             Edit Appointments
           </ButtonComponent>
-          <Title level={2}>
-            Disable
-          </Title>
+          <Title level={2}>Disable</Title>
           <ButtonComponent
             disabled={"disabled"}
             defaultBg={"#24C18F"}
@@ -587,9 +569,7 @@ const Components = () => {
         </div>
         <div className={"flex gap-4 pt-5"}>
           <div className={"flex flex-col gap-3 text-center"}>
-            <Title level={1}>
-              Default
-            </Title>
+            <Title level={1}>Default</Title>
             <ButtonComponent
               controlHeight={39}
               defaultBg={"#00000040"}
@@ -611,9 +591,7 @@ const Components = () => {
             </ButtonComponent>
           </div>
           <div className={"flex flex-col gap-3 text-center"}>
-            <Title level={1}>
-              Hover
-            </Title>
+            <Title level={1}>Hover</Title>
             <ButtonComponent
               controlHeight={39}
               defaultBg={"#5F5F5F40"}
@@ -635,9 +613,7 @@ const Components = () => {
             </ButtonComponent>
           </div>
           <div className={"flex flex-col gap-3 text-center"}>
-            <Title level={1}>
-              Active
-            </Title>
+            <Title level={1}>Active</Title>
             <ButtonComponent
               controlHeight={39}
               defaultBg={"#BFBFBF"}
@@ -659,9 +635,7 @@ const Components = () => {
             </ButtonComponent>
           </div>
           <div className={"flex flex-col gap-3 text-center"}>
-            <Title level={1}>
-              Disable
-            </Title>
+            <Title level={1}>Disable</Title>
             <ButtonComponent
               disabled={"disabled"}
               controlHeight={39}
