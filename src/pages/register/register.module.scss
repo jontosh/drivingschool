@@ -1,0 +1,62 @@
+@import "@/styles/vars";
+
+.Sign {
+  &__imageholder {
+    width: 651px;
+    background: linear-gradient(0deg, #d9d9d9, #d9d9d9),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+
+    picture,
+    img {
+      height: 100%;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.25)
+      );
+    }
+  }
+
+  &__input {
+    width: 362px;
+    box-shadow: 0 4px 4px 0 #00000040;
+  }
+
+  &__content {
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      filter: blur(14px);
+    }
+    &:before {
+      top: -195px;
+      left: -400px;
+      width: 558.29px;
+      height: 366.02px;
+      background-image: url("../../assets/others/login-before.svg");
+      background-size: cover;
+      background-position: top center;
+      rotate: 360deg;
+    }
+
+    &:after {
+      bottom: -150px;
+      right: -150px;
+      background-image: url("../../assets/others/login-after.svg");
+      background-size: cover;
+      width: 558.29px;
+      height: 366.02px;
+    }
+  }
+}

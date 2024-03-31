@@ -10,6 +10,7 @@ export const CustomCheckBox = ({
   name,
   children,
   onChange,
+  checked,
   ...props
 }) => {
   className = classNames([
@@ -26,6 +27,7 @@ export const CustomCheckBox = ({
             value={value}
             onChange={onChange}
             name={name}
+            checked={checked}
             className={`${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`}
           />
           <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
@@ -44,9 +46,14 @@ export const CustomInput = ({
   size,
   onChange,
   spanText,
-  hoverBg = '#ffffff',
-  activeBg = '#ffffff',
+  hoverBg = "#ffffff",
+  activeBg = "#ffffff",
+  spanClassName,
+  type = "text",
+  children,
+  ...props
 }) => {
+  className = classNames([className]);
   return (
     <Fragment>
       <ConfigProvider
@@ -55,14 +62,14 @@ export const CustomInput = ({
             Input: {
               hoverBg,
               activeBg,
-            }
-          }
+            },
+          },
         }}
       >
-        <div className={"flex flex-col"}>
+        <label className={props.classNames}>
           <Input
             className={className}
-            type="text"
+            type={type}
             value={value}
             name={name}
             placeholder={placeholder}
@@ -70,8 +77,12 @@ export const CustomInput = ({
             size={size}
             onChange={onChange}
           />
-          <span className={`${className} text-base text-red-500`}>{spanText}</span>
-        </div>
+          <span className={`${classNames(spanClassName)} text-base`}>
+            {spanText}
+          </span>
+        </label>
+
+        {children}
       </ConfigProvider>
     </Fragment>
   );
@@ -83,7 +94,7 @@ export const CustomSelect = ({
   onChange,
   options,
   placeholder,
-  dropdownClassName
+  dropdownClassName,
 }) => {
   return (
     <Fragment>
@@ -94,10 +105,12 @@ export const CustomSelect = ({
         placeholder={placeholder}
         dropdownClassName={dropdownClassName}
       >
-        {options.map(option => (
-          <Option key={option.value} value={option.value}>{option.label}</Option>
+        {options.map((option) => (
+          <Option key={option.value} value={option.value}>
+            {option.label}
+          </Option>
         ))}
       </Select>
     </Fragment>
-  )
-}
+  );
+};

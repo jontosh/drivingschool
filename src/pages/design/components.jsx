@@ -440,6 +440,7 @@ const Components = () => {
             status={"error"}
             className={"w-96"}
             spanText={"Error input is wrong"}
+            spanClassName={"text-red-500"}
           />
           <Title level={2}>Error</Title>
         </div>
