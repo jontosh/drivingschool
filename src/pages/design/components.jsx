@@ -1,5 +1,5 @@
 import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
-import { CustomCheckBox } from "@/components/form/index.jsx";
+import { CustomInput, CustomCheckBox, CustomSelect } from "@/components/form/index.jsx";
 import { Icons } from "@/components/icons/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -33,6 +33,15 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { VscGraph } from "react-icons/vsc";
 import { WiTime5 } from "react-icons/wi";
 import DesignStyle from "./design.module.scss";
+
+const options = [
+  { value: '1', label: 'Y1' },
+  { value: '2', label: 'Y2' },
+  { value: '3', label: 'Y3' },
+  { value: '4', label: 'Y4' },
+  { value: '5', label: 'Y5' },
+  { value: '6', label: 'Y6' }
+]
 
 const Components = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -390,6 +399,62 @@ const Components = () => {
         </Checkbox.Group>
 
         <CustomCheckBox>Custom CheckBox</CustomCheckBox>
+      </div>
+      <div className={" flex flex-col gap-3 mb-3"}>
+        <Typography.Title>
+          Input
+        </Typography.Title>
+        <div className={"flex gap-2 items-center"}>
+          <CustomInput
+            size={"medium"}
+            className={"w-96"}
+          />
+          <Title level={2}>
+            Default
+          </Title>
+        </div>
+        <div className={"flex gap-2 items-center"}>
+          <CustomInput
+            size={"medium"}
+            className={"w-96"}
+          />
+          <Title level={2}>
+            Hover
+          </Title>
+        </div>
+        <div className={"flex gap-2 items-center"}>
+          <CustomInput
+            size={"medium"}
+            placeholder={"Something..."}
+            className={"w-96"}
+          />
+          <Title level={2}>
+            Active
+          </Title>
+        </div>
+        <div className={"flex gap-2 items-center"}>
+          <CustomInput
+            size={"medium"}
+            status={"error"}
+            className={"w-96"}
+            spanText={"Error input is wrong"}
+          />
+          <Title level={2}>
+            Error
+          </Title>
+        </div>
+      </div>
+      <div className={" flex flex-col gap-3 mb-3"}>
+        <Typography.Title>
+          Select
+        </Typography.Title>
+        <div>
+          <CustomSelect
+            options={options}
+            placeholder={"Select"}
+            className={"w-96"}
+          />
+        </div>
       </div>
     </Fragment>
   );
