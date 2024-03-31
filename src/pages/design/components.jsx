@@ -35,12 +35,12 @@ import { WiTime5 } from "react-icons/wi";
 import DesignStyle from "./design.module.scss";
 
 const options = [
-  { value: '1', label: 'Y1' },
-  { value: '2', label: 'Y2' },
-  { value: '3', label: 'Y3' },
-  { value: '4', label: 'Y4' },
-  { value: '5', label: 'Y5' },
-  { value: '6', label: 'Y6' }
+  { value: '', label: '' },
+  { value: '', label: '' },
+  { value: '', label: '' },
+  { value: '', label: '' },
+  { value: '', label: '' },
+  { value: '', label: '' }
 ]
 
 const Components = () => {
@@ -444,7 +444,7 @@ const Components = () => {
           </Title>
         </div>
       </div>
-      <div className={" flex flex-col gap-3 mb-3"}>
+      <div className={"flex flex-col gap-3 mb-3"}>
         <Typography.Title>
           Select
         </Typography.Title>
@@ -452,8 +452,226 @@ const Components = () => {
           <CustomSelect
             options={options}
             placeholder={"Select"}
-            className={"w-96"}
+            className={"w-96 bor"}
           />
+        </div>
+      </div>
+      <div className={"mb-3 flex flex-col gap-4"}>
+        <Typography.Title>
+          Buttons
+        </Typography.Title>
+        <div className={"flex items-center gap-4"}>
+          <ButtonComponent
+              defaultBg={"#1890FF"}
+              defaultHoverBg={"#1890FF"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Edit Appointments
+          </ButtonComponent>
+          <Title level={2}>
+            Default
+          </Title>
+          <ButtonComponent
+              defaultBg={"#24C18F"}
+              defaultHoverBg={"#24C18F"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Export
+          </ButtonComponent>
+          <ButtonComponent
+              defaultBg={"#FF333F"}
+              defaultHoverBg={"#FF333F"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Edit Appointments
+          </ButtonComponent>
+        </div>
+        <div className={"flex items-center gap-4"}>
+          <ButtonComponent
+              defaultBg={"#4BA9FF"}
+              defaultHoverBg={"#4BA9FF"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Edit Appointments
+          </ButtonComponent>
+          <Title level={2}>
+            Hover
+          </Title>
+          <ButtonComponent
+              defaultBg={"#3CE3AE"}
+              defaultHoverBg={"#3CE3AE"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Export
+          </ButtonComponent>
+          <ButtonComponent
+              defaultBg={"#FF7179"}
+              defaultHoverBg={"#FF7179"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Delete appointments
+          </ButtonComponent>
+        </div>
+        <div className={"flex items-center gap-4"}>
+          <ButtonComponent
+              defaultBg={"#1890FF"}
+              defaultHoverBg={"#1890FF"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Edit Appointments
+          </ButtonComponent>
+          <Title level={2}>
+            Active
+          </Title>
+          <ButtonComponent
+              defaultBg={"#24C18F"}
+              defaultHoverBg={"#24C18F"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Export
+          </ButtonComponent>
+          <ButtonComponent
+              defaultBg={"#FF333F"}
+              defaultHoverBg={"#FF333F"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Delete appointments
+          </ButtonComponent>
+        </div>
+        <div className={"flex items-center gap-4"}>
+          <ButtonComponent
+              disabled={"disabled"}
+              defaultBg={"CFE8FF"}
+              defaultColor={"#000000"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Edit Appointments
+          </ButtonComponent>
+          <Title level={2}>
+            Disable
+          </Title>
+          <ButtonComponent
+              disabled={"disabled"}
+              defaultBg={"#24C18F"}
+              defaultHoverBg={"#24C18F"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Export
+          </ButtonComponent>
+          <ButtonComponent
+              disabled={"disabled"}
+              defaultBg={"#FFB7BB"}
+              paddingInline={30}
+              controlHeight={39}
+          >
+            Delete appointments
+          </ButtonComponent>
+        </div>
+        <div className={"flex gap-4 pt-5"}>
+          <div className={"flex flex-col gap-3 text-center"}>
+            <Title level={1}>
+              Default
+            </Title>
+            <ButtonComponent
+                controlHeight={39}
+                defaultBg={"#00000040"}
+                defaultHoverBg={"#00000040"}
+                paddingInline={60}
+            >
+              Close
+            </ButtonComponent>
+            <ButtonComponent
+                controlHeight={39}
+                defaultBg={"#FFFFFF"}
+                defaultHoverBg={"#FFFFFF"}
+                defaultColor={"#5F66E9"}
+                defaultHoverColor={"#5F66E9"}
+                defaultBorderColor={"#5F66E9"}
+                paddingInline={60}
+            >
+              Reset
+            </ButtonComponent>
+          </div>
+          <div className={"flex flex-col gap-3 text-center"}>
+            <Title level={1}>
+              Hover
+            </Title>
+            <ButtonComponent
+                controlHeight={39}
+                defaultBg={"#5F5F5F40"}
+                defaultHoverBg={"#5F5F5F40"}
+                paddingInline={60}
+            >
+              Close
+            </ButtonComponent>
+            <ButtonComponent
+                controlHeight={39}
+                defaultBg={"#FFFFFF"}
+                defaultHoverBg={"#FFFFFF"}
+                defaultColor={"#000CEF"}
+                defaultHoverColor={"#000CEF"}
+                defaultBorderColor={"#000CEF"}
+                paddingInline={60}
+            >
+              Reset
+            </ButtonComponent>
+          </div>
+          <div className={"flex flex-col gap-3 text-center"}>
+            <Title level={1}>
+              Active
+            </Title>
+            <ButtonComponent
+                controlHeight={39}
+                defaultBg={"#BFBFBF"}
+                defaultHoverBg={"#BFBFBF"}
+                paddingInline={60}
+            >
+              Close
+            </ButtonComponent>
+            <ButtonComponent
+                controlHeight={39}
+                defaultBg={"#FFFFFF"}
+                defaultHoverBg={"#FFFFFF"}
+                defaultColor={"#5F66E9"}
+                defaultHoverColor={"#5F66E9"}
+                defaultBorderColor={"#5F66E9"}
+                paddingInline={60}
+            >
+              Reset
+            </ButtonComponent>
+          </div>
+          <div className={"flex flex-col gap-3 text-center"}>
+            <Title level={1}>
+              Disable
+            </Title>
+            <ButtonComponent
+                disabled={"disabled"}
+                controlHeight={39}
+                defaultBg={"#5F5F5F40"}
+                defaultHoverBg={"#5F5F5F40"}
+                paddingInline={60}
+            >
+              Close
+            </ButtonComponent>
+            <ButtonComponent
+                disabled={"disabled"}
+                controlHeight={39}
+                paddingInline={60}
+            >
+              Reset
+            </ButtonComponent>
+          </div>
         </div>
       </div>
     </Fragment>

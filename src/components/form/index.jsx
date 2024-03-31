@@ -79,6 +79,7 @@ export const CustomSelect = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        dropdownClassName={"border border-blue-500"}
       >
         {options.map(option => (
           <Option key={option.value} value={option.value}>{option.label}</Option>
