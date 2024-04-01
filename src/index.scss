@@ -63,4 +63,15 @@ svg {
   span {
     color: #FFFFFF;
   }
+
+  input,
+  select,
+  .ant-select-selector {
+    background: #262626;
+    color: #FFFFFF;
+  }
+
+  input:active {
+    color: #262626;
+  }
 }
