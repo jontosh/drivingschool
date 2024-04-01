@@ -37,6 +37,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { VscGraph } from "react-icons/vsc";
 import { WiTime5 } from "react-icons/wi";
 import DesignStyle from "./design.module.scss";
+import useDarkMode from "@/components/darkMode";
 
 const options = [
   { value: "", label: "" },
@@ -372,7 +373,7 @@ const Components = () => {
 
       <Typography.Title>Typography</Typography.Title>
 
-      <div className="mb-3 space-y-2 mode-dark">
+      <div className="mb-3 space-y-2">
         <Title level={1} fontWeightStrong={400} fontSize={"text-3xl"}>
           Title level - 1 text-3xl
         </Title>
@@ -409,18 +410,18 @@ const Components = () => {
         <div className={"flex gap-2 items-center"}>
           <CustomInput
             size={"medium"}
-            className={"w-96 mode-dark"}
-            hoverBg={"mode-dark"}
-            activeBg={"mode-dark"}
+            className={"w-96"}
+            hoverBg={`${useDarkMode ? 'mode-dark' : ''}`}
+            activeBg={`${useDarkMode ? 'mode-dark' : ''}`}
           />
           <Title level={2}>Default</Title>
         </div>
         <div className={"flex gap-2 items-center"}>
           <CustomInput
             size={"medium"}
-            className={"w-96 mode-dark"}
-            hoverBg={"mode-dark"}
-            activeBg={"mode-dark"}
+            className={"w-96"}
+            hoverBg={`${useDarkMode ? 'mode-dark' : ''}`}
+            activeBg={`${useDarkMode ? 'mode-dark' : ''}`}
           />
           <Title level={2}>Hover</Title>
         </div>
@@ -428,9 +429,9 @@ const Components = () => {
           <CustomInput
             size={"medium"}
             placeholder={"Something..."}
-            className={"w-96 mode-dark"}
-            hoverBg={"mode-dark"}
-            activeBg={"mode-dark"}
+            className={"w-96"}
+            hoverBg={`${useDarkMode ? 'mode-dark' : ''}`}
+            activeBg={`${useDarkMode ? 'mode-dark' : ''}`}
           />
           <Title level={2}>Active</Title>
         </div>
@@ -451,8 +452,8 @@ const Components = () => {
           <CustomSelect
             options={options}
             placeholder={"Select"}
-            className={"w-96 mode-light"}
-            dropdownClassName={"border border-blue-500 mode-dark"}
+            className={`w-96 ${useDarkMode ? 'mode-dark' : ''}`}
+            dropdownClassName={`border border-blue-500 ${useDarkMode ? 'mode-dark' : ''}`}
           />
         </div>
       </div>
