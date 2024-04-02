@@ -1,4 +1,5 @@
 import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
+import { Icons } from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -20,6 +21,7 @@ import {
 import { BiMoon } from "react-icons/bi";
 import { FaListUl } from "react-icons/fa6";
 import { HiOutlineSun } from "react-icons/hi2";
+import { LuLogOut } from "react-icons/lu";
 import { Link, Outlet } from "react-router-dom";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
@@ -144,7 +146,7 @@ const Layout = ({}) => {
             >
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineAppstore />}
@@ -156,19 +158,19 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineUserAdd />}
                 href={"/NotFound"}
                 defaultHoverBg={"transparent"}
               >
-                {IsActive && "New student"}
+                {IsActive && "New student enrollment"}
               </IconComponent>
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineSearch />}
@@ -180,7 +182,7 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black relative ${IsActive && LayoutStyle["Menu__links-drop"]}`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineTeam />}
@@ -192,7 +194,7 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineSolution />}
@@ -204,7 +206,7 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineMail />}
@@ -216,7 +218,7 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineReconciliation />}
@@ -228,7 +230,7 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineApartment />}
@@ -240,7 +242,7 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineSetting />}
@@ -252,7 +254,7 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineTool />}
@@ -264,10 +266,10 @@ const Layout = ({}) => {
 
               <IconComponent
                 defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-gray-500`}
+                className={`space-x-4 text-black`}
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
-                icon={<AiOutlineEye />}
+                icon={<LuLogOut />}
                 href={"/NotFound"}
                 defaultHoverBg={"transparent"}
               >
