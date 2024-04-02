@@ -407,7 +407,7 @@ const Dashboard = () => {
           >
             <DashboardTeachers />
             <div
-              className={`${DashboardStyle["Dashboard__teachers-list"]} px-6 flex gap-x-14`}
+              className={`${DashboardStyle["Dashboard__teachers-list"]} px-6 grid grid-cols-9 gap-x-14`}
             >
               {/*Teacher Avatar Start*/}
               <div
