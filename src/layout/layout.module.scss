@@ -47,5 +47,16 @@
       display: flex !important;
       width: 100% !important;
     }
+
+    &-drop {
+      &:after {
+        content: "\2039";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 25px;
+      }
+    }
   }
 }
