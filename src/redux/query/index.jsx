@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const APIRequest = createApi({
   reducerPath: "APIRequest",
@@ -7,18 +7,19 @@ export const APIRequest = createApi({
     baseUrl: "http://localhost:9000",
   }),
 
-  endpoints: (build) => ({
-    RequestGet: build.query({
-      query: (path) => path,
+  endpoints: (builder) => ({
+    requestGet: builder.query({
+      query: ({ path }) => path,
       providesTags: ["Device"],
     }),
 
-    RequestGetById: build.query({
+    requestId: builder.query({
       query: ({ path, id }) => `${path}/${id}`,
+
       providesTags: ["Device"],
     }),
 
-    RequestPost: build.mutation({
+    requestPost: builder.mutation({
       query: ({ path, data }) => ({
         url: path,
         method: "POST",
@@ -27,7 +28,7 @@ export const APIRequest = createApi({
       invalidatesTags: ["Device"],
     }),
 
-    RequestDelete: build.mutation({
+    requestDelete: builder.mutation({
       query: ({ path, id }) => ({
         url: `${path}/${id}`,
         method: "DELETE",
@@ -35,7 +36,8 @@ export const APIRequest = createApi({
       }),
       invalidatesTags: ["Device"],
     }),
-    RequestPatch: build.mutation({
+
+    requestPatch: builder.mutation({
       query: ({ path, data, id }) => ({
         url: `${path}/${id}`,
         method: "PATCH",
@@ -46,4 +48,10 @@ export const APIRequest = createApi({
   }),
 });
 
-export const { useRequestGetQuery } = APIRequest;
+export const {
+  useRequestGetQuery,
+  useRequestIdQuery,
+  useRequestPatchMutation,
+  useRequestPostMutation,
+  useRequestDeleteMutation,
+} = APIRequest;

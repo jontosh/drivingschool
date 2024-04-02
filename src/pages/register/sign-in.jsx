@@ -3,6 +3,7 @@ import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+// import { useDevGetQuery } from "@/redux/query/index.jsx";
 import { Formik } from "formik";
 import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
@@ -81,7 +82,7 @@ const SignInForm = () => {
                 </CustomInput>
               </div>
 
-              <CustomCheckBox checked={true}>
+              <CustomCheckBox>
                 <span className={"text-base"}>Remember me</span>
               </CustomCheckBox>
 
@@ -108,6 +109,8 @@ const SignInForm = () => {
 };
 const SignIn = () => {
   const { colorsObject } = useContext(ColorsContext);
+  // const { data } = useDevGetQuery({ path: "/admins" });
+
   return (
     <Fragment>
       <Helmet>
