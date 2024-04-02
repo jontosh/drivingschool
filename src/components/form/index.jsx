@@ -77,9 +77,9 @@ export const CustomInput = ({
             size={size}
             onChange={onChange}
           />
-          <spanText className={`${classNames(spanClassName)} text-sm`}>
+          <span className={`${classNames(spanClassName)} text-sm`}>
             {spanText}
-          </spanText>
+          </span>
         </label>
 
         {children}

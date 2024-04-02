@@ -1,8 +1,10 @@
 {
-	"admins": [
-		{
-			"id": 1,
-			"name": "Khaetbek"
-		}
-	]
+  "admins": [
+    {
+      "id": 1,
+      "name": "Khaetbek",
+      "login": "khaetbek@dev.com",
+      "password": 12345
+    }
+  ]
 }
