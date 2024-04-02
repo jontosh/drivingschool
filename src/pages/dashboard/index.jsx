@@ -199,7 +199,7 @@ const Dashboard = () => {
         <title>Dashboard</title>
       </Helmet>
       <section
-        className={`${DashboardStyle["Dashboard"]} px-11 space-y-5 max-w-full`}
+        className={`${DashboardStyle["Dashboard"]} px-11 space-y-5 max-w-full w-full`}
       >
         <Title
           level={2}
@@ -296,9 +296,7 @@ const Dashboard = () => {
           {/*statistics end*/}
         </div>
 
-        <div
-          className={`${DashboardStyle["Dashboard__extra"]} flex flex-wrap gap-11`}
-        >
+        <div className={`${DashboardStyle["Dashboard__extra"]} gap-11`}>
           <div
             className={`${DashboardStyle["Dashboard__overview"]} bg-white rounded-lg p-5 space-y-2.5`}
           >
@@ -324,7 +322,9 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className={`grow rounded-lg bg-white p-5`}>
+          <div
+            className={`rounded-lg bg-white p-5 ${DashboardStyle["Dashboard__links"]}`}
+          >
             <div className={`flex gap-2.5 items-center mb-6`}>
               <div
                 className={` w-12 h-12 p-3 ${DashboardStyle["Dashboard__overview-icon"]} bg-inherit `}
@@ -336,7 +336,7 @@ const Dashboard = () => {
                 className={`${DashboardStyle["Dashboard__overview-titles"]} `}
               >
                 <Title level={5} fontSize={"text-base"}>
-                  Overview
+                  Quick links
                 </Title>
               </div>
             </div>

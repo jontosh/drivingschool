@@ -14,7 +14,8 @@
 
   &__overview {
     box-shadow: 0px 10px 60px 0px #e2ecf980;
-    width: 673px;
+    //    max-width: 673px;
+    //    width: 100%;
 
     &-icon {
       background: #efc1ff;
@@ -23,7 +24,8 @@
   }
 
   &__links {
-    width: 533px;
+    //    max-width: 533px;
+    //    width: 100%;
   }
 
   &__statistics {
@@ -77,5 +79,10 @@
     & > *:first-child {
       width: 25px;
     }
+  }
+
+  &__extra {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
