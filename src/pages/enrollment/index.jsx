@@ -573,6 +573,8 @@ const Enrollment = () => {
                   </div>
                 </label>
               </div>
+
+              <div>@todo</div>
             </div>
 
             <div className={"py-6 text-center space-x-7"}>
