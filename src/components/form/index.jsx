@@ -51,6 +51,7 @@ export const CustomInput = ({
   spanClassName,
   type = "text",
   children,
+  colorBorder = "#000",
   ...props
 }) => {
   className = classNames([className]);
@@ -62,6 +63,7 @@ export const CustomInput = ({
             Input: {
               hoverBg,
               activeBg,
+              colorBorder,
             },
           },
         }}
@@ -77,9 +79,13 @@ export const CustomInput = ({
             size={size}
             onChange={onChange}
           />
-          <span className={`${classNames(spanClassName)} text-sm`}>
-            {spanText}
-          </span>
+          {spanText && (
+            <Fragment>
+              <span className={`${classNames(spanClassName)} text-sm`}>
+                {spanText}
+              </span>
+            </Fragment>
+          )}
         </label>
 
         {children}
@@ -95,22 +101,47 @@ export const CustomSelect = ({
   options,
   placeholder,
   dropdownClassName,
+  style,
+  multipleItemBorderColor,
+  optionFontSize,
+  optionSelectedFontWeight,
+  fontSize = 14,
+  colorBorder = "gray",
+  ...props
 }) => {
+  const option = options.map(({ ...option }, index) => (
+    <Option key={index} {...option}>
+      {option.label}
+    </Option>
+  ));
+
   return (
     <Fragment>
-      <Select
-        className={className}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        dropdownClassName={dropdownClassName}
+      <ConfigProvider
+        theme={{
+          components: {
+            Select: {
+              multipleItemBorderColor,
+              optionFontSize,
+              optionSelectedFontWeight,
+              fontSize,
+              colorBorder,
+            },
+          },
+        }}
       >
-        {options.map((option) => (
-          <Option key={option.value} value={option.value}>
-            {option.label}
-          </Option>
-        ))}
-      </Select>
+        <Select
+          className={classNames(className)}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          popupClassName={dropdownClassName}
+          style={style}
+          {...props}
+        >
+          {option}
+        </Select>
+      </ConfigProvider>
     </Fragment>
   );
 };

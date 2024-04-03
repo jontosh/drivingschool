@@ -162,7 +162,7 @@ const Layout = ({}) => {
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineUserAdd />}
-                href={"/NotFound"}
+                href={"/enrollment"}
                 defaultHoverBg={"transparent"}
               >
                 {IsActive && "New student enrollment"}
