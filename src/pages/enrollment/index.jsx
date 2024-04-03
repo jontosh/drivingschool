@@ -18,6 +18,7 @@ const Enrollment = () => {
     [Package, setPackage] = useState(defaultValue),
     [Classes, setClasses] = useState(defaultValue),
     [InfoType, setInfoType] = useState(defaultValue),
+    [Lead, setLead] = useState("Select"),
     Options = [
       {
         value: 1,
@@ -52,6 +53,15 @@ const Enrollment = () => {
         value: "Road test",
       },
     ];
+  const LeadOptions = [
+    {
+      value: 1
+    },
+    {
+      value: 2
+    },
+
+  ]
   return (
     <Fragment>
       <Helmet>
@@ -299,7 +309,7 @@ const Enrollment = () => {
                     Studetn id
                   </Paragraph>
 
-                  <div style={{ maxWidth: "408px" }} className={" w-full"}>
+                  <div style={{ maxWidth: "408px" }} className={"w-full"}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -574,7 +584,261 @@ const Enrollment = () => {
                 </label>
               </div>
 
-              <div>@todo</div>
+              <div className={"space-y-5"}>
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    DL/Permit
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"DL/Permit"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    DL/Permit Issued
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"DL/Permit Issued"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    DL Permit Expiration
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"DL Permit Expiration"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Self Scheduling
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomCheckBox />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Payment Plan
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomCheckBox />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Extantion Date
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"Extantion Date"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    High School
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"High School"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Parent name
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"Parent name"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Parent Phone
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"Parent Phone"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Parent Email
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"Parent Email"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Parent Name 2
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"Parent Name 2"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Parent Phone 2
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"Parent Phone 2"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Parent Email 2
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      classNames={"w-full"}
+                      placeholder={"Parent Email 2"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Home Dropoff
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <CustomCheckBox />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Date of birth
+                  </Paragraph>
+
+                  <div
+                    style={{ width: "408px", gap: "20px" }} className={"flex"}>
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      className={"w-full"}
+                      placeholder={"Day"}
+                    />
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      className={"w-full"}
+                      placeholder={"Month"}
+                    />
+                    <CustomInput
+                      type={"text"}
+                      colorBorder={colorsObject.primary}
+                      className={"w-full"}
+                      placeholder={"Year"}
+                    />
+                  </div>
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Lead
+                  </Paragraph>
+
+                  <CustomSelect
+                    value={Lead}
+                    onChange={(value) => setLead(value)}
+                    options={LeadOptions}
+                    style={{ width: "408px" }}
+                    className={"mb-2.5"}
+                    optionFontSize={14}
+                    optionSelectedFontWeight={400}
+                    fontSize={16}
+                    colorBorder={colorsObject.primary}
+                  />
+                </label>
+
+                <label className="flex items-center justify-between w-full">
+                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                    Student notes
+                  </Paragraph>
+
+                  <div style={{ width: "408px" }}>
+                    <textarea
+                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
+                    ></textarea>
+                  </div>
+                </label>
+
+              </div>
             </div>
 
             <div className={"py-6 text-center space-x-7"}>

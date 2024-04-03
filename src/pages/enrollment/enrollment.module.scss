@@ -6,10 +6,10 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
 
-    & > * {
-      //      box-shadow: 0px 4px 4px 0px #00000040;
-      //      grid-row: 0;
-    }
+    // & > * {
+    //      box-shadow: 0px 4px 4px 0px #00000040;
+    //      grid-row: 0;
+    // }
   }
 
   &__info-type {
@@ -36,7 +36,7 @@
     &-wrap {
       border: 1px solid $primary;
 
-      & > * + * {
+      &>*+* {
         border-left: 1px solid $black;
       }
     }
