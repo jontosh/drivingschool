@@ -234,7 +234,7 @@ const Layout = ({}) => {
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineApartment />}
-                href={"/NotFound"}
+                href={"/management"}
                 defaultHoverBg={"transparent"}
               >
                 {IsActive && "Account Managment"}

@@ -1,0 +1,9 @@
+@import "@/styles/vars";
+
+.Tab {
+  &__link {
+    &-active {
+      color: $primary;
+    }
+  }
+}

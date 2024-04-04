@@ -3,6 +3,9 @@ import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
 import Enrollment from "@/pages/enrollment/index.jsx";
+import Management from "@/pages/managment/index.jsx";
+import Service from "@/pages/managment/service/index.jsx";
+import ServiceSpa from "@/pages/managment/service/service-spa.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
 import SignIn from "@/pages/register/sign-in.jsx";
@@ -30,6 +33,22 @@ export const router = createBrowserRouter([
       {
         path: "/enrollment",
         element: <Enrollment />,
+      },
+      {
+        path: "/management",
+        element: <Management />,
+        children: [
+          {
+            path: "service",
+            element: <Service />,
+            children: [
+              {
+                path: ":title",
+                element: <ServiceSpa />,
+              },
+            ],
+          },
+        ],
       },
       {
         path: "*",
