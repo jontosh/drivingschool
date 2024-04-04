@@ -30,6 +30,14 @@
     }
   }
 
+  &__div {
+    width: 408px;
+
+    @media (max-width: 1630px) {
+      width: 310px;
+    }
+  }
+
   &__input {
     outline: none;
 

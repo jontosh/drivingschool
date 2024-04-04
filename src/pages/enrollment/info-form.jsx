@@ -106,8 +106,7 @@ export const InfoForm = ({}) => {
                     value={Staff !== "" ? Staff : "Account #"}
                     options={InfoTypeOptions}
                     onChange={(value) => setStaff(value)}
-                    style={{ maxWidth: "408px" }}
-                    className={"w-full"}
+                    className={`${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
                   />
                 </label>
@@ -121,8 +120,7 @@ export const InfoForm = ({}) => {
                     value={"Select  Location"}
                     // onChange={(value) => setInfoType(value)}
                     options={InfoTypeOptions}
-                    style={{ maxWidth: "408px" }}
-                    className={" w-full"}
+                    className={`${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
                   />
                 </label>
@@ -132,7 +130,7 @@ export const InfoForm = ({}) => {
                     Studetn id
                   </Paragraph>
 
-                  <div style={{ maxWidth: "408px" }} className={"w-full"}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -151,7 +149,7 @@ export const InfoForm = ({}) => {
                     First name
                   </Paragraph>
 
-                  <div style={{ maxWidth: "408px" }} className={" w-full"}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -179,7 +177,7 @@ export const InfoForm = ({}) => {
                     Last name
                   </Paragraph>
 
-                  <div style={{ maxWidth: "408px" }} className={" w-full"}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -200,7 +198,7 @@ export const InfoForm = ({}) => {
                     Middle name
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -219,7 +217,7 @@ export const InfoForm = ({}) => {
                     Address
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -240,7 +238,7 @@ export const InfoForm = ({}) => {
                     City
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -261,13 +259,13 @@ export const InfoForm = ({}) => {
                     State
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomSelect
                       value={State !== "" ? State : "State"}
                       onChange={(value) => setState(value)}
                       options={InfoTypeOptions}
-                      style={{ width: "408px" }}
-                      className={"mb-2.5"}
+                      // style={{ width: "408px" }}
+                      className={"mb-2.5 w-full"}
                       colorBorder={colorsObject.primary}
                     />
                   </div>
@@ -282,11 +280,11 @@ export const InfoForm = ({}) => {
                     Zip/Postal code
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={`w-full`}
                       placeholder={"Zip/Postal code"}
                       name={"postalCode"}
                       value={values.postalCode}
@@ -304,8 +302,7 @@ export const InfoForm = ({}) => {
                   </Paragraph>
 
                   <div
-                    style={{ width: "408px" }}
-                    className={`flex items-center rounded-lg ${EnrollmentStyle["Enrollment__input-wrap"]}`}
+                    className={`flex items-center rounded-lg ${EnrollmentStyle["Enrollment__input-wrap"]} ${EnrollmentStyle["Enrollment__div"]}`}
                   >
                     <input
                       placeholder={"Home Phone"}
@@ -327,7 +324,7 @@ export const InfoForm = ({}) => {
                     Home Phone
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -341,7 +338,7 @@ export const InfoForm = ({}) => {
                     Email
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"email"}
                       colorBorder={colorsObject.primary}
@@ -363,8 +360,7 @@ export const InfoForm = ({}) => {
                   </Paragraph>
 
                   <Checkbox.Group
-                    className={"space-x-2.5 w-full"}
-                    style={{ maxWidth: "408px" }}
+                    className={`${EnrollmentStyle["Enrollment__div"]}`}
                   >
                     <CustomCheckBox name={"gender"}>
                       <Text fontSize={"text-base"}>Male</Text>
@@ -385,7 +381,7 @@ export const InfoForm = ({}) => {
                     Perferred Pronoun
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -400,7 +396,7 @@ export const InfoForm = ({}) => {
                     Medical condition
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <textarea
                       className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
                     ></textarea>
@@ -412,7 +408,7 @@ export const InfoForm = ({}) => {
                     Student driving notes
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <textarea
                       className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
                     ></textarea>
@@ -420,7 +416,7 @@ export const InfoForm = ({}) => {
                 </label>
 
                 <label className="flex items-center justify-end w-full">
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox className={"text-base font-normal"}>
                       I have read and agreed to Terms and Conditions
                     </CustomCheckBox>
@@ -434,7 +430,7 @@ export const InfoForm = ({}) => {
                     DL/Permit
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -449,7 +445,7 @@ export const InfoForm = ({}) => {
                     DL/Permit Issued
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -464,7 +460,7 @@ export const InfoForm = ({}) => {
                     DL Permit Expiration
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -479,7 +475,7 @@ export const InfoForm = ({}) => {
                     Self Scheduling
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -489,7 +485,7 @@ export const InfoForm = ({}) => {
                     Payment Plan
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -499,7 +495,7 @@ export const InfoForm = ({}) => {
                     Extantion Date
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -514,7 +510,7 @@ export const InfoForm = ({}) => {
                     High School
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -529,7 +525,7 @@ export const InfoForm = ({}) => {
                     Parent name
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -544,7 +540,7 @@ export const InfoForm = ({}) => {
                     Parent Phone
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -559,7 +555,7 @@ export const InfoForm = ({}) => {
                     Parent Email
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -574,7 +570,7 @@ export const InfoForm = ({}) => {
                     Parent Name 2
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -589,7 +585,7 @@ export const InfoForm = ({}) => {
                     Parent Phone 2
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -604,7 +600,7 @@ export const InfoForm = ({}) => {
                     Parent Email 2
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -619,7 +615,7 @@ export const InfoForm = ({}) => {
                     Home Dropoff
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -630,8 +626,8 @@ export const InfoForm = ({}) => {
                   </Paragraph>
 
                   <div
-                    style={{ width: "408px", gap: "20px" }}
-                    className={"flex"}
+                    style={{ gap: "20px" }}
+                    className={`flex ${EnrollmentStyle["Enrollment__div"]}`}
                   >
                     <CustomInput
                       type={"text"}
@@ -663,8 +659,7 @@ export const InfoForm = ({}) => {
                     value={Lead}
                     onChange={(value) => setLead(value)}
                     options={LeadOptions}
-                    style={{ width: "408px" }}
-                    className={"mb-2.5"}
+                    className={`mb-2.5 ${EnrollmentStyle["Enrollment__div"]}`}
                     optionFontSize={14}
                     optionSelectedFontWeight={400}
                     fontSize={16}
@@ -677,7 +672,7 @@ export const InfoForm = ({}) => {
                     Student notes
                   </Paragraph>
 
-                  <div style={{ width: "408px" }}>
+                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <textarea
                       className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
                     ></textarea>
