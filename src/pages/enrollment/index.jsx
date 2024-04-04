@@ -7,10 +7,54 @@ import {
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Checkbox } from "antd";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { IoIosArrowDown } from "react-icons/io";
 import EnrollmentStyle from "./enrollment.module.scss";
+
+const PackageSelectionArray = [
+    {
+      id: 1,
+      label: "8h in car instruction",
+      hours: 74,
+      price: 169,
+      value: 1,
+    },
+    {
+      id: 2,
+      label: "10h in car instruction",
+      hours: 74,
+      price: 209,
+      value: 2,
+    },
+    {
+      id: 3,
+      label: "3h in car instruction",
+      hours: 15,
+      price: 103,
+      value: 3,
+    },
+  ],
+  ClassSelectionArray = [
+    {
+      id: 1,
+      label: "8h in car instruction",
+      value: 1,
+      price: 169,
+    },
+    {
+      id: 2,
+      label: "10h in car instruction",
+      value: 2,
+      price: 209,
+    },
+    {
+      id: 3,
+      label: "3h in car instruction",
+      value: 3,
+      price: 103,
+    },
+  ];
 
 const Enrollment = () => {
   const { colorsObject } = useContext(ColorsContext),
@@ -19,26 +63,8 @@ const Enrollment = () => {
     [Classes, setClasses] = useState(defaultValue),
     [InfoType, setInfoType] = useState(defaultValue),
     [Lead, setLead] = useState("Select"),
-    Options = [
-      {
-        value: 1,
-        label: 1,
-      },
-      {
-        value: 2,
-        label: 2,
-      },
-    ],
-    ClassOptions = [
-      {
-        value: 1,
-        label: 1,
-      },
-      {
-        value: 2,
-        label: 2,
-      },
-    ],
+    [SelectedPackages, setSelectedPackages] = useState([]),
+    [SelectedClass, setSelectedClass] = useState([]),
     InfoTypeOptions = [
       {
         value: "Teen",
@@ -55,13 +81,85 @@ const Enrollment = () => {
     ];
   const LeadOptions = [
     {
-      value: 1
+      value: 1,
     },
     {
-      value: 2
+      value: 2,
     },
+  ];
 
-  ]
+  useEffect(() => {
+    PackageSelectionArray.map((item) => {
+      if (Package === item.value) {
+        setSelectedPackages([...SelectedPackages, item]);
+      }
+    });
+  }, [Package]);
+
+  let totalPrice = 0;
+
+  const packageItem = SelectedPackages.map(({ price, hours, label }, index) => {
+    totalPrice += price;
+    index += 1;
+    return (
+      <Fragment key={index}>
+        {/*Item Start*/}
+        <div className="flex justify-between">
+          <div className="flex gap-x-2.5 items-center">
+            <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
+              {index}
+            </Paragraph>
+            <Paragraph fontSize={"text-xs"} fontWeightStrong={400}>
+              {label}
+            </Paragraph>
+            <Paragraph
+              fontSize={"text-xs text-gray-600"}
+              fontWeightStrong={400}
+            >
+              {hours}h
+            </Paragraph>
+          </div>
+
+          <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
+            ${price}
+          </Paragraph>
+        </div>
+        {/*Item Start*/}
+      </Fragment>
+    );
+  });
+
+  useEffect(() => {
+    ClassSelectionArray.map((item) => {
+      if (item.value === Classes) {
+        setSelectedClass([...SelectedClass, item]);
+      }
+    });
+  }, [Classes]);
+
+  let totalClassPrice = 0;
+  const classItem = SelectedClass?.map(({ label, price }, index) => {
+    index += 1;
+    totalClassPrice += price;
+    return (
+      <div
+        className="border-2 rounded-3xl border-indigo-500 flex items-center"
+        key={index}
+      >
+        <Paragraph
+          className={"border-r-2 border-r-indigo-500"}
+          fontSize={"text-base p-4 "}
+          fontWeightStrong={400}
+        >
+          {index}
+        </Paragraph>
+        <Paragraph fontSize={"text-base p-4"} fontWeightStrong={400}>
+          {label}
+        </Paragraph>
+      </div>
+    );
+  });
+
   return (
     <Fragment>
       <Helmet>
@@ -98,7 +196,7 @@ const Enrollment = () => {
               <CustomSelect
                 value={Package}
                 onChange={(value) => setPackage(value)}
-                options={Options}
+                options={PackageSelectionArray}
                 style={{ width: "100%" }}
                 className={"mb-2.5"}
                 optionFontSize={14}
@@ -106,88 +204,54 @@ const Enrollment = () => {
                 fontSize={16}
                 colorBorder={colorsObject.primary}
               />
-              <div className="flex justify-between mb-2.5">
-                <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                  You choosen:
-                </Paragraph>
-                <Paragraph fontSize={"text-xs text-gray-600"}>
-                  Sub total $338 Tax: $0 Coupon: $338
-                </Paragraph>
-              </div>
 
-              <div className={`flex flex-col gap-y-3.5 pl-4 mb-5`}>
-                {/*Item Start*/}
-                <div className="flex justify-between">
-                  <div className="flex gap-x-2.5 items-center">
-                    <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
-                      1
+              {SelectedPackages?.length > 0 ? (
+                <Fragment>
+                  <div className="flex justify-between mb-2.5">
+                    <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                      You choosen:
                     </Paragraph>
-                    <Paragraph fontSize={"text-xs"} fontWeightStrong={400}>
-                      8h in car instruction
-                    </Paragraph>
-                    <Paragraph
-                      fontSize={"text-xs text-gray-600"}
-                      fontWeightStrong={400}
-                    >
-                      74h
+                    <Paragraph fontSize={"text-xs text-gray-600"}>
+                      Sub total ${totalPrice} Tax: $0 Coupon: $338
                     </Paragraph>
                   </div>
+                </Fragment>
+              ) : null}
 
-                  <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
-                    $169
-                  </Paragraph>
+              {SelectedPackages?.length > 0 ? (
+                <div className={`flex flex-col gap-y-3.5 pl-4 mb-5`}>
+                  {packageItem}
                 </div>
-                {/*Item Start*/}
+              ) : null}
 
-                {/*Item Start*/}
+              {SelectedPackages?.length > 0 ? (
                 <div className="flex justify-between">
-                  <div className="flex gap-x-2.5 items-center">
-                    <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
-                      2
-                    </Paragraph>
-                    <Paragraph fontSize={"text-xs"} fontWeightStrong={400}>
-                      8h in car instruction
-                    </Paragraph>
-                    <Paragraph
-                      fontSize={"text-xs text-gray-600"}
-                      fontWeightStrong={400}
+                  <div className={"space-x-2.5"}>
+                    <ButtonComponent
+                      defaultBg={"#24C18F"}
+                      defaultHoverBg={"#24C18F"}
+                      paddingInline={12}
+                      // paddingBlock={4}
+                      controlHeight={40}
                     >
-                      74h
-                    </Paragraph>
+                      Add Package
+                    </ButtonComponent>
+
+                    <ButtonComponent
+                      defaultBg={colorsObject.info}
+                      defaultHoverBg={colorsObject.info}
+                      paddingInline={28}
+                      controlHeight={40}
+                    >
+                      Coupon
+                    </ButtonComponent>
                   </div>
 
-                  <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
-                    $169
+                  <Paragraph fontSize={"text-xl"} fontWeightStrong={400}>
+                    ${totalPrice}
                   </Paragraph>
                 </div>
-                {/*Item Start*/}
-              </div>
-              <div className="flex justify-between">
-                <div className={"space-x-2.5"}>
-                  <ButtonComponent
-                    defaultBg={"#24C18F"}
-                    defaultHoverBg={"#24C18F"}
-                    paddingInline={12}
-                    // paddingBlock={4}
-                    controlHeight={40}
-                  >
-                    Add Package
-                  </ButtonComponent>
-
-                  <ButtonComponent
-                    defaultBg={colorsObject.info}
-                    defaultHoverBg={colorsObject.info}
-                    paddingInline={28}
-                    controlHeight={40}
-                  >
-                    Coupon
-                  </ButtonComponent>
-                </div>
-
-                <Paragraph fontSize={"text-xl"} fontWeightStrong={400}>
-                  $340
-                </Paragraph>
-              </div>
+              ) : null}
             </div>
           </div>
 
@@ -207,44 +271,38 @@ const Enrollment = () => {
               <CustomSelect
                 value={Classes}
                 onChange={(value) => setClasses(value)}
-                options={ClassOptions}
+                options={ClassSelectionArray}
                 style={{ width: "100%" }}
                 className={"mb-2.5"}
                 colorBorder={colorsObject.primary}
               />
 
-              <div className="mb-5">
-                <div className="border-2 rounded-3xl border-indigo-500 flex items-center">
-                  <Paragraph
-                    className={"border-r-2 border-r-indigo-500"}
-                    fontSize={"text-base p-4 "}
-                    fontWeightStrong={400}
-                  >
-                    1
-                  </Paragraph>
-                  <Paragraph fontSize={"text-base p-4"} fontWeightStrong={400}>
-                    8h in car instruction
-                  </Paragraph>
-                </div>
-              </div>
+              {SelectedClass?.length > 0 ? (
+                <div className={"mb-5 space-y-2.5"}>{classItem}</div>
+              ) : null}
 
-              <div className="flex justify-between items-center">
-                <ButtonComponent
-                  defaultBg={"#24C18F"}
-                  defaultHoverBg={"#24C18F"}
-                  paddingInline={28}
-                  // paddingBlock={4}
-                  controlHeight={40}
-                >
-                  Add Package
-                </ButtonComponent>
-                <div className="inline-flex gap-x-2.5">
-                  <Paragraph fontSize={"text-xl text-gray-600"}>
-                    Total:
-                  </Paragraph>
-                  <Paragraph fontSize={"text-xl text-black"}>$169</Paragraph>
-                </div>
-              </div>
+              {SelectedClass?.length > 0 ? (
+                <Fragment>
+                  <div className="flex justify-between items-center">
+                    <ButtonComponent
+                      defaultBg={"#24C18F"}
+                      defaultHoverBg={"#24C18F"}
+                      paddingInline={28}
+                      controlHeight={40}
+                    >
+                      Add Package
+                    </ButtonComponent>
+                    <div className="inline-flex gap-x-2.5">
+                      <Paragraph fontSize={"text-xl text-gray-600"}>
+                        Total:
+                      </Paragraph>
+                      <Paragraph fontSize={"text-xl text-black"}>
+                        ${totalClassPrice}
+                      </Paragraph>
+                    </div>
+                  </div>
+                </Fragment>
+              ) : null}
             </div>
           </div>
         </div>
@@ -786,7 +844,9 @@ const Enrollment = () => {
                   </Paragraph>
 
                   <div
-                    style={{ width: "408px", gap: "20px" }} className={"flex"}>
+                    style={{ width: "408px", gap: "20px" }}
+                    className={"flex"}
+                  >
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
@@ -837,7 +897,6 @@ const Enrollment = () => {
                     ></textarea>
                   </div>
                 </label>
-
               </div>
             </div>
 
