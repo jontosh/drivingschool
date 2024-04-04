@@ -1,16 +1,10 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomCheckBox,
-  CustomInput,
-  CustomSelect,
-} from "@/components/form/index.jsx";
-import Title, { Paragraph, Text } from "@/components/title/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
+import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { InfoForm } from "@/pages/enrollment/info-form.jsx";
-import { Checkbox } from "antd";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { IoIosArrowDown } from "react-icons/io";
 import EnrollmentStyle from "./enrollment.module.scss";
 
 const PackageSelectionArray = [
@@ -321,7 +315,7 @@ const Enrollment = () => {
             colorBorder={colorsObject.primary}
           />
 
-          <InfoForm />
+          {defaultValue !== InfoType && <InfoForm />}
         </div>
       </section>
     </Fragment>
