@@ -159,6 +159,7 @@ export const InfoForm = ({}) => {
                       placeholder={"First name"}
                       name={"firstName"}
                       value={values.firstName}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
