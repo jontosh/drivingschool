@@ -1,3 +1,4 @@
+import { Product } from "@/pages/managment/service/product.jsx";
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 
@@ -8,7 +9,7 @@ const ServiceSpa = () => {
     return (
       <Fragment>
         <title>Service - Product</title>
-        <div>content</div>
+        <Product />
       </Fragment>
     );
   }

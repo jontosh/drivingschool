@@ -1,0 +1,11 @@
+@import "@/styles/vars";
+
+.Modal {
+  background: rgba(0, 0, 0, 0.5);
+
+  &__content {
+    max-width: 921px;
+    width: 100%;
+    box-shadow: 0 4px 4px 0 #00000040;
+  }
+}

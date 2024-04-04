@@ -5,6 +5,7 @@ import {
   CustomSelect,
 } from "@/components/form/index.jsx";
 import { Icons } from "@/components/icons/index.jsx";
+import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Checkbox, Pagination, Typography } from "antd";
@@ -51,9 +52,12 @@ const options = [
 const Components = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [Current, setCurrent] = useState(1);
+  const [IsOpen, setIsOpen] = useState(false);
   const handleChangePagination = (page) => {
     setCurrent(page);
   };
+
+  const handleModal = () => setIsOpen((prev) => !prev);
 
   return (
     <Fragment>
@@ -411,8 +415,8 @@ const Components = () => {
           <CustomInput
             size={"medium"}
             className={"w-96"}
-            hoverBg={`${useDarkMode ? 'mode-dark' : ''}`}
-            activeBg={`${useDarkMode ? 'mode-dark' : ''}`}
+            hoverBg={`${useDarkMode ? "mode-dark" : ""}`}
+            activeBg={`${useDarkMode ? "mode-dark" : ""}`}
           />
           <Title level={2}>Default</Title>
         </div>
@@ -420,8 +424,8 @@ const Components = () => {
           <CustomInput
             size={"medium"}
             className={"w-96"}
-            hoverBg={`${useDarkMode ? 'mode-dark' : ''}`}
-            activeBg={`${useDarkMode ? 'mode-dark' : ''}`}
+            hoverBg={`${useDarkMode ? "mode-dark" : ""}`}
+            activeBg={`${useDarkMode ? "mode-dark" : ""}`}
           />
           <Title level={2}>Hover</Title>
         </div>
@@ -430,8 +434,8 @@ const Components = () => {
             size={"medium"}
             placeholder={"Something..."}
             className={"w-96"}
-            hoverBg={`${useDarkMode ? 'mode-dark' : ''}`}
-            activeBg={`${useDarkMode ? 'mode-dark' : ''}`}
+            hoverBg={`${useDarkMode ? "mode-dark" : ""}`}
+            activeBg={`${useDarkMode ? "mode-dark" : ""}`}
           />
           <Title level={2}>Active</Title>
         </div>
@@ -452,8 +456,8 @@ const Components = () => {
           <CustomSelect
             options={options}
             placeholder={"Select"}
-            className={`w-96 ${useDarkMode ? 'mode-dark' : ''}`}
-            dropdownClassName={`border border-blue-500 ${useDarkMode ? 'mode-dark' : ''}`}
+            className={`w-96 ${useDarkMode ? "mode-dark" : ""}`}
+            dropdownClassName={`border border-blue-500 ${useDarkMode ? "mode-dark" : ""}`}
           />
         </div>
       </div>
@@ -655,6 +659,26 @@ const Components = () => {
               Reset
             </ButtonComponent>
           </div>
+        </div>
+      </div>
+
+      <div className={"flex flex-col gap-3 mb-3"}>
+        <Typography.Title>Modal</Typography.Title>
+        <div>
+          <ButtonComponent
+            controlHeight={39}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            defaultBorderColor={colorsObject.primary}
+            paddingInline={60}
+            onClick={handleModal}
+          >
+            Modal
+          </ButtonComponent>
+
+          {IsOpen && <Modal setIsOpen={setIsOpen}>@todo</Modal>}
         </div>
       </div>
     </Fragment>

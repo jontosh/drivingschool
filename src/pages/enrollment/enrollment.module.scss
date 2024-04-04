@@ -22,7 +22,7 @@
       content: " \2731";
       position: absolute;
       display: block;
-      bottom: 0;
+      top: 0;
       right: (-(16 + 3px));
       font-size: 10px;
       color: $danger;
@@ -44,7 +44,7 @@
     &-wrap {
       border: 1px solid $primary;
 
-      &>*+* {
+      & > * + * {
         border-left: 1px solid $black;
       }
     }
