@@ -84,7 +84,9 @@ const Enrollment = () => {
 
   let totalPrice = 0;
 
-  const packageItem = SelectedPackages.map(({ price, hours, label }, index) => {
+  const packageItem = SelectedPackages.filter(
+    (item, index) => SelectedPackages.indexOf(item) === index,
+  ).map(({ price, hours, label }, index) => {
     totalPrice += price;
     index += 1;
     return (
@@ -118,7 +120,7 @@ const Enrollment = () => {
   useEffect(() => {
     ClassSelectionArray.map((item) => {
       if (item.value === Classes) {
-        setSelectedClass([...SelectedClass, item]);
+        setSelectedClass([item]);
       }
     });
   }, [Classes]);
@@ -313,6 +315,7 @@ const Enrollment = () => {
             style={{ width: "100%", maxWidth: "570px" }}
             className={"mb-2.5"}
             colorBorder={colorsObject.primary}
+            disabled={defaultValue === Package}
           />
 
           {defaultValue !== InfoType && <InfoForm />}
