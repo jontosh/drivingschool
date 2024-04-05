@@ -7,6 +7,7 @@ import ModalStyle from "@/components/modal/modal.module.scss";
 import {
   DiscountModalContent,
   FeesModalContent,
+  MiscellaneousModalContent,
   ProductModalContent,
 } from "@/pages/managment/service/modal.jsx";
 import { Pagination } from "antd";
@@ -58,6 +59,8 @@ const Service = () => {
         return <FeesModalContent />;
       case "discounts":
         return <DiscountModalContent />;
+      case "miscellaneous":
+        return <MiscellaneousModalContent />;
       default:
         console.log(`not found content for ${title} page`);
     }
