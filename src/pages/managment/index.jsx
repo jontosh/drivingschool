@@ -1,7 +1,12 @@
-import { Fragment } from "react";
-import { Outlet } from "react-router-dom";
+import { Fragment, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Management = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/management/service/");
+  }, []);
+
   return (
     <Fragment>
       <section className={"px-11"}>

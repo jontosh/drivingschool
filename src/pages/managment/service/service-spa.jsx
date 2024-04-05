@@ -1,9 +1,11 @@
 import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Fees } from "@/pages/managment/service/fees.jsx";
+import { Miscellaneous } from "@/pages/managment/service/miscellaneous.jsx";
 import { Product } from "@/pages/managment/service/product.jsx";
 import { Space } from "antd";
 import { Fragment, useContext } from "react";
+import { Helmet } from "react-helmet";
 import { PiCopyLight } from "react-icons/pi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { TfiWrite } from "react-icons/tfi";
@@ -234,7 +236,9 @@ const ServiceSpa = () => {
     case "product":
       return (
         <Fragment>
-          <title>Service - Product</title>
+          <Helmet>
+            <title>Service - Product</title>
+          </Helmet>
           <Product data={data} columns={columns} />
         </Fragment>
       );
@@ -242,7 +246,9 @@ const ServiceSpa = () => {
       const { columns, data } = FeesData();
       return (
         <Fragment>
-          <title>Service - Frees</title>
+          <Helmet>
+            <title>Service - Frees</title>
+          </Helmet>
           <Fees data={data} columns={columns} />
         </Fragment>
       );
@@ -251,8 +257,21 @@ const ServiceSpa = () => {
       const { columns, data } = FeesData();
       return (
         <Fragment>
-          <title>Service - Discounts</title>
+          <Helmet>
+            <title>Service - Discounts</title>
+          </Helmet>
           <Fees data={data} columns={columns} />
+        </Fragment>
+      );
+    }
+    case "miscellaneous": {
+      const { columns, data } = FeesData();
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Service - Miscellaneous</title>
+          </Helmet>
+          <Miscellaneous data={data} columns={columns} />
         </Fragment>
       );
     }
