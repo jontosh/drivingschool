@@ -224,7 +224,7 @@ const Service = () => {
               colorBorder={colorsObject.primary}
             />
 
-            <label className={`inline-flex gap-x-9 items-center`}>
+            <label className={`inline-flex gap-x-9 items-center gap-5`}>
               <span
                 className={`w-40 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
@@ -249,7 +249,7 @@ const Service = () => {
               colorBorder={colorsObject.primary}
             />
 
-            <label className={`inline-flex gap-x-9 items-center gap-5`}>
+            <label className={`inline-flex gap-x-8 items-center gap-5`}>
               <span
                 className={`w-full max-w-28 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
@@ -264,7 +264,7 @@ const Service = () => {
               />
             </label>
 
-            <label className={`inline-flex gap-x-9 items-center gap-5`}>
+            <label className={`inline-flex gap-x-8 items-center gap-5`}>
               <span
                 className={`w-full max-w-28 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
