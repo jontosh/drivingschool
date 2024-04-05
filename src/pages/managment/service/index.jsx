@@ -4,16 +4,19 @@ import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ModalStyle from "@/components/modal/modal.module.scss";
+import {
+  DiscountModalContent,
+  FeesModalContent,
+  ProductModalContent,
+} from "@/pages/managment/service/modal.jsx";
 import { Pagination } from "antd";
-import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import ServiceStyle from "../management.module.scss";
-import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 
-const StatusSelect = [
+export const StatusSelect = [
   {
     id: 1,
     label: "Active",
@@ -34,6 +37,7 @@ const StatusSelect = [
 const Service = () => {
   // use
   const { colorsObject } = useContext(ColorsContext);
+  const { title } = useParams();
   const [CurrentPagination, setCurrentPagination] = useState(1);
   const [IsOpen, setIsOpen] = useState(false);
 
@@ -45,6 +49,19 @@ const Service = () => {
   const handleCloseModal = () => setIsOpen(false);
 
   const handleAdd = () => setIsOpen(true);
+
+  const CheckPageForModal = (page = "") => {
+    switch (page.toLowerCase()) {
+      case "product":
+        return <ProductModalContent />;
+      case "fees":
+        return <FeesModalContent />;
+      case "discounts":
+        return <DiscountModalContent />;
+      default:
+        console.log(`not found content for ${title} page`);
+    }
+  };
 
   // Custom
   const setActiveNav = ({ isActive }) =>
@@ -198,88 +215,12 @@ const Service = () => {
 
       {IsOpen && (
         <Modal setIsOpen={setIsOpen}>
-          <form
-            className={classNames(
-              ModalStyle["Modal__content"],
-              "p-5 bg-white rounded-3xl grid gap-y-5 justify-center",
-            )}
+          <div
+            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl`}
           >
-            <CustomInput
-              classNames={
-                "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5"
-              }
-              spanText={"Component name"}
-              className={"w-60"}
-              spanClassName={`max-w-46`}
-              colorBorder={colorsObject.primary}
-            />
+            {CheckPageForModal(title)}
 
-            <CustomInput
-              classNames={
-                "inline-flex gap-x-9 items-center flex-row-reverse gap-5"
-              }
-              spanText={"Item#/Code:"}
-              className={"w-60"}
-              spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <label className={`inline-flex gap-x-9 items-center gap-5`}>
-              <span
-                className={`w-40 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Status:
-              </span>
-
-              <CustomSelect
-                value={"Select status"}
-                style={{ maxWidth: 240, width: "100%" }}
-                options={StatusSelect}
-                colorBorder={colorsObject.primary}
-              />
-            </label>
-
-            <CustomInput
-              classNames={
-                "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5"
-              }
-              spanText={"Public Name:"}
-              className={"w-60"}
-              spanClassName={`max-w-46 `}
-              colorBorder={colorsObject.primary}
-            />
-
-            <label className={`inline-flex gap-x-8 items-center gap-5`}>
-              <span
-                className={`w-full max-w-28 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Type:
-              </span>
-
-              <CustomSelect
-                value={"Select status"}
-                style={{ maxWidth: 240, width: "100%" }}
-                options={StatusSelect}
-                colorBorder={colorsObject.primary}
-              />
-            </label>
-
-            <label className={`inline-flex gap-x-8 items-center gap-5`}>
-              <span
-                className={`w-full max-w-28 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Sub Type:
-              </span>
-
-              <CustomSelect
-                value={"Select status"}
-                style={{ maxWidth: 240, width: "100%" }}
-                options={StatusSelect}
-                colorBorder={colorsObject.primary}
-              />
-            </label>
-
-            <div className={`text-center space-x-4`}>
+            <div className={`text-center space-x-4 `}>
               <ButtonComponent
                 defaultBg={"#24C18F"}
                 defaultHoverBg={"#24C18F"}
@@ -299,7 +240,7 @@ const Service = () => {
                 Close
               </ButtonComponent>
             </div>
-          </form>
+          </div>
         </Modal>
       )}
     </Fragment>
