@@ -104,7 +104,6 @@ export const IconComponent = ({
               defaultHoverBg,
               fontSize,
               fontWeight,
-              colorIcon: "red",
             },
           },
         }}
