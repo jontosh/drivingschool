@@ -9,8 +9,7 @@ import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import { IoIosArrowDown } from "react-icons/io";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import ServiceStyle from "../management.module.scss";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 
@@ -33,9 +32,6 @@ const StatusSelect = [
 ];
 
 const Service = () => {
-  const { title } = useParams();
-
-  console.log(title);
   // use
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
