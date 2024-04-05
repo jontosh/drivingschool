@@ -194,7 +194,7 @@ const FeesData = () => {
             defaultHoverBg={"transparent"}
             className={"text-indigo-600 hover:text-indigo-600"}
           >
-            <PiCopyLight />
+            <TfiWrite />
           </IconComponent>
         </Space>
       ),
@@ -243,6 +243,15 @@ const ServiceSpa = () => {
       return (
         <Fragment>
           <title>Service - Frees</title>
+          <Fees data={data} columns={columns} />
+        </Fragment>
+      );
+    }
+    case "discounts": {
+      const { columns, data } = FeesData();
+      return (
+        <Fragment>
+          <title>Service - Discounts</title>
           <Fees data={data} columns={columns} />
         </Fragment>
       );
