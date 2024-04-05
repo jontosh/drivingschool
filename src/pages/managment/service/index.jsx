@@ -188,7 +188,9 @@ const Service = () => {
               </div>
             </div>
             <div className={"pt-5"}>
-              <Outlet />
+              <div className={"-mx-5"}>
+                <Outlet />
+              </div>
             </div>
           </div>
         </div>
