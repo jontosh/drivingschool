@@ -10,7 +10,7 @@ import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import ServiceStyle from "../management.module.scss";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 
@@ -33,6 +33,9 @@ const StatusSelect = [
 ];
 
 const Service = () => {
+  const { title } = useParams();
+
+  console.log(title);
   // use
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
@@ -42,6 +45,8 @@ const Service = () => {
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
+
+  const handleCloseModal = () => setIsOpen(false);
 
   const handleAdd = () => setIsOpen(true);
 
@@ -153,16 +158,28 @@ const Service = () => {
                   Add new
                 </ButtonComponent>
 
-                <ButtonComponent
-                  defaultBg={colorsObject.primary}
-                  defaultHoverBg={colorsObject.primary}
-                  paddingInline={26}
-                  controlHeight={40}
-                  className={"inline-flex items-center"}
-                >
-                  <span>Status</span>
-                  <IoIosArrowDown />
-                </ButtonComponent>
+                {/*<ButtonComponent*/}
+                {/*  defaultBg={colorsObject.primary}*/}
+                {/*  defaultHoverBg={colorsObject.primary}*/}
+                {/*  paddingInline={26}*/}
+                {/*  controlHeight={40}*/}
+                {/*  className={"inline-flex items-center"}*/}
+                {/*>*/}
+                {/*  <span>Status</span>*/}
+                {/*  <IoIosArrowDown />*/}
+                {/*</ButtonComponent>*/}
+
+                <CustomSelect
+                  value={"Status"}
+                  options={StatusSelect}
+                  style={{
+                    width: 122,
+                    height: 40,
+                  }}
+                  colorBorder={colorsObject.primary}
+                  selectorBg={colorsObject.primary}
+                  colorText={colorsObject.main}
+                />
               </form>
 
               <div>
@@ -195,7 +212,7 @@ const Service = () => {
               }
               spanText={"Component name"}
               className={"w-60"}
-              spanClassName={`max-w-46 `}
+              spanClassName={`max-w-46`}
               colorBorder={colorsObject.primary}
             />
 
@@ -209,17 +226,18 @@ const Service = () => {
               colorBorder={colorsObject.primary}
             />
 
-            <label className={`inline-flex gap-x-9 items-center gap-5`}>
+            <label className={`inline-flex gap-x-9 items-center`}>
               <span
-                className={`w-full max-w-24 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-40 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Status:
               </span>
 
               <CustomSelect
                 value={"Select status"}
-                style={{ maxWidth: 240 }}
+                style={{ maxWidth: 240, width: "100%" }}
                 options={StatusSelect}
+                colorBorder={colorsObject.primary}
               />
             </label>
 
@@ -235,29 +253,31 @@ const Service = () => {
 
             <label className={`inline-flex gap-x-9 items-center gap-5`}>
               <span
-                className={`w-full max-w-24 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-full max-w-28 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Type:
               </span>
 
               <CustomSelect
                 value={"Select status"}
-                style={{ maxWidth: 240 }}
+                style={{ maxWidth: 240, width: "100%" }}
                 options={StatusSelect}
+                colorBorder={colorsObject.primary}
               />
             </label>
 
             <label className={`inline-flex gap-x-9 items-center gap-5`}>
               <span
-                className={`w-full max-w-24 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-full max-w-28 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Sub Type:
               </span>
 
               <CustomSelect
                 value={"Select status"}
-                style={{ maxWidth: 240 }}
+                style={{ maxWidth: 240, width: "100%" }}
                 options={StatusSelect}
+                colorBorder={colorsObject.primary}
               />
             </label>
 
@@ -267,6 +287,7 @@ const Service = () => {
                 defaultHoverBg={"#24C18F"}
                 paddingInline={64}
                 controlHeight={40}
+                onClick={handleCloseModal}
               >
                 Save
               </ButtonComponent>
@@ -275,6 +296,7 @@ const Service = () => {
                 defaultBg={"#00000040"}
                 defaultHoverBg={"#00000040"}
                 paddingInline={60}
+                onClick={handleCloseModal}
               >
                 Close
               </ButtonComponent>

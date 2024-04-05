@@ -107,6 +107,7 @@ export const CustomSelect = ({
   optionSelectedFontWeight,
   fontSize = 14,
   colorBorder = "gray",
+  selectorBg = "#fff",
   ...props
 }) => {
   const option = options.map(({ ...option }, index) => (
@@ -126,6 +127,7 @@ export const CustomSelect = ({
               optionSelectedFontWeight,
               fontSize,
               colorBorder,
+              selectorBg,
             },
           },
         }}
