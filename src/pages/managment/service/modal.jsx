@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { Fragment, useContext } from "react";
 import { StatusSelect } from "./index.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
+import ButtonComponent from "@/components/button/index.jsx";
 export const ProductModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   return (
@@ -93,7 +94,7 @@ export const FeesModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   return (
     <Fragment>
-      <form className={classNames("pb-5  grid gap-y-5 justify-center")}>
+      <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
         <CustomInput
           classNames={
             "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5"
@@ -147,94 +148,96 @@ export const DiscountModalContent = () => {
 
   return (
     <Fragment>
-      <form className={classNames("pb-5")}>
-        <CustomInput
-          classNames={
-            "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5"
-          }
-          spanText={"Discount name"}
-          className={"w-60"}
-          spanClassName={`max-w-46`}
-          colorBorder={colorsObject.primary}
-        />
-
-        <label className={`inline-flex gap-x-8 items-center`}>
-          <span
-            className={`w-40 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-          >
-            Status:
-          </span>
-
-          <CustomSelect
-            value={"Select status"}
-            style={{ maxWidth: 440, width: "100%" }}
-            options={StatusSelect}
+      <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
+        <div className={`flex grid gap-y-5 justify-center`}>
+          <CustomInput
+            classNames={
+              "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5"
+            }
+            spanText={"Discount name"}
+            className={"w-60"}
+            spanClassName={`max-w-46`}
             colorBorder={colorsObject.primary}
           />
-        </label>
 
-        <CustomInput
-          classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5"}
-          spanText={`Discount code:`}
-          className={"w-60"}
-          spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-          colorBorder={colorsObject.primary}
-        />
+          <label className={`inline-flex gap-x-7 items-center`}>
+            <span
+              className={`w-40 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+            >
+              Status:
+            </span>
 
-        <CustomInput
-          classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5"}
-          spanText={`Free Amount:`}
-          className={"w-60"}
-          spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-          colorBorder={colorsObject.primary}
-        />
+            <CustomSelect
+              value={"Select status"}
+              style={{ maxWidth: 440, width: "100%" }}
+              options={StatusSelect}
+              colorBorder={colorsObject.primary}
+            />
+          </label>
 
-        <div className={``}>
-          <div className={`flex items-center gap-7`}>
+          <CustomInput
+            classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5"}
+            spanText={`Discount code:`}
+            className={"w-60"}
+            spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+            colorBorder={colorsObject.primary}
+          />
+
+          <CustomInput
+            classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5"}
+            spanText={`Free Amount:`}
+            className={"w-60"}
+            spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+            colorBorder={colorsObject.primary}
+          />
+        </div>
+
+        <div className={`space-y-5`}>
+          <div className={`flex items-center space-x-12`}>
             <Title level={2}>Eligible Service:*</Title>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <textarea
+              <ButtonComponent
                 className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
-              ></textarea>
+              ></ButtonComponent>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <textarea
+              <ButtonComponent
                 className={`${ManagementStyle["Modal__textarea"]}`}
-              ></textarea>
+              ></ButtonComponent>
             </div>
           </div>
 
-          <div className={`flex items-center gap-7`}>
+          <div className={`flex items-center space-x-10`}>
             <Title level={2}>Eligible Class(es):</Title>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <textarea
+              <ButtonComponent
                 className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
-              ></textarea>
+              ></ButtonComponent>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <textarea
+              <ButtonComponent
                 className={`${ManagementStyle["Modal__textarea"]}`}
-              ></textarea>
+              ></ButtonComponent>
             </div>
           </div>
 
-          <div className={`flex items-center gap-7`}>
+          <div className={`flex items-center space-x-11`}>
             <Title level={2}>Eligible Class(es):</Title>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Eligible Class(es):</span>
-              <textarea
+              <ButtonComponent
                 className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
-              ></textarea>
+              ></ButtonComponent>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <textarea
+              <ButtonComponent
                 className={`${ManagementStyle["Modal__textarea"]}`}
-              ></textarea>
+              ></ButtonComponent>
             </div>
           </div>
         </div>
