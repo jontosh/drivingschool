@@ -23,10 +23,10 @@
     }
   }
 
-  &__links {
+  // &__links {
     //    max-width: 533px;
     //    width: 100%;
-  }
+  // }
 
   &__statistics {
     &>*+* {
@@ -39,6 +39,10 @@
         left: -50%;
         transform: translateX(-50%);
         border: 1px solid #f0f0f0;
+
+        @media (max-width: 1750px){
+          left: -30%;
+        }
       }
     }
 
