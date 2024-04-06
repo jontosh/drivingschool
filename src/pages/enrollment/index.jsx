@@ -8,28 +8,28 @@ import { Helmet } from "react-helmet";
 import EnrollmentStyle from "./enrollment.module.scss";
 
 const PackageSelectionArray = [
-    {
-      id: 1,
-      label: "8h in car instruction",
-      hours: 74,
-      price: 169,
-      value: 1,
-    },
-    {
-      id: 2,
-      label: "10h in car instruction",
-      hours: 74,
-      price: 209,
-      value: 2,
-    },
-    {
-      id: 3,
-      label: "3h in car instruction",
-      hours: 15,
-      price: 103,
-      value: 3,
-    },
-  ],
+  {
+    id: 1,
+    label: "8h in car instruction",
+    hours: 74,
+    price: 169,
+    value: 1,
+  },
+  {
+    id: 2,
+    label: "10h in car instruction",
+    hours: 74,
+    price: 209,
+    value: 2,
+  },
+  {
+    id: 3,
+    label: "3h in car instruction",
+    hours: 15,
+    price: 103,
+    value: 3,
+  },
+],
   ClassSelectionArray = [
     {
       id: 1,
@@ -233,6 +233,15 @@ const Enrollment = () => {
                     >
                       Coupon
                     </ButtonComponent>
+
+                    <ButtonComponent
+                      defaultBg={"#FF333F"}
+                      defaultHoverBg={"#FF333F"}
+                      paddingInline={28}
+                      controlHeight={40}
+                    >
+                      Delete
+                    </ButtonComponent>
                   </div>
 
                   <Paragraph fontSize={"text-xl"} fontWeightStrong={400}>
@@ -272,14 +281,24 @@ const Enrollment = () => {
               {SelectedClass?.length > 0 ? (
                 <Fragment>
                   <div className="flex justify-between items-center">
-                    <ButtonComponent
-                      defaultBg={"#24C18F"}
-                      defaultHoverBg={"#24C18F"}
-                      paddingInline={28}
-                      controlHeight={40}
-                    >
-                      Add Package
-                    </ButtonComponent>
+                    <div className="space-x-2.5">
+                      <ButtonComponent
+                        defaultBg={"#24C18F"}
+                        defaultHoverBg={"#24C18F"}
+                        paddingInline={28}
+                        controlHeight={40}
+                      >
+                        Add Package
+                      </ButtonComponent>
+                      <ButtonComponent
+                        defaultBg={"#FF333F"}
+                        defaultHoverBg={"#FF333F"}
+                        paddingInline={28}
+                        controlHeight={40}
+                      >
+                        Delete
+                      </ButtonComponent>
+                    </div>
                     <div className="inline-flex gap-x-2.5">
                       <Paragraph fontSize={"text-xl text-gray-600"}>
                         Total:

@@ -1,11 +1,12 @@
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
-import { Text } from "@/components/title/index.jsx";
+import Title, { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import { ConfigProvider, DatePicker } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext } from "react";
 import { StatusSelect } from "./index.jsx";
+import ManagementStyle from "@/pages/managment/management.module.scss"
 export const ProductModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   return (
@@ -188,7 +189,55 @@ export const DiscountModalContent = () => {
           colorBorder={colorsObject.primary}
         />
 
-        <div>@todo</div>
+        <div className={`overflow-scroll`}>
+          <div className={`flex items-center gap-7`}>
+            <Title level={2}>Eligible Service: *</Title>
+            <div className={`flex flex-col gap-5 items-center`}>
+              <span>Click to select</span>
+              <textarea
+                className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
+              ></textarea>
+            </div>
+            <div className={`flex flex-col gap-5 items-center`}>
+              <span>Click to select</span>
+              <textarea
+                className={`${ManagementStyle["Modal__textarea"]}`}
+              ></textarea>
+            </div>
+          </div>
+
+          <div className={`flex items-center gap-7`}>
+            <Title level={2}>Eligible Class(es):</Title>
+            <div className={`flex flex-col gap-5 items-center`}>
+              <span>Click to select</span>
+              <textarea
+                className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
+              ></textarea>
+            </div>
+            <div className={`flex flex-col gap-5 items-center`}>
+              <span>Click to select</span>
+              <textarea
+                className={`${ManagementStyle["Modal__textarea"]}`}
+              ></textarea>
+            </div>
+          </div>
+
+          <div className={`flex items-center gap-7`}>
+            <Title level={2}>Eligible Class(es):</Title>
+            <div className={`flex flex-col gap-5 items-center`}>
+              <span>Eligible Class(es):</span>
+              <textarea
+                className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
+              ></textarea>
+            </div>
+            <div className={`flex flex-col gap-5 items-center`}>
+              <span>Click to select</span>
+              <textarea
+                className={`${ManagementStyle["Modal__textarea"]}`}
+              ></textarea>
+            </div>
+          </div>
+        </div>
 
         <label className={"text-center space-x-5"}>
           <Text fontSize={"text-base"} fontWeightStrong={400}>

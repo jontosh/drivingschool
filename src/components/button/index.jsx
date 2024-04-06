@@ -23,6 +23,7 @@ const ButtonComponent = ({
   defaultHoverColor = "white",
   controlHeight = 30,
   fontSize = 16,
+  style,
   ...props
 }) => {
   className = classNames([className, ButtonStyle["Button"]]);
@@ -57,6 +58,7 @@ const ButtonComponent = ({
           className={className}
           disabled={disabled}
           href={href}
+          style={style}
           {...props}
         >
           {children}
@@ -77,6 +79,7 @@ export const IconComponent = ({
   defaultBorderColor = "transparent",
   defaultHoverColor = "#000",
   defaultHoverBorderColor = "transparent",
+  defaultActiveBorderColor,
   defaultHoverBg = "#fff",
   fontSize = 12,
   fontWeight = 500,
@@ -101,6 +104,7 @@ export const IconComponent = ({
               defaultBorderColor,
               defaultHoverColor,
               defaultHoverBorderColor,
+              defaultActiveBorderColor,
               defaultHoverBg,
               fontSize,
               fontWeight,

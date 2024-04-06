@@ -398,7 +398,7 @@ export const InfoForm = ({}) => {
 
                   <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <textarea
-                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
+                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Modal__textarea"]}`}
                     ></textarea>
                   </div>
                 </label>
