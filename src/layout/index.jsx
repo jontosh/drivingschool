@@ -164,6 +164,7 @@ const Layout = ({}) => {
                 icon={<AiOutlineUserAdd />}
                 href={"/enrollment"}
                 defaultHoverBg={"transparent"}
+                defaultActiveBorderColor={"#fff"}
               >
                 {IsActive && "New student enrollment"}
               </IconComponent>

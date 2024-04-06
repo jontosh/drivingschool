@@ -66,8 +66,9 @@ const columns = [
           <ButtonComponent
             defaultBg={CheckProgress(text)}
             defaultHoverBg={CheckProgress(text)}
-            paddingInline={39}
+            // paddingInline={39}
             controlHeight={40}
+            style={{width: "128px"}}
           >
             {text.toUpperCase()}
           </ButtonComponent>

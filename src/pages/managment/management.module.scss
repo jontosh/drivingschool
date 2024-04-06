@@ -7,3 +7,11 @@
     }
   }
 }
+
+.Modal__textarea {
+  outline: none;
+  min-width: 199px;
+  min-height: 254px;
+  border: 1px solid $primary;
+  border-radius: 20px;
+}
