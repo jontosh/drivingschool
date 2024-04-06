@@ -145,14 +145,14 @@ const Service = () => {
               Services (Packages)
             </NavLink>
           </div>
-          <div className={"pt-4 pb-7"}>
+          <div className={"pt-4 pb-7"} hidden={!title}>
             <div className={"flex justify-between"}>
               <form className={"flex gap-x-5 items-center"}>
                 <label className={"relative"}>
                   <CustomInput
                     colorBorder={colorsObject.primary}
                     placeholder={"Search"}
-                    className={"w-96 pl-12 pr-4 text-sm"}
+                    className={`w-96 pl-12 pr-4 text-sm ${title === "quiz-report" && `inline-flex flex-row-reverse`} `}
                   />
 
                   <span
@@ -163,48 +163,42 @@ const Service = () => {
                     <AiOutlineSearch />
                   </span>
                 </label>
+                {title !== "quiz-report" && (
+                  <Fragment>
+                    <ButtonComponent
+                      defaultBg={"#24C18F"}
+                      defaultHoverBg={"#24C18F"}
+                      paddingInline={26}
+                      controlHeight={40}
+                      onClick={handleAdd}
+                    >
+                      Add new
+                    </ButtonComponent>
 
-                <ButtonComponent
-                  defaultBg={"#24C18F"}
-                  defaultHoverBg={"#24C18F"}
-                  paddingInline={26}
-                  controlHeight={40}
-                  onClick={handleAdd}
-                >
-                  Add new
-                </ButtonComponent>
-
-                {/*<ButtonComponent*/}
-                {/*  defaultBg={colorsObject.primary}*/}
-                {/*  defaultHoverBg={colorsObject.primary}*/}
-                {/*  paddingInline={26}*/}
-                {/*  controlHeight={40}*/}
-                {/*  className={"inline-flex items-center"}*/}
-                {/*>*/}
-                {/*  <span>Status</span>*/}
-                {/*  <IoIosArrowDown />*/}
-                {/*</ButtonComponent>*/}
-
-                <CustomSelect
-                  value={"Status"}
-                  options={StatusSelect}
-                  style={{
-                    width: 122,
-                    height: 40,
-                  }}
-                  colorBorder={colorsObject.primary}
-                  selectorBg={colorsObject.primary}
-                  colorText={colorsObject.main}
-                />
+                    <CustomSelect
+                      value={"Status"}
+                      options={StatusSelect}
+                      style={{
+                        width: 122,
+                        height: 40,
+                      }}
+                      colorBorder={colorsObject.primary}
+                      selectorBg={colorsObject.primary}
+                      colorText={colorsObject.main}
+                    />
+                  </Fragment>
+                )}
               </form>
 
               <div>
-                <Pagination
-                  total={10}
-                  pageSize={1}
-                  current={CurrentPagination}
-                  onChange={handleChangePagination}
-                />
+                {title !== "quiz-report" && (
+                  <Pagination
+                    total={10}
+                    pageSize={1}
+                    current={CurrentPagination}
+                    onChange={handleChangePagination}
+                  />
+                )}
               </div>
             </div>
             <div className={"pt-5"}>
@@ -219,11 +213,11 @@ const Service = () => {
       {IsOpen && (
         <Modal setIsOpen={setIsOpen}>
           <div
-            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl`}
+            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl ${title === "discounts" && "overflow-y-auto"}`}
           >
             {CheckPageForModal(title)}
 
-            <div className={`text-center space-x-4 `}>
+            <div className={`text-center space-x-4`}>
               <ButtonComponent
                 defaultBg={"#24C18F"}
                 defaultHoverBg={"#24C18F"}
