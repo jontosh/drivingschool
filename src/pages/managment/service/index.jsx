@@ -145,7 +145,7 @@ const Service = () => {
               Services (Packages)
             </NavLink>
           </div>
-          <div className={"pt-4 pb-7"}>
+          <div className={"pt-4 pb-7"} hidden={!title}>
             <div className={"flex justify-between"}>
               <form className={"flex gap-x-5 items-center"}>
                 <label className={"relative"}>
@@ -191,12 +191,14 @@ const Service = () => {
               </form>
 
               <div>
-                <Pagination
-                  total={10}
-                  pageSize={1}
-                  current={CurrentPagination}
-                  onChange={handleChangePagination}
-                />
+                {title !== "quiz-report" && (
+                  <Pagination
+                    total={10}
+                    pageSize={1}
+                    current={CurrentPagination}
+                    onChange={handleChangePagination}
+                  />
+                )}
               </div>
             </div>
             <div className={"pt-5"}>
@@ -211,11 +213,11 @@ const Service = () => {
       {IsOpen && (
         <Modal setIsOpen={setIsOpen}>
           <div
-            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl`}
+            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl ${title === "discounts" && "overflow-y-auto"}`}
           >
             {CheckPageForModal(title)}
 
-            <div className={`text-center space-x-4 `}>
+            <div className={`text-center space-x-4`}>
               <ButtonComponent
                 defaultBg={"#24C18F"}
                 defaultHoverBg={"#24C18F"}

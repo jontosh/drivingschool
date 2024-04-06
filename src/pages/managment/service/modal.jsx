@@ -6,7 +6,7 @@ import { ConfigProvider, DatePicker } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext } from "react";
 import { StatusSelect } from "./index.jsx";
-import ManagementStyle from "@/pages/managment/management.module.scss"
+import ManagementStyle from "@/pages/managment/management.module.scss";
 export const ProductModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   return (
@@ -147,7 +147,7 @@ export const DiscountModalContent = () => {
 
   return (
     <Fragment>
-      <form className={classNames("pb-5  grid gap-y-5 justify-center")}>
+      <form className={classNames("pb-5")}>
         <CustomInput
           classNames={
             "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5"
@@ -189,9 +189,9 @@ export const DiscountModalContent = () => {
           colorBorder={colorsObject.primary}
         />
 
-        <div className={`overflow-scroll`}>
+        <div className={``}>
           <div className={`flex items-center gap-7`}>
-            <Title level={2}>Eligible Service: *</Title>
+            <Title level={2}>Eligible Service:*</Title>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
               <textarea
