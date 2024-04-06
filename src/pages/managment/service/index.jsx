@@ -152,7 +152,7 @@ const Service = () => {
                   <CustomInput
                     colorBorder={colorsObject.primary}
                     placeholder={"Search"}
-                    className={"w-96 pl-12 pr-4 text-sm"}
+                    className={`w-96 pl-12 pr-4 text-sm ${title === "quiz-report" && `inline-flex flex-row-reverse`} `}
                   />
 
                   <span
@@ -163,39 +163,31 @@ const Service = () => {
                     <AiOutlineSearch />
                   </span>
                 </label>
+                {title !== "quiz-report" && (
+                  <Fragment>
+                    <ButtonComponent
+                      defaultBg={"#24C18F"}
+                      defaultHoverBg={"#24C18F"}
+                      paddingInline={26}
+                      controlHeight={40}
+                      onClick={handleAdd}
+                    >
+                      Add new
+                    </ButtonComponent>
 
-                <ButtonComponent
-                  defaultBg={"#24C18F"}
-                  defaultHoverBg={"#24C18F"}
-                  paddingInline={26}
-                  controlHeight={40}
-                  onClick={handleAdd}
-                >
-                  Add new
-                </ButtonComponent>
-
-                {/*<ButtonComponent*/}
-                {/*  defaultBg={colorsObject.primary}*/}
-                {/*  defaultHoverBg={colorsObject.primary}*/}
-                {/*  paddingInline={26}*/}
-                {/*  controlHeight={40}*/}
-                {/*  className={"inline-flex items-center"}*/}
-                {/*>*/}
-                {/*  <span>Status</span>*/}
-                {/*  <IoIosArrowDown />*/}
-                {/*</ButtonComponent>*/}
-
-                <CustomSelect
-                  value={"Status"}
-                  options={StatusSelect}
-                  style={{
-                    width: 122,
-                    height: 40,
-                  }}
-                  colorBorder={colorsObject.primary}
-                  selectorBg={colorsObject.primary}
-                  colorText={colorsObject.main}
-                />
+                    <CustomSelect
+                      value={"Status"}
+                      options={StatusSelect}
+                      style={{
+                        width: 122,
+                        height: 40,
+                      }}
+                      colorBorder={colorsObject.primary}
+                      selectorBg={colorsObject.primary}
+                      colorText={colorsObject.main}
+                    />
+                  </Fragment>
+                )}
               </form>
 
               <div>
