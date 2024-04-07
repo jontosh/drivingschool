@@ -69,7 +69,6 @@ const columns = [
           <ButtonComponent
             defaultBg={CheckProgress(text)}
             defaultHoverBg={CheckProgress(text)}
-            // paddingInline={39}
             controlHeight={40}
             style={{ width: "128px" }}
           >
@@ -173,8 +172,8 @@ const FeesData = () => {
             <ButtonComponent
               defaultBg={CheckProgress(text)}
               defaultHoverBg={CheckProgress(text)}
-              paddingInline={39}
               controlHeight={40}
+              style={{ width: "128px" }}
             >
               {text.toUpperCase()}
             </ButtonComponent>
@@ -261,8 +260,8 @@ const DiscountsData = () => {
             <ButtonComponent
               defaultBg={CheckProgress(text)}
               defaultHoverBg={CheckProgress(text)}
-              paddingInline={39}
               controlHeight={40}
+              style={{ width: "128px" }}
             >
               {text.toUpperCase()}
             </ButtonComponent>
@@ -385,8 +384,8 @@ const PackagesData = () => {
             <ButtonComponent
               defaultBg={CheckProgress(text)}
               defaultHoverBg={CheckProgress(text)}
-              paddingInline={39}
               controlHeight={40}
+              style={{ width: "128px" }}
             >
               {text.toUpperCase()}
             </ButtonComponent>

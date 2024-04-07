@@ -198,13 +198,13 @@ export const DiscountModalContent = () => {
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
               <ButtonComponent
-                className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
+                className={`p-3 text-lg ${ManagementStyle["Modal__button"]}`}
               ></ButtonComponent>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
               <ButtonComponent
-                className={`${ManagementStyle["Modal__textarea"]}`}
+                className={`${ManagementStyle["Modal__button"]}`}
               ></ButtonComponent>
             </div>
           </div>
@@ -214,13 +214,13 @@ export const DiscountModalContent = () => {
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
               <ButtonComponent
-                className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
+                className={`p-3 text-lg ${ManagementStyle["Modal__button"]}`}
               ></ButtonComponent>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
               <ButtonComponent
-                className={`${ManagementStyle["Modal__textarea"]}`}
+                className={`${ManagementStyle["Modal__button"]}`}
               ></ButtonComponent>
             </div>
           </div>
@@ -230,13 +230,13 @@ export const DiscountModalContent = () => {
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Eligible Class(es):</span>
               <ButtonComponent
-                className={`p-3 text-lg ${ManagementStyle["Modal__textarea"]}`}
+                className={`p-3 text-lg ${ManagementStyle["Modal__button"]}`}
               ></ButtonComponent>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
               <ButtonComponent
-                className={`${ManagementStyle["Modal__textarea"]}`}
+                className={`${ManagementStyle["Modal__button"]}`}
               ></ButtonComponent>
             </div>
           </div>
