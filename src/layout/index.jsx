@@ -3,7 +3,7 @@ import { Icons } from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
   AiOutlineApartment,
@@ -22,7 +22,7 @@ import { BiMoon } from "react-icons/bi";
 import { FaListUl } from "react-icons/fa6";
 import { HiOutlineSun } from "react-icons/hi2";
 import { LuLogOut } from "react-icons/lu";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
@@ -31,6 +31,14 @@ import Tenant from "../assets/user/tenant.jpeg";
 const Layout = ({}) => {
   const { colorsObject } = useContext(ColorsContext);
   const [IsActive, setIsActive] = useState(true);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (pathname === "/") {
+      navigate("/dashboard/");
+    }
+  }, []);
+
   const handleSideBar = () => setIsActive((prev) => !prev);
   return (
     <Fragment>
@@ -187,7 +195,7 @@ const Layout = ({}) => {
                 defaultBorderColor={"transparent"}
                 defaultBg={"transparent"}
                 icon={<AiOutlineTeam />}
-                href={"/"}
+                href={"/student/account"}
                 defaultHoverBg={"transparent"}
               >
                 {IsActive && "Student account"}

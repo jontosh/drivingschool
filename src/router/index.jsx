@@ -9,6 +9,7 @@ import ServiceSpa from "@/pages/managment/service/service-spa.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
 import SignIn from "@/pages/register/sign-in.jsx";
+import Student from "@/pages/student/index.jsx";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -49,6 +50,11 @@ export const router = createBrowserRouter([
             ],
           },
         ],
+      },
+      {
+        path: "/student/account",
+        element: <Student />,
+        children: [],
       },
       {
         path: "*",
