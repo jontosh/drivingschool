@@ -49,6 +49,9 @@ export const InfoForm = ({ }) => {
   return (
     <Formik
       initialValues={{
+        Staff: "",
+        Location: "",
+        studentId: "",
         firstName: "",
         lastName: "",
         address: "",
@@ -58,9 +61,28 @@ export const InfoForm = ({ }) => {
         phone: "",
         email: "",
         gender: "",
+        Perferred: "",
+        MedicalCondition: "",
+        StudentDrivingNotes: "",
+        Permit: "",
+        PermitIssued: "",
+        PermitExpiration: "",
+        ExtantionDate: "",
+        HighSchool: "",
+        ParentName: "",
+        ParentPhone: "",
+        ParentEmail: "",
+        ParentName2: "",
+        ParentPhone2: "",
+        ParentEmail2: "",
+        Lead: "",
+        StudentNotes: ""
       }}
       validate={(values) => {
         if (
+          !values.Staff ||
+          !values.Location ||
+          !values.studentId ||
           !values.email ||
           !values.firstName ||
           !values.lastName ||
@@ -69,8 +91,24 @@ export const InfoForm = ({ }) => {
           !values.state ||
           !values.postalCode ||
           !values.phone ||
-          !values.email ||
-          !values.gender
+          // !values.email ||
+          !values.gender ||
+          !values.Perferred ||
+          !values.MedicalCondition ||
+          !values.StudentDrivingNotes ||
+          !values.Permit ||
+          !values.PermitIssued ||
+          !values.PermitExpiration ||
+          !values.ExtantionDate ||
+          !values.HighSchool ||
+          !values.ParentName ||
+          !values.ParentPhone ||
+          !values.ParentEmail ||
+          !values.ParentName2 ||
+          !values.ParentPhone2 ||
+          !values.ParentEmail2 ||
+          !values.Lead ||
+          !values.StudentNotes
         ) {
           Validation("EMPTY");
         } else if (
@@ -105,11 +143,18 @@ export const InfoForm = ({ }) => {
                   <CustomSelect
                     value={Staff !== "" ? Staff : "Account #"}
                     options={InfoTypeOptions}
-                    onChange={(value) => setStaff(value)}
+                    onChange={handleChange ? (value) => setStaff(value) : handleChange}
                     className={`${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
+                    name={"Staff"}
                   />
                 </label>
+
+                {(errors.AssignToLocation || touched.AssignToLocation) && (
+                  <Fragment>
+                    <div>{errors.AssignToLocation}</div>
+                  </Fragment>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -117,13 +162,21 @@ export const InfoForm = ({ }) => {
                   </Paragraph>
 
                   <CustomSelect
-                    value={"Select  Location"}
+                    value={Location !== "" ? Location : "Select  Location"}
                     // onChange={(value) => setInfoType(value)}
                     options={InfoTypeOptions}
                     className={`${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
+                    name={"Location"}
+                    onChange={handleChange}
                   />
                 </label>
+
+                {(errors.Location || touched.Location) && (
+                  <Fragment>
+                    <div>{errors.Location}</div>
+                  </Fragment>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -136,9 +189,18 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Student id"}
+                      name={"studentId"}
+                      value={values.studentId}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
+
+                {(errors.studentId || touched.studentId) && (
+                  <Fragment>
+                    <div>{errors.studentId}</div>
+                  </Fragment>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -185,28 +247,35 @@ export const InfoForm = ({ }) => {
                       placeholder={"Last name"}
                       name={"lastName"}
                       value={values.lastName}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
-                    className={`relative`}
+                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
                     fontWeightStrong={400}
                     fontSize={"text-base"}
                   >
                     Middle name
                   </Paragraph>
-
                   <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Middle name"}
+                      name={"middleName"}
+                      value={values.middleName}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.middleName && touched.middleName && (
+                  <div>{errors.middleName}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -225,9 +294,14 @@ export const InfoForm = ({ }) => {
                       placeholder={"Address"}
                       name={"address"}
                       value={values.address}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.address && touched.address && (
+                  <div>{errors.address}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -237,7 +311,6 @@ export const InfoForm = ({ }) => {
                   >
                     City
                   </Paragraph>
-
                   <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
@@ -246,9 +319,14 @@ export const InfoForm = ({ }) => {
                       placeholder={"City"}
                       name={"city"}
                       value={values.city}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.city && touched.city && (
+                  <div>{errors.city}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -267,9 +345,14 @@ export const InfoForm = ({ }) => {
                       // style={{ width: "408px" }}
                       className={"mb-2.5 w-full"}
                       colorBorder={colorsObject.primary}
+                      name={"state"}
                     />
                   </div>
                 </label>
+
+                {errors.state && touched.state && (
+                  <div>{errors.state}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -288,9 +371,14 @@ export const InfoForm = ({ }) => {
                       placeholder={"Zip/Postal code"}
                       name={"postalCode"}
                       value={values.postalCode}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.postalCode && touched.postalCode && (
+                  <div>{errors.postalCode}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -309,6 +397,7 @@ export const InfoForm = ({ }) => {
                       className={`${EnrollmentStyle["Enrollment__input"]} flex-grow px-5 py-2.5 w-44`}
                       name={"phone"}
                       value={values.phone}
+                      onChange={handleChange}
                     />
 
                     <CustomCheckBox
@@ -318,6 +407,10 @@ export const InfoForm = ({ }) => {
                     </CustomCheckBox>
                   </div>
                 </label>
+
+                {errors.phone && touched.phone && (
+                  <div>{errors.phone}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -346,9 +439,14 @@ export const InfoForm = ({ }) => {
                       placeholder={"Email"}
                       name={"email"}
                       value={values.email}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.email && touched.email && (
+                  <div>{errors.email}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -362,19 +460,23 @@ export const InfoForm = ({ }) => {
                   <Checkbox.Group
                     className={`${EnrollmentStyle["Enrollment__div"]}`}
                   >
-                    <CustomCheckBox name={"gender"}>
+                    <CustomCheckBox name={"gender"} onChange={handleChange}>
                       <Text fontSize={"text-base"}>Male</Text>
                     </CustomCheckBox>
 
-                    <CustomCheckBox name={"gender"}>
+                    <CustomCheckBox name={"gender"} onChange={handleChange}>
                       <Text fontSize={"text-base"}>Female</Text>
                     </CustomCheckBox>
 
-                    <CustomCheckBox name={"gender"}>
+                    <CustomCheckBox name={"gender"} onChange={handleChange}>
                       <Text fontSize={"text-base"}>Other</Text>
                     </CustomCheckBox>
                   </Checkbox.Group>
                 </label>
+
+                {errors.gender && touched.gender && (
+                  <div>{errors.gender}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -387,9 +489,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Perferred Pronoun"}
+                      name={"Perferred"}
+                      value={values.Perferred}
+                      onChange={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.Perferred && touched.Perferred && (
+                  <div>{errors.Perferred}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -398,10 +507,17 @@ export const InfoForm = ({ }) => {
 
                   <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <textarea
-                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Modal__textarea"]}`}
+                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
+                      name={"MedicalCondition"}
+                      value={values.MedicalCondition}
+                      onClick={handleChange}
                     ></textarea>
                   </div>
                 </label>
+
+                {errors.MedicalCondition && touched.MedicalCondition && (
+                  <div>{errors.MedicalCondition}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -411,9 +527,16 @@ export const InfoForm = ({ }) => {
                   <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <textarea
                       className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
+                      name={"StudentDrivingNotes"}
+                      value={values.StudentDrivingNotes}
+                      onClick={handleChange}
                     ></textarea>
                   </div>
                 </label>
+
+                {errors.StudentDrivingNotes && touched.StudentDrivingNotes && (
+                  <div>{errors.StudentDrivingNotes}</div>
+                )}
 
                 <label className="flex items-center justify-end w-full">
                   <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
@@ -436,9 +559,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"DL/Permit"}
+                      name={"Permit"}
+                      value={values.Permit}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.Permit && touched.Permit && (
+                  <div>{errors.Permit}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -451,9 +581,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"DL/Permit Issued"}
+                      name={"PermitIssued"}
+                      value={values.PermitIssued}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.PermitIssued && touched.PermitIssued && (
+                  <div>{errors.PermitIssued}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -466,9 +603,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"DL Permit Expiration"}
+                      name={"PermitExpiration"}
+                      value={values.PermitExpiration}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.PermitExpiration && touched.PermitExpiration && (
+                  <div>{errors.PermitExpiration}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -501,9 +645,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Extantion Date"}
+                      name={"ExtantionDate"}
+                      value={values.ExtantionDate}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.ExtantionDate && touched.ExtantionDate && (
+                  <div>{errors.ExtantionDate}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -516,9 +667,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"High School"}
+                      name={"HighSchool"}
+                      value={values.HighSchool}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.HighSchool && touched.HighSchool && (
+                  <div>{errors.PermitIssued}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -531,9 +689,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Parent name"}
+                      name={"ParentName"}
+                      value={values.ParentName}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.ParentName && touched.ParentName && (
+                  <div>{errors.ParentName}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -546,9 +711,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Parent Phone"}
+                      name={"ParentPhone"}
+                      value={values.ParentPhone}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.ParentPhone && touched.ParentPhone && (
+                  <div>{errors.ParentPhone}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -561,9 +733,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Parent Email"}
+                      name={"ParentEmail"}
+                      value={values.ParentEmail}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.ParentEmail && touched.ParentEmail && (
+                  <div>{errors.ParentEmail}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -576,9 +755,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Parent Name 2"}
+                      name={"ParentName2"}
+                      value={values.ParentName2}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.ParentName2 && touched.ParentName2 && (
+                  <div>{errors.ParentName2}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -591,9 +777,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Parent Phone 2"}
+                      name={"ParentPhone2"}
+                      value={values.ParentPhone2}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.ParentPhone2 && touched.ParentPhone2 && (
+                  <div>{errors.ParentPhone2}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -606,9 +799,16 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       classNames={"w-full"}
                       placeholder={"Parent Email 2"}
+                      name={"ParentEmail2"}
+                      value={values.ParentEmail2}
+                      onClick={handleChange}
                     />
                   </div>
                 </label>
+
+                {errors.ParentEmail2 && touched.ParentEmail2 && (
+                  <div>{errors.ParentEmail2}</div>
+                )}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -634,6 +834,7 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       className={"w-full"}
                       placeholder={"Day"}
+
                     />
                     <CustomInput
                       type={"text"}
@@ -656,7 +857,7 @@ export const InfoForm = ({ }) => {
                   </Paragraph>
 
                   <CustomSelect
-                    value={Lead}
+                    value={values.Lead}
                     onChange={(value) => setLead(value)}
                     options={LeadOptions}
                     className={`mb-2.5 ${EnrollmentStyle["Enrollment__div"]}`}
@@ -664,8 +865,11 @@ export const InfoForm = ({ }) => {
                     optionSelectedFontWeight={400}
                     fontSize={16}
                     colorBorder={colorsObject.primary}
+                    name={"Lead"}
+                    onClick={handleChange}
                   />
                 </label>
+
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -675,9 +879,16 @@ export const InfoForm = ({ }) => {
                   <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
                     <textarea
                       className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
+                      name={"StudentNotes"}
+                      value={values.StudentNotes}
+                      onClick={handleChange}
                     ></textarea>
                   </div>
                 </label>
+
+                {errors.StudentNotes && touched.StudentNotes && (
+                  <div>{errors.StudentNotes}</div>
+                )}
               </div>
             </div>
 
