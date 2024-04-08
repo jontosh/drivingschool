@@ -85,12 +85,10 @@ const StudentAccount = ({}) => {
                 icon={<AiOutlineInfoCircle />}
                 className={"text-3xl text-indigo-600"}
               />
-
               <IconComponent
                 icon={<AiOutlineShoppingCart />}
                 className={"text-3xl text-indigo-600"}
               />
-
               <IconComponent
                 icon={<PiMoney />}
                 className={"text-3xl text-indigo-600"}
@@ -100,19 +98,16 @@ const StudentAccount = ({}) => {
                 icon={<PiBookBookmarkFill />}
                 className={"text-3xl text-indigo-600"}
               />
-
               <IconComponent
                 icon={<IoCarOutline />}
                 className={"text-3xl text-indigo-600"}
               />
-
               <CustomSelect
                 value={"Select"}
                 options={[{ value: 1, label: 1 }]}
                 colorBorder={colorsObject.primary}
                 style={{ width: 120, height: 40 }}
               />
-
               <CustomSelect
                 value={"Apply Payment"}
                 options={[{ value: "Payme", label: "Payme" }]}
