@@ -1,3 +1,4 @@
+import button from "@/components/button/index.jsx";
 import classNames from "classnames";
 import IconStyle from "./icons.module.scss";
 
@@ -82,3 +83,32 @@ export const Icons = ({ className, type }) => {
       );
   }
 };
+
+const IconComponent = ({
+  onClick,
+  icon,
+  className,
+  children,
+  spaceIcon,
+  spaceIconX,
+  spaceIconY,
+  ...props
+}) => {
+  className = classNames(className);
+  return (
+    <button onClick={onClick} className={className} type={"button"} {...props}>
+      <div
+        className={classNames(`inline-flex`, {
+          [`gap-${spaceIcon}`]: !!spaceIcon,
+          [`gap-x-${spaceIconX}`]: !!spaceIconX,
+          [`gap-y-${spaceIconY}`]: !!spaceIconY,
+        })}
+      >
+        <span>{icon}</span>
+        <span>{children}</span>
+      </div>
+    </button>
+  );
+};
+
+export default IconComponent;
