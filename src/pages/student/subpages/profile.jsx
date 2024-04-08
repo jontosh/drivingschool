@@ -18,13 +18,9 @@ const Profile = () => {
     console.log(date, dateString);
   };
 
-  const openButton = () => {
-    setIsOpen(true);
-  };
-
-  const closeButton = () => {
-    setIsOpen(false);
-  };
+  const handleButtonClick = () => {
+    setIsOpen(!isOpen)
+  }
   return (
     <Fragment>
       <div className="flex justify-between gap-7 pb-6 border-b-2 border-b-indigo-700 px-5 -mx-5">
@@ -310,29 +306,64 @@ const Profile = () => {
         </div>
 
         <div className="flex flex-col gap-6">
-          <label className="inline-flex items-center w-full gap-8">
+          <label className="inline-flex items-center w-full gap-20">
             <span>Date of birth</span>
             <div
-              className={`flex gap-5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`flex gap-3 ${ProfileStyle["Student-profile__div"]}`}
             >
-              <CustomInput
-                type={"text"}
-                colorBorder={colorsObject.primary}
-                className={"w-full"}
-                placeholder={"Day"}
-
+              <CustomSelect
+                value={"Day"}
+                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                  {
+                    value: 2,
+                    label: 2,
+                  },
+                  {
+                    value: 3,
+                    label: 3,
+                  },
+                ]}
               />
-              <CustomInput
-                type={"text"}
-                colorBorder={colorsObject.primary}
-                className={"w-full"}
-                placeholder={"Month"}
+              <CustomSelect
+                value={"Month"}
+                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                options={[
+                  {
+                    value: "Monday",
+                    label: "Monday",
+                  },
+                  {
+                    value: "Tuesday",
+                    label: "Tuesday",
+                  },
+                  {
+                    value: "Wednesday",
+                    label: "Wednesday",
+                  },
+                ]}
               />
-              <CustomInput
-                type={"text"}
-                colorBorder={colorsObject.primary}
-                className={"w-full"}
-                placeholder={"Year"}
+              <CustomSelect
+                value={"Month"}
+                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                options={[
+                  {
+                    value: 2022,
+                    label: 2022,
+                  },
+                  {
+                    value: 2023,
+                    label: 2023,
+                  },
+                  {
+                    value: 2024,
+                    label: 2024,
+                  },
+                ]}
               />
             </div>
           </label>
@@ -456,27 +487,6 @@ const Profile = () => {
           </label>
         </div>
       </form>
-      <div className="flex flex-col gap-5 pt-9">
-        <ButtonComponent
-          defaultBg="#3366FF"
-          defaultHoverBg="#3366FF"
-          style={{ width: "198.86px" }}
-          controlHeight={39}
-          className={"m-auto"}
-          onClick={openButton}
-        >
-          Show more
-        </ButtonComponent>
-        <ButtonComponent
-          defaultBg="#24C18F"
-          defaultHoverBg="#24C18F"
-          style={{ width: "198.86px" }}
-          controlHeight={39}
-          className={"m-auto"}
-        >
-          Save
-        </ButtonComponent>
-      </div>
       {isOpen &&
         <Fragment>
           <div className="grid grid-cols-2 justify-between items-center pt-14">
@@ -500,7 +510,7 @@ const Profile = () => {
               <div className="flex justify-between items-center pt-5">
                 <div style={{ width: "254.71px" }}>
                   <CustomInput
-                    className={"w-full"}
+                    className={`${ProfileStyle["Student-profile__mini-input"]}`}
                   />
                 </div>
                 <ButtonComponent
@@ -539,8 +549,7 @@ const Profile = () => {
                 <span>Emergency name</span>
                 <CustomInput
                   placeholder={"Emergency name"}
-                  className={"w-full"}
-                  style={{ width: "297.16px" }}
+                  className={`${ProfileStyle["Student-profile__div"]}`}
                 />
               </label>
 
@@ -548,8 +557,7 @@ const Profile = () => {
                 <span>Emergency relationship</span>
                 <CustomInput
                   placeholder={"Emergency relationship"}
-                  className={"w-full"}
-                  style={{ width: "297.16px" }}
+                  className={`${ProfileStyle["Student-profile__div"]}`}
                 />
               </label>
 
@@ -557,8 +565,7 @@ const Profile = () => {
                 <span>Emergency phone</span>
                 <CustomInput
                   placeholder={"Emergency phone"}
-                  className={"w-full"}
-                  style={{ width: "297.16px" }}
+                  className={`${ProfileStyle["Student-profile__div"]}`}
                 />
               </label>
 
@@ -566,8 +573,7 @@ const Profile = () => {
                 <span className={"w-36"}>High School</span>
                 <CustomSelect
                   value={"High School"}
-                  style={{ width: "297.16px" }}
-                  className={"shadow-lg w-full"}
+                  className={`${ProfileStyle["Student-profile__div"]}`}
                   options={[
                     {
                       value: 1,
@@ -597,7 +603,7 @@ const Profile = () => {
               <div className="flex justify-between items-center pt-5">
                 <div style={{ width: "254.71px" }}>
                   <CustomInput
-                    className={"w-full"}
+                    className={`${ProfileStyle["Student-profile__mini-input"]}`}
                   />
                 </div>
                 <ButtonComponent
@@ -610,30 +616,29 @@ const Profile = () => {
             </div>
 
           </div>
-
-          <div className="flex flex-col gap-5 pt-9">
-            <ButtonComponent
-              defaultBg="#3366FF"
-              defaultHoverBg="#3366FF"
-              style={{ width: "198.86px" }}
-              controlHeight={39}
-              className={"m-auto"}
-              onClick={closeButton}
-            >
-              Hide
-            </ButtonComponent>
-            <ButtonComponent
-              defaultBg="#24C18F"
-              defaultHoverBg="#24C18F"
-              style={{ width: "198.86px" }}
-              controlHeight={39}
-              className={"m-auto"}
-            >
-              Save
-            </ButtonComponent>
-          </div>
         </Fragment>
       }
+      <div className="flex flex-col gap-5 pt-9">
+        <ButtonComponent
+          defaultBg="#3366FF"
+          defaultHoverBg="#3366FF"
+          style={{ width: "198.86px" }}
+          controlHeight={39}
+          className={"m-auto"}
+          onClick={handleButtonClick}
+        >
+          {isOpen ? "Hide" : "Show more"}
+        </ButtonComponent>
+        <ButtonComponent
+          defaultBg="#24C18F"
+          defaultHoverBg="#24C18F"
+          style={{ width: "198.86px" }}
+          controlHeight={39}
+          className={"m-auto"}
+        >
+          Save
+        </ButtonComponent>
+      </div>
     </Fragment>
   );
 };
