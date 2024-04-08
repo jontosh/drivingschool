@@ -437,6 +437,14 @@ const PackagesData = () => {
           <IconComponent
             defaultBg={"transparent"}
             defaultHoverBg={"transparent"}
+            className={"text-indigo-600 hover:text-indigo-600"}
+          >
+            <TfiWrite />
+          </IconComponent>
+
+          <IconComponent
+            defaultBg={"transparent"}
+            defaultHoverBg={"transparent"}
             className={"text-red-600 hover:text-red-600"}
           >
             <RiDeleteBin6Line />
@@ -447,7 +455,7 @@ const PackagesData = () => {
             defaultHoverBg={"transparent"}
             className={"text-indigo-600 hover:text-indigo-600"}
           >
-            <TfiWrite />
+            <PiCopyLight />
           </IconComponent>
         </Space>
       ),

@@ -197,15 +197,25 @@ export const DiscountModalContent = () => {
             <Title level={2}>Eligible Service:*</Title>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <ButtonComponent
-                className={`p-3 text-lg ${ManagementStyle["Modal__button"]}`}
-              ></ButtonComponent>
+              <div className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__button"]}`}>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+              </div>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <ButtonComponent
-                className={`${ManagementStyle["Modal__button"]}`}
-              ></ButtonComponent>
+              <div className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__button"]}`}>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+              </div>
             </div>
           </div>
 
@@ -213,15 +223,25 @@ export const DiscountModalContent = () => {
             <Title level={2}>Eligible Class(es):</Title>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <ButtonComponent
-                className={`p-3 text-lg ${ManagementStyle["Modal__button"]}`}
-              ></ButtonComponent>
+              <div className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__button"]}`}>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+              </div>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <ButtonComponent
-                className={`${ManagementStyle["Modal__button"]}`}
-              ></ButtonComponent>
+              <div className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__button"]}`}>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+              </div>
             </div>
           </div>
 
@@ -229,15 +249,25 @@ export const DiscountModalContent = () => {
             <Title level={2}>Eligible Class(es):</Title>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Eligible Class(es):</span>
-              <ButtonComponent
-                className={`p-3 text-lg ${ManagementStyle["Modal__button"]}`}
-              ></ButtonComponent>
+              <div className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__button"]}`}>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+              </div>
             </div>
             <div className={`flex flex-col gap-5 items-center`}>
               <span>Click to select</span>
-              <ButtonComponent
-                className={`${ManagementStyle["Modal__button"]}`}
-              ></ButtonComponent>
+              <div className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__button"]}`}>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+                <ButtonComponent defaultColor="#000000" defaultHoverColor="#000000">Advanced Parking</ButtonComponent>
+              </div>
             </div>
           </div>
         </div>
@@ -271,7 +301,7 @@ export const MiscellaneousModalContent = () => {
 
   return (
     <Fragment>
-      <form className={classNames("pb-5  grid gap-y-5 justify-center")}>
+      <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
         <CustomInput
           classNames={"inline-flex items-center flex-row-reverse gap-7"}
           spanText={"Miscellaneous Item Name:"}

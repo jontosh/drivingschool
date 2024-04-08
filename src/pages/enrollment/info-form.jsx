@@ -40,7 +40,7 @@ const LeadOptions = [
   },
 ];
 
-export const InfoForm = ({}) => {
+export const InfoForm = ({ }) => {
   const [Staff, setStaff] = useState("");
   const [State, setState] = useState("");
   const [Lead, setLead] = useState("Select");
@@ -302,7 +302,7 @@ export const InfoForm = ({}) => {
                   </Paragraph>
 
                   <div
-                    className={`flex items-center rounded-lg ${EnrollmentStyle["Enrollment__input-wrap"]} ${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`flex items-center rounded-lg ${EnrollmentStyle["Enrollment__input-wrap"]}`}
                   >
                     <input
                       placeholder={"Home Phone"}
@@ -312,7 +312,7 @@ export const InfoForm = ({}) => {
                     />
 
                     <CustomCheckBox
-                      className={"flex-row-reverse px-5 items-center pt-1.5"}
+                      className={`flex-row-reverse px-3 items-center pt-1.5  ${EnrollmentStyle["Enrollment__checkbox"]}`}
                     >
                       Send text
                     </CustomCheckBox>

@@ -213,7 +213,7 @@ const Service = () => {
       {IsOpen && (
         <Modal setIsOpen={setIsOpen}>
           <div
-            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl ${title === "discounts" && "overflow-y-auto"}`}
+            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl ${title === "discounts" && "overflow-y-auto overflow-hidden"}`}
           >
             {CheckPageForModal(title)}
 
