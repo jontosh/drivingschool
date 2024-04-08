@@ -182,6 +182,7 @@ const Service = () => {
                         width: 122,
                         height: 40,
                       }}
+                      className={`${ServiceStyle["Service__select"]}`}
                       colorBorder={colorsObject.primary}
                       selectorBg={colorsObject.primary}
                       colorText={colorsObject.main}

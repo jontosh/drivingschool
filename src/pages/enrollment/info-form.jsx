@@ -894,8 +894,8 @@ export const InfoForm = ({ }) => {
 
             <div className={"py-6 text-center space-x-7"}>
               <ButtonComponent
-                defaultBg={"#3CE3AE"}
-                defaultHoverBg={"#3CE3AE"}
+                defaultBg={"#24C18F"}
+                defaultHoverBg={"#24C18F"}
                 paddingInline={97}
                 controlHeight={40}
                 onClick={handleSubmit}
@@ -903,15 +903,31 @@ export const InfoForm = ({ }) => {
                 Save
               </ButtonComponent>
 
-              <ButtonComponent
-                defaultBg={colorsObject.primary}
-                defaultHoverBg={colorsObject.primary}
-                paddingInline={16}
-                controlHeight={40}
-                className={"inline-flex items-center gap-2.5"}
-              >
-                <span>Apply Payment & Save</span>
-                <IoIosArrowDown />
+              <ButtonComponent>
+                <CustomSelect
+                  value={"Apply Payment & Save"}
+                  selectorBg="#1890FF"
+                  style={{ width: "234px", height: "40px" }}
+                  className={`${EnrollmentStyle["Enrollment__select"]}`}
+                  options={[
+                    {
+                      value: "Process Credit card",
+                      label: "Process Credit card",
+                    },
+                    {
+                      value: "Enter Swiped Transaction",
+                      label: "Enter Swiped Transaction",
+                    },
+                    {
+                      value: "Enter Cash Payment",
+                      label: "Enter Cash Payment",
+                    },
+                    {
+                      value: "Enter Check Payment",
+                      label: "Enter Check Payment",
+                    },
+                  ]}
+                />
               </ButtonComponent>
             </div>
           </form>

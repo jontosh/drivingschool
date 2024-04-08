@@ -215,15 +215,6 @@ const Enrollment = () => {
               {SelectedPackages?.length > 0 ? (
                 <div className="flex justify-between">
                   <div className={"space-x-2.5"}>
-                    <ButtonComponent
-                      defaultBg={"#24C18F"}
-                      defaultHoverBg={"#24C18F"}
-                      paddingInline={12}
-                      // paddingBlock={4}
-                      controlHeight={40}
-                    >
-                      Add Package
-                    </ButtonComponent>
 
                     <ButtonComponent
                       defaultBg={colorsObject.info}
@@ -233,15 +224,7 @@ const Enrollment = () => {
                     >
                       Coupon
                     </ButtonComponent>
-
-                    <ButtonComponent
-                      defaultBg={"#FF333F"}
-                      defaultHoverBg={"#FF333F"}
-                      paddingInline={28}
-                      controlHeight={40}
-                    >
-                      Delete
-                    </ButtonComponent>
+                    
                   </div>
 
                   <Paragraph fontSize={"text-xl"} fontWeightStrong={400}>
@@ -276,39 +259,6 @@ const Enrollment = () => {
 
               {SelectedClass?.length > 0 ? (
                 <div className={"mb-5 space-y-2.5"}>{classItem}</div>
-              ) : null}
-
-              {SelectedClass?.length > 0 ? (
-                <Fragment>
-                  <div className="flex justify-between items-center">
-                    <div className="space-x-2.5">
-                      <ButtonComponent
-                        defaultBg={"#24C18F"}
-                        defaultHoverBg={"#24C18F"}
-                        paddingInline={28}
-                        controlHeight={40}
-                      >
-                        Add Package
-                      </ButtonComponent>
-                      <ButtonComponent
-                        defaultBg={"#FF333F"}
-                        defaultHoverBg={"#FF333F"}
-                        paddingInline={28}
-                        controlHeight={40}
-                      >
-                        Delete
-                      </ButtonComponent>
-                    </div>
-                    <div className="inline-flex gap-x-2.5">
-                      <Paragraph fontSize={"text-xl text-gray-600"}>
-                        Total:
-                      </Paragraph>
-                      <Paragraph fontSize={"text-xl text-black"}>
-                        ${totalClassPrice}
-                      </Paragraph>
-                    </div>
-                  </div>
-                </Fragment>
               ) : null}
             </div>
           </div>

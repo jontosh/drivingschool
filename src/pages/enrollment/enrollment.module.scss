@@ -65,4 +65,10 @@
     border: 1px solid $primary;
     min-height: 110px;
   }
+
+  &__select {
+    span {
+      color: #fff;
+    }
+  }
 }
