@@ -45,7 +45,7 @@
     &-wrap {
       border: 1px solid $primary;
 
-      &>*+* {
+      & > * + * {
         border-left: 1px solid $black;
       }
     }
@@ -53,7 +53,6 @@
 
   &__checkbox {
     width: 230px;
-    align-items: center;
 
     @media (max-width: 1630px) {
       width: 131px;

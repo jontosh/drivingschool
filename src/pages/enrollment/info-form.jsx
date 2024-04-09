@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
+  CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
 import { Paragraph, Text } from "@/components/title/index.jsx";
@@ -40,7 +41,7 @@ const LeadOptions = [
   },
 ];
 
-export const InfoForm = ({ }) => {
+export const InfoForm = ({}) => {
   const [Staff, setStaff] = useState("");
   const [State, setState] = useState("");
   const [Lead, setLead] = useState("Select");
@@ -76,7 +77,7 @@ export const InfoForm = ({ }) => {
         ParentPhone2: "",
         ParentEmail2: "",
         Lead: "",
-        StudentNotes: ""
+        StudentNotes: "",
       }}
       validate={(values) => {
         if (
@@ -141,9 +142,14 @@ export const InfoForm = ({ }) => {
                   </Paragraph>
 
                   <CustomSelect
-                    value={Staff !== "" ? Staff : "Account #"}
-                    options={InfoTypeOptions}
-                    onChange={handleChange ? (value) => setStaff(value) : handleChange}
+                    value={values.Staff}
+                    options={[
+                      {
+                        value: "Admin",
+                        label: "Admin",
+                      },
+                    ]}
+                    onChange={handleChange}
                     className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
                     name={"Staff"}
@@ -324,9 +330,7 @@ export const InfoForm = ({ }) => {
                   </div>
                 </label>
 
-                {errors.city && touched.city && (
-                  <div>{errors.city}</div>
-                )}
+                {errors.city && touched.city && <div>{errors.city}</div>}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -350,9 +354,7 @@ export const InfoForm = ({ }) => {
                   </div>
                 </label>
 
-                {errors.state && touched.state && (
-                  <div>{errors.state}</div>
-                )}
+                {errors.state && touched.state && <div>{errors.state}</div>}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -394,23 +396,21 @@ export const InfoForm = ({ }) => {
                   >
                     <input
                       placeholder={"Home Phone"}
-                      className={`h-10 ${EnrollmentStyle["Enrollment__input"]} flex-grow px-5 py-2.5 w-44`}
+                      className={`h-10 ${EnrollmentStyle["Enrollment__input"]} flex-grow px-5 py-2 w-44`}
                       name={"phone"}
                       value={values.phone}
                       onChange={handleChange}
                     />
 
                     <CustomCheckBox
-                      className={`flex-row-reverse px-3 items-center pt-1.5  ${EnrollmentStyle["Enrollment__checkbox"]}`}
+                      className={`flex-row-reverse px-3 items-center  ${EnrollmentStyle["Enrollment__checkbox"]}`}
                     >
                       Send text
                     </CustomCheckBox>
                   </div>
                 </label>
 
-                {errors.phone && touched.phone && (
-                  <div>{errors.phone}</div>
-                )}
+                {errors.phone && touched.phone && <div>{errors.phone}</div>}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -444,9 +444,7 @@ export const InfoForm = ({ }) => {
                   </div>
                 </label>
 
-                {errors.email && touched.email && (
-                  <div>{errors.email}</div>
-                )}
+                {errors.email && touched.email && <div>{errors.email}</div>}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph
@@ -474,9 +472,7 @@ export const InfoForm = ({ }) => {
                   </Checkbox.Group>
                 </label>
 
-                {errors.gender && touched.gender && (
-                  <div>{errors.gender}</div>
-                )}
+                {errors.gender && touched.gender && <div>{errors.gender}</div>}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -566,9 +562,7 @@ export const InfoForm = ({ }) => {
                   </div>
                 </label>
 
-                {errors.Permit && touched.Permit && (
-                  <div>{errors.Permit}</div>
-                )}
+                {errors.Permit && touched.Permit && <div>{errors.Permit}</div>}
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -869,7 +863,6 @@ export const InfoForm = ({ }) => {
                     onClick={handleChange}
                   />
                 </label>
-
 
                 <label className="flex items-center justify-between w-full">
                   <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
