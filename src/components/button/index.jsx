@@ -24,6 +24,7 @@ const ButtonComponent = ({
   controlHeight = 30,
   fontSize = 16,
   style,
+  borderRadius,
   ...props
 }) => {
   className = classNames([className, ButtonStyle["Button"]]);
@@ -47,6 +48,7 @@ const ButtonComponent = ({
               defaultHoverBorderColor,
               defaultHoverColor,
               controlHeight,
+              borderRadius,
             },
           },
         }}

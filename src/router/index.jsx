@@ -3,6 +3,7 @@ import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
 import Enrollment from "@/pages/enrollment/index.jsx";
+import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
 import Service from "@/pages/managment/service/index.jsx";
 import ServiceSpa from "@/pages/managment/service/service-spa.jsx";
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
                 element: <ServiceSpa />,
               },
             ],
+          },
+          {
+            path: "file",
+            element: <File />,
           },
         ],
       },

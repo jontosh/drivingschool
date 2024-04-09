@@ -93,19 +93,26 @@ const IconComponent = ({
   spaceIconX,
   spaceIconY,
   style,
+  iconWidth,
   ...props
 }) => {
   className = classNames(className);
   return (
-    <button onClick={onClick} className={className} type={"button"} style={style} {...props}>
+    <button
+      onClick={onClick}
+      className={className}
+      type={"button"}
+      style={style}
+      {...props}
+    >
       <div
-        className={classNames(`inline-flex`, {
+        className={classNames(`inline-flex`, props.classNames, {
           [`gap-${spaceIcon}`]: !!spaceIcon,
           [`gap-x-${spaceIconX}`]: !!spaceIconX,
           [`gap-y-${spaceIconY}`]: !!spaceIconY,
         })}
       >
-        <span>{icon}</span>
+        <span className={iconWidth}>{icon}</span>
         <span>{children}</span>
       </div>
     </button>
