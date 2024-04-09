@@ -9,7 +9,7 @@ import { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useError } from "@/hooks/error.jsx";
 import { Checkbox } from "antd";
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import EnrollmentStyle from "./enrollment.module.scss";
@@ -47,10 +47,11 @@ export const InfoForm = ({}) => {
   const [Lead, setLead] = useState("Select");
   const { colorsObject } = useContext(ColorsContext);
   const { errors, Validation } = useError();
+  const ErrorValid = errors;
   return (
     <Formik
       initialValues={{
-        Staff: "",
+        Staff: Staff,
         Location: "",
         studentId: "",
         firstName: "",
@@ -81,41 +82,41 @@ export const InfoForm = ({}) => {
       }}
       validate={(values) => {
         if (
-          !values.Staff ||
-          !values.Location ||
-          !values.studentId ||
-          !values.email ||
-          !values.firstName ||
-          !values.lastName ||
-          !values.address ||
-          !values.city ||
-          !values.state ||
-          !values.postalCode ||
-          !values.phone ||
+          !values.Staff
+          // !values.Location ||
+          // !values.studentId ||
           // !values.email ||
-          !values.gender ||
-          !values.Perferred ||
-          !values.MedicalCondition ||
-          !values.StudentDrivingNotes ||
-          !values.Permit ||
-          !values.PermitIssued ||
-          !values.PermitExpiration ||
-          !values.ExtantionDate ||
-          !values.HighSchool ||
-          !values.ParentName ||
-          !values.ParentPhone ||
-          !values.ParentEmail ||
-          !values.ParentName2 ||
-          !values.ParentPhone2 ||
-          !values.ParentEmail2 ||
-          !values.Lead ||
-          !values.StudentNotes
+          // !values.firstName ||
+          // !values.lastName ||
+          // !values.address ||
+          // !values.city ||
+          // !values.state ||
+          // !values.postalCode ||
+          // !values.phone ||
+          // // !values.email ||
+          // !values.gender ||
+          // !values.Perferred ||
+          // !values.MedicalCondition ||
+          // !values.StudentDrivingNotes ||
+          // !values.Permit ||
+          // !values.PermitIssued ||
+          // !values.PermitExpiration ||
+          // !values.ExtantionDate ||
+          // !values.HighSchool ||
+          // !values.ParentName ||
+          // !values.ParentPhone ||
+          // !values.ParentEmail ||
+          // !values.ParentName2 ||
+          // !values.ParentPhone2 ||
+          // !values.ParentEmail2 ||
+          // !values.Lead ||
+          // !values.StudentNotes
         ) {
-          Validation("EMPTY");
+          errors.Staff = "Selector cannot be unselected";
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
         ) {
-          errors.email = "Invalid email address";
+          // Validation("EMAIL_VALID");
         }
 
         return errors;
@@ -142,14 +143,19 @@ export const InfoForm = ({}) => {
                   </Paragraph>
 
                   <CustomSelect
-                    value={values.Staff}
+                    value={Staff}
+                    onBlur={handleBlur}
                     options={[
                       {
                         value: "Admin",
                         label: "Admin",
                       },
+                      {
+                        value: "Admin 2",
+                        label: "Admin 2",
+                      },
                     ]}
-                    onChange={handleChange}
+                    onChange={(value) => setStaff(value)}
                     className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
                     name={"Staff"}
@@ -158,7 +164,7 @@ export const InfoForm = ({}) => {
 
                 {(errors.AssignToLocation || touched.AssignToLocation) && (
                   <Fragment>
-                    <div>{errors.AssignToLocation}</div>
+                    <div>{ErrorValid.input}</div>
                   </Fragment>
                 )}
 

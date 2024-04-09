@@ -99,6 +99,7 @@ export const CustomInput = ({
 export const CustomSelect = ({
   className,
   value,
+  onBlur,
   onChange,
   options,
   placeholder,
@@ -141,6 +142,7 @@ export const CustomSelect = ({
           placeholder={placeholder}
           popupClassName={dropdownClassName}
           style={style}
+          onBlur={onBlur}
           {...props}
         >
           {option}
