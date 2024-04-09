@@ -661,17 +661,18 @@ export const InfoForm = ({ }) => {
                     High School
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
-                      placeholder={"High School"}
-                      name={"HighSchool"}
-                      value={values.HighSchool}
-                      onClick={handleChange}
-                    />
-                  </div>
+                  <CustomSelect
+                    value={values.Lead}
+                    onChange={(value) => setLead(value)}
+                    options={LeadOptions}
+                    className={`mb-2.5 ${EnrollmentStyle["Enrollment__div"]}`}
+                    optionFontSize={14}
+                    optionSelectedFontWeight={400}
+                    fontSize={16}
+                    colorBorder={colorsObject.primary}
+                    name={"HighSchool"}
+                    onClick={handleChange}
+                  />
                 </label>
 
                 {errors.HighSchool && touched.HighSchool && (
@@ -834,7 +835,6 @@ export const InfoForm = ({ }) => {
                       colorBorder={colorsObject.primary}
                       className={"w-full"}
                       placeholder={"Day"}
-
                     />
                     <CustomInput
                       type={"text"}
@@ -907,6 +907,7 @@ export const InfoForm = ({ }) => {
                 <CustomSelect
                   value={"Apply Payment & Save"}
                   selectorBg="#1890FF"
+                  colorBorder="#1890FF"
                   style={{ width: "234px", height: "40px" }}
                   className={`${EnrollmentStyle["Enrollment__select"]}`}
                   options={[

@@ -125,7 +125,7 @@ const DashboardTeachers = () => {
               >
                 Teachers
               </Title>
-              <label className={`relative mb-5 `}>
+              <label className={`relative`}>
                 <input
                   value={values.search}
                   type={"text"}

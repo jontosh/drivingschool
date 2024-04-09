@@ -6,6 +6,9 @@ import { InfoForm } from "@/pages/enrollment/info-form.jsx";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import EnrollmentStyle from "./enrollment.module.scss";
+import IconComponent from "@/components/icons";
+import { FaX } from "react-icons/fa6";
+import { LuX } from "react-icons/lu";
 
 const PackageSelectionArray = [
   {
@@ -224,7 +227,7 @@ const Enrollment = () => {
                     >
                       Coupon
                     </ButtonComponent>
-                    
+
                   </div>
 
                   <Paragraph fontSize={"text-xl"} fontWeightStrong={400}>

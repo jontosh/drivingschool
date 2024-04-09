@@ -183,9 +183,8 @@ const Service = () => {
                         height: 40,
                       }}
                       className={`${ServiceStyle["Service__select"]}`}
-                      colorBorder={colorsObject.primary}
-                      selectorBg={colorsObject.primary}
-                      colorText={colorsObject.main}
+                      colorBorder={"#1890FF"}
+                      selectorBg={"#1890FF"}
                     />
                   </Fragment>
                 )}
