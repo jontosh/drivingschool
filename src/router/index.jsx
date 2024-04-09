@@ -7,6 +7,7 @@ import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
 import Service from "@/pages/managment/service/index.jsx";
 import ServiceSpa from "@/pages/managment/service/service-spa.jsx";
+import Staff from "@/pages/managment/staff/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
 import SignIn from "@/pages/register/sign-in.jsx";
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
           {
             path: "file",
             element: <File />,
+          },
+          {
+            path: "staff",
+            element: <Staff />,
           },
         ],
       },
