@@ -1,17 +1,22 @@
+import ServiceStyle from "@/pages/managment/management.module.scss";
 import { Fragment } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const StudentSpa = () => {
+  const setActiveNav = ({ isActive }) =>
+    isActive
+      ? `${ServiceStyle["Tab__link-active"]} py-5 text-lg`
+      : "text-gray-600 hover:text-indigo-600 py-5";
   return (
     <Fragment>
       <div className="bg-white rounded-xl px-5 pb-5 shadow-2xl">
         <div className="-mx-5 px-5 border-b-2 border-b-gray-400 space-x-12">
-          <Link
-            className={"text-gray-600 hover:text-indigo-600 py-5"}
+          <NavLink
+            className={setActiveNav}
             to={`/student/account/profile/${1}`}
           >
             Profile
-          </Link>
+          </NavLink>
           <Link
             className={"text-gray-600 hover:text-indigo-600 py-5"}
             to={`/student/account/enrollment/${1}`}

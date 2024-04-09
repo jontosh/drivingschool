@@ -70,6 +70,7 @@ const ButtonComponent = ({
 
 export const IconComponent = ({
   className,
+  onClick,
   icon,
   children,
   paddingInline = 0,
@@ -117,6 +118,7 @@ export const IconComponent = ({
           icon={icon}
           children={children}
           href={href}
+          onClick={onClick}
           {...props}
         />
       </ConfigProvider>

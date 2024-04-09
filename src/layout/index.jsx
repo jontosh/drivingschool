@@ -1,14 +1,15 @@
-import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
-import { Icons } from "@/components/icons/index.jsx";
+// import { IconComponent } from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
-import ColorsContext from "@/context/colors.jsx";
+// import ColorsContext from "@/context/colors.jsx";
+import ServiceStyle from "@/pages/managment/management.module.scss";
+import { ConfigProvider, Menu } from "antd";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
-  AiOutlineApartment,
+  // AiOutlineApartment,
   AiOutlineAppstore,
-  AiOutlineEye,
+  // AiOutlineEye,
   AiOutlineMail,
   AiOutlineReconciliation,
   AiOutlineSearch,
@@ -28,9 +29,20 @@ import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
 import Tenant from "../assets/user/tenant.jpeg";
 
+const getItem = (label, key, icon, children, type) => {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+};
+
 const Layout = ({}) => {
-  const { colorsObject } = useContext(ColorsContext);
+  // const { colorsObject } = useContext(ColorsContext);
   const [IsActive, setIsActive] = useState(true);
+  // const [IsDropActive, setIsDropActive] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   useEffect(() => {
@@ -40,6 +52,168 @@ const Layout = ({}) => {
   }, []);
 
   const handleSideBar = () => setIsActive((prev) => !prev);
+  const setActiveNav = ({ isActive }) =>
+    isActive
+      ? `${ServiceStyle["Tab__link-active"]} text-lg`
+      : "hover:text-indigo-500 text-lg text-gray-700";
+  // const handleDropActive = () => setIsDropActive((prev) => !prev);
+  const items = [
+    getItem(
+      IsActive && <Link to={"/dashboard/"} children={"Home"} />,
+      "sub1",
+      <span className={"w-5"}>
+        <AiOutlineAppstore />
+      </span>,
+    ),
+    getItem(
+      IsActive && (
+        <Link to={"/enrollment/"} children={"New student enrollment"} />
+      ),
+      "sub2",
+      <span className={"w-5"}>
+        <AiOutlineUserAdd />
+      </span>,
+    ),
+    getItem(
+      IsActive && <Link to={"/notfound/"} children={"Advanced search"} />,
+      "sub3",
+      <span className={"w-5"}>
+        <AiOutlineSearch />
+      </span>,
+    ),
+    getItem(
+      IsActive && "Student account",
+      "sub4",
+      <span className={"w-5"}>
+        <AiOutlineTeam />
+      </span>,
+      IsActive && [
+        getItem(<Link to={"/student/account/profile"} children={"Profile"} />),
+        getItem(
+          <Link
+            to={"/student/account/enrollment"}
+            children={"Enrollment/Billing"}
+          />,
+        ),
+        getItem(
+          <Link
+            to={"/student/account/appointments"}
+            children={"Appointments"}
+          />,
+        ),
+        getItem(<Link to={"/student/account/files"} children={"Files"} />),
+        getItem(
+          <Link to={"/student/account/messages"} children={"Messages"} />,
+        ),
+        getItem(<Link to={"/student/account/tests"} children={"Quiz/Tests"} />),
+        getItem(<Link to={"/student/account/log"} children={"Activity Log"} />),
+      ],
+    ),
+    getItem(
+      IsActive && "Scheduling",
+      "sub5",
+      <span className={"w-5"}>
+        <AiOutlineSolution />
+      </span>,
+      IsActive && [getItem("Process")],
+    ),
+    getItem(
+      IsActive && "Communication",
+      "sub6",
+      <span className={"w-5"}>
+        <AiOutlineMail />
+      </span>,
+      IsActive && [getItem("Process")],
+    ),
+    getItem(
+      IsActive && "Report center",
+      "sub7",
+      <span className={"w-5"}>
+        <AiOutlineReconciliation />
+      </span>,
+      IsActive && [getItem("Process")],
+    ),
+    getItem(
+      IsActive && "Account Management",
+      "sub8",
+      <span className={"w-5"}>
+        <AiOutlineReconciliation />
+      </span>,
+      IsActive && [
+        getItem("Services", 1, null, [
+          getItem(
+            <Link
+              to={"/management/service/product"}
+              children={"Components (Product)"}
+            />,
+            "sub8-1",
+          ),
+          getItem(
+            <Link to={"/management/service/fees"} children={"Fees"} />,
+            "sub8-2",
+          ),
+          getItem(
+            <Link
+              to={"/management/service/discounts"}
+              children={"Discounts"}
+            />,
+            "sub8-3",
+          ),
+          getItem(
+            <Link
+              to={"/management/service/miscellaneous"}
+              children={"Miscellaneous"}
+            />,
+            "sub8-4",
+          ),
+          getItem(
+            <Link
+              to={"/management/service/quiz-exam"}
+              children={"Quiz Exam"}
+            />,
+            "sub8-5",
+          ),
+          getItem(
+            <Link
+              to={"/management/service/quiz-report"}
+              children={"Quiz Report"}
+            />,
+            "sub8-6",
+          ),
+          getItem(
+            <Link
+              to={"/management/service/packages"}
+              children={"Services (Packages)"}
+            />,
+            "sub8-7",
+          ),
+        ]),
+      ],
+    ),
+    getItem(
+      IsActive && "Configuration",
+      "sub9",
+      <span className="w-5">
+        <AiOutlineSetting />
+      </span>,
+      IsActive && [getItem("Process")],
+    ),
+    getItem(
+      IsActive && "Help",
+      "sub10",
+      <span className="w-5">
+        <AiOutlineTool />
+      </span>,
+    ),
+    getItem(
+      IsActive && "Log out",
+      "sub11",
+      <span className="w-5">
+        <LuLogOut />
+      </span>,
+    ),
+  ];
+
   return (
     <Fragment>
       <Helmet>
@@ -138,7 +312,7 @@ const Layout = ({}) => {
             className={`${LayoutStyle["Menu"]} overflow-hidden ${!IsActive && "w-14"}`}
           >
             <div
-              className={`${LayoutStyle["Menu__top"]} flex gap-x-2.5 p-2.5`}
+              className={`${LayoutStyle["Menu__top"]} relative z-10 flex gap-x-2.5 p-2.5`}
               onClick={handleSideBar}
             >
               <button className={`size-6`}>
@@ -149,142 +323,31 @@ const Layout = ({}) => {
               </Title>
             </div>
 
-            <div
-              className={`py-5 px-4 space-y-5 ${LayoutStyle["Menu__links"]}`}
+            <ConfigProvider
+              theme={{
+                components: {
+                  Menu: {
+                    itemSelectedBg: "transparent",
+                    itemHoverBg: "transparent",
+                    subMenuItemBg: "transparent",
+                    itemPaddingInline: 0,
+                    padding: 0,
+                  },
+                },
+              }}
             >
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineAppstore />}
-                href={"/dashboard"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Home"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineUserAdd />}
-                href={"/enrollment"}
-                defaultHoverBg={"transparent"}
-                defaultActiveBorderColor={"#fff"}
-              >
-                {IsActive && "New student enrollment"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineSearch />}
-                href={"/NotFound"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Advanced search"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black relative ${IsActive && LayoutStyle["Menu__links-drop"]}`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineTeam />}
-                href={"/student/account"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Student account"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineSolution />}
-                href={"/NotFound"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Scheduling"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineMail />}
-                href={"/NotFound"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Communication"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineReconciliation />}
-                href={"/NotFound"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Report center"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineApartment />}
-                href={"/management"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Account Managment"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black ${IsActive && LayoutStyle["Menu__links-drop"]}`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineSetting />}
-                href={"/NotFound"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Configuration"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<AiOutlineTool />}
-                href={"/NotFound"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && "Help"}
-              </IconComponent>
-
-              <IconComponent
-                defaultHoverColor={colorsObject.primary}
-                className={`space-x-4 text-black`}
-                defaultBorderColor={"transparent"}
-                defaultBg={"transparent"}
-                icon={<LuLogOut />}
-                href={"/NotFound"}
-                defaultHoverBg={"transparent"}
-              >
-                {IsActive && " Log out"}
-              </IconComponent>
-            </div>
+              <Menu
+                style={{
+                  width: "100%",
+                  background: "#FBFBFBs",
+                  padding: 0,
+                  border: "none",
+                }}
+                defaultOpenKeys={["sub1"]}
+                mode="inline"
+                items={items}
+              />
+            </ConfigProvider>
           </nav>
         </aside>
         <article className={`bg-slate-100 rounded-lg py-5 max-w-full w-full`}>
