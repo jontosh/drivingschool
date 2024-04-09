@@ -1,4 +1,4 @@
-import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
+import ButtonComponent from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -31,6 +31,7 @@ import {
 } from "chart.js";
 
 import { Bar } from "react-chartjs-2";
+import IconComponent from "@/components/icons";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -726,40 +727,39 @@ const Dashboard = () => {
           className={`${DashboardStyle["Dashboard__data"]} rounded-lg px-12 py-3 bg-white`}
         >
           <div
-            className={`${DashboardStyle["Dashboard__data-tabs"]} space-x-9`}
+            className={`${DashboardStyle["Dashboard__data-tabs"]} space-x-10`}
           >
             <IconComponent
-              defaultHoverColor={colorsObject.info}
-              defaultColor={colorsObject.info}
               className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              icon={<AiOutlineCloudUpload className={"text-base"} />}
-            >
-              Upload files 0
-            </IconComponent>
+              style={{ color: colorsObject.secondary, }}
+              children={"Upload files 0"}
+              icon={<AiOutlineCloudUpload className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              spaceIcon={2}
+            />
 
             <IconComponent
-              className={`space-x-2.5 text-gray-500 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              icon={<AiOutlineCloudUpload className={"text-base"} />}
-              defaultHoverColor={colorsObject.info}
-            >
-              Task <span className={"text-red-600"}>18</span>
-            </IconComponent>
+              className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]}`}
+              style={{ color: colorsObject.secondary }}
+              children={<span>Task <span className="text-red-600">18</span></span>}
+              icon={<AiOutlineCloudUpload className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              spaceIcon={2}
+            />
 
             <IconComponent
-              defaultHoverColor={colorsObject.info}
-              className={`space-x-2.5 text-gray-500 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              icon={<AiOutlineMessage className={"text-base"} />}
-            >
-              Text message <span className={"text-red-600"}>18</span>
-            </IconComponent>
+              className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
+              style={{ color: colorsObject.secondary, }}
+              children={<span>Text message <span className={"text-red-600"}>18</span></span>}
+              icon={<AiOutlineMessage className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              spaceIcon={2}
+            />
 
             <IconComponent
-              defaultHoverColor={colorsObject.info}
-              className={`space-x-2.5 text-gray-500 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              icon={<AiOutlineSolution className={"text-base"} />}
-            >
-              Website enrollments <span className={"text-red-600"}>18</span>
-            </IconComponent>
+              className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
+              style={{ color: colorsObject.secondary }}
+              children={<span>Website enrollments <span className={"text-red-600"}>18</span></span>}
+              icon={<AiOutlineSolution className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              spaceIcon={2}
+            />
           </div>
 
           <div
@@ -786,8 +786,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </section>
-    </Fragment>
+      </section >
+    </Fragment >
   );
 };
 

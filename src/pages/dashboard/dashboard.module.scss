@@ -24,8 +24,8 @@
   }
 
   // &__links {
-    //    max-width: 533px;
-    //    width: 100%;
+  //    max-width: 533px;
+  //    width: 100%;
   // }
 
   &__statistics {
@@ -40,7 +40,7 @@
         transform: translateX(-50%);
         border: 1px solid #f0f0f0;
 
-        @media (max-width: 1750px){
+        @media (max-width: 1750px) {
           left: -30%;
         }
       }
@@ -84,10 +84,8 @@
     }
   }
 
-  &__data-tab {
-    &>*:first-child {
-      width: 25px;
-    }
+  &__icon {
+    width: 25px;
   }
 
   &__extra {
