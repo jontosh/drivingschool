@@ -148,6 +148,7 @@ export const MenuItems = (IsActive, getItem) => {
           <Link to={"/management/file"} children={"File management"} />,
           "sub8-8",
         ),
+        getItem(<Link to={"/management/staff"} children={"Staff"} />, "sub8-9"),
       ],
     ),
     getItem(
