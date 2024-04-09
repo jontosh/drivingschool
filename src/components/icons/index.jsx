@@ -92,11 +92,12 @@ const IconComponent = ({
   spaceIcon,
   spaceIconX,
   spaceIconY,
+  style,
   ...props
 }) => {
   className = classNames(className);
   return (
-    <button onClick={onClick} className={className} type={"button"} {...props}>
+    <button onClick={onClick} className={className} type={"button"} style={style} {...props}>
       <div
         className={classNames(`inline-flex`, {
           [`gap-${spaceIcon}`]: !!spaceIcon,

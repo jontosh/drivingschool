@@ -1,5 +1,5 @@
-import ButtonComponent, { IconComponent } from "@/components/button/index.jsx";
-import { Icons } from "@/components/icons/index.jsx";
+import ButtonComponent from "@/components/button/index.jsx";
+import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Exam } from "@/pages/managment/service/exam.jsx";
 import { Fees } from "@/pages/managment/service/fees.jsx";
@@ -84,28 +84,19 @@ const columns = [
     render: (_, record) => (
       <Space size={"middle"}>
         <IconComponent
-          defaultBg={"transparent"}
-          defaultHoverBg={"transparent"}
           className={"text-indigo-600 hover:text-indigo-600"}
-        >
-          <TfiWrite />
-        </IconComponent>
+          icon={<TfiWrite />}
+        />
 
         <IconComponent
-          defaultBg={"transparent"}
-          defaultHoverBg={"transparent"}
-          className={"text-red-600 hover:text-red-600"}
-        >
-          <RiDeleteBin6Line />
-        </IconComponent>
+          className={"w-full text-red-600 hover:text-red-600"}
+          icon={<RiDeleteBin6Line />}
+        />
 
         <IconComponent
-          defaultBg={"transparent"}
-          defaultHoverBg={"transparent"}
           className={"text-indigo-600 hover:text-indigo-600"}
-        >
-          <PiCopyLight />
-        </IconComponent>
+          icon={<PiCopyLight />}
+        />
       </Space>
     ),
   },
@@ -187,20 +178,14 @@ const FeesData = () => {
       render: (_, record) => (
         <Space size={"middle"}>
           <IconComponent
-            defaultBg={"transparent"}
-            defaultHoverBg={"transparent"}
-            className={"text-red-600 hover:text-red-600"}
-          >
-            <RiDeleteBin6Line />
-          </IconComponent>
+            className={"w-full text-red-600 hover:text-red-600"}
+            icon={<RiDeleteBin6Line />}
+          />
 
           <IconComponent
-            defaultBg={"transparent"}
-            defaultHoverBg={"transparent"}
             className={"text-indigo-600 hover:text-indigo-600"}
-          >
-            <TfiWrite />
-          </IconComponent>
+            icon={<PiCopyLight />}
+          />
         </Space>
       ),
     },
@@ -275,20 +260,14 @@ const DiscountsData = () => {
       render: (_, record) => (
         <Space size={"middle"}>
           <IconComponent
-            defaultBg={"transparent"}
-            defaultHoverBg={"transparent"}
-            className={"text-red-600 hover:text-red-600"}
-          >
-            <RiDeleteBin6Line />
-          </IconComponent>
+            className={"w-full text-red-600 hover:text-red-600"}
+            icon={<RiDeleteBin6Line />}
+          />
 
           <IconComponent
-            defaultBg={"transparent"}
-            defaultHoverBg={"transparent"}
             className={"text-indigo-600 hover:text-indigo-600"}
-          >
-            <TfiWrite />
-          </IconComponent>
+            icon={<PiCopyLight />}
+          />
         </Space>
       ),
     },
@@ -435,28 +414,19 @@ const PackagesData = () => {
       render: (_, record) => (
         <Space size={"middle"}>
           <IconComponent
-            defaultBg={"transparent"}
-            defaultHoverBg={"transparent"}
             className={"text-indigo-600 hover:text-indigo-600"}
-          >
-            <TfiWrite />
-          </IconComponent>
+            icon={<TfiWrite />}
+          />
 
           <IconComponent
-            defaultBg={"transparent"}
-            defaultHoverBg={"transparent"}
-            className={"text-red-600 hover:text-red-600"}
-          >
-            <RiDeleteBin6Line />
-          </IconComponent>
+            className={"w-full text-red-600 hover:text-red-600"}
+            icon={<RiDeleteBin6Line />}
+          />
 
           <IconComponent
-            defaultBg={"transparent"}
-            defaultHoverBg={"transparent"}
             className={"text-indigo-600 hover:text-indigo-600"}
-          >
-            <PiCopyLight />
-          </IconComponent>
+            icon={<PiCopyLight />}
+          />
         </Space>
       ),
     },
