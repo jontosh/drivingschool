@@ -730,34 +730,62 @@ const Dashboard = () => {
             className={`${DashboardStyle["Dashboard__data-tabs"]} space-x-10`}
           >
             <IconComponent
-              className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              style={{ color: colorsObject.secondary, }}
+              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
+              // style={{ color: colorsObject.secondary }}
               children={"Upload files 0"}
-              icon={<AiOutlineCloudUpload className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              icon={
+                <AiOutlineCloudUpload
+                  className={`${DashboardStyle["Dashboard__icon"]}`}
+                />
+              }
               spaceIcon={2}
             />
 
             <IconComponent
-              className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]}`}
-              style={{ color: colorsObject.secondary }}
-              children={<span>Task <span className="text-red-600">18</span></span>}
-              icon={<AiOutlineCloudUpload className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]}`}
+              // style={{ color: colorsObject.secondary }}
+              children={
+                <span>
+                  Task <span className="text-red-600">18</span>
+                </span>
+              }
+              icon={
+                <AiOutlineCloudUpload
+                  className={`${DashboardStyle["Dashboard__icon"]}`}
+                />
+              }
               spaceIcon={2}
             />
 
             <IconComponent
-              className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              style={{ color: colorsObject.secondary, }}
-              children={<span>Text message <span className={"text-red-600"}>18</span></span>}
-              icon={<AiOutlineMessage className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
+              // style={{ color: colorsObject.secondary }}
+              children={
+                <span>
+                  Text message <span className={"text-red-600"}>18</span>
+                </span>
+              }
+              icon={
+                <AiOutlineMessage
+                  className={`${DashboardStyle["Dashboard__icon"]}`}
+                />
+              }
               spaceIcon={2}
             />
 
             <IconComponent
-              className={`space-x-2.5 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              style={{ color: colorsObject.secondary }}
-              children={<span>Website enrollments <span className={"text-red-600"}>18</span></span>}
-              icon={<AiOutlineSolution className={`${DashboardStyle["Dashboard__icon"]}`} />}
+              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
+              // style={{ color: colorsObject.secondary }}
+              children={
+                <span>
+                  Website enrollments <span className={"text-red-600"}>18</span>
+                </span>
+              }
+              icon={
+                <AiOutlineSolution
+                  className={`${DashboardStyle["Dashboard__icon"]}`}
+                />
+              }
               spaceIcon={2}
             />
           </div>
@@ -786,8 +814,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-      </section >
-    </Fragment >
+      </section>
+    </Fragment>
   );
 };
 
