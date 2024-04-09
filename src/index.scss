@@ -10,11 +10,11 @@ body,
 }
 
 .root {
-  &>* {
+  & > * {
     flex-shrink: 0;
   }
 
-  &>main {
+  & > main {
     flex-grow: 1;
   }
 }
@@ -45,7 +45,7 @@ svg {
 }
 
 .mode-dark {
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #262626;
 
   p,
@@ -60,17 +60,25 @@ svg {
   .Paragraph,
   .Text,
   .Title {
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   input,
   select,
   .ant-select-selector {
     background: #262626;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   input:active {
     color: #262626;
   }
+}
+
+.ant-menu-item,
+.ant-menu-submenu-title,
+.ant-menu-sub {
+  padding-left: 15px !important;
+  margin: 10px 0 !important;
+  font-weight: 500 !important;
 }
