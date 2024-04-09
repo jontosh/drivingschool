@@ -21,7 +21,9 @@ export const CustomCheckBox = ({
   return (
     <Fragment>
       <label className={className} {...props}>
-        <div className={`relative ${FormStyle["CheckBox-warp"]}`}>
+        <div
+          className={`relative inline-flex items-center ${FormStyle["CheckBox-warp"]}`}
+        >
           <input
             type={"checkbox"}
             value={value}
@@ -145,5 +147,13 @@ export const CustomSelect = ({
         </Select>
       </ConfigProvider>
     </Fragment>
+  );
+};
+
+export const CustomRadio = ({ children }) => {
+  return (
+    <ConfigProvider>
+      <label></label>
+    </ConfigProvider>
   );
 };

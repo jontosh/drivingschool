@@ -1,5 +1,6 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
+import { Icons } from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { InfoForm } from "@/pages/enrollment/info-form.jsx";
@@ -11,28 +12,28 @@ import { FaX } from "react-icons/fa6";
 import { LuX } from "react-icons/lu";
 
 const PackageSelectionArray = [
-  {
-    id: 1,
-    label: "8h in car instruction",
-    hours: 74,
-    price: 169,
-    value: 1,
-  },
-  {
-    id: 2,
-    label: "10h in car instruction",
-    hours: 74,
-    price: 209,
-    value: 2,
-  },
-  {
-    id: 3,
-    label: "3h in car instruction",
-    hours: 15,
-    price: 103,
-    value: 3,
-  },
-],
+    {
+      id: 1,
+      label: "8h in car instruction",
+      hours: 74,
+      price: 169,
+      value: 1,
+    },
+    {
+      id: 2,
+      label: "10h in car instruction",
+      hours: 74,
+      price: 209,
+      value: 2,
+    },
+    {
+      id: 3,
+      label: "3h in car instruction",
+      hours: 15,
+      price: 103,
+      value: 3,
+    },
+  ],
   ClassSelectionArray = [
     {
       id: 1,
@@ -111,9 +112,15 @@ const Enrollment = () => {
             </Paragraph>
           </div>
 
-          <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
-            ${price}
-          </Paragraph>
+          <div className="flex items-center gap-2 5">
+            <Paragraph fontSize={"text-base"} fontWeightStrong={400}>
+              ${price}
+            </Paragraph>
+
+            <button className="w-5">
+              <Icons type={"cross"} />
+            </button>
+          </div>
         </div>
         {/*Item Start*/}
       </Fragment>
@@ -218,7 +225,6 @@ const Enrollment = () => {
               {SelectedPackages?.length > 0 ? (
                 <div className="flex justify-between">
                   <div className={"space-x-2.5"}>
-
                     <ButtonComponent
                       defaultBg={colorsObject.info}
                       defaultHoverBg={colorsObject.info}
