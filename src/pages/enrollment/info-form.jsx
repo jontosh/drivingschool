@@ -144,7 +144,7 @@ export const InfoForm = ({ }) => {
                     value={Staff !== "" ? Staff : "Account #"}
                     options={InfoTypeOptions}
                     onChange={handleChange ? (value) => setStaff(value) : handleChange}
-                    className={`${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
                     name={"Staff"}
                   />
@@ -165,7 +165,7 @@ export const InfoForm = ({ }) => {
                     value={Location !== "" ? Location : "Select  Location"}
                     // onChange={(value) => setInfoType(value)}
                     options={InfoTypeOptions}
-                    className={`${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                     colorBorder={colorsObject.primary}
                     name={"Location"}
                     onChange={handleChange}
@@ -183,11 +183,11 @@ export const InfoForm = ({ }) => {
                     Studetn id
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Student id"}
                       name={"studentId"}
                       value={values.studentId}
@@ -211,11 +211,11 @@ export const InfoForm = ({ }) => {
                     First name
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"First name"}
                       name={"firstName"}
                       value={values.firstName}
@@ -239,11 +239,11 @@ export const InfoForm = ({ }) => {
                     Last name
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Last name"}
                       name={"lastName"}
                       value={values.lastName}
@@ -260,11 +260,11 @@ export const InfoForm = ({ }) => {
                   >
                     Middle name
                   </Paragraph>
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Middle name"}
                       name={"middleName"}
                       value={values.middleName}
@@ -286,11 +286,11 @@ export const InfoForm = ({ }) => {
                     Address
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Address"}
                       name={"address"}
                       value={values.address}
@@ -311,11 +311,11 @@ export const InfoForm = ({ }) => {
                   >
                     City
                   </Paragraph>
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"City"}
                       name={"city"}
                       value={values.city}
@@ -337,13 +337,13 @@ export const InfoForm = ({ }) => {
                     State
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomSelect
                       value={State !== "" ? State : "State"}
                       onChange={(value) => setState(value)}
                       options={InfoTypeOptions}
                       // style={{ width: "408px" }}
-                      className={"mb-2.5 w-full"}
+                      className={"mb-2.5 h-full w-full"}
                       colorBorder={colorsObject.primary}
                       name={"state"}
                     />
@@ -363,11 +363,11 @@ export const InfoForm = ({ }) => {
                     Zip/Postal code
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={`w-full`}
+                      classNames={`h-full w-full`}
                       placeholder={"Zip/Postal code"}
                       name={"postalCode"}
                       value={values.postalCode}
@@ -394,7 +394,7 @@ export const InfoForm = ({ }) => {
                   >
                     <input
                       placeholder={"Home Phone"}
-                      className={`${EnrollmentStyle["Enrollment__input"]} flex-grow px-5 py-2.5 w-44`}
+                      className={`h-10 ${EnrollmentStyle["Enrollment__input"]} flex-grow px-5 py-2.5 w-44`}
                       name={"phone"}
                       value={values.phone}
                       onChange={handleChange}
@@ -417,7 +417,7 @@ export const InfoForm = ({ }) => {
                     Home Phone
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -431,11 +431,11 @@ export const InfoForm = ({ }) => {
                     Email
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"email"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Email"}
                       name={"email"}
                       value={values.email}
@@ -458,7 +458,7 @@ export const InfoForm = ({ }) => {
                   </Paragraph>
 
                   <Checkbox.Group
-                    className={`${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                   >
                     <CustomCheckBox name={"gender"} onChange={handleChange}>
                       <Text fontSize={"text-base"}>Male</Text>
@@ -483,11 +483,11 @@ export const InfoForm = ({ }) => {
                     Perferred Pronoun
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Perferred Pronoun"}
                       name={"Perferred"}
                       value={values.Perferred}
@@ -553,11 +553,11 @@ export const InfoForm = ({ }) => {
                     DL/Permit
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"DL/Permit"}
                       name={"Permit"}
                       value={values.Permit}
@@ -575,11 +575,11 @@ export const InfoForm = ({ }) => {
                     DL/Permit Issued
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"DL/Permit Issued"}
                       name={"PermitIssued"}
                       value={values.PermitIssued}
@@ -597,11 +597,11 @@ export const InfoForm = ({ }) => {
                     DL Permit Expiration
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"DL Permit Expiration"}
                       name={"PermitExpiration"}
                       value={values.PermitExpiration}
@@ -619,7 +619,7 @@ export const InfoForm = ({ }) => {
                     Self Scheduling
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -629,7 +629,7 @@ export const InfoForm = ({ }) => {
                     Payment Plan
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -639,11 +639,11 @@ export const InfoForm = ({ }) => {
                     Extantion Date
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Extantion Date"}
                       name={"ExtantionDate"}
                       value={values.ExtantionDate}
@@ -665,7 +665,7 @@ export const InfoForm = ({ }) => {
                     value={values.Lead}
                     onChange={(value) => setLead(value)}
                     options={LeadOptions}
-                    className={`mb-2.5 ${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                     optionFontSize={14}
                     optionSelectedFontWeight={400}
                     fontSize={16}
@@ -684,11 +684,11 @@ export const InfoForm = ({ }) => {
                     Parent name
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Parent name"}
                       name={"ParentName"}
                       value={values.ParentName}
@@ -706,11 +706,11 @@ export const InfoForm = ({ }) => {
                     Parent Phone
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Parent Phone"}
                       name={"ParentPhone"}
                       value={values.ParentPhone}
@@ -728,11 +728,11 @@ export const InfoForm = ({ }) => {
                     Parent Email
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Parent Email"}
                       name={"ParentEmail"}
                       value={values.ParentEmail}
@@ -750,11 +750,11 @@ export const InfoForm = ({ }) => {
                     Parent Name 2
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Parent Name 2"}
                       name={"ParentName2"}
                       value={values.ParentName2}
@@ -772,11 +772,11 @@ export const InfoForm = ({ }) => {
                     Parent Phone 2
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Parent Phone 2"}
                       name={"ParentPhone2"}
                       value={values.ParentPhone2}
@@ -794,11 +794,11 @@ export const InfoForm = ({ }) => {
                     Parent Email 2
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomInput
                       type={"text"}
                       colorBorder={colorsObject.primary}
-                      classNames={"w-full"}
+                      classNames={"h-full w-full"}
                       placeholder={"Parent Email 2"}
                       name={"ParentEmail2"}
                       value={values.ParentEmail2}
@@ -816,7 +816,7 @@ export const InfoForm = ({ }) => {
                     Home Dropoff
                   </Paragraph>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
+                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
                     <CustomCheckBox />
                   </div>
                 </label>
@@ -828,7 +828,7 @@ export const InfoForm = ({ }) => {
 
                   <div
                     style={{ gap: "20px" }}
-                    className={`flex ${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`flex h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                   >
                     <CustomInput
                       type={"text"}
@@ -860,7 +860,7 @@ export const InfoForm = ({ }) => {
                     value={values.Lead}
                     onChange={(value) => setLead(value)}
                     options={LeadOptions}
-                    className={`mb-2.5 ${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`mb-2.5 h-10 ${EnrollmentStyle["Enrollment__div"]}`}
                     optionFontSize={14}
                     optionSelectedFontWeight={400}
                     fontSize={16}
