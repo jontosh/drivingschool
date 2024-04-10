@@ -163,6 +163,13 @@ export const MenuItems = (IsActive, getItem) => {
           />,
           "sub8-11",
         ),
+        getItem(
+          <Link
+            to={"/management/single-page/How did you hear"}
+            children={"How did you hear"}
+          />,
+          "sub8-12",
+        ),
       ],
     ),
     getItem(
