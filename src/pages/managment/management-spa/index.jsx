@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { Hear } from "@/pages/managment/management-spa/hear.jsx";
 import { HighSchool } from "@/pages/managment/management-spa/high-school.jsx";
 import { Location } from "@/pages/managment/management-spa/location.jsx";
 import { Space } from "antd";
@@ -221,6 +222,99 @@ const HighSchoolData = () => {
   return { columns, data };
 };
 
+const HearData = () => {
+  const columns = [
+    {
+      title: "Name",
+      key: "name",
+      dataIndex: "name",
+      align: "center",
+    },
+    {
+      title: "School code",
+      key: "code",
+      dataIndex: "code",
+      align: "center",
+      render: (text) => {
+        return (
+          <Paragraph className={"text-center"} fontSize={"text-lg"}>
+            {text}
+          </Paragraph>
+        );
+      },
+    },
+    {
+      title: "Status",
+      key: "status",
+      dataIndex: "status",
+      align: "center",
+      render: (text) => {
+        return (
+          <div className={"text-center"}>
+            <ButtonComponent
+              defaultBg={CheckProgress(text)}
+              defaultHoverBg={CheckProgress(text)}
+              controlHeight={40}
+              borderRadius={5}
+              style={{ width: "128px" }}
+            >
+              {text?.toUpperCase()}
+            </ButtonComponent>
+          </div>
+        );
+      },
+    },
+    {
+      title: "Action",
+      key: "action",
+      align: "center",
+      render: () => (
+        <div className={" space-x-2.5 "}>
+          <IconComponent
+            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            icon={<TfiWrite />}
+          />
+
+          <IconComponent
+            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            icon={<GoClock />}
+          />
+        </div>
+      ),
+    },
+  ];
+
+  const data = [
+    {
+      name: "Facebook",
+      code: 8581,
+      status: "Active",
+    },
+    {
+      name: "Google",
+      code: 8581,
+      status: "Process",
+    },
+    {
+      name: "Other",
+      code: 8581,
+      status: "Close",
+    },
+    {
+      name: "Recommendation",
+      code: 8581,
+      status: "Close",
+    },
+    {
+      name: "Yelp",
+      code: 8581,
+      status: "Active",
+    },
+  ];
+
+  return { columns, data };
+};
+
 const ManagementSpaIndex = () => {
   const { title } = useParams();
   const navigate = useNavigate();
@@ -245,6 +339,17 @@ const ManagementSpaIndex = () => {
             <title>Account management - High School</title>
           </Helmet>
           <HighSchool columns={columns} data={data} />
+        </Fragment>
+      );
+    }
+    case "how did you hear": {
+      const { columns, data } = HearData();
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Account management - High School</title>
+          </Helmet>
+          <Hear columns={columns} data={data} />
         </Fragment>
       );
     }
