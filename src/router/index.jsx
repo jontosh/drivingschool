@@ -5,6 +5,8 @@ import Design from "@/pages/design/index.jsx";
 import Enrollment from "@/pages/enrollment/index.jsx";
 import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
+import ManagementSpa from "@/pages/managment/management-spa.jsx";
+import ManagementSpaIndex from "@/pages/managment/management-spa/index.jsx";
 import Service from "@/pages/managment/service/index.jsx";
 import ServiceSpa from "@/pages/managment/service/service-spa.jsx";
 import Staff from "@/pages/managment/staff/index.jsx";
@@ -60,6 +62,16 @@ export const router = createBrowserRouter([
           {
             path: "staff",
             element: <Staff />,
+          },
+          {
+            path: "single-page",
+            element: <ManagementSpa />,
+            children: [
+              {
+                path: ":title",
+                element: <ManagementSpaIndex />,
+              },
+            ],
           },
         ],
       },
