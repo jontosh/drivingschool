@@ -5,13 +5,12 @@ import ColorsContext from "@/context/colors.jsx";
 import { Hear } from "@/pages/managment/management-spa/hear.jsx";
 import { HighSchool } from "@/pages/managment/management-spa/high-school.jsx";
 import { Location } from "@/pages/managment/management-spa/location.jsx";
-import { Space } from "antd";
+import { Vehicles } from "@/pages/managment/management-spa/vehicles.jsx";
 import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { CiMap } from "react-icons/ci";
 import { GoClock, GoEye } from "react-icons/go";
-import { PiCopyLight } from "react-icons/pi";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { TbActivityHeartbeat } from "react-icons/tb";
 import { TfiWrite } from "react-icons/tfi";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -314,6 +313,104 @@ const HearData = () => {
 
   return { columns, data };
 };
+const VehiclesData = () => {
+  const { colorsObject } = useContext(ColorsContext);
+  const columns = [
+    {
+      title: "Location name",
+      key: "name",
+      dataIndex: "name",
+      render: (text) => {
+        return <Paragraph fontSize={"text-lg"}>{text}</Paragraph>;
+      },
+    },
+    {
+      title: "Location code",
+      key: "code",
+      dataIndex: "code",
+      align: "center",
+      render: (text) => {
+        return (
+          <Paragraph className={"text-center"} fontSize={"text-lg"}>
+            {text}
+          </Paragraph>
+        );
+      },
+    },
+    {
+      title: "Type",
+      key: "type",
+      dataIndex: "type",
+      align: "center",
+    },
+    {
+      title: "Appointment color",
+      key: "appointment",
+      dataIndex: "appointment",
+      align: "center",
+      render: (color) => {
+        return (
+          <div className={"text-center"}>
+            <ButtonComponent
+              defaultBg={color}
+              defaultHoverBg={color}
+              controlHeight={30}
+              borderRadius={5}
+              className={"w-32"}
+            />
+          </div>
+        );
+      },
+    },
+    {
+      title: "Action",
+      key: "action",
+      align: "center",
+      render: () => (
+        <div className={" space-x-2.5 "}>
+          <IconComponent
+            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            icon={<TfiWrite />}
+          />
+
+          <IconComponent
+            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            icon={<TbActivityHeartbeat />}
+            classNames={"items-center"}
+          />
+
+          <IconComponent
+            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            icon={<GoClock />}
+          />
+        </div>
+      ),
+    },
+  ];
+
+  const data = [
+    {
+      name: "Mason Location",
+      code: 8581,
+      appointment: colorsObject.info,
+      type: "Car",
+    },
+    {
+      name: "Mason Location",
+      code: 8581,
+      appointment: colorsObject.secondary,
+      type: "Car",
+    },
+    {
+      name: "Mason Location",
+      code: 8581,
+      appointment: colorsObject.danger,
+      type: "Car",
+    },
+  ];
+
+  return { columns, data };
+};
 
 const ManagementSpaIndex = () => {
   const { title } = useParams();
@@ -347,9 +444,20 @@ const ManagementSpaIndex = () => {
       return (
         <Fragment>
           <Helmet>
-            <title>Account management - High School</title>
+            <title>Account management - How did you hear</title>
           </Helmet>
           <Hear columns={columns} data={data} />
+        </Fragment>
+      );
+    }
+    case "vehicles": {
+      const { columns, data } = VehiclesData();
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Account management - Vehicles</title>
+          </Helmet>
+          <Vehicles columns={columns} data={data} />
         </Fragment>
       );
     }
