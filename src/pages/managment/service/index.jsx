@@ -76,7 +76,7 @@ const Service = () => {
       <Helmet>
         <title>Service management</title>
       </Helmet>
-      <Fragment>
+      <section>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -208,7 +208,7 @@ const Service = () => {
             </div>
           </div>
         </div>
-      </Fragment>
+      </section>
 
       {IsOpen && (
         <Modal setIsOpen={setIsOpen}>
