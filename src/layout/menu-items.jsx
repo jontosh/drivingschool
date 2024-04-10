@@ -156,6 +156,13 @@ export const MenuItems = (IsActive, getItem) => {
           />,
           "sub8-10",
         ),
+        getItem(
+          <Link
+            to={"/management/single-page/high school"}
+            children={"High school"}
+          />,
+          "sub8-11",
+        ),
       ],
     ),
     getItem(
