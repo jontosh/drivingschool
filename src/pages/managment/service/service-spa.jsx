@@ -7,6 +7,7 @@ import { Fees } from "@/pages/managment/service/fees.jsx";
 import { Miscellaneous } from "@/pages/managment/service/miscellaneous.jsx";
 import { Packages } from "@/pages/managment/service/packages.jsx";
 import { Product } from "@/pages/managment/service/product.jsx";
+import { FormOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
@@ -113,25 +114,21 @@ const columns = [
   {
     title: "Action",
     key: "action",
-    render: (_, record) => (
-      <Space size={"middle"}>
+    render: () => (
+      <div className={"text-center space-x-2.5"}>
         <IconComponent
-          className={
-            "text-2xl cursor-default text-indigo-500 border border-indigo-600"
-          }
+          className={"text-2xl text-indigo-500 border border-indigo-600"}
           style={{
             borderRadius: 5,
             paddingLeft: 4,
             paddingRight: 5,
             paddingTop: 4,
           }}
-          icon={<TfiWrite />}
+          icon={<FormOutlined />}
         />
 
         <IconComponent
-          className={
-            "text-2xl cursor-default text-red-600 border border-indigo-600"
-          }
+          className={"text-2xl text-red-600 border border-indigo-600"}
           style={{
             borderRadius: 5,
             paddingLeft: 4,
@@ -142,9 +139,7 @@ const columns = [
         />
 
         <IconComponent
-          className={
-            "text-2xl cursor-default text-indigo-500 border border-indigo-600"
-          }
+          className={"text-2xl text-indigo-500 border border-indigo-600"}
           style={{
             borderRadius: 5,
             paddingLeft: 4,
@@ -153,7 +148,7 @@ const columns = [
           }}
           icon={<PiCopyLight />}
         />
-      </Space>
+      </div>
     ),
   },
 ];
@@ -242,11 +237,11 @@ const FeesData = () => {
     {
       title: "Action",
       key: "action",
-      render: (_, record) => (
-        <Space size={"middle"}>
+      render: () => (
+        <div className={"text-center space-x-2.5"}>
           <IconComponent
             className={
-              "text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"
+              "text-2xl text-red-600 hover:text-red-600 border border-indigo-600"
             }
             icon={<RiDeleteBin6Line />}
             style={{
@@ -259,7 +254,7 @@ const FeesData = () => {
 
           <IconComponent
             className={
-              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              "text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
             }
             style={{
               borderRadius: 5,
@@ -269,7 +264,7 @@ const FeesData = () => {
             }}
             icon={<PiCopyLight />}
           />
-        </Space>
+        </div>
       ),
     },
   ];
@@ -351,11 +346,11 @@ const DiscountsData = () => {
     {
       title: "Action",
       key: "action",
-      render: (_, record) => (
-        <Space size={"middle"}>
+      render: () => (
+        <div className={"text-center space-x-2.5"}>
           <IconComponent
             className={
-              "text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"
+              "text-2xl text-red-600 hover:text-red-600 border border-indigo-600"
             }
             icon={<RiDeleteBin6Line />}
             style={{
@@ -368,7 +363,7 @@ const DiscountsData = () => {
 
           <IconComponent
             className={
-              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              "text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
             }
             style={{
               borderRadius: 5,
@@ -378,7 +373,7 @@ const DiscountsData = () => {
             }}
             icon={<PiCopyLight />}
           />
-        </Space>
+        </div>
       ),
     },
   ];
@@ -558,23 +553,21 @@ const PackagesData = () => {
       title: "Action",
       key: "action",
       render: () => (
-        <Space size={"middle"}>
+        <div className={"text-center space-x-2.5"}>
           <IconComponent
-            className={
-              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
-            icon={<TfiWrite />}
+            className={"text-2xl text-indigo-500 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
               paddingRight: 5,
               paddingTop: 4,
             }}
+            icon={<FormOutlined />}
           />
 
           <IconComponent
             className={
-              "text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"
+              "text-2xl text-red-600 hover:text-red-600 border border-indigo-600"
             }
             icon={<RiDeleteBin6Line />}
             style={{
@@ -587,7 +580,7 @@ const PackagesData = () => {
 
           <IconComponent
             className={
-              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              "text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
             }
             icon={<PiCopyLight />}
             style={{
@@ -597,7 +590,7 @@ const PackagesData = () => {
               paddingTop: 4,
             }}
           />
-        </Space>
+        </div>
       ),
     },
   ];
