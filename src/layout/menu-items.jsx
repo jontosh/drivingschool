@@ -165,10 +165,17 @@ export const MenuItems = (IsActive, getItem) => {
         ),
         getItem(
           <Link
-            to={"/management/single-page/How did you hear"}
+            to={"/management/single-page/how did you hear"}
             children={"How did you hear"}
           />,
           "sub8-12",
+        ),
+        getItem(
+          <Link
+            to={"/management/single-page/vehicles"}
+            children={"Vehicles"}
+          />,
+          "sub8-13",
         ),
       ],
     ),

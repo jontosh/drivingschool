@@ -41,3 +41,15 @@
     }
   }
 }
+
+.CheckModal {
+  &__heavy {
+    &:after {
+      right: -6 !important;
+    }
+  }
+
+  &__form-element__shadow {
+    box-shadow: 0 4px 4px 0 #00000040;
+  }
+}
