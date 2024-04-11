@@ -1,5 +1,6 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
+import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Exam } from "@/pages/managment/service/exam.jsx";
 import { Fees } from "@/pages/managment/service/fees.jsx";
@@ -85,20 +86,41 @@ const columns = [
     render: (_, record) => (
       <Space size={"middle"}>
         <IconComponent
-          className={"text-2xl cursor-default text-indigo-500 border border-indigo-600"}
-          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+          className={
+            "text-2xl cursor-default text-indigo-500 border border-indigo-600"
+          }
+          style={{
+            borderRadius: 5,
+            paddingLeft: 4,
+            paddingRight: 5,
+            paddingTop: 4,
+          }}
           icon={<TfiWrite />}
         />
 
         <IconComponent
-          className={"text-2xl cursor-default text-red-600 border border-indigo-600"}
-          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+          className={
+            "text-2xl cursor-default text-red-600 border border-indigo-600"
+          }
+          style={{
+            borderRadius: 5,
+            paddingLeft: 4,
+            paddingRight: 5,
+            paddingTop: 4,
+          }}
           icon={<RiDeleteBin6Line />}
         />
 
         <IconComponent
-          className={"text-2xl cursor-default text-indigo-500 border border-indigo-600"}
-          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+          className={
+            "text-2xl cursor-default text-indigo-500 border border-indigo-600"
+          }
+          style={{
+            borderRadius: 5,
+            paddingLeft: 4,
+            paddingRight: 5,
+            paddingTop: 4,
+          }}
           icon={<PiCopyLight />}
         />
       </Space>
@@ -183,14 +205,28 @@ const FeesData = () => {
       render: (_, record) => (
         <Space size={"middle"}>
           <IconComponent
-            className={"text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"}
+            className={
+              "text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"
+            }
             icon={<RiDeleteBin6Line />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 5,
+              paddingTop: 4,
+            }}
           />
 
           <IconComponent
-            className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={
+              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 5,
+              paddingTop: 4,
+            }}
             icon={<PiCopyLight />}
           />
         </Space>
@@ -268,14 +304,28 @@ const DiscountsData = () => {
       render: (_, record) => (
         <Space size={"middle"}>
           <IconComponent
-            className={"text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"}
+            className={
+              "text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"
+            }
             icon={<RiDeleteBin6Line />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 5,
+              paddingTop: 4,
+            }}
           />
 
           <IconComponent
-            className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={
+              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 5,
+              paddingTop: 4,
+            }}
             icon={<PiCopyLight />}
           />
         </Space>
@@ -347,6 +397,11 @@ const PackagesData = () => {
       title: "Service name",
       key: "name",
       dataIndex: "name",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Code",
@@ -389,9 +444,14 @@ const PackagesData = () => {
       dataIndex: "web",
       render: (access) => {
         return (
-          <Space size={"middle"}>
-            {access ? <Icons type={"checked"} /> : <Icons type={"cross"} />}
-          </Space>
+          <div className={"text-center"}>
+            <IconComponent
+              className={"w-6"}
+              icon={
+                access ? <Icons type={"checked"} /> : <Icons type={"cross"} />
+              }
+            />
+          </div>
         );
       },
     },
@@ -401,9 +461,14 @@ const PackagesData = () => {
       dataIndex: "portal",
       render: (access) => {
         return (
-          <Space size={"middle"}>
-            {access ? <Icons type={"checked"} /> : <Icons type={"cross"} />}
-          </Space>
+          <div className={"text-center"}>
+            <IconComponent
+              className={"w-6"}
+              icon={
+                access ? <Icons type={"checked"} /> : <Icons type={"cross"} />
+              }
+            />
+          </div>
         );
       },
     },
@@ -413,33 +478,59 @@ const PackagesData = () => {
       dataIndex: "enrolled",
       render: (access) => {
         return (
-          <Space size={"middle"}>
-            {access ? <Icons type={"checked"} /> : <Icons type={"cross"} />}
-          </Space>
+          <div className={"text-center"}>
+            <IconComponent
+              className={"w-6"}
+              icon={
+                access ? <Icons type={"checked"} /> : <Icons type={"cross"} />
+              }
+            />
+          </div>
         );
       },
     },
     {
       title: "Action",
       key: "action",
-      render: (_, record) => (
+      render: () => (
         <Space size={"middle"}>
           <IconComponent
-            className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={
+              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
             icon={<TfiWrite />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 5,
+              paddingTop: 4,
+            }}
           />
 
           <IconComponent
-            className={"text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"}
+            className={
+              "text-2xl cursor-default text-red-600 hover:text-red-600 border border-indigo-600"
+            }
             icon={<RiDeleteBin6Line />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 5,
+              paddingTop: 4,
+            }}
           />
 
           <IconComponent
-            className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={
+              "text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
             icon={<PiCopyLight />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 5,
+              paddingTop: 4,
+            }}
           />
         </Space>
       ),
