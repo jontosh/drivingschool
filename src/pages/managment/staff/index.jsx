@@ -58,7 +58,8 @@ const columns = [
           <ButtonComponent
             defaultBg={CheckProgress(text)}
             defaultHoverBg={CheckProgress(text)}
-            controlHeight={40}
+            controlHeight={30}
+            borderRadius={5}
             style={{ width: "128px" }}
           >
             {text.toUpperCase()}
@@ -73,18 +74,21 @@ const columns = [
     render: (_, record) => (
       <Space size={"middle"}>
         <IconComponent
-          className={"text-indigo-600 hover:text-indigo-600"}
+          className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
           icon={<TfiWrite />}
+          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
         />
 
         <IconComponent
-          className={"w-full text-red-600 hover:text-red-600"}
+          className={"text-2xl cursor-default w-full text-red-600 hover:text-red-600 border border-indigo-600"}
           icon={<RiDeleteBin6Line />}
+          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
         />
 
         <IconComponent
-          className={"text-indigo-600 hover:text-indigo-600"}
+          className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
           icon={<PiCopyLight />}
+          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
         />
       </Space>
     ),

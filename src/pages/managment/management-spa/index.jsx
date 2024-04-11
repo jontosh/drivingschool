@@ -65,7 +65,7 @@ const LocationData = () => {
             <ButtonComponent
               defaultBg={CheckProgress(text)}
               defaultHoverBg={CheckProgress(text)}
-              controlHeight={40}
+              controlHeight={30}
               borderRadius={5}
               style={{ width: "128px" }}
             >
@@ -82,19 +82,22 @@ const LocationData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<TfiWrite />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<CiMap />}
             classNames={"items-center"}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<GoClock />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
         </div>
       ),
@@ -170,7 +173,7 @@ const HighSchoolData = () => {
             <ButtonComponent
               defaultBg={CheckProgress(text)}
               defaultHoverBg={CheckProgress(text)}
-              controlHeight={40}
+              controlHeight={30}
               borderRadius={5}
               style={{ width: "128px" }}
             >
@@ -187,13 +190,15 @@ const HighSchoolData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<TfiWrite />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<GoClock />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
         </div>
       ),
@@ -253,7 +258,7 @@ const HearData = () => {
             <ButtonComponent
               defaultBg={CheckProgress(text)}
               defaultHoverBg={CheckProgress(text)}
-              controlHeight={40}
+              controlHeight={30}
               borderRadius={5}
               style={{ width: "128px" }}
             >
@@ -270,13 +275,15 @@ const HearData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<TfiWrite />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<GoClock />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
         </div>
       ),
@@ -369,19 +376,22 @@ const VehiclesData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<TfiWrite />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<TbActivityHeartbeat />}
             classNames={"items-center"}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600"}
+            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<GoClock />}
+            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
           />
         </div>
       ),
