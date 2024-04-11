@@ -152,10 +152,37 @@ export const CustomSelect = ({
   );
 };
 
-export const CustomRadio = ({ children }) => {
+export const CustomRadio = ({
+  children,
+  value,
+  onChange,
+  className,
+  name,
+  checked,
+  ...props
+}) => {
   return (
-    <ConfigProvider>
-      <label></label>
-    </ConfigProvider>
+    <label
+      className={classNames(props.classNames, FormStyle["Radio"])}
+      {...props}
+    >
+      <div
+        className={`relative inline-flex items-center ${FormStyle["CheckBox-warp"]}`}
+      >
+        <input
+          type={"radio"}
+          value={value}
+          onChange={onChange}
+          name={name}
+          checked={checked}
+          className={classNames(
+            `${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`,
+            className,
+          )}
+        />
+        <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
+      </div>
+      {children}
+    </label>
   );
 };
