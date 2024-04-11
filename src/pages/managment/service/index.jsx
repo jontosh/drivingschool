@@ -170,7 +170,14 @@ const Service = () => {
                       defaultHoverBg={"#24C18F"}
                       paddingInline={26}
                       controlHeight={40}
-                      onClick={handleAdd}
+                      borderRadius={5}
+                      onClick={title !== "packages" && handleAdd}
+                      className={"inline-flex items-center"}
+                      href={
+                        title === "packages"
+                          ? "/management/modal/add-service"
+                          : null
+                      }
                     >
                       Add new
                     </ButtonComponent>

@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { useState } from "react";
 import ModalStyle from "./modal.module.scss";
 
 const Modal = ({ className, setIsOpen, children }) => {
@@ -14,7 +13,7 @@ const Modal = ({ className, setIsOpen, children }) => {
     <div
       data-modal
       onClick={handleClick}
-      className={`fixed flex items-center justify-center flex-col top-0 left-0 w-full h-full ${className}`}
+      className={`fixed flex items-center justify-center flex-col top-0 left-0 z-20 w-full h-full ${className}`}
     >
       {children}
     </div>

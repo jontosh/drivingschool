@@ -185,6 +185,8 @@ const Staff = ({}) => {
                   paddingInline={26}
                   controlHeight={40}
                   borderRadius={5}
+                  className={"inline-flex items-center"}
+                  href={"/management/modal/add-staff"}
                 >
                   Add new
                 </ButtonComponent>
