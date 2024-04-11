@@ -34,31 +34,61 @@ const columns = [
     title: "Item Name",
     dataIndex: "name",
     key: "name",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
     title: "Code number",
     dataIndex: "codeNumber",
     key: "codeNumber",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
     title: "Type",
     dataIndex: "type",
     key: "type",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
     title: "Sub type",
     dataIndex: "subtype",
     key: "subtype",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
     title: "BTW HOURS",
     dataIndex: "hours",
     key: "hours",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
     title: "Observation Hours",
     dataIndex: "observation",
     key: "observation",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
     title: "Status",
@@ -167,17 +197,27 @@ const FeesData = () => {
       title: "Location name",
       dataIndex: "name",
       key: "name",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Price",
       dataIndex: "price",
       key: "price",
-      render: (price) => <span>${price}</span>,
+      render: (price) => <span className={"text-lg"}>${price}</span>,
     },
     {
       title: "Sub type",
       dataIndex: "subtype",
       key: "subtype",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Status",
@@ -266,17 +306,27 @@ const DiscountsData = () => {
       title: "Item name",
       dataIndex: "name",
       key: "name",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Discount",
       dataIndex: "discount",
       key: "discount",
-      render: (discount) => <span>$ {discount}</span>,
+      render: (discount) => <span className={"text-lg"}>${discount}</span>,
     },
     {
       title: "Sub type",
       dataIndex: "subtype",
       key: "subtype",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Status",
@@ -407,16 +457,31 @@ const PackagesData = () => {
       title: "Code",
       key: "code",
       dataIndex: "code",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Service price",
       key: "price",
       dataIndex: "price",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Service content",
       key: "content",
       dataIndex: "content",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "Status",

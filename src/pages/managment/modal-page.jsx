@@ -571,7 +571,7 @@ const CheckModal = ({ modalName }) => {
                   </label>
                 </div>
               </div>
-              <div className="space-x-5 text-center">
+              <div className="space-x-5 text-center pt-8">
                 <ButtonComponent
                   defaultHoverBg={colorsObject.secondary}
                   defaultBg={colorsObject.secondary}
