@@ -22,7 +22,10 @@ export const CustomCheckBox = ({
     <Fragment>
       <label className={className} {...props}>
         <div
-          className={`relative inline-flex items-center ${FormStyle["CheckBox-warp"]}`}
+          className={classNames(
+            `relative inline-flex items-center ${FormStyle["CheckBox-warp"]}`,
+            props.classNames,
+          )}
         >
           <input
             type={"checkbox"}
