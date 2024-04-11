@@ -2,16 +2,14 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
-  CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
 import { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useError } from "@/hooks/error.jsx";
 import { Checkbox } from "antd";
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
 import EnrollmentStyle from "./enrollment.module.scss";
 
 const InfoTypeOptions = [

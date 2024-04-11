@@ -1,29 +1,12 @@
-// import { IconComponent } from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import { MenuItems } from "@/layout/menu-items.jsx";
-// import ColorsContext from "@/context/colors.jsx";
-import ServiceStyle from "@/pages/managment/management.module.scss";
 import { ConfigProvider, Menu } from "antd";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import {
-  // AiOutlineApartment,
-  AiOutlineAppstore,
-  // AiOutlineEye,
-  AiOutlineMail,
-  AiOutlineReconciliation,
-  AiOutlineSearch,
-  AiOutlineSetting,
-  AiOutlineSolution,
-  AiOutlineTeam,
-  AiOutlineTool,
-  AiOutlineUserAdd,
-} from "react-icons/ai";
 import { BiMoon } from "react-icons/bi";
 import { FaListUl } from "react-icons/fa6";
 import { HiOutlineSun } from "react-icons/hi2";
-import { LuLogOut } from "react-icons/lu";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
