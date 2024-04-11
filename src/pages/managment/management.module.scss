@@ -3,7 +3,7 @@
 .Tab {
   &__link {
     &-active {
-      color: $primary;
+      color: $primary !important;
     }
   }
 }
@@ -70,7 +70,7 @@
   }
 
   &__div {
-    border: 1px solid #5F66E9;
+    border: 1px solid #5f66e9;
     border-radius: 10px;
   }
 
