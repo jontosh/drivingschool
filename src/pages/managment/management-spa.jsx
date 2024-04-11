@@ -1,12 +1,14 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import ModalStyle from "@/components/modal/modal.module.scss";
+import { ModalContent } from "@/pages/managment/management-spa/modal/index.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import { Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
-import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 
@@ -14,6 +16,7 @@ const ManagementSpa = () => {
   const { title } = useParams();
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
+  const [IsOpen, setIsOpen] = useState(false);
 
   const setActiveNav = ({ isActive }) =>
     isActive
@@ -22,6 +25,8 @@ const ManagementSpa = () => {
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
+
+  const handleModal = () => setIsOpen((prev) => !prev);
 
   return (
     <Fragment>
@@ -101,6 +106,7 @@ const ManagementSpa = () => {
                     controlHeight={40}
                     borderRadius={5}
                     className={"inline-flex items-center"}
+                    onClick={handleModal}
                     href={
                       title === "location" ? "/management/modal/location" : null
                     }
@@ -138,6 +144,15 @@ const ManagementSpa = () => {
           </div>
         </div>
       </section>
+      {IsOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <div
+            className={`bg-white rounded-2xl p-9 ${ModalStyle["Modal__content"]} overflow-y-scroll ${ServiceStyle["Modal__content"]}`}
+          >
+            <ModalContent page={title} />
+          </div>
+        </Modal>
+      )}
     </Fragment>
   );
 };
