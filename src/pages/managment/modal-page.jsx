@@ -619,7 +619,7 @@ const CheckModal = ({ modalName }) => {
                 <div className={"space-y-5"}>
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -633,7 +633,7 @@ const CheckModal = ({ modalName }) => {
                   />
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -654,7 +654,7 @@ const CheckModal = ({ modalName }) => {
                       placeholder={"Location Status *"}
                       style={{ width: "100%" }}
                       colorBorder={colorsObject.primary}
-                      className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      className={`rounded h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={[
                         {
                           value: "Number",
@@ -742,7 +742,7 @@ const CheckModal = ({ modalName }) => {
 
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -755,7 +755,7 @@ const CheckModal = ({ modalName }) => {
 
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -768,7 +768,7 @@ const CheckModal = ({ modalName }) => {
 
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -781,7 +781,7 @@ const CheckModal = ({ modalName }) => {
 
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -794,7 +794,7 @@ const CheckModal = ({ modalName }) => {
 
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -815,6 +815,7 @@ const CheckModal = ({ modalName }) => {
                       placeholder={"Pickup location"}
                       style={{ width: "100%" }}
                       colorBorder={colorsObject.primary}
+                      className={"h-10"}
                       options={[
                         {
                           value: "Number",
@@ -834,6 +835,7 @@ const CheckModal = ({ modalName }) => {
                       placeholder={"Drop off location"}
                       style={{ width: "100%" }}
                       colorBorder={colorsObject.primary}
+                      className={"h-10"}
                       options={[
                         {
                           value: "Number",
@@ -845,7 +847,7 @@ const CheckModal = ({ modalName }) => {
 
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -858,7 +860,7 @@ const CheckModal = ({ modalName }) => {
                 </div>
                 <div className={"space-y-5"}>
                   <CustomCheckBox
-                    className={"space-x-2.5 w-full justify-center"}
+                    className={"space-x-2.5 w-full justify-center h-10"}
                     classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                   >
                     <span className={"text-sm flex-shrink-0 font-medium w-56"}>
@@ -875,7 +877,7 @@ const CheckModal = ({ modalName }) => {
                   </CustomCheckBox>
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -887,7 +889,7 @@ const CheckModal = ({ modalName }) => {
                   />
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
@@ -897,19 +899,69 @@ const CheckModal = ({ modalName }) => {
                     spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
                   />
+                  <div className="inline-flex justify-end gap-8 items-center w-full">
+                    <span className="text-right">Area Coverage</span>
+                    <textarea className={`p-3 ${ManagementStyle["CheckModal__mini-textarea"]}`}></textarea>
+                    <textarea className={`p-3 ${ManagementStyle["CheckModal__mini-textarea"]}`}></textarea>
+                  </div>
+                  <div className="inline-flex justify-end gap-8 items-center w-full">
+                    <span>Location note</span>
+                    <textarea className={`p-3 ${ManagementStyle["CheckModal__textarea"]}`}></textarea>
+                  </div>
+                  <CustomCheckBox
+                    className={"space-x-2.5 w-full justify-center"}
+                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  >
+                    <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                      Appointment Color
+                    </span>
+                  </CustomCheckBox>
+                  <div className="flex items-center gap-4 justify-center">
+                    <span>Color picker</span>
+                    <CustomCheckBox />
+                    <CustomInput
+                      classNames={
+                        "inline-flex flex-row-reverse gap-8 items-center w-56 h-10"
+                      }
+                      className={
+                        ManagementStyle["CheckModal__form-element__shadow"]
+                      }
+                      placeholder={"#FFFFFF"}
+                      colorBorder={colorsObject.primary}
+                    />
+                  </div>
+                  <CustomCheckBox
+                    className={"space-x-2.5 w-full justify-center"}
+                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  >
+                    <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                      Distance based scheduling
+                    </span>
+                  </CustomCheckBox>
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                     }
                     className={
                       ManagementStyle["CheckModal__form-element__shadow"]
                     }
-                    spanText={"Other"}
-                    placeholder={"Other"}
+                    spanText={"Distance Coverage in Miles"}
+                    placeholder={"Distance Coverage in Miles"}
                     spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
                   />
-                  @todo
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Provider Location Id"}
+                    placeholder={"Provider Location Id"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
                 </div>
               </div>
               <div className="space-x-5 text-center pt-10">

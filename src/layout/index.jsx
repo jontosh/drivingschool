@@ -133,7 +133,7 @@ const Layout = ({}) => {
           </div>
 
           <nav
-            className={`${LayoutStyle["Menu"]} overflow-hidden ${!IsActive && "w-14"}`}
+            className={`${LayoutStyle["Menu"]} overflow-hidden ${!IsActive && "w-14 shadow-md"}`}
           >
             <div
               className={`${LayoutStyle["Menu__top"]} relative z-10 flex gap-x-2.5 p-2.5`}
