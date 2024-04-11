@@ -44,10 +44,10 @@ export const MenuItems = (IsActive, getItem) => {
         <AiOutlineTeam />
       </span>,
       IsActive && [
-        getItem(<Link to={"/student/account/profile"} children={"Profile"} />),
+        getItem(<Link to={"/student/account/profile/"} children={"Profile"} />),
         getItem(
           <Link
-            to={"/student/account/enrollment"}
+            to={"/student/account/billing"}
             children={"Enrollment/Billing"}
           />,
         ),
