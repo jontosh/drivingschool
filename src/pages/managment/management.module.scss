@@ -68,7 +68,14 @@
     border: 1px solid #5f66e9;
     outline: none;
   }
+
+  &__div {
+    border: 1px solid #5F66E9;
+    border-radius: 10px;
+
+  }
 }
+
 .Modal__content {
   max-width: 1242px !important;
 }

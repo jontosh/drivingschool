@@ -302,9 +302,224 @@ export const ModalContent = ({ page }) => {
           </Title>
           <form>
             <div className="grid grid-cols-2 gap-7">
-              <div className={"space-y-5"}>@todo</div>
+              <div className={"space-y-5"}>
+                <label className="inline-flex gap-8 items-center w-full">
+                  <span
+                    className={`text-sm flex-shrink-0 font-medium w-56 text-right relative`}
+                  >
+                    Vehicle Name *
+                  </span>
+                  <CustomSelect
+                    placeholder={"State"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "USA",
+                        label: "USA",
+                      },
+                    ]}
+                  />
+                </label>
 
-              <div className="space-y-5">@todo</div>
+                <label className="inline-flex gap-8 items-center w-full">
+                  <span
+                    className={`text-sm flex-shrink-0 font-medium w-56 text-right relative`}
+                  >
+                    Vehicle Status *
+                  </span>
+                  <CustomSelect
+                    placeholder={"Select"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "USA",
+                        label: "USA",
+                      },
+                    ]}
+                  />
+                </label>
+
+                <label className="inline-flex gap-8 items-center w-full">
+                  <span
+                    className={`text-sm flex-shrink-0 font-medium w-56 text-right relative`}
+                  >
+                    At Location
+                  </span>
+                  <CustomSelect
+                    placeholder={"Select"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "USA",
+                        label: "USA",
+                      },
+                    ]}
+                  />
+                </label>
+
+                <label className="inline-flex gap-8 items-center w-full">
+                  <span
+                    className={`text-sm flex-shrink-0 font-medium w-56 text-right relative`}
+                  >
+                    Vehicle Type
+                  </span>
+                  <CustomSelect
+                    placeholder={"Select"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "USA",
+                        label: "USA",
+                      },
+                    ]}
+                  />
+                </label>
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Vehicle No"}
+                  placeholder={"Vehicle No"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Vehicle Make"}
+                  placeholder={"First name"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"VIN#"}
+                  placeholder={"Last name"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+              </div>
+
+              <div className="space-y-5">
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Appointment Color"}
+                  placeholder={"MM/DD/YYYY"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Enable AppointmentColor *"}
+                  placeholder={"Instructor Permit Number"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Vehicle Note"}
+                  placeholder={"MM/DD/YYYY"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Vehicle ESN Or AIR ID"}
+                  placeholder={"MM/DD/YYYY"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Odometer Value"}
+                  placeholder={"Select"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Vehicle Initial Mileage"}
+                  placeholder={"Password *"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <label className="inline-flex gap-8 items-center">
+                  <span className="font-medium w-56 flex-shrink-0 text-right">Vehicle Image</span>
+                  <div
+                    className={`${ManagementStyle["CheckModal__div"]} ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    style={{ width: 269, height: 240 }}
+                  >
+                  </div>
+                </label>
+              </div>
             </div>
 
             <div className="space-x-5 text-center pt-10">
