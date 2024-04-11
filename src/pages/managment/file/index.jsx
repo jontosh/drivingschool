@@ -231,7 +231,7 @@ const File = () => {
                     controlHeight={26}
                     borderRadius={5}
                   >
-                    new category
+                    Filter by
                   </ButtonComponent>
                 </div>
               </div>

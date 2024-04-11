@@ -349,9 +349,10 @@ const Dashboard = () => {
                 href={"/NotFound"}
                 defaultBg={colorsObject.info}
                 defaultHoverBg={colorsObject.info}
-                className={"w-full"}
+                className={"w-full "}
                 controlHeight={44}
                 paddingBlock={9}
+                borderRadius={10}
               >
                 New student
               </ButtonComponent>
@@ -363,6 +364,7 @@ const Dashboard = () => {
                 className={"w-full"}
                 controlHeight={44}
                 paddingBlock={9}
+                borderRadius={10}
               >
                 Add new student
               </ButtonComponent>
@@ -374,6 +376,7 @@ const Dashboard = () => {
                 className={"w-full"}
                 controlHeight={44}
                 paddingBlock={9}
+                borderRadius={10}
               >
                 Class list
               </ButtonComponent>
@@ -385,6 +388,7 @@ const Dashboard = () => {
                 className={"w-full"}
                 controlHeight={44}
                 paddingBlock={9}
+                borderRadius={10}
               >
                 File Managment
               </ButtonComponent>
@@ -396,6 +400,7 @@ const Dashboard = () => {
                 className={"w-full"}
                 controlHeight={44}
                 paddingBlock={9}
+                borderRadius={10}
               >
                 Built App editing
               </ButtonComponent>
@@ -623,6 +628,7 @@ const Dashboard = () => {
                       fontSize={"text-xs"}
                       paddingBlock={4}
                       paddingInline={4}
+                      borderRadius={5}
                     >
                       Edit information
                     </ButtonComponent>
@@ -634,6 +640,7 @@ const Dashboard = () => {
                       fontSize={"text-xs"}
                       paddingBlock={4}
                       paddingInline={25}
+                      borderRadius={5}
                     >
                       Time log
                     </ButtonComponent>
@@ -645,6 +652,7 @@ const Dashboard = () => {
                       fontSize={"text-xs"}
                       paddingBlock={4}
                       paddingInline={13}
+                      borderRadius={5}
                     >
                       Add time off
                     </ButtonComponent>
@@ -656,6 +664,7 @@ const Dashboard = () => {
                       fontSize={"text-xs"}
                       paddingBlock={4}
                       paddingInline={24}
+                      borderRadius={5}
                     >
                       Add Slots
                     </ButtonComponent>
@@ -700,7 +709,7 @@ const Dashboard = () => {
 
                       <button
                         className={
-                          "inline-flex p-2 gap-x-4 bg-[#0C41FF] text-white"
+                          "inline-flex p-2 gap-x-4 bg-[#0C41FF] text-white items-center"
                         }
                       >
                         <Text

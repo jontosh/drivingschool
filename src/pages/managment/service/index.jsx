@@ -231,6 +231,7 @@ const Service = () => {
                 paddingInline={64}
                 controlHeight={40}
                 onClick={handleCloseModal}
+                borderRadius={5}
               >
                 Save
               </ButtonComponent>
@@ -240,6 +241,7 @@ const Service = () => {
                 defaultHoverBg={"#00000040"}
                 paddingInline={60}
                 onClick={handleCloseModal}
+                borderRadius={5}
               >
                 Close
               </ButtonComponent>

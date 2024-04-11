@@ -896,6 +896,7 @@ export const InfoForm = ({}) => {
                 paddingInline={97}
                 controlHeight={40}
                 onClick={handleSubmit}
+                borderRadius={5}
               >
                 Save
               </ButtonComponent>

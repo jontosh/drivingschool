@@ -230,6 +230,7 @@ const Enrollment = () => {
                       defaultHoverBg={colorsObject.info}
                       paddingInline={28}
                       controlHeight={40}
+                      borderRadius={5}
                     >
                       Coupon
                     </ButtonComponent>

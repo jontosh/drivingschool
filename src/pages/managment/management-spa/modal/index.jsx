@@ -151,7 +151,7 @@ export const ModalContent = ({ page }) => {
                 <label className="w-full inline-flex items-center">
                   <span className="text-sm font-medium w-32">School notes</span>
                   <textarea
-                    className={`w-full outline-0 ${ManagementStyle["CheckModal__form-element__shadow"]} rounded-2xl border border-indigo-700`}
+                    className={`w-full outline-0 p-3 ${ManagementStyle["CheckModal__second-textarea"]} ${ManagementStyle["CheckModal__form-element__shadow"]} rounded-2xl border border-indigo-700`}
                   ></textarea>
                 </label>
               </div>
@@ -259,7 +259,7 @@ export const ModalContent = ({ page }) => {
                 <label className="w-full inline-flex items-center">
                   <span className="text-sm font-medium w-32">School notes</span>
                   <textarea
-                    className={`w-full outline-0 ${ManagementStyle["CheckModal__form-element__shadow"]} rounded-2xl border border-indigo-700`}
+                    className={`w-full outline-0 p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__form-element__shadow"]} rounded-2xl border border-indigo-700`}
                   ></textarea>
                 </label>
               </div>
