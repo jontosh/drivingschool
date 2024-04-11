@@ -100,6 +100,10 @@ const ManagementSpa = () => {
                     paddingInline={26}
                     controlHeight={40}
                     borderRadius={5}
+                    className={"inline-flex items-center"}
+                    href={
+                      title === "location" ? "/management/modal/location" : null
+                    }
                   >
                     Add new
                   </ButtonComponent>

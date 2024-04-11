@@ -571,6 +571,370 @@ const CheckModal = ({ modalName }) => {
                   </label>
                 </div>
               </div>
+              <div className="space-x-5 text-center">
+                <ButtonComponent
+                  defaultHoverBg={colorsObject.secondary}
+                  defaultBg={colorsObject.secondary}
+                  paddingInline={62}
+                  borderRadius={5}
+                  controlHeight={39}
+                  onClick={handleBack}
+                >
+                  Close
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultHoverBg={"#24C18F"}
+                  defaultBg={"#24C18F"}
+                  paddingInline={47}
+                  borderRadius={5}
+                  controlHeight={39}
+                  onClick={handleBack}
+                >
+                  Continue
+                </ButtonComponent>
+              </div>
+            </form>
+          </div>
+        </Fragment>
+      );
+    }
+    case "location": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Add location</title>
+          </Helmet>
+          <div className={`-mx-11 -my-5 px-7 py-12  bg-white`}>
+            <Title
+              level={2}
+              fontSize={"text-indigo-600 text-4xl"}
+              fontWeightStrong={600}
+              titleMarginBottom={50}
+            >
+              New location
+            </Title>
+            <form>
+              <div className="grid grid-cols-2 gap-7">
+                <div className={"space-y-5"}>
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Location name"}
+                    placeholder={"Location name"}
+                    spanClassName={
+                      "text-sm font-medium w-56 flex-shrink-0 text-right"
+                    }
+                    colorBorder={colorsObject.primary}
+                  />
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Location name"}
+                    placeholder={"Location Code *"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    colorBorder={colorsObject.primary}
+                  />
+
+                  <label className="inline-flex gap-8 items-center w-full">
+                    <span
+                      className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    >
+                      Location Status
+                    </span>
+                    <CustomSelect
+                      placeholder={"Location Status *"}
+                      style={{ width: "100%" }}
+                      colorBorder={colorsObject.primary}
+                      className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      options={[
+                        {
+                          value: "Number",
+                          label: "Number",
+                        },
+                      ]}
+                    />
+                  </label>
+
+                  <label className="inline-flex gap-8 items-center w-full">
+                    <span
+                      className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    >
+                      Location Type
+                    </span>
+
+                    <div className="space-y-4">
+                      <CustomCheckBox
+                        className={"space-x-2.5 "}
+                        classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      >
+                        <span
+                          className={"text-sm flex-shrink-0 font-medium w-56"}
+                        >
+                          Main office only
+                        </span>
+                      </CustomCheckBox>
+
+                      <CustomCheckBox
+                        className={"space-x-2.5 "}
+                        classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      >
+                        <span
+                          className={"text-sm flex-shrink-0 font-medium w-56"}
+                        >
+                          Main office with classroom
+                        </span>
+                      </CustomCheckBox>
+
+                      <CustomCheckBox
+                        className={"space-x-2.5 "}
+                        classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      >
+                        <span
+                          className={"text-sm flex-shrink-0 font-medium w-56"}
+                        >
+                          Class Room
+                        </span>
+                      </CustomCheckBox>
+
+                      <CustomCheckBox
+                        className={"space-x-2.5 "}
+                        classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      >
+                        <span
+                          className={"text-sm flex-shrink-0 font-medium w-56"}
+                        >
+                          Other (Satellite Office Only)
+                        </span>
+                      </CustomCheckBox>
+
+                      <CustomCheckBox
+                        className={"space-x-2.5 "}
+                        classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      >
+                        <span
+                          className={"text-sm flex-shrink-0 font-medium w-56"}
+                        >
+                          Other Classroom (Satellite Office with Classroom)
+                        </span>
+                      </CustomCheckBox>
+
+                      <CustomCheckBox
+                        className={"space-x-2.5 "}
+                        classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      >
+                        <span
+                          className={"text-sm flex-shrink-0 font-medium w-56"}
+                        >
+                          Range
+                        </span>
+                      </CustomCheckBox>
+                    </div>
+                  </label>
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Address"}
+                    placeholder={"Address"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"City"}
+                    placeholder={"City"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"State"}
+                    placeholder={"State"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Zip"}
+                    placeholder={"Zip"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Location Manager"}
+                    placeholder={"Location Manager"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+
+                  <label className="inline-flex gap-8 items-center w-full">
+                    <span
+                      className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    >
+                      Pickup location
+                    </span>
+                    <CustomSelect
+                      placeholder={"Pickup location"}
+                      style={{ width: "100%" }}
+                      colorBorder={colorsObject.primary}
+                      options={[
+                        {
+                          value: "Number",
+                          label: "Number",
+                        },
+                      ]}
+                    />
+                  </label>
+
+                  <label className="inline-flex gap-8 items-center w-full">
+                    <span
+                      className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    >
+                      Drop off location
+                    </span>
+                    <CustomSelect
+                      placeholder={"Drop off location"}
+                      style={{ width: "100%" }}
+                      colorBorder={colorsObject.primary}
+                      options={[
+                        {
+                          value: "Number",
+                          label: "Number",
+                        },
+                      ]}
+                    />
+                  </label>
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"County"}
+                    placeholder={"County"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+                </div>
+                <div className={"space-y-5"}>
+                  <CustomCheckBox
+                    className={"space-x-2.5 w-full justify-center"}
+                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  >
+                    <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                      Road Test
+                    </span>
+                  </CustomCheckBox>
+                  <CustomCheckBox
+                    className={"space-x-2.5 w-full justify-center"}
+                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  >
+                    <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                      Knowledge Test
+                    </span>
+                  </CustomCheckBox>
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Phone Main"}
+                    placeholder={"Phone Main"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Fax"}
+                    placeholder={"Fax"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    }
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    spanText={"Other"}
+                    placeholder={"Other"}
+                    spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                  />
+                  @todo
+                </div>
+              </div>
+              <div className="space-x-5 text-center pt-10">
+                <ButtonComponent
+                  defaultHoverBg={colorsObject.secondary}
+                  defaultBg={colorsObject.secondary}
+                  paddingInline={62}
+                  borderRadius={5}
+                  controlHeight={39}
+                  onClick={handleBack}
+                >
+                  Close
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultHoverBg={"#24C18F"}
+                  defaultBg={"#24C18F"}
+                  paddingInline={47}
+                  borderRadius={5}
+                  controlHeight={39}
+                  onClick={handleBack}
+                >
+                  Continue
+                </ButtonComponent>
+              </div>
             </form>
           </div>
         </Fragment>
