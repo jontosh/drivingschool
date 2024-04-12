@@ -240,7 +240,7 @@ const File = () => {
           </div>
           <div className={"space-y-2.5"}>
             <div className="bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5">
-              <div className="flex justify-between items-start">
+              <div className={`flex justify-between items-start ${FileStyle["Statistic__selects"]}`}>
                 <IconComponent
                   classNames={"items-center"}
                   icon={<VscGraph />}
@@ -250,7 +250,7 @@ const File = () => {
                 >
                   Usage: Current month
                 </IconComponent>
-                <div className={`flex gap-2.5 ${FileStyle["Statistic__select"]}`}>
+                <div className={`flex gap-2.5`}>
                   <CustomSelect
                     colorBorder={colorsObject.primary}
                     style={{ width: 110 }}
