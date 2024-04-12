@@ -52,7 +52,7 @@ const StudentAccount = ({}) => {
           Quick search
         </Title>
 
-        <div className="mb-5 flex gap-5 items-center flex-wrap">
+        <div className="mb-5  flex gap-5 items-center flex-wrap">
           <form>
             <label className={"relative shadow-xl"}>
               <CustomInput
@@ -154,7 +154,7 @@ const StudentAccount = ({}) => {
             </NavLink>
           </div>
 
-          <div className="">
+          <div className="pt-6">
             <Outlet />
           </div>
         </div>

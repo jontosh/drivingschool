@@ -57,6 +57,7 @@ export const CustomInput = ({
   type = "text",
   children,
   colorBorder = "#000",
+  fontSize = "text-sm",
   ...props
 }) => {
   className = classNames([className]);
@@ -86,7 +87,7 @@ export const CustomInput = ({
           />
           {spanText && (
             <Fragment>
-              <span className={`${classNames(spanClassName)} text-sm`}>
+              <span className={`${classNames(fontSize, spanClassName)}`}>
                 {spanText}
               </span>
             </Fragment>
@@ -114,6 +115,7 @@ export const CustomSelect = ({
   fontSize = 14,
   colorBorder = "gray",
   selectorBg = "#fff",
+  colorText = "#000",
   ...props
 }) => {
   const option = options.map(({ ...option }, index) => (
@@ -134,6 +136,7 @@ export const CustomSelect = ({
               fontSize,
               colorBorder,
               selectorBg,
+              colorText,
             },
           },
         }}
