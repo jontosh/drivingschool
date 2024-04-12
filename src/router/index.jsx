@@ -89,6 +89,11 @@ export const router = createBrowserRouter([
             children: [
               {
                 path: ":studentId",
+                children: [
+                  {
+                    path: ":subtitle",
+                  },
+                ],
               },
             ],
           },

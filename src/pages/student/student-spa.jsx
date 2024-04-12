@@ -1,3 +1,4 @@
+import { Appointments } from "@/pages/student/appointments.jsx";
 import { Billing } from "@/pages/student/billing.jsx";
 import Profile from "@/pages/student/profile.jsx";
 import { Fragment } from "react";
@@ -25,6 +26,17 @@ const StudentSpa = ({}) => {
             <title>Student Account - Enrollment/Billing</title>
           </Helmet>
           <Billing />
+        </Fragment>
+      );
+    }
+
+    case "appointments": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Student Account - Appointments</title>
+          </Helmet>
+          <Appointments />
         </Fragment>
       );
     }
