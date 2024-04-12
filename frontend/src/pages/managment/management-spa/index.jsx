@@ -13,6 +13,7 @@ import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { TfiWrite } from "react-icons/tfi";
 import { useNavigate, useParams } from "react-router-dom";
+import { DeleteOutlined, ExportOutlined, FormOutlined } from "@ant-design/icons";
 
 const CheckProgress = (status = "") => {
   const { colorsObject } = useContext(ColorsContext);
@@ -96,22 +97,33 @@ const LocationData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            icon={<TfiWrite />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={"text-xl text-indigo-500 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<FormOutlined />}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            icon={<CiMap />}
-            classNames={"items-center"}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={"text-xl text-red-600 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<DeleteOutlined />}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            icon={<GoClock />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={"text-xl text-indigo-500 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<ExportOutlined />}
           />
         </div>
       ),
@@ -224,15 +236,23 @@ const HighSchoolData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            icon={<TfiWrite />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={"text-xl text-indigo-500 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<FormOutlined />}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<GoClock />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
           />
         </div>
       ),
@@ -331,15 +351,23 @@ const HearData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            icon={<TfiWrite />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={"text-xl text-indigo-500 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<FormOutlined />}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<GoClock />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
           />
         </div>
       ),
@@ -439,22 +467,34 @@ const VehiclesData = () => {
       render: () => (
         <div className={" space-x-2.5 "}>
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-            icon={<TfiWrite />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            className={"text-xl text-indigo-500 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<FormOutlined />}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<TbActivityHeartbeat />}
             classNames={"items-center"}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
           />
 
           <IconComponent
-            className={"text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
             icon={<GoClock />}
-            style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
           />
         </div>
       ),

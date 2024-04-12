@@ -7,13 +7,10 @@ import { Fees } from "@/pages/managment/service/fees.jsx";
 import { Miscellaneous } from "@/pages/managment/service/miscellaneous.jsx";
 import { Packages } from "@/pages/managment/service/packages.jsx";
 import { Product } from "@/pages/managment/service/product.jsx";
-import { FormOutlined } from "@ant-design/icons";
+import { DeleteOutlined, ExportOutlined, FormOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
-import { PiCopyLight } from "react-icons/pi";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { TfiWrite } from "react-icons/tfi";
 import { useNavigate, useParams } from "react-router-dom";
 
 const CheckProgress = (status = "") => {
@@ -131,8 +128,7 @@ const columns = [
           style={{
             borderRadius: 5,
             paddingLeft: 4,
-            paddingRight: 5,
-            paddingTop: 4,
+            paddingRight: 4,
           }}
           icon={<FormOutlined />}
         />
@@ -142,10 +138,9 @@ const columns = [
           style={{
             borderRadius: 5,
             paddingLeft: 4,
-            paddingRight: 5,
-            paddingTop: 4,
+            paddingRight: 4,
           }}
-          icon={<RiDeleteBin6Line />}
+          icon={<DeleteOutlined />}
         />
 
         <IconComponent
@@ -153,10 +148,9 @@ const columns = [
           style={{
             borderRadius: 5,
             paddingLeft: 4,
-            paddingRight: 5,
-            paddingTop: 4,
+            paddingRight: 4,
           }}
-          icon={<PiCopyLight />}
+          icon={<ExportOutlined />}
         />
       </div>
     ),
@@ -250,29 +244,23 @@ const FeesData = () => {
       render: () => (
         <div className={"text-center space-x-2.5"}>
           <IconComponent
-            className={
-              "text-xl text-red-600 hover:text-red-600 border border-indigo-600"
-            }
-            icon={<RiDeleteBin6Line />}
+            className={"text-xl text-red-600 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
-              paddingRight: 5,
-              paddingTop: 4,
+              paddingRight: 4,
             }}
+            icon={<DeleteOutlined />}
           />
 
           <IconComponent
-            className={
-              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
+            className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
-              paddingRight: 5,
-              paddingTop: 4,
+              paddingRight: 4,
             }}
-            icon={<PiCopyLight />}
+            icon={<ExportOutlined />}
           />
         </div>
       ),
@@ -359,29 +347,23 @@ const DiscountsData = () => {
       render: () => (
         <div className={"text-center space-x-2.5"}>
           <IconComponent
-            className={
-              "text-xl text-red-600 hover:text-red-600 border border-indigo-600"
-            }
-            icon={<RiDeleteBin6Line />}
+            className={"text-xl text-red-600 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
-              paddingRight: 5,
-              paddingTop: 4,
+              paddingRight: 4,
             }}
+            icon={<DeleteOutlined />}
           />
 
           <IconComponent
-            className={
-              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
+            className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
-              paddingRight: 5,
-              paddingTop: 4,
+              paddingRight: 4,
             }}
-            icon={<PiCopyLight />}
+            icon={<ExportOutlined />}
           />
         </div>
       ),
@@ -571,36 +553,29 @@ const PackagesData = () => {
             style={{
               borderRadius: 5,
               paddingLeft: 4,
-              paddingRight: 5,
-              paddingTop: 4,
+              paddingRight: 4,
             }}
             icon={<FormOutlined />}
           />
 
           <IconComponent
-            className={
-              "text-xl text-red-600 hover:text-red-600 border border-indigo-600"
-            }
-            icon={<RiDeleteBin6Line />}
+            className={"text-xl text-red-600 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
-              paddingRight: 5,
-              paddingTop: 4,
+              paddingRight: 4,
             }}
+            icon={<DeleteOutlined />}
           />
 
           <IconComponent
-            className={
-              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
-            icon={<PiCopyLight />}
+            className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
-              paddingRight: 5,
-              paddingTop: 4,
+              paddingRight: 4,
             }}
+            icon={<ExportOutlined />}
           />
         </div>
       ),

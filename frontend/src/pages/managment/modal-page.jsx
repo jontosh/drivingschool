@@ -899,24 +899,24 @@ const CheckModal = ({ modalName }) => {
                     spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
                   />
-                  <div className="inline-flex justify-end gap-8 items-center w-full">
+                  <label className="inline-flex justify-end gap-8 items-center w-full">
                     <span className="text-right">Area Coverage</span>
                     <textarea className={`p-3 ${ManagementStyle["CheckModal__mini-textarea"]}`}></textarea>
                     <textarea className={`p-3 ${ManagementStyle["CheckModal__mini-textarea"]}`}></textarea>
-                  </div>
-                  <div className="inline-flex justify-end gap-8 items-center w-full">
+                  </label>
+                  <label className="inline-flex justify-end gap-8 items-center w-full">
                     <span>Location note</span>
                     <textarea className={`p-3 ${ManagementStyle["CheckModal__textarea"]}`}></textarea>
-                  </div>
+                  </label>
                   <CustomCheckBox
-                    className={"space-x-2.5 w-full justify-center"}
+                    className={"space-x-2.5 w-full justify-center pl-8"}
                     classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                   >
                     <span className={"text-sm flex-shrink-0 font-medium w-56"}>
                       Appointment Color
                     </span>
                   </CustomCheckBox>
-                  <div className="flex items-center gap-4 justify-center">
+                  <label className="flex items-center gap-4 justify-center">
                     <span>Color picker</span>
                     <CustomCheckBox />
                     <CustomInput
@@ -926,12 +926,13 @@ const CheckModal = ({ modalName }) => {
                       className={
                         ManagementStyle["CheckModal__form-element__shadow"]
                       }
+                      type="color"
                       placeholder={"#FFFFFF"}
                       colorBorder={colorsObject.primary}
                     />
-                  </div>
+                  </label>
                   <CustomCheckBox
-                    className={"space-x-2.5 w-full justify-center"}
+                    className={"space-x-2.5 w-full justify-center pl-9"}
                     classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                   >
                     <span className={"text-sm flex-shrink-0 font-medium w-56"}>
