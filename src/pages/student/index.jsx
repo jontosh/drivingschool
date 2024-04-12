@@ -5,6 +5,7 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
+import { BookOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
@@ -97,7 +98,7 @@ const StudentAccount = ({}) => {
             />
 
             <IconComponent
-              icon={<PiBookBookmarkFill />}
+              icon={<BookOutlined />}
               className={"text-3xl text-indigo-600"}
             />
             <IconComponent
