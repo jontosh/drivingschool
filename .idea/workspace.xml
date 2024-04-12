@@ -4,111 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd362bf7-5956-4ef9-8316-edec1116bb9f" name="Changes" comment="#fix #jsx Refactor imports and add new route for &quot;appointments&quot; in Student SPA.">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.cjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/android-chrome-384x384.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/browserconfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mstile-150x150.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/safari-pinned-tab.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site.webmanifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vite.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icons/Dollar.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icons/Profile.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icons/User.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icons/check.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/icons/write-f.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/logo.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/others/NotFound.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/others/cover.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/others/login-after.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/others/login-before.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/others/login-bg.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/user/teacher.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/user/tenant.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/user/user-avatar.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/button/button.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/button/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/darkMode/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/form.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/icons/icons.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/icons/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/image/image.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/image/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal/modal.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/title/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/title/title.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/colors.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/error.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/layout.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/menu-items.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/dashboard.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/design/components.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/design/design.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/design/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/enrollment/enrollment.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/enrollment/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/enrollment/info-form.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/file/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management-spa.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management-spa/hear.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management-spa/high-school.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management-spa/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management-spa/location.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management-spa/modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management-spa/vehicles.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/management.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/modal-page.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/discount.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/exam.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/fees.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/miscellaneous.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/modal.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/packages.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/product.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/service/service-spa.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/managment/staff/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/notfound/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/notfound/notfound.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register/register.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/register/sign-in.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/student/appointments.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/student/billing.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/student/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/student/profile.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/student/student-account.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/student/student-spa.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/query/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/slice/admin-slice.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/store.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/vars.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" />
-    </list>
+    <list default="true" id="fd362bf7-5956-4ef9-8316-edec1116bb9f" name="Changes" comment="#fix #project &quot;Remove multiple unnecessary files and configurations from the project.&quot;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,15 +137,7 @@
       <workItem from="1712806452370" duration="41000" />
       <workItem from="1712806501675" duration="26381000" />
       <workItem from="1712867791268" duration="14335000" />
-      <workItem from="1712909567095" duration="9531000" />
-    </task>
-    <task id="LOCAL-00001" summary="#fix #config #md #styles #js #html Added instructions for launching, installing dependencies and building the project to the README.md file.&#10;Registered configurations and basic styles.">
-      <option name="closed" value="true" />
-      <created>1711562801027</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1711562801027</updated>
+      <workItem from="1712909567095" duration="9855000" />
     </task>
     <task id="LOCAL-00002" summary="#fix #fonts #html #styles # json #node Added Google fonts and pre-connect links to index.html, import ColorsProvider and router to main.jsx and updated dependencies in package.json and package-lock.json.">
       <option name="closed" value="true" />
@@ -635,7 +523,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712920916132</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="#fix #project &quot;Remove multiple unnecessary files and configurations from the project.&quot;">
+      <option name="closed" value="true" />
+      <created>1712921995784</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1712921995785</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,19 +542,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="package.json" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Add Enrollment component and integrate Table component for billing&#10;- Add billing table with dynamic data and buttons for actions, import BookOutlined icon for" />
-    <MESSAGE value="- Add Enrollment component and integrate Table component for billing&#10;- Add billing table with dynamic data and buttons for actions, import BookOutlined icon for visual" />
-    <MESSAGE value="- Add Enrollment component and integrate Table component for billing information&#10;- Add billing table with dynamic data and buttons for actions, import BookOutlined icon for visual" />
-    <MESSAGE value="- Add Enrollment component and integrate Table component for billing information&#10;- Add billing table with dynamic data and buttons for actions, import BookOutlined icon for visual enhancements" />
-    <MESSAGE value="- Add Enrollment component and integrate Table component for billing information&#10;- Add billing table with dynamic data and buttons for actions, import BookOutlined icon for visual enhancements." />
-    <MESSAGE value="- Add Enrollment component and integrate Table component for billing information display&#10;- Add billing table with dynamic data and buttons for actions, import BookOutlined icon for visual enhancements." />
-    <MESSAGE value="- Add Enrollment component and integrate Table component for billing information display.&#10;- Add billing table with dynamic data and buttons for actions, import BookOutlined icon for visual enhancements." />
-    <MESSAGE value="#fix #jsx Added the “Registration” component and integrated the “Table” component to display payment information. Added a billing table with dynamic data and buttons for actions, imported the BookOutlined icon for visual improvements." />
-    <MESSAGE value="Ref" />
-    <MESSAGE value="Refactor" />
-    <MESSAGE value="Refactor imports" />
-    <MESSAGE value="Refactor imports and" />
-    <MESSAGE value="Refactor imports and add" />
     <MESSAGE value="Refactor imports and add new" />
     <MESSAGE value="Refactor imports and add new route" />
     <MESSAGE value="Refactor imports and add new route for" />
@@ -671,6 +554,19 @@
     <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA" />
     <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA." />
     <MESSAGE value="#fix #jsx Refactor imports and add new route for &quot;appointments&quot; in Student SPA." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor imports and add new route for &quot;appointments&quot; in Student SPA." />
+    <MESSAGE value="&quot;" />
+    <MESSAGE value="&quot;Remove" />
+    <MESSAGE value="&quot;Remove multiple" />
+    <MESSAGE value="&quot;Remove multiple unnecessary" />
+    <MESSAGE value="&quot;Remove multiple unnecessary files" />
+    <MESSAGE value="&quot;Remove multiple unnecessary files and" />
+    <MESSAGE value="&quot;Remove multiple unnecessary files and configurations" />
+    <MESSAGE value="&quot;Remove multiple unnecessary files and configurations from" />
+    <MESSAGE value="&quot;Remove multiple unnecessary files and configurations from the" />
+    <MESSAGE value="&quot;Remove multiple unnecessary files and configurations from the project" />
+    <MESSAGE value="&quot;Remove multiple unnecessary files and configurations from the project.&quot;" />
+    <MESSAGE value="#fix #project &quot;Remove multiple unnecessary files and configurations from the project.&quot;" />
+    <MESSAGE value="Nothing to commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nothing to commit" />
   </component>
 </project>
