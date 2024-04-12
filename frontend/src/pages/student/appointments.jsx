@@ -168,10 +168,12 @@ export const Appointments = ({}) => {
           ]}
         />
       </form>
-
-      <div className={"pt-5 -mx-5"}>
-        <Table columns={columns} dataSource={data} pagination={false} />
-      </div>
+      
+      {subtitle && (
+        <div className={"pt-5 -mx-5"}>
+          <Table columns={columns} dataSource={data} pagination={false} />
+        </div>
+      )}
     </div>
   );
 };

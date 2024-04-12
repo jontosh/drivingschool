@@ -1,5 +1,6 @@
 import { Appointments } from "@/pages/student/appointments.jsx";
 import { Billing } from "@/pages/student/billing.jsx";
+import { Files } from '@/pages/student/files.jsx'
 import Profile from "@/pages/student/profile.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
@@ -29,7 +30,6 @@ const StudentSpa = ({}) => {
         </Fragment>
       );
     }
-
     case "appointments": {
       return (
         <Fragment>
@@ -40,9 +40,19 @@ const StudentSpa = ({}) => {
         </Fragment>
       );
     }
+    case "files": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Student Account - Files</title>
+          </Helmet>
+          <Files />
+        </Fragment>
+      );
+    }
 
     default: {
-      navigate("/student/account/");
+      navigate(`/student/account/`);
     }
   }
 };
