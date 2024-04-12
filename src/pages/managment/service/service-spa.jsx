@@ -46,9 +46,11 @@ const columns = [
     dataIndex: "codeNumber",
     key: "codeNumber",
     render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
+      <div className={"text-center"}>
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      </div>
     ),
   },
   {
@@ -56,9 +58,11 @@ const columns = [
     dataIndex: "type",
     key: "type",
     render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
+      <div className={"text-center"}>
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      </div>
     ),
   },
   {
@@ -66,9 +70,11 @@ const columns = [
     dataIndex: "subtype",
     key: "subtype",
     render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
+      <div className={"text-center"}>
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      </div>
     ),
   },
   {
@@ -76,9 +82,11 @@ const columns = [
     dataIndex: "hours",
     key: "hours",
     render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
+      <div className={"text-center"}>
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      </div>
     ),
   },
   {
@@ -86,9 +94,11 @@ const columns = [
     dataIndex: "observation",
     key: "observation",
     render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
+      <div className={"text-center"}>
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      </div>
     ),
   },
   {
@@ -115,9 +125,9 @@ const columns = [
     title: "Action",
     key: "action",
     render: () => (
-      <div className={"text-center space-x-2.5"}>
+      <div className={"space-x-2.5"}>
         <IconComponent
-          className={"text-2xl text-indigo-500 border border-indigo-600"}
+          className={"text-xl text-indigo-500 border border-indigo-600"}
           style={{
             borderRadius: 5,
             paddingLeft: 4,
@@ -128,7 +138,7 @@ const columns = [
         />
 
         <IconComponent
-          className={"text-2xl text-red-600 border border-indigo-600"}
+          className={"text-xl text-red-600 border border-indigo-600"}
           style={{
             borderRadius: 5,
             paddingLeft: 4,
@@ -139,7 +149,7 @@ const columns = [
         />
 
         <IconComponent
-          className={"text-2xl text-indigo-500 border border-indigo-600"}
+          className={"text-xl text-indigo-500 border border-indigo-600"}
           style={{
             borderRadius: 5,
             paddingLeft: 4,
@@ -241,7 +251,7 @@ const FeesData = () => {
         <div className={"text-center space-x-2.5"}>
           <IconComponent
             className={
-              "text-2xl text-red-600 hover:text-red-600 border border-indigo-600"
+              "text-xl text-red-600 hover:text-red-600 border border-indigo-600"
             }
             icon={<RiDeleteBin6Line />}
             style={{
@@ -254,7 +264,7 @@ const FeesData = () => {
 
           <IconComponent
             className={
-              "text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
             }
             style={{
               borderRadius: 5,
@@ -350,7 +360,7 @@ const DiscountsData = () => {
         <div className={"text-center space-x-2.5"}>
           <IconComponent
             className={
-              "text-2xl text-red-600 hover:text-red-600 border border-indigo-600"
+              "text-xl text-red-600 hover:text-red-600 border border-indigo-600"
             }
             icon={<RiDeleteBin6Line />}
             style={{
@@ -363,7 +373,7 @@ const DiscountsData = () => {
 
           <IconComponent
             className={
-              "text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
             }
             style={{
               borderRadius: 5,
@@ -463,9 +473,11 @@ const PackagesData = () => {
       key: "price",
       dataIndex: "price",
       render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
+        <div className={"text-center"}>
+          <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+            {text}
+          </Paragraph>
+        </div>
       ),
     },
     {
@@ -555,7 +567,7 @@ const PackagesData = () => {
       render: () => (
         <div className={"text-center space-x-2.5"}>
           <IconComponent
-            className={"text-2xl text-indigo-500 border border-indigo-600"}
+            className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
@@ -567,7 +579,7 @@ const PackagesData = () => {
 
           <IconComponent
             className={
-              "text-2xl text-red-600 hover:text-red-600 border border-indigo-600"
+              "text-xl text-red-600 hover:text-red-600 border border-indigo-600"
             }
             icon={<RiDeleteBin6Line />}
             style={{
@@ -580,7 +592,7 @@ const PackagesData = () => {
 
           <IconComponent
             className={
-              "text-2xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
             }
             icon={<PiCopyLight />}
             style={{

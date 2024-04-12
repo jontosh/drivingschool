@@ -74,19 +74,19 @@ const columns = [
     render: (_, record) => (
       <Space size={"middle"}>
         <IconComponent
-          className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+          className={"text-xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
           icon={<TfiWrite />}
           style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
         />
 
         <IconComponent
-          className={"text-2xl cursor-default w-full text-red-600 hover:text-red-600 border border-indigo-600"}
+          className={"text-xl cursor-default w-full text-red-600 hover:text-red-600 border border-indigo-600"}
           icon={<RiDeleteBin6Line />}
           style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
         />
 
         <IconComponent
-          className={"text-2xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+          className={"text-xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
           icon={<PiCopyLight />}
           style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
         />
@@ -106,34 +106,48 @@ const data = [
     observation: 1,
     status: "Active",
     phone: "(513)837-5128",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
     key: "2",
-    codeNumber: "001",
+    name: "Aminov",
+    firstName: "Makhsud",
     type: "Owner",
     subtype: "Teen BTW",
     hours: 1,
     observation: 1,
     status: "Close",
-    name: "Aminov",
-    firstName: "Makhsud",
     phone: "(513)837-5128",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
   {
-    key: "2",
+    key: "3",
     name: "Aminov",
     firstName: "Makhsud",
-    codeNumber: "001",
     type: "Owner",
     subtype: "Teen BTW",
     hours: 1,
     observation: 1,
     status: "process",
     phone: "(513)837-5128",
+    render: (text) => (
+      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        {text}
+      </Paragraph>
+    ),
   },
 ];
 
-const Staff = ({}) => {
+
+const Staff = ({ }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
   const handleChangePagination = (page) => {

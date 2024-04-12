@@ -110,18 +110,33 @@ const LocationData = () => {
       code: 8581,
       status: "Active",
       type: "Main office only",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Mason Location",
       code: 8581,
       status: "Process",
       type: "Main office only",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Mason Location",
       code: 8581,
       status: "Close",
       type: "Main office only",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
   ];
 
@@ -134,6 +149,11 @@ const HighSchoolData = () => {
       title: "School name",
       key: "name",
       dataIndex: "name",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       title: "School code",
@@ -210,16 +230,31 @@ const HighSchoolData = () => {
       name: "Mason Location",
       code: 8581,
       status: "Active",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Mason Location",
       code: 8581,
       status: "Process",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Mason Location",
       code: 8581,
       status: "Close",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
   ];
 
@@ -295,26 +330,51 @@ const HearData = () => {
       name: "Facebook",
       code: 8581,
       status: "Active",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Google",
       code: 8581,
       status: "Process",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Other",
       code: 8581,
       status: "Close",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Recommendation",
       code: 8581,
       status: "Close",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
     {
       name: "Yelp",
       code: 8581,
       status: "Active",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
     },
   ];
 

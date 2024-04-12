@@ -40,6 +40,12 @@
       border-top-right-radius: 35%;
     }
   }
+
+  &__select {
+    @media (max-width: 1670px) {
+      flex-direction: column;
+    }
+  }
 }
 
 .CheckModal {
