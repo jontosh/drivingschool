@@ -1,14 +1,11 @@
-import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
-import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import { BookOutlined } from "@ant-design/icons";
-import { Pagination } from "antd";
 import classNames from "classnames";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
 import {
   AiOutlineInfoCircle,
@@ -16,7 +13,7 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { IoCarOutline } from "react-icons/io5";
-import { PiBookBookmarkFill, PiMoney } from "react-icons/pi";
+import { PiMoney } from "react-icons/pi";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import StudentAccountStyle from "./student-account.module.scss";
 
