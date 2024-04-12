@@ -49,6 +49,7 @@ const ButtonComponent = ({
               defaultHoverColor,
               controlHeight,
               borderRadius,
+              fontSize,
             },
           },
         }}

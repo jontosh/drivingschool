@@ -5,6 +5,7 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
+import { BookOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
@@ -16,19 +17,17 @@ import {
 } from "react-icons/ai";
 import { IoCarOutline } from "react-icons/io5";
 import { PiBookBookmarkFill, PiMoney } from "react-icons/pi";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import StudentAccountStyle from "./student-account.module.scss";
 
 const StudentAccount = ({}) => {
   const { colorsObject } = useContext(ColorsContext);
-  const [CurrentPagination, setCurrentPagination] = useState(1);
+  const { title } = useParams();
   const setActiveNav = ({ isActive }) =>
     isActive
       ? `${ServiceStyle["Tab__link-active"]} text-lg`
       : "hover:text-indigo-500 text-lg text-gray-700";
-  const handleChangePagination = (page) => {
-    setCurrentPagination(page);
-  };
+
   return (
     <Fragment>
       <Helmet>
@@ -43,14 +42,17 @@ const StudentAccount = ({}) => {
         >
           Student Account
         </Title>
-        <Title
-          level={3}
-          fontSize={"text-indigo-600 text-2xl"}
-          fontWeightStrong={500}
-          titleMarginBottom={20}
-        >
-          Quick search
-        </Title>
+
+        {!title && (
+          <Title
+            level={3}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={500}
+            titleMarginBottom={20}
+          >
+            Quick search
+          </Title>
+        )}
 
         <div className="mb-5  flex gap-5 items-center flex-wrap">
           <form>
@@ -96,7 +98,7 @@ const StudentAccount = ({}) => {
             />
 
             <IconComponent
-              icon={<PiBookBookmarkFill />}
+              icon={<BookOutlined />}
               className={"text-3xl text-indigo-600"}
             />
             <IconComponent
