@@ -1,7 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
-import Title from "@/components/title/index.jsx";
+import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
@@ -32,21 +32,49 @@ const columns = [
     title: "Last name",
     dataIndex: "name",
     key: "name",
+    render: (text) => {
+      return (
+        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      );
+    },
   },
   {
     title: "First name",
     dataIndex: "firstName",
     key: "firstName",
+    render: (text) => {
+      return (
+        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      );
+    },
   },
   {
     title: "Type",
     dataIndex: "type",
     key: "type",
+    render: (text) => {
+      return (
+        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      );
+    },
   },
   {
     title: "Cell phone",
     dataIndex: "phone",
     key: "phone",
+    render: (text) => {
+      return (
+        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      );
+    },
   },
   {
     title: "Status",
@@ -106,11 +134,6 @@ const data = [
     observation: 1,
     status: "Active",
     phone: "(513)837-5128",
-    render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
-    ),
   },
   {
     key: "2",
@@ -122,11 +145,6 @@ const data = [
     observation: 1,
     status: "Close",
     phone: "(513)837-5128",
-    render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
-    ),
   },
   {
     key: "3",
@@ -138,11 +156,6 @@ const data = [
     observation: 1,
     status: "process",
     phone: "(513)837-5128",
-    render: (text) => (
-      <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-        {text}
-      </Paragraph>
-    ),
   },
 ];
 

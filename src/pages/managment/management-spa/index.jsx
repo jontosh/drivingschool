@@ -34,6 +34,13 @@ const LocationData = () => {
       title: "Location name",
       key: "name",
       dataIndex: "name",
+      render: (text) => {
+        return (
+          <Paragraph className={"text-center"} fontSize={"text-lg"}>
+            {text}
+          </Paragraph>
+        );
+      },
     },
     {
       title: "Location code",
@@ -53,6 +60,13 @@ const LocationData = () => {
       key: "type",
       dataIndex: "type",
       align: "center",
+      render: (text) => {
+        return (
+          <Paragraph className={"text-center"} fontSize={"text-lg"}>
+            {text}
+          </Paragraph>
+        );
+      },
     },
     {
       title: "Status",
@@ -268,6 +282,13 @@ const HearData = () => {
       key: "name",
       dataIndex: "name",
       align: "center",
+      render: (text) => {
+        return (
+          <Paragraph className={"text-start"} fontSize={"text-lg"}>
+            {text}
+          </Paragraph>
+        );
+      },
     },
     {
       title: "School code",
@@ -330,51 +351,26 @@ const HearData = () => {
       name: "Facebook",
       code: 8581,
       status: "Active",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
     },
     {
       name: "Google",
       code: 8581,
       status: "Process",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
     },
     {
       name: "Other",
       code: 8581,
       status: "Close",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
     },
     {
       name: "Recommendation",
       code: 8581,
       status: "Close",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
     },
     {
       name: "Yelp",
       code: 8581,
       status: "Active",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
     },
   ];
 
@@ -409,6 +405,13 @@ const VehiclesData = () => {
       key: "type",
       dataIndex: "type",
       align: "center",
+      render: (text) => {
+        return (
+          <Paragraph className={"text-center"} fontSize={"text-lg"} fontWeightStrong={400}>
+            {text}
+          </Paragraph>
+        );
+      },
     },
     {
       title: "Appointment color",
