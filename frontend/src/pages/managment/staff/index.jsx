@@ -9,9 +9,7 @@ import { Pagination, Space, Table } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import { PiCopyLight } from "react-icons/pi";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { TfiWrite } from "react-icons/tfi";
+import { DeleteOutlined, ExportOutlined, FormOutlined } from "@ant-design/icons";
 
 const CheckProgress = (status = "") => {
   const { colorsObject } = useContext(ColorsContext);
@@ -102,21 +100,33 @@ const columns = [
     render: (_, record) => (
       <Space size={"middle"}>
         <IconComponent
-          className={"text-xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-          icon={<TfiWrite />}
-          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+          className={"text-xl text-indigo-500 border border-indigo-600"}
+          style={{
+            borderRadius: 5,
+            paddingLeft: 4,
+            paddingRight: 4,
+          }}
+          icon={<FormOutlined />}
         />
 
         <IconComponent
-          className={"text-xl cursor-default w-full text-red-600 hover:text-red-600 border border-indigo-600"}
-          icon={<RiDeleteBin6Line />}
-          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+          className={"text-xl text-red-600 border border-indigo-600"}
+          style={{
+            borderRadius: 5,
+            paddingLeft: 4,
+            paddingRight: 4,
+          }}
+          icon={<DeleteOutlined />}
         />
 
         <IconComponent
-          className={"text-xl cursor-default text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
-          icon={<PiCopyLight />}
-          style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 5, paddingTop: 4 }}
+          className={"text-xl text-indigo-500 border border-indigo-600"}
+          style={{
+            borderRadius: 5,
+            paddingLeft: 4,
+            paddingRight: 4,
+          }}
+          icon={<ExportOutlined />}
         />
       </Space>
     ),

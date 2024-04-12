@@ -298,50 +298,24 @@ export const ModalContent = ({ page }) => {
             fontWeightStrong={600}
             titleMarginBottom={50}
           >
-            Add Staff
+            Add Vehicle
           </Title>
           <form>
             <div className="grid grid-cols-2 gap-7">
               <div className={"space-y-5"}>
-                <label className="inline-flex gap-8 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-56 text-right relative`}
-                  >
-                    Vehicle Name *
-                  </span>
-                  <CustomSelect
-                    placeholder={"State"}
-                    style={{ width: "100%" }}
-                    colorBorder={colorsObject.primary}
-                    className={`h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "USA",
-                        label: "USA",
-                      },
-                    ]}
-                  />
-                </label>
-
-                <label className="inline-flex gap-8 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-56 text-right relative`}
-                  >
-                    Vehicle Status *
-                  </span>
-                  <CustomSelect
-                    placeholder={"Select"}
-                    style={{ width: "100%" }}
-                    colorBorder={colorsObject.primary}
-                    className={`h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "USA",
-                        label: "USA",
-                      },
-                    ]}
-                  />
-                </label>
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
+                  }
+                  className={
+                    ManagementStyle["CheckModal__form-element__shadow"]
+                  }
+                  type={"text"}
+                  spanText={"Vehicle Name *"}
+                  placeholder={"Vehicle Name *"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
 
                 <label className="inline-flex gap-8 items-center w-full">
                   <span
@@ -434,7 +408,8 @@ export const ModalContent = ({ page }) => {
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
                   }
-                  type={"text"}
+                  type={"color"}
+                  value={"#ffffff"}
                   spanText={"Appointment Color"}
                   placeholder={"MM/DD/YYYY"}
                   spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
