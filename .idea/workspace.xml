@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd362bf7-5956-4ef9-8316-edec1116bb9f" name="Changes" comment="#fix Refactor imports and add new route for &quot;appointments&quot; in Student SPA.&#10;- Remove multiple unnecessary files and configurations from the project.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/files.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/upload.jsx" afterDir="false" />
+    <list default="true" id="fd362bf7-5956-4ef9-8316-edec1116bb9f" name="Changes" comment="#fix #js #styles Refactored the import and added a new route for “meetings” in Student SPA, removed unnecessary files and configurations from the project.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/log.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/messages.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/tests.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/student-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/student-spa.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,15 +143,7 @@
       <workItem from="1712806452370" duration="41000" />
       <workItem from="1712806501675" duration="26381000" />
       <workItem from="1712867791268" duration="14335000" />
-      <workItem from="1712909567095" duration="13467000" />
-    </task>
-    <task id="LOCAL-00003" summary="#fix #jsx #styles #images Added form validation and implemented&#10;- Added statistics and overview components to the dashboard.&#10;- Added teacher avatar images and names to the teacher list component on the dashboard.">
-      <option name="closed" value="true" />
-      <created>1711839477598</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1711839477598</updated>
+      <workItem from="1712909567095" duration="14042000" />
     </task>
     <task id="LOCAL-00004" summary="#fix #jsx #style Refactored component imports and updated element tags to improve readability and consistency. Updated the teacher information display and added a calendar function with interactive buttons and event management options.">
       <option name="closed" value="true" />
@@ -538,7 +529,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712922254611</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="#fix #js #styles Refactored the import and added a new route for “meetings” in Student SPA, removed unnecessary files and configurations from the project.">
+      <option name="closed" value="true" />
+      <created>1712926710980</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1712926710980</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,31 +548,31 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="package.json" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Remove multiple unnecessary files" />
-    <MESSAGE value="- Remove multiple unnecessary files and" />
-    <MESSAGE value="- Remove multiple unnecessary files and configurations" />
-    <MESSAGE value="- Remove multiple unnecessary files and configurations from" />
-    <MESSAGE value="- Remove multiple unnecessary files and configurations from the" />
-    <MESSAGE value="- Remove multiple unnecessary files and configurations from the project" />
-    <MESSAGE value="- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- &#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Ref&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;appoint&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;appointments&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;appointments&quot;&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;appointments&quot; in&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;appointments&quot; in Student&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;appointments&quot; in Student SPA&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="- Refactor imports and add new route for &quot;appointments&quot; in Student SPA.&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <MESSAGE value="#fix Refactor imports and add new route for &quot;appointments&quot; in Student SPA.&#10;- Remove multiple unnecessary files and configurations from the project." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix Refactor imports and add new route for &quot;appointments&quot; in Student SPA.&#10;- Remove multiple unnecessary files and configurations from the project." />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor imports" />
+    <MESSAGE value="Refactor imports and" />
+    <MESSAGE value="Refactor imports and add" />
+    <MESSAGE value="Refactor imports and add new" />
+    <MESSAGE value="Refactor imports and add new route" />
+    <MESSAGE value="Refactor imports and add new route for" />
+    <MESSAGE value="Refactor imports and add new route for &quot;" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appoint" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot;" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA," />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary files" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary files and" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary files and configurations" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary files and configurations from" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary files and configurations from the" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary files and configurations from the project" />
+    <MESSAGE value="Refactor imports and add new route for &quot;appointments&quot; in Student SPA, remove unnecessary files and configurations from the project." />
+    <MESSAGE value="#fix #js #styles Refactored the import and added a new route for “meetings” in Student SPA, removed unnecessary files and configurations from the project." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js #styles Refactored the import and added a new route for “meetings” in Student SPA, removed unnecessary files and configurations from the project." />
   </component>
 </project>
