@@ -98,7 +98,7 @@ export const Tests = () => {
       </Title>
 
       <div className={"-mx-5"}>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={data} pagination={false} />
       </div>
     </div>
   );
