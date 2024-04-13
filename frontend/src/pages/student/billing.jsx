@@ -199,6 +199,14 @@ const Enrollment = () => {
 };
 const Billings = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [IsOpen, setIsOpen] = useState(false);
+  const [ModalCase, setModalCase] = useState("");
+  const { ResultOfModalContent } = ResultModalButton(ModalCase);
+
+  const handleModal = (typeModal = "") => {
+    setIsOpen((prev) => !prev);
+    setModalCase(typeModal);
+  };
   const columns = [
     {
       title: "Date",
@@ -347,6 +355,7 @@ const Billings = () => {
               paddingInline={29}
               fontSize={10}
               borderRadius={5}
+              onClick={() => handleModal("email")}
             >
               Email
             </ButtonComponent>
@@ -361,14 +370,30 @@ const Billings = () => {
               paddingInline={29}
               fontSize={10}
               borderRadius={5}
+              onClick={() => handleModal("print")}
             >
-              Email
+              Print
             </ButtonComponent>
           </div>
         </div>
         <div className="pt-5 -mx-10">
           <Table columns={columns} dataSource={data} pagination={false} />
         </div>
+        {IsOpen && (
+          <Modal setIsOpen={setIsOpen}>
+            <div
+              className={classNames(
+                "py-6 px-8 bg-white rounded-2xl w-full",
+                BillingStyle["Modal__content"],
+              )}
+            >
+              <ResultOfModalContent
+                modalButton={ModalCase}
+                handleClose={() => setIsOpen(false)}
+              />
+            </div>
+          </Modal>
+        )}
       </div>
     </Fragment>
   );
