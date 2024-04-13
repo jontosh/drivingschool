@@ -333,11 +333,10 @@ const Billings = () => {
           <div className="space-x-2">
             <ButtonComponent
               controlHeight={26}
-              defaultBg={colorsObject.main}
-              defaultHoverBg={colorsObject.main}
-              defaultColor={colorsObject.black}
-              defaultHoverColor={colorsObject.black}
-              defaultBorderColor={colorsObject.primary}
+              defaultBg={"#24C18F"}
+              defaultHoverBg={"#3CE3AE"}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
               paddingInline={16}
               fontSize={10}
               borderRadius={5}
@@ -347,11 +346,10 @@ const Billings = () => {
 
             <ButtonComponent
               controlHeight={26}
-              defaultBg={colorsObject.main}
-              defaultHoverBg={colorsObject.main}
-              defaultColor={colorsObject.black}
-              defaultHoverColor={colorsObject.black}
-              defaultBorderColor={colorsObject.primary}
+              defaultBg={colorsObject.orange}
+              defaultHoverBg={colorsObject.orange}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
               paddingInline={29}
               fontSize={10}
               borderRadius={5}
@@ -362,11 +360,10 @@ const Billings = () => {
 
             <ButtonComponent
               controlHeight={26}
-              defaultBg={colorsObject.main}
-              defaultHoverBg={colorsObject.main}
-              defaultColor={colorsObject.black}
-              defaultHoverColor={colorsObject.black}
-              defaultBorderColor={colorsObject.primary}
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.info}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
               paddingInline={29}
               fontSize={10}
               borderRadius={5}
