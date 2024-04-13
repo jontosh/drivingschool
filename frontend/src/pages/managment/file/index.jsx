@@ -15,6 +15,7 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { WiCloudDown } from "react-icons/wi";
 import FileStyle from "../management.module.scss";
+import { FormOutlined } from "@ant-design/icons";
 
 const CheckProgress = (status = "") => {
   const { colorsObject } = useContext(ColorsContext);
@@ -66,8 +67,13 @@ const File = () => {
         return (
           <div className={"text-center"}>
             <IconComponent
-              className={"text-indigo-600 hover:text-indigo-600"}
-              icon={<TfiWrite />}
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<FormOutlined />}
             />
           </div>
         );
@@ -80,7 +86,7 @@ const File = () => {
       align: "center",
       render: () => {
         return (
-          <div className={"text-center "}>
+          <div className={"text-center"}>
             <IconComponent className={"w-7"} icon={<Icons type={"cross"} />} />
           </div>
         );
@@ -224,15 +230,27 @@ const File = () => {
                   >
                     new category
                   </ButtonComponent>
-                  <ButtonComponent
-                    defaultBg={colorsObject.info}
-                    defaultHoverBg={"#1890FF"}
-                    paddingInline={40}
-                    controlHeight={26}
-                    borderRadius={5}
-                  >
-                    Filter by
-                  </ButtonComponent>
+                  <CustomSelect
+                    colorBorder={colorsObject.info}
+                    style={{ width: 128, height: 26 }}
+                    selectorBg={colorsObject.info}
+                    className={`${FileStyle["File__select"]}`}
+                    value={"Filter by"}
+                    options={[
+                      {
+                        value: "Active",
+                        label: "Active",
+                      },
+                      {
+                        value: "Deleted",
+                        label: "Deleted",
+                      },
+                      {
+                        value: "Inactive",
+                        label: "Inactive",
+                      }
+                    ]}
+                  />
                 </div>
               </div>
               <Table columns={columns} dataSource={data} pagination={false} />
@@ -370,15 +388,27 @@ const File = () => {
                   Recent activities
                 </IconComponent>
 
-                <ButtonComponent
-                  defaultBg={colorsObject.info}
-                  defaultHoverBg={colorsObject.info}
-                  paddingInline={40}
-                  controlHeight={26}
-                  borderRadius={5}
-                >
-                  Filter by
-                </ButtonComponent>
+                <CustomSelect
+                  colorBorder={colorsObject.info}
+                  style={{ width: 128, height: 26 }}
+                  selectorBg={colorsObject.info}
+                  className={`${FileStyle["File__select"]}`}
+                  value={"Filter by"}
+                  options={[
+                    {
+                      value: "Show All",
+                      label: "Active",
+                    },
+                    {
+                      value: "Upload",
+                      label: "Upload",
+                    },
+                    {
+                      value: "Dowload",
+                      label: "Dowload",
+                    }
+                  ]}
+                />
               </div>
 
               <div className="space-y-2.5 pb-2.5">

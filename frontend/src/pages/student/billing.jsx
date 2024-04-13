@@ -4,6 +4,7 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Table } from "antd";
 import { Fragment, useContext } from "react";
+import BillingStyle from "./student-account.module.scss"
 
 const Enrollment = ({}) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -68,6 +69,7 @@ const Enrollment = ({}) => {
         <div className={"text-center"}>
           <CustomSelect
             selectorBg={colorsObject.info}
+            className={`${BillingStyle["Billing__select"]}`}
             value={"Status"}
             options={[
               {
@@ -246,6 +248,7 @@ const Billings = ({}) => {
         <div className={"text-center"}>
           <CustomSelect
             selectorBg={colorsObject.info}
+            className={`${BillingStyle["Billing__select"]}`}
             value={"Status"}
             options={[
               {
