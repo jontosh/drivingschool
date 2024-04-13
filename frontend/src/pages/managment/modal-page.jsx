@@ -277,7 +277,7 @@ const CheckModal = ({ modalName }) => {
                       </div>
                     </div>
                   </div>
-                  <CustomCheckBox className={"items-center gap-x-2.5"}>
+                  <CustomCheckBox className={"gap-x-2.5"} style={{ paddingLeft: 185 }}>
                     Is Service Taxable
                   </CustomCheckBox>
                   <CustomInput
@@ -286,18 +286,38 @@ const CheckModal = ({ modalName }) => {
                     classNames={
                       "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
                     }
-                    spanText={"Service Price: *"}
+                    spanText={"Service Price:"}
                     spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   />
                   <CustomInput
-                    placeholder={"Web Name: *"}
+                    placeholder={"Web Name:"}
                     className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     classNames={
-                      "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+                      "inline-flex items-center w-full justify-between gap-10 flex-row-reverse"
                     }
-                    spanText={"Web Name: *"}
+                    spanText={"Web Name:"}
                     spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   />
+                  <label className={`inline-flex items-center w-full justify-between gap-10`}>
+                    <span
+                      className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    >
+                      Web description
+                    </span>
+                    <textarea
+                      className={`w-full p-3 ${ManagementStyle["CheckModal__thrid-textarea"]}`}
+                    ></textarea>
+                  </label>
+                  <label className={`inline-flex items-center w-full justify-between gap-10`}>
+                    <span
+                      className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    >
+                      Enrollment Email Content:
+                    </span>
+                    <textarea
+                      className={`w-full p-3 ${ManagementStyle["CheckModal__thrid-textarea"]}`}
+                    ></textarea>
+                  </label>
                 </div>
                 {/*------------*/}
                 <div className={`space-y-5`}>
@@ -343,7 +363,11 @@ const CheckModal = ({ modalName }) => {
                   </label>
                   <div className={`space-y-5`}>
                     <div className={`flex items-center gap-10`}>
-                      <Title level={2}>Assign Locations: *</Title>
+                      <span
+                        className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                      >
+                        Assign Locations:
+                      </span>
                       <div className={`flex flex-col gap-5 items-center`}>
                         <span>Click to select</span>
                         <div
@@ -433,7 +457,11 @@ const CheckModal = ({ modalName }) => {
                     </div>
 
                     <div className={`flex items-center gap-10`}>
-                      <Title level={2}>Service Items: *</Title>
+                      <span
+                        className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                      >
+                        Service Items:
+                      </span>
                       <div className={`flex flex-col gap-2.5 items-center`}>
                         <span>Click to select</span>
                         <div
@@ -543,10 +571,20 @@ const CheckModal = ({ modalName }) => {
                       ]}
                     />
                   </label>
+                  <label className={`inline-flex items-center w-full justify-between gap-10`}>
+                    <span
+                      className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    >
+                      Service Notes:
+                    </span>
+                    <textarea
+                      className={`w-full p-3 ${ManagementStyle["CheckModal__thrid-textarea"]}`}
+                    ></textarea>
+                  </label>
                 </div>
               </div>
 
-              <div className="space-x-5 text-center">
+              <div className="space-x-5 text-center pt-8">
                 <ButtonComponent
                   defaultHoverBg={colorsObject.secondary}
                   defaultBg={colorsObject.secondary}

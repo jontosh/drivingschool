@@ -28,7 +28,7 @@ const props = {
 };
 const Upload = () => {
 	const {colorsObject} = useContext(ColorsContext)
-	return <Dragger {...props} className={"w-3/4 mx-auto"}>
+	return <Dragger {...props} className={"w-3/4 mx-auto"} style={{background: "#fff"}}>
 		<IconComponent className={'text-indigo-700 text-6xl mb-2.5'} icon={<AiOutlineCloudUpload />} />
 		<Title level={3} fontSize={'text-xl'} titleMarginBottom={8}>Drop file here</Title>
 		<div>
@@ -37,6 +37,7 @@ const Upload = () => {
 				defaultBg={colorsObject.info}
 				paddingInline={37}
 				controlHeight={30}
+				borderRadius={5}
 			>
 				Browse
 			</ButtonComponent>

@@ -24,34 +24,26 @@ export const Files = () => {
 								<Paragraph className={"text-base"}>PDF</Paragraph>
 							</div>
 
-							<div className={"space-x-2"}>
+							<div className={"space-x-1 items-center"}>
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8"}
+									className={"text-base border border-indigo-700 rounded-lg"}
 									icon={<AiOutlineEye />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8"}
+									className={"text-base border border-indigo-700 rounded-lg"}
 									icon={<SlCloudDownload />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8"}
+									className={"text-base border border-indigo-700 rounded-lg"}
 									icon={<AiOutlineInfoCircle />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8"}
+									className={"text-base border border-indigo-700 rounded-lg"}
 									icon={<RiDeleteBin6Line />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 							</div>
 
@@ -64,35 +56,27 @@ export const Files = () => {
 								<Paragraph className={"text-base"}>JPG</Paragraph>
 							</div>
 
-							<div className={"space-x-2 items-center"}>
+							<div className={"space-x-1 items-center"}>
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8"}
+									className={"text-base border border-indigo-700 rounded-lg"}
 									icon={<AiOutlineEye />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8 pt-1.5"}
+									className={"text-base border border-indigo-700 rounded-lg pt-1.5"}
 									icon={<SlCloudDownload />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8 pt-1.5"}
+									className={"text-base border border-indigo-700 rounded-lg pt-1.5"}
 									icon={<AiOutlineInfoCircle />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 								<IconComponent
-									className={"text-xl border border-indigo-700 rounded-lg w-8 pt-1.5"}
+									className={"text-base border border-indigo-700 rounded-lg pt-1.5"}
 									icon={<RiDeleteBin6Line />}
-									style={{
-										paddingTop: 6,
-									}}
+									style={{ padding: '4px 4px 0' }}
 								/>
 							</div>
 						</div>
