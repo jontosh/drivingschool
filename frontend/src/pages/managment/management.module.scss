@@ -92,8 +92,15 @@
   max-width: 1242px !important;
 }
 
-.File__select{
-  span{
+.File__select {
+  span {
     color: #fff;
   }
+}
+
+.Modal__div {
+  width: 174px;
+  min-height: 240px;
+  border: 1px solid #5F66E9;
+  border-radius: 10px;
 }
