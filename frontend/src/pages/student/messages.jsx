@@ -1,8 +1,11 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
+import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { ResultModalButton } from "@/pages/student/items/modal.jsx";
+import BillingStyle from "@/pages/student/student-account.module.scss";
 import { Pagination } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
@@ -12,9 +15,17 @@ import { MdPersonOutline } from "react-icons/md";
 export const Messages = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
+  const { ResultOfModalContent } = ResultModalButton();
+  const [IsOpen, setIsOpen] = useState(false);
+  const [ModalCase, setModalCase] = useState("");
 
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
+  };
+
+  const handleCompose = (typeModal) => {
+    setIsOpen((prev) => !prev);
+    setModalCase(typeModal);
   };
 
   return (
@@ -38,6 +49,7 @@ export const Messages = () => {
                 controlHeight={26}
                 paddingInline={18}
                 fontSize={10}
+                onClick={() => handleCompose("send_email")}
               >
                 Compose
               </ButtonComponent>
@@ -88,22 +100,30 @@ export const Messages = () => {
                   Text messages
                 </IconComponent>
               </Title>
-              <ButtonComponent
-                borderRadius={5}
-                defaultHoverBg={colorsObject.main}
-                defaultBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.black}
-                defaultHoverColor={colorsObject.black}
-                controlHeight={26}
-                paddingInline={18}
-                fontSize={10}
-              >
-                Send text
-              </ButtonComponent>
+              {/*<ButtonComponent*/}
+              {/*  borderRadius={5}*/}
+              {/*  defaultHoverBg={colorsObject.main}*/}
+              {/*  defaultBg={colorsObject.main}*/}
+              {/*  defaultBorderColor={colorsObject.primary}*/}
+              {/*  defaultColor={colorsObject.black}*/}
+              {/*  defaultHoverColor={colorsObject.black}*/}
+              {/*  controlHeight={26}*/}
+              {/*  paddingInline={18}*/}
+              {/*  fontSize={10}*/}
+              {/*>*/}
+              {/*  Send text*/}
+              {/*</ButtonComponent>*/}
             </div>
 
-            <Paragraph fontSize={"text-base"}>(513)837-5128</Paragraph>
+            <div className={"space-x-5"}>
+              <a className={"text-indigo-700 font-normal"}>(513)837-5128</a>
+              <a className={"text-gray-700 font-normal hover:text-indigo-700"}>
+                (513)837-5128
+              </a>
+              <a className={"text-gray-700 font-normal hover:text-indigo-700"}>
+                (513)837-5128
+              </a>
+            </div>
 
             <blockquote
               className={
@@ -126,9 +146,47 @@ export const Messages = () => {
                 </Paragraph>
               </div>
             </blockquote>
+
+            <div className={"flex gap-4 items-end"}>
+              <textarea
+                className={
+                  "w-full border border-indigo-700 rounded-2xl p-5 outline-0"
+                }
+                placeholder={"Text"}
+              ></textarea>
+
+              <ButtonComponent
+                borderRadius={5}
+                defaultHoverBg={colorsObject.info}
+                defaultBg={colorsObject.info}
+                defaultBorderColor={colorsObject.info}
+                defaultColor={colorsObject.main}
+                defaultHoverColor={colorsObject.main}
+                controlHeight={26}
+                paddingInline={30}
+                fontSize={10}
+              >
+                Send text
+              </ButtonComponent>
+            </div>
           </div>
         </div>
       </div>
+      {IsOpen && (
+        <Modal setIsOpen={setIsOpen} className={"py-2"}>
+          <div
+            className={classNames(
+              "py-6 px-8 bg-white rounded-2xl w-full overflow-y-scroll ",
+              BillingStyle["Modal__content"],
+            )}
+          >
+            <ResultOfModalContent
+              modalButton={ModalCase}
+              handleClose={() => setIsOpen(false)}
+            />
+          </div>
+        </Modal>
+      )}
     </Fragment>
   );
 };
