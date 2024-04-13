@@ -1,13 +1,25 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
+import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { ResultModalButton } from "@/pages/student/items/modal.jsx";
 import { Table } from "antd";
-import { Fragment, useContext } from "react";
-import BillingStyle from "./student-account.module.scss"
+import classNames from "classnames";
+import { Fragment, useContext, useState } from "react";
+import BillingStyle from "./student-account.module.scss";
 
-const Enrollment = ({}) => {
+const Enrollment = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [IsOpen, setIsOpen] = useState(false);
+  const [ModalCase, setModalCase] = useState("");
+  const { ResultOfModalContent } = ResultModalButton(ModalCase);
+
+  const handleModal = (typeModal = "") => {
+    setIsOpen((prev) => !prev);
+    setModalCase(typeModal);
+  };
+
   const columns = [
     {
       title: "Package",
@@ -102,8 +114,6 @@ const Enrollment = ({}) => {
       price: 649.99,
       dbId: 135,
       dataEnrolled: "3/9/2024 1:37 pm",
-      enrolledBy: "",
-      notes: "",
     },
     {
       packages: "8h in car",
@@ -111,12 +121,10 @@ const Enrollment = ({}) => {
       price: 649.99,
       dbId: 136,
       dataEnrolled: "3/9/2024 1:37 pm",
-      enrolledBy: "",
-      notes: "",
     },
   ];
   return (
-    <Fragment>
+    <div>
       <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
         <div className="-mx-10 px-10 border-b pb-5 border-b-gray-400 flex justify-between">
           <Title level={2} fontSize={"text-xl space-x-2"}>
@@ -147,6 +155,7 @@ const Enrollment = ({}) => {
               paddingInline={29}
               fontSize={10}
               borderRadius={5}
+              onClick={() => handleModal("email")}
             >
               Email
             </ButtonComponent>
@@ -160,8 +169,9 @@ const Enrollment = ({}) => {
               paddingInline={29}
               fontSize={10}
               borderRadius={5}
+              onClick={() => handleModal("print")}
             >
-              Email
+              Print
             </ButtonComponent>
           </div>
         </div>
@@ -169,10 +179,25 @@ const Enrollment = ({}) => {
           <Table columns={columns} dataSource={data} pagination={false} />
         </div>
       </div>
-    </Fragment>
+      {IsOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <div
+            className={classNames(
+              "py-6 px-8 bg-white rounded-2xl w-full",
+              BillingStyle["Modal__content"],
+            )}
+          >
+            <ResultOfModalContent
+              modalButton={ModalCase}
+              handleClose={() => setIsOpen(false)}
+            />
+          </div>
+        </Modal>
+      )}
+    </div>
   );
 };
-const Billings = ({}) => {
+const Billings = () => {
   const { colorsObject } = useContext(ColorsContext);
   const columns = [
     {
@@ -349,7 +374,7 @@ const Billings = ({}) => {
   );
 };
 
-export const Billing = ({}) => {
+export const Billing = () => {
   return (
     <div className={"space-y-8"}>
       <Enrollment />
