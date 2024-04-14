@@ -1,4 +1,6 @@
+import { DollarOutlined } from "@ant-design/icons";
 import {
+  AiOutlineApartment,
   AiOutlineAppstore,
   AiOutlineMail,
   AiOutlineReconciliation,
@@ -93,7 +95,7 @@ export const MenuItems = (IsActive, getItem) => {
       IsActive && "Account Management",
       "sub8",
       <span className={"w-5"}>
-        <AiOutlineReconciliation />
+        <AiOutlineApartment />
       </span>,
       IsActive && [
         getItem("Services", 1, null, [
@@ -180,8 +182,15 @@ export const MenuItems = (IsActive, getItem) => {
       ],
     ),
     getItem(
-      IsActive && "Configuration",
+      IsActive && "Finances",
       "sub9",
+      <span className="w-5">
+        <DollarOutlined />
+      </span>,
+    ),
+    getItem(
+      IsActive && "Configuration",
+      "sub10",
       <span className="w-5">
         <AiOutlineSetting />
       </span>,
@@ -189,14 +198,14 @@ export const MenuItems = (IsActive, getItem) => {
     ),
     getItem(
       IsActive && "Help",
-      "sub10",
+      "sub11",
       <span className="w-5">
         <AiOutlineTool />
       </span>,
     ),
     getItem(
       IsActive && "Log out",
-      "sub11",
+      "sub12",
       <span className="w-5">
         <LuLogOut />
       </span>,
