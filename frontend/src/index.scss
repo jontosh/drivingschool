@@ -89,3 +89,16 @@ svg {
     background: #e6f4ff !important;
   }
 }
+
+.ant-tabs-tab-btn {
+  display: flex;
+  align-items: center;
+}
+
+.ant-tabs-tab-icon {
+  font-size: 20px;
+}
+
+.ant-tabs-nav::before {
+  border-bottom: none !important;
+}

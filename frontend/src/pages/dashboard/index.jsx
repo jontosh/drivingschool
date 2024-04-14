@@ -2,13 +2,15 @@ import ButtonComponent from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Button, Checkbox, ConfigProvider } from "antd";
+import TabItem from "@/pages/dashboard/items/tab-content.jsx";
+import { Button, Checkbox, ConfigProvider, Tabs } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
   AiOutlineCloudUpload,
   AiOutlineMessage,
+  AiOutlineProject,
   AiOutlineSearch,
   AiOutlineSolution,
 } from "react-icons/ai";
@@ -409,7 +411,7 @@ const Dashboard = () => {
         </div>
         <div>
           <div
-            className={`${DashboardStyle["Dashboard__teachers"]} p-5 bg-white rounded-lg`}
+            className={`${DashboardStyle["Dashboard__teachers"]} shadow-xl p-5 bg-white rounded-lg`}
           >
             <DashboardTeachers />
             <div
@@ -732,96 +734,22 @@ const Dashboard = () => {
           {/*Result*/}
         </div>
 
-        <div
-          className={`${DashboardStyle["Dashboard__data"]} rounded-lg px-12 py-3 bg-white`}
-        >
-          <div
-            className={`${DashboardStyle["Dashboard__data-tabs"]} space-x-10`}
+        <div className="bg-white px-12 py-3.5 rounded-2xl shadow-xl">
+          <ConfigProvider
+            theme={{
+              components: {
+                Tabs: {
+                  itemColor: colorsObject.secondary,
+                  itemSelectedColor: colorsObject.primary,
+                  itemHoverColor: colorsObject.primary,
+                  titleFontSize: 16,
+                  inkBarColor: "transparent",
+                },
+              },
+            }}
           >
-            <IconComponent
-              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              // style={{ color: colorsObject.secondary }}
-              children={"Upload files 0"}
-              icon={
-                <AiOutlineCloudUpload
-                  className={`${DashboardStyle["Dashboard__icon"]}`}
-                />
-              }
-              spaceIcon={2}
-            />
-
-            <IconComponent
-              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]}`}
-              // style={{ color: colorsObject.secondary }}
-              children={
-                <span>
-                  Task <span className="text-red-600">18</span>
-                </span>
-              }
-              icon={
-                <AiOutlineCloudUpload
-                  className={`${DashboardStyle["Dashboard__icon"]}`}
-                />
-              }
-              spaceIcon={2}
-            />
-
-            <IconComponent
-              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              // style={{ color: colorsObject.secondary }}
-              children={
-                <span>
-                  Text message <span className={"text-red-600"}>18</span>
-                </span>
-              }
-              icon={
-                <AiOutlineMessage
-                  className={`${DashboardStyle["Dashboard__icon"]}`}
-                />
-              }
-              spaceIcon={2}
-            />
-
-            <IconComponent
-              className={`space-x-2.5 text-gray-500 hover:text-indigo-600 text-base ${DashboardStyle["Dashboard__data-tab"]} `}
-              // style={{ color: colorsObject.secondary }}
-              children={
-                <span>
-                  Website enrollments <span className={"text-red-600"}>18</span>
-                </span>
-              }
-              icon={
-                <AiOutlineSolution
-                  className={`${DashboardStyle["Dashboard__icon"]}`}
-                />
-              }
-              spaceIcon={2}
-            />
-          </div>
-
-          <div
-            className={`${DashboardStyle["Dashboard__data-result"]} flex-col text-center flex justify-center pt-12 pb-20`}
-          >
-            <div className={"space-y-4"}>
-              <span className={`text-7xl text-[#7D83ED]`}>
-                <AiOutlineCloudUpload />
-              </span>
-
-              <Title level={4} fontSize={"text-base"} fontWeightStrong={500}>
-                There are 0 documents uploaded within last 24 hours.
-              </Title>
-
-              <ButtonComponent
-                defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
-                controlHeight={32}
-                paddingInline={15}
-                paddingBlock={4}
-              >
-                Button Title
-              </ButtonComponent>
-            </div>
-          </div>
+            <Tabs defaultActiveKey="1" items={TabItem()} />
+          </ConfigProvider>
         </div>
       </section>
     </Fragment>
