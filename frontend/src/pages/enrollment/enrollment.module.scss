@@ -5,11 +5,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-
-    // & > * {
-    //      box-shadow: 0px 4px 4px 0px #00000040;
-    //      grid-row: 0;
-    // }
   }
 
   &__info-type {
@@ -70,4 +65,12 @@
       color: #fff;
     }
   }
+}
+
+.Modal__content {
+  max-width: 440px;
+}
+
+.Modal__list-item {
+  list-style-position: inside;
 }

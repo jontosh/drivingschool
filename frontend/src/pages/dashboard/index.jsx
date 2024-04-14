@@ -5,15 +5,9 @@ import ColorsContext from "@/context/colors.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import { Button, Checkbox, ConfigProvider, Tabs } from "antd";
 import { Formik } from "formik";
-import { Fragment, useContext, useMemo, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
-import {
-  AiOutlineCloudUpload,
-  AiOutlineMessage,
-  AiOutlineProject,
-  AiOutlineSearch,
-  AiOutlineSolution,
-} from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaBars, FaRegListAlt } from "react-icons/fa";
 import { VscGraph } from "react-icons/vsc";
@@ -33,7 +27,6 @@ import {
 } from "chart.js";
 
 import { Bar } from "react-chartjs-2";
-import IconComponent from "@/components/icons";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -348,7 +341,7 @@ const Dashboard = () => {
               className={`${DashboardStyle["Dashboard__links-list"]} space-y-3.5`}
             >
               <ButtonComponent
-                href={"/NotFound"}
+                href={"/notfound/"}
                 defaultBg={colorsObject.info}
                 defaultHoverBg={colorsObject.info}
                 className={"w-full "}
@@ -360,7 +353,7 @@ const Dashboard = () => {
               </ButtonComponent>
 
               <ButtonComponent
-                href={"/NotFound"}
+                href={"/enrollment/"}
                 defaultBg={colorsObject.info}
                 defaultHoverBg={colorsObject.info}
                 className={"w-full"}
@@ -384,7 +377,7 @@ const Dashboard = () => {
               </ButtonComponent>
 
               <ButtonComponent
-                href={"/NotFound"}
+                href={"/management/file"}
                 defaultBg={colorsObject.info}
                 defaultHoverBg={colorsObject.info}
                 className={"w-full"}
@@ -392,7 +385,7 @@ const Dashboard = () => {
                 paddingBlock={9}
                 borderRadius={10}
               >
-                File Managment
+                File Management
               </ButtonComponent>
 
               <ButtonComponent

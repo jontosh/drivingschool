@@ -1,15 +1,16 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
-import { Icons } from "@/components/icons/index.jsx";
+import IconComponent, { Icons } from "@/components/icons/index.jsx";
+import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { InfoForm } from "@/pages/enrollment/info-form.jsx";
+import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { IoArrowForwardSharp } from "react-icons/io5";
+import { MdOutlineContentCopy } from "react-icons/md";
 import EnrollmentStyle from "./enrollment.module.scss";
-import IconComponent from "@/components/icons";
-import { FaX } from "react-icons/fa6";
-import { LuX } from "react-icons/lu";
 
 const PackageSelectionArray = [
     {
@@ -56,27 +57,31 @@ const PackageSelectionArray = [
   ];
 
 const Enrollment = () => {
-  const { colorsObject } = useContext(ColorsContext),
-    defaultValue = "Package selection",
-    [Package, setPackage] = useState(defaultValue),
-    [Classes, setClasses] = useState(defaultValue),
-    [InfoType, setInfoType] = useState(defaultValue),
-    [SelectedPackages, setSelectedPackages] = useState([]),
-    [SelectedClass, setSelectedClass] = useState([]),
-    InfoTypeOptions = [
-      {
-        value: "Teen",
-      },
-      {
-        value: "Adult",
-      },
-      {
-        value: "Knowledge test",
-      },
-      {
-        value: "Road test",
-      },
-    ];
+  const { colorsObject } = useContext(ColorsContext);
+  const defaultValue = "Package selection";
+  const [Package, setPackage] = useState(defaultValue);
+  const [Classes, setClasses] = useState(defaultValue);
+  const [InfoType, setInfoType] = useState(defaultValue);
+  const [SelectedPackages, setSelectedPackages] = useState([]);
+  const [SelectedClass, setSelectedClass] = useState([]);
+  const [IsOpen, setIsOpen] = useState(false);
+
+  const handleCuponModal = () => setIsOpen((prev) => !prev);
+
+  const InfoTypeOptions = [
+    {
+      value: "Teen",
+    },
+    {
+      value: "Adult",
+    },
+    {
+      value: "Knowledge test",
+    },
+    {
+      value: "Road test",
+    },
+  ];
 
   useEffect(() => {
     PackageSelectionArray.map((item) => {
@@ -90,7 +95,7 @@ const Enrollment = () => {
 
   const packageItem = SelectedPackages.filter(
     (item, index) => SelectedPackages.indexOf(item) === index,
-  ).map(({ price, hours, label }, index) => {
+  ).map(({ price, hours, label, id }, index) => {
     totalPrice += price;
     index += 1;
     return (
@@ -117,9 +122,15 @@ const Enrollment = () => {
               ${price}
             </Paragraph>
 
-            <button className="w-5">
-              <Icons type={"cross"} />
-            </button>
+            <IconComponent
+              className="w-5 inline-flex items-center"
+              icon={<Icons type={"cross"} />}
+              onClick={() => {
+                setSelectedPackages((prev) =>
+                  prev?.filter((item) => item.id !== id),
+                );
+              }}
+            />
           </div>
         </div>
         {/*Item Start*/}
@@ -231,10 +242,10 @@ const Enrollment = () => {
                       paddingInline={28}
                       controlHeight={40}
                       borderRadius={5}
+                      onClick={handleCuponModal}
                     >
                       Coupon
                     </ButtonComponent>
-
                   </div>
 
                   <Paragraph fontSize={"text-xl"} fontWeightStrong={400}>
@@ -300,6 +311,73 @@ const Enrollment = () => {
           {defaultValue !== InfoType && <InfoForm />}
         </div>
       </section>
+
+      {IsOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <div
+            className={classNames(
+              EnrollmentStyle["Modal__content"],
+              "bg-white rounded-2xl p-5 w-full space-y-7",
+            )}
+          >
+            <div>
+              <Title
+                level={3}
+                fontWeightStrong={500}
+                fontSize={"text-2xl"}
+                titleMarginBottom={5}
+              >
+                5% OFF
+              </Title>
+              <Title level={3} fontWeightStrong={500} fontSize={"text-xl"}>
+                For whole order
+              </Title>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <code className={"text-sm text-[#163ED4]"}>
+                Code: NEWCUSTOMER_1234
+              </code>
+              <div className={"flex"}>
+                <IconComponent
+                  className={"font-semibold text-sm py-2 px-3"}
+                  icon={<MdOutlineContentCopy />}
+                  iconWidth={"w-5"}
+                  vertical={"items-center"}
+                  spaceIconX={2}
+                >
+                  Copy
+                </IconComponent>
+
+                <IconComponent
+                  className={"font-semibold text-sm py-2 px-3"}
+                  icon={<IoArrowForwardSharp />}
+                  iconWidth={"w-5"}
+                  vertical={"items-center"}
+                  spaceIconX={2}
+                >
+                  Apply
+                </IconComponent>
+              </div>
+            </div>
+
+            <div className={"text-[#8B94B2]"}>
+              <ul className={classNames("list-disc")}>
+                <li className={EnrollmentStyle["Modal__list-item"]}>
+                  05/08/2021 04:00 – 09/08/2021 12:00
+                </li>
+                <li className={EnrollmentStyle["Modal__list-item"]}>
+                  For all products.
+                </li>
+                <li className={EnrollmentStyle["Modal__list-item"]}>
+                  Combinations: Get 20% off when you spend over $169.00 or get
+                  15% off when you spend over $89.00.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Modal>
+      )}
     </Fragment>
   );
 };
