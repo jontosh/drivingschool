@@ -1,7 +1,8 @@
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
+import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
 import { MenuItems } from "@/layout/menu-items.jsx";
-import { ConfigProvider, Menu } from "antd";
+import { Button, ConfigProvider, Dropdown, Menu } from "antd";
 import { Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BiMoon } from "react-icons/bi";
@@ -23,7 +24,7 @@ const getItem = (label, key, icon, children, type) => {
   };
 };
 
-const Layout = ({}) => {
+const Layout = () => {
   const [IsActive, setIsActive] = useState(true);
 
   const navigate = useNavigate();
@@ -95,19 +96,28 @@ const Layout = ({}) => {
               <BiMoon />
             </button>
           </div>
-
-          <div
-            className={`${LayoutStyle["user"]} inline-flex items-center gap-3`}
-          >
-            <Title level={5} fontWeightStrong={400} fontSize={"text-base"}>
-              Aminov Taminov
-            </Title>
-
-            <div
-              className={`w-10 h-10 rounded-full overflow-hidden ${LayoutStyle["user__avatar"]}`}
+          <div>
+            <Dropdown
+              menu={{
+                items: DropMenuItems,
+              }}
+              placement="bottomRight"
+              className={"cursor-pointer"}
             >
-              <Image src={UserAvatar} srcSet={UserAvatar} alt={"Avatar"} />
-            </div>
+              <div
+                className={`${LayoutStyle["user"]} inline-flex items-center gap-3`}
+              >
+                <Title level={5} fontWeightStrong={400} fontSize={"text-base"}>
+                  Aminov Taminov
+                </Title>
+
+                <div
+                  className={`w-10 h-10 rounded-full overflow-hidden ${LayoutStyle["user__avatar"]}`}
+                >
+                  <Image src={UserAvatar} srcSet={UserAvatar} alt={"Avatar"} />
+                </div>
+              </div>
+            </Dropdown>
           </div>
         </div>
       </header>
