@@ -114,6 +114,7 @@ const IconComponent = ({
   spaceIconY,
   style,
   iconWidth,
+  vertical,
   ...props
 }) => {
   className = classNames(className);
@@ -126,7 +127,7 @@ const IconComponent = ({
       {...props}
     >
       <div
-        className={classNames(`inline-flex`, props.classNames, {
+        className={classNames(`inline-flex`, props.classNames, vertical, {
           [`gap-${spaceIcon}`]: !!spaceIcon,
           [`gap-x-${spaceIconX}`]: !!spaceIconX,
           [`gap-y-${spaceIconY}`]: !!spaceIconY,
