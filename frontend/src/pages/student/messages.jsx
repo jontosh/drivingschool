@@ -127,7 +127,7 @@ export const Messages = () => {
 
             <blockquote
               className={
-                "flex border gap-5 border-indigo-700 rounded-2xl p-2.5 items-start"
+                "flex border gap-5 border-indigo-700 rounded-2xl p-1 items-center"
               }
             >
               <IconComponent
@@ -139,7 +139,7 @@ export const Messages = () => {
                 <time className={"block w-full"}>
                   on Sat, Mar 09, 2024 @ 1:37 PM EST
                 </time>
-                <Paragraph fontSize={" text-xs"}>
+                <Paragraph fontSize={"text-xs"}>
                   Click on the link below to get text message Notification from
                   Ray's Driving School.
                   https://tdsm.app/sms/SI/IA?eI=9dVehSSgReo=

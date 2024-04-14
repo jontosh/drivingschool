@@ -13,7 +13,7 @@ export const Tests = () => {
       key: "name",
       align: "center",
       render: (text) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"}>
+        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
           {text}
         </Paragraph>
       ),
@@ -24,7 +24,7 @@ export const Tests = () => {
       key: "date",
       align: "center",
       render: (date) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"}>
+        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
           {date}
         </Paragraph>
       ),
@@ -35,7 +35,7 @@ export const Tests = () => {
       key: "course",
       align: "center",
       render: (course) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"}>
+        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
           {course}
         </Paragraph>
       ),
@@ -46,7 +46,7 @@ export const Tests = () => {
       key: "score",
       align: "center",
       render: (score) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"}>
+        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
           {score}
         </Paragraph>
       ),

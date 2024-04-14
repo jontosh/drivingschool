@@ -13,7 +13,7 @@ export const StudentLog = () => {
   };
   const columns = [
     {
-      title: "Date",
+      title: "Date/Time",
       dataIndex: "date",
       key: "date",
       align: "center",

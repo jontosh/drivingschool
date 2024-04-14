@@ -26,44 +26,42 @@ const Enrollment = () => {
       dataIndex: "packages",
       key: "packages",
       align: "center",
-      render: (text) => <Paragraph className={"text-center"}>{text}</Paragraph>,
+      render: (text) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{text}</Paragraph>,
     },
     {
       title: "Code",
       dataIndex: "code",
       key: "code",
       align: "center",
-      render: (code) => <Paragraph className={"text-center"}>{code}</Paragraph>,
+      render: (code) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{code}</Paragraph>,
     },
     {
       title: "Price",
       dataIndex: "price",
       key: "price",
       align: "center",
-      render: (price) => (
-        <Paragraph className={"text-center"}>${price}</Paragraph>
-      ),
+      render: (price) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>${price}</Paragraph>
     },
     {
       title: "Database Id",
       dataIndex: "dbId",
       key: "dbId",
       align: "center",
-      render: (id) => <Paragraph className={"text-center"}>{id}</Paragraph>,
+      render: (id) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{id}</Paragraph>,
     },
     {
       title: "Data enrolled",
       dataIndex: "dataEnrolled",
       key: "dataEnrolled",
       align: "center",
-      render: (time) => <Paragraph className={"text-center"}>{time}</Paragraph>,
+      render: (time) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{time}</Paragraph>,
     },
     {
       title: "Enrolled by",
       dataIndex: "enrolledBy",
       key: "enrolledBy",
       align: "center",
-      render: (by) => <Paragraph className={"text-center"}>{by}</Paragraph>,
+      render: (by) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{by}</Paragraph>,
     },
     {
       title: "Notes",
@@ -71,7 +69,7 @@ const Enrollment = () => {
       key: "notes",
       align: "center",
       render: (notes) => (
-        <Paragraph className={"text-center"}>{notes}</Paragraph>
+        <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{notes}</Paragraph>
       ),
     },
     {
@@ -82,6 +80,7 @@ const Enrollment = () => {
           <CustomSelect
             selectorBg={colorsObject.info}
             className={`${BillingStyle["Billing__select"]}`}
+            colorBorder={colorsObject.info}
             value={"Status"}
             options={[
               {
@@ -214,7 +213,7 @@ const Billings = () => {
       key: "date",
       align: "center",
       render: (text) => (
-        <Paragraph fontWeightStrong={500} className={"text-center"}>
+        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
           {text}
         </Paragraph>
       ),
@@ -225,7 +224,7 @@ const Billings = () => {
       key: "amount",
       align: "center",
       render: (code) => (
-        <Paragraph fontWeightStrong={500} className={"text-center"}>
+        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
           {code}
         </Paragraph>
       ),
@@ -236,7 +235,7 @@ const Billings = () => {
       key: "type",
       align: "center",
       render: (price) => (
-        <Paragraph fontWeightStrong={500} className={"text-center"}>
+        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
           {price}
         </Paragraph>
       ),
@@ -247,7 +246,7 @@ const Billings = () => {
       key: "dbId",
       align: "center",
       render: (id) => (
-        <Paragraph fontWeightStrong={500} className={"text-center"}>
+        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
           {id}
         </Paragraph>
       ),
@@ -258,7 +257,7 @@ const Billings = () => {
       key: "acceptedBy",
       align: "center",
       render: (by) => (
-        <Paragraph fontWeightStrong={500} className={"text-center"}>
+        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
           {by}
         </Paragraph>
       ),
@@ -282,6 +281,7 @@ const Billings = () => {
           <CustomSelect
             selectorBg={colorsObject.info}
             className={`${BillingStyle["Billing__select"]}`}
+            colorBorder={colorsObject.info}
             value={"Status"}
             options={[
               {
