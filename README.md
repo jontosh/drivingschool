@@ -3,16 +3,19 @@
 Software for driving school
 
 To start the project (frontend):
+```bash
+cd frontend/ 	# to open frontend directory
+```
 
-``` bash
+```bash
 npm install   # to install dependencies packages
 ```
 
-``` bash
+```bash
 npm start     # to start the project
 ```
 
-``` bash
+```bash
 npm run build # to build the project
 ```
 
