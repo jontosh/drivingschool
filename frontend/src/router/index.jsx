@@ -14,6 +14,7 @@ import Staff from "@/pages/managment/staff/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
 import SignIn from "@/pages/register/sign-in.jsx";
+import Scheduling from "@/pages/scheduling/index.jsx";
 import Student from "@/pages/student/index.jsx";
 import StudentSpa from "@/pages/student/student-spa.jsx";
 import { createBrowserRouter } from "react-router-dom";
@@ -40,6 +41,15 @@ export const router = createBrowserRouter([
       {
         path: "/enrollment",
         element: <Enrollment />,
+      },
+      {
+        path: "/scheduling",
+        element: <Scheduling />,
+        children: [
+          {
+            path: ":title",
+          },
+        ],
       },
       {
         path: "/management",
