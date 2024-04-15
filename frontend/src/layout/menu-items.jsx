@@ -73,7 +73,45 @@ export const MenuItems = (IsActive, getItem) => {
       <span className={"w-5"}>
         <AiOutlineSolution />
       </span>,
-      IsActive && [getItem("Process")],
+      IsActive && [
+        getItem(
+          <Link to={"/scheduling/student"} children={"Schedule as Student"} />,
+          "sub5-1",
+          null,
+        ),
+        getItem(
+          <Link
+            to={"/scheduling/instructor"}
+            children={"Single and Multi Instructor"}
+          />,
+          "sub5-2",
+          null,
+        ),
+        getItem(
+          <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,
+          "sub5-3",
+          null,
+        ),
+        getItem(
+          <Link to={"/scheduling/vehicle"} children={"Manage time slot"} />,
+          "sub5-4",
+          null,
+          [getItem("Process")],
+        ),
+        getItem(
+          <Link to={"/scheduling/corporate"} children={"Corporate time off"} />,
+          "sub5-5",
+          null,
+        ),
+        getItem(
+          <Link
+            to={"/scheduling/appointments"}
+            children={"Staff Appointments List"}
+          />,
+          "sub5-6",
+          null,
+        ),
+      ],
     ),
     getItem(
       IsActive && "Communication",
