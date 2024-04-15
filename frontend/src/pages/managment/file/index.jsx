@@ -4,7 +4,7 @@ import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Space, Table } from "antd";
+import { Space, Switch, Table, Transfer } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -561,10 +561,12 @@ const File = () => {
                     "font-semibold text-end w-32 flex-shrink-0 text-base"
                   }
                 >
-                  File status
+                  Packages:
                 </span>
 
-                <span>@todo</span>
+                <span>
+                  <Transfer />
+                </span>
               </label>
 
               <label
@@ -572,7 +574,7 @@ const File = () => {
               >
                 <span
                   className={
-                    "font-semibold text-end w-32 flex-shrink-0 text-base"
+                    "font-semibold text-end w-52 flex-shrink-0 text-base"
                   }
                 >
                   Signature link:
@@ -591,7 +593,7 @@ const File = () => {
               >
                 <span
                   className={
-                    "font-semibold text-end w-32 flex-shrink-0 text-base"
+                    "font-semibold text-end w-52 flex-shrink-0 text-base"
                   }
                 >
                   Note:
@@ -605,7 +607,80 @@ const File = () => {
                 ></textarea>
               </label>
 
-              <div>@todo</div>
+              <div className={"grid grid-cols-2 gap-y-5 pt-8"}>
+                <label
+                  className={"inline-flex justify-center items-center gap-8"}
+                >
+                  <span
+                    className={
+                      "font-semibold text-end w-52 flex-shrink-0 text-base"
+                    }
+                  >
+                    Display on Student Portal:
+                  </span>
+                  <Switch
+                    style={{
+                      width: 50,
+                    }}
+                  />
+                </label>
+
+                <label
+                  className={"inline-flex justify-center items-center gap-8"}
+                >
+                  <span
+                    className={
+                      "font-semibold text-end w-52 flex-shrink-0 text-base"
+                    }
+                  >
+                    Must Be Uploaded to Student
+                    Account:
+                  </span>
+                  <Switch
+                    style={{
+                      width: 50,
+                    }}
+                  />
+                </label>
+
+                <label
+                  className={"inline-flex justify-center items-center gap-8"}
+                >
+                  <span
+                    className={
+                      "font-semibold text-end w-52 flex-shrink-0 text-base"
+                    }
+                  >
+                    Disallow files associated
+                    with category from displaying
+                    on Student Portal:
+                  </span>
+                  <Switch
+                    style={{
+                      width: 50,
+                    }}
+                  />
+                </label>
+
+                <label
+                  className={"inline-flex justify-center items-center gap-8"}
+                >
+                  <span
+                    className={
+                      "font-semibold text-end w-52 flex-shrink-0 text-base"
+                    }
+                  >
+                    Disallow files associated with
+                    this category  from displaying
+                    on Instructor/Teacher Portal:
+                  </span>
+                  <Switch
+                    style={{
+                      width: 50,
+                    }}
+                  />
+                </label>
+              </div>
 
               <div className={"text-center space-x-5"}>
                 <ButtonComponent
