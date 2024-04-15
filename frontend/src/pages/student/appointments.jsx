@@ -12,7 +12,7 @@ const AppointmentsData = () => {
   const { colorsObject } = useContext(ColorsContext);
   const columns = [
     {
-      title: "Date/Time",
+      title: "Appent Date",
       dataIndex: "date",
       key: "date",
       align: "center",
@@ -26,7 +26,7 @@ const AppointmentsData = () => {
       render: (time) => <Paragraph fontSize={"text-lg"}>{time}</Paragraph>,
     },
     {
-      title: "Status",
+      title: "App Status",
       dataIndex: "status",
       key: "status",
       align: "center",
@@ -46,32 +46,54 @@ const AppointmentsData = () => {
       ),
     },
     {
-      title: "Sr No",
-      dataIndex: "srNo",
-      key: "srNo",
+      title: "Instructor",
+      dataIndex: "instructor",
+      key: "instructor",
       align: "center",
       render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
     },
     {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
+      title: "Location",
+      dataIndex: "location",
+      key: "location",
       align: "center",
       render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
     },
     {
-      title: "Class Score / In-Car Evaluation",
-      dataIndex: "grade",
-      key: "grade",
+      title: "Pickup Location",
+      dataIndex: "pickupLocation",
+      key: "pickupLocation",
       align: "center",
       render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
     },
     {
-      title: "Detail",
-      dataIndex: "detail",
-      key: "detail",
+      title: "Product Name",
+      dataIndex: "product",
+      key: "product",
       align: "center",
+      render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
     },
+    {
+      title: "Position",
+      dataIndex: "position",
+      key: "position",
+      align: "center",
+      render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
+    },
+    {
+      title: "Notes",
+      dataIndex: "notes",
+      key: "notes",
+      align: "center",
+      render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
+    },
+    {
+      title: "Vehicle Name",
+      dataIndex: "vehicle",
+      key: "vehicle",
+      align: "center",
+      render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
+    }
   ];
 
   const data = [
@@ -79,24 +101,32 @@ const AppointmentsData = () => {
       date: "12.22.2024",
       time: "8 am - 5 pm",
       status: true,
-      srNo: "What is it ?",
-      type: "8h in car",
-      grade: "Score or something like this",
+      instructor: "Khaetbek",
+      location: "Mason Location",
+      pickupLocation: "Mason Office",
+      product: "BTW 8hrs",
+      position: "Drive",
+      notes: "",
+      vehicle: "Vehicle 1"
     },
     {
       date: "12.22.2024",
       time: "8 am - 5 pm",
       status: false,
-      srNo: "What is it ?",
-      type: "8h in car",
-      grade: "Score or something like this",
+      instructor: "Khaetbek",
+      location: "Mason Location",
+      pickupLocation: "Mason Office",
+      product: "BTW 8hrs",
+      position: "Drive",
+      notes: "",
+      vehicle: "Vehicle 1"
     },
   ];
 
   return { columns, data };
 };
 
-export const Appointments = ({}) => {
+export const Appointments = ({ }) => {
   const { subtitle } = useParams();
   const { colorsObject } = useContext(ColorsContext);
   const { columns, data } = AppointmentsData();
@@ -168,7 +198,7 @@ export const Appointments = ({}) => {
           ]}
         />
       </form>
-      
+
       {subtitle && (
         <div className={"pt-5 -mx-5"}>
           <Table columns={columns} dataSource={data} pagination={false} />

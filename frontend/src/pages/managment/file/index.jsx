@@ -505,7 +505,7 @@ const File = () => {
           <div
             className={classNames(
               FileStyle["Modal__content-category"],
-              "bg-white py-7 px-12 w-full rounded-2xl",
+              "bg-white py-7 px-12 w-full rounded-2xl overflow-scroll",
             )}
           >
             <Title
