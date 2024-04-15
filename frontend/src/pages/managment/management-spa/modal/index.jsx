@@ -1,9 +1,5 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomCheckBox,
-  CustomInput,
-  CustomSelect,
-} from "@/components/form/index.jsx";
+import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
@@ -487,12 +483,13 @@ export const ModalContent = ({ page }) => {
                 />
 
                 <label className="inline-flex gap-8 items-center">
-                  <span className="font-medium w-56 flex-shrink-0 text-right">Vehicle Image</span>
+                  <span className="font-medium w-56 flex-shrink-0 text-right">
+                    Vehicle Image
+                  </span>
                   <div
                     className={`${ManagementStyle["CheckModal__div"]} ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     style={{ width: 269, height: 240 }}
-                  >
-                  </div>
+                  ></div>
                 </label>
               </div>
             </div>
