@@ -9,7 +9,11 @@ import { Pagination, Space, Table } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import { DeleteOutlined, ExportOutlined, FormOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  ExportOutlined,
+  FormOutlined,
+} from "@ant-design/icons";
 
 const CheckProgress = (status = "") => {
   const { colorsObject } = useContext(ColorsContext);
@@ -32,7 +36,11 @@ const columns = [
     key: "name",
     render: (text) => {
       return (
-        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-start"}
+          fontSize={"text-lg"}
+          fontWeightStrong={400}
+        >
           {text}
         </Paragraph>
       );
@@ -44,7 +52,11 @@ const columns = [
     key: "firstName",
     render: (text) => {
       return (
-        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-start"}
+          fontSize={"text-lg"}
+          fontWeightStrong={400}
+        >
           {text}
         </Paragraph>
       );
@@ -56,7 +68,11 @@ const columns = [
     key: "type",
     render: (text) => {
       return (
-        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-start"}
+          fontSize={"text-lg"}
+          fontWeightStrong={400}
+        >
           {text}
         </Paragraph>
       );
@@ -68,7 +84,11 @@ const columns = [
     key: "phone",
     render: (text) => {
       return (
-        <Paragraph className={"text-start"} fontSize={"text-lg"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-start"}
+          fontSize={"text-lg"}
+          fontWeightStrong={400}
+        >
           {text}
         </Paragraph>
       );
@@ -97,7 +117,7 @@ const columns = [
   {
     title: "Action",
     key: "action",
-    render: (_, record) => (
+    render: () => (
       <Space size={"middle"}>
         <IconComponent
           className={"text-xl text-indigo-500 border border-indigo-600"}
@@ -169,8 +189,7 @@ const data = [
   },
 ];
 
-
-const Staff = ({ }) => {
+const Staff = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
   const handleChangePagination = (page) => {
