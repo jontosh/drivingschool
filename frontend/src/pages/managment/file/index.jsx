@@ -1,19 +1,19 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
+import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
+import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Space, Table } from "antd";
-import { Fragment, useContext } from "react";
+import classNames from "classnames";
+import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { FiFileText } from "react-icons/fi";
 import { LuBellRing } from "react-icons/lu";
 import { SlCloudDownload } from "react-icons/sl";
-import { TfiWrite } from "react-icons/tfi";
 import { VscGraph } from "react-icons/vsc";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { WiCloudDown } from "react-icons/wi";
 import FileStyle from "../management.module.scss";
 import { FormOutlined } from "@ant-design/icons";
 
@@ -32,6 +32,9 @@ const CheckProgress = (status = "") => {
 };
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [IsOpen, setIsOpen] = useState(false);
+  const handleCategoryModal = () => setIsOpen((prev) => !prev);
+
   const columns = [
     {
       title: "Category",
@@ -227,6 +230,7 @@ const File = () => {
                     paddingInline={27}
                     controlHeight={26}
                     borderRadius={5}
+                    onClick={handleCategoryModal}
                   >
                     new category
                   </ButtonComponent>
@@ -248,7 +252,7 @@ const File = () => {
                       {
                         value: "Inactive",
                         label: "Inactive",
-                      }
+                      },
                     ]}
                   />
                 </div>
@@ -258,33 +262,37 @@ const File = () => {
           </div>
           <div className={"space-y-2.5"}>
             <div className="bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5">
-              <div className={`flex justify-between items-start ${FileStyle["Statistic__selects"]}`}>
+              <div
+                className={`flex justify-between items-center -mx-1.5 gap-1 ${FileStyle["Statistic__selects"]}`}
+              >
                 <IconComponent
-                  classNames={"items-center"}
+                  vertical={"items-center"}
                   icon={<VscGraph />}
                   spaceIconX={2.5}
-                  iconWidth={"w-7"}
-                  className={"text-base font-medium cursor-default"}
+                  iconWidth={"w-6"}
+                  className={
+                    "text-base inline-flex items-center font-medium cursor-default"
+                  }
                 >
                   Usage: Current month
                 </IconComponent>
                 <div className={`flex gap-2.5`}>
                   <CustomSelect
                     colorBorder={colorsObject.primary}
-                    style={{ width: 110 }}
-                    value={"Month"}
+                    // style={{ width: 110 }}
+                    placeholder={"Month"}
                     options={months}
                   />
                   <CustomSelect
                     colorBorder={colorsObject.primary}
-                    style={{ width: 110 }}
-                    value={"Year"}
+                    // style={{ width: 110 }}
+                    placeholder={"Year"}
                     options={YearsOptions()}
                   />
                   <CustomSelect
                     colorBorder={colorsObject.primary}
-                    style={{ width: 110 }}
-                    value={"Display"}
+                    // style={{ width: 110 }}
+                    placeholder={"Display"}
                     options={[
                       {
                         value: "None",
@@ -406,7 +414,7 @@ const File = () => {
                     {
                       value: "Dowload",
                       label: "Dowload",
-                    }
+                    },
                   ]}
                 />
               </div>
@@ -491,6 +499,139 @@ const File = () => {
           </div>
         </div>
       </section>
+
+      {IsOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <div
+            className={classNames(
+              FileStyle["Modal__content-category"],
+              "bg-white py-7 px-12 w-full rounded-2xl",
+            )}
+          >
+            <Title
+              level={2}
+              fontSize={"text-indigo-600 text-4xl"}
+              fontWeightStrong={600}
+              titleMarginBottom={46}
+            >
+              Add new file category
+            </Title>
+
+            <form className="flex gap-5 flex-col">
+              <CustomInput
+                className={"border-indigo-700 border"}
+                classNames={
+                  "inline-flex justify-center items-center flex-row-reverse gap-5"
+                }
+                spanText={"Category name"}
+                spanClassName={"font-semibold flex-shrink-0"}
+                fontSize={"text-base"}
+                placeholder={"Category name"}
+              />
+
+              <label
+                className={"inline-flex justify-center items-center gap-5"}
+              >
+                <span
+                  className={
+                    "font-semibold text-end w-32 flex-shrink-0 text-base"
+                  }
+                >
+                  File status
+                </span>
+
+                <CustomSelect
+                  placeholder={"Select"}
+                  style={{ width: "100%" }}
+                  colorBorder={colorsObject.primary}
+                  options={[
+                    {
+                      value: "active",
+                      label: "active",
+                    },
+                  ]}
+                />
+              </label>
+
+              <label
+                className={"inline-flex justify-center items-center gap-5"}
+              >
+                <span
+                  className={
+                    "font-semibold text-end w-32 flex-shrink-0 text-base"
+                  }
+                >
+                  File status
+                </span>
+
+                <span>@todo</span>
+              </label>
+
+              <label
+                className={"inline-flex justify-center items-center gap-5"}
+              >
+                <span
+                  className={
+                    "font-semibold text-end w-32 flex-shrink-0 text-base"
+                  }
+                >
+                  Signature link:
+                </span>
+
+                <textarea
+                  className={
+                    "border outline-0 border-indigo-700 p-5 rounded-2xl w-full"
+                  }
+                  placeholder={"text"}
+                ></textarea>
+              </label>
+
+              <label
+                className={"inline-flex justify-center items-center gap-5"}
+              >
+                <span
+                  className={
+                    "font-semibold text-end w-32 flex-shrink-0 text-base"
+                  }
+                >
+                  Note:
+                </span>
+
+                <textarea
+                  className={
+                    "border outline-0 border-indigo-700 p-5 rounded-2xl w-full"
+                  }
+                  placeholder={"text"}
+                ></textarea>
+              </label>
+
+              <div>@todo</div>
+
+              <div className={"text-center space-x-5"}>
+                <ButtonComponent
+                  defaultBg={colorsObject.secondary}
+                  defaultHoverBg={colorsObject.secondary}
+                  controlHeight={40}
+                  borderRadius={5}
+                  paddingInline={62}
+                  onClick={handleCategoryModal}
+                >
+                  Close
+                </ButtonComponent>
+                <ButtonComponent
+                  defaultBg={"#24C18F"}
+                  defaultHoverBg={"#24C18F"}
+                  controlHeight={40}
+                  borderRadius={5}
+                  paddingInline={62}
+                >
+                  Save
+                </ButtonComponent>
+              </div>
+            </form>
+          </div>
+        </Modal>
+      )}
     </Fragment>
   );
 };

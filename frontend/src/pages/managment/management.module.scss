@@ -98,6 +98,10 @@
 
 .Modal__content {
   max-width: 1242px !important;
+
+  &-category {
+    max-width: 850px;
+  }
 }
 
 .File__select {
@@ -109,6 +113,6 @@
 .Modal__div {
   width: 174px;
   min-height: 240px;
-  border: 1px solid #5F66E9;
+  border: 1px solid #5f66e9;
   border-radius: 10px;
 }

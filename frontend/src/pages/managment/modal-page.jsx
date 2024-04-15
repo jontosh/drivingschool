@@ -277,7 +277,10 @@ const CheckModal = ({ modalName }) => {
                       </div>
                     </div>
                   </div>
-                  <CustomCheckBox className={"gap-x-2.5"} style={{ paddingLeft: 185 }}>
+                  <CustomCheckBox
+                    className={"gap-x-2.5"}
+                    style={{ paddingLeft: 185 }}
+                  >
                     Is Service Taxable
                   </CustomCheckBox>
                   <CustomInput
@@ -298,7 +301,9 @@ const CheckModal = ({ modalName }) => {
                     spanText={"Web Name:"}
                     spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   />
-                  <label className={`inline-flex items-center w-full justify-between gap-10`}>
+                  <label
+                    className={`inline-flex items-center w-full justify-between gap-10`}
+                  >
                     <span
                       className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                     >
@@ -308,7 +313,9 @@ const CheckModal = ({ modalName }) => {
                       className={`w-full p-3 ${ManagementStyle["CheckModal__thrid-textarea"]}`}
                     ></textarea>
                   </label>
-                  <label className={`inline-flex items-center w-full justify-between gap-10`}>
+                  <label
+                    className={`inline-flex items-center w-full justify-between gap-10`}
+                  >
                     <span
                       className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                     >
@@ -571,7 +578,9 @@ const CheckModal = ({ modalName }) => {
                       ]}
                     />
                   </label>
-                  <label className={`inline-flex items-center w-full justify-between gap-10`}>
+                  <label
+                    className={`inline-flex items-center w-full justify-between gap-10`}
+                  >
                     <span
                       className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                     >
