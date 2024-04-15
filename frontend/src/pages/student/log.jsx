@@ -16,7 +16,6 @@ export const StudentLog = () => {
       title: "Date/Time",
       dataIndex: "date",
       key: "date",
-      align: "center",
       render: (date) => <Paragraph fontSize={"text-base"}>{date}</Paragraph>,
     },
     {
