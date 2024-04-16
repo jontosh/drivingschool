@@ -63,9 +63,9 @@ export const AppointmentEdit = () => {
           defaultBg={status ? "#24C18F" : colorsObject.danger}
           defaultHoverColor={colorsObject.main}
           defaultColor={colorsObject.main}
-          paddingInline={39}
           controlHeight={30}
           borderRadius={5}
+          style={{ width: 94 }}
         >
           {status ? "Active" : "Not active"}
         </ButtonComponent>
@@ -184,12 +184,13 @@ export const AppointmentEdit = () => {
       <form className="bg-white p-10">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-5">
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>Instructor</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>Instructor</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -200,21 +201,22 @@ export const AppointmentEdit = () => {
             </label>
 
             <CustomInput
-              spanClassName={`flex-shrink-0`}
+              spanClassName={`flex-shrink-0 w-40 text-right`}
               spanText={"Select date"}
-              className={"w-full border border-indigo-700"}
+              className={"w-full border border-indigo-700 shadow-xl"}
               placeholder={"MM/DD/YYYY - MM/DD/YYYY"}
               classNames={
-                "inline-flex w-full flex-row-reverse items-center gap-10"
+                "inline-flex w-full h-10 flex-row-reverse items-center gap-5"
               }
             />
 
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>Time filter</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>Time filter</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -224,12 +226,13 @@ export const AppointmentEdit = () => {
               />
             </label>
 
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>Weekdays</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>Weekdays</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -239,14 +242,15 @@ export const AppointmentEdit = () => {
               />
             </label>
 
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>
                 Displayed In Student Center
               </span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -256,7 +260,7 @@ export const AppointmentEdit = () => {
               />
             </label>
 
-            <div className={"space-x-5"}>
+            <div className={"space-x-5 text-center"}>
               <CustomCheckBox className={"gap-x-2.5"}>Student 1</CustomCheckBox>
 
               <CustomCheckBox className={"gap-x-2.5"}>Student 2</CustomCheckBox>
@@ -264,12 +268,13 @@ export const AppointmentEdit = () => {
           </div>
 
           <div className={"space-y-5"}>
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>Status</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>Status</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: "Confirmed",
@@ -282,12 +287,13 @@ export const AppointmentEdit = () => {
                 ]}
               />
             </label>
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>Vehicle</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>Vehicle</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -296,12 +302,13 @@ export const AppointmentEdit = () => {
                 ]}
               />
             </label>
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>Location</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>Location</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: "USA",
@@ -310,12 +317,13 @@ export const AppointmentEdit = () => {
                 ]}
               />
             </label>
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>BTW Subtype</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>BTW Subtype</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -324,12 +332,13 @@ export const AppointmentEdit = () => {
                 ]}
               />
             </label>
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span className={`flex-shrink-0`}>Appointment type</span>
+            <label className={"inline-flex w-full items-center gap-5"}>
+              <span className={`flex-shrink-0 w-40 text-right`}>Appointment type</span>
 
               <CustomSelect
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
                 options={[
                   {
                     value: 1,

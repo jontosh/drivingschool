@@ -151,12 +151,13 @@ export const Process = () => {
           <div className="grid grid-cols-2 gap-5">
             <div className={"space-y-5"}>
               <label className={"inline-flex w-full items-center gap-5"}>
-                <span className={"text-base flex-shrink-0"}>
+                <span className={"text-base flex-shrink-0 w-40 text-right"}>
                   Appointment type:
                 </span>
                 <CustomSelect
                   style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
+                  className={"h-10 shadow-xl"}
                   options={[
                     {
                       value: 1,
@@ -169,20 +170,21 @@ export const Process = () => {
               <CustomInput
                 spanText={"Select date"}
                 placeholder={`MM/DD/YYYY - MM/DD/YYYY`}
-                spanClassName={"flex-shrink-0"}
-                className={" flex-grow border border-indigo-700"}
+                spanClassName={"flex-shrink-0 w-40 text-right"}
+                className={" flex-grow border border-indigo-700 shadow-xl"}
                 classNames={
-                  "inline-flex w-full flex-row-reverse items-center gap-5"
+                  "inline-flex w-full h-10 flex-row-reverse items-center gap-5"
                 }
               />
             </div>
 
             <div className="space-y-5">
               <label className={"inline-flex w-full items-center gap-5"}>
-                <span className={"text-base flex-shrink-0"}>Location</span>
+                <span className={"text-base flex-shrink-0 w-40 text-right"}>Location</span>
                 <CustomSelect
                   style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
+                  className={"h-10 shadow-xl"}
                   options={[
                     {
                       value: 1,
@@ -192,10 +194,11 @@ export const Process = () => {
                 />
               </label>
               <label className={"inline-flex w-full items-center gap-5"}>
-                <span className={"text-base flex-shrink-0"}>Instruction</span>
+                <span className={"text-base flex-shrink-0 w-40 text-right"}>Instruction</span>
                 <CustomSelect
                   style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
+                  className={"h-10 shadow-xl"}
                   options={[
                     {
                       value: 1,

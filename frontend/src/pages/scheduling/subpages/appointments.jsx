@@ -27,10 +27,10 @@ export const Appointments = () => {
             defaultBg={"#24C18F"}
             defaultHoverBg={"#24C18F"}
             defaultHoverColor={colorsObject.main}
-            defaultColor={colorsObject.main}
             paddingInline={25}
             controlHeight={30}
             borderRadius={5}
+            style={{ width: 128 }}
           >
             Canceled
           </ButtonComponent>
@@ -42,9 +42,9 @@ export const Appointments = () => {
             defaultHoverBg={"#E57E55"}
             defaultHoverColor={colorsObject.main}
             defaultColor={colorsObject.main}
-            paddingInline={42}
             controlHeight={30}
             borderRadius={5}
+            style={{ width: 128 }}
           >
             Open
           </ButtonComponent>
@@ -57,8 +57,8 @@ export const Appointments = () => {
             defaultHoverBg={colorsObject.info}
             defaultHoverColor={colorsObject.main}
             defaultColor={colorsObject.main}
-            paddingInline={21}
             controlHeight={30}
+            style={{ width: 128 }}
           >
             Processed
           </ButtonComponent>
@@ -145,12 +145,30 @@ export const Appointments = () => {
       dataIndex: "subtype",
       key: "subtype",
       align: "center",
+      render: (seating) => (
+        <Paragraph
+          colorText={colorsObject.secondary}
+          fontSize={"text-base"}
+          fontWeightStrong={400}
+        >
+          {seating}
+        </Paragraph>
+      ),
     },
     {
       title: "Student name",
       dataIndex: "studentName",
       key: "studentName",
       align: "center",
+      render: (seating) => (
+        <Paragraph
+          colorText={colorsObject.secondary}
+          fontSize={"text-base"}
+          fontWeightStrong={400}
+        >
+          {seating}
+        </Paragraph>
+      ),
     },
     {
       title: "Status",
@@ -166,8 +184,13 @@ export const Appointments = () => {
       align: "center",
       render: () => (
         <IconComponent
-          className={"text-3xl text-indigo-700"}
+          className={"text-xl text-indigo-700 border border-indigo-600 "}
           icon={<FormOutlined />}
+          style={{
+            borderRadius: 5,
+            paddingLeft: 4,
+            paddingRight: 4,
+          }}
         />
       ),
     },
@@ -212,94 +235,100 @@ export const Appointments = () => {
       </Title>
 
       <form className="bg-white py-7 px-14 shadow-xl rounded-2xl flex justify-center gap-5 flex-wrap">
-        <div className={"space-y-5 flex-grow"}>
-          <CustomInput
-            spanClassName={`flex-shrink-0 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-            spanText={"Start date"}
-            className={"w-full border border-indigo-700"}
-            placeholder={"MM/DD/YYYY"}
-            classNames={
-              "inline-flex w-full flex-row-reverse items-center gap-10"
-            }
-          />
-          <CustomInput
-            spanClassName={`flex-shrink-0 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-            spanText={"End date"}
-            className={"w-full border border-indigo-700"}
-            placeholder={"MM/DD/YYYY"}
-            classNames={
-              "inline-flex w-full flex-row-reverse items-center gap-10"
-            }
-          />
-          <label className={"inline-flex w-full items-center gap-10"}>
-            <span
-              className={`flex-shrink-0 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-            >
-              Type
-            </span>
-
-            <CustomSelect
-              style={{ width: "100%" }}
-              colorBorder={colorsObject.primary}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-              ]}
+        <div className="grid grid-cols-2 gap-5">
+          <div className={"space-y-5 flex-grow"}>
+            <CustomInput
+              spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanText={"Start date"}
+              className={"w-full border border-indigo-700 shadow-xl"}
+              placeholder={"MM/DD/YYYY"}
+              classNames={
+                "inline-flex w-full h-10 flex-row-reverse items-center gap-10"
+              }
             />
-          </label>
-        </div>
-
-        <div className={"space-y-5 flex-grow"}>
-          <label className={"inline-flex w-full items-center gap-10"}>
-            <span className={`flex-shrink-0`}>Status</span>
-
-            <CustomSelect
-              style={{ width: "100%" }}
-              colorBorder={colorsObject.primary}
-              options={[
-                {
-                  value: "Active",
-                  label: "Active",
-                },
-                {
-                  value: "Not Active",
-                  label: "Not Active",
-                },
-              ]}
+            <CustomInput
+              spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanText={"End date"}
+              className={"w-full border border-indigo-700 shadow-xl"}
+              placeholder={"MM/DD/YYYY"}
+              classNames={
+                "inline-flex w-full h-10 flex-row-reverse items-center gap-10"
+              }
             />
-          </label>
+            <label className={"inline-flex w-full items-center gap-10"}>
+              <span
+                className={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
+                Type
+              </span>
 
-          <label className={"inline-flex w-full items-center gap-10"}>
-            <span className={`flex-shrink-0`}>Instructor</span>
+              <CustomSelect
+                style={{ width: "100%" }}
+                colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                ]}
+              />
+            </label>
+          </div>
 
-            <CustomSelect
-              style={{ width: "100%" }}
-              colorBorder={colorsObject.primary}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-              ]}
-            />
-          </label>
+          <div className={"space-y-5 flex-grow"}>
+            <label className={"inline-flex w-full items-center gap-10"}>
+              <span className={`flex-shrink-0 w-20 text-right`}>Status</span>
 
-          <label className={"inline-flex w-full items-center gap-10"}>
-            <span className={`flex-shrink-0`}>Location</span>
+              <CustomSelect
+                style={{ width: "100%" }}
+                colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
+                options={[
+                  {
+                    value: "Active",
+                    label: "Active",
+                  },
+                  {
+                    value: "Not Active",
+                    label: "Not Active",
+                  },
+                ]}
+              />
+            </label>
 
-            <CustomSelect
-              style={{ width: "100%" }}
-              colorBorder={colorsObject.primary}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-              ]}
-            />
-          </label>
+            <label className={"inline-flex w-full items-center gap-10"}>
+              <span className={`flex-shrink-0 w-20 text-right`}>Instructor</span>
+
+              <CustomSelect
+                style={{ width: "100%" }}
+                colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                ]}
+              />
+            </label>
+
+            <label className={"inline-flex w-full items-center gap-10"}>
+              <span className={`flex-shrink-0 w-20 text-right`}>Location</span>
+
+              <CustomSelect
+                style={{ width: "100%" }}
+                colorBorder={colorsObject.primary}
+                className={"h-10 shadow-xl"}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                ]}
+              />
+            </label>
+          </div>
         </div>
         <div className={"w-full flex-grow text-center"}>
           <ButtonComponent
