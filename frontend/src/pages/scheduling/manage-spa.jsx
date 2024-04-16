@@ -1,14 +1,16 @@
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { AppointmentEdit } from "@/pages/scheduling/subpages/appointment-edit.jsx";
+import { OpenTimeSlots } from "@/pages/scheduling/subpages/open-time-slots.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 const setActiveNav = ({ isActive }) =>
   isActive
     ? `${ServiceStyle["Tab__link-active"]} py-5 text-lg`
     : "hover:text-indigo-500 text-lg text-gray-500 py-5";
 
 const CheckPages = ({ page }) => {
+  const navigate = useNavigate();
   switch (page?.toLowerCase()) {
     case "appointment":
       return (
@@ -19,8 +21,18 @@ const CheckPages = ({ page }) => {
           <AppointmentEdit />
         </Fragment>
       );
+    case "open": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Manage time slot - Open time slots</title>
+          </Helmet>
+          <OpenTimeSlots />
+        </Fragment>
+      );
+    }
     default:
-      console.log(page);
+      navigate(-1);
   }
 };
 export const ManageSpa = () => {
