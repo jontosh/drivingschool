@@ -448,15 +448,14 @@ const VehiclesData = () => {
       align: "center",
       render: (color) => {
         return (
-          <div className={"text-center"}>
-            <ButtonComponent
-              defaultBg={color}
-              defaultHoverBg={color}
-              controlHeight={30}
-              borderRadius={5}
-              className={"w-32"}
-            />
-          </div>
+          <div
+            className="w-32 m-auto"
+            style={{
+              height: 30,
+              borderRadius: 5,
+              background: color
+            }}
+          ></div>
         );
       },
     },

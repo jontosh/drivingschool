@@ -79,6 +79,7 @@ export const Messages = () => {
                 pageSize={1}
                 current={CurrentPagination}
                 onChange={handleChangePagination}
+                size={"small"}
               />
             </div>
             <div className="text-center">

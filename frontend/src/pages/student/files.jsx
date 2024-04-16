@@ -25,7 +25,7 @@ export const Files = () => {
               <div
                 className={classNames(
                   FilesStyle["File__item"],
-                  "py-3.5 flex justify-between items-center px-5 bg-white border border-indigo-700 rounded-2xl",
+                  "py-3.5 flex justify-between items-center gap-40 px-5 bg-white border border-indigo-700 rounded-2xl",
                 )}
               >
                 <Paragraph className={"text-base"}>Student contract</Paragraph>
@@ -60,7 +60,7 @@ export const Files = () => {
               <div
                 className={classNames(
                   FilesStyle["File__item"],
-                  "py-3.5 flex justify-between items-center px-5 bg-white border border-indigo-700 rounded-2xl",
+                  "py-3.5 flex justify-between items-center gap-40 px-5 bg-white border border-indigo-700 rounded-2xl",
                 )}
               >
                 <Paragraph className={"text-base"}>Student contract</Paragraph>
