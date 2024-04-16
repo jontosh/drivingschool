@@ -30,6 +30,6 @@ export const SchedulingSpa = () => {
       );
     }
     default:
-      return navigate("/scheduling/notfound/notfound");
+      return navigate("/scheduling/");
   }
 };
