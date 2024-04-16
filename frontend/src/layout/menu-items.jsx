@@ -96,7 +96,40 @@ export const MenuItems = (IsActive, getItem) => {
           <Link to={"/scheduling/vehicle"} children={"Manage time slot"} />,
           "sub5-4",
           null,
-          [getItem("Process")],
+          IsActive && [
+            getItem(
+              <Link
+                to={"/scheduling/manage/appoinment"}
+                children={"Bulk Appointment"}
+              />,
+              "sub5-4-1",
+              null,
+            ),
+            getItem(
+              <Link
+                to={"/scheduling/manage/open"}
+                children={"Open time slots"}
+              />,
+              "sub5-4-2",
+              null,
+            ),
+            getItem(
+              <Link
+                to={"/scheduling/manage/logs"}
+                children={"Activity logs"}
+              />,
+              "sub5-4-3",
+              null,
+            ),
+            getItem(
+              <Link
+                to={"/scheduling/manage/process"}
+                children={"Bulk process"}
+              />,
+              "sub5-4-4",
+              null,
+            ),
+          ],
         ),
         getItem(
           <Link to={"/scheduling/corporate"} children={"Corporate time off"} />,
