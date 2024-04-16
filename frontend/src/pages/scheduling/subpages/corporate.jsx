@@ -115,9 +115,9 @@ export const Corporate = () => {
           defaultBg={status ? "#24C18F" : colorsObject.danger}
           defaultHoverColor={colorsObject.main}
           defaultColor={colorsObject.main}
-          paddingInline={39}
           controlHeight={30}
           borderRadius={5}
+          style={{ width: 94 }}
         >
           {status ? "Active" : "Not active"}
         </ButtonComponent>
