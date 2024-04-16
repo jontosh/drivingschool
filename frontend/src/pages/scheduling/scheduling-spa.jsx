@@ -1,3 +1,4 @@
+import { Appointments } from "@/pages/scheduling/subpages/appointments.jsx";
 import { Corporate } from "@/pages/scheduling/subpages/corporate.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
@@ -18,7 +19,17 @@ export const SchedulingSpa = () => {
         </Fragment>
       );
     }
+    case "appointments": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Staff appointment list</title>
+          </Helmet>
+          <Appointments />
+        </Fragment>
+      );
+    }
     default:
-      navigate(-1);
+      return navigate("/scheduling/notfound/notfound");
   }
 };
