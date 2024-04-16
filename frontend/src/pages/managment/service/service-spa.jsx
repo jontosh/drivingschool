@@ -547,7 +547,7 @@ const PackagesData = () => {
       title: "Action",
       key: "action",
       render: () => (
-        <div className={"text-center space-x-2.5"}>
+        <div className={"-mx-6 text-center"}>
           <IconComponent
             className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{

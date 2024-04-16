@@ -4,6 +4,7 @@ import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import ManagementStyle from "@/pages/managment/management.module.scss";
+import { ColorPicker } from "antd";
 import { Fragment, useContext } from "react";
 
 export const ModalContent = ({ page }) => {
@@ -307,9 +308,9 @@ export const ModalContent = ({ page }) => {
                     ManagementStyle["CheckModal__form-element__shadow"]
                   }
                   type={"text"}
-                  spanText={"Vehicle Name *"}
-                  placeholder={"Vehicle Name *"}
-                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  spanText={"Vehicle Name"}
+                  placeholder={"Vehicle Name *"}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
                   colorBorder={colorsObject.primary}
                 />
 
@@ -397,20 +398,17 @@ export const ModalContent = ({ page }) => {
               </div>
 
               <div className="space-y-5">
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  type={"color"}
-                  value={"#ffffff"}
-                  spanText={"Appointment Color"}
-                  placeholder={"MM/DD/YYYY"}
-                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
-                />
+                <label className="inline-flex gap-8 items-center w-full">
+                  <span
+                    className={`text-sm flex-shrink-0 font-medium w-56 text-right relative`}
+                  >
+                    Appointment Color
+                  </span>
+                  <ColorPicker
+                    showText={(color) => <span>{color.toHexString()}</span>}
+                    className={`w-full h-10 justify-start pl-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  />
+                </label>
 
                 <CustomInput
                   classNames={
@@ -420,9 +418,9 @@ export const ModalContent = ({ page }) => {
                     ManagementStyle["CheckModal__form-element__shadow"]
                   }
                   type={"text"}
-                  spanText={"Enable AppointmentColor *"}
+                  spanText={"Enable AppointmentColor"}
                   placeholder={"Instructor Permit Number"}
-                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                  spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
                   colorBorder={colorsObject.primary}
                 />
 
