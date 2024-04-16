@@ -1,5 +1,6 @@
 import { Appointments } from "@/pages/scheduling/subpages/appointments.jsx";
 import { Corporate } from "@/pages/scheduling/subpages/corporate.jsx";
+import { OpenTimeSlots } from "@/pages/scheduling/subpages/open-time-slots.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,6 +31,6 @@ export const SchedulingSpa = () => {
       );
     }
     default:
-      return navigate("/scheduling/");
+      navigate(-1);
   }
 };
