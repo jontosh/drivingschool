@@ -1,6 +1,7 @@
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { AppointmentEdit } from "@/pages/scheduling/subpages/appointment-edit.jsx";
 import { OpenTimeSlots } from "@/pages/scheduling/subpages/open-time-slots.jsx";
+import { Process } from "@/pages/scheduling/subpages/process.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
@@ -28,6 +29,16 @@ const CheckPages = ({ page }) => {
             <title>Manage time slot - Open time slots</title>
           </Helmet>
           <OpenTimeSlots />
+        </Fragment>
+      );
+    }
+    case "process": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Manage time slot - Bulk process</title>
+          </Helmet>
+          <Process />
         </Fragment>
       );
     }
