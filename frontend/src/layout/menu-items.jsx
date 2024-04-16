@@ -99,7 +99,7 @@ export const MenuItems = (IsActive, getItem) => {
           IsActive && [
             getItem(
               <Link
-                to={"/scheduling/manage/appoinment"}
+                to={"/scheduling/manage/appointment"}
                 children={"Bulk Appointment"}
               />,
               "sub5-4-1",
