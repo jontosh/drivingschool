@@ -3,6 +3,7 @@ import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Alert } from "antd";
 import { Fragment, useContext, useState } from "react";
+import ActivityLogsStyle from "../scheduling.module.scss"
 
 export const ActivityLogs = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -29,15 +30,14 @@ export const ActivityLogs = () => {
           />
         )}
         <form>
-          <div className={"space-y-5"}>
-            <label className={"inline-flex w-full items-center gap-5"}>
+          <div className={"flex flex-col gap-y-5"}>
+            <label className={"inline-flex items-center gap-5 m-auto"}>
               <span className={"text-base flex-shrink-0 w-40 text-right"}>
                 Appointment type:
               </span>
               <CustomSelect
-                style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={`h-10 shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
                 options={[
                   {
                     value: 1,
@@ -51,9 +51,9 @@ export const ActivityLogs = () => {
               spanText={"Select date"}
               placeholder={`MM/DD/YYYY - MM/DD/YYYY`}
               spanClassName={"flex-shrink-0 w-40 text-right"}
-              className={" flex-grow border border-indigo-700 shadow-xl"}
+              className={`flex-grow border border-indigo-700 shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
               classNames={
-                "inline-flex w-full h-10 flex-row-reverse items-center gap-5"
+                "inline-flex h-10 flex-row-reverse items-center gap-5 m-auto"
               }
             />
           </div>
