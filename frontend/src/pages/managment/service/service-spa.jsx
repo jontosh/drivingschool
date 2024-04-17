@@ -448,6 +448,7 @@ const PackagesData = () => {
       title: "Code",
       key: "code",
       dataIndex: "code",
+      align: "center",
       render: (text) => (
         <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
           {text}
@@ -458,6 +459,7 @@ const PackagesData = () => {
       title: "Service price",
       key: "price",
       dataIndex: "price",
+      align: "center",
       render: (text) => (
         <div className={"text-center"}>
           <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
@@ -470,6 +472,7 @@ const PackagesData = () => {
       title: "Service content",
       key: "content",
       dataIndex: "content",
+      align: "center",
       render: (text) => (
         <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
           {text}
@@ -480,6 +483,7 @@ const PackagesData = () => {
       title: "Status",
       key: "status",
       dataIndex: "status",
+      align: "center",
       render: (text) => {
         return (
           <Space size={"middle"}>
@@ -500,6 +504,7 @@ const PackagesData = () => {
       title: "Web Purchase",
       key: "web",
       dataIndex: "web",
+      align: "center",
       render: (access) => {
         return (
           <div className={"text-center"}>
@@ -517,6 +522,7 @@ const PackagesData = () => {
       title: "Student Portal Purchase",
       key: "portal",
       dataIndex: "portal",
+      align: "center",
       render: (access) => {
         return (
           <div className={"text-center"}>
@@ -534,6 +540,7 @@ const PackagesData = () => {
       title: "Students Enrolled",
       key: "enrolled",
       dataIndex: "enrolled",
+      align: "center",
       render: (access) => {
         return (
           <div className={"text-center"}>
@@ -550,8 +557,10 @@ const PackagesData = () => {
     {
       title: "Action",
       key: "action",
+      width: 150,
+      align: "center",
       render: () => (
-        <div className={"-mx-6 text-center"}>
+        <div className={"space-x-2.5 text-center"}>
           <IconComponent
             className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{
