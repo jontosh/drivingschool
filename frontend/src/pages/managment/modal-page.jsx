@@ -4,6 +4,7 @@ import {
   CustomInput,
   CustomRadio,
   CustomSelect,
+  CustomTransfer,
 } from "@/components/form/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -12,6 +13,21 @@ import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import ManagementStyle from "./management.module.scss";
+
+const mockData = [
+  { key: "0", title: "Title 0", description: "Sample Description 0" },
+  { key: "1", title: "Title 1", description: "Sample Description 1" },
+  { key: "2", title: "Title 2", description: "Sample Description 2" },
+  { key: "3", title: "Title 3", description: "Sample Description 3" },
+  { key: "4", title: "Title 4", description: "Sample Description 4" },
+  { key: "5", title: "Title 5", description: "Sample Description 5" },
+  { key: "6", title: "Title 0", description: "Sample Description 0" },
+  { key: "7", title: "Title 1", description: "Sample Description 1" },
+  { key: "8", title: "Title 2", description: "Sample Description 2" },
+  { key: "9", title: "Title 3", description: "Sample Description 3" },
+  { key: "10", title: "Title 4", description: "Sample Description 4" },
+  { key: "11", title: "Title 5", description: "Sample Description 5" },
+]
 
 const CheckModal = ({ modalName }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -74,7 +90,7 @@ const CheckModal = ({ modalName }) => {
                       Service Status:
                     </span>
                     <CustomSelect
-                      style={{ width: "100%" }}
+                      style={{ width: "100%", height: 40 }}
                       colorBorder={colorsObject.primary}
                       className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                       placeholder={"Service Status: *"}
@@ -88,193 +104,41 @@ const CheckModal = ({ modalName }) => {
                   </label>
                   <div className={`space-y-5`}>
                     <div className={`flex items-center gap-10`}>
-                      {/*<Title level={2}>Assign Locations: *</Title>*/}
                       <span
                         className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                       >
                         Assign Locations:
                       </span>
-                      <div className={`flex flex-col gap-5 items-center`}>
+                      <label className={`flex flex-col gap-5 items-center`}>
                         <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 align-end ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
-                      <div className={`flex flex-col gap-5 items-center`}>
-                        <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
+                        <CustomTransfer
+                          dataSource={mockData}
+                          titles={["Source", "Target"]}
+                          colorBorder={colorsObject.primary}
+                          colorBgContainer={"transparent"}
+                          headerHeight={30}
+                          listHeight={200}
+                        />
+                      </label>
                     </div>
 
                     <div className={`flex items-center gap-10`}>
-                      {/*<Title level={2}>Service Items: *</Title>*/}
                       <span
                         className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                       >
                         Service Items:
                       </span>
-                      <div className={`flex flex-col gap-2.5 items-center`}>
+                      <label className={`flex flex-col gap-5 items-center`}>
                         <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
-                      <div className={`flex flex-col gap-5 items-center`}>
-                        <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
+                        <CustomTransfer
+                          dataSource={mockData}
+                          titles={["Source", "Target"]}
+                          colorBorder={colorsObject.primary}
+                          colorBgContainer={"transparent"}
+                          headerHeight={30}
+                          listHeight={200}
+                        />
+                      </label>
                     </div>
                   </div>
                   <CustomCheckBox
@@ -375,92 +239,17 @@ const CheckModal = ({ modalName }) => {
                       >
                         Assign Locations:
                       </span>
-                      <div className={`flex flex-col gap-5 items-center`}>
+                      <label className={`flex flex-col gap-5 items-center`}>
                         <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 align-end ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
-                      <div className={`flex flex-col gap-5 items-center`}>
-                        <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
+                        <CustomTransfer
+                          dataSource={mockData}
+                          titles={["Source", "Target"]}
+                          colorBorder={colorsObject.primary}
+                          colorBgContainer={"transparent"}
+                          headerHeight={30}
+                          listHeight={200}
+                        />
+                      </label>
                     </div>
 
                     <div className={`flex items-center gap-10`}>
@@ -469,92 +258,17 @@ const CheckModal = ({ modalName }) => {
                       >
                         Service Items:
                       </span>
-                      <div className={`flex flex-col gap-2.5 items-center`}>
+                      <label className={`flex flex-col gap-5 items-center`}>
                         <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
-                      <div className={`flex flex-col gap-5 items-center`}>
-                        <span>Click to select</span>
-                        <div
-                          className={`p-3 text-lg flex flex-col gap-2 ${ManagementStyle["Modal__div"]}`}
-                        >
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                          <ButtonComponent
-                            defaultColor="#000000"
-                            defaultHoverColor="#000000"
-                          >
-                            Advanced Parking
-                          </ButtonComponent>
-                        </div>
-                      </div>
+                        <CustomTransfer
+                          dataSource={mockData}
+                          titles={["Source", "Target"]}
+                          colorBorder={colorsObject.primary}
+                          colorBgContainer={"transparent"}
+                          headerHeight={30}
+                          listHeight={200}
+                        />
+                      </label>
                     </div>
                   </div>
                   <label
@@ -566,7 +280,7 @@ const CheckModal = ({ modalName }) => {
                       Associate Contract From OE:
                     </span>
                     <CustomSelect
-                      style={{ width: "100%" }}
+                      style={{ width: "100%", height: 40 }}
                       colorBorder={colorsObject.primary}
                       className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                       placeholder={"Service Status: *"}
@@ -1360,12 +1074,14 @@ const CheckModal = ({ modalName }) => {
                   />
                   <label className="inline-flex justify-end gap-8 items-center w-full">
                     <span className="text-right">Area Coverage</span>
-                    <textarea
-                      className={`p-3 ${ManagementStyle["CheckModal__mini-textarea"]}`}
-                    ></textarea>
-                    <textarea
-                      className={`p-3 ${ManagementStyle["CheckModal__mini-textarea"]}`}
-                    ></textarea>
+                    <CustomTransfer
+                      dataSource={mockData}
+                      titles={["Source", "Target"]}
+                      colorBorder={colorsObject.primary}
+                      colorBgContainer={"transparent"}
+                      headerHeight={30}
+                      listHeight={200}
+                    />
                   </label>
                   <label className="inline-flex justify-end gap-8 items-center w-full">
                     <span>Location note</span>
