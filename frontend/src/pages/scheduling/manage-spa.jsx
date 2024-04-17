@@ -1,4 +1,5 @@
 import ServiceStyle from "@/pages/managment/management.module.scss";
+import { ActivityLogs } from "@/pages/scheduling/subpages/activity-logs.jsx";
 import { AppointmentEdit } from "@/pages/scheduling/subpages/appointment-edit.jsx";
 import { OpenTimeSlots } from "@/pages/scheduling/subpages/open-time-slots.jsx";
 import { Process } from "@/pages/scheduling/subpages/process.jsx";
@@ -39,6 +40,16 @@ const CheckPages = ({ page }) => {
             <title>Manage time slot - Bulk process</title>
           </Helmet>
           <Process />
+        </Fragment>
+      );
+    }
+    case "logs": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Manage time slot - Activity logs</title>
+          </Helmet>
+          <ActivityLogs />
         </Fragment>
       );
     }
