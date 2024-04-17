@@ -1,6 +1,7 @@
 import { Appointments } from "@/pages/scheduling/subpages/appointments.jsx";
 import { Corporate } from "@/pages/scheduling/subpages/corporate.jsx";
 import { SchedulingStudent } from "@/pages/scheduling/subpages/scheduling-student.jsx";
+import { Vehicle } from "@/pages/scheduling/subpages/vehicle.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
@@ -37,6 +38,16 @@ export const SchedulingSpa = () => {
             <title>Scheduling - Student</title>
           </Helmet>
           <SchedulingStudent />
+        </Fragment>
+      );
+    }
+    case "vehicle": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Vehicle</title>
+          </Helmet>
+          <Vehicle />
         </Fragment>
       );
     }

@@ -7,7 +7,11 @@ import { Fees } from "@/pages/managment/service/fees.jsx";
 import { Miscellaneous } from "@/pages/managment/service/miscellaneous.jsx";
 import { Packages } from "@/pages/managment/service/packages.jsx";
 import { Product } from "@/pages/managment/service/product.jsx";
-import { DeleteOutlined, ExportOutlined, FormOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  ExportOutlined,
+  FormOutlined,
+} from "@ant-design/icons";
 import { Space } from "antd";
 import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
