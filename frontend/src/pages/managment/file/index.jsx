@@ -30,9 +30,21 @@ const CheckProgress = (status = "") => {
       return colorsObject.main;
   }
 };
+
+const mockData = [
+  { key: "0", title: "Title 0", description: "Sample Description 0" },
+  { key: "1", title: "Title 1", description: "Sample Description 1" },
+  { key: "2", title: "Title 2", description: "Sample Description 2" },
+  { key: "3", title: "Title 3", description: "Sample Description 3" },
+  { key: "4", title: "Title 4", description: "Sample Description 4" },
+  { key: "5", title: "Title 5", description: "Sample Description 5" },
+];
+
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [IsOpen, setIsOpen] = useState(false);
+  const [targetKeys, setTargetKeys] = useState(mockData);
+  const [selectedKeys, setSelectedKeys] = useState([]);
   const handleCategoryModal = () => setIsOpen((prev) => !prev);
 
   const columns = [
@@ -564,9 +576,19 @@ const File = () => {
                   Packages:
                 </span>
 
-                <span>
-                  <Transfer />
-                </span>
+                  <Transfer
+                    dataSource={mockData}
+                    titles={['Source', 'Target']}
+                    render={item => item.title}
+                    selectedKeys={selectedKeys}
+                    targetKeys={targetKeys}
+                    onChange={(nextTargetKeys) => {
+                      setTargetKeys(nextTargetKeys);
+                    }}
+                    onSelectChange={(sourceSelectedKeys, targetSelectedKeys) => {
+                      setSelectedKeys([...sourceSelectedKeys, ...targetSelectedKeys]);
+                    }}
+                  />
               </label>
 
               <label
