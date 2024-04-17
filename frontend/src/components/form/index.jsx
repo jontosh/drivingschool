@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import FormStyle from "./form.module.scss";
-import { ConfigProvider, Input, Select } from "antd";
+import { ConfigProvider, Input, Select, Transfer } from "antd";
 const { Option } = Select;
 
 export const CustomCheckBox = ({
@@ -190,5 +190,76 @@ export const CustomRadio = ({
       </div>
       {children}
     </label>
+  );
+};
+
+export const CustomTransfer = ({
+  className,
+  onChange,
+  colorBgContainer,
+  colorBorder,
+  colorBgContainerDisabled,
+  colorText,
+  controlHeightLG,
+  fontSize,
+  dataSource,
+  titles,
+  initialTargetKeys,
+  listHeight,
+  headerHeight,
+}) => {
+  const [targetKeysState, setTargetKeysState] = useState(initialTargetKeys);
+  const [selectedKeys, setSelectedKeys] = useState([]);
+
+  const handleChange = (nextTargetKeys, direction, moveKeys) => {
+    console.log('targetKeys:', nextTargetKeys);
+    console.log('direction:', direction);
+    console.log('moveKeys:', moveKeys);
+    setTargetKeysState(nextTargetKeys);
+    if (typeof onChange === 'function') {
+      onChange(nextTargetKeys);
+    }
+  };
+
+  const onSelectChange = (sourceSelectedKeys, targetSelectedKeys) => {
+    console.log('sourceSelectedKeys:', sourceSelectedKeys);
+    console.log('targetSelectedKeys:', targetSelectedKeys);
+    setSelectedKeys([...sourceSelectedKeys, ...targetSelectedKeys]);
+  };
+
+  const onScroll = (direction, e) => {
+    console.log('direction:', direction);
+    console.log('target:', e.target);
+  };
+
+  return (
+    <ConfigProvider
+      theme={{
+        components: {
+          Transfer: {
+            colorBgContainer,
+            colorBorder,
+            colorBgContainerDisabled,
+            colorText,
+            controlHeightLG,
+            fontSize,
+            listHeight,
+            headerHeight,
+          }
+        }
+      }}
+    >
+      <Transfer
+        className={className}
+        onChange={handleChange}
+        dataSource={dataSource}
+        titles={titles}
+        targetKeys={targetKeysState}
+        selectedKeys={selectedKeys}
+        onSelectChange={onSelectChange}
+        onScroll={onScroll}
+        render={(item) => item.title}
+      />
+    </ConfigProvider>
   );
 };

@@ -1,5 +1,5 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import { CustomInput, CustomSelect, CustomTransfer } from "@/components/form/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
@@ -38,13 +38,17 @@ const mockData = [
   { key: "3", title: "Title 3", description: "Sample Description 3" },
   { key: "4", title: "Title 4", description: "Sample Description 4" },
   { key: "5", title: "Title 5", description: "Sample Description 5" },
-];
+  { key: "6", title: "Title 0", description: "Sample Description 0" },
+  { key: "7", title: "Title 1", description: "Sample Description 1" },
+  { key: "8", title: "Title 2", description: "Sample Description 2" },
+  { key: "9", title: "Title 3", description: "Sample Description 3" },
+  { key: "10", title: "Title 4", description: "Sample Description 4" },
+  { key: "11", title: "Title 5", description: "Sample Description 5" },
+]
 
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [IsOpen, setIsOpen] = useState(false);
-  const [targetKeys, setTargetKeys] = useState(mockData);
-  const [selectedKeys, setSelectedKeys] = useState([]);
   const handleCategoryModal = () => setIsOpen((prev) => !prev);
 
   const columns = [
@@ -517,7 +521,7 @@ const File = () => {
           <div
             className={classNames(
               FileStyle["Modal__content-category"],
-              "bg-white py-7 px-12 w-full rounded-2xl overflow-scroll",
+              "bg-white py-7 px-12 w-full rounded-2xl overflow-scroll m-2.5",
             )}
           >
             <Title
@@ -576,19 +580,14 @@ const File = () => {
                   Packages:
                 </span>
 
-                  <Transfer
-                    dataSource={mockData}
-                    titles={['Source', 'Target']}
-                    render={item => item.title}
-                    selectedKeys={selectedKeys}
-                    targetKeys={targetKeys}
-                    onChange={(nextTargetKeys) => {
-                      setTargetKeys(nextTargetKeys);
-                    }}
-                    onSelectChange={(sourceSelectedKeys, targetSelectedKeys) => {
-                      setSelectedKeys([...sourceSelectedKeys, ...targetSelectedKeys]);
-                    }}
-                  />
+                <CustomTransfer
+                  dataSource={mockData}
+                  titles={["Source", "Target"]}
+                  colorBorder={colorsObject.primary}
+                  colorBgContainer={"transparent"}
+                  headerHeight={30}
+                  listHeight={200}
+                />
               </label>
 
               <label
