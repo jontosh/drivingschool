@@ -537,7 +537,7 @@ const File = () => {
               <CustomInput
                 className={"border-indigo-700 border"}
                 classNames={
-                  "inline-flex justify-center items-center flex-row-reverse gap-5"
+                  "inline-flex justify-center h-10 items-center flex-row-reverse gap-5"
                 }
                 spanText={"Category name"}
                 spanClassName={"font-semibold flex-shrink-0"}
@@ -560,6 +560,7 @@ const File = () => {
                   placeholder={"Select"}
                   style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
+                  className={"h-10"}
                   options={[
                     {
                       value: "active",

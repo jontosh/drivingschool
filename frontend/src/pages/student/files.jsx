@@ -34,22 +34,22 @@ export const Files = () => {
 
               <div className={"space-x-1 items-center"}>
                 <IconComponent
-                  className={"text-base border border-indigo-700 rounded-lg"}
+                  className={`text-base border border-indigo-700 rounded-lg ${FilesStyle["File__item"]}`}
                   icon={<AiOutlineEye />}
                   style={{ padding: "4px 4px 0" }}
                 />
                 <IconComponent
-                  className={"text-base border border-indigo-700 rounded-lg"}
+                  className={`text-base border border-indigo-700 rounded-lg ${FilesStyle["File__item"]}`}
                   icon={<SlCloudDownload />}
                   style={{ padding: "4px 4px 0" }}
                 />
                 <IconComponent
-                  className={"text-base border border-indigo-700 rounded-lg"}
+                  className={`text-base border border-indigo-700 rounded-lg ${FilesStyle["File__item"]}`}
                   icon={<AiOutlineInfoCircle />}
                   style={{ padding: "4px 4px 0" }}
                 />
                 <IconComponent
-                  className={"text-base border border-indigo-700 rounded-lg"}
+                  className={`text-base border border-indigo-700 rounded-lg ${FilesStyle["File__item"]}`}
                   icon={<RiDeleteBin6Line />}
                   style={{ padding: "4px 4px 0" }}
                 />
@@ -69,29 +69,23 @@ export const Files = () => {
 
               <div className={"space-x-1 items-center"}>
                 <IconComponent
-                  className={"text-base border border-indigo-700 rounded-lg"}
+                  className={`text-base border border-indigo-700 rounded-lg ${FilesStyle["File__item"]}`}
                   icon={<AiOutlineEye />}
                   style={{ padding: "4px 4px 0" }}
                 />
 
                 <IconComponent
-                  className={
-                    "text-base border border-indigo-700 rounded-lg pt-1.5"
-                  }
+                  className={`text-base border border-indigo-700 rounded-lg pt-1.5 ${FilesStyle["File__item"]}`}
                   icon={<SlCloudDownload />}
                   style={{ padding: "4px 4px 0" }}
                 />
                 <IconComponent
-                  className={
-                    "text-base border border-indigo-700 rounded-lg pt-1.5"
-                  }
+                  className={`text-base border border-indigo-700 rounded-lg pt-1.5 ${FilesStyle["File__item"]}`}
                   icon={<AiOutlineInfoCircle />}
                   style={{ padding: "4px 4px 0" }}
                 />
                 <IconComponent
-                  className={
-                    "text-base border border-indigo-700 rounded-lg pt-1.5"
-                  }
+                  className={`text-base border border-indigo-700 rounded-lg pt-1.5 ${FilesStyle["File__item"]}`}
                   icon={<RiDeleteBin6Line />}
                   style={{ padding: "4px 4px 0" }}
                 />
