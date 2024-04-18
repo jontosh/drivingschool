@@ -131,7 +131,7 @@ export const BigCalendar = ({ handleBurger }) => {
               <div className="p-4 flex justify-between items-center border-b border-b-gray-300">
                 <div className={"flex items-center gap-4"}>
                   <IconComponent
-                    className={"flex-shrink-0 text-3xl"}
+                    className={"flex-shrink-0 text-3xl pt-2"}
                     icon={<FaBars />}
                     onClick={handleBurger}
                   />
