@@ -1,6 +1,7 @@
 import { Appointments } from "@/pages/scheduling/subpages/appointments.jsx";
 import { Corporate } from "@/pages/scheduling/subpages/corporate.jsx";
 import { SchedulingStudent } from "@/pages/scheduling/subpages/scheduling-student.jsx";
+import { SingleMulti } from "@/pages/scheduling/subpages/single-multi.jsx";
 import { Vehicle } from "@/pages/scheduling/subpages/vehicle.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
@@ -48,6 +49,16 @@ export const SchedulingSpa = () => {
             <title>Scheduling - Vehicle</title>
           </Helmet>
           <Vehicle />
+        </Fragment>
+      );
+    }
+    case "instructor": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Single and Multi instructor</title>
+          </Helmet>
+          <SingleMulti />
         </Fragment>
       );
     }
