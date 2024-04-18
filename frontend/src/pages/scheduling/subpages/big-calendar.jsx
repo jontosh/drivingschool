@@ -76,7 +76,7 @@ const getMonthData = (value) => {
     return 1394;
   }
 };
-export const BigCalendar = () => {
+export const BigCalendar = ({ handleBurger }) => {
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
@@ -132,6 +132,7 @@ export const BigCalendar = () => {
                   <IconComponent
                     className={"flex-shrink-0 text-3xl"}
                     icon={<FaBars />}
+                    onClick={handleBurger}
                   />
 
                   <Title level={2} fontSize={"text-3xl"}>
