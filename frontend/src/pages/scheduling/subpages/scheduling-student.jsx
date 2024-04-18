@@ -145,13 +145,13 @@ const FormResult = () => {
             </li>
           </ul>
 
-          <div className={"grid grid-cols-2 gap-5"}>
+          <div className={"grid grid-cols-2"}>
             <div className={"grid grid-cols-2 gap-5"}>
               <Calendar fullscreen={false} className={"shadow-xl"} />
               <Calendar fullscreen={false} className={"shadow-xl"} />
             </div>
 
-            <div className={"flex justify-center flex-col gap-5"}>
+            <div className={"flex flex-col gap-5 m-auto"}>
               <ButtonComponent
                 defaultBg={colorsObject.info}
                 defaultHoverBg={colorsObject.info}
@@ -160,6 +160,9 @@ const FormResult = () => {
                 className={"flex-shrink-0 flex-grow-0"}
                 borderRadius={5}
                 controlHeight={40}
+                style={{
+                  width: 210
+                }}
               >
                 Refine search
               </ButtonComponent>
@@ -171,6 +174,9 @@ const FormResult = () => {
                 className={"flex-shrink-0 flex-grow-0"}
                 borderRadius={5}
                 controlHeight={40}
+                style={{
+                  width: 210
+                }}
               >
                 Clear search
               </ButtonComponent>
