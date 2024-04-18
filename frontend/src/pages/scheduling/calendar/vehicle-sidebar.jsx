@@ -1,9 +1,9 @@
 import BadgeComponent from "@/components/badge/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
+import { CustomCheckBox, CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Calendar } from "antd";
+import { Calendar, ConfigProvider } from "antd";
 import { useContext, useEffect, useState } from "react";
 import AirPlaneIcon from "../../../assets/icons/airplane-icon.png";
 
@@ -27,22 +27,30 @@ export const VehicleSidebar = () => {
   }, [MonthName]);
   return (
     <div className={"p-4  space-y-5"}>
-      <Calendar
-        headerRender={() => {
-          return (
-            <div>
-              <Title level={2} fontSize={"text-lg"} fontWeightStrong={500}>
-                {MonthName}
-              </Title>
-            </div>
-          );
+      <ConfigProvider
+        theme={{
+          token: {
+            borderRadiusSM: 99
+          }
         }}
-        fullscreen={false}
-      />
+      >
+        <Calendar
+          headerRender={() => {
+            return (
+              <div>
+                <Title level={2} fontSize={"text-lg"} fontWeightStrong={500}>
+                  {MonthName}
+                </Title>
+              </div>
+            );
+          }}
+          fullscreen={false}
+        />
+      </ConfigProvider>
 
-      <div className={"-mr-3.5"}>
+      <div className="space-y-2.5">
         <label className={"space-y-2.5 w-full"}>
-          <span className={"font-medium"}>Select vehicle</span>
+          <span className={"font-medium"}>Select instructor</span>
           <CustomSelect
             colorBorder={colorsObject.primary}
             style={{ width: "100%" }}
@@ -54,6 +62,20 @@ export const VehicleSidebar = () => {
             ]}
           />
         </label>
+
+        <label className={"w-full pt-1"}>
+          <CustomCheckBox>
+            Multi instructor
+          </CustomCheckBox>
+        </label>
+
+        <label className={"w-full"}>
+          <CustomInput
+            spanText={"Search student"}
+            classNames={"flex flex-col-reverse gap-1"}
+            colorBorder={colorsObject.primary}
+          />
+        </label>
       </div>
 
       <time className={"w-full space-y-5"}>
@@ -62,11 +84,12 @@ export const VehicleSidebar = () => {
             &#128467; Today
           </Title>
 
-          <ul className={"space-y-2.5 -mr-3.5"}>
+          <ul className={"space-y-2.5"}>
             <li className={"flex justify-between items-center"}>
               <BadgeComponent
                 status={"success"}
-                text={"Web Team Progress Update"}
+                text={"Web Team Progress hi"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -80,11 +103,11 @@ export const VehicleSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
@@ -95,6 +118,7 @@ export const VehicleSidebar = () => {
               <BadgeComponent
                 status={"success"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -108,11 +132,11 @@ export const VehicleSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
@@ -128,11 +152,12 @@ export const VehicleSidebar = () => {
             &#128467; Tomorrow
           </Title>
 
-          <ul className={"space-y-2.5 -mr-3.5"}>
+          <ul className={"space-y-2.5"}>
             <li className={"flex justify-between items-center"}>
               <BadgeComponent
                 status={"success"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -146,11 +171,11 @@ export const VehicleSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
@@ -161,6 +186,7 @@ export const VehicleSidebar = () => {
               <BadgeComponent
                 status={"success"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -174,11 +200,11 @@ export const VehicleSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
@@ -199,7 +225,7 @@ export const VehicleSidebar = () => {
             Vacations
           </Title>
 
-          <ul className={"space-y-2.5 -mr-3.5"}>
+          <ul className={"space-y-2.5"}>
             <li className={"flex justify-between items-center"}>
               <BadgeComponent
                 status={"success"}
@@ -208,6 +234,7 @@ export const VehicleSidebar = () => {
                   color: "#3BA86E",
                   display: "flex",
                   alignItems: "center",
+                  fontSize: "10px",
                 }}
               />
 

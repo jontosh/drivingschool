@@ -7,11 +7,18 @@ const BadgeComponent = ({
   status,
   children,
   style,
+  fontSize,
   ...props
 }) => {
   className = classNames(className);
   return (
-    <ConfigProvider>
+    <ConfigProvider
+      theme={{
+        token: {
+          fontSize
+        }
+      }}
+    >
       <Badge
         className={className}
         text={text}
