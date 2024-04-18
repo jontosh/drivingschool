@@ -74,7 +74,7 @@ export const CustomInput = ({
           },
         }}
       >
-        <label className={props.classNames}>
+        <label className={props.classNames} {...props}>
           <Input
             className={`h-full ${className}`}
             type={type}
@@ -212,24 +212,24 @@ export const CustomTransfer = ({
   const [selectedKeys, setSelectedKeys] = useState([]);
 
   const handleChange = (nextTargetKeys, direction, moveKeys) => {
-    console.log('targetKeys:', nextTargetKeys);
-    console.log('direction:', direction);
-    console.log('moveKeys:', moveKeys);
+    console.log("targetKeys:", nextTargetKeys);
+    console.log("direction:", direction);
+    console.log("moveKeys:", moveKeys);
     setTargetKeysState(nextTargetKeys);
-    if (typeof onChange === 'function') {
+    if (typeof onChange === "function") {
       onChange(nextTargetKeys);
     }
   };
 
   const onSelectChange = (sourceSelectedKeys, targetSelectedKeys) => {
-    console.log('sourceSelectedKeys:', sourceSelectedKeys);
-    console.log('targetSelectedKeys:', targetSelectedKeys);
+    console.log("sourceSelectedKeys:", sourceSelectedKeys);
+    console.log("targetSelectedKeys:", targetSelectedKeys);
     setSelectedKeys([...sourceSelectedKeys, ...targetSelectedKeys]);
   };
 
   const onScroll = (direction, e) => {
-    console.log('direction:', direction);
-    console.log('target:', e.target);
+    console.log("direction:", direction);
+    console.log("target:", e.target);
   };
 
   return (
@@ -245,8 +245,8 @@ export const CustomTransfer = ({
             fontSize,
             listHeight,
             headerHeight,
-          }
-        }
+          },
+        },
       }}
     >
       <Transfer
