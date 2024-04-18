@@ -1,8 +1,8 @@
 import { BigCalendar } from "@/pages/scheduling/calendar/big-calendar.jsx";
-import { VehicleSidebar } from "@/pages/scheduling/calendar/vehicle-sidebar.jsx";
+import { SingleMultiSidebar } from "@/pages/scheduling/calendar/single-multi-sidebar.jsx";
 import { Fragment, useState } from "react";
 
-export const Vehicle = () => {
+export const SingleMulti = () => {
   const [IsOpen, setIsOpen] = useState(true);
   const handleBurger = () => setIsOpen((prev) => !prev);
   return (
@@ -16,7 +16,7 @@ export const Vehicle = () => {
           className={"w-64 flex-shrink-0 border-r border-r-gray-400"}
           hidden={!IsOpen}
         >
-          <VehicleSidebar />
+          <SingleMultiSidebar />
         </div>
         <div>
           <BigCalendar handleBurger={handleBurger} />

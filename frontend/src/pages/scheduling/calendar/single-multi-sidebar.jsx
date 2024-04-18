@@ -1,14 +1,13 @@
 import BadgeComponent from "@/components/badge/index.jsx";
+import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
-import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Calendar } from "antd";
 import { useContext, useEffect, useState } from "react";
-import AirPlaneIcon from "../../../assets/icons/airplane-icon.png";
 
-export const VehicleSidebar = () => {
+export const SingleMultiSidebar = () => {
   const Time = new Date();
   const { colorsObject } = useContext(ColorsContext);
   const [MonthName, setMonthName] = useState("");
@@ -191,30 +190,50 @@ export const VehicleSidebar = () => {
         {/*  -------------- */}
 
         <div className="day space-y-2.5">
-          <Title level={3} fontSize={"text-base flex gap-2 items-center"}>
-            <Image
-              src={AirPlaneIcon}
-              srcSet={AirPlaneIcon}
-              className={"w-4 cursor-text"}
-            />{" "}
-            Vacations
-          </Title>
-
-          <ul className={"space-y-2.5 -mr-3.5"}>
-            <li className={"flex justify-between items-center"}>
-              <BadgeComponent
-                status={"success"}
-                text={"Web Team Progress Update"}
-                style={{
-                  color: "#3BA86E",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              />
-
-              <time className={"text-[#333333]"}>08:00</time>
-            </li>
-          </ul>
+          <ButtonComponent
+            defaultBg={"#3366FF"}
+            defaultHoverBg={"#3366FF"}
+            defaultHoverColor={colorsObject.main}
+            defaultColor={colorsObject.main}
+            className={"w-full"}
+            borderRadius={5}
+            controlHeight={30}
+          >
+            Get Schedule
+          </ButtonComponent>
+          <ButtonComponent
+            defaultBg={"#3366FF"}
+            defaultHoverBg={"#3366FF"}
+            defaultHoverColor={colorsObject.main}
+            defaultColor={colorsObject.main}
+            className={"w-full"}
+            borderRadius={5}
+            controlHeight={30}
+          >
+            Set unavailability
+          </ButtonComponent>
+          <ButtonComponent
+            defaultBg={"#3366FF"}
+            defaultHoverBg={"#3366FF"}
+            defaultHoverColor={colorsObject.main}
+            defaultColor={colorsObject.main}
+            className={"w-full"}
+            borderRadius={5}
+            controlHeight={30}
+          >
+            Instructor Detail
+          </ButtonComponent>
+          <ButtonComponent
+            defaultBg={"#3366FF"}
+            defaultHoverBg={"#3366FF"}
+            defaultHoverColor={colorsObject.main}
+            defaultColor={colorsObject.main}
+            className={"w-full"}
+            borderRadius={5}
+            controlHeight={30}
+          >
+            Learn More
+          </ButtonComponent>
         </div>
       </time>
     </div>

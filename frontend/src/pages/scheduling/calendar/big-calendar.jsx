@@ -124,6 +124,7 @@ export const BigCalendar = ({ handleBurger }) => {
   return (
     <ConfigProvider>
       <Calendar
+        className={"border-b border-b-gray-300"}
         headerRender={() => {
           return (
             <Fragment>
