@@ -40,7 +40,7 @@ export const SingleMultiSidebar = () => {
         fullscreen={false}
       />
 
-      <div className={"-mr-3.5"}>
+      <div>
         <label className={"space-y-2.5 w-full"}>
           <span className={"font-medium"}>Select vehicle</span>
           <CustomSelect
@@ -62,11 +62,12 @@ export const SingleMultiSidebar = () => {
             &#128467; Today
           </Title>
 
-          <ul className={"space-y-2.5 -mr-3.5"}>
+          <ul className={"space-y-2.5"}>
             <li className={"flex justify-between items-center"}>
               <BadgeComponent
                 status={"success"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -80,11 +81,11 @@ export const SingleMultiSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
@@ -95,6 +96,7 @@ export const SingleMultiSidebar = () => {
               <BadgeComponent
                 status={"success"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -108,11 +110,11 @@ export const SingleMultiSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
@@ -128,11 +130,12 @@ export const SingleMultiSidebar = () => {
             &#128467; Tomorrow
           </Title>
 
-          <ul className={"space-y-2.5 -mr-3.5"}>
+          <ul className={"space-y-2.5"}>
             <li className={"flex justify-between items-center"}>
               <BadgeComponent
                 status={"success"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -146,11 +149,11 @@ export const SingleMultiSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
@@ -161,6 +164,7 @@ export const SingleMultiSidebar = () => {
               <BadgeComponent
                 status={"success"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: "#3BA86E",
                   display: "flex",
@@ -174,11 +178,11 @@ export const SingleMultiSidebar = () => {
               <BadgeComponent
                 status={"error"}
                 text={"Web Team Progress Update"}
+                fontSize={10}
                 style={{
                   color: colorsObject.danger,
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "10px",
                 }}
               />
 
