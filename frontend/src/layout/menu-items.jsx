@@ -81,11 +81,19 @@ export const MenuItems = (IsActive, getItem) => {
         ),
         getItem(
           <Link
-            to={"/scheduling/instructor"}
-            children={"Single and Multi Instructor"}
+            to={"/scheduling/multi"}
+            children={"Multi Instructor"}
           />,
           "sub5-2",
           null,
+        ),
+        getItem(
+          <Link
+            to={"/scheduling/signle"}
+            children={"Single Instructor"}
+          />,
+          "sub5-9",
+          null
         ),
         getItem(
           <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,

@@ -2,7 +2,7 @@ import { BigCalendar } from "@/pages/scheduling/calendar/big-calendar.jsx";
 import { SingleMultiSidebar } from "@/pages/scheduling/calendar/single-multi-sidebar.jsx";
 import { Fragment, useState } from "react";
 
-export const SingleMulti = () => {
+export const Multi = () => {
   const [IsOpen, setIsOpen] = useState(true);
   const handleBurger = () => setIsOpen((prev) => !prev);
   return (
