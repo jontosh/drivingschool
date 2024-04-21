@@ -1,4 +1,4 @@
-import { BigCalendar } from "@/pages/scheduling/calendar/big-calendar.jsx";
+import { MultiTableCalendar } from "@/pages/scheduling/calendar/multi-table-calendar.jsx";
 import { SingleMultiSidebar } from "@/pages/scheduling/calendar/single-multi-sidebar.jsx";
 import { Fragment, useState } from "react";
 
@@ -18,8 +18,8 @@ export const Multi = () => {
         >
           <SingleMultiSidebar />
         </div>
-        <div>
-          <BigCalendar handleBurger={handleBurger} />
+        <div className={"flex-grow"}>
+          <MultiTableCalendar />
         </div>
       </div>
     </Fragment>
