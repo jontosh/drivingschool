@@ -3,6 +3,7 @@ import { CustomInput } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { SchedulingModule } from "@/modules/scheduling.jsx";
 import { Calendar, Table } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext } from "react";
@@ -12,6 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const FormResult = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { columns, data } = SchedulingModule();
   return (
     <Fragment>
       <Formik
@@ -161,7 +163,7 @@ const FormResult = () => {
                 borderRadius={5}
                 controlHeight={40}
                 style={{
-                  width: 210
+                  width: 210,
                 }}
               >
                 Refine search
@@ -175,7 +177,7 @@ const FormResult = () => {
                 borderRadius={5}
                 controlHeight={40}
                 style={{
-                  width: 210
+                  width: 210,
                 }}
               >
                 Clear search
@@ -223,7 +225,12 @@ const FormResult = () => {
           </div>
         </div>
 
-        <Table className={"pt-5"} />
+        <Table
+          className={"pt-5"}
+          columns={columns}
+          dataSource={data}
+          pagination={false}
+        />
       </div>
     </Fragment>
   );
