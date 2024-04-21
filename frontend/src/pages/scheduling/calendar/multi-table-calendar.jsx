@@ -20,7 +20,7 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
 // import DayPicker from "react-day-picker";
 // import { formatDate } from "react-day-picker/moment";
-export const SingleTableCalendar = () => {
+export const MultiTableCalendar = () => {
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
