@@ -17,6 +17,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -37,13 +44,13 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2fFoCPsUP0JoDf8xO1a4m8Xbuho" />
+
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -86,6 +93,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adding venv" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding venv" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
