@@ -1,11 +1,12 @@
 import { Appointments } from "@/pages/scheduling/subpages/appointments.jsx";
 import { Corporate } from "@/pages/scheduling/subpages/corporate.jsx";
 import { SchedulingStudent } from "@/pages/scheduling/subpages/scheduling-student.jsx";
-import { SingleMulti } from "@/pages/scheduling/subpages/single-multi.jsx";
+import { Multi } from "@/pages/scheduling/subpages/multi.jsx";
 import { Vehicle } from "@/pages/scheduling/subpages/vehicle.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
+import { Single } from "./subpages/single";
 
 export const SchedulingSpa = () => {
   const { title } = useParams();
@@ -52,13 +53,23 @@ export const SchedulingSpa = () => {
         </Fragment>
       );
     }
-    case "instructor": {
+    case "multi": {
       return (
         <Fragment>
           <Helmet>
-            <title>Scheduling - Single and Multi instructor</title>
+            <title>Scheduling - Multi instructor</title>
           </Helmet>
-          <SingleMulti />
+          <Multi />
+        </Fragment>
+      );
+    }
+    case "signle": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Single instructor</title>
+          </Helmet>
+          <Single />
         </Fragment>
       );
     }
