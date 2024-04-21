@@ -1,7 +1,7 @@
 import { Appointments } from "@/pages/scheduling/subpages/appointments.jsx";
 import { Corporate } from "@/pages/scheduling/subpages/corporate.jsx";
 import { SchedulingStudent } from "@/pages/scheduling/subpages/scheduling-student.jsx";
-import { Multi } from "@/pages/scheduling/subpages/multi.jsx";
+import { Multi } from "@/pages/scheduling/subpages/Multi.jsx";
 import { Vehicle } from "@/pages/scheduling/subpages/vehicle.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";

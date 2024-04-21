@@ -5,6 +5,7 @@ import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ButtonComponent from "@/components/button";
 import SingleStyle from "../scheduling.module.scss"
+import { AiOutlineSearch } from "react-icons/ai";
 
 export const Single = () => {
     return (
@@ -17,6 +18,32 @@ export const Single = () => {
                 <div
                     className={`${DashboardStyle["Dashboard__teachers"]} ${SingleStyle["Signle__shadow"]} p-5 w-full`}
                 >
+                    <div className="flex items-center pt-1 pb-10">
+                        <Title
+                            fontSize={"text-base"}
+                            fontWeightStrong={500}
+                            className={"w-24"}
+                        >
+                            Teachers
+                        </Title>
+                        <label className={`relative`}>
+                            <input
+                                // value={values.search}
+                                type={"text"}
+                                name={"search"}
+                                // onChange={handleChange}
+                                // onBlur={handleBlur}
+                                placeholder={"Find teacher"}
+                                className={`${DashboardStyle["Dashboard__form-input"]} rounded-lg inline-block outline-0 px-12 py-2.5 bg-white border-2`}
+                            />
+
+                            <span
+                                className={`absolute w-4 h-4 left-4 ${DashboardStyle["Dashboard__form-search"]}`}
+                            >
+                                <AiOutlineSearch />
+                            </span>
+                        </label>
+                    </div>
                     {/* <DashboardTeachers /> */}
                     <div
                         className={`${DashboardStyle["Dashboard__teachers-list"]} px-6 grid grid-cols-9 gap-x-14 pb-10`}

@@ -14,11 +14,13 @@ export const AppointmentEdit = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [Filter, setFilter] = useState(false);
   const [CurrentPagination, setCurrentPagination] = useState(1);
+  const [open, setOpen] = useState(false)
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
 
   const handleFilter = () => setFilter((prev) => !prev);
+  const handleOpen = () => setOpen((prev) => !prev)
 
   const columns = [
     {
@@ -152,7 +154,7 @@ export const AppointmentEdit = () => {
       dataIndex: "select",
       key: "select",
       align: "center",
-      render: () => <CustomCheckBox />,
+      render: () => <CustomCheckBox onChange={handleOpen} />,
     },
   ];
 
@@ -404,6 +406,56 @@ export const AppointmentEdit = () => {
               onChange={handleChangePagination}
             />
           </div>
+
+          {open && (
+            <div className="flex items-center gap-3 pt-5">
+              <ButtonComponent
+                controlHeight={39}
+                defaultBg="#1890FF"
+                defaultHoverBg="#1890FF"
+                borderRadius={5}
+                className={"w-full"}
+              >
+                Edit Appointments
+              </ButtonComponent>
+              <ButtonComponent
+                controlHeight={39}
+                defaultBg="#FF333F"
+                defaultHoverBg="#FF333F"
+                borderRadius={5}
+                className={"w-full"}
+              >
+                Delete appointments
+              </ButtonComponent>
+              <ButtonComponent
+                controlHeight={39}
+                defaultBg="#0000002B"
+                defaultHoverBg="#0000002B"
+                borderRadius={5}
+                className={"w-full"}
+              >
+                Cancel Appointments
+              </ButtonComponent>
+              <ButtonComponent
+                controlHeight={39}
+                defaultBg="#FF9533"
+                defaultHoverBg="#FF9533"
+                borderRadius={5}
+                className={"w-full"}
+              >
+                Shift appointments
+              </ButtonComponent>
+              <ButtonComponent
+                controlHeight={39}
+                defaultBg="#24C18F"
+                defaultHoverBg="#24C18F"
+                borderRadius={5}
+                className={"w-full"}
+              >
+                Export
+              </ButtonComponent>
+            </div>
+          )}
 
           <div className={"-mx-5 pt-5"}>
             <Table columns={columns} dataSource={data} pagination={false} />
