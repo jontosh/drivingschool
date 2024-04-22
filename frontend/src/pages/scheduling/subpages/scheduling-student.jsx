@@ -70,6 +70,9 @@ const FormResult = () => {
                       defaultHoverColor={colorsObject.black}
                       paddingInline={24}
                       className={"w-full text-start"}
+                      style={{
+                        boxShadow: 'none'
+                      }}
                     >
                       Aminov Makhsud, 2004, BMR RX6 Teacher, Adult
                     </ButtonComponent>
@@ -102,12 +105,12 @@ const FormResult = () => {
           </NavLink>
         </div>
 
-        <div className="py-6 space-y-7">
+        <div className="space-y-7">
           <div className="space-x-4">
             <NavLink
               to={""}
               className={
-                "hover:text-indigo-500 text-gray-500 text-xl py-8 font-medium"
+                "hover:text-indigo-500 text-gray-500 text-xl py-7 font-medium"
               }
             >
               Book my lesson
@@ -115,7 +118,7 @@ const FormResult = () => {
             <NavLink
               to={""}
               className={
-                "hover:text-indigo-500 text-gray-500 text-xl py-8 font-medium"
+                "hover:text-indigo-500 text-gray-500 text-xl py-7 font-medium"
               }
             >
               Aminov Makhsudjon
