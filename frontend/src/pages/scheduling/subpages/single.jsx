@@ -55,7 +55,7 @@ export const Single = () => {
               className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
             >
               <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
+                className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} border-2 border-[#FECB21] mb-5 h-20 overflow-hidden rounded-full`}
               >
                 <Image
                   src={TeacherAvatar}
@@ -363,14 +363,10 @@ export const Single = () => {
               Print Scheduling
             </Title>
             <form className="flex flex-col gap-7">
-              <CustomCheckBox
-                className={"text-base font-semibold"}
-              >
+              <CustomCheckBox className={"text-base font-semibold"}>
                 Month
               </CustomCheckBox>
-              <CustomCheckBox
-                className={"text-base font-semibold"}
-              >
+              <CustomCheckBox className={"text-base font-semibold"}>
                 Week
               </CustomCheckBox>
               <div className="flex gap-5 justify-center">
@@ -395,6 +391,7 @@ export const Single = () => {
                   defaultHoverColor="#000000"
                   className={"font-medium"}
                   style={{ width: 234 }}
+                  onClick={handlePrintModal}
                 >
                   Close
                 </ButtonComponent>
@@ -421,9 +418,7 @@ export const Single = () => {
                 >
                   PSD
                 </CustomCheckBox>
-                <CustomCheckBox
-                  className={"text-base font-semibold"}
-                >
+                <CustomCheckBox className={"text-base font-semibold"}>
                   JPG
                 </CustomCheckBox>
               </label>
@@ -433,9 +428,7 @@ export const Single = () => {
                 >
                   txt
                 </CustomCheckBox>
-                <CustomCheckBox
-                  className={"text-base font-semibold"}
-                >
+                <CustomCheckBox className={"text-base font-semibold"}>
                   Word
                 </CustomCheckBox>
               </label>
