@@ -402,7 +402,7 @@ const Dashboard = () => {
             </ul>
           </div>
         </div>
-        <div>
+        <div> 
           <div
             className={`${DashboardStyle["Dashboard__teachers"]} shadow-xl p-5 bg-white rounded-lg`}
           >

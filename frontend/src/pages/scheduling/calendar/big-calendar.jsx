@@ -76,7 +76,7 @@ const getMonthData = (value) => {
     return 1394;
   }
 };
-export const BigCalendar = () => {
+export const BigCalendar = ({ handleBurger }) => {
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
@@ -124,14 +124,16 @@ export const BigCalendar = () => {
   return (
     <ConfigProvider>
       <Calendar
+        className={"border-b border-b-gray-300"}
         headerRender={() => {
           return (
             <Fragment>
               <div className="p-4 flex justify-between items-center border-b border-b-gray-300">
                 <div className={"flex items-center gap-4"}>
                   <IconComponent
-                    className={"flex-shrink-0 text-3xl"}
+                    className={"flex-shrink-0 text-3xl pt-2"}
                     icon={<FaBars />}
+                    onClick={handleBurger}
                   />
 
                   <Title level={2} fontSize={"text-3xl"}>
