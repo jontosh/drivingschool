@@ -1,5 +1,5 @@
 import { SingleTableCalendar } from "@/pages/scheduling/calendar/single-table-calendar.jsx";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import DashboardStyle from "../../dashboard/dashboard.module.scss";
 import TeacherAvatar from "../../../assets/user/teacher.jpeg";
 import Image from "@/components/image/index.jsx";
@@ -7,13 +7,18 @@ import Title from "@/components/title/index.jsx";
 import ButtonComponent from "@/components/button";
 import SingleStyle from "../scheduling.module.scss";
 import { AiOutlineSearch } from "react-icons/ai";
+import Modal from "@/components/modal/index.jsx";
+import { CustomCheckBox } from "@/components/form";
 
 export const Single = () => {
+  const [IsOpen, setIsOpen] = useState(false);
+  const handlePrintModal = () => setIsOpen((prev) => !prev);
+  const handleExportModal = () => setIsOpen((prev) => !prev);
   return (
     <Fragment>
       <div className={"bg-white rounded-xl overflow-hidden"}>
         <div
-          className={`${DashboardStyle["Dashboard__teachers"]} ${SingleStyle["Signle__shadow"]} p-5 w-full`}
+          className={`${DashboardStyle["Dashboard__teachers"]} ${SingleStyle["Single__shadow"]} p-5 w-full`}
         >
           <div className="flex items-center pt-1 pb-10">
             <Title
@@ -265,6 +270,7 @@ export const Single = () => {
                 defaultColor="#FFFFFF"
                 defaultHoverColor="#FFFFFF"
                 className={"w-full font-medium"}
+                onClick={handlePrintModal}
               >
                 Print
               </ButtonComponent>
@@ -276,6 +282,7 @@ export const Single = () => {
                 defaultColor="#FFFFFF"
                 defaultHoverColor="#FFFFFF"
                 className={"w-full font-medium"}
+                onClick={handleExportModal}
               >
                 Export
               </ButtonComponent>
@@ -344,6 +351,124 @@ export const Single = () => {
           </div>
         </div>
       </div>
+      {IsOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <div className={`${SingleStyle["Single__modal"]} bg-white py-9 px-12 w-full rounded-2xl overflow-scroll m-2.5`}>
+            <Title
+              level={2}
+              fontSize={"text-indigo-600 text-4xl"}
+              fontWeightStrong={600}
+              titleMarginBottom={30}
+            >
+              Print Scheduling
+            </Title>
+            <form className="flex flex-col gap-7">
+              <CustomCheckBox
+                className={"text-base font-semibold"}
+              >
+                Month
+              </CustomCheckBox>
+              <CustomCheckBox
+                className={"text-base font-semibold"}
+              >
+                Week
+              </CustomCheckBox>
+              <div className="flex gap-5 justify-center">
+                <ButtonComponent
+                  controlHeight={40}
+                  borderRadius={10}
+                  defaultBg="#24C18F"
+                  defaultHoverBg="#24C18F"
+                  defaultColor="#FFFFFF"
+                  defaultHoverColor="#FFFFFF"
+                  className={"font-medium"}
+                  style={{ width: 234 }}
+                >
+                  Print
+                </ButtonComponent>
+                <ButtonComponent
+                  controlHeight={40}
+                  borderRadius={10}
+                  defaultBg="transparent"
+                  defaultBorderColor="#5F66E9"
+                  defaultColor="#000000"
+                  defaultHoverColor="#000000"
+                  className={"font-medium"}
+                  style={{ width: 234 }}
+                >
+                  Close
+                </ButtonComponent>
+              </div>
+            </form>
+          </div>
+        </Modal>
+      )}
+      {IsOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <div className={`${SingleStyle["Single__modal"]} bg-white py-10 px-12 w-full rounded-2xl overflow-scroll m-2.5`}>
+            <Title
+              level={2}
+              fontSize={"text-indigo-600 text-4xl"}
+              fontWeightStrong={600}
+              titleMarginBottom={30}
+            >
+              Print Scheduling
+            </Title>
+            <form className="flex flex-col gap-7">
+              <label className="flex gap-10 items-center">
+                <CustomCheckBox
+                  className={"text-base font-semibold"}
+                >
+                  PSD
+                </CustomCheckBox>
+                <CustomCheckBox
+                  className={"text-base font-semibold"}
+                >
+                  JPG
+                </CustomCheckBox>
+              </label>
+              <label className="flex gap-10 items-center">
+                <CustomCheckBox
+                  className={"text-base font-semibold"}
+                >
+                  txt
+                </CustomCheckBox>
+                <CustomCheckBox
+                  className={"text-base font-semibold"}
+                >
+                  Word
+                </CustomCheckBox>
+              </label>
+              <div className="flex gap-5 justify-center">
+                <ButtonComponent
+                  controlHeight={40}
+                  borderRadius={10}
+                  defaultBg="#24C18F"
+                  defaultHoverBg="#24C18F"
+                  defaultColor="#FFFFFF"
+                  defaultHoverColor="#FFFFFF"
+                  className={"font-medium"}
+                  style={{ width: 234 }}
+                >
+                  Print
+                </ButtonComponent>
+                <ButtonComponent
+                  controlHeight={40}
+                  borderRadius={10}
+                  defaultBg="transparent"
+                  defaultBorderColor="#5F66E9"
+                  defaultColor="#000000"
+                  defaultHoverColor="#000000"
+                  className={"font-medium"}
+                  style={{ width: 234 }}
+                >
+                  Close
+                </ButtonComponent>
+              </div>
+            </form>
+          </div>
+        </Modal>
+      )}
     </Fragment>
   );
 };
