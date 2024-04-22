@@ -10,5 +10,15 @@
     &__modal {
         max-width: 652px;
         height: 297px;
+
+        &-instructor {
+            max-width: 467px;
+            height: 495px;
+        }
     }
+}
+
+.Corporate__modal {
+    max-width: 1300px;
+    height: 550px;
 }
