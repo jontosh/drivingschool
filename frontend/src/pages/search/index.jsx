@@ -6,31 +6,36 @@ import {
 } from "@/components/form/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { SearchModule } from "@/modules/search.jsx";
 import ProfileStyle from "@/pages/student/student-account.module.scss";
-import { Table } from "antd";
+import { Pagination, Table } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const SearchFormik = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [CheckValues, setCheckValues] = useState(false);
   const [ShowTable, setShowTable] = useState(false);
+  const { columns, data } = SearchModule();
+  const [Current, setCurrent] = useState(1);
+  const handleChangePagination = (page) => {
+    setCurrent(page);
+  };
 
   return (
     <Fragment>
       <Formik
-        initialValues={{ account: "", status: "" }}
+        initialValues={{ account: "", status: "", email: "" }}
         validate={(values) => {
           const errors = {};
           if (!values.account) {
             errors.account = "Required";
           }
-          // else if (
-          //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          // ) {
-          //   errors.email = "Invalid email address";
-          // }
+          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            errors.email = "Invalid email address";
+          }
 
           Object.values(values).forEach((value) => {
             if (value === "") {
@@ -298,15 +303,23 @@ const SearchFormik = () => {
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
                 />
 
-                <CustomInput
-                  placeholder={"Email ID"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Email ID"}
-                  colorBorder={colorsObject.primary}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
-                />
+                <div>
+                  <CustomInput
+                    placeholder={"Email ID"}
+                    className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+                    spanText={"Email ID"}
+                    colorBorder={colorsObject.primary}
+                    spanClassName={"w-40 flex-shrink-0"}
+                    fontSize={"text-base"}
+                    name={"email"}
+                    onChange={handleChange}
+                    value={values.email}
+                    classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  />
+                  {errors.email && (
+                    <div className={"text-red-600"}>{errors.email}</div>
+                  )}
+                </div>
 
                 <CustomInput
                   placeholder={"Phone search"}
@@ -365,12 +378,37 @@ const SearchFormik = () => {
           >
             Result: 246
           </Title>
-	        
-	        <div className='flex items-center justify-between'>
-		       
-	        </div>
+
+          <div className="flex items-center justify-between">
+            <form className={"pb-3"}>
+              <label className={"relative"}>
+                <CustomInput
+                  colorBorder={colorsObject.primary}
+                  placeholder={"Search"}
+                  className={`w-96 pl-12 pr-4 text-sm  `}
+                />
+
+                <span
+                  className={
+                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
+                  }
+                >
+                  <AiOutlineSearch />
+                </span>
+              </label>
+            </form>
+
+            <div className="flex items-center gap-4">
+              <Pagination
+                total={20}
+                pageSize={2}
+                current={Current}
+                onChange={handleChangePagination}
+              />
+            </div>
+          </div>
           <div className={"-mx-5"}>
-            <Table />
+            <Table columns={columns} dataSource={data} pagination={false} />
           </div>
         </div>
       )}
