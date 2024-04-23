@@ -3,6 +3,7 @@ import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
 import Enrollment from "@/pages/enrollment/index.jsx";
+import Help from "@/pages/help/index.jsx";
 import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
 import ManagementSpa from "@/pages/managment/management-spa.jsx";
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/enrollment",
         element: <Enrollment />,
+      },
+      {
+        path: "/help",
+        element: <Help />,
       },
       {
         path: "/scheduling/:title",
