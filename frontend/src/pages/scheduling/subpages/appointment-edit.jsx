@@ -7,20 +7,31 @@ import {
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Pagination, Table } from "antd";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
 export const AppointmentEdit = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [Filter, setFilter] = useState(false);
   const [CurrentPagination, setCurrentPagination] = useState(1);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
 
+  const checkboxRef = useRef(null);
+
   const handleFilter = () => setFilter((prev) => !prev);
-  const handleOpen = () => setOpen((prev) => !prev)
+  const handleOpen = () => {
+    // setOpen(e.target.checked);
+    const selectAll = checkboxRef.current.children[0];
+
+    const inputs = selectAll.querySelectorAll("input");
+
+    inputs.forEach((checkbox) => {
+      checkbox.checked && setOpen(checkbox.checked);
+    });
+  };
 
   const columns = [
     {
@@ -179,6 +190,16 @@ export const AppointmentEdit = () => {
       pickup: "Mason Office",
       studentName: "Wells Alissha",
     },
+    {
+      time: "3/25/2024 8:00 AM-11:00 AM",
+      instructor: "William",
+      status: true,
+      type: "Single Appointment",
+      vehicle: "Vehicle 1",
+      location: "Mason Location",
+      pickup: "Mason Office",
+      studentName: "Wells Alissha",
+    },
   ];
 
   return (
@@ -187,7 +208,9 @@ export const AppointmentEdit = () => {
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-5">
             <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>Instructor</span>
+              <span className={`flex-shrink-0 w-40 text-right`}>
+                Instructor
+              </span>
 
               <CustomSelect
                 style={{ width: "100%" }}
@@ -213,7 +236,9 @@ export const AppointmentEdit = () => {
             />
 
             <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>Time filter</span>
+              <span className={`flex-shrink-0 w-40 text-right`}>
+                Time filter
+              </span>
 
               <CustomSelect
                 style={{ width: "100%" }}
@@ -320,7 +345,9 @@ export const AppointmentEdit = () => {
               />
             </label>
             <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>BTW Subtype</span>
+              <span className={`flex-shrink-0 w-40 text-right`}>
+                BTW Subtype
+              </span>
 
               <CustomSelect
                 style={{ width: "100%" }}
@@ -335,7 +362,9 @@ export const AppointmentEdit = () => {
               />
             </label>
             <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>Appointment type</span>
+              <span className={`flex-shrink-0 w-40 text-right`}>
+                Appointment type
+              </span>
 
               <CustomSelect
                 style={{ width: "100%" }}
@@ -458,7 +487,12 @@ export const AppointmentEdit = () => {
           )}
 
           <div className={"-mx-5 pt-5"}>
-            <Table columns={columns} dataSource={data} pagination={false} />
+            <Table
+              columns={columns}
+              dataSource={data}
+              pagination={false}
+              ref={checkboxRef}
+            />
           </div>
         </div>
       )}
