@@ -80,23 +80,18 @@ export const MenuItems = (IsActive, getItem) => {
           null,
         ),
         getItem(
-          <Link
-            to={"/scheduling/multi"}
-            children={"Multi Instructor"}
-          />,
+
+          <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,
           "sub5-2",
           null,
         ),
         getItem(
-          <Link
-            to={"/scheduling/signle"}
-            children={"Single Instructor"}
-          />,
+          <Link to={"/scheduling/signle"} children={"Single Instructor"} />,
           "sub5-9",
-          null
+          null,
         ),
         getItem(
-          <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,
+          <Link to={"/scheduling/multi"} children={"Multi Instructor"} />,
           "sub5-3",
           null,
         ),
@@ -276,7 +271,7 @@ export const MenuItems = (IsActive, getItem) => {
       IsActive && [getItem("Process")],
     ),
     getItem(
-      IsActive && "Help",
+      IsActive && <Link to={"/help"} children={"Help"} />,
       "sub11",
       <span className="w-5">
         <AiOutlineTool />
