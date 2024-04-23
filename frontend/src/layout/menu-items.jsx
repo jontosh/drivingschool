@@ -80,6 +80,7 @@ export const MenuItems = (IsActive, getItem) => {
           null,
         ),
         getItem(
+
           <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,
           "sub5-2",
           null,
@@ -270,7 +271,7 @@ export const MenuItems = (IsActive, getItem) => {
       IsActive && [getItem("Process")],
     ),
     getItem(
-      IsActive && "Help",
+      IsActive && <Link to={"/help"} children={"Help"} />,
       "sub11",
       <span className="w-5">
         <AiOutlineTool />
