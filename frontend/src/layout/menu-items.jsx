@@ -33,7 +33,7 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
     ),
     getItem(
-      IsActive && <Link to={"/notfound/"} children={"Advanced search"} />,
+      IsActive && <Link to={"/search/"} children={"Advanced search"} />,
       "sub3",
       <span className={"w-5"}>
         <AiOutlineSearch />
@@ -80,7 +80,6 @@ export const MenuItems = (IsActive, getItem) => {
           null,
         ),
         getItem(
-
           <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,
           "sub5-2",
           null,

@@ -13,7 +13,7 @@ import CoverImage from "../../assets/others/cover.png";
 import ProfileStyle from "./student-account.module.scss";
 import IconComponent from "@/components/icons";
 import { TfiEmail } from "react-icons/tfi";
-import { Checkbox, ConfigProvider, DatePicker } from "antd";
+import { ConfigProvider, DatePicker } from "antd";
 
 const Profile = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -386,7 +386,7 @@ const Profile = () => {
                 Date of birth
               </span>
 
-              <div className={"space-x-5"} >
+              <div className={"space-x-5"}>
                 <CustomSelect
                   placeholder={"Month"}
                   colorBorder={colorsObject.primary}
@@ -463,7 +463,10 @@ const Profile = () => {
                   },
                 }}
               >
-                <DatePicker style={{ width: "100%", height: 40 }} onChange={onChange} />
+                <DatePicker
+                  style={{ width: "100%", height: 40 }}
+                  onChange={onChange}
+                />
               </ConfigProvider>
             </label>
 
@@ -767,7 +770,9 @@ const Profile = () => {
           </Fragment>
         )}
 
-        <div className={`text-center space-y-6 pt-6  ${!IsMore ? "bg-white" : ""}`}>
+        <div
+          className={`text-center space-y-6 pt-6  ${!IsMore ? "bg-white" : ""}`}
+        >
           <div>
             <ButtonComponent
               defaultBg="#3366FF"
