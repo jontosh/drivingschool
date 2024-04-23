@@ -7,6 +7,7 @@ import {
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ProfileStyle from "@/pages/student/student-account.module.scss";
+import { Table } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -14,6 +15,8 @@ import { Helmet } from "react-helmet";
 const SearchFormik = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [CheckValues, setCheckValues] = useState(false);
+  const [ShowTable, setShowTable] = useState(false);
+
   return (
     <Fragment>
       <Formik
@@ -28,18 +31,22 @@ const SearchFormik = () => {
           // ) {
           //   errors.email = "Invalid email address";
           // }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          // setTimeout(() => {
-          //   alert(JSON.stringify(values, null, 2));
-          //   setSubmitting(false);
-          // }, 400);
 
           Object.values(values).forEach((value) => {
             if (value === "") {
               setCheckValues(true);
-              console.log("ok");
+              setShowTable(false);
+            }
+          });
+
+          return errors;
+        }}
+        onSubmit={(values) => {
+          console.log(values);
+          Object.values(values).forEach((value) => {
+            if (value !== "") {
+              setCheckValues(false);
+              setShowTable(true);
             }
           });
         }}
@@ -54,15 +61,18 @@ const SearchFormik = () => {
           isSubmitting,
           /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit}>
-            <Title
-              level={3}
-              fontSize={"text-[#FF333F] text-xl"}
-              titleMarginBottom={20}
-              fontWeightStrong={500}
-            >
-              Error account cant be find please try again
-            </Title>
+          <form onSubmit={handleSubmit} className="bg-white p-5 rounded-xl">
+            {CheckValues && (
+              <Title
+                level={3}
+                fontSize={"text-[#FF333F] text-xl"}
+                titleMarginBottom={20}
+                fontWeightStrong={500}
+              >
+                Error account cant be find please try again
+              </Title>
+            )}
+
             <div className="grid grid-cols-2 gap-5 mb-7">
               <div className={"space-y-5"}>
                 <label className="inline-flex items-center w-full gap-5">
@@ -345,6 +355,25 @@ const SearchFormik = () => {
           </form>
         )}
       </Formik>
+
+      {ShowTable && (
+        <div className={"bg-white p-5 rounded-xl"}>
+          <Title
+            fontSize={"text-2xl text-indigo-600"}
+            fontWeightStrong={500}
+            titleMarginBottom={20}
+          >
+            Result: 246
+          </Title>
+	        
+	        <div className='flex items-center justify-between'>
+		       
+	        </div>
+          <div className={"-mx-5"}>
+            <Table />
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };
@@ -366,9 +395,7 @@ const Search = () => {
           Advanced search
         </Title>
 
-        <div className="bg-white p-5 rounded-xl">
-          <SearchFormik />
-        </div>
+        <SearchFormik />
       </section>
     </Fragment>
   );
