@@ -6,6 +6,7 @@ import { Table } from "antd";
 import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
 import ColorsContext from "@/context/colors.jsx";
+import { Link } from "react-router-dom";
 
 const Help = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -235,42 +236,44 @@ const Help = () => {
             <div className="flex justify-between items-center px-5 pb-4 border-b border-blue-600 w-full">
               <span className="font-medium text-xl">Latest news</span>
 
-              <ButtonComponent
-                className={"w-20"}
-                borderRadius={5}
-                defaultBorderColor="#5F66E9"
-                defaultColor="#000000"
-                defaultHoverColor="#000000"
-                fontSize={14}
-              >
-                See all
-              </ButtonComponent>
+              <Link>
+                <ButtonComponent
+                  className={"w-20"}
+                  borderRadius={5}
+                  defaultBorderColor="#5F66E9"
+                  defaultColor="#000000"
+                  defaultHoverColor="#000000"
+                  fontSize={14}
+                >
+                  See all
+                </ButtonComponent>
+              </Link>
             </div>
 
             <div className="flex flex-col gap-y-10 px-5 pt-5">
               <div className="flex justify-between items-center">
-                <div className="flex flex-col">
+                <Link className="flex flex-col pointer">
                   <span className="text-base font-semibold">Shock mister president became mister presidentia</span>
-                  <span className="text-xs font-normal">Shock mister president became mister presidentia</span>
-                </div>
+                  <span className="text-xs font-normal text-gray-400">Shock mister president became mister presidentia</span>
+                </Link>
 
                 <span className="text-xs font-normal">03/18/2023.02:00</span>
               </div>
 
               <div className="flex justify-between items-center">
-                <div className="flex flex-col">
+                <Link className="flex flex-col">
                   <span className="text-base font-semibold">Shock mister president became mister presidentia</span>
-                  <span className="text-xs font-normal">Shock mister president became mister presidentia</span>
-                </div>
+                  <span className="text-xs font-normal text-gray-400">Shock mister president became mister presidentia</span>
+                </Link>
 
                 <span className="text-xs font-normal">03/18/2023.02:00</span>
               </div>
 
               <div className="flex justify-between items-center">
-                <div className="flex flex-col">
+                <Link className="flex flex-col">
                   <span className="text-base font-semibold">Shock mister president became mister presidentia</span>
-                  <span className="text-xs font-normal">Shock mister president became mister presidentia</span>
-                </div>
+                  <span className="text-xs font-normal text-gray-400">Shock mister president became mister presidentia</span>
+                </Link>
 
                 <span className="text-xs font-normal">03/18/2023.02:00</span>
               </div>
