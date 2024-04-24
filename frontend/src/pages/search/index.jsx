@@ -4,6 +4,7 @@ import {
   CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
+import IconComponent from "@/components/icons";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SearchModule } from "@/modules/search.jsx";
@@ -13,6 +14,7 @@ import { Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
+import { SlCloudDownload } from "react-icons/sl";
 
 const SearchFormik = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -385,7 +387,7 @@ const SearchFormik = () => {
                 <CustomInput
                   colorBorder={colorsObject.primary}
                   placeholder={"Search"}
-                  className={`w-96 pl-12 pr-4 text-sm  `}
+                  className={`w-96 pl-12 pr-4 text-sm shadow-lg`}
                 />
 
                 <span
@@ -404,6 +406,11 @@ const SearchFormik = () => {
                 pageSize={2}
                 current={Current}
                 onChange={handleChangePagination}
+              />
+
+              <IconComponent
+                icon={<SlCloudDownload />}
+                iconWidth={"border border-indigo-700 rounded p-1 shadow-lg"}
               />
             </div>
           </div>
