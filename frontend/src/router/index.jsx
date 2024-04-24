@@ -1,4 +1,6 @@
 import Layout from "@/layout";
+import Configuration from "@/pages/configuration/index.jsx";
+import { ConfigBase } from "@/pages/configuration/subpages/config-base.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
@@ -48,6 +50,15 @@ export const router = createBrowserRouter([
       {
         path: "/help",
         element: <Help />,
+      },
+      {
+        path: "/configuration/:title",
+        element: <Configuration />,
+        children: [
+          {
+            path: ":subpage",
+          },
+        ],
       },
       {
         path: "/search",

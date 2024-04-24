@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a77ebf5-d708-47a9-9cda-9aac26ef8dfc" name="Changes" comment="added backend || Location || Location_small modules to trace each drivingschool">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/company.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/config-base.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/payment.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Pipfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/location/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/location/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/reqirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,74 +26,97 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="a252840e-abe6-41e5-be29-c1356edcf0fa" />
-        <option name="url" value="https://github.com/jontosh/drivingschool.git" />
-      </UrlAndAccount>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2fFoCPsUP0JoDf8xO1a4m8Xbuho" />
-
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2fZ2yBFCuM1gWfGXKvpCEIJecl9" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "configuration",
+    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool/frontend/package.json",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
+    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="js.build_tools.npm" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-2e7d6887c066-JavaScript-WS-241.15989.47" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2a77ebf5-d708-47a9-9cda-9aac26ef8dfc" name="Changes" comment="added backend || Location || Location_small modules to trace each drivingschool" />
-      <created>1713406061321</created>
+      <changelist id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="" />
+      <created>1713995915111</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713406061321</updated>
-      <workItem from="1713406063697" duration="655000" />
-      <workItem from="1713525562324" duration="2088000" />
-      <workItem from="1713592269013" duration="2139000" />
+      <updated>1713995915111</updated>
+      <workItem from="1713995918480" duration="4461000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding venv" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Remove" />
+    <MESSAGE value="Remove unnecessary" />
+    <MESSAGE value="Remove unnecessary GitHub" />
+    <MESSAGE value="Remove unnecessary GitHub pull" />
+    <MESSAGE value="Remove unnecessary GitHub pull request" />
+    <MESSAGE value="Remove unnecessary GitHub pull request and" />
+    <MESSAGE value="Remove unnecessary GitHub pull request and V" />
+    <MESSAGE value="Remove unnecessary GitHub pull request and VCS" />
+    <MESSAGE value="Remove unnecessary GitHub pull request and VCS manager" />
+    <MESSAGE value="Remove unnecessary GitHub pull request and VCS manager configurations" />
+    <MESSAGE value="Remove unnecessary GitHub pull request and VCS manager configurations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unnecessary GitHub pull request and VCS manager configurations." />
   </component>
 </project>
