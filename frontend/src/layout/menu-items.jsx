@@ -267,7 +267,31 @@ export const MenuItems = (IsActive, getItem) => {
       <span className="w-5">
         <AiOutlineSetting />
       </span>,
-      IsActive && [getItem("Process")],
+      IsActive && [
+        getItem(
+          <Link to={"/configuration/company/info"} children={"Company Info"} />,
+          "sub10-1",
+          null,
+        ),
+        getItem(
+          <Link to={"/configuration/payment"} children={"Integrate payment"} />,
+          "sub10-2",
+          null,
+        ),
+        getItem(
+          <Link
+            to={"/configuration/policies"}
+            children={"Security Policies"}
+          />,
+          "sub10-3",
+          null,
+        ),
+        getItem(
+          <Link to={"/configuration/zip-code"} children={"Zip Code"} />,
+          "sub10-4",
+          null,
+        ),
+      ],
     ),
     getItem(
       IsActive && <Link to={"/help"} children={"Help"} />,
