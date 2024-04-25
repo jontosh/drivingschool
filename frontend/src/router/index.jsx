@@ -1,4 +1,6 @@
 import Layout from "@/layout";
+import Configuration from "@/pages/configuration/index.jsx";
+import { ConfigBase } from "@/pages/configuration/subpages/config-base.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
@@ -17,6 +19,7 @@ import Register from "@/pages/register/index.jsx";
 import SignIn from "@/pages/register/sign-in.jsx";
 import Scheduling from "@/pages/scheduling/index.jsx";
 import Manage from "@/pages/scheduling/subpages/manage.jsx";
+import Search from "@/pages/search/index.jsx";
 import Student from "@/pages/student/index.jsx";
 import StudentSpa from "@/pages/student/student-spa.jsx";
 import { createBrowserRouter } from "react-router-dom";
@@ -47,6 +50,19 @@ export const router = createBrowserRouter([
       {
         path: "/help",
         element: <Help />,
+      },
+      {
+        path: "/configuration/:title",
+        element: <Configuration />,
+        children: [
+          {
+            path: ":subpage",
+          },
+        ],
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
       {
         path: "/scheduling/:title",

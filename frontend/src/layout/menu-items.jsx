@@ -33,7 +33,7 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
     ),
     getItem(
-      IsActive && <Link to={"/notfound/"} children={"Advanced search"} />,
+      IsActive && <Link to={"/search/"} children={"Advanced search"} />,
       "sub3",
       <span className={"w-5"}>
         <AiOutlineSearch />
@@ -80,7 +80,6 @@ export const MenuItems = (IsActive, getItem) => {
           null,
         ),
         getItem(
-
           <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,
           "sub5-2",
           null,
@@ -268,7 +267,34 @@ export const MenuItems = (IsActive, getItem) => {
       <span className="w-5">
         <AiOutlineSetting />
       </span>,
-      IsActive && [getItem("Process")],
+      IsActive && [
+        getItem(
+          <Link to={"/configuration/company/info"} children={"Company Info"} />,
+          "sub10-1",
+          null,
+        ),
+        getItem(
+          <Link
+            to={"/configuration/company/payment"}
+            children={"Integrate payment"}
+          />,
+          "sub10-2",
+          null,
+        ),
+        getItem(
+          <Link
+            to={"/configuration/policies/staff-password"}
+            children={"Security Policies"}
+          />,
+          "sub10-3",
+          null,
+        ),
+        getItem(
+          <Link to={"/configuration/zip-code"} children={"Zip Code"} />,
+          "sub10-4",
+          null,
+        ),
+      ],
     ),
     getItem(
       IsActive && <Link to={"/help"} children={"Help"} />,

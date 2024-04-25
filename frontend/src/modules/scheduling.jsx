@@ -1,4 +1,7 @@
+import ButtonComponent from "@/components/button/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
+import ColorsContext from "@/context/colors.jsx";
+import { useContext } from "react";
 
 export const SchedulingModule = () => {
   const columns = [
