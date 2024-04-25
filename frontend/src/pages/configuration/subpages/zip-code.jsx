@@ -10,6 +10,21 @@ import { Switch } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext } from "react";
 
+const mockData = [
+  { key: "0", title: "Title 0", description: "Sample Description 0" },
+  { key: "1", title: "Title 1", description: "Sample Description 1" },
+  { key: "2", title: "Title 2", description: "Sample Description 2" },
+  { key: "3", title: "Title 3", description: "Sample Description 3" },
+  { key: "4", title: "Title 4", description: "Sample Description 4" },
+  { key: "5", title: "Title 5", description: "Sample Description 5" },
+  { key: "6", title: "Title 0", description: "Sample Description 0" },
+  { key: "7", title: "Title 1", description: "Sample Description 1" },
+  { key: "8", title: "Title 2", description: "Sample Description 2" },
+  { key: "9", title: "Title 3", description: "Sample Description 3" },
+  { key: "10", title: "Title 4", description: "Sample Description 4" },
+  { key: "11", title: "Title 5", description: "Sample Description 5" },
+]
+
 const ZipCodeFormik = () => {
   const { colorsObject } = useContext(ColorsContext);
   return (
@@ -90,7 +105,11 @@ const ZipCodeFormik = () => {
             </div>
 
             <div className={"flex justify-center"}>
-              <CustomTransfer colorBorder={colorsObject.primary} />
+              <CustomTransfer
+                colorBorder={colorsObject.primary}
+                dataSource={mockData}
+                listHeight={198}
+              />
             </div>
           </div>
 
