@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #xml Refactored the component to include a new email template module and pagination functionality. Updated communication and ticket routing and menu items and configured project settings in workspace XML.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/icons/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/icons/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/communication-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/communication-spa.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714052050252</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="#fix #jsx #xml Refactored the component to include a new email template module and pagination functionality. Updated communication and ticket routing and menu items and configured project settings in workspace XML.">
+      <option name="closed" value="true" />
+      <created>1714067624178</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714067624178</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,31 +150,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
-    <MESSAGE value="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update communication" />
-    <MESSAGE value="Update communication and" />
-    <MESSAGE value="Update communication and ticket" />
-    <MESSAGE value="Update communication and ticket routing" />
-    <MESSAGE value="Update communication and ticket routing and" />
-    <MESSAGE value="Update communication and ticket routing and menu" />
-    <MESSAGE value="Update communication and ticket routing and menu items" />
-    <MESSAGE value="Update communication and ticket routing and menu items," />
-    <MESSAGE value="Update communication and ticket routing and menu items, and" />
-    <MESSAGE value="Update communication and ticket routing and menu items, and adjust" />
-    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project" />
-    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings" />
-    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in" />
-    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in workspace" />
-    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in workspace XML" />
-    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
-    <MESSAGE value="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
+    <MESSAGE value="- Refactor component to include new email template" />
+    <MESSAGE value="- Refactor component to include new email template module" />
+    <MESSAGE value="- Refactor component to include new email template module and" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality." />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;-" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items," />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in workspace" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in workspace XML" />
+    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
+    <MESSAGE value="#fix #jsx #xml Refactored the component to include a new email template module and pagination functionality. Updated communication and ticket routing and menu items and configured project settings in workspace XML." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #xml Refactored the component to include a new email template module and pagination functionality. Updated communication and ticket routing and menu items and configured project settings in workspace XML." />
   </component>
 </project>

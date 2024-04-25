@@ -163,6 +163,14 @@ export const MenuItems = (IsActive, getItem) => {
           "sub6-1",
           null,
         ),
+        getItem(
+          <Link
+            to={"/communication/student-resources/class"}
+            children={"Student Resources"}
+          />,
+          "sub6-2",
+          null,
+        ),
       ],
     ),
     getItem(
