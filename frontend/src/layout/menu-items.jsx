@@ -154,7 +154,14 @@ export const MenuItems = (IsActive, getItem) => {
       <span className={"w-5"}>
         <AiOutlineMail />
       </span>,
-      IsActive && [getItem("Process")],
+      IsActive && [
+        getItem(
+          <Link
+            to={"/communication/email-templates"}
+            children={"Email Templates"}
+          />,
+        ),
+      ],
     ),
     getItem(
       IsActive && "Report center",
