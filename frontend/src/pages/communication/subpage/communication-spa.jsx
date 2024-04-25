@@ -1,6 +1,7 @@
 import IconComponent from "@/components/icons/index.jsx";
 import { EmailTemplateModule } from "@/modules/email-template.jsx";
 import { EmailTemplate } from "@/pages/communication/subpage/email-template.jsx";
+import { StudenResources } from "@/pages/communication/subpage/studenе-resources.jsx";
 import { Pagination } from "antd";
 import { Fragment, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -18,6 +19,17 @@ export const CommunicationSpa = () => {
   };
 
   switch (title?.toLowerCase()) {
+    case "student-resources": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Communication - Student Resources</title>
+          </Helmet>
+
+          <StudenResources />
+        </Fragment>
+      );
+    }
     case "email-templates": {
       return (
         <Fragment>
