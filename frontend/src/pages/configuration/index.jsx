@@ -1,11 +1,20 @@
 import Title from "@/components/title/index.jsx";
 import { ConfigBase } from "@/pages/configuration/subpages/config-base.jsx";
-import { useParams } from "react-router-dom";
+import { PolicySpa } from "@/pages/configuration/subpages/policy-spa.jsx";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CheckSubpages = ({ title }) => {
+  const navigation = useNavigate();
   switch (title?.toLowerCase()) {
     case "company": {
       return <ConfigBase />;
+    }
+    case "policies": {
+      return <PolicySpa />;
+    }
+
+    default: {
+      navigation("/configuration");
     }
   }
 };
