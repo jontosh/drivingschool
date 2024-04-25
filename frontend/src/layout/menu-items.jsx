@@ -274,13 +274,16 @@ export const MenuItems = (IsActive, getItem) => {
           null,
         ),
         getItem(
-          <Link to={"/configuration/payment"} children={"Integrate payment"} />,
+          <Link
+            to={"/configuration/company/payment"}
+            children={"Integrate payment"}
+          />,
           "sub10-2",
           null,
         ),
         getItem(
           <Link
-            to={"/configuration/policies"}
+            to={"/configuration/policies/staff-password"}
             children={"Security Policies"}
           />,
           "sub10-3",

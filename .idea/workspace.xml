@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/company.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/config-base.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/payment.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/policy-spa.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/staff-password.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/student-password.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,25 +97,48 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713995915111</updated>
-      <workItem from="1713995918480" duration="4461000" />
+      <workItem from="1713995918480" duration="8778000" />
     </task>
+    <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
+      <option name="closed" value="true" />
+      <created>1714000414208</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714000414208</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove" />
-    <MESSAGE value="Remove unnecessary" />
-    <MESSAGE value="Remove unnecessary GitHub" />
-    <MESSAGE value="Remove unnecessary GitHub pull" />
-    <MESSAGE value="Remove unnecessary GitHub pull request" />
-    <MESSAGE value="Remove unnecessary GitHub pull request and" />
-    <MESSAGE value="Remove unnecessary GitHub pull request and V" />
-    <MESSAGE value="Remove unnecessary GitHub pull request and VCS" />
-    <MESSAGE value="Remove unnecessary GitHub pull request and VCS manager" />
-    <MESSAGE value="Remove unnecessary GitHub pull request and VCS manager configurations" />
-    <MESSAGE value="Remove unnecessary GitHub pull request and VCS manager configurations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unnecessary GitHub pull request and VCS manager configurations." />
+    <MESSAGE value="Add new configuration routes and menu" />
+    <MESSAGE value="Add new configuration routes and menu items" />
+    <MESSAGE value="Add new configuration routes and menu items for" />
+    <MESSAGE value="Add new configuration routes and menu items for company" />
+    <MESSAGE value="Add new configuration routes and menu items for company information" />
+    <MESSAGE value="Add new configuration routes and menu items for company information," />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration," />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies," />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code," />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings" />
+    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
+    <MESSAGE value="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
   </component>
 </project>
