@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/zip-code.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
+      <change afterPath="$PROJECT_DIR$/backend/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/config/router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/location/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/location/serializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/location/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/location/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/location/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/location/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/location/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/location/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/location/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,10 +55,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "configuration",
-    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool/frontend/package.json",
+    "last_opened_file_path": "/Users/a/Development/driving_school/drivingschool",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -95,7 +105,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713995915111</updated>
-      <workItem from="1713995918480" duration="15058000" />
+      <workItem from="1713995918480" duration="8778000" />
+      <workItem from="1714011415435" duration="240000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -118,6 +129,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add new configuration routes and menu" />

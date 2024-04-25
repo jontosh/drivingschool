@@ -25,14 +25,14 @@ class Location(models.Model):
     ]
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=100)
-    status = models.CharField(choices=Status)
-    type = models.CharField(choices=Type)
+    status = models.CharField(choices=Status,max_length=100)
+    type = models.CharField(choices=Type,max_length=100)
     address = models.TextField()
     city = models.CharField(max_length=200)
     zip = models.CharField(max_length=50)
     location_manager = models.CharField(max_length=200)
-    pickup = models.ForeignKey("LocationSmall",on_delete=models.CASCADE())
-    dropOff = models.ForeignKey("LocationSmall",on_delete=models.CASCADE())
+    pick_up = models.ForeignKey("LocationSmall",on_delete=models.CASCADE,related_name="pickUp")
+    drop_off = models.ForeignKey("LocationSmall",on_delete=models.CASCADE,related_name="dropOff")
     county = models.CharField(max_length=200)
     phone_main = models.CharField(max_length=100)
     fax = models.CharField(max_length=100)
@@ -55,13 +55,13 @@ class School(models.Model):
     ]
     name = models.CharField(max_length=200)
     code = models.PositiveBigIntegerField()
-    address = models.ForeignKey("LocationSmall",on_delete=models.CASCADE())
+    address = models.ForeignKey("LocationSmall",on_delete=models.CASCADE)
     email = models.EmailField()
     note = models.TextField()
     zipcode = models.IntegerField()
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
-    status = models.CharField(choices=Status,default="INACTIVE")
+    status = models.CharField(choices=Status,default="INACTIVE",max_length=100)
 #CLASS
 class Class(models.Model):
     pass
@@ -96,12 +96,12 @@ class Vehicle(models.Model):
         ["TRUCK","TRUCK"]
     ]
     name = models.CharField(max_length=200)
-    status = models.CharField(choices=Status,default="INACTIVE")
-    type = models.CharField(choices=Type)
+    status = models.CharField(choices=Status,default="INACTIVE",max_length=100)
+    type = models.CharField(choices=Type,max_length=100)
     location = models.ForeignKey("Location",on_delete=models.DO_NOTHING)
     number = models.CharField(max_length=100)
     make = models.CharField(max_length=150)
-    plate = models.CharField(200)
+    plate = models.CharField(max_length=100)
     has_color = models.BooleanField(default=False)
     color = ColorField(default='#FF0000')
     note = models.TextField()

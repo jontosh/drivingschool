@@ -11,6 +11,7 @@ export const SearchModule = () => {
       title: "Full name",
       dataIndex: "name",
       key: "name",
+      align: "center",
       render: (name) => (
         <Paragraph
           fontSize={"text-base"}
@@ -25,6 +26,7 @@ export const SearchModule = () => {
       title: "City",
       dataIndex: "city",
       key: "city",
+      align: "center",
       render: (city) => (
         <Paragraph
           fontSize={"text-base"}
@@ -39,6 +41,7 @@ export const SearchModule = () => {
       title: "High school",
       dataIndex: "school",
       key: "school",
+      align: "center",
       render: (school) => (
         <Paragraph
           fontSize={"text-base"}
@@ -53,6 +56,7 @@ export const SearchModule = () => {
       title: "Balance",
       dataIndex: "balance",
       key: "balance",
+      align: "center",
       render: (balance) => (
         <Paragraph
           fontSize={"text-base"}
@@ -67,6 +71,7 @@ export const SearchModule = () => {
       title: "Type",
       dataIndex: "type",
       key: "type",
+      align: "center",
       render: (type) => (
         <Paragraph
           fontSize={"text-base"}
@@ -91,7 +96,7 @@ export const SearchModule = () => {
           defaultHoverColor={colorsObject.main}
           fontSize={12}
           borderRadius={5}
-          paddingInline={32}
+          style={{ width: 107 }}
         >
           {status ? "activated" : "not activated"}
         </ButtonComponent>
@@ -102,6 +107,7 @@ export const SearchModule = () => {
       title: "DL/Permit number",
       dataIndex: "number",
       key: "number",
+      align: "center",
       render: (number) => (
         <Paragraph
           fontSize={"text-base"}
