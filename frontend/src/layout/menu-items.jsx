@@ -157,9 +157,11 @@ export const MenuItems = (IsActive, getItem) => {
       IsActive && [
         getItem(
           <Link
-            to={"/communication/email-templates"}
+            to={"/communication/email-templates/student-portal"}
             children={"Email Templates"}
           />,
+          "sub6-1",
+          null,
         ),
       ],
     ),

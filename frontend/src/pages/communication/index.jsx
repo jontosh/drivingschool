@@ -1,4 +1,5 @@
 import Title from "@/components/title/index.jsx";
+import { CommunicationSpa } from "@/pages/communication/subpage/communication-spa.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 
@@ -19,7 +20,9 @@ const Communication = () => {
           Communication
         </Title>
 
-        <div></div>
+        <div className={"bg-white rounded-2xl px-5 shadow-2xl"}>
+          <CommunicationSpa />
+        </div>
       </section>
     </Fragment>
   );

@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/communication-spa.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/help/ticket/ticket-spa.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/icons/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/icons/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/communication-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/communication-spa.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714006476506</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML.">
+      <option name="closed" value="true" />
+      <created>1714052050252</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714052050252</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,24 +146,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add new configuration routes and menu" />
-    <MESSAGE value="Add new configuration routes and menu items" />
-    <MESSAGE value="Add new configuration routes and menu items for" />
-    <MESSAGE value="Add new configuration routes and menu items for company" />
-    <MESSAGE value="Add new configuration routes and menu items for company information" />
-    <MESSAGE value="Add new configuration routes and menu items for company information," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace" />
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML" />
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file" />
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and" />
@@ -162,6 +153,24 @@
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings" />
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
     <MESSAGE value="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update communication" />
+    <MESSAGE value="Update communication and" />
+    <MESSAGE value="Update communication and ticket" />
+    <MESSAGE value="Update communication and ticket routing" />
+    <MESSAGE value="Update communication and ticket routing and" />
+    <MESSAGE value="Update communication and ticket routing and menu" />
+    <MESSAGE value="Update communication and ticket routing and menu items" />
+    <MESSAGE value="Update communication and ticket routing and menu items," />
+    <MESSAGE value="Update communication and ticket routing and menu items, and" />
+    <MESSAGE value="Update communication and ticket routing and menu items, and adjust" />
+    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project" />
+    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings" />
+    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in" />
+    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in workspace" />
+    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in workspace XML" />
+    <MESSAGE value="Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
+    <MESSAGE value="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
   </component>
 </project>
