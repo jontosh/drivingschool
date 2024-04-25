@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/policy-spa.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/staff-password.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/student-password.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/zip-code.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +46,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "configuration",
     "last_opened_file_path": "/home/khaetbek/D/works/drivingschool/frontend/package.json",
@@ -97,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713995915111</updated>
-      <workItem from="1713995918480" duration="8778000" />
+      <workItem from="1713995918480" duration="15058000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -107,7 +105,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714000414208</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings.">
+      <option name="closed" value="true" />
+      <created>1714006476506</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714006476506</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +144,7 @@
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project" />
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings" />
     <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
-    <MESSAGE value="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
+    <MESSAGE value="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings." />
   </component>
 </project>
