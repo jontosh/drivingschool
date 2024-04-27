@@ -54,3 +54,41 @@ export const IncameModule = () => {
   ];
   return { columns, data };
 };
+
+export const StatisticModule = () => {
+  const columns = [
+    {
+      title: "Service name",
+      dataIndex: "name",
+      key: "name",
+      render: (service) => <Paragraph>{service}</Paragraph>,
+    },
+    {
+      title: "Service price",
+      dataIndex: "price",
+      key: "price",
+      render: (price) => <Paragraph>${price}</Paragraph>,
+    },
+    {
+      title: "Days",
+      dataIndex: "days",
+      key: "days",
+      render: (day) => <Paragraph>{day}</Paragraph>,
+    },
+    {
+      title: "Proceeds",
+      dataIndex: "proceeds",
+      key: "proceeds",
+      render: (proceeds) => <Paragraph>${proceeds}</Paragraph>,
+    },
+  ];
+  const data = [
+    {
+      name: "Advanced Parking",
+      price: 649.99,
+      days: 30,
+      proceeds: 19470,
+    },
+  ];
+  return { columns, data };
+};
