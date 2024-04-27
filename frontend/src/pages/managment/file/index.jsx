@@ -1,10 +1,14 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomInput, CustomSelect, CustomTransfer } from "@/components/form/index.jsx";
+import {
+  CustomInput,
+  CustomSelect,
+  CustomTransfer,
+} from "@/components/form/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Space, Switch, Table, Transfer } from "antd";
+import { Space, Switch, Table } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -44,7 +48,7 @@ const mockData = [
   { key: "9", title: "Title 3", description: "Sample Description 3" },
   { key: "10", title: "Title 4", description: "Sample Description 4" },
   { key: "11", title: "Title 5", description: "Sample Description 5" },
-]
+];
 
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -655,8 +659,7 @@ const File = () => {
                       "font-semibold text-end w-52 flex-shrink-0 text-base"
                     }
                   >
-                    Must Be Uploaded to Student
-                    Account:
+                    Must Be Uploaded to Student Account:
                   </span>
                   <Switch
                     style={{
@@ -673,9 +676,8 @@ const File = () => {
                       "font-semibold text-end w-52 flex-shrink-0 text-base"
                     }
                   >
-                    Disallow files associated
-                    with category from displaying
-                    on Student Portal:
+                    Disallow files associated with category from displaying on
+                    Student Portal:
                   </span>
                   <Switch
                     style={{
@@ -692,8 +694,7 @@ const File = () => {
                       "font-semibold text-end w-52 flex-shrink-0 text-base"
                     }
                   >
-                    Disallow files associated with
-                    this category  from displaying
+                    Disallow files associated with this category from displaying
                     on Instructor/Teacher Portal:
                   </span>
                   <Switch

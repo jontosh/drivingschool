@@ -6,6 +6,7 @@ import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
 import Enrollment from "@/pages/enrollment/index.jsx";
+import Finance from "@/pages/finances/index.jsx";
 import { Help } from "@/pages/help";
 import HelpMain from "@/pages/help/main";
 import { News } from "@/pages/help/news";
@@ -53,7 +54,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/support",
-        element: <HelpMain />, 
+        element: <HelpMain />,
         children: [
           {
             path: "ticket/:title",
@@ -73,7 +74,7 @@ export const router = createBrowserRouter([
             element: <Help />
           }
         ]
-      },  
+      },
       {
         path: "/configuration/:title",
         element: <Configuration />,
@@ -99,6 +100,10 @@ export const router = createBrowserRouter([
       {
         path: "/scheduling/:title",
         element: <Scheduling />,
+      },
+      {
+        path: "/finance/:title",
+        element: <Finance />,
       },
       {
         path: "/scheduling/manage/:title",
