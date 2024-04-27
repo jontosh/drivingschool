@@ -6,7 +6,7 @@ import { ExportOutlined } from "@ant-design/icons";
 import { ConfigProvider, Tabs } from "antd";
 import { Fragment, useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import TabItem from "./help-content";
+import TabItem from "./items/help-content";
 import ColorsContext from "@/context/colors.jsx";
 
 export const Help = () => {
