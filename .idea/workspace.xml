@@ -4,17 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resource-parent.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resources-in-car.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resources-road-test.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resourse-class.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/finances.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/items/expenses.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/items/invoice-year.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/items/pl-chart.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/subpage/finances.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/subpage/statistic.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JSX File" />
         <option value="Python Script" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -57,7 +61,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;сommunication&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;finances&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/a/Development/driving_school/drivingschool&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -70,7 +74,6 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -78,7 +81,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Python.m">
+  <component name="RunManager" selected="npm.start">
     <configuration name="m" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="drivingschool" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,11 +114,9 @@
       <envs />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.m" />
-      </list>
-    </recent_temporary>
+    <list>
+      <item itemvalue="npm.start" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -137,6 +138,8 @@
       <workItem from="1714143886651" duration="282000" />
       <workItem from="1714216961912" duration="2140000" />
       <workItem from="1714219166416" duration="174000" />
+      <workItem from="1714226266068" duration="56000" />
+      <workItem from="1714228513381" duration="16670000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />

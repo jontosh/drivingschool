@@ -277,6 +277,18 @@ export const MenuItems = (IsActive, getItem) => {
       <span className="w-5">
         <DollarOutlined />
       </span>,
+      [
+        getItem(
+          <Link to={"/finance/finances"} children={"Finances"} />,
+          "sub9-1",
+          null,
+        ),
+        getItem(
+          <Link to={"/finance/statistic"} children={"Statistic"} />,
+          "sub9-2",
+          null,
+        ),
+      ],
     ),
     getItem(
       IsActive && "Configuration",
