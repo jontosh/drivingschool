@@ -9,11 +9,15 @@ import { AiOutlineSearch } from "react-icons/ai";
 import TabItem from "./items/help-content";
 import ColorsContext from "@/context/colors.jsx";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export const Help = () => {
   const { colorsObject } = useContext(ColorsContext);
   return (
     <Fragment>
+      <Helmet>
+        <title>Help</title>
+      </Helmet>
       <div className="px-11">
         <Title
           level={2}
@@ -84,7 +88,7 @@ export const Help = () => {
               fontWeightStrong={500}
             >Latest news</Title>
 
-            <Link to="/help/news">
+            <Link to="/support/news">
               <ButtonComponent
                 defaultBg="#1890FF"
                 defaultHoverBg="#1890FF"

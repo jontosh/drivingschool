@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
         element: <Enrollment />,
       },
       {
-        path: "/help",
+        path: "/support",
         element: <HelpMain />, 
         children: [
           {

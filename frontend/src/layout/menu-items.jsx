@@ -314,7 +314,7 @@ export const MenuItems = (IsActive, getItem) => {
       ],
     ),
     getItem(
-      IsActive && <Link to={"/help"} children={"Help"} />,
+      IsActive && <Link to={"/support/help"} children={"Help"} />,
       "sub11",
       <span className="w-5">
         <AiOutlineTool />
