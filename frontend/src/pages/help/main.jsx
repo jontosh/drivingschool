@@ -5,8 +5,8 @@ export default function HelpMain() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     useEffect(() => {
-        if (pathname === "/help" || pathname === "/help/") {
-            navigate("/help/help")
+        if (pathname === "/support" || pathname === "/support/") {
+            navigate("/support/help")
         }
     })
 
