@@ -42,39 +42,36 @@ export const Help = () => {
           </div>
 
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
-            <div className="w-14 h-14 bg-blue-500 rounded-full absolute ml-20" style={{ marginTop: -28 }}>
+            <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
 
             </div>
             <Title
               fontWeightStrong={500}
               fontSize={"text-xl"}
               level={3}
-              className={"pt-10"}
             >Phone</Title>
             <Paragraph className="text-gray-400 text-lg">+998883715271</Paragraph>
           </div>
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
-            <div className="w-14 h-14 bg-blue-500 rounded-full absolute ml-20" style={{ marginTop: -28 }}>
+            <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
 
             </div>
             <Title
               fontWeightStrong={500}
               fontSize={"text-xl"}
               level={3}
-              className={"pt-10"}
             >Support hours</Title>
             <Paragraph className="text-gray-400 text-lg">08:00 - 18:00</Paragraph>
           </div>
 
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
-            <div className="w-14 h-14 bg-blue-500 rounded-full absolute ml-20" style={{ marginTop: -28 }}>
+            <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
 
             </div>
             <Title
               fontWeightStrong={500}
               fontSize={"text-xl"}
               level={3}
-              className={"pt-10"}
             >Days</Title>
             <Paragraph className="text-gray-400 text-lg">Monday & Sunday</Paragraph>
           </div>
@@ -102,7 +99,7 @@ export const Help = () => {
           </div>
 
           <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 border-l-4 border-solid border-blue-500 p-5 rounded-tr-lg rounded-br-lg">
+            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
               <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
               <span className="flex justify-between items-center">
                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
@@ -116,7 +113,7 @@ export const Help = () => {
           </div>
 
           <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 border-l-4 border-solid border-blue-500 p-5 rounded-tr-lg rounded-br-lg">
+            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
               <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
               <span className="flex justify-between items-center">
                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
@@ -130,7 +127,7 @@ export const Help = () => {
           </div>
 
           <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 border-l-4 border-solid border-blue-500 p-5 rounded-tr-lg rounded-br-lg">
+            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
               <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
               <span className="flex justify-between items-center">
                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
@@ -144,7 +141,7 @@ export const Help = () => {
           </div>
 
           <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 border-l-4 border-solid border-blue-500 p-5 rounded-tr-lg rounded-br-lg">
+            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
               <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
               <span className="flex justify-between items-center">
                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
