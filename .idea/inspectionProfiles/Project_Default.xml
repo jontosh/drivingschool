@@ -6,6 +6,12 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="backend.location.models.colorfield" />
+          <option value="backend.Users.models.colorfield" />
+          <option value="django.db.models.fields.related.ManyToManyField.count" />
+          <option value="backend.servises.models.AddOn.objects" />
+          <option value="backend.Users.models.*" />
+          <option value="backend.Users.models.location" />
+          <option value="backend.servises.models.location" />
         </list>
       </option>
     </inspection_tool>

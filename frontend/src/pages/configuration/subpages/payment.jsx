@@ -41,12 +41,14 @@ export const Payment = () => {
 
         <div className="flex items-center gap-7">
           <IconComponent
-            className={"text-[100px] cursor-default"}
+            className={"cursor-default"}
             icon={<LiaCcVisa />}
+            iconWidth={"text-[100px]"}
           />
           <IconComponent
-            className={"text-[85px] cursor-default"}
+            className={"cursor-default"}
             icon={<FaCcMastercard />}
+            iconWidth={"text-[75px]"}  
           />
         </div>
       </div>

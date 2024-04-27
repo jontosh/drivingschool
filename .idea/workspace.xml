@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resource-parent.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resources-in-car.jsx" afterDir="false" />
@@ -13,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JSX File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -67,6 +70,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -74,7 +78,29 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.m">
+    <configuration name="m" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="drivingschool" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/m.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
@@ -85,6 +111,11 @@
       <envs />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.m" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -115,29 +146,19 @@
       <option name="project" value="LOCAL" />
       <updated>1714000414208</updated>
     </task>
-    <task id="LOCAL-00002" summary="#fix #jsx #xml Added new configuration routes and menu items for company information, payment integration, security policies and zip code, updated workspace XML file and project settings.">
-      <option name="closed" value="true" />
-      <created>1714006476506</created>
+    <task id="LOCAL-00002" summary="backend">
+      <created>1714011796980</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1714006476506</updated>
+      <updated>1714011796980</updated>
     </task>
-    <task id="LOCAL-00003" summary="#fix #jsx Update communication and ticket routing and menu items, and adjust project settings in workspace XML.">
-      <option name="closed" value="true" />
-      <created>1714052050252</created>
+    <task id="LOCAL-00003" summary="backend added services">
+      <created>1714142831334</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1714052050252</updated>
-    </task>
-    <task id="LOCAL-00004" summary="#fix #jsx #xml Refactored the component to include a new email template module and pagination functionality. Updated communication and ticket routing and menu items and configured project settings in workspace XML.">
-      <option name="closed" value="true" />
-      <created>1714067624178</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1714067624178</updated>
+      <updated>1714142831334</updated>
     </task>
     <task id="LOCAL-00005" summary="#fix #jsx A refactoring component that includes a new email template module and pagination functionality, updates to communications, ticket routing and menu items, and customization of project settings in the workspace XML.">
       <option name="closed" value="true" />
@@ -158,7 +179,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

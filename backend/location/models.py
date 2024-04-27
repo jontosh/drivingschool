@@ -1,6 +1,5 @@
 from django.db import models
 from colorfield.fields import ColorField
-
 # LOCATION
 class Location(models.Model):
     """
@@ -42,7 +41,7 @@ class Location(models.Model):
     color = ColorField(default='#FF0000')
     has_distance_based_scheduling = models.BooleanField(default=False)
     distance_based_scheduling = models.IntegerField(default=0)
-    provider_location_id = models.CharField(blank=True,max_length=200)
+    provider_location_id = models.CharField(blank=True,null=True,max_length=200)
     send_drive_available_email_on_appointment_cancellation= models.BooleanField(default=False)
 
 # SCHOOL
@@ -64,7 +63,22 @@ class School(models.Model):
     status = models.CharField(choices=Status,default="INACTIVE",max_length=100)
 #CLASS
 class Class(models.Model):
-    pass
+    Status = [
+        ["ACTIVE", "ACTIVE"],
+        ["DELETED", "DELETED"],
+        ["INACTIVE","INACTIVE"]
+    ]
+    date = models.DateField(default="1999/01/01",blank=True,null=True)
+    location = models.ForeignKey("Location", on_delete=models.CASCADE)
+    class_id = models.IntegerField(default=0,auto_created=True)
+    start_date = models.DateField(default="1999/01/01",help_text="MM/DD/YYYY",blank=True,null=True)
+    end_Data = models.DateField(default="1999/01/01",help_text="MM?DD?YYYY")
+    zoom = models.TextField(blank=True,null=True),
+    status = models.CharField(choices=Status, max_length=40, default="ACTIVE")
+    details = models.TextField(blank=True,null=True)
+    note = models.TextField(blank=True,null=True)
+    day = models.ManyToManyField("Users.WorkingHours",related_name="day_class")
+    teacher = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE)
 
 
 
@@ -75,8 +89,6 @@ class LocationSmall(models.Model):
     name = models.CharField(max_length=200)
     address = models.TextField()
     note = models.TextField()
-
-
 
 # VEHICLE
 class Vehicle(models.Model):
