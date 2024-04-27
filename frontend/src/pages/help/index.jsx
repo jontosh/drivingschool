@@ -8,6 +8,7 @@ import { Fragment, useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import TabItem from "./items/help-content";
 import ColorsContext from "@/context/colors.jsx";
+import { Link } from "react-router-dom";
 
 export const Help = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -83,15 +84,17 @@ export const Help = () => {
               fontWeightStrong={500}
             >Latest news</Title>
 
-            <ButtonComponent
-              defaultBg="#1890FF"
-              defaultHoverBg="#1890FF"
-              controlHeight={44}
-              borderRadius={4}
-              className={"w-40"}
-            >
-              All news
-            </ButtonComponent>
+            <Link to="/help/news">
+              <ButtonComponent
+                defaultBg="#1890FF"
+                defaultHoverBg="#1890FF"
+                controlHeight={44}
+                borderRadius={4}
+                className="w-40"
+              >
+                All news
+              </ButtonComponent>
+            </Link>
           </div>
 
           <div className="flex flex-col gap-y-5 pt-5">
