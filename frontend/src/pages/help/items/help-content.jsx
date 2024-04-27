@@ -2,6 +2,7 @@ import IconComponent from "@/components/icons";
 import Title, { Paragraph } from "@/components/title";
 import { Fragment } from "react";
 import { BsPerson } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export const AllTickets = () => {
     return (
@@ -43,19 +44,27 @@ export const AllTickets = () => {
                     </Paragraph>
                 </div>
 
-                <div className="border-t border-solid border-gray-200 pt-2.5 flex gap-x-2 items-center">
-                    <IconComponent
-                        icon={<BsPerson />}
-                        iconWidth={"w-7"}
-                    />
+                <div className="flex justify-between items-center border-t border-solid border-gray-200 pt-2.5">
+                    <div className="flex gap-x-2 items-center">
+                        <IconComponent
+                            icon={<BsPerson />}
+                            iconWidth={"w-7"}
+                        />
 
-                    <Paragraph
-                        fontSize={14}
-                        fontWeightStrong={500}
-                        colorText="#84818A"
-                    >
-                        Hasanboy Nurmuhammadov
-                    </Paragraph>
+                        <Paragraph
+                            fontSize={14}
+                            fontWeightStrong={500}
+                            colorText="#84818A"
+                        >
+                            Hasanboy Nurmuhammadov
+                        </Paragraph>
+                    </div>
+
+                    <Link>
+                        <span className="underline text-blue-500">
+                            Open Ticket
+                        </span>
+                    </Link>
                 </div>
             </div>
         </Fragment>
@@ -102,19 +111,27 @@ export const New = () => {
                     </Paragraph>
                 </div>
 
-                <div className="border-t border-solid border-gray-200 pt-2.5 flex gap-x-2 items-center">
-                    <IconComponent
-                        icon={<BsPerson />}
-                        iconWidth={"w-7"}
-                    />
+                <div className="flex justify-between items-center border-t border-solid border-gray-200 pt-2.5">
+                    <div className="flex gap-x-2 items-center">
+                        <IconComponent
+                            icon={<BsPerson />}
+                            iconWidth={"w-7"}
+                        />
 
-                    <Paragraph
-                        fontSize={14}
-                        fontWeightStrong={500}
-                        colorText="#84818A"
-                    >
-                        Hasanboy Nurmuhammadov
-                    </Paragraph>
+                        <Paragraph
+                            fontSize={14}
+                            fontWeightStrong={500}
+                            colorText="#84818A"
+                        >
+                            Hasanboy Nurmuhammadov
+                        </Paragraph>
+                    </div>
+
+                    <Link>
+                        <span className="underline text-blue-500">
+                            Open Ticket
+                        </span>
+                    </Link>
                 </div>
             </div>
         </Fragment>
@@ -161,19 +178,27 @@ export const OnGoing = () => {
                     </Paragraph>
                 </div>
 
-                <div className="border-t border-solid border-gray-200 pt-2.5 flex gap-x-2 items-center">
-                    <IconComponent
-                        icon={<BsPerson />}
-                        iconWidth={"w-7"}
-                    />
+                <div className="flex justify-between items-center border-t border-solid border-gray-200 pt-2.5">
+                    <div className="flex gap-x-2 items-center">
+                        <IconComponent
+                            icon={<BsPerson />}
+                            iconWidth={"w-7"}
+                        />
 
-                    <Paragraph
-                        fontSize={14}
-                        fontWeightStrong={500}
-                        colorText="#84818A"
-                    >
-                        Hasanboy Nurmuhammadov
-                    </Paragraph>
+                        <Paragraph
+                            fontSize={14}
+                            fontWeightStrong={500}
+                            colorText="#84818A"
+                        >
+                            Hasanboy Nurmuhammadov
+                        </Paragraph>
+                    </div>
+
+                    <Link>
+                        <span className="underline text-blue-500">
+                            Open Ticket
+                        </span>
+                    </Link>
                 </div>
             </div>
         </Fragment>
@@ -220,19 +245,27 @@ export const Resolved = () => {
                     </Paragraph>
                 </div>
 
-                <div className="border-t border-solid border-gray-200 pt-2.5 flex gap-x-2 items-center">
-                    <IconComponent
-                        icon={<BsPerson />}
-                        iconWidth={"w-7"}
-                    />
+                <div className="flex justify-between items-center border-t border-solid border-gray-200 pt-2.5">
+                    <div className="flex gap-x-2 items-center">
+                        <IconComponent
+                            icon={<BsPerson />}
+                            iconWidth={"w-7"}
+                        />
 
-                    <Paragraph
-                        fontSize={14}
-                        fontWeightStrong={500}
-                        colorText="#84818A"
-                    >
-                        Hasanboy Nurmuhammadov
-                    </Paragraph>
+                        <Paragraph
+                            fontSize={14}
+                            fontWeightStrong={500}
+                            colorText="#84818A"
+                        >
+                            Hasanboy Nurmuhammadov
+                        </Paragraph>
+                    </div>
+
+                    <Link>
+                        <span className="underline text-blue-500">
+                            Open Ticket
+                        </span>
+                    </Link>
                 </div>
             </div>
         </Fragment>
