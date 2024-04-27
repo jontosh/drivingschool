@@ -5,19 +5,15 @@
   </component>
   <component name="ChangeListManager">
 
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="backend added services">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resource-parent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resources-in-car.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resources-road-test.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/student-resourse-class.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Users/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Users/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/location/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/location/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/location/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/location/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/location/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/servises/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/servises/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/servises/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/servises/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" afterDir="false" />
 
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,13 +52,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;configuration&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;сommunication&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/a/Development/driving_school/drivingschool&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -73,15 +68,9 @@
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/backend" />
-    </key>
-  </component>
+
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -144,10 +133,10 @@
       <option name="presentableId" value="Default" />
       <updated>1713995915111</updated>
       <workItem from="1713995918480" duration="8778000" />
-      <workItem from="1714011415435" duration="601000" />
-      <workItem from="1714035062747" duration="2843000" />
-      <workItem from="1714135754395" duration="3462000" />
-      <workItem from="1714178406619" duration="15041000" />
+      <workItem from="1714011415435" duration="240000" />
+      <workItem from="1714143886651" duration="282000" />
+      <workItem from="1714216961912" duration="2140000" />
+      <workItem from="1714219166416" duration="174000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -171,8 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714142831334</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
-
+    <task id="LOCAL-00005" summary="#fix #jsx A refactoring component that includes a new email template module and pagination functionality, updates to communications, ticket routing and menu items, and customization of project settings in the workspace XML.">
+      <option name="closed" value="true" />
+      <created>1714068759380</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714068759380</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,61 +198,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-
-    <MESSAGE value="Add new configuration routes and menu items for" />
-    <MESSAGE value="Add new configuration routes and menu items for company" />
-    <MESSAGE value="Add new configuration routes and menu items for company information" />
-    <MESSAGE value="Add new configuration routes and menu items for company information," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
-    <MESSAGE value="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
-    <MESSAGE value="backend" />
-    <MESSAGE value="backend added services" />
-    <option name="LAST_COMMIT_MESSAGE" value="backend added services" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/drivingschool$m.coverage" NAME="m Coverage Results" MODIFIED="1714091067869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
-    <MESSAGE value="- Refactor component to include new email template" />
-    <MESSAGE value="- Refactor component to include new email template module" />
-    <MESSAGE value="- Refactor component to include new email template module and" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality." />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;-" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items," />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in workspace" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in workspace XML" />
-    <MESSAGE value="- Refactor component to include new email template module and pagination functionality.&#10;- Update communication and ticket routing and menu items, and adjust project settings in workspace XML." />
-    <MESSAGE value="#fix #jsx #xml Refactored the component to include a new email template module and pagination functionality. Updated communication and ticket routing and menu items and configured project settings in workspace XML." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #xml Refactored the component to include a new email template module and pagination functionality. Updated communication and ticket routing and menu items and configured project settings in workspace XML." />
+    <MESSAGE value="Refactor component to include new email" />
+    <MESSAGE value="Refactor component to include new email template" />
+    <MESSAGE value="Refactor component to include new email template module" />
+    <MESSAGE value="Refactor component to include new email template module and" />
+    <MESSAGE value="Refactor component to include new email template module and pagination" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality," />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items," />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and configure" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and configure project" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and configure project settings" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and configure project settings in" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and configure project settings in workspace" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and configure project settings in workspace XML" />
+    <MESSAGE value="Refactor component to include new email template module and pagination functionality, update communication and ticket routing and menu items, and configure project settings in workspace XML." />
+    <MESSAGE value="#fix #jsx A refactoring component that includes a new email template module and pagination functionality, updates to communications, ticket routing and menu items, and customization of project settings in the workspace XML." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx A refactoring component that includes a new email template module and pagination functionality, updates to communications, ticket routing and menu items, and customization of project settings in the workspace XML." />
   </component>
 </project>
