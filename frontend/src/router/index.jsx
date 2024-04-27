@@ -7,6 +7,8 @@ import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
 import Enrollment from "@/pages/enrollment/index.jsx";
 import { Help } from "@/pages/help";
+import HelpMain from "@/pages/help/main";
+import { News } from "@/pages/help/news";
 import { TicketSpa } from "@/pages/help/ticket/ticket-spa.jsx";
 import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
@@ -51,7 +53,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/help",
-        element: <Help />, 
+        element: <HelpMain />, 
         children: [
           {
             path: "ticket/:title",
@@ -62,8 +64,16 @@ export const router = createBrowserRouter([
               },
             ],
           },
-        ],
-      },
+          {
+            path: "news",
+            element: <News />
+          },
+          {
+            path: "help",
+            element: <Help />
+          }
+        ]
+      },  
       {
         path: "/configuration/:title",
         element: <Configuration />,
