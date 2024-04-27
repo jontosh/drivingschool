@@ -1,5 +1,9 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { StudentResourceParent } from "@/pages/communication/subpage/student-resource-parent.jsx";
+import { StudentResourcesInCar } from "@/pages/communication/subpage/student-resources-in-car.jsx";
+import { StudentResourcesRoadTest } from "@/pages/communication/subpage/student-resources-road-test.jsx";
+import { StudentResourcesClass } from "@/pages/communication/subpage/student-resourse-class.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { Fragment, useContext } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
@@ -7,11 +11,14 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 const CheckPage = ({ page }) => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
+
   switch (page) {
     case "class": {
       return (
         <Fragment>
-          <div className={"pt-5"}>@todo</div>
+          <div className={"py-5"}>
+            <StudentResourcesClass />
+          </div>
 
           <div className="text-end">
             <ButtonComponent
@@ -33,7 +40,9 @@ const CheckPage = ({ page }) => {
     case "in-car": {
       return (
         <Fragment>
-          <div className={"pt-5"}>@todo</div>
+          <div className={"py-5"}>
+            <StudentResourcesInCar />
+          </div>
 
           <div className="text-end">
             <ButtonComponent
@@ -55,7 +64,9 @@ const CheckPage = ({ page }) => {
     case "road-test": {
       return (
         <Fragment>
-          <div className={"pt-5"}>@todo</div>
+          <div className={"py-5"}>
+            <StudentResourcesRoadTest />
+          </div>
 
           <div className="text-end">
             <ButtonComponent
@@ -77,7 +88,9 @@ const CheckPage = ({ page }) => {
     case "parents": {
       return (
         <Fragment>
-          <div className={"pt-5"}>@todo</div>
+          <div className={"py-5"}>
+            <StudentResourceParent />
+          </div>
 
           <div className="text-end">
             <ButtonComponent
