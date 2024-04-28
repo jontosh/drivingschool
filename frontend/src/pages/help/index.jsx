@@ -99,59 +99,61 @@ export const Help = () => {
           </div>
 
           <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-              <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
-              <span className="flex justify-between items-center">
-                <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+            <Link>
+              <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
+                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <span className="flex justify-between items-center">
+                  <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
-                <IconComponent
-                  icon={<ExportOutlined />}
-                  className={"text-gray-400"}
-                />
-              </span>
-            </div>
-          </div>
+                  <IconComponent
+                    icon={<ExportOutlined />}
+                    className={"text-gray-400"}
+                  />
+                </span>
+              </div>
+            </Link>
 
-          <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-              <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
-              <span className="flex justify-between items-center">
-                <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+            <Link>
+              <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
+                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <span className="flex justify-between items-center">
+                  <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
-                <IconComponent
-                  icon={<ExportOutlined />}
-                  className={"text-gray-400"}
-                />
-              </span>
-            </div>
-          </div>
+                  <IconComponent
+                    icon={<ExportOutlined />}
+                    className={"text-gray-400"}
+                  />
+                </span>
+              </div>
+            </Link>
 
-          <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-              <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
-              <span className="flex justify-between items-center">
-                <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+            <Link>
+              <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
+                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <span className="flex justify-between items-center">
+                  <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
-                <IconComponent
-                  icon={<ExportOutlined />}
-                  className={"text-gray-400"}
-                />
-              </span>
-            </div>
-          </div>
+                  <IconComponent
+                    icon={<ExportOutlined />}
+                    className={"text-gray-400"}
+                  />
+                </span>
+              </div>
+            </Link>
 
-          <div className="flex flex-col gap-y-5 pt-5">
-            <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-              <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
-              <span className="flex justify-between items-center">
-                <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
+            <Link>
+              <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
+                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <span className="flex justify-between items-center">
+                  <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
-                <IconComponent
-                  icon={<ExportOutlined />}
-                  className={"text-gray-400"}
-                />
-              </span>
-            </div>
+                  <IconComponent
+                    icon={<ExportOutlined />}
+                    className={"text-gray-400"}
+                  />
+                </span>
+              </div>
+            </Link>
           </div>
         </section>
 
@@ -199,15 +201,17 @@ export const Help = () => {
                   ]}
                 />
 
-                <ButtonComponent
-                  defaultBg="#1890FF"
-                  defaultHoverBg="#1890FF"
-                  controlHeight={44}
-                  borderRadius={4}
-                  className={"w-[157px]"}
-                >
-                  New Ticket
-                </ButtonComponent>
+                <Link to="/support/new-ticket">
+                  <ButtonComponent
+                    defaultBg="#1890FF"
+                    defaultHoverBg="#1890FF"
+                    controlHeight={44}
+                    borderRadius={4}
+                    className={"w-[157px]"}
+                  >
+                    New Ticket
+                  </ButtonComponent>
+                </Link>
               </div>
             </div>
 
