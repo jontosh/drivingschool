@@ -9,6 +9,7 @@ import Enrollment from "@/pages/enrollment/index.jsx";
 import Finance from "@/pages/finances/index.jsx";
 import { Help } from "@/pages/help";
 import HelpMain from "@/pages/help/main";
+import { NewTicket } from "@/pages/help/new-ticket";
 import { News } from "@/pages/help/news";
 import { TicketSpa } from "@/pages/help/ticket/ticket-spa.jsx";
 import File from "@/pages/managment/file/index.jsx";
@@ -66,13 +67,17 @@ export const router = createBrowserRouter([
             ],
           },
           {
+            path: "help",
+            element: <Help />
+          },
+          {
             path: "news",
             element: <News />
           },
           {
-            path: "help",
-            element: <Help />
-          }
+            path: "new-ticket",
+            element: <NewTicket />
+          },
         ]
       },
       {
