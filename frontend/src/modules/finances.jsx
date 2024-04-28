@@ -67,19 +67,22 @@ export const StatisticModule = () => {
       title: "Service price",
       dataIndex: "price",
       key: "price",
-      render: (price) => <Paragraph>${price}</Paragraph>,
+      align: "center",
+      render: (price) => <Paragraph className={"text-center"}>${price}</Paragraph>,
     },
     {
       title: "Days",
       dataIndex: "days",
       key: "days",
-      render: (day) => <Paragraph>{day}</Paragraph>,
+      align: "center",
+      render: (day) => <Paragraph className={"text-center"}>{day}</Paragraph>,
     },
     {
       title: "Proceeds",
       dataIndex: "proceeds",
       key: "proceeds",
-      render: (proceeds) => <Paragraph>${proceeds}</Paragraph>,
+      align: "center",
+      render: (proceeds) => <Paragraph className={"text-center"}>${proceeds}</Paragraph>,
     },
   ];
   const data = [
