@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "Users",
     "servises",
     "location",
+    "configuration",
 
 #     INSTALLED LIBRARIES
     "colorfield",
