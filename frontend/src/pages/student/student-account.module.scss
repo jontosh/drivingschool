@@ -1,0 +1,48 @@
+@import "@/styles/vars";
+
+.Student {
+  &-profile {
+    &__imageholder {
+      width: 460px;
+
+      &-small {
+        width: 88px;
+      }
+    }
+
+    &__email {
+      &-div {
+        width: 259px;
+      }
+
+      &-icon {
+        width: 25.5px;
+        height: 23.57px;
+        color: #00000073;
+      }
+    }
+
+    &__div {
+      width: 305.15px;
+    }
+
+    &__mini-input {
+      width: 250px;
+    }
+  }
+}
+
+.File__item {
+  width: auto;
+  box-shadow: 0 4px 4px 0 $secondary;
+}
+
+.Billing__select {
+  span {
+    color: #fff;
+  }
+}
+
+.Modal__content {
+  max-width: 652px;
+}

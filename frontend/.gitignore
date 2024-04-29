@@ -16,7 +16,6 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.idea/*
 .DS_Store
 *.suo
 *.ntvs*
@@ -24,8 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 .env
-#Backend
-backend/servises/migrations/*
-backend/location/migrations/*
-backend/Users/migrations/*
-

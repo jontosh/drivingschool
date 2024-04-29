@@ -1,0 +1,76 @@
+@import "@/styles/vars";
+
+.Enrollment {
+  &__selections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  &__info-type {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  &__heavy {
+    &:after {
+      content: " \2731";
+      position: absolute;
+      display: block;
+      top: 0;
+      right: (-(16 + 3px));
+      font-size: 10px;
+      color: $danger;
+      margin-left: 3px;
+    }
+  }
+
+  &__div {
+    width: 408px;
+
+    @media (max-width: 1630px) {
+      width: 310px;
+    }
+  }
+
+  &__input {
+    outline: none;
+    width: 300px;
+
+    &-wrap {
+      border: 1px solid $primary;
+
+      & > * + * {
+        border-left: 1px solid $black;
+      }
+    }
+  }
+
+  &__checkbox {
+    width: 230px;
+
+    @media (max-width: 1630px) {
+      width: 131px;
+    }
+  }
+
+  &__textarea {
+    outline: none;
+    border: 1px solid $primary;
+    min-height: 110px;
+  }
+
+  &__select {
+    span {
+      color: #fff;
+    }
+  }
+}
+
+.Modal__content {
+  max-width: 440px;
+}
+
+.Modal__list-item {
+  list-style-position: inside;
+}

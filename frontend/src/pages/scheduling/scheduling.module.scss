@@ -1,0 +1,24 @@
+.ActivityLogs__input {
+    width: 431px;
+}
+
+.Single {
+    &__shadow {
+        box-shadow: 0px 4px 4px 0px #00000040;
+    }
+
+    &__modal {
+        max-width: 652px;
+        height: 297px;
+
+        &-instructor {
+            max-width: 467px;
+            height: 495px;
+        }
+    }
+}
+
+.Corporate__modal {
+    max-width: 1300px;
+    height: 550px;
+}
