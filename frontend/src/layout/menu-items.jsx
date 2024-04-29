@@ -154,7 +154,24 @@ export const MenuItems = (IsActive, getItem) => {
       <span className={"w-5"}>
         <AiOutlineMail />
       </span>,
-      IsActive && [getItem("Process")],
+      IsActive && [
+        getItem(
+          <Link
+            to={"/communication/email-templates/student-portal"}
+            children={"Email Templates"}
+          />,
+          "sub6-1",
+          null,
+        ),
+        getItem(
+          <Link
+            to={"/communication/student-resources/class"}
+            children={"Student Resources"}
+          />,
+          "sub6-2",
+          null,
+        ),
+      ],
     ),
     getItem(
       IsActive && "Report center",
@@ -260,6 +277,18 @@ export const MenuItems = (IsActive, getItem) => {
       <span className="w-5">
         <DollarOutlined />
       </span>,
+      [
+        getItem(
+          <Link to={"/finance/finances"} children={"Finances"} />,
+          "sub9-1",
+          null,
+        ),
+        getItem(
+          <Link to={"/finance/statistic"} children={"Statistic"} />,
+          "sub9-2",
+          null,
+        ),
+      ],
     ),
     getItem(
       IsActive && "Configuration",
@@ -297,7 +326,7 @@ export const MenuItems = (IsActive, getItem) => {
       ],
     ),
     getItem(
-      IsActive && <Link to={"/help"} children={"Help"} />,
+      IsActive && <Link to={"/support/help"} children={"Help"} />,
       "sub11",
       <span className="w-5">
         <AiOutlineTool />

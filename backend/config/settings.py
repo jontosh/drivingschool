@@ -37,8 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+#     APPS
+    "Users",
+    "servises",
+    "location",
+
 #     INSTALLED LIBRARIES
     "colorfield",
+    "rest_framework",
+    "phonenumber_field"
 ]
 
 MIDDLEWARE = [

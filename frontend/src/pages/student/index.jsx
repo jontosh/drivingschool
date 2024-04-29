@@ -17,7 +17,7 @@ import { PiMoney } from "react-icons/pi";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import StudentAccountStyle from "./student-account.module.scss";
 
-const StudentAccount = ({}) => {
+const StudentAccount = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { title } = useParams();
   const setActiveNav = ({ isActive }) =>

@@ -1,11 +1,17 @@
 import Layout from "@/layout";
+import Communication from "@/pages/communication/index.jsx";
 import Configuration from "@/pages/configuration/index.jsx";
 import { ConfigBase } from "@/pages/configuration/subpages/config-base.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
 import Enrollment from "@/pages/enrollment/index.jsx";
-import Help from "@/pages/help/index.jsx";
+import Finance from "@/pages/finances/index.jsx";
+import { Help } from "@/pages/help";
+import HelpMain from "@/pages/help/main";
+import { NewTicket } from "@/pages/help/new-ticket";
+import { News } from "@/pages/help/news";
+import { TicketSpa } from "@/pages/help/ticket/ticket-spa.jsx";
 import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
 import ManagementSpa from "@/pages/managment/management-spa.jsx";
@@ -48,8 +54,31 @@ export const router = createBrowserRouter([
         element: <Enrollment />,
       },
       {
-        path: "/help",
-        element: <Help />,
+        path: "/support",
+        element: <HelpMain />,
+        children: [
+          {
+            path: "ticket/:title",
+            element: <TicketSpa />,
+            children: [
+              {
+                path: ":id",
+              },
+            ],
+          },
+          {
+            path: "help",
+            element: <Help />
+          },
+          {
+            path: "news",
+            element: <News />
+          },
+          {
+            path: "new-ticket",
+            element: <NewTicket />
+          },
+        ]
       },
       {
         path: "/configuration/:title",
@@ -65,8 +94,21 @@ export const router = createBrowserRouter([
         element: <Search />,
       },
       {
+        path: "/communication/:title",
+        element: <Communication />,
+        children: [
+          {
+            path: ":subpage",
+          },
+        ],
+      },
+      {
         path: "/scheduling/:title",
         element: <Scheduling />,
+      },
+      {
+        path: "/finance/:title",
+        element: <Finance />,
       },
       {
         path: "/scheduling/manage/:title",

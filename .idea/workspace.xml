@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/policy-spa.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/staff-password.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/student-password.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/items/statistics-online.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/items/top-selling-chart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/finances.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/finances.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/finances/subpage/statistic.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/finances/subpage/statistic.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +19,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="JSX File" />
       </list>
     </option>
@@ -47,22 +47,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "configuration",
-    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool/frontend/package.json",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;finances&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/a/Development/driving_school/drivingschool&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -70,7 +72,29 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
+    <configuration name="m" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="drivingschool" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/m.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
@@ -81,6 +105,9 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="npm.start" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -98,6 +125,12 @@
       <option name="presentableId" value="Default" />
       <updated>1713995915111</updated>
       <workItem from="1713995918480" duration="8778000" />
+      <workItem from="1714011415435" duration="240000" />
+      <workItem from="1714143886651" duration="282000" />
+      <workItem from="1714216961912" duration="2140000" />
+      <workItem from="1714219166416" duration="174000" />
+      <workItem from="1714226266068" duration="56000" />
+      <workItem from="1714228513381" duration="20512000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -107,38 +140,91 @@
       <option name="project" value="LOCAL" />
       <updated>1714000414208</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="backend">
+      <created>1714011796980</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714011796980</updated>
+    </task>
+    <task id="LOCAL-00003" summary="backend added services">
+      <created>1714142831334</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714142831334</updated>
+    </task>
+    <task id="LOCAL-00005" summary="#fix #jsx A refactoring component that includes a new email template module and pagination functionality, updates to communications, ticket routing and menu items, and customization of project settings in the workspace XML.">
+      <option name="closed" value="true" />
+      <created>1714068759380</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714068759380</updated>
+    </task>
+    <task id="LOCAL-00006" summary="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code.">
+      <option name="closed" value="true" />
+      <created>1714247466251</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714247466251</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add new configuration routes and menu" />
-    <MESSAGE value="Add new configuration routes and menu items" />
-    <MESSAGE value="Add new configuration routes and menu items for" />
-    <MESSAGE value="Add new configuration routes and menu items for company" />
-    <MESSAGE value="Add new configuration routes and menu items for company information" />
-    <MESSAGE value="Add new configuration routes and menu items for company information," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code," />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings" />
-    <MESSAGE value="Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
-    <MESSAGE value="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies" />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies" />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies," />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies," />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and" />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-ap&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code" />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts,&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG functionality&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG functionality.&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
+    <MESSAGE value="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code." />
   </component>
 </project>

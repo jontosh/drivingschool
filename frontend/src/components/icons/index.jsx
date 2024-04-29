@@ -115,6 +115,8 @@ const IconComponent = ({
   style,
   iconWidth,
   vertical,
+  childrenClass,
+  iconClass,
   ...props
 }) => {
   className = classNames(className);
@@ -133,8 +135,8 @@ const IconComponent = ({
           [`gap-y-${spaceIconY}`]: !!spaceIconY,
         })}
       >
-        <span className={iconWidth}>{icon}</span>
-        <span>{children}</span>
+        <span className={classNames(iconWidth, iconClass)}>{icon}</span>
+        <span className={childrenClass}>{children}</span>
       </div>
     </button>
   );

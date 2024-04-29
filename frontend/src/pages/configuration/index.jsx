@@ -1,6 +1,7 @@
 import Title from "@/components/title/index.jsx";
 import { ConfigBase } from "@/pages/configuration/subpages/config-base.jsx";
 import { PolicySpa } from "@/pages/configuration/subpages/policy-spa.jsx";
+import { ZipCode } from "@/pages/configuration/subpages/zip-code.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 
 const CheckSubpages = ({ title }) => {
@@ -11,6 +12,9 @@ const CheckSubpages = ({ title }) => {
     }
     case "policies": {
       return <PolicySpa />;
+    }
+    case "zip-code": {
+      return <ZipCode />;
     }
 
     default: {
