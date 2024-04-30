@@ -17,6 +17,24 @@
       "email": "khaetbek@internet.ru",
       "home_phone": "998500796477",
       "emergency_name": "998500796477"
+    },
+    {
+      "id": 2,
+      "status": "INACTIVE",
+      "staff_type": "active",
+      "location": "Tashkent",
+      "vehicle-assigned": "BYD",
+      "staff_code": "1",
+      "first_name": "Ortiqov",
+      "middle_name": "",
+      "last_name": "Anvar",
+      "address": "Yunusabad",
+      "city": "Tashkent",
+      "state": "Tashkent",
+      "zip_code": "100000",
+      "email": "khaetbek@internet.ru",
+      "home_phone": "998500796477",
+      "emergency_name": "998500796477"
     }
   ],
   "location": [
@@ -31,7 +49,7 @@
       "state": "Tashkent",
       "zip": "10000000",
       "location_manager": "admin"
-    },
+    }
   ],
   "student": [
     {

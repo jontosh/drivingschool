@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/chart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #git Updated database fields and variable names in chart and index components. Updated the database with new instructor and location information, as well as student, class, school, and vehicle information. Corrected workspace links and property component settings.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/teachers.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/db/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/db/db.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/chart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/chart.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +22,7 @@
       <list>
         <option value="Python Script" />
         <option value="JSX File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -55,6 +56,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "dashboard",
     "last_opened_file_path": "/Users/a/Development/driving_school/drivingschool",
+    "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -134,7 +136,7 @@
       <workItem from="1714226266068" duration="56000" />
       <workItem from="1714228513381" duration="20512000" />
       <workItem from="1714380413674" duration="6093000" />
-      <workItem from="1714450409496" duration="5980000" />
+      <workItem from="1714450409496" duration="16134000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -182,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714390873618</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="#fix #jsx #git Updated database fields and variable names in chart and index components. Updated the database with new instructor and location information, as well as student, class, school, and vehicle information. Corrected workspace links and property component settings.">
+      <option name="closed" value="true" />
+      <created>1714456429750</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714456429750</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +222,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and" />
     <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles" />
     <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data" />
     <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data." />
@@ -237,6 +246,7 @@
     <MESSAGE value="- Update database fields and variable names in chart and index&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
     <MESSAGE value="- Update database fields and variable names in chart and index components&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
     <MESSAGE value="- Update database fields and variable names in chart and index components.&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Update database fields and variable names in chart and index components.&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="#fix #jsx #git Updated database fields and variable names in chart and index components. Updated the database with new instructor and location information, as well as student, class, school, and vehicle information. Corrected workspace links and property component settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #git Updated database fields and variable names in chart and index components. Updated the database with new instructor and location information, as well as student, class, school, and vehicle information. Corrected workspace links and property component settings." />
   </component>
 </project>

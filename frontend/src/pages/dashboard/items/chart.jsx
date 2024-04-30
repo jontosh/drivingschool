@@ -26,7 +26,7 @@ export const ChartDashboard = () => {
       type: "solid",
       colors: Weekdays.map((_, index) => {
         index += 1;
-        return index === time.getDay() ? "#5F66E973" : "#D2D2D2BF";
+        return index === time.getDay() ? "#1890FF" : "#DEDEDE";
       }),
     },
     plotOptions: {
@@ -36,7 +36,7 @@ export const ChartDashboard = () => {
       },
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
     },
     legend: {
       show: false,
