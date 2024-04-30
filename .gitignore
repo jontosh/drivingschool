@@ -28,4 +28,8 @@ dist-ssr
 backend/servises/migrations/*
 backend/location/migrations/*
 backend/Users/migrations/*
-
+.idea/inspectionProfiles/Project_Default.xml
+.idea/workspace.xml
+/backend/configuration/migrations/
+/backend/abstracts/migrations/
+/backend/interaction/migrations/
