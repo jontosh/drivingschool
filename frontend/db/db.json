@@ -2,57 +2,57 @@
   "instructor": [
     {
       "id": 1,
-      "status": "",
-      "staff-type": "active",
+      "status": "Active",
+      "staff_type": "active",
       "location": "Tashkent",
       "vehicle-assigned": "BYD",
-      "staff-code": "1",
-      "first-name": "Akhmadzhonov",
-      "middle-name": "Komilzhon ugli",
-      "last-name": "Khaetbek",
+      "staff_code": "1",
+      "first_name": "Akhmadzhonov",
+      "middle_name": "Komilzhon ugli",
+      "last_name": "Khaetbek",
       "address": "Yunusabad",
       "city": "Tashkent",
       "state": "Tashkent",
-      "zip": "100000",
+      "zip_code": "100000",
       "email": "khaetbek@internet.ru",
-      "home-phone": "998500796477",
-      "emergency-contact-name": "998500796477"
+      "home_phone": "998500796477",
+      "emergency_name": "998500796477"
     }
   ],
   "location": [
     {
       "id": 1,
-      "location-name": "Tashkent",
-      "location-code": "10000000",
-      "location-status": "Active",
-      "location-type": "Asia",
+      "name": "Tashkent",
+      "code": "10000000",
+      "status": "Active",
+      "type": "Asia",
       "address": "Yunusabad",
       "city": "Tashkent",
       "state": "Tashkent",
       "zip": "10000000",
-      "location-manager": "admin"
-    }
+      "location_manager": "admin"
+    },
   ],
   "student": [
     {
       "id": 1,
-      "student-type": "17-03-2003",
-      "assign-to-staff": "1",
-      "assign-to-location": "1",
-      "student-id": "1",
-      "first-name": "Akhmadzhonov",
-      "last-name": "Khaetbek",
+      "student_type": "17-03-2003",
+      "assign_to_staff": "1",
+      "assign_to_location": "1",
+      "student_id": "1",
+      "first_name": "Akhmadzhonov",
+      "last_name": "Khaetbek",
       "middle-name": "Komilzhon ugli",
       "address": "Yunusabad",
       "city": "Tashkent",
       "state": "Tashkent",
-      "zip-code": "100000",
-      "home-pickup": "1",
-      "cell-phone": "998500796477",
-      "home-phone": "998500796477",
+      "zip_code": "100000",
+      "home_pickup": "1",
+      "cell_phone": "998500796477",
+      "home_phone": "998500796477",
       "email": "khaetbek",
       "gender": "male",
-      "preferred-pronoun": "he/his"
+      "preferred_pronoun": "he/his"
     }
   ],
   "classes": [
@@ -73,13 +73,13 @@
   "schools": [
     {
       "id": 1,
-      "school-name": "64",
-      "school-status": "active",
-      "school-code": "10101",
-      "school-address": "Yunusabad",
-      "school-city": "Tashkent",
+      "school_name": "64",
+      "school_status": "active",
+      "school_code": "10101",
+      "school_address": "Yunusabad",
+      "school_city": "Tashkent",
       "state": "Tashkent",
-      "zip-code": "100000",
+      "zip_code": "100000",
       "email": "test@mail.com",
       "school-note": "1"
     }
@@ -87,12 +87,12 @@
   "vehicles": [
     {
       "id": 1,
-      "vehicle-name": "BYD",
-      "vehicle-status": "activ",
+      "vehicle_name": "BYD",
+      "vehicle_status": "activ",
       "location": "Tashkent",
-      "vehicle-type": "1",
-      "vehicle-no": "1",
-      "vehicle-make": "1",
+      "vehicle_type": "1",
+      "vehicle_no": "1",
+      "vehicle_make": "1",
       "license": "120-9",
       "vin": "1"
     }

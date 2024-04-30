@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code.">
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/chart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/db/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/db/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +62,7 @@
     "nodejs_package_manager_path": "npm",
     "npm.start.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
     "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -128,7 +133,8 @@
       <workItem from="1714219166416" duration="174000" />
       <workItem from="1714226266068" duration="56000" />
       <workItem from="1714228513381" duration="20512000" />
-      <workItem from="1714380413674" duration="3245000" />
+      <workItem from="1714380413674" duration="6093000" />
+      <workItem from="1714450409496" duration="5980000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -168,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714247466251</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="#fix #js #json Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings.">
+      <option name="closed" value="true" />
+      <created>1714390873618</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714390873618</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,31 +212,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies," />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies," />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-ap&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts,&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG functionality&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG functionality.&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code." />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data." />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings" />
+    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- &#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable names&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable names in&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable names in chart&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable names in chart and&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable names in chart and index&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable names in chart and index components&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <MESSAGE value="- Update database fields and variable names in chart and index components.&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Update database fields and variable names in chart and index components.&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
   </component>
 </project>
