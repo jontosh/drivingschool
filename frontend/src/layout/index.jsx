@@ -2,7 +2,7 @@ import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
 import { MenuItems } from "@/layout/menu-items.jsx";
-import { Button, ConfigProvider, Dropdown, Menu } from "antd";
+import { Badge, Button, ConfigProvider, Dropdown, Menu } from "antd";
 import { Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BiMoon } from "react-icons/bi";
@@ -13,6 +13,7 @@ import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
 import Tenant from "../assets/user/tenant.jpeg";
+import { BellFilled } from "@ant-design/icons";
 
 const getItem = (label, key, icon, children, type) => {
   return {
@@ -80,8 +81,11 @@ const Layout = () => {
         </Link>
 
         <div
-          className={`${LayoutStyle["Header__right"]} flex justify-end gap-2.5`}
+          className={`${LayoutStyle["Header__right"]} flex justify-end gap-2.5 items-center`}
         >
+          <Badge count={2} className="mr-5">
+            <BellFilled className="w-5 h-5" />
+          </Badge>
           <div
             className={`${LayoutStyle["Header__mode"]} inline-flex items-center gap-2.5 border-2 border-solid border-indigo-700 rounded-lg py-1 px-2.5`}
           >

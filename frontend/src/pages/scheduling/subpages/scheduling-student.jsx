@@ -137,17 +137,6 @@ const FormResult = () => {
                 <span>+</span>
               </div>
             </li>
-            <li className={"cursor-pointer"}>
-              <div className="bg-white shadow-xl py-3 px-8 hover:text-indigo-500 flex justify-between">
-                <Paragraph
-                  fontSize={"text-base text-inherit"}
-                  className={"text-inherit"}
-                >
-                  Click here to view scheduled lessons
-                </Paragraph>
-                <span>+</span>
-              </div>
-            </li>
           </ul>
 
           <div className={"grid grid-cols-2"}>
