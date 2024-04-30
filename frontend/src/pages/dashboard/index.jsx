@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { ChartDashboard } from "@/pages/dashboard/items/chart.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import { Button, Checkbox, ConfigProvider, Tabs } from "antd";
 import { Formik } from "formik";
@@ -16,27 +17,6 @@ import DollarIcon from "../../assets/icons/Dollar.svg";
 import Studying from "../../assets/icons/User.svg";
 import Register from "../../assets/icons/Profile.svg";
 import TeacherAvatar from "../../assets/user/teacher.jpeg";
-
-import {
-  Chart as ChartJS,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-import { Bar } from "react-chartjs-2";
-
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
-
-const OverviewChart = ({ data, options }) => {
-  return (
-    <Fragment>
-      <Bar data={data} options={options}></Bar>
-    </Fragment>
-  );
-};
 
 const DashboardFormik = () => (
   <Formik
@@ -150,42 +130,9 @@ const DashboardTeachers = () => {
 };
 
 const Dashboard = () => {
-  const date = new Date();
   const { colorsObject } = useContext(ColorsContext);
 
   const [ShowCalendar, setSowCalendar] = useState(false);
-
-  const data = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "San"],
-    datasets: [
-      {
-        label: "Sign ups per day",
-        data: [5, 7, 6, 8, 7, 5, 7],
-        backgroundColor: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "San"].map(
-          (item, index) => {
-            index += 1;
-
-            return index === date.getDay() ? "#5F66E973" : "#D2D2D2BF";
-          },
-        ),
-      },
-    ],
-  };
-
-  const options = {
-    plugins: {
-      legend: {
-        labels: {
-          font: {
-            size: 14,
-            weight: 600,
-          },
-          color: "#000",
-        },
-        align: "start",
-      },
-    },
-  };
 
   const handleClickTeacher = () => setSowCalendar((prev) => !prev);
 
@@ -314,7 +261,8 @@ const Dashboard = () => {
             </div>
 
             <div>
-              <OverviewChart data={data} options={options} />
+              {/*<OverviewChart data={data} options={options} />*/}
+              <ChartDashboard />
             </div>
           </div>
 
