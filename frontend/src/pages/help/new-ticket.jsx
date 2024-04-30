@@ -50,7 +50,7 @@ export const NewTicket = () => {
                                     colorBorder={colorsObject.primary}
                                 />
 
-                                <label className="flex flex-col gap-y-2">
+                                <label className="flex flex-col gap-y-1">
                                     <span className="font-medium">Priority Status</span>
                                     <CustomSelect
                                         colorBorder={colorsObject.primary}
@@ -80,7 +80,7 @@ export const NewTicket = () => {
 
                                 <textarea
                                     placeholder="Type ticket issue here.."
-                                    className="p-2.5 border border-blue-600 outline-none rounded-lg h-60 shadow-xl"
+                                    className="p-2.5 border border-blue-600 outline-none rounded-lg min-h-60 shadow-xl"
                                 ></textarea>
                             </label>
 
