@@ -82,7 +82,10 @@ export const DashboardTeachers = () => {
           touched,
         }) => {
           return (
-            <form className={`mb-7`} onSubmit={handleSubmit}>
+            <form
+              className={values.search !== "" && `mb-7`}
+              onSubmit={handleSubmit}
+            >
               <div className="flex">
                 <Title
                   fontSize={"text-base"}

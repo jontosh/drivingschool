@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import FormStyle from "./form.module.scss";
 import { ConfigProvider, Input, Select, Transfer } from "antd";
 const { Option } = Select;
@@ -118,6 +118,8 @@ export const CustomSelect = ({
   colorText = "#000",
   ...props
 }) => {
+  useEffect(() => {}, []);
+
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
       {option.label}
@@ -149,6 +151,7 @@ export const CustomSelect = ({
           popupClassName={dropdownClassName}
           style={style}
           onBlur={onBlur}
+          //ref={ref}
           {...props}
         >
           {option}

@@ -231,13 +231,13 @@ const Dashboard = () => {
               className={`${DashboardStyle["Dashboard__links-list"]} space-y-3.5`}
             >
               <ButtonComponent
-                href={"/notfound/"}
+                href={"/enrollment/"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
-                className={"w-full "}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                defaultHoverBg={colorsObject.infoHover}
+                className={"w-full"}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 New student
               </ButtonComponent>
@@ -245,11 +245,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/enrollment/"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 Add new student
               </ButtonComponent>
@@ -257,11 +257,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/NotFound"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 Class list
               </ButtonComponent>
@@ -269,11 +269,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/management/file"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 File Management
               </ButtonComponent>
@@ -281,11 +281,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/NotFound"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 Built App editing
               </ButtonComponent>
