@@ -139,10 +139,10 @@ const FormResult = () => {
             </li>
           </ul>
 
-          <div className={"grid grid-cols-2"}>
+          <div className={"flex justify-between pb-7"}>
             <div className={"grid grid-cols-2 gap-5"}>
-              <Calendar fullscreen={false} className={"shadow-xl"} />
-              <Calendar fullscreen={false} className={"shadow-xl"} />
+              <Calendar fullscreen={false} className={"w-[300px] shadow-xl"} />
+              <Calendar fullscreen={false} className={"w-[300px] shadow-xl"} />
             </div>
 
             <div className={"flex flex-col gap-5 m-auto"}>
