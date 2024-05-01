@@ -37,7 +37,7 @@ const LocationData = () => {
       dataIndex: "name",
       render: (text) => {
         return (
-          <Paragraph className={"text-center"} fontSize={"text-lg"}>
+          <Paragraph className={"text-start"} fontSize={"text-lg"}>
             {text}
           </Paragraph>
         );

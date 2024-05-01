@@ -83,7 +83,7 @@ const Layout = () => {
         <div
           className={`${LayoutStyle["Header__right"]} flex justify-end gap-2.5 items-center`}
         >
-          <Badge count={2} className="mr-5">
+          <Badge count={2} className="mr-5 cursor-pointer">
             <BellFilled className="w-5 h-5" />
           </Badge>
           <div
