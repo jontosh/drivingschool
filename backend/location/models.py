@@ -77,7 +77,7 @@ class Class(models.Model):
     status = models.CharField(choices=Status, max_length=40, default="ACTIVE")
     details = models.TextField(blank=True,null=True)
     note = models.TextField(blank=True,null=True)
-    day = models.ManyToManyField("Users.WorkingHours",related_name="day_class")
+    day = models.ManyToManyField("Users.TimeRange",related_name="day_class")
     teacher = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE)
 
 
