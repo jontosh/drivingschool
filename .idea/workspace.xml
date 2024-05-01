@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/formatter.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/assets/icons/check.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/icons/check.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/form.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/colors.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/teachers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/teachers.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/enrollment.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/enrollment.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dashboard" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,6 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "enrollment",
     "last_opened_file_path": "/Users/a/Development/driving_school/drivingschool",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
@@ -135,6 +145,7 @@
       <workItem from="1714380413674" duration="6093000" />
       <workItem from="1714450409496" duration="16134000" />
       <workItem from="1714553626932" duration="8200000" />
+      <workItem from="1714571462589" duration="8536000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />

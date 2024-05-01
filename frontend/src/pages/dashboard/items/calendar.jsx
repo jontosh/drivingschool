@@ -225,8 +225,8 @@ export const DashboardCalendar = ({ data }) => {
 
         <div className={"space-x-7"}>
           <ButtonComponent
-            defaultBg={"#24C18F"}
-            defaultHoverBg={"#24C18F"}
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
             defaultHoverColor={colorsObject.main}
             defaultColor={colorsObject.main}
             borderRadius={5}
@@ -238,8 +238,8 @@ export const DashboardCalendar = ({ data }) => {
           </ButtonComponent>
 
           <ButtonComponent
-            defaultBg={"#24C18F"}
-            defaultHoverBg={"#24C18F"}
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
             defaultHoverColor={colorsObject.main}
             defaultColor={colorsObject.main}
             borderRadius={5}
@@ -251,8 +251,8 @@ export const DashboardCalendar = ({ data }) => {
           </ButtonComponent>
 
           <ButtonComponent
-            defaultBg={"#24C18F"}
-            defaultHoverBg={"#24C18F"}
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
             defaultHoverColor={colorsObject.main}
             defaultColor={colorsObject.main}
             borderRadius={5}
@@ -260,12 +260,12 @@ export const DashboardCalendar = ({ data }) => {
             paddingInline={13}
             fontSize={12}
           >
-            add time off
+            Add time off
           </ButtonComponent>
 
           <ButtonComponent
-            defaultBg={"#24C18F"}
-            defaultHoverBg={"#24C18F"}
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
             defaultHoverColor={colorsObject.main}
             defaultColor={colorsObject.main}
             borderRadius={5}

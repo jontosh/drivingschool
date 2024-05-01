@@ -2,12 +2,15 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
+  CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
 import { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useError } from "@/hooks/error.jsx";
+import ManagementStyle from "@/pages/managment/management.module.scss";
 import { Checkbox } from "antd";
+import classNames from "classnames";
 import { Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
 import EnrollmentStyle from "./enrollment.module.scss";
@@ -41,82 +44,20 @@ const LeadOptions = [
 
 export const InfoForm = ({}) => {
   const [Staff, setStaff] = useState("");
+  const [AssignLocation, setAssignLocation] = useState("");
   const [State, setState] = useState("");
   const [Lead, setLead] = useState("Select");
   const { colorsObject } = useContext(ColorsContext);
-  const { errors, Validation } = useError();
-  const ErrorValid = errors;
+
+  const handleStaffSelect = (value) => setStaff(value);
+  const handleAssignLocation = (value) => setAssignLocation(value);
+  const handleState = (value) => setState(value);
+
   return (
     <Formik
-      initialValues={{
-        Staff: Staff,
-        Location: "",
-        studentId: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-        city: "",
-        state: State,
-        postalCode: "",
-        phone: "",
-        email: "",
-        gender: "",
-        Perferred: "",
-        MedicalCondition: "",
-        StudentDrivingNotes: "",
-        Permit: "",
-        PermitIssued: "",
-        PermitExpiration: "",
-        ExtantionDate: "",
-        HighSchool: "",
-        ParentName: "",
-        ParentPhone: "",
-        ParentEmail: "",
-        ParentName2: "",
-        ParentPhone2: "",
-        ParentEmail2: "",
-        Lead: "",
-        StudentNotes: "",
-      }}
+      initialValues={{}}
       validate={(values) => {
-        if (
-          !values.Staff
-          // !values.Location ||
-          // !values.studentId ||
-          // !values.email ||
-          // !values.firstName ||
-          // !values.lastName ||
-          // !values.address ||
-          // !values.city ||
-          // !values.state ||
-          // !values.postalCode ||
-          // !values.phone ||
-          // // !values.email ||
-          // !values.gender ||
-          // !values.Perferred ||
-          // !values.MedicalCondition ||
-          // !values.StudentDrivingNotes ||
-          // !values.Permit ||
-          // !values.PermitIssued ||
-          // !values.PermitExpiration ||
-          // !values.ExtantionDate ||
-          // !values.HighSchool ||
-          // !values.ParentName ||
-          // !values.ParentPhone ||
-          // !values.ParentEmail ||
-          // !values.ParentName2 ||
-          // !values.ParentPhone2 ||
-          // !values.ParentEmail2 ||
-          // !values.Lead ||
-          // !values.StudentNotes
-        ) {
-          errors.Staff = "Selector cannot be unselected";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          // Validation("EMAIL_VALID");
-        }
-
+        const errors = {};
         return errors;
       }}
       onSubmit={(values) => {
@@ -133,16 +74,17 @@ export const InfoForm = ({}) => {
       }) => {
         return (
           <form>
-            <div className={`grid ${EnrollmentStyle["Enrollment__info-type"]}`}>
+            <div className={`grid grid-cols-2 gap-7`}>
               <div className={"space-y-5"}>
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                <label className="inline-flex items-center w-full">
+                  <span className={"text-base flex-shrink-0 w-44"}>
                     Assign to staff
-                  </Paragraph>
+                  </span>
 
                   <CustomSelect
-                    value={Staff}
-                    onBlur={handleBlur}
+                    onChange={handleStaffSelect}
+                    placeholder={"Account #"}
+                    fontSize={14}
                     options={[
                       {
                         value: "Admin",
@@ -153,398 +95,304 @@ export const InfoForm = ({}) => {
                         label: "Admin 2",
                       },
                     ]}
-                    onChange={(value) => setStaff(value)}
-                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
+                    className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                     colorBorder={colorsObject.primary}
-                    name={"Staff"}
                   />
                 </label>
 
-                {(errors.AssignToLocation || touched.AssignToLocation) && (
-                  <Fragment>
-                    <div>{ErrorValid.input}</div>
-                  </Fragment>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                <label className="inline-flex items-center w-full">
+                  <span className={"text-base flex-shrink-0 w-44"}>
                     Assign to Location
-                  </Paragraph>
+                  </span>
 
                   <CustomSelect
-                    value={Location !== "" ? Location : "Select  Location"}
-                    // onChange={(value) => setInfoType(value)}
-                    options={InfoTypeOptions}
-                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
+                    onChange={handleAssignLocation}
+                    placeholder={"Select  Location"}
+                    fontSize={14}
+                    options={[
+                      {
+                        value: "Admin",
+                        label: "Admin",
+                      },
+                      {
+                        value: "Admin 2",
+                        label: "Admin 2",
+                      },
+                    ]}
+                    className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                     colorBorder={colorsObject.primary}
-                    name={"Location"}
-                    onChange={handleChange}
                   />
                 </label>
 
-                {(errors.Location || touched.Location) && (
-                  <Fragment>
-                    <div>{errors.Location}</div>
-                  </Fragment>
-                )}
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={"Student id"}
+                  placeholder={"Student ID"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Studetn id
-                  </Paragraph>
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={"First name"}
+                  placeholder={"First name"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Student id"}
-                      name={"studentId"}
-                      value={values.studentId}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={"Last name"}
+                  placeholder={"Last name"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                {(errors.studentId || touched.studentId) && (
-                  <Fragment>
-                    <div>{errors.studentId}</div>
-                  </Fragment>
-                )}
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={" Middle name"}
+                  placeholder={" Middle name"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-11 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    First name
-                  </Paragraph>
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={"Address"}
+                  placeholder={"Address"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"First name"}
-                      name={"firstName"}
-                      value={values.firstName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={"City"}
+                  placeholder={"City"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-28 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                {(errors.input || touched.input) && (
-                  <Fragment>
-                    <div>{errors.input}</div>
-                  </Fragment>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Last name
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Last name"}
-                      name={"lastName"}
-                      value={values.lastName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Middle name
-                  </Paragraph>
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Middle name"}
-                      name={"middleName"}
-                      value={values.middleName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.middleName && touched.middleName && (
-                  <div>{errors.middleName}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Address
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Address"}
-                      name={"address"}
-                      value={values.address}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.address && touched.address && (
-                  <div>{errors.address}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    City
-                  </Paragraph>
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"City"}
-                      name={"city"}
-                      value={values.city}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.city && touched.city && <div>{errors.city}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
+                <label className="inline-flex items-center w-full">
+                  <span
+                    className={`text-base flex-shrink-0 w-44 relative after:right-28 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
                     State
-                  </Paragraph>
+                  </span>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomSelect
-                      value={State !== "" ? State : "State"}
-                      onChange={(value) => setState(value)}
-                      options={InfoTypeOptions}
-                      // style={{ width: "408px" }}
-                      className={"mb-2.5 h-full w-full"}
-                      colorBorder={colorsObject.primary}
-                      name={"state"}
-                    />
-                  </div>
+                  <CustomSelect
+                    onChange={handleAssignLocation}
+                    placeholder={"Select  Location"}
+                    fontSize={14}
+                    options={[
+                      {
+                        value: "USA",
+                        label: "USA",
+                      },
+                    ]}
+                    className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                    colorBorder={colorsObject.primary}
+                  />
                 </label>
 
-                {errors.state && touched.state && <div>{errors.state}</div>}
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={"Zip/Postal code"}
+                  placeholder={"Zip/Postal code"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-6 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Zip/Postal code
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={`h-full w-full`}
-                      placeholder={"Zip/Postal code"}
-                      name={"postalCode"}
-                      value={values.postalCode}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.postalCode && touched.postalCode && (
-                  <div>{errors.postalCode}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
+                <label className="flex items-center w-full">
+                  <span
+                    className={`text-base flex-shrink-0 w-44 relative after:right-11 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
                     Home Phone
-                  </Paragraph>
+                  </span>
 
                   <div
-                    className={`flex items-center rounded-lg ${EnrollmentStyle["Enrollment__input-wrap"]}`}
+                    className={`flex rounded-lg border border-indigo-600 overflow-hidden ${ManagementStyle["CheckModal__form-element__shadow"]} flex-grow ${EnrollmentStyle["Enrollment__input-wrap"]}`}
                   >
                     <input
                       placeholder={"Home Phone"}
-                      className={`h-10 ${EnrollmentStyle["Enrollment__input"]} flex-grow px-5 py-2 w-44`}
+                      className={`h-[50px] outline-0 flex-grow px-5 py-2`}
                       name={"phone"}
                       value={values.phone}
                       onChange={handleChange}
                     />
 
                     <CustomCheckBox
-                      className={`flex-row-reverse px-3 items-center  ${EnrollmentStyle["Enrollment__checkbox"]}`}
+                      className={`flex-row-reverse px-3 items-center ${EnrollmentStyle["Enrollment__checkbox"]}`}
                     >
                       Send text
                     </CustomCheckBox>
                   </div>
                 </label>
 
-                {errors.phone && touched.phone && <div>{errors.phone}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                <CustomCheckBox
+                  className={
+                    "inline-flex flex-row-reverse items-center justify-end w-full h-[50px]"
+                  }
+                >
+                  <span className={`text-base flex-shrink-0 w-44`}>
                     Home Phone
-                  </Paragraph>
+                  </span>
+                </CustomCheckBox>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomCheckBox />
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"email"}
+                  spanText={"Email"}
+                  placeholder={"Email"}
+                  fontSize={"text-base"}
+                  spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-24 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  colorBorder={colorsObject.primary}
+                />
+
+                <div className="flex cursor-pointer items-center w-full h-[50px]">
+                  <span className={`text-base flex-shrink-0 w-44`}>Gender</span>
+
+                  <div className={`flex flex-grow gap-2.5`}>
+                    <CustomRadio
+                      classNames={"inline-flex gap-2.5 items-center"}
+                      name={"gender"}
+                      className={
+                        ManagementStyle["CheckModal__form-element__shadow"]
+                      }
+                    >
+                      <span className={`text-base`}>Man</span>
+                    </CustomRadio>
+
+                    <CustomRadio
+                      classNames={"inline-flex gap-2.5 items-center"}
+                      name={"gender"}
+                      className={
+                        ManagementStyle["CheckModal__form-element__shadow"]
+                      }
+                    >
+                      <span className={`text-base`}>Woman</span>
+                    </CustomRadio>
+
+                    <CustomRadio
+                      classNames={"inline-flex gap-2.5 items-center"}
+                      name={"gender"}
+                      className={
+                        ManagementStyle["CheckModal__form-element__shadow"]
+                      }
+                    >
+                      <span className={`text-base`}>Other</span>
+                    </CustomRadio>
                   </div>
-                </label>
+                </div>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Email
-                  </Paragraph>
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full text-base",
+                  )}
+                  type={"text"}
+                  spanText={"Preferred Pronoun"}
+                  placeholder={"Preferred Pronoun"}
+                  fontSize={"text-base"}
+                  spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
+                  colorBorder={colorsObject.primary}
+                />
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"email"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Email"}
-                      name={"email"}
-                      value={values.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.email && touched.email && <div>{errors.email}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Gender
-                  </Paragraph>
-
-                  <Checkbox.Group
-                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
-                  >
-                    <CustomCheckBox name={"gender"} onChange={handleChange}>
-                      <Text fontSize={"text-base"}>Male</Text>
-                    </CustomCheckBox>
-
-                    <CustomCheckBox name={"gender"} onChange={handleChange}>
-                      <Text fontSize={"text-base"}>Female</Text>
-                    </CustomCheckBox>
-
-                    <CustomCheckBox name={"gender"} onChange={handleChange}>
-                      <Text fontSize={"text-base"}>Other</Text>
-                    </CustomCheckBox>
-                  </Checkbox.Group>
-                </label>
-
-                {errors.gender && touched.gender && <div>{errors.gender}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Perferred Pronoun
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Perferred Pronoun"}
-                      name={"Perferred"}
-                      value={values.Perferred}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.Perferred && touched.Perferred && (
-                  <div>{errors.Perferred}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                <label className="flex items-center w-full">
+                  <span className={`text-base flex-shrink-0 w-44`}>
                     Medical condition
-                  </Paragraph>
+                  </span>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <textarea
-                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
-                      name={"MedicalCondition"}
-                      value={values.MedicalCondition}
-                      onClick={handleChange}
-                    ></textarea>
-                  </div>
+                  <textarea
+                    className={`inline-block text-base p-5 rounded-lg w-full outline-0 border border-indigo-600 min-h-16 max-h-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    name={"condition"}
+                    placeholder={"Medical condition"}
+                  ></textarea>
                 </label>
 
-                {errors.MedicalCondition && touched.MedicalCondition && (
-                  <div>{errors.MedicalCondition}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+                <label className="flex items-center gap-4 w-full">
+                  <span className={`text-base flex-shrink-0 w-40`}>
                     Student driving notes
-                  </Paragraph>
+                  </span>
 
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <textarea
-                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
-                      name={"StudentDrivingNotes"}
-                      value={values.StudentDrivingNotes}
-                      onClick={handleChange}
-                    ></textarea>
-                  </div>
+                  <textarea
+                    className={`inline-block text-base p-5 rounded-lg w-full outline-0 border border-indigo-600 min-h-16 max-h-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    name={"condition"}
+                    placeholder={"Student driving notes"}
+                  ></textarea>
                 </label>
 
-                {errors.StudentDrivingNotes && touched.StudentDrivingNotes && (
-                  <div>{errors.StudentDrivingNotes}</div>
-                )}
-
-                <label className="flex items-center justify-end w-full">
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomCheckBox className={"text-base font-normal"}>
-                      I have read and agreed to Terms and Conditions
-                    </CustomCheckBox>
-                  </div>
-                </label>
+                <CustomCheckBox
+                  className={
+                    "text-base font-normal inline-flex w-full justify-center"
+                  }
+                >
+                  I have read and agreed to Terms and Conditions
+                </CustomCheckBox>
               </div>
 
               <div className={"space-y-5"}>
