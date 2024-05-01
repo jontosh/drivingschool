@@ -608,7 +608,7 @@ const File = () => {
 
                 <textarea
                   className={
-                    "border outline-0 border-indigo-700 p-5 rounded-2xl w-full"
+                    "border outline-0 border-indigo-700 p-5 rounded-2xl w-full min-h-[90px]"
                   }
                   placeholder={"text"}
                 ></textarea>
@@ -627,7 +627,7 @@ const File = () => {
 
                 <textarea
                   className={
-                    "border outline-0 border-indigo-700 p-5 rounded-2xl w-full"
+                    "border outline-0 border-indigo-700 p-5 rounded-2xl w-full min-h-[90px]"
                   }
                   placeholder={"text"}
                 ></textarea>

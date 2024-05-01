@@ -27,7 +27,7 @@ export const ModalContent = ({ page }) => {
               <div className={"space-y-5"}>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -48,7 +48,7 @@ export const ModalContent = ({ page }) => {
                     placeholder={"School Status *"}
                     style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`rounded h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
                         value: "Active",
@@ -60,7 +60,7 @@ export const ModalContent = ({ page }) => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -73,7 +73,7 @@ export const ModalContent = ({ page }) => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -86,7 +86,7 @@ export const ModalContent = ({ page }) => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -107,6 +107,7 @@ export const ModalContent = ({ page }) => {
                     placeholder={"State"}
                     style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
+                    className={"h-10"}
                     options={[
                       {
                         value: "USA",
@@ -118,7 +119,7 @@ export const ModalContent = ({ page }) => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -131,7 +132,7 @@ export const ModalContent = ({ page }) => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -194,7 +195,7 @@ export const ModalContent = ({ page }) => {
               <div className={"space-y-5"}>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -215,7 +216,7 @@ export const ModalContent = ({ page }) => {
                     placeholder={"School Status *"}
                     style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`rounded h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
                         value: "Active",
@@ -227,7 +228,7 @@ export const ModalContent = ({ page }) => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -240,7 +241,7 @@ export const ModalContent = ({ page }) => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full"
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-10"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -256,7 +257,7 @@ export const ModalContent = ({ page }) => {
                 <label className="w-full inline-flex items-center">
                   <span className="text-sm font-medium w-32">School notes</span>
                   <textarea
-                    className={`w-full outline-0 p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__form-element__shadow"]} rounded-2xl border border-indigo-700`}
+                    className={`w-full min-h-36 outline-0 p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} rounded-2xl border border-indigo-700`}
                   ></textarea>
                 </label>
               </div>
