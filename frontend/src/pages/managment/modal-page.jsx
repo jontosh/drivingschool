@@ -27,7 +27,7 @@ const mockData = [
   { key: "9", title: "Title 3", description: "Sample Description 3" },
   { key: "10", title: "Title 4", description: "Sample Description 4" },
   { key: "11", title: "Title 5", description: "Sample Description 5" },
-]
+];
 
 const CheckModal = ({ modalName }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -113,11 +113,8 @@ const CheckModal = ({ modalName }) => {
                         <span>Click to select</span>
                         <CustomTransfer
                           dataSource={mockData}
-                          titles={["Source", "Target"]}
-                          colorBorder={colorsObject.primary}
-                          colorBgContainer={"transparent"}
-                          headerHeight={30}
                           listHeight={200}
+                          colorBorder={colorsObject.primary}
                         />
                       </label>
                     </div>
@@ -132,11 +129,8 @@ const CheckModal = ({ modalName }) => {
                         <span>Click to select</span>
                         <CustomTransfer
                           dataSource={mockData}
-                          titles={["Source", "Target"]}
-                          colorBorder={colorsObject.primary}
-                          colorBgContainer={"transparent"}
-                          headerHeight={30}
                           listHeight={200}
+                          colorBorder={colorsObject.primary}
                         />
                       </label>
                     </div>
@@ -243,11 +237,8 @@ const CheckModal = ({ modalName }) => {
                         <span>Click to select</span>
                         <CustomTransfer
                           dataSource={mockData}
-                          titles={["Source", "Target"]}
-                          colorBorder={colorsObject.primary}
-                          colorBgContainer={"transparent"}
-                          headerHeight={30}
                           listHeight={200}
+                          colorBorder={colorsObject.primary}
                         />
                       </label>
                     </div>
@@ -262,11 +253,8 @@ const CheckModal = ({ modalName }) => {
                         <span>Click to select</span>
                         <CustomTransfer
                           dataSource={mockData}
-                          titles={["Source", "Target"]}
-                          colorBorder={colorsObject.primary}
-                          colorBgContainer={"transparent"}
-                          headerHeight={30}
                           listHeight={200}
+                          colorBorder={colorsObject.primary}
                         />
                       </label>
                     </div>
