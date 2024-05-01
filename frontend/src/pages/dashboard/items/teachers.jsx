@@ -16,13 +16,15 @@ export const DashboardTeachers = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { data = [] } = useRequestGetQuery({ path: "/instructor" });
   const [Instructors, setInstructors] = useState([]);
+  const [Instructor, setInstructor] = useState({});
+  const handleInstructor = (item) => setInstructor(item);
 
   const instructor = Instructors.map((instructor, index) => (
     <Fragment key={index}>
       {/*Teacher Avatar Start*/}
       <div
         className={`w-20 cursor-pointer`}
-        // onClick={handleClickTeacher}
+        onClick={() => handleInstructor(instructor)}
       >
         <div
           className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
@@ -57,6 +59,7 @@ export const DashboardTeachers = () => {
           if (values.search === "") {
             errors.search = "Error input is empty";
             setInstructors([]);
+            setInstructor({});
           }
           return errors;
         }}
@@ -128,15 +131,16 @@ export const DashboardTeachers = () => {
         <Fragment>
           <div
             className={
-              "flex items-center gap-x-[60px] overflow-x-hidden pb-[90px]"
+              "flex items-center gap-x-[60px] overflow-x-hidden pb-[40px]"
             }
           >
             {instructor}
           </div>
-
-          <div className={"border-t border-t-gray-500 pt-4"}>
-            <DashboardCalendar />
-          </div>
+          {Instructor.id && (
+            <div className={"border-t border-t-gray-500 pt-4"}>
+              <DashboardCalendar data={Instructor} />
+            </div>
+          )}
         </Fragment>
       )}
     </Fragment>

@@ -3,6 +3,7 @@ import { CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { formatPhoneNumber } from "@/modules/formatter.jsx";
 import { Button, ConfigProvider } from "antd";
 import { useState, useEffect, useMemo, useCallback, useContext } from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
@@ -10,7 +11,7 @@ import moment from "moment";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaBars } from "react-icons/fa";
-export const DashboardCalendar = () => {
+export const DashboardCalendar = ({ data }) => {
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
@@ -115,9 +116,15 @@ export const DashboardCalendar = () => {
     }
   };
 
-  const { formats, views, toolbar } = useMemo(() => {
+  const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
+      components: {
+        // timeGutterHeader: () => {}, HTML structure
+      },
+      defaultDate: new Date(),
       formats: {
+        timeGutterFormat: (date, culture, localizer) =>
+          localizer.format(date, "hh:mm", culture),
         dayFormat: (date, culture, localizer) =>
           localizer.format(date, "ddd", culture),
         eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
@@ -168,18 +175,48 @@ export const DashboardCalendar = () => {
     });
   }, [MonthName]);
 
+  const slotGroupPropGetter = useCallback(
+    () => ({
+      style: {
+        minHeight: 80,
+      },
+    }),
+    [],
+  );
+
+  const slotPropGetter = useCallback(
+    (date) => ({
+      className: "px-2.5",
+      // ...(moment(date).hour() < 8 && {
+      //   style: {
+      //     backgroundColor: "powderblue",
+      //     color: "black",
+      //   },
+      // }),
+      // ...(moment(date).hour() > 12 && {
+      //   style: {
+      //     backgroundColor: "darkgreen",
+      //     color: "white",
+      //   },
+      // }),
+    }),
+    [],
+  );
+
+  const { formattedNumber } = formatPhoneNumber(data?.home_phone);
+
   return (
     <div className={"px-4 py-2.5"}>
       <div className={"flex items-center justify-between px-4 mb-8"}>
         <div className={"flex items-center gap-x-4"}>
           <Title level={1} fontSize={"text-3xl"} fontWeightStrong={500}>
-            Katie Park
+            {data?.first_name}
           </Title>
           <Paragraph
             className={"text-gray-500 font-semibold"}
             fontSize={"text-xl"}
           >
-            +8800 555 35 35
+            {formattedNumber}
           </Paragraph>
           <Paragraph fontSize={"text-base font-semibold"}>
             120h on week
@@ -241,7 +278,7 @@ export const DashboardCalendar = () => {
         </div>
       </div>
 
-      <div className="border border-blue-500 rounded-[20px]">
+      <div className="border border-blue-500 rounded-[20px] overflow-hidden">
         <div className="p-4 flex justify-between items-center border-b border-b-gray-300">
           <div className={"flex items-center gap-4"}>
             <IconComponent
@@ -299,16 +336,16 @@ export const DashboardCalendar = () => {
         </div>
         <Calendar
           // To selection column and add events
-          selectable
+          // selectable
           localizer={localizer}
           events={events}
           // To scroll
           startAccessor="start"
           endAccessor="end"
-          onSelectSlot={handleSelect}
+          // onSelectSlot={handleSelect}
           // onSelectEvent={(event) => alert(event.title)}
           defaultView={Views.WEEK}
-          defaultDate={new Date()}
+          defaultDate={defaultDate}
           style={{ height: 564 }}
           views={views}
           formats={formats}
@@ -319,6 +356,11 @@ export const DashboardCalendar = () => {
           //{/*Day column*/}
           dayPropGetter={dayPropGetter}
           showMultiDayTimes
+          // Slot
+          slotGroupPropGetter={slotGroupPropGetter}
+          slotPropGetter={slotPropGetter}
+          //compo
+          components={components}
         />
       </div>
     </div>
