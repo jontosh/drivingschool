@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #git Updated database fields and variable names in chart and index components. Updated the database with new instructor and location information, as well as student, class, school, and vehicle information. Corrected workspace links and property component settings.">
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/frontend/src/modules/formatter.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
@@ -27,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="dashboard" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,26 +47,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dashboard&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/a/Development/driving_school/drivingschool&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/a/Development/driving_school/drivingschool",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -221,19 +220,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data." />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings" />
-    <MESSAGE value="- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
-    <MESSAGE value="- &#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
-    <MESSAGE value="- Update&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
     <MESSAGE value="- Update database&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
     <MESSAGE value="- Update database fields&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
     <MESSAGE value="- Update database fields and&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
@@ -246,6 +232,19 @@
     <MESSAGE value="- Update database fields and variable names in chart and index components&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
     <MESSAGE value="- Update database fields and variable names in chart and index components.&#10;- Update database with new instructor and location information, as well as student, classes, schools, and vehicles data. Fix workspace references and properties component settings." />
     <MESSAGE value="#fix #jsx #git Updated database fields and variable names in chart and index components. Updated the database with new instructor and location information, as well as student, class, school, and vehicle information. Corrected workspace links and property component settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #git Updated database fields and variable names in chart and index components. Updated the database with new instructor and location information, as well as student, class, school, and vehicle information. Corrected workspace links and property component settings." />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update calendar" />
+    <MESSAGE value="Update calendar component" />
+    <MESSAGE value="Update calendar component to" />
+    <MESSAGE value="Update calendar component to include" />
+    <MESSAGE value="Update calendar component to include new" />
+    <MESSAGE value="Update calendar component to include new features" />
+    <MESSAGE value="Update calendar component to include new features and" />
+    <MESSAGE value="Update calendar component to include new features and improve" />
+    <MESSAGE value="Update calendar component to include new features and improve user" />
+    <MESSAGE value="Update calendar component to include new features and improve user experience" />
+    <MESSAGE value="Update calendar component to include new features and improve user experience." />
+    <MESSAGE value="#fix #jsx Updated the calendar component to include new features and improved the user experience." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated the calendar component to include new features and improved the user experience." />
   </component>
 </project>
