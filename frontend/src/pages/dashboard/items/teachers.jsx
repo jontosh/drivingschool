@@ -3,6 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { FormError } from "@/modules/errors.jsx";
 import DashboardStyle from "@/pages/dashboard/dashboard.module.scss";
 import { DashboardCalendar } from "@/pages/dashboard/items/calendar.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
@@ -83,7 +84,7 @@ export const DashboardTeachers = () => {
         }) => {
           return (
             <form
-              className={values.search !== "" && `mb-7`}
+              className={values.search !== "" ? `mb-7` : undefined}
               onSubmit={handleSubmit}
             >
               <div className="flex">
@@ -114,14 +115,7 @@ export const DashboardTeachers = () => {
                     </span>
                   </label>
                   {errors.search && touched.search && (
-                    <IconComponent
-                      vertical={"items-center"}
-                      spaceIconX={2}
-                      icon={<TbAlertCircle />}
-                      className={`text-[#FF3932] text-xs flex items-center mt-2.5 cursor-text`}
-                    >
-                      {errors.search}
-                    </IconComponent>
+                    <FormError>{errors.search}</FormError>
                   )}
                 </div>
               </div>
