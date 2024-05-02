@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 #     INSTALLED LIBRARIES
     "colorfield",
+    "creditcards",
     "rest_framework",
     "phonenumber_field"
 ]

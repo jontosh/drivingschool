@@ -3,39 +3,34 @@ from phonenumber_field.modelfields import PhoneNumberField
 from colorfield.fields import ColorField
 from location.models import Vehicle,Location,School
 from django.contrib.contenttypes.fields import GenericRelation
+from abstracts.models import  Status,Extra
+from servises.models import Services
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 
-#USER
+
 class User(models.Model):
-    class Meta:
-        abstract = True
     STATUS = [
         ["Active", "Active"],
         ["Deleted", "Deleted"],
         ["Pending", "Pending"],
     ]
-    id = models.UUIDField(auto_created=True,primary_key=True,unique=True)
-    status = models.CharField(choices=STATUS, max_length=30,default="Pending")
+    id = models.UUIDField(auto_created=True, primary_key=True, unique=True)
+    status = models.CharField(choices=STATUS, max_length=30, default="Pending")
     first_name = models.CharField(max_length=200)
-    mid_name = models.CharField(max_length=200, blank=True,null=True)
+    mid_name = models.CharField(max_length=200, blank=True, null=True)
     last_name = models.CharField(max_length=200)
     address = models.TextField()
-    city = models.CharField(max_length=200,blank=True,null=True)
-    state = models.CharField(max_length=200,blank=True,null=True)
-    zip = models.CharField(max_length=30,blank=True,null=True)
+    city = models.CharField(max_length=200, blank=True, null=True)
+    state = models.CharField(max_length=200, blank=True, null=True)
+    zip = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
-    code = models.CharField(max_length=150, blank=True,null=True)
-    home_photo = PhoneNumberField(blank=True,null=True)
+    code = models.CharField(max_length=150, blank=True, null=True)
+    home_photo = PhoneNumberField(blank=True, null=True)
     cell_phone = PhoneNumberField()
-    birth = models.DateField(default="1999/01/01",help_text="Data of birth")
-    username = models.CharField(max_length=200,unique=True)
-    password = models.CharField(max_length=200, blank=True,null=True)
-    type = models.ForeignKey("UserType",on_delete=models.CASCADE,default=0)
-
-
-
-
-
-
+    birth = models.DateField(default="1999/01/01", help_text="Data of birth")
+    username = models.CharField(max_length=200, unique=True)
+    password = models.CharField(max_length=200, blank=True, null=True)
+    type = models.ForeignKey("UserType", on_delete=models.CASCADE, default=0)
 
 
 #INSTRACTOR
@@ -50,8 +45,8 @@ class Instructor(User):
         ["Teacher","Teacher"],
     ]
     staff_type = models.CharField(choices=STAFF_TYPE,max_length=50,default="Instructor")
-    location = models.ForeignKey(Location,on_delete=models.CASCADE,blank=True,null=True)
-    vehicle = models.ForeignKey(Vehicle,on_delete=models.CASCADE, blank=True,null=True)
+    location = models.ForeignKey("location.Location",on_delete=models.CASCADE,null=True,blank=True)
+    vehicle = models.ForeignKey("location.Vehicle",on_delete=models.CASCADE, blank=True,null=True)
     emergency_name= models.CharField(max_length=200,blank=True,null=True,help_text="Emergency contact name")
     emergency_relation= models.CharField(max_length=200,blank=True,null=True,help_text="Emergency  relation")
     emergency_phone= PhoneNumberField(blank=True,null=True,help_text="Emergency contact phone")
@@ -110,6 +105,53 @@ class Student(User):
     parent_2_email = models.EmailField(blank=True,null=True)
     parent_2_phone = PhoneNumberField(blank=True,null=True)
 
+class Enrollment(Extra):
+    student = models.ForeignKey("Student",on_delete=models.CASCADE,related_name="enrolled_user")
+    data = models.DateField(auto_now_add=True)
+    code = models.IntegerField()
+    by  = models.ForeignKey("User",on_delete=models.CASCADE,related_name="enrolled_by")
+    price = models.PositiveIntegerField(default=0)
+    cr = models.ForeignKey("location.Class",on_delete=models.CASCADE,blank=True)
+    cr_start = models.DateField(blank=True)
+    cr_end = models.DateField(blank=True)
+    package = models.ManyToManyField("servises.Services",related_name="enrolled_services")
+
+class Bill(Extra):
+    TYPE = [
+        ["Process Credit Card","Process Credit Card"],
+        ["Swiped Transaction"," Swiped Transaction"],
+        ["Cash Payment"," Cash Payment"],
+        ["Check Payment"," Check Payment"],
+        ["Adjustment"," Adjustment"],
+    ]
+    ADJUST_TYPE = [
+        ["Discount (Subtract from balance)","Discount (Subtract from balance)"],
+        ["Refund (Add to balance)","Refund (Add to balance)"],
+        ["Lead Discount (Subtract from balance)","Lead Discount (Subtract from balance)"],
+        ["Other (Subtract from balance)","Other (Subtract from balance)"],
+        ["Wrong Charge (Subtract from balance)","Wrong Charge (Subtract from balance)"],
+    ]
+    student = models.ForeignKey("Student", on_delete=models.CASCADE, related_name="bill_user")
+    type = models.CharField(max_length=30,choices=TYPE,default="Adjustment")
+    data = models.DateField(auto_now_add=True)
+    code = models.IntegerField()
+    price = models.PositiveIntegerField(default=0)
+    package = models.ManyToManyField("servises.Services", related_name="bill_services")
+    cc_number = CardNumberField(verbose_name='card number',blank=True)
+    cc_expiry = CardExpiryField(verbose_name='expiration date',blank=True)
+    cc_code = SecurityCodeField(verbose_name='security code',blank=True)
+    card_type = models.CharField(max_length=50,blank=True)
+    card_last_4_digits = models.PositiveSmallIntegerField(blank=True)
+    name_on_card = models.CharField(max_length=200,blank=True)
+    address = models.TextField(blank=True)
+    city = models.TextField(blank=True)
+    state = models.TextField(blank=True)
+    zip = models.TextField(blank=True)
+    receipt_number = models.PositiveSmallIntegerField(blank=True)
+    transaction_number = models.PositiveSmallIntegerField(blank=True)
+    check_number = models.TextField(blank=True)
+    is_deposited = models.BooleanField(default=False)
+    adjust_type = models.CharField(choices=ADJUST_TYPE,max_length=40,default="Discount (Subtract from balance)",blank=True)
 
 
 
@@ -165,6 +207,7 @@ class TimeOff(models.Model):
     def __str__(self):
         return self.name
 class TimeSlot(models.Model):
+
     TYPE = [
         ["Single Appointment(Driver Only)Road","Single Appointment (Driver Only)"],
         ["Road Test(DriverOnly)","Road Test (Driver Only)"],
@@ -182,6 +225,10 @@ class TimeSlot(models.Model):
     slot_duration = models.IntegerField(default=0,blank=True)
     slots_per_day = models.IntegerField(default=1,blank=False)
 
+class Appointment(models.Model):
+
+    time_slot = models.ForeignKey("TimeSlot",on_delete=models.CASCADE)
+    student = models.ManyToManyField("Student",related_name='apt_students')
 class HowDidYouHearUs(models.Model):
     name = models.CharField(max_length=200)
     STATUS = [
@@ -193,6 +240,7 @@ class HowDidYouHearUs(models.Model):
     def __str__(self):
         return f"{self.name} \t {self.status}"
 
+
 class UserType(models.Model):
     name = models.CharField(max_length=100)
     rights = models.ManyToManyField("configuration.Rights",related_name="user_rights")
@@ -200,4 +248,21 @@ class UserType(models.Model):
     def __str__(self):
         return self.name
 
+class FileCategory(Status,Extra):
+    name = models.CharField(max_length=200)
+    package = models.ManyToManyField("servises.Services",related_name="package_file")
+    signature = models.URLField(verbose_name="Signature link")
+    has_portal = models.BooleanField(verbose_name="Display on Student Portal",default=False)
+    has_category_portal = models.BooleanField(verbose_name="Disallow files associated with category from displaying on Student Portal",default=False)
+    has_student_account = models.BooleanField(verbose_name="Must Be Uploaded to Student Account",default=False)
+    has_teacher_portal = models.BooleanField(verbose_name="Disallow files associated with this category from displaying on Instructor/Teacher Portal",default=False)
 
+
+
+class Files(Extra):
+    name = models.TextField()
+    by = models.ForeignKey("User", on_delete=models.CASCADE,related_name="file_by")
+    student = models.ForeignKey("Student",on_delete=models.CASCADE,blank=True,null=True,related_name="file_from")
+    category = models.ForeignKey("FileCategory",on_delete=models.CASCADE)
+    file = models.FileField(upload_to="files/student")
+    date = models.DateTimeField(auto_now_add=True)

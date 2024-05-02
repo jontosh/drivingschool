@@ -78,7 +78,7 @@ class Class(models.Model):
     details = models.TextField(blank=True,null=True)
     note = models.TextField(blank=True,null=True)
     day = models.ManyToManyField("Users.TimeRange",related_name="day_class")
-    teacher = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE)
+    teacher = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE,null=True,blank=True)
 
 
 

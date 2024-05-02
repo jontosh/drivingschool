@@ -57,9 +57,42 @@ class Test(Status,Extra,models.Model):
     def __str__(self):
         return self.name
 
+
+
+class Tasks(Extra):
+    STATUS = [
+        ["New","New"],
+        ["Open","Open"],
+        ["Dormant","Dormant"],
+        ["FollowUp","FollowUp"],
+        ["Waiting Feedback","Waiting Feedback"],
+        ["Completed","Completed"],
+    ]
+    ASSIGN_TYPE = [
+        ["For My Eyes Only","For My Eyes Only"],
+       ["Assign To Staff"," Assign To Staff"],
+        ["Show To All Admins","Show To All Admins"],
+    ]
+    PRIORITY = [
+        ["LOW","LOW"],
+        ["MEDIUM", "MEDIUM"],
+        ["URGENT", "URGENT"],
+    ]
+    subject = models.CharField(max_length=100)
+    status = models.CharField(choices=STATUS,max_length=40,default="New")
+    due_date = models.DateTimeField()
+    assign = models.CharField(choices=ASSIGN_TYPE,max_length=40,default=0)
+    priority = models.CharField(max_length=10,default="LOW",choices=PRIORITY)
+
+class LatestNews(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    data = models.DateTimeField(auto_now_add=True)
+    order_number = models.AutoField(primary_key=True)
+    def __str__(self):
+        return self.title
 class EmailTemplates(models.Model):
     text = models.CharField(max_length=500,choices=[["a","a"],["a","a"],])
-
 
 class EmailTemplatesAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, change=False, **kwargs):
@@ -88,10 +121,9 @@ admin.site.register(EmailTemplates,EmailTemplatesAdmin)
 @receiver(pre_save, sender=Logs)
 def log_user_actions(sender, instance, **kwargs):
     request = kwargs['request']
-    website_id = request.path.split('/')[1]
-    user_id = request.path.split('/')[2]
+    user_id = request.path.split('/')[1]
 
-    # Assuming website_id and user_id are UUIDs
+
     try:
         user = User.objects.get(id=user_id)
     except :
