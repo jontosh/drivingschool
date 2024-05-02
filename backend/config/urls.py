@@ -21,6 +21,6 @@ urlpatterns = [
     path(f'servises/', include("servises.urls")),
     path(f'location/', include("location.urls")),
     path(f'configuration/', include("configuration.urls")),
-    path(f'', include("interaction.urls")),
+    path(f'interaction/', include("interaction.urls")),
 
 ]
