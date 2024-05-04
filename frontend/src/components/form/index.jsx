@@ -11,6 +11,7 @@ export const CustomCheckBox = ({
   children,
   onChange,
   checked,
+  customWrapClassName,
   ...props
 }) => {
   className = classNames([
@@ -35,7 +36,12 @@ export const CustomCheckBox = ({
             checked={checked}
             className={`${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`}
           />
-          <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
+          <span
+            className={classNames(
+              `relative ${FormStyle["Custom-checkbox"]}`,
+              customWrapClassName,
+            )}
+          ></span>
         </div>
         {children}
       </label>
@@ -168,6 +174,7 @@ export const CustomRadio = ({
   className,
   name,
   checked,
+  customWrapClassName,
   ...props
 }) => {
   return (
@@ -189,7 +196,12 @@ export const CustomRadio = ({
             className,
           )}
         />
-        <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
+        <span
+          className={classNames(
+            `relative ${FormStyle["Custom-checkbox"]}`,
+            customWrapClassName,
+          )}
+        ></span>
       </div>
       {children}
     </label>
