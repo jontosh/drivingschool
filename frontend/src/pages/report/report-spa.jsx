@@ -1,5 +1,7 @@
 import Title from "@/components/title/index.jsx";
+import ClassroomInfoDetails from "@/pages/report/subpages/classroom-info-details.jsx";
 import Completed from "@/pages/report/subpages/completed.jsx";
+import PaymentLogReport from "@/pages/report/subpages/payment-log-report.jsx";
 import PrintReceipts from "@/pages/report/subpages/print-receipts.jsx";
 import StudentDataExport from "@/pages/report/subpages/student-data-export.jsx";
 import StudentEventLog from "@/pages/report/subpages/student-event-log.jsx";
@@ -88,7 +90,6 @@ const ReportSpa = ({ className, children, ...props }) => {
         </Fragment>
       );
     }
-
     case "print-receipts": {
       return (
         <Fragment>
@@ -104,6 +105,42 @@ const ReportSpa = ({ className, children, ...props }) => {
             Print receipts
           </Title>
           <PrintReceipts />
+        </Fragment>
+      );
+    }
+    case "payment-log-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Payment log report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Payment log report
+          </Title>
+          <PaymentLogReport />
+        </Fragment>
+      );
+    }
+    case "classroom-info-details": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Classroom information details</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Classroom information details
+          </Title>
+          <ClassroomInfoDetails />
         </Fragment>
       );
     }
