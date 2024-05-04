@@ -136,7 +136,7 @@ class Bill(Extra):
     data = models.DateField(auto_now_add=True)
     code = models.IntegerField()
     price = models.PositiveIntegerField(default=0)
-    package = models.ManyToManyField("servises.Services", related_name="bill_services")
+    package = models.ManyToManyField(Services, related_name="bill_services")
     cc_number = CardNumberField(verbose_name='card number',blank=True)
     cc_expiry = CardExpiryField(verbose_name='expiration date',blank=True)
     cc_code = SecurityCodeField(verbose_name='security code',blank=True)

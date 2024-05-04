@@ -72,7 +72,7 @@ class Messages(models.Model):
         ["DELETED", "DELETED"],
         ["UNREAD", "UNREAD"]
     ]
-    student = models.ForeignKey("Users.Student",related_name="student_message",on_delete=models.CASCADE)
+    student = models.ForeignKey("Users.Student",related_name="student1_message",on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now_add=True)
     status = models.CharField(choices=STATUS,max_length=30,default="UNREAD")
     def add_item(self, user) -> 'MessageItems':
