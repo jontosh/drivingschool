@@ -11,7 +11,9 @@ import {
   AiOutlineTool,
   AiOutlineUserAdd,
 } from "react-icons/ai";
+import { FaCartShopping } from "react-icons/fa6";
 import { LuLogOut } from "react-icons/lu";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 
 export const MenuItems = (IsActive, getItem) => {
@@ -29,7 +31,7 @@ export const MenuItems = (IsActive, getItem) => {
       ),
       "sub2",
       <span className={"w-5"}>
-        <AiOutlineUserAdd />
+        <MdOutlineShoppingCart />
       </span>,
     ),
     getItem(
@@ -80,7 +82,7 @@ export const MenuItems = (IsActive, getItem) => {
           null,
         ),
         getItem(
-          <Link to={"/scheduling/vehicle"} children={"Multi Vehicle"} />,
+          <Link to={"/scheduling/vehicle"} children={"Multi Instructor"} />,
           "sub5-2",
           null,
         ),
@@ -90,7 +92,7 @@ export const MenuItems = (IsActive, getItem) => {
           null,
         ),
         getItem(
-          <Link to={"/scheduling/multi"} children={"Multi Instructor"} />,
+          <Link to={"/scheduling/multi"} children={"Multi Vehicles"} />,
           "sub5-3",
           null,
         ),
