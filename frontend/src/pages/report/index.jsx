@@ -68,6 +68,20 @@ const Report = ({ className, ...props }) => {
             >
               Print receipts
             </NavLink>
+
+            <NavLink
+              to={"/report/business/payment-log-report"}
+              className={setActiveNav}
+            >
+              Payment log report
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/classroom-info-details"}
+              className={setActiveNav}
+            >
+              Classroom information details
+            </NavLink>
           </aside>
 
           <div className="flex-grow bg-white p-5 rounded-xl shadow-xl">

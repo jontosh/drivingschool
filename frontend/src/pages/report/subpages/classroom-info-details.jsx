@@ -1,18 +1,12 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomCheckBox,
-  CustomInput,
-  CustomRadio,
-} from "@/components/form/index.jsx";
-import Title, { Paragraph } from "@/components/title/index.jsx";
+import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { FormError } from "@/modules/errors.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import classNames from "classnames";
 import { Formik } from "formik";
 import { Fragment, useContext } from "react";
 
-const StudentEventLog = ({ className, children, ...props }) => {
+const ClassroomInfoDetails = ({ className, children, ...props }) => {
   const { colorsObject } = useContext(ColorsContext);
 
   return (
@@ -37,8 +31,8 @@ const StudentEventLog = ({ className, children, ...props }) => {
                       "w-full text-base",
                     )}
                     type={"text"}
-                    spanText={"Student name"}
-                    placeholder={"Student name"}
+                    spanText={"CR date start "}
+                    placeholder={"CR date start "}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
@@ -55,8 +49,26 @@ const StudentEventLog = ({ className, children, ...props }) => {
                       "w-full text-base",
                     )}
                     type={"text"}
-                    spanText={"Start date "}
-                    placeholder={"Start date "}
+                    spanText={"Type"}
+                    placeholder={"Type"}
+                    fontSize={"text-base"}
+                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                    name={"date"}
+                    onChange={handleChange}
+                  />
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                    }
+                    className={classNames(
+                      ManagementStyle["CheckModal__form-element__shadow"],
+                      "w-full text-base",
+                    )}
+                    type={"text"}
+                    spanText={"Status"}
+                    placeholder={"Status"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
@@ -75,8 +87,8 @@ const StudentEventLog = ({ className, children, ...props }) => {
                       "w-full text-base",
                     )}
                     type={"text"}
-                    spanText={"End date"}
-                    placeholder={"End date"}
+                    spanText={"CR date END"}
+                    placeholder={"CR date END"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
@@ -84,29 +96,41 @@ const StudentEventLog = ({ className, children, ...props }) => {
                     onChange={handleChange}
                   />
 
-                  <label className="flex cursor-pointer items-center w-full h-[50px] gap-5">
-                    <span className={`text-base flex-shrink-0 w-56`}>
-                      Show late cancellation only
-                    </span>
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                    }
+                    className={classNames(
+                      ManagementStyle["CheckModal__form-element__shadow"],
+                      "w-full text-base",
+                    )}
+                    type={"text"}
+                    spanText={"Instructor"}
+                    placeholder={"Instructor"}
+                    fontSize={"text-base"}
+                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                    name={"date"}
+                    onChange={handleChange}
+                  />
 
-                    <div className={"w-full"}>
-                      <div>
-                        <CustomCheckBox
-                          classNames={"inline-flex gap-2.5 items-center"}
-                          name={"type"}
-                          onChange={handleChange}
-                          value={"Adult"}
-                          customWrapClassName={classNames(
-                            ManagementStyle["CheckModal__form-element__shadow"],
-                            "border border-indigo-600",
-                          )}
-                        />
-                      </div>
-                      {errors.error && (
-                        <FormError>Choose student type</FormError>
-                      )}
-                    </div>
-                  </label>
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                    }
+                    className={classNames(
+                      ManagementStyle["CheckModal__form-element__shadow"],
+                      "w-full text-base",
+                    )}
+                    type={"text"}
+                    spanText={"Location"}
+                    placeholder={"Location"}
+                    fontSize={"text-base"}
+                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                    name={"date"}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
 
@@ -131,4 +155,4 @@ const StudentEventLog = ({ className, children, ...props }) => {
   );
 };
 
-export default StudentEventLog;
+export default ClassroomInfoDetails;
