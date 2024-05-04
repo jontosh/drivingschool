@@ -12,7 +12,7 @@ import {
   AiOutlineUserAdd,
 } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const MenuItems = (IsActive, getItem) => {
   const items = [
@@ -179,7 +179,16 @@ export const MenuItems = (IsActive, getItem) => {
       <span className={"w-5"}>
         <AiOutlineReconciliation />
       </span>,
-      IsActive && [getItem("Process")],
+      IsActive && [
+        getItem(
+          <NavLink
+            to={"/report/business/student-event-log"}
+            children={"Business Report"}
+          />,
+          "sub7-1",
+          null,
+        ),
+      ],
     ),
     getItem(
       IsActive && "Account Management",

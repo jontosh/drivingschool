@@ -1,7 +1,6 @@
 import Layout from "@/layout";
 import Communication from "@/pages/communication/index.jsx";
 import Configuration from "@/pages/configuration/index.jsx";
-import { ConfigBase } from "@/pages/configuration/subpages/config-base.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
@@ -23,6 +22,7 @@ import Staff from "@/pages/managment/staff/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
 import SignIn from "@/pages/register/sign-in.jsx";
+import Report from "@/pages/report/index.jsx";
 import Scheduling from "@/pages/scheduling/index.jsx";
 import Manage from "@/pages/scheduling/subpages/manage.jsx";
 import Search from "@/pages/search/index.jsx";
@@ -50,6 +50,15 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "/report/:title",
+        element: <Report />,
+        children: [
+          {
+            path: ":subpage",
+          },
+        ],
+      },
+      {
         path: "/enrollment",
         element: <Enrollment />,
       },
@@ -68,17 +77,17 @@ export const router = createBrowserRouter([
           },
           {
             path: "help",
-            element: <Help />
+            element: <Help />,
           },
           {
             path: "news",
-            element: <News />
+            element: <News />,
           },
           {
             path: "new-ticket",
-            element: <NewTicket />
+            element: <NewTicket />,
           },
-        ]
+        ],
       },
       {
         path: "/configuration/:title",
