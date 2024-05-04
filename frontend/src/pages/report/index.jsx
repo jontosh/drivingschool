@@ -50,6 +50,24 @@ const Report = ({ className, ...props }) => {
             >
               Student data export
             </NavLink>
+
+            <NavLink
+              to={"/report/business/student-updated-profile"}
+              className={setActiveNav}
+            >
+              Student updated profile
+            </NavLink>
+
+            <NavLink to={"/report/business/completed"} className={setActiveNav}>
+              All BTW Hours Completed
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/print-receipts"}
+              className={setActiveNav}
+            >
+              Print receipts
+            </NavLink>
           </aside>
 
           <div className="flex-grow bg-white p-5 rounded-xl shadow-xl">
