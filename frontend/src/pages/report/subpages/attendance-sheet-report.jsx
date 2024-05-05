@@ -14,7 +14,7 @@ const AttendanceSheetReport = () => {
                     <CustomInput
                         spanText={"Select classroom"}
                         spanClassName={"w-[230px] font-normal"}
-                        classNames={"flex flex-row-reverse items-center gap-x-2.5 h-10"}
+                        classNames={"flex flex-row-reverse items-center gap-x-2.5 h-[50px]"}
                         colorBorder={colorsObject.primary}
                         className={classNames(
                             ManagementStyle["CheckModal__form-element__shadow"],

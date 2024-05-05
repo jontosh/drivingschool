@@ -61,7 +61,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse items-center w-full h-10"
+              "inline-flex flex-row-reverse items-center w-full h-[50px]"
             }
             className={classNames(
               ManagementStyle["CheckModal__form-element__shadow"],
@@ -92,20 +92,20 @@ const StudentDataExport = ({ className, children, ...props }) => {
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Day"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
                   className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={"h-10"}
+                  classNames={"h-[50px]"}
                   placeholder={"Month"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Year"}
                 />
               </div>
@@ -118,20 +118,20 @@ const StudentDataExport = ({ className, children, ...props }) => {
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Day"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
                   className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={"h-10"}
+                  classNames={"h-[50px]"}
                   placeholder={"Month"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Year"}
                 />
               </div>
@@ -149,13 +149,14 @@ const StudentDataExport = ({ className, children, ...props }) => {
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-full h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  classNames={"h-[50px]"}
                   placeholder={"Month"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-full h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Year"}
                 />
               </div>
@@ -168,13 +169,14 @@ const StudentDataExport = ({ className, children, ...props }) => {
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-full h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  classNames={"h-[50px]"}
                   placeholder={"Month"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-full h-10 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Year"}
                 />
               </div>
@@ -217,7 +219,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
             <div className="space-y-5">
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -234,7 +236,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
               />
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -250,7 +252,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
                 onChange={handleChange}
               />
 
-              <div className="flex cursor-pointer items-center w-full h-10">
+              <div className="flex cursor-pointer items-center w-full h-[50px]">
                 <span className={`text-base flex-shrink-0 w-44`}>
                   Student type:
                 </span>
@@ -289,7 +291,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
 
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -308,7 +310,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
             <div className="space-y-5">
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -325,7 +327,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
               />
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -342,7 +344,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
               />
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -359,7 +361,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
               />
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -385,7 +387,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
             <div className="space-y-5">
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -402,7 +404,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
               />
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -421,7 +423,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
             <div className="space-y-5">
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -438,7 +440,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
               />
               <CustomInput
                 classNames={
-                  "inline-flex flex-row-reverse items-center w-full h-10"
+                  "inline-flex flex-row-reverse items-center w-full h-[50px]"
                 }
                 className={classNames(
                   ManagementStyle["CheckModal__form-element__shadow"],
@@ -486,7 +488,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
           <div className="grid grid-cols-2 gap-5">
             <CustomInput
               classNames={
-                "inline-flex flex-row-reverse items-center w-full h-10"
+                "inline-flex flex-row-reverse items-center w-full h-[50px]"
               }
               className={classNames(
                 ManagementStyle["CheckModal__form-element__shadow"],
@@ -503,7 +505,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
             />
             <CustomInput
               classNames={
-                "inline-flex flex-row-reverse items-center w-full h-10"
+                "inline-flex flex-row-reverse items-center w-full h-[50px]"
               }
               className={classNames(
                 ManagementStyle["CheckModal__form-element__shadow"],
@@ -527,7 +529,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
           <div className="grid grid-cols-2 gap-5">
             <CustomInput
               classNames={
-                "inline-flex flex-row-reverse items-center w-full h-10"
+                "inline-flex flex-row-reverse items-center w-full h-[50px]"
               }
               className={classNames(
                 ManagementStyle["CheckModal__form-element__shadow"],
@@ -544,7 +546,7 @@ const StudentDataExport = ({ className, children, ...props }) => {
             />
             <CustomInput
               classNames={
-                "inline-flex flex-row-reverse items-center w-full h-10"
+                "inline-flex flex-row-reverse items-center w-full h-[50px]"
               }
               className={classNames(
                 ManagementStyle["CheckModal__form-element__shadow"],
