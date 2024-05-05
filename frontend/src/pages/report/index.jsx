@@ -82,6 +82,13 @@ const Report = ({ className, ...props }) => {
             >
               Classroom information details
             </NavLink>
+
+            <NavLink
+              to={"/report/business/attendance-sheet-report"}
+              className={setActiveNav}
+            >
+              Attendance Sheet Report
+            </NavLink>
           </aside>
 
           <div className="flex-grow bg-white p-5 rounded-xl shadow-xl">
