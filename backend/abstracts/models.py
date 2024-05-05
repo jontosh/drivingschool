@@ -19,9 +19,9 @@ class Status(models.Model):
         return self.status
 
 class Extra(models.Model):
-    extra = models.JSONField(blank=True)
+    extra = models.JSONField(blank=True,null=True)
 
-    note = models.TextField(blank=True)
+    note = models.TextField(blank=True,null=True)
     class Meta:
         abstract = True
     def __str__(self):

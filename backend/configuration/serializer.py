@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import CompanyInfo ,WebContent,ZipCode,StorageManagement,EmergencyData,MessageItems,Messages,Fields,\
-    PasswordManagement, GraphicalScheduleSetting, GeneralSetting,Instructions
+    PasswordManagement, GraphicalScheduleSetting, GeneralSetting,Instructions,Expanses
 
 class CompanyInfoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,4 +55,9 @@ class  GeneralSettingSerializer(serializers.ModelSerializer):
 class  InstructionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Instructions
+        fields = "__all__"
+
+class  ExpansesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Expanses
         fields = "__all__"

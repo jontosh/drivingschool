@@ -3,7 +3,7 @@ from django.contrib.admin.models import LogEntry, DELETION,ADDITION,CHANGE
 from django.utils.html import escape
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-
+from .models import Logs
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
     # date_hierarchy = 'action_time'
@@ -39,3 +39,4 @@ class LogEntryAdmin(admin.ModelAdmin):
     object_link.short_description = "object"
 class ContentTypeAdmin(admin.ModelAdmin):
   readonly_fields = ["id", "app_label", "model", "logentry", "permission", "messageitems"]
+admin.site.register(Logs)

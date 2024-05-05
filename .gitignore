@@ -42,8 +42,11 @@ interaction/__pycache__/
 location/__pycache__/
 servises/__pycache__/
 /backend/venv/
-.idea/inspectionProfiles/Project_Default.xml
+/.idea/inspectionProfiles/Project_Default.xml
 .idea/workspace.xml
+.idea/*
 /backend/configuration/migrations/
 /backend/abstracts/migrations/
 /backend/interaction/migrations/
+/backend/mainadmin/migrations/
+/backend/mainadmin/migrations/

@@ -43,11 +43,7 @@ SHARED_APPS = [
 #     APPS
     "mainadmin",
 
-#     INSTALLED LIBRARIES
-    "colorfield",
-    "creditcards",
-    "rest_framework",
-    "phonenumber_field"
+
 ]
 TENANT_APPS = [
     #APPS
@@ -56,6 +52,11 @@ TENANT_APPS = [
     "location",
     "configuration",
     "interaction",
+     #INSTALLED LIBRARIES
+    "colorfield",
+    "creditcards",
+    "rest_framework",
+    "phonenumber_field"
 
 ]
 
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Users.middleware.DRFLoggingMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'

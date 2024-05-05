@@ -5,6 +5,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from colorfield.fields import ColorField
 from Users.models import Weekday
+from abstracts.models import Extra,Status
 # Create your models here.
 class CompanyInfo(models.Model):
     id = models.UUIDField(auto_created=True,primary_key=True)
@@ -238,3 +239,15 @@ class Rights(models.Model):
     has_read_own = models.BooleanField(default=False)
     has_read_all = models.BooleanField(default=False)
     field = models.ForeignKey("Fields",on_delete=models.CASCADE)
+
+class Expanses(Extra):
+    Status = [
+        ["ACTIVE", "ACTIVE"],
+        ["DELETED", "DELETED"],
+        ["PAID", "PAID"]
+    ]
+    status = models.CharField(choices=Status, default="INACTIVE", max_length=15)
+    amount = models.IntegerField()
+    data = models.DateTimeField(auto_now_add=True,blank=True)
+    name = models.CharField(max_length=200)
+

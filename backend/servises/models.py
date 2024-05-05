@@ -35,10 +35,11 @@ class Services(models.Model):
     purchase = models.BooleanField(default=False)
     portal_purchase = models.BooleanField(default=False)
     add_ons = models.ManyToManyField("AddOn",related_name="addons")
-    discount = models.ManyToManyField("Discount",related_name="service_discount")
+    discount = models.ManyToManyField("Discount",related_name="service_discount",blank=True,null=True)
     oe = models.CharField(choices=OE,max_length=50,default="NO CONTRACT NEEDED", help_text="Associate Contract From OE")
     notes = models.TextField(blank=True,null=True)
-
+    def __str__(self):
+        return f"{self.name}"
 class Component(models.Model):
     """
     This code defines a Django model named Component that represents a course or program offered by a driving school or similar organization.
