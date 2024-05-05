@@ -8,6 +8,7 @@ import StudentEventLog from "@/pages/report/subpages/student-event-log.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
+import AttendanceSheetReport from "./subpages/attendance-sheet-report";
 
 const ReportSpa = ({ className, children, ...props }) => {
   const { subpage } = useParams();
@@ -141,6 +142,24 @@ const ReportSpa = ({ className, children, ...props }) => {
             Classroom information details
           </Title>
           <ClassroomInfoDetails />
+        </Fragment>
+      );
+    }
+    case "attendance-sheet-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Attendance sheet report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Attendance sheet report
+          </Title>
+          <AttendanceSheetReport />
         </Fragment>
       );
     }
