@@ -22,5 +22,8 @@ urlpatterns = [
     path(f'location/', include("location.urls")),
     path(f'configuration/', include("configuration.urls")),
     path(f'interaction/', include("interaction.urls")),
+    path(f'web_users/', include("Users.urls")),
+    #MADE FOR STATISTICS
+    path(f'statistics/', include("interaction.statistics")),
 
 ]

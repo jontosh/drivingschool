@@ -11,12 +11,12 @@ class Location(models.Model):
         ["INACTIVE","INACTIVE"]
     ]
     Type = [
-        [" Main office only",0],
-        ['Main office with classroom',1],
-        ["Class Room",2],
-        [" Other (Satellite Office Only)",3],
-        ["Other Classroom (Satellite Office with Classroom)",4],
-        ["Range",5]
+        ["Main office only"," Main office only"],
+        ['Main office with classroom',"Main office with classroom"],
+        ["Class Room","Class Room"],
+        ["Other (Satellite Office Only)"," Other (Satellite Office Only)"],
+        ["Other Classroom (Satellite Office with Classroom)","Other Classroom (Satellite Office with Classroom)"],
+        ["Range","Range"]
     ]
     Test_Type = [
         ["Road Test",0],
@@ -29,16 +29,16 @@ class Location(models.Model):
     address = models.TextField()
     city = models.CharField(max_length=200)
     zip = models.CharField(max_length=50)
-    location_manager = models.CharField(max_length=200)
-    pick_up = models.ForeignKey("LocationSmall",on_delete=models.CASCADE,related_name="pickUp")
-    drop_off = models.ForeignKey("LocationSmall",on_delete=models.CASCADE,related_name="dropOff")
-    county = models.CharField(max_length=200)
+    location_manager = models.CharField(max_length=200,blank=True)
+    pick_up = models.ForeignKey("LocationSmall",on_delete=models.CASCADE,related_name="pickUp",blank=True,null=True)
+    drop_off = models.ForeignKey("LocationSmall",on_delete=models.CASCADE,related_name="dropOff",blank=True,null=True)
+    county = models.CharField(max_length=200,blank=True)
     phone_main = models.CharField(max_length=100)
-    fax = models.CharField(max_length=100)
-    other = models.CharField(max_length=100)
-    location_note = models.TextField()
+    fax = models.CharField(max_length=100,blank=True)
+    other = models.CharField(max_length=100,blank=True)
+    location_note = models.TextField(blank=True)
     has_color = models.BooleanField(default=False)
-    color = ColorField(default='#FF0000')
+    color = ColorField(default='#FF0000',blank=True)
     has_distance_based_scheduling = models.BooleanField(default=False)
     distance_based_scheduling = models.IntegerField(default=0)
     provider_location_id = models.CharField(blank=True,null=True,max_length=200)
@@ -88,7 +88,7 @@ class LocationSmall(models.Model):
     """There we are storing real location with name and address"""
     name = models.CharField(max_length=200)
     address = models.TextField()
-    note = models.TextField()
+    note = models.TextField(blank=True)
 
 # VEHICLE
 class Vehicle(models.Model):
@@ -115,10 +115,10 @@ class Vehicle(models.Model):
     make = models.CharField(max_length=150)
     plate = models.CharField(max_length=100)
     has_color = models.BooleanField(default=False)
-    color = ColorField(default='#FF0000')
-    note = models.TextField()
+    color = ColorField(default='#FF0000',blank=True)
+    note = models.TextField(blank=True)
     asr_esn_id = models.TextField()
-    odometer = models.PositiveIntegerField()
-    initial_mileage = models.IntegerField()
-    image = models.ImageField(storage="image/vehicles")
+    odometer = models.PositiveIntegerField(blank=True)
+    initial_mileage = models.IntegerField(blank=True)
+    image = models.ImageField(storage="image/vehicles",blank=True)
 

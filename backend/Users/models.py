@@ -6,7 +6,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from abstracts.models import  Status,Extra
 from servises.models import Services
 from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
-
+import uuid
 
 class User(models.Model):
     STATUS = [
@@ -14,7 +14,7 @@ class User(models.Model):
         ["Deleted", "Deleted"],
         ["Pending", "Pending"],
     ]
-    id = models.UUIDField(auto_created=True, primary_key=True, unique=True)
+    id = models.UUIDField(auto_created=True, primary_key=True, unique=True,blank=True)
     status = models.CharField(choices=STATUS, max_length=30, default="Pending")
     first_name = models.CharField(max_length=200)
     mid_name = models.CharField(max_length=200, blank=True, null=True)
@@ -32,6 +32,10 @@ class User(models.Model):
     password = models.CharField(max_length=200, blank=True, null=True)
     type = models.ForeignKey("UserType", on_delete=models.CASCADE, default=0)
 
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.id = uuid.uuid4()
+        super().save(*args, **kwargs)
 
 #INSTRACTOR
 class Instructor(User):
@@ -55,8 +59,8 @@ class Instructor(User):
     car_permit_expire = models.DateField(default="1999/01/01",blank=True,null=True,help_text="MM/DD/YYYY")
     color = ColorField(default = "#FFFFFF")
     zoom = models.TextField(blank=True,null=True, help_text="Link that appear in student or instructor portal to attend zoom class")
-    picture = models.ImageField(upload_to="image/staff")
-    working_hours = models.ManyToManyField("TimeRange",related_name="staff_working_hours")
+    picture = models.ImageField(upload_to="image/staff",blank=True,null=True)
+    working_hours = models.ManyToManyField("TimeRange",related_name="staff_working_hours",blank=True,)
     message_items = GenericRelation(
         'configuration.MessageItems',
         'product_object_id',
@@ -73,9 +77,7 @@ class Instructor(User):
 
 #STUDENT
 class Student(User):
-    # He, Him
-    # She, Her
-    # They, Them
+
     PREFERRED_PRONOUNS = [
         ["He, Him",0],
         ["She, Her",1],
@@ -104,7 +106,8 @@ class Student(User):
     parent_2_name = models.CharField(max_length=200)
     parent_2_email = models.EmailField(blank=True,null=True)
     parent_2_phone = PhoneNumberField(blank=True,null=True)
-
+    def __str__(self):
+        return  f"{self.first_name} {self.last_name}"
 class Enrollment(Extra):
     student = models.ForeignKey("Student",on_delete=models.CASCADE,related_name="enrolled_user")
     data = models.DateField(auto_now_add=True)
@@ -137,22 +140,23 @@ class Bill(Extra):
     code = models.IntegerField()
     price = models.PositiveIntegerField(default=0)
     package = models.ManyToManyField(Services, related_name="bill_services")
-    cc_number = CardNumberField(verbose_name='card number',blank=True)
-    cc_expiry = CardExpiryField(verbose_name='expiration date',blank=True)
-    cc_code = SecurityCodeField(verbose_name='security code',blank=True)
+    cc_number = CardNumberField(verbose_name='card number',blank=True,null=True)
+    cc_expiry = CardExpiryField(verbose_name='expiration date',blank=True,null=True)
+    cc_code = SecurityCodeField(verbose_name='security code',blank=True,null=True)
     card_type = models.CharField(max_length=50,blank=True)
-    card_last_4_digits = models.PositiveSmallIntegerField(blank=True)
-    name_on_card = models.CharField(max_length=200,blank=True)
+    card_last_4_digits = models.PositiveSmallIntegerField(blank=True,null=True)
+    name_on_card = models.CharField(max_length=200,blank=True,null=True)
     address = models.TextField(blank=True)
     city = models.TextField(blank=True)
     state = models.TextField(blank=True)
     zip = models.TextField(blank=True)
-    receipt_number = models.PositiveSmallIntegerField(blank=True)
-    transaction_number = models.PositiveSmallIntegerField(blank=True)
+    receipt_number = models.PositiveSmallIntegerField(blank=True,null=True)
+    transaction_number = models.PositiveSmallIntegerField(blank=True,null=True)
     check_number = models.TextField(blank=True)
     is_deposited = models.BooleanField(default=False)
-    adjust_type = models.CharField(choices=ADJUST_TYPE,max_length=40,default="Discount (Subtract from balance)",blank=True)
-
+    adjust_type = models.CharField(choices=ADJUST_TYPE,max_length=40,default="Discount (Subtract from balance)",blank=True,null=True)
+    def __str__(self):
+        return f"{self.price}"
 
 
 class Weekday(models.TextChoices):

@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import CompanyInfoViewSet,WebContentViewSet,ZipCodeViewSet,StorageManagementViewSet,EmergencyDataViewSet,\
     MessageItemsViewSet,MessagesDataViewSet,FieldsDataViewSet,PasswordManagementDataViewSet,GraphicalScheduleSettingDataViewSet,\
-    GeneralSettingDataViewSet,InstructionsDataViewSet
+    GeneralSettingDataViewSet,InstructionsDataViewSet,CategorizedDataAPIView,ExpansesDataViewSet
 router = DefaultRouter()
 router.register('company', CompanyInfoViewSet, basename='company')
 router.register('zipcode', ZipCodeViewSet, basename='zipcode')
@@ -16,10 +16,12 @@ router.register('password_management', PasswordManagementDataViewSet, basename='
 router.register('graph_settings', GraphicalScheduleSettingDataViewSet, basename='graph_settings')
 router.register('general_settings', GeneralSettingDataViewSet, basename='general_settings')
 router.register('instructions', InstructionsDataViewSet, basename='instructions')
+router.register('expanses', ExpansesDataViewSet, basename='expanses')
+# router.register('expanses_statistics', CategorizedDataAPIView, basename='expanses_statistics')
 
 
 
 
 urlpatterns = [
-    path("",include(router.urls))
+    path("",include(router.urls)),
 ]

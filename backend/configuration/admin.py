@@ -1,8 +1,9 @@
 from django.contrib import admin
 from .models import CompanyInfo, WebContent,ZipCode,StorageManagement,EmergencyData,MessageItems,Messages,Fields,\
-    GeneralSetting,GraphicalScheduleSetting,PasswordManagement
+    GeneralSetting,GraphicalScheduleSetting,PasswordManagement,Rights
 # Register your models here.
 admin.site.register(CompanyInfo)
+admin.site.register(Rights)
 admin.site.register(WebContent)
 admin.site.register(ZipCode)
 admin.site.register(EmergencyData)
