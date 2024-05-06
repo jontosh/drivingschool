@@ -89,6 +89,13 @@ const Report = ({ className, ...props }) => {
             >
               Attendance Sheet Report
             </NavLink>
+
+            <NavLink
+              to={"/report/business/signed-documents"}
+              className={setActiveNav}
+            >
+              Signed documents
+            </NavLink>
           </aside>
 
           <div className="flex-grow bg-white p-5 rounded-xl shadow-xl">

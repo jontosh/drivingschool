@@ -163,6 +163,24 @@ const ReportSpa = ({ className, children, ...props }) => {
         </Fragment>
       );
     }
+    case "signed-documents": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Signed documents</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Signed documents
+          </Title>
+          @todo
+        </Fragment>
+      );
+    }
   }
 };
 
