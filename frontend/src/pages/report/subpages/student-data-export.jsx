@@ -92,20 +92,20 @@ const StudentDataExport = ({ className, children, ...props }) => {
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Day"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={"h-[50px]"}
                   placeholder={"Month"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Year"}
                 />
               </div>
@@ -118,20 +118,20 @@ const StudentDataExport = ({ className, children, ...props }) => {
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Day"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={"h-[50px]"}
                   placeholder={"Month"}
                 />
                 <CustomInput
                   type={"text"}
                   colorBorder={colorsObject.primary}
-                  className={`w-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   placeholder={"Year"}
                 />
               </div>
@@ -140,8 +140,8 @@ const StudentDataExport = ({ className, children, ...props }) => {
 
           <div className={"flex gap-5"}>
             <div className="flex items-center w-full gap-5">
-              <Paragraph fontSize={"space-x-5 flex"}>
-                <span className={"text-base font-semibold w-[110px]"}>Age range</span>
+              <Paragraph fontSize={"space-x-5 flex w-[150px]"}>
+                <span className={"text-base font-semibold"}>Age range</span>
                 <span className={"text-base "}>From:</span>
               </Paragraph>
 
