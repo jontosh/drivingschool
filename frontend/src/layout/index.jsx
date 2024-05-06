@@ -2,7 +2,8 @@ import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
 import { MenuItems } from "@/layout/menu-items.jsx";
-import { Badge, Button, ConfigProvider, Dropdown, Menu } from "antd";
+import { GetLevelKeys } from "@/modules/navbar.jsx";
+import { Badge, ConfigProvider, Dropdown, Menu } from "antd";
 import { Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BiMoon } from "react-icons/bi";
@@ -27,6 +28,7 @@ const getItem = (label, key, icon, children, type) => {
 
 const Layout = () => {
   const [IsActive, setIsActive] = useState(true);
+  const [stateOpenKeys, setStateOpenKeys] = useState([""]);
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -39,6 +41,39 @@ const Layout = () => {
   const handleSideBar = () => setIsActive((prev) => !prev);
 
   const { items } = MenuItems(IsActive, getItem);
+
+  const levelKeys = GetLevelKeys(items);
+
+  const onOpenChange = (openKeys) => {
+    const currentOpenKey = openKeys.find(
+      (key) => stateOpenKeys.indexOf(key) === -1,
+    );
+
+    // open
+    if (currentOpenKey !== undefined) {
+      const repeatIndex = openKeys
+        .filter((key) => key !== currentOpenKey)
+        .findIndex((key) => levelKeys[key] === levelKeys[currentOpenKey]);
+
+      const a = openKeys
+        // remove repeat key
+        .filter((_, index) => index !== repeatIndex)
+        // remove current level all child
+        .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]);
+
+      setStateOpenKeys(a);
+      // setStateOpenKeys(
+      //   openKeys
+      //     // remove repeat key
+      //     .filter((_, index) => index !== repeatIndex)
+      //     // remove current level all child
+      //     .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]),
+      // );
+    } else {
+      // close
+      setStateOpenKeys(openKeys);
+    }
+  };
 
   return (
     <Fragment>
@@ -147,7 +182,7 @@ const Layout = () => {
           </div>
 
           <nav
-            className={`${LayoutStyle["Menu"]} overflow-hidden ${!IsActive && "w-14 shadow-md"}`}
+            className={`${LayoutStyle["Menu"]} overflow-hidden ${!IsActive && `w-[50px] shadow-md Menu__icons`}`}
           >
             <div
               className={`${LayoutStyle["Menu__top"]} relative z-10 flex gap-x-2.5 p-2.5`}
@@ -156,9 +191,12 @@ const Layout = () => {
               <button className={`size-6`}>
                 <FaListUl />
               </button>
-              <Title fontWeightStrong={600} level={5} fontSize={"text-base"}>
-                {IsActive && "Main menu"}
-              </Title>
+
+              {IsActive && (
+                <Title fontWeightStrong={600} level={5} fontSize={"text-base"}>
+                  Main menu
+                </Title>
+              )}
             </div>
 
             <ConfigProvider
@@ -177,11 +215,14 @@ const Layout = () => {
               <Menu
                 style={{
                   width: "100%",
-                  background: "#FBFBFBs",
                   padding: 0,
                   border: "none",
+                  boxShadow: "0 4px 4px 0 #00000040",
                 }}
                 defaultOpenKeys={["sub1"]}
+                defaultSelectedKeys={["1"]}
+                openKeys={stateOpenKeys}
+                onOpenChange={onOpenChange}
                 mode="inline"
                 items={items}
               />
