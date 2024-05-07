@@ -1,5 +1,5 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
+import { CustomInput } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { FormError } from "@/modules/errors.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
