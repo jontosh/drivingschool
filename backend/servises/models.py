@@ -14,13 +14,13 @@ class Services(models.Model):
         ["ROAD TEST(RT)", "ROAD TEST(RT)"],
         ["UPLOAD DOCUMENTS", "UPLOAD DOCUMENTS"],
     ]
-
     STATUS = [
         ["ACTIVE", "ACTIVE"],
         ["DELETED", "DELETED"],
         ["INACTIVE", "INACTIVE"],
         ["PENDING", "PENDING"]
     ]
+
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
     status = models.CharField(choices=STATUS,max_length=50, default="INACTIVE")
