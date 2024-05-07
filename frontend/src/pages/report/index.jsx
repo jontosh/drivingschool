@@ -84,6 +84,13 @@ const Report = ({ className, ...props }) => {
             </NavLink>
 
             <NavLink
+              to={"/report/business/signed-documents"}
+              className={setActiveNav}
+            >
+              Signed documents
+            </NavLink>
+
+            <NavLink
               to={"/report/business/attendance-sheet-report"}
               className={setActiveNav}
             >
@@ -91,10 +98,45 @@ const Report = ({ className, ...props }) => {
             </NavLink>
 
             <NavLink
-              to={"/report/business/signed-documents"}
+              to={"/report/business/upcoming-task-report"}
               className={setActiveNav}
             >
-              Signed documents
+              Upcoming Task Report
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/attendance-signature"}
+              className={setActiveNav}
+            >
+               Attendance Signature/Scores
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/online-course-codes-upload-and-status"}
+              className={setActiveNav}
+            >
+               Online Course Codes Upload and Status
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/student-event-tracking"}
+              className={setActiveNav}
+            >
+               Student Event Tracking
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/student-adword-report"}
+              className={setActiveNav}
+            >
+               Student Adword report
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/student-file-report"}
+              className={setActiveNav}
+            >
+               Student file report
             </NavLink>
           </aside>
 
