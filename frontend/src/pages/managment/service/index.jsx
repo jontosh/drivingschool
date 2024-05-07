@@ -4,6 +4,7 @@ import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ModalStyle from "@/components/modal/modal.module.scss";
+import { Subpages } from "@/modules/subpages.jsx";
 import {
   DiscountModalContent,
   FeesModalContent,
@@ -35,7 +36,7 @@ export const StatusSelect = [
   },
 ];
 
-const Service = () => {
+const Service = ({ subpage }) => {
   // use
   const { colorsObject } = useContext(ColorsContext);
   const { title } = useParams();
@@ -51,8 +52,8 @@ const Service = () => {
 
   const handleAdd = () => setIsOpen(true);
 
-  const CheckPageForModal = (page = "") => {
-    switch (page.toLowerCase()) {
+  const CheckPageForModal = (modal) => {
+    switch (modal) {
       case "product":
         return <ProductModalContent />;
       case "fees":
@@ -62,7 +63,7 @@ const Service = () => {
       case "miscellaneous":
         return <MiscellaneousModalContent />;
       default:
-        console.log(`not found content for ${title} page`);
+        console.log(`not found content for ${modal} page`);
     }
   };
 
@@ -210,7 +211,7 @@ const Service = () => {
             </div>
             <div className={"pt-5"}>
               <div className={"-mx-5"}>
-                <Outlet />
+                <Subpages page={subpage} />
               </div>
             </div>
           </div>
@@ -222,7 +223,7 @@ const Service = () => {
           <div
             className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl ${title === "discounts" && "overflow-y-auto overflow-hidden"}`}
           >
-            {CheckPageForModal(title)}
+            {CheckPageForModal(subpage)}
 
             <div className={`text-center space-x-4`}>
               <ButtonComponent

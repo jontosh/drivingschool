@@ -4,24 +4,22 @@ import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ModalStyle from "@/components/modal/modal.module.scss";
+import ManagementSpaIndex from "@/pages/managment/management-spa/index.jsx";
 import { ModalContent } from "@/pages/managment/management-spa/modal/index.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
+import { setActiveNav } from "@/modules/active-nav.jsx";
 import { Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 
-const ManagementSpa = () => {
-  const { title } = useParams();
+const ManagementSpa = ({ page }) => {
+  const { subpage } = page;
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
   const [IsOpen, setIsOpen] = useState(false);
 
-  const setActiveNav = ({ isActive }) =>
-    isActive
-      ? `${ServiceStyle["Tab__link-active"]} py-5 text-lg`
-      : "hover:text-indigo-500 text-lg text-gray-700 py-5";
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
@@ -47,7 +45,7 @@ const ManagementSpa = () => {
           titleMarginBottom={20}
           className={"capitalize"}
         >
-          {title}
+          {subpage}
         </Title>
 
         <div className="bg-white px-5 rounded-2xl">
@@ -88,7 +86,7 @@ const ManagementSpa = () => {
                     <CustomInput
                       colorBorder={colorsObject.primary}
                       placeholder={"Search"}
-                      className={`w-96 pl-12 pr-4 text-sm ${title === "quiz-report" && `inline-flex flex-row-reverse`} `}
+                      className={`w-96 pl-12 pr-4 text-sm ${subpage === "quiz-report" && `inline-flex flex-row-reverse`} `}
                     />
 
                     <span
@@ -108,7 +106,9 @@ const ManagementSpa = () => {
                     className={"inline-flex items-center"}
                     onClick={handleModal}
                     href={
-                      title === "location" ? "/management/modal/location" : null
+                      subpage === "location"
+                        ? "/management/modal/location"
+                        : null
                     }
                   >
                     Add new
@@ -138,7 +138,7 @@ const ManagementSpa = () => {
 
             <div className="pt-5">
               <div className={"-mx-5"}>
-                <Outlet />
+                <ManagementSpaIndex />
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@ const ManagementSpa = () => {
           <div
             className={`bg-white rounded-2xl p-9 ${ModalStyle["Modal__content"]} overflow-y-scroll ${ServiceStyle["Modal__content"]}`}
           >
-            <ModalContent page={title} />
+            <ModalContent page={subpage} />
           </div>
         </Modal>
       )}

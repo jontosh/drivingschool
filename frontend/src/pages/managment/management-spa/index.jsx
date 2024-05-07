@@ -13,7 +13,11 @@ import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { TfiWrite } from "react-icons/tfi";
 import { useNavigate, useParams } from "react-router-dom";
-import { DeleteOutlined, ExportOutlined, FormOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  ExportOutlined,
+  FormOutlined,
+} from "@ant-design/icons";
 
 const CheckProgress = (status = "") => {
   const { colorsObject } = useContext(ColorsContext);
@@ -246,7 +250,9 @@ const HighSchoolData = () => {
           />
 
           <IconComponent
-            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={
+              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
             icon={<GoClock />}
             style={{
               borderRadius: 5,
@@ -361,7 +367,9 @@ const HearData = () => {
           />
 
           <IconComponent
-            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={
+              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
             icon={<GoClock />}
             style={{
               borderRadius: 5,
@@ -435,7 +443,11 @@ const VehiclesData = () => {
       align: "center",
       render: (text) => {
         return (
-          <Paragraph className={"text-center"} fontSize={"text-lg"} fontWeightStrong={400}>
+          <Paragraph
+            className={"text-center"}
+            fontSize={"text-lg"}
+            fontWeightStrong={400}
+          >
             {text}
           </Paragraph>
         );
@@ -453,7 +465,7 @@ const VehiclesData = () => {
             style={{
               height: 30,
               borderRadius: 5,
-              background: color
+              background: color,
             }}
           ></div>
         );
@@ -476,7 +488,9 @@ const VehiclesData = () => {
           />
 
           <IconComponent
-            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={
+              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
             icon={<TbActivityHeartbeat />}
             classNames={"items-center"}
             style={{
@@ -487,7 +501,9 @@ const VehiclesData = () => {
           />
 
           <IconComponent
-            className={"text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"}
+            className={
+              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+            }
             icon={<GoClock />}
             style={{
               borderRadius: 5,
@@ -525,10 +541,10 @@ const VehiclesData = () => {
 };
 
 const ManagementSpaIndex = () => {
-  const { title } = useParams();
+  const { subpage } = useParams();
   const navigate = useNavigate();
 
-  switch (title) {
+  switch (subpage) {
     case "location": {
       const { columns, data } = LocationData();
       return (
