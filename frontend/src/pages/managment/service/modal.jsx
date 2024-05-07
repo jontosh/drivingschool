@@ -1,4 +1,8 @@
-import { CustomInput, CustomSelect, CustomTransfer } from "@/components/form/index.jsx";
+import {
+  CustomInput,
+  CustomSelect,
+  CustomTransfer,
+} from "@/components/form/index.jsx";
 import Title, { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
@@ -41,7 +45,9 @@ export const ProductModalContent = () => {
         />
 
         <CustomInput
-          classNames={"inline-flex gap-x-9 items-center flex-row-reverse gap-5 h-10"}
+          classNames={
+            "inline-flex gap-x-9 items-center flex-row-reverse gap-5 h-10"
+          }
           spanText={"Item#/Code:"}
           className={"w-60"}
           spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
@@ -145,7 +151,9 @@ export const FeesModalContent = () => {
         </label>
 
         <CustomInput
-          classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"}
+          classNames={
+            "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"
+          }
           spanText={"Public Name:"}
           className={"w-60"}
           fontSize="text-base"
@@ -154,7 +162,9 @@ export const FeesModalContent = () => {
         />
 
         <CustomInput
-          classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"}
+          classNames={
+            "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"
+          }
           spanText={"Fee Amount:"}
           className={"w-60"}
           fontSize="text-base"
@@ -204,7 +214,9 @@ export const DiscountModalContent = () => {
           </label>
 
           <CustomInput
-            classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"}
+            classNames={
+              "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"
+            }
             spanText={`Discount code:`}
             className={"w-60"}
             fontSize="text-base"
@@ -213,7 +225,9 @@ export const DiscountModalContent = () => {
           />
 
           <CustomInput
-            classNames={"inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"}
+            classNames={
+              "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-10"
+            }
             spanText={`Free Amount:`}
             className={"w-60"}
             fontSize="text-base"

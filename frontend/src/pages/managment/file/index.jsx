@@ -8,6 +8,7 @@ import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { useDate } from "@/hooks/useDate.jsx";
 import { Space, Switch, Table } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
@@ -50,104 +51,89 @@ const mockData = [
   { key: "11", title: "Title 5", description: "Sample Description 5" },
 ];
 
+const columns = [
+  {
+    title: "Category",
+    key: "category",
+    dataIndex: "category",
+  },
+  {
+    title: "File status",
+    key: "status",
+    dataIndex: "status",
+    render: (text) => {
+      return (
+        <Space size={"middle"}>
+          <ButtonComponent
+            defaultBg={CheckProgress(text)}
+            defaultHoverBg={CheckProgress(text)}
+            controlHeight={26}
+            style={{ width: 81 }}
+            borderRadius={10}
+          >
+            {text.toLowerCase()}
+          </ButtonComponent>
+        </Space>
+      );
+    },
+  },
+  {
+    title: "Edit",
+    key: "edit",
+    dataIndex: "edit",
+    align: "center",
+    render: () => {
+      return (
+        <div className={"text-center"}>
+          <IconComponent
+            className={"text-xl text-indigo-500 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<FormOutlined />}
+          />
+        </div>
+      );
+    },
+  },
+  {
+    title: "Delete",
+    key: "delete",
+    dataIndex: "delete",
+    align: "center",
+    render: () => {
+      return (
+        <div className={"text-center"}>
+          <IconComponent className={"w-7"} icon={<Icons type={"cross"} />} />
+        </div>
+      );
+    },
+  },
+];
+
+const data = [
+  {
+    category: "Student contract",
+    status: "active",
+  },
+  {
+    category: "Student contract",
+    status: "process",
+  },
+  {
+    category: "Student contract",
+    status: "close",
+  },
+];
+
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [IsOpen, setIsOpen] = useState(false);
   const handleCategoryModal = () => setIsOpen((prev) => !prev);
 
-  const columns = [
-    {
-      title: "Category",
-      key: "category",
-      dataIndex: "category",
-    },
-    {
-      title: "File status",
-      key: "status",
-      dataIndex: "status",
-      render: (text) => {
-        return (
-          <Space size={"middle"}>
-            <ButtonComponent
-              defaultBg={CheckProgress(text)}
-              defaultHoverBg={CheckProgress(text)}
-              controlHeight={26}
-              style={{ width: 81 }}
-              borderRadius={10}
-            >
-              {text.toLowerCase()}
-            </ButtonComponent>
-          </Space>
-        );
-      },
-    },
-    {
-      title: "Edit",
-      key: "edit",
-      dataIndex: "edit",
-      align: "center",
-      render: () => {
-        return (
-          <div className={"text-center"}>
-            <IconComponent
-              className={"text-xl text-indigo-500 border border-indigo-600"}
-              style={{
-                borderRadius: 5,
-                paddingLeft: 4,
-                paddingRight: 4,
-              }}
-              icon={<FormOutlined />}
-            />
-          </div>
-        );
-      },
-    },
-    {
-      title: "Delete",
-      key: "delete",
-      dataIndex: "delete",
-      align: "center",
-      render: () => {
-        return (
-          <div className={"text-center"}>
-            <IconComponent className={"w-7"} icon={<Icons type={"cross"} />} />
-          </div>
-        );
-      },
-    },
-  ];
-
-  const data = [
-    {
-      category: "Student contract",
-      status: "active",
-    },
-    {
-      category: "Student contract",
-      status: "process",
-    },
-    {
-      category: "Student contract",
-      status: "close",
-    },
-  ];
-
-  const months = Array.from({ length: 12 }, (item, i) => {
-    return {
-      value: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-      label: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-    };
-  });
-
-  const YearsOptions = () => {
-    let currentYear = new Date().getFullYear(),
-      years = [];
-    let startYear = 1999;
-    while (startYear <= currentYear) {
-      years.push({ value: startYear++, label: startYear++ });
-    }
-    return years;
-  };
+  const { Months, YearsOptions } = useDate();
 
   return (
     <Fragment>
@@ -301,7 +287,7 @@ const File = () => {
                     colorBorder={colorsObject.primary}
                     // style={{ width: 110 }}
                     placeholder={"Month"}
-                    options={months}
+                    options={Months}
                   />
                   <CustomSelect
                     colorBorder={colorsObject.primary}

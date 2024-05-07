@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import TimeRangeViewSet, InstructorViewSet, StudentViewSet, TimeSlotViewSet, WeekRangeViewSet, \
     TimeOffViewSet, DateRangeViewSet, EnrollmentViewSet, AppointmentViewSet, FileCategoryViewSet, HowDidYouHearUsViewSet, \
-    UserTypeViewSet, FilesViewSet, BillViewSet,BillStatisticsByType
+    UserTypeViewSet, FilesViewSet, BillViewSet,InstructorHomeAPI,StudentHomeAPI
 router = DefaultRouter()
 router.register('time_range', TimeRangeViewSet, basename='time_range')
 router.register('instructor', InstructorViewSet, basename='instructor')
@@ -22,6 +22,7 @@ router.register('bill', BillViewSet, basename='bill')
 
 urlpatterns = [
     path("",include(router.urls)),
-    path("bill_statistics/", include(router.urls)),
+    path("ihome/<str:id>/",InstructorHomeAPI.as_view()),
+    path("shome/<str:id>/",StudentHomeAPI.as_view()),
 
 ]

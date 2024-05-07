@@ -17,7 +17,7 @@ import { Link, NavLink } from "react-router-dom";
 export const MenuItems = (IsActive, getItem) => {
   const items = [
     getItem(
-      IsActive && <Link to={"/dashboard/"} children={"Home"} />,
+      IsActive && <NavLink to={"/dashboard/"} children={"Home"} />,
       1,
       <span className={"w-5"}>
         <AiOutlineAppstore />
@@ -25,7 +25,7 @@ export const MenuItems = (IsActive, getItem) => {
     ),
     getItem(
       IsActive && (
-        <Link to={"/enrollment/"} children={"New student enrollment"} />
+        <NavLink to={"/enrollment/"} children={"New student enrollment"} />
       ),
       2,
       <span className={"w-5"}>
@@ -33,7 +33,7 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
     ),
     getItem(
-      IsActive && <Link to={"/search/"} children={"Advanced search"} />,
+      IsActive && <NavLink to={"/search/"} children={"Advanced search"} />,
       3,
       <span className={"w-5"}>
         <AiOutlineSearch />
@@ -47,38 +47,38 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
       IsActive && [
         getItem(
-          <Link to={"/student/account/profile/"} children={"Profile"} />,
-          "41",
+          <NavLink to={"/student/account/profile/"} children={"Profile"} />,
+          "sub4-1",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/student/account/billing"}
             children={"Enrollment/Billing"}
           />,
-          "42",
+          "sub4-2",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/student/account/appointments"}
             children={"Appointments"}
           />,
-          "43",
+          "sub4-3",
         ),
         getItem(
-          <Link to={"/student/account/files"} children={"Files"} />,
-          "44",
+          <NavLink to={"/student/account/files"} children={"Files"} />,
+          "sub4-4",
         ),
         getItem(
-          <Link to={"/student/account/messages"} children={"Messages"} />,
-          "45",
+          <NavLink to={"/student/account/messages"} children={"Messages"} />,
+          "sub4-5",
         ),
         getItem(
-          <Link to={"/student/account/tests"} children={"Quiz/Tests"} />,
-          "46",
+          <NavLink to={"/student/account/tests"} children={"Quiz/Tests"} />,
+          "sub4-6",
         ),
         getItem(
-          <Link to={"/student/account/log"} children={"Activity Log"} />,
-          "47",
+          <NavLink to={"/student/account/log"} children={"Activity Log"} />,
+          "sub4-7",
         ),
       ],
     ),
@@ -90,15 +90,18 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
       IsActive && [
         getItem(
-          <Link to={"/scheduling/student"} children={"Schedule as Student"} />,
+          <NavLink
+            to={"/scheduling/student"}
+            children={"Schedule as Student"}
+          />,
           "sub5-1",
         ),
         getItem(
-          <Link to={"/scheduling/vehicle"} children={"Multi Instructor"} />,
+          <NavLink to={"/scheduling/vehicle"} children={"Multi Instructor"} />,
           "sub5-2",
         ),
         getItem(
-          <Link to={"/scheduling/signle"} children={"Single Instructor"} />,
+          <NavLink to={"/scheduling/signle"} children={"Single Instructor"} />,
           "sub5-3",
         ),
         getItem(
@@ -111,28 +114,28 @@ export const MenuItems = (IsActive, getItem) => {
           null,
           IsActive && [
             getItem(
-              <Link
+              <NavLink
                 to={"/scheduling/manage/appointment"}
                 children={"Bulk Appointment"}
               />,
               "sub5-5-1",
             ),
             getItem(
-              <Link
+              <NavLink
                 to={"/scheduling/manage/open"}
                 children={"Open time slots"}
               />,
               "sub5-5-2",
             ),
             getItem(
-              <Link
+              <NavLink
                 to={"/scheduling/manage/logs"}
                 children={"Activity logs"}
               />,
               "sub5-5-3",
             ),
             getItem(
-              <Link
+              <NavLink
                 to={"/scheduling/manage/process"}
                 children={"Bulk process"}
               />,
@@ -141,11 +144,14 @@ export const MenuItems = (IsActive, getItem) => {
           ],
         ),
         getItem(
-          <Link to={"/scheduling/corporate"} children={"Corporate time off"} />,
+          <NavLink
+            to={"/scheduling/corporate"}
+            children={"Corporate time off"}
+          />,
           "sub5-6",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/scheduling/appointments"}
             children={"Staff Appointments List"}
           />,
@@ -161,14 +167,14 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
       IsActive && [
         getItem(
-          <Link
+          <NavLink
             to={"/communication/email-templates/student-portal"}
             children={"Email Templates"}
           />,
           "sub6-1",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/communication/student-resources/class"}
             children={"Student Resources"}
           />,
@@ -201,46 +207,46 @@ export const MenuItems = (IsActive, getItem) => {
       IsActive && [
         getItem("Services", "sub8-1", null, [
           getItem(
-            <Link
+            <NavLink
               to={"/management/service/product"}
               children={"Components (Product)"}
             />,
             "sub8-1-1",
           ),
           getItem(
-            <Link to={"/management/service/fees"} children={"Fees"} />,
+            <NavLink to={"/management/service/fees"} children={"Fees"} />,
             "sub8-1-2",
           ),
           getItem(
-            <Link
+            <NavLink
               to={"/management/service/discounts"}
               children={"Discounts"}
             />,
             "sub8-1-3",
           ),
           getItem(
-            <Link
+            <NavLink
               to={"/management/service/miscellaneous"}
               children={"Miscellaneous"}
             />,
             "sub8-1-4",
           ),
           getItem(
-            <Link
+            <NavLink
               to={"/management/service/quiz-exam"}
               children={"Quiz Exam"}
             />,
             "sub8-1-5",
           ),
           getItem(
-            <Link
+            <NavLink
               to={"/management/service/quiz-report"}
               children={"Quiz Report"}
             />,
             "sub8-1-6",
           ),
           getItem(
-            <Link
+            <NavLink
               to={"/management/service/packages"}
               children={"Services (Packages)"}
             />,
@@ -248,33 +254,36 @@ export const MenuItems = (IsActive, getItem) => {
           ),
         ]),
         getItem(
-          <Link to={"/management/file"} children={"File management"} />,
+          <NavLink to={"/management/file"} children={"File management"} />,
           "sub8-2",
         ),
-        getItem(<Link to={"/management/staff"} children={"Staff"} />, "sub8-9"),
         getItem(
-          <Link
+          <NavLink to={"/management/staff"} children={"Staff"} />,
+          "sub8-9",
+        ),
+        getItem(
+          <NavLink
             to={"/management/single-page/location"}
             children={"Location"}
           />,
           "sub8-3",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/management/single-page/high school"}
             children={"High school"}
           />,
           "sub8-4",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/management/single-page/how did you hear"}
             children={"How did you hear"}
           />,
           "sub8-5",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/management/single-page/vehicles"}
             children={"Vehicles"}
           />,
@@ -290,11 +299,11 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
       IsActive && [
         getItem(
-          <Link to={"/finance/finances"} children={"Finances"} />,
+          <NavLink to={"/finance/finances"} children={"Finances"} />,
           "sub9-1",
         ),
         getItem(
-          <Link to={"/finance/statistic"} children={"Statistic"} />,
+          <NavLink to={"/finance/statistic"} children={"Statistic"} />,
           "sub9-2",
         ),
       ],
@@ -307,31 +316,34 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
       IsActive && [
         getItem(
-          <Link to={"/configuration/company/info"} children={"Company Info"} />,
+          <NavLink
+            to={"/configuration/company/info"}
+            children={"Company Info"}
+          />,
           "sub10-1",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/configuration/company/payment"}
             children={"Integrate payment"}
           />,
           "sub10-2",
         ),
         getItem(
-          <Link
+          <NavLink
             to={"/configuration/policies/staff-password"}
             children={"Security Policies"}
           />,
           "sub10-3",
         ),
         getItem(
-          <Link to={"/configuration/zip-code"} children={"Zip Code"} />,
+          <NavLink to={"/configuration/zip-code"} children={"Zip Code"} />,
           "sub10-4",
         ),
       ],
     ),
     getItem(
-      IsActive && <Link to={"/support/help"} children={"Help"} />,
+      IsActive && <NavLink to={"/support/help"} children={"Help"} />,
       11,
       <span className="w-5">
         <AiOutlineTool />

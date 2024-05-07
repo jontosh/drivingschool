@@ -114,11 +114,12 @@ class Enrollment(Extra):
     code = models.IntegerField()
     by  = models.ForeignKey("User",on_delete=models.CASCADE,related_name="enrolled_by")
     price = models.PositiveIntegerField(default=0)
-    cr = models.ForeignKey("location.Class",on_delete=models.CASCADE,blank=True)
-    cr_start = models.DateField(blank=True)
-    cr_end = models.DateField(blank=True)
+    cr = models.ForeignKey("location.Class",on_delete=models.CASCADE,blank=True,null=True)
+    cr_start = models.DateField(blank=True,null=True)
+    cr_end = models.DateField(blank=True,null=True)
     package = models.ManyToManyField("servises.Services",related_name="enrolled_services")
-
+    def __str__(self):
+        return  f"{self.id}"
 class Bill(Extra):
     TYPE = [
         ["Process Credit Card","Process Credit Card"],
@@ -211,11 +212,14 @@ class TimeOff(models.Model):
     def __str__(self):
         return self.name
 class TimeSlot(models.Model):
-
+    """
+    Here we will store available slots for staff
+    """
     TYPE = [
         ["Single Appointment(Driver Only)Road","Single Appointment (Driver Only)"],
         ["Road Test(DriverOnly)","Road Test (Driver Only)"],
     ]
+
     type = models.CharField(choices=TYPE,max_length=50)
     staff = models.ForeignKey(Instructor, on_delete=models.CASCADE, related_name="appointment_staff")
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
@@ -230,9 +234,15 @@ class TimeSlot(models.Model):
     slots_per_day = models.IntegerField(default=1,blank=False)
 
 class Appointment(models.Model):
-
+    """
+    Assign slot for student
+    """
     time_slot = models.ForeignKey("TimeSlot",on_delete=models.CASCADE)
     student = models.ManyToManyField("Student",related_name='apt_students')
+    class Meta:
+        unique_together = ['time_slot', 'id']
+
+
 class HowDidYouHearUs(models.Model):
     name = models.CharField(max_length=200)
     STATUS = [
@@ -251,6 +261,8 @@ class UserType(models.Model):
 
     def __str__(self):
         return self.name
+
+
 
 class FileCategory(Status,Extra):
     name = models.CharField(max_length=200)
