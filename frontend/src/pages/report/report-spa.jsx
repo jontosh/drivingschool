@@ -9,6 +9,12 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import AttendanceSheetReport from "./subpages/attendance-sheet-report";
+import UpcomingTaskReport from "./subpages/upcoming-task-report";
+import AttendanceSignature from "./subpages/attendance-signature";
+import OnlineCourseCodesUploadAndStatus from "./subpages/online-course-codes-upload-and-status";
+import StudentEventTracking from "./subpages/student-event-tracking";
+import StudentAdwordTracking from "./subpages/student-adword-tracking";
+import StudentFileReport from "./subpages/student-file-report";
 
 const ReportSpa = ({ className, children, ...props }) => {
   const { subpage } = useParams();
@@ -178,6 +184,114 @@ const ReportSpa = ({ className, children, ...props }) => {
             Signed documents
           </Title>
           @todo
+        </Fragment>
+      );
+    }
+    case "upcoming-task-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Upcoming task report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Upcoming task report
+          </Title>
+          <UpcomingTaskReport />
+        </Fragment>
+      );
+    }
+    case "attendance-signature": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Attendance signature/scores</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Attendance signature/scores
+          </Title>
+          <AttendanceSignature />
+        </Fragment>
+      );
+    }
+    case "online-course-codes-upload-and-status": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Online course codes upload and status</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Online course codes upload and status
+          </Title>
+          <OnlineCourseCodesUploadAndStatus />
+        </Fragment>
+      );
+    }
+    case "student-event-tracking": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Student event tracking</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Student event tracking
+          </Title>
+          <StudentEventTracking />
+        </Fragment>
+      );
+    }
+    case "student-adword-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Student adword report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Student adword report
+          </Title>
+          <StudentAdwordTracking />
+        </Fragment>
+      );
+    }
+    case "student-file-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Student file report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Student file report
+          </Title>
+          <StudentFileReport />
         </Fragment>
       );
     }
