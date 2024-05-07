@@ -15,6 +15,11 @@ import OnlineCourseCodesUploadAndStatus from "./subpages/online-course-codes-upl
 import StudentEventTracking from "./subpages/student-event-tracking";
 import StudentAdwordTracking from "./subpages/student-adword-tracking";
 import StudentFileReport from "./subpages/student-file-report";
+import BtwOpenings from "./subpages/btw-openings";
+import OutstandingHoursReport from "./subpages/outstanding-hours-report";
+import TransactionSummaryReport from "./subpages/transaction-summary-report";
+import StaffEventLogs from "./subpages/staff-event-logs";
+import PayrollReport from "./subpages/payroll-report";
 
 const ReportSpa = ({ className, children, ...props }) => {
   const { subpage } = useParams();
@@ -292,6 +297,96 @@ const ReportSpa = ({ className, children, ...props }) => {
             Student file report
           </Title>
           <StudentFileReport />
+        </Fragment>
+      );
+    }
+    case "btw-openings-and-rchedule-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - BTW openings and rchedule report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            BTW Openings and Schedule Report
+          </Title>
+          <BtwOpenings />
+        </Fragment>
+      );
+    }
+    case "outstanding-hours-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Outstanding hours report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Outstanding Hours Report
+          </Title>
+          <OutstandingHoursReport />
+        </Fragment>
+      );
+    }
+    case "transaction-summary-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Transaction summary report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Transaction Summary Report
+          </Title>
+          <TransactionSummaryReport />
+        </Fragment>
+      );
+    }
+    case "staff-event-logs": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Staff event logs</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Staff Event Logs
+          </Title>
+          <StaffEventLogs />
+        </Fragment>
+      );
+    }
+    case "payroll-report": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Report center - Payroll report</title>
+          </Helmet>
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-2xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Payroll Report
+          </Title>
+          <PayrollReport />
         </Fragment>
       );
     }

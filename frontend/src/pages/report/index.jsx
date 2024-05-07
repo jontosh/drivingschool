@@ -136,7 +136,42 @@ const Report = ({ className, ...props }) => {
               to={"/report/business/student-file-report"}
               className={setActiveNav}
             >
-               Student file report
+               Student File Report
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/btw-openings-and-rchedule-report"}
+              className={setActiveNav}
+            >
+               BTW Openings and Schedule Report
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/outstanding-hours-report"}
+              className={setActiveNav}
+            >
+              Outstanding Hours Report
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/transaction-summary-report"}
+              className={setActiveNav}
+            >
+              Transaction Summary Report
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/staff-event-logs"}
+              className={setActiveNav}
+            >
+             Staff Event Logs
+            </NavLink>
+
+            <NavLink
+              to={"/report/business/payroll-report"}
+              className={setActiveNav}
+            >
+            Payroll Report
             </NavLink>
           </aside>
 
