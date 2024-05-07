@@ -5,6 +5,12 @@ import ColorsContext from "@/context/colors.jsx";
 import { Exam } from "@/pages/managment/service/exam.jsx";
 import { Fees } from "@/pages/managment/service/fees.jsx";
 import { Miscellaneous } from "@/pages/managment/service/miscellaneous.jsx";
+import {
+  DiscountModalContent,
+  FeesModalContent,
+  MiscellaneousModalContent,
+  ProductModalContent,
+} from "@/pages/managment/service/modal.jsx";
 import { Packages } from "@/pages/managment/service/packages.jsx";
 import { Product } from "@/pages/managment/service/product.jsx";
 import {
@@ -15,7 +21,6 @@ import {
 import { Space } from "antd";
 import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
-import { useNavigate, useParams } from "react-router-dom";
 
 const CheckProgress = (status = "") => {
   const { colorsObject } = useContext(ColorsContext);
@@ -633,11 +638,9 @@ const PackagesData = () => {
 
   return { columns, data };
 };
-const ServiceSpa = () => {
-  const { title } = useParams();
-  const navigate = useNavigate();
 
-  switch (title.toLowerCase()) {
+export const Subpages = ({ page }) => {
+  switch (page) {
     case "product":
       return (
         <Fragment>
@@ -713,8 +716,6 @@ const ServiceSpa = () => {
       );
     }
     default:
-      navigate("/management/service/");
+      throw new Error();
   }
 };
-
-export default ServiceSpa;
