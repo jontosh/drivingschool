@@ -1,9 +1,10 @@
 from django.db import models
 from colorfield.fields import ColorField
+from abstracts.models import Extra
 # LOCATION
 class Location(models.Model):
     """
-    This is module to make website, to create a branch of driving school or school itself.
+    This is module  to create a branch of driving school or school itself.
     """
     Status = [
         ["ACTIVE", "ACTIVE"],
@@ -62,7 +63,10 @@ class School(models.Model):
     state = models.CharField(max_length=200)
     status = models.CharField(choices=Status,default="INACTIVE",max_length=100)
 #CLASS
-class Class(models.Model):
+class Class(Extra):
+    """
+    We will use this model to store data of CR or driving school's class or classroom
+    """
     Status = [
         ["ACTIVE", "ACTIVE"],
         ["DELETED", "DELETED"],
@@ -72,7 +76,7 @@ class Class(models.Model):
     location = models.ForeignKey("Location", on_delete=models.CASCADE)
     class_id = models.IntegerField(default=0,auto_created=True)
     start_date = models.DateField(default="1999/01/01",help_text="MM/DD/YYYY",blank=True,null=True)
-    end_Data = models.DateField(default="1999/01/01",help_text="MM?DD?YYYY")
+    end_Data = models.DateField(default="1999/01/01",help_text="MM/DD/YYYY")
     zoom = models.TextField(blank=True,null=True),
     status = models.CharField(choices=Status, max_length=40, default="ACTIVE")
     details = models.TextField(blank=True,null=True)

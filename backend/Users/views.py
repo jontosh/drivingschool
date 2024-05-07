@@ -125,3 +125,30 @@ class BillStatisticsByType(APIView):
 
         return Response(ready_data)
 
+class InstructorHomeAPI(APIView):
+    def get(self,request,id):
+        ready_data = {}
+        appointments  = Appointment.objects.filter(time_slot__staff_id=id)
+        serializer = AppointmentSerializer(appointments,many=True)
+        for i in serializer.data:
+            i["time_slot"] = TimeSlotSerializer(TimeSlot.objects.get(id=i["time_slot"])).data
+
+        return Response(serializer.data)
+
+class StudentHomeAPI(APIView):
+    def get(self,request,id):
+        enrolment = Enrollment.objects.filter(student__id=id)
+        print(enrolment)
+        enrolment = EnrollmentSerializer(enrolment,many=True)
+        bill = Bill.objects.filter(student__id=id)
+        bill = BillSerializer(bill,many=True)
+        files = Files.objects.filter(student__id=id)
+        files = FilesSerializer(files,many=True)
+        appointments  = Appointment.objects.filter(student__id=id)
+        appointments = AppointmentSerializer(appointments,many=True)
+        for i in enrolment.data:
+            i["bill"] = bill.data
+            i["files"]= files.data
+            i["appointments"] = appointments.data
+
+        return Response(enrolment.data)
