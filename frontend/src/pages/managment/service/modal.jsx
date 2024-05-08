@@ -42,33 +42,33 @@ export const ProductModalContent = () => {
       <form className={classNames("space-y-5")}>
         <CustomInput
           classNames={
-            "inline-flex gap-x-3.5 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+            "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
           }
           spanText={"Component name"}
           placeholder={"Component name"}
           className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          spanClassName={`w-44`}
+          spanClassName={`w-40 text-right`}
           fontSize="text-base"
           colorBorder={colorsObject.primary}
         />
 
         <CustomInput
           classNames={
-            "inline-flex gap-x-3.5 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+            "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
           }
           spanText={"Item#/Code:"}
           placeholder={"Item#/Code"}
           className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          spanClassName={`w-44 relative flex-shrink-0 after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
+          spanClassName={`w-40 text-right relative flex-shrink-0 after:left-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
           fontSize="text-base"
           colorBorder={colorsObject.primary}
         />
 
         <label
-          className={`inline-flex items-center gap-5 w-full justify-center`}
+          className={`inline-flex items-center gap-10 w-full justify-center`}
         >
           <span
-            className={`w-44 after:right-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+            className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
           >
             Status:
           </span>
@@ -84,21 +84,21 @@ export const ProductModalContent = () => {
 
         <CustomInput
           classNames={
-            "inline-flex gap-x-3.5 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+            "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
           }
           spanText={"Public Name:"}
           placeholder={"Public Name"}
           className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          spanClassName={`w-44`}
+          spanClassName={`w-40 text-right`}
           fontSize="text-base"
           colorBorder={colorsObject.primary}
         />
 
         <label
-          className={`inline-flex items-center gap-5 w-full justify-center`}
+          className={`inline-flex items-center gap-10 w-full justify-center`}
         >
           <span
-            className={`w-44 after:right-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+            className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
           >
             Type:
           </span>
@@ -113,10 +113,10 @@ export const ProductModalContent = () => {
         </label>
 
         <label
-          className={`inline-flex items-center gap-5 w-full justify-center`}
+          className={`inline-flex items-center gap-10 w-full justify-center`}
         >
           <span
-            className={`w-44 after:right-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+            className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
           >
             Sub Type:
           </span>
@@ -172,28 +172,28 @@ export const FeesModalContent = () => {
       <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
         <CustomInput
           classNames={
-            "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5 h-[50px]"
+            "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
           }
           spanText={"Free name"}
           fontSize="text-base"
-          className={"w-60"}
-          spanClassName={`max-w-46`}
+          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+          spanClassName={`max-w-46 text-right`}
           colorBorder={colorsObject.primary}
         />
 
         <label
-          className={`inline-flex items-center gap-5 w-full justify-center`}
+          className={`inline-flex items-center gap-10 w-full justify-center`}
         >
           <span
-            className={`w-44 after:right-8 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+            className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
           >
             Status:
           </span>
 
           <CustomSelect
-            value={"Select status"}
-            style={{ maxWidth: 440, width: "100%" }}
-            className={"h-[50px]"}
+            placeholder={"Select status"}
+            style={{ maxWidth: 240, width: "100%" }}
+            className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             options={StatusSelect}
             colorBorder={colorsObject.primary}
           />
@@ -201,10 +201,10 @@ export const FeesModalContent = () => {
 
         <CustomInput
           classNames={
-            "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
+            "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
           }
           spanText={"Public Name:"}
-          className={"w-60"}
+          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
           fontSize="text-base"
           spanClassName={`max-w-46`}
           colorBorder={colorsObject.primary}
@@ -212,10 +212,10 @@ export const FeesModalContent = () => {
 
         <CustomInput
           classNames={
-            "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
+            "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
           }
           spanText={"Fee Amount:"}
-          className={"w-60"}
+          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
           fontSize="text-base"
           spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
           colorBorder={colorsObject.primary}
@@ -407,7 +407,7 @@ export const MiscellaneousModalContent = () => {
       <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
         <CustomInput
           classNames={
-            "inline-flex items-center flex-row-reverse gap-7 h-[50px]"
+            "inline-flex items-center flex-row-reverse gap-10 h-[50px]"
           }
           spanText={"Miscellaneous Item Name:"}
           fontSize="text-base"
@@ -416,7 +416,7 @@ export const MiscellaneousModalContent = () => {
           colorBorder={colorsObject.primary}
         />
 
-        <label className={`inline-flex justify-end gap-x-8 items-center`}>
+        <label className={`inline-flex justify-end gap-x-10 items-center`}>
           <span
             className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
           >
@@ -432,7 +432,7 @@ export const MiscellaneousModalContent = () => {
           />
         </label>
 
-        <label className={`inline-flex justify-end gap-x-8 items-center`}>
+        <label className={`inline-flex justify-end gap-x-10 items-center`}>
           <span
             className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
           >
@@ -825,7 +825,7 @@ export const FileCategoryModalContent = () => {
 
         <textarea
           className={
-            "border w-60 outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
+            "border w-[451px] outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
           }
           placeholder={"text"}
         ></textarea>
@@ -838,7 +838,7 @@ export const FileCategoryModalContent = () => {
 
         <textarea
           className={
-            "border w-60 outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
+            "border w-[451px] outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
           }
           placeholder={"text"}
         ></textarea>
@@ -939,7 +939,7 @@ export const AddStaffModalContent = () => {
 
   return (
     <form className={"space-y-5"}>
-      <div className={"grid grid-cols-2 gap-x-10"}>
+      <div className={"grid grid-cols-2 gap-x-10 px-5"}>
         <div className={"space-y-5"}>
           <label className="inline-flex gap-5 items-center w-full">
             <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
@@ -967,7 +967,7 @@ export const AddStaffModalContent = () => {
               placeholder={"Select"}
               style={{ width: "100%" }}
               colorBorder={colorsObject.primary}
-              className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               options={[
                 {
                   value: "Active",
@@ -985,7 +985,7 @@ export const AddStaffModalContent = () => {
               placeholder={"Select"}
               style={{ width: "100%" }}
               colorBorder={colorsObject.primary}
-              className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               options={[
                 {
                   value: "USA",
@@ -1003,7 +1003,7 @@ export const AddStaffModalContent = () => {
               placeholder={"Select"}
               style={{ width: "100%" }}
               colorBorder={colorsObject.primary}
-              className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               options={[
                 {
                   value: "Car",
@@ -1015,7 +1015,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Staff code"}
@@ -1026,7 +1026,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-9 items-center w-full"
+              "inline-flex flex-row-reverse gap-9 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"First name"}
@@ -1037,7 +1037,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Middle name"}
@@ -1048,7 +1048,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Last name"}
@@ -1059,7 +1059,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Address"}
@@ -1070,7 +1070,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"City"}
@@ -1087,7 +1087,7 @@ export const AddStaffModalContent = () => {
               placeholder={"Select"}
               style={{ width: "100%" }}
               colorBorder={colorsObject.primary}
-              className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               options={[
                 {
                   value: "USA",
@@ -1099,7 +1099,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Zip"}
@@ -1110,7 +1110,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             type={"email"}
@@ -1122,7 +1122,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Home phone"}
@@ -1133,7 +1133,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Cell phone"}
@@ -1144,7 +1144,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Emergency Contact Name"}
@@ -1161,7 +1161,7 @@ export const AddStaffModalContent = () => {
               placeholder={"Please select"}
               style={{ width: "100%" }}
               colorBorder={colorsObject.primary}
-              className={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               options={[
                 {
                   value: "Number",
@@ -1173,7 +1173,7 @@ export const AddStaffModalContent = () => {
 
           <CustomInput
             classNames={
-              "inline-flex flex-row-reverse gap-5 items-center w-full"
+              "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
             }
             className={ManagementStyle["CheckModal__form-element__shadow"]}
             spanText={"Emergency Contact Phone"}
@@ -1187,7 +1187,7 @@ export const AddStaffModalContent = () => {
             placeholder={"MM/DD/YYYY"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"DOB: "}
             spanClassName={`w-56 font-medium text-end flex-shrink-0`}
@@ -1197,7 +1197,7 @@ export const AddStaffModalContent = () => {
             placeholder={"Instructor Permit  Number"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"Instructor Permit Number"}
             spanClassName={`w-56 font-medium text-end flex-shrink-0`}
@@ -1207,7 +1207,7 @@ export const AddStaffModalContent = () => {
             placeholder={"MM/DD/YYYY"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"In Car Permit Issued Date"}
             spanClassName={`w-56 font-medium text-end flex-shrink-0`}
@@ -1217,7 +1217,7 @@ export const AddStaffModalContent = () => {
             placeholder={"MM/DD/YYYY"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"Permit Expiration Date"}
             spanClassName={`w-56 font-medium text-end flex-shrink-0`}
@@ -1227,7 +1227,7 @@ export const AddStaffModalContent = () => {
             placeholder={"Select"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"User name"}
             spanClassName={`w-56 font-medium text-end flex-shrink-0`}
@@ -1237,7 +1237,7 @@ export const AddStaffModalContent = () => {
             placeholder={"Password *"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"Password"}
             spanClassName={`w-56 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]} `}
@@ -1247,7 +1247,7 @@ export const AddStaffModalContent = () => {
             placeholder={"Re Enter Password *"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"Re Enter Password"}
             spanClassName={`w-56 text-end font-medium flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]} `}
@@ -1263,7 +1263,7 @@ export const AddStaffModalContent = () => {
             placeholder={"#FFFFFF"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"Appointment Color"}
             spanClassName={`w-56 text-end font-medium flex-shrink-0`}
@@ -1273,7 +1273,7 @@ export const AddStaffModalContent = () => {
             placeholder={"Zoom PMI"}
             className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
             classNames={
-              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+              "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
             }
             spanText={"Zoom PMI"}
             spanClassName={`w-56 text-end font-medium flex-shrink-0`}
@@ -1327,7 +1327,7 @@ export const LocationModalContent = () => {
   return (
     <Fragment>
       <form className={"space-y-5"}>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 gap-5 px-5">
           <div className={"space-y-5"}>
             <CustomInput
               classNames={
@@ -1501,7 +1501,7 @@ export const LocationModalContent = () => {
                 placeholder={"Pickup location"}
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
-                className={"h-[50px]"}
+                className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 options={[
                   {
                     value: "Number",
@@ -1521,7 +1521,7 @@ export const LocationModalContent = () => {
                 placeholder={"Drop off location"}
                 style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
-                className={"h-[50px]"}
+                className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 options={[
                   {
                     value: "Number",
@@ -1591,9 +1591,11 @@ export const LocationModalContent = () => {
               />
             </label>
             <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span>Location note</span>
+              <span
+                className="text-sm flex-shrink-0 font-medium w-56 text-right"
+              >Location note</span>
               <textarea
-                className={`p-3 ${ManagementStyle["CheckModal__textarea"]}`}
+                className={`p-3 min-h-[240px] w-full outline-0 border border-indigo-600 shadow-2xl rounded-lg`}
               ></textarea>
             </label>
             <CustomCheckBox
@@ -1688,7 +1690,7 @@ export const AddSchoolModalContent = () => {
   return (
     <Fragment>
       <form className={"space-y-5"}>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 gap-5 px-5">
           <div className={"space-y-5"}>
             <CustomInput
               classNames={
@@ -1798,7 +1800,7 @@ export const AddSchoolModalContent = () => {
             <label className="inline-flex justify-end gap-8 items-center w-full">
               <span>School notes</span>
               <textarea
-                className={`p-3 outline-0 border border-indigo-600 shadow-2xl rounded-lg`}
+                className={`p-3 outline-0 border border-indigo-600 shadow-2xl rounded-lg w-full min-h-[145px]`}
                 placeholder={"School notes"}
               ></textarea>
             </label>
@@ -1845,7 +1847,7 @@ export const HowHearModalContent = () => {
   return (
     <Fragment>
       <form className={"space-y-5"}>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 gap-5 px-5">
           <div className={"space-y-5"}>
             <CustomInput
               classNames={
@@ -1905,7 +1907,7 @@ export const HowHearModalContent = () => {
             <label className="inline-flex justify-end gap-8 items-center w-full">
               <span>School notes</span>
               <textarea
-                className={`p-3 outline-0 border border-indigo-600 shadow-2xl rounded-lg`}
+                className={`p-3 outline-0 border border-indigo-600 shadow-2xl rounded-lg w-full min-h-[145px]`}
                 placeholder={"School notes"}
               ></textarea>
             </label>
@@ -2084,7 +2086,8 @@ export const VehiclesModalContent = () => {
 
               <ColorPicker
                 defaultValue="#000"
-                className={"w-full border border-indigo-600 h-[50px]"}
+                showText={(color) => <span>{color.toHexString()}</span>}
+                className={`w-full justify-start pl-2 border border-indigo-600 h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               />
             </label>
 
