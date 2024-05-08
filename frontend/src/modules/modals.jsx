@@ -6,9 +6,11 @@ import {
   DiscountModalContent,
   FeesModalContent,
   FileCategoryModalContent,
+  HowHearModalContent,
   LocationModalContent,
   MiscellaneousModalContent,
   ProductModalContent,
+  VehiclesModalContent,
 } from "@/pages/managment/service/modal.jsx";
 import classNames from "classnames";
 import { Fragment } from "react";
@@ -231,6 +233,50 @@ export const CheckModal = () => {
 
           <div className="bg-white rounded-xl py-5 shadow-2xl">
             <AddSchoolModalContent />
+          </div>
+        </Fragment>
+      );
+    }
+    case "how did you hear": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Modal - Add How did you hear</title>
+          </Helmet>
+
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-4xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Add How did you hear
+          </Title>
+
+          <div className="bg-white rounded-xl py-5 shadow-2xl">
+            <HowHearModalContent />
+          </div>
+        </Fragment>
+      );
+    }
+    case "vehicles": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Modal - Vehicles</title>
+          </Helmet>
+
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-4xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Vehicles
+          </Title>
+
+          <div className="bg-white rounded-xl py-5 shadow-2xl">
+            <VehiclesModalContent />
           </div>
         </Fragment>
       );

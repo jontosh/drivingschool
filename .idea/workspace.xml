@@ -4,39 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Updated file and router import and routing paths, commented out unused components, and adjusted the use of NavLink to improve navigation consistency.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/table/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/packages.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/progress.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/quiz-exam.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/managment/file/items/chart.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/modal/index.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Updated components to use TableComponent instead of Table from antd and made necessary changes to display data correctly and improve styling. Refactored file display. Refactored the alignment and style in the rendering methods of the HighSchoolData component.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/hear.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/hear.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/high-school.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/high-school.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/location.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/location.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/vehicles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/vehicles.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/modal-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/modal-page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/exam.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/exam.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/fees.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/miscellaneous.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/miscellaneous.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/packages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/product.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/staff/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/staff/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +146,7 @@
       <workItem from="1715127410777" duration="13537000" />
       <workItem from="1715146973036" duration="382000" />
       <workItem from="1715147634999" duration="3604000" />
-      <workItem from="1715151691975" duration="3811000" />
+      <workItem from="1715151691975" duration="8105000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -286,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715065135586</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="#fix #jsx Updated components to use TableComponent instead of Table from antd and made necessary changes to display data correctly and improve styling. Refactored file display. Refactored the alignment and style in the rendering methods of the HighSchoolData component.">
+      <option name="closed" value="true" />
+      <created>1715155678037</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715155678037</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,39 +296,39 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor navbar to dynamically manage open keys and update menu item styles.&#10;- Update component properties in workspace.xml and navbar.jsx." />
-    <MESSAGE value="#fix #jsx #styles Refactor navbar to dynamically manage open keys and update menu item styles.&#10;- Update component properties in workspace.xml and navbar.jsx." />
-    <MESSAGE value="-" />
-    <MESSAGE value="- Update" />
-    <MESSAGE value="- Update file" />
-    <MESSAGE value="- Update file imports" />
-    <MESSAGE value="- Update file imports and" />
-    <MESSAGE value="- Update file imports and routing" />
-    <MESSAGE value="- Update file imports and routing paths" />
-    <MESSAGE value="- Update file imports and routing paths," />
-    <MESSAGE value="- Update file imports and routing paths, comment" />
-    <MESSAGE value="- Update file imports and routing paths, comment out" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components," />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust NavLink" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust NavLink usage" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust NavLink usage for" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust NavLink usage for better" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust NavLink usage for better navigation" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust NavLink usage for better navigation consistency" />
-    <MESSAGE value="- Update file imports and routing paths, comment out unused components, and adjust NavLink usage for better navigation consistency." />
-    <MESSAGE value="#fix #jsx Updated file and router import and routing paths, commented out unused components, and adjusted the use of NavLink to improve navigation consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated file and router import and routing paths, commented out unused components, and adjusted the use of NavLink to improve navigation consistency." />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling." />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;-" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Ref" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in High" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in HighSchool" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in HighSchoolData" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in HighSchoolData component" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in HighSchoolData component render" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in HighSchoolData component render methods" />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor alignment and styling in HighSchoolData component render methods." />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- &#10;- Refactor alignment and styling in HighSchoolData component render methods." />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Ref&#10;- Refactor alignment and styling in HighSchoolData component render methods." />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor&#10;- Refactor alignment and styling in HighSchoolData component render methods." />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor file&#10;- Refactor alignment and styling in HighSchoolData component render methods." />
+    <MESSAGE value="- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling.&#10;- Refactor file display&#10;- Refactor alignment and styling in HighSchoolData component render methods." />
+    <MESSAGE value="#fix #jsx Updated components to use TableComponent instead of Table from antd and made necessary changes to display data correctly and improve styling. Refactored file display. Refactored the alignment and style in the rendering methods of the HighSchoolData component." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated components to use TableComponent instead of Table from antd and made necessary changes to display data correctly and improve styling. Refactored file display. Refactored the alignment and style in the rendering methods of the HighSchoolData component." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/modules/subpages.jsx</url>
-          <line>106</line>
+          <line>134</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>

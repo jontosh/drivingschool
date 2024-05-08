@@ -278,3 +278,7 @@ export const CustomTransfer = ({
     </ConfigProvider>
   );
 };
+
+export const CustomDate = () => {
+  return <ConfigProvider></ConfigProvider>;
+};
