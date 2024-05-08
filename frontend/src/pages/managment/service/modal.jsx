@@ -355,6 +355,7 @@ export const DiscountModalContent = () => {
               theme={{
                 token: {
                   colorBorder: colorsObject.primary,
+                  controlHeight: 40
                 },
               }}
             >
@@ -488,31 +489,31 @@ export const AddServiceModalContent = () => {
   return (
     <Fragment>
       <form className={"space-y-5"}>
-        <div className="grid grid-cols-2 gap-x-10">
+        <div className="grid grid-cols-2 gap-x-10 px-5">
           <div className={"space-y-5"}>
             <CustomInput
               placeholder={"Service Name: *"}
-              className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               classNames={
-                "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Service Name:"}
               spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <CustomInput
               placeholder={"Service Code: *"}
-              className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               classNames={
-                "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Service Code:"}
               spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <CustomInput
               placeholder={"Service Status: *"}
-              className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               classNames={
-                "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Service Status:"}
               spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
@@ -526,9 +527,9 @@ export const AddServiceModalContent = () => {
                 Service Status:
               </span>
               <CustomSelect
-                style={{ width: "100%", height: 40 }}
+                style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
-                className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
                 placeholder={"Service Status: *"}
                 options={[
                   {
@@ -572,25 +573,24 @@ export const AddServiceModalContent = () => {
               </div>
             </div>
             <CustomCheckBox
-              className={"gap-x-2.5"}
-              style={{ paddingLeft: 185 }}
+              className={"gap-x-2.5 pl-[185px]"}
             >
               Is Service Taxable
             </CustomCheckBox>
             <CustomInput
               placeholder={"Service Price: *"}
-              className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               classNames={
-                "inline-flex items-center w-full justify-between gap-10 flex-row-reverse "
+                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
               }
               spanText={"Service Price:"}
               spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <CustomInput
               placeholder={"Web Name:"}
-              className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               classNames={
-                "inline-flex items-center w-full justify-between gap-10 flex-row-reverse"
+                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Web Name:"}
               spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
@@ -604,7 +604,7 @@ export const AddServiceModalContent = () => {
                 Web description
               </span>
               <textarea
-                className={`w-full p-3 ${ManagementStyle["CheckModal__thrid-textarea"]}`}
+                className={`w-full p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__thrid-textarea"]}`}
               ></textarea>
             </label>
             <label
@@ -616,7 +616,7 @@ export const AddServiceModalContent = () => {
                 Enrollment Email Content:
               </span>
               <textarea
-                className={`w-full p-3 ${ManagementStyle["CheckModal__thrid-textarea"]}`}
+                className={`w-full p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__thrid-textarea"]}`}
               ></textarea>
             </label>
           </div>
@@ -704,9 +704,9 @@ export const AddServiceModalContent = () => {
                 Associate Contract From OE:
               </span>
               <CustomSelect
-                style={{ width: "100%", height: 40 }}
+                style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
-                className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
                 placeholder={"Service Status: *"}
                 options={[
                   {
@@ -725,7 +725,7 @@ export const AddServiceModalContent = () => {
                 Service Notes:
               </span>
               <textarea
-                className={`w-full p-3 ${ManagementStyle["CheckModal__thrid-textarea"]}`}
+                className={`w-full p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__thrid-textarea"]}`}
               ></textarea>
             </label>
           </div>
