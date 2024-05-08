@@ -137,7 +137,7 @@ export const ProductModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -151,7 +151,7 @@ export const ProductModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -228,7 +228,7 @@ export const FeesModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -242,7 +242,7 @@ export const FeesModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -371,7 +371,7 @@ export const DiscountModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -385,7 +385,7 @@ export const DiscountModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -455,7 +455,7 @@ export const MiscellaneousModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -469,7 +469,7 @@ export const MiscellaneousModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -738,7 +738,7 @@ export const AddServiceModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -752,7 +752,7 @@ export const AddServiceModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -907,7 +907,7 @@ export const FileCategoryModalContent = () => {
           defaultColor={colorsObject.main}
           defaultHoverColor={colorsObject.main}
           borderRadius={5}
-          controlHeight={50}
+          
           paddingInline={44}
         >
           Save
@@ -921,7 +921,7 @@ export const FileCategoryModalContent = () => {
           defaultColor={colorsObject.primary}
           defaultHoverColor={colorsObject.primary}
           borderRadius={5}
-          controlHeight={50}
+          
           paddingInline={44}
           onClick={handleCancel}
         >
@@ -1294,7 +1294,7 @@ export const AddStaffModalContent = () => {
           defaultColor={colorsObject.main}
           defaultHoverColor={colorsObject.main}
           borderRadius={5}
-          controlHeight={50}
+          
           paddingInline={44}
         >
           Save
@@ -1308,7 +1308,7 @@ export const AddStaffModalContent = () => {
           defaultColor={colorsObject.primary}
           defaultHoverColor={colorsObject.primary}
           borderRadius={5}
-          controlHeight={50}
+          
           paddingInline={44}
           onClick={handleCancel}
         >
@@ -1656,7 +1656,7 @@ export const LocationModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -1670,7 +1670,7 @@ export const LocationModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -1813,7 +1813,7 @@ export const AddSchoolModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -1827,7 +1827,7 @@ export const AddSchoolModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -1920,7 +1920,7 @@ export const HowHearModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -1934,7 +1934,7 @@ export const HowHearModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -2160,7 +2160,7 @@ export const VehiclesModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
           >
             Save
@@ -2174,7 +2174,7 @@ export const VehiclesModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            controlHeight={50}
+            
             paddingInline={44}
             onClick={handleCancel}
           >

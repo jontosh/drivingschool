@@ -148,7 +148,7 @@ const Service = ({ subpage }) => {
                       defaultBorderColor={colorsObject.success}
                       defaultHoverBorderColor={colorsObject.successHover}
                       paddingInline={26}
-                      controlHeight={50}
+                      // 
                       borderRadius={5}
                       className={"inline-flex items-center"}
                       href={`/modals/management-service/${subpage}`}
@@ -162,7 +162,7 @@ const Service = ({ subpage }) => {
                       style={{
                         width: 122,
                       }}
-                      className={`h-[50px] ${ServiceStyle["Service__select"]}`}
+                      className={`h-[40px] ${ServiceStyle["Service__select"]}`}
                       colorBorder={colorsObject.info}
                       selectorBg={colorsObject.info}
                     />

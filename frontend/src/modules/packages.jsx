@@ -68,7 +68,7 @@ export const PackagesModule = () => {
             <ButtonComponent
               defaultBg={bg}
               defaultHoverBg={hover}
-              controlHeight={50}
+              // 
               borderRadius={5}
               style={{ width: "128px" }}
             >

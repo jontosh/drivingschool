@@ -89,7 +89,7 @@ export const CheckModal = () => {
       return (
         <Fragment>
           <Helmet>
-            <title>Modal - Discounts</title>
+            <title>Modal - Miscellaneous</title>
           </Helmet>
 
           <Title

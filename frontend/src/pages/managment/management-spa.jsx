@@ -104,7 +104,6 @@ const ManagementSpa = ({ page }) => {
                   defaultBg={colorsObject.success}
                   defaultHoverBg={colorsObject.successHover}
                   paddingInline={26}
-                  controlHeight={50}
                   borderRadius={5}
                   className={"inline-flex items-center"}
                   href={`/modals/management/${subpage}`}
@@ -118,7 +117,7 @@ const ManagementSpa = ({ page }) => {
                   style={{
                     width: 122,
                   }}
-                  className={`h-[50px] ${ServiceStyle["Service__select"]}`}
+                  className={`h-[40px] ${ServiceStyle["Service__select"]}`}
                   colorBorder={colorsObject.info}
                   selectorBg={colorsObject.info}
                 />

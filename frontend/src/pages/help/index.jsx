@@ -2,7 +2,7 @@ import ButtonComponent from "@/components/button";
 import { CustomInput, CustomSelect } from "@/components/form";
 import IconComponent from "@/components/icons";
 import Title, { Paragraph } from "@/components/title";
-import { ExportOutlined } from "@ant-design/icons";
+import { ExportOutlined, PhoneFilled } from "@ant-design/icons";
 import { ConfigProvider, Tabs } from "antd";
 import { Fragment, useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -10,6 +10,10 @@ import TabItem from "./items/help-content";
 import ColorsContext from "@/context/colors.jsx";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { TfiEmail } from "react-icons/tfi";
+import { MdEmail } from "react-icons/md";
+import { GoClock } from "react-icons/go";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 export const Help = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -31,7 +35,7 @@ export const Help = () => {
         <header className="grid grid-cols-4 gap-10">
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
             <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
-
+              <MdEmail className="text-white w-[25px] h-[25px] m-auto mt-3.5" />
             </div>
             <Title
               fontWeightStrong={500}
@@ -43,7 +47,7 @@ export const Help = () => {
 
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
             <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
-
+              <PhoneFilled className="text-white w-[25px] h-[25px] m-auto mt-3.5" />
             </div>
             <Title
               fontWeightStrong={500}
@@ -54,7 +58,7 @@ export const Help = () => {
           </div>
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
             <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
-
+            <GoClock className="text-white w-[25px] h-[25px] m-auto mt-3.5" />
             </div>
             <Title
               fontWeightStrong={500}
@@ -66,7 +70,7 @@ export const Help = () => {
 
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
             <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
-
+            <FaRegCalendarAlt className="text-white w-[25px] h-[25px] m-auto mt-3.5" />
             </div>
             <Title
               fontWeightStrong={500}
@@ -101,7 +105,15 @@ export const Help = () => {
           <div className="flex flex-col gap-y-5 pt-5">
             <Link>
               <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <div className="flex justify-between items-center">
+                  <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                  <div className={"flex items-center gap-x-10"}>
+                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                    <span className="text-lg font-normal">25.04.2024</span>
+                  </div>
+                </div>
                 <span className="flex justify-between items-center">
                   <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
@@ -115,7 +127,15 @@ export const Help = () => {
 
             <Link>
               <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <div className="flex justify-between items-center">
+                  <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                  <div className={"flex items-center gap-x-10"}>
+                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                    <span className="text-lg font-normal">25.04.2024</span>
+                  </div>
+                </div>
                 <span className="flex justify-between items-center">
                   <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
@@ -129,7 +149,15 @@ export const Help = () => {
 
             <Link>
               <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <div className="flex justify-between items-center">
+                  <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                  <div className={"flex items-center gap-x-10"}>
+                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                    <span className="text-lg font-normal">25.04.2024</span>
+                  </div>
+                </div>
                 <span className="flex justify-between items-center">
                   <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
@@ -143,7 +171,15 @@ export const Help = () => {
 
             <Link>
               <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                <div className="flex justify-between items-center">
+                  <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                  <div className={"flex items-center gap-x-10"}>
+                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                    <span className="text-lg font-normal">25.04.2024</span>
+                  </div>
+                </div>
                 <span className="flex justify-between items-center">
                   <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 

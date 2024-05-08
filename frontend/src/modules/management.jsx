@@ -63,7 +63,7 @@ export const LocationModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            controlHeight={50}
+            // 
             borderRadius={5}
             style={{ width: 128 }}
           >
@@ -201,7 +201,7 @@ export const HighSchoolModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            controlHeight={50}
+            // 
             borderRadius={5}
             style={{ width: 128 }}
           >
@@ -302,7 +302,7 @@ export const HearModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            controlHeight={50}
+            // 
             borderRadius={5}
             style={{ width: 128 }}
           >
