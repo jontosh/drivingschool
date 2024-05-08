@@ -260,6 +260,7 @@ export const CustomTransfer = ({
             fontSize,
             listHeight,
             headerHeight,
+            // listWidth: "100%"
           },
         },
       }}
