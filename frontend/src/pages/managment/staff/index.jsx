@@ -74,7 +74,7 @@ const Staff = () => {
                   defaultBg={colorsObject.success}
                   defaultHoverBg={colorsObject.successHover}
                   paddingInline={26}
-                  controlHeight={50}
+                  
                   borderRadius={5}
                   className={"inline-flex items-center"}
                   href={"/modals/staff/add-staff"}
@@ -88,7 +88,7 @@ const Staff = () => {
                   style={{
                     width: 122,
                   }}
-                  className={`h-[50px] ${ServiceStyle["Service__select"]}`}
+                  className={`h-[40px] ${ServiceStyle["Service__select"]}`}
                   colorBorder={"#1890FF"}
                   selectorBg={"#1890FF"}
                 />

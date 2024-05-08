@@ -22,7 +22,7 @@ export const FileCategoryModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            controlHeight={50}
+            // 
             style={{ width: 81 }}
             borderRadius={10}
           >

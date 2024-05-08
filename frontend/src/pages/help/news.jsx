@@ -30,7 +30,15 @@ export const News = () => {
                 <div className="flex flex-col gap-y-2 pl-6 pr-6 pb-4 rounded-lg">
                     <Link>
                         <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                            <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                            <div className="flex justify-between items-center">
+                                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                                <div className={"flex items-center gap-x-10"}>
+                                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                                    <span className="text-lg font-normal">25.04.2024</span>
+                                </div>
+                            </div>
                             <span className="flex justify-between items-center">
                                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
@@ -44,7 +52,15 @@ export const News = () => {
 
                     <Link>
                         <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                            <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                            <div className="flex justify-between items-center">
+                                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                                <div className={"flex items-center gap-x-10"}>
+                                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                                    <span className="text-lg font-normal">25.04.2024</span>
+                                </div>
+                            </div>
                             <span className="flex justify-between items-center">
                                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
@@ -58,7 +74,15 @@ export const News = () => {
 
                     <Link>
                         <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                            <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                            <div className="flex justify-between items-center">
+                                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                                <div className={"flex items-center gap-x-10"}>
+                                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                                    <span className="text-lg font-normal">25.04.2024</span>
+                                </div>
+                            </div>
                             <span className="flex justify-between items-center">
                                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
@@ -72,7 +96,15 @@ export const News = () => {
 
                     <Link>
                         <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                            <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                            <div className="flex justify-between items-center">
+                                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                                <div className={"flex items-center gap-x-10"}>
+                                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                                    <span className="text-lg font-normal">25.04.2024</span>
+                                </div>
+                            </div>
                             <span className="flex justify-between items-center">
                                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 
@@ -86,7 +118,15 @@ export const News = () => {
 
                     <Link>
                         <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                            <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+                            <div className="flex justify-between items-center">
+                                <Paragraph className={"font-semibold text-lg"}>Ideas upvote clickable on main board, just inside ideas</Paragraph>
+
+                                <div className={"flex items-center gap-x-10"}>
+                                    <span className="text-gray-400 text-xs">DATE:</span>
+
+                                    <span className="text-lg font-normal">25.04.2024</span>
+                                </div>
+                            </div>
                             <span className="flex justify-between items-center">
                                 <Paragraph className={"font-normal text-sm text-gray-400"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Paragraph>
 

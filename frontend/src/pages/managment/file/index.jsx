@@ -95,7 +95,7 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    controlHeight={50}
+                    // 
                     borderRadius={5}
                   >
                     Show more
@@ -112,7 +112,7 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    controlHeight={50}
+                    // 
                     borderRadius={5}
                   >
                     Show more
@@ -130,7 +130,7 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    controlHeight={50}
+                    // 
                     borderRadius={5}
                   >
                     Show more
@@ -161,7 +161,7 @@ const File = () => {
                     defaultBg={colorsObject.success}
                     defaultHoverBg={colorsObject.successHover}
                     paddingInline={27}
-                    controlHeight={50}
+                    // 
                     borderRadius={5}
                     href={"/modals/management-file/new-category"}
                     className={"inline-flex items-center"}
@@ -172,7 +172,7 @@ const File = () => {
                     colorBorder={colorsObject.info}
                     style={{ width: 128 }}
                     selectorBg={colorsObject.info}
-                    className={`h-[50px] ${FileStyle["File__select"]}`}
+                    className={`h-[40px] ${FileStyle["File__select"]}`}
                     value={"Filter by"}
                     options={[
                       {
@@ -259,7 +259,7 @@ const File = () => {
                 <ButtonComponent
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.infoHover}
-                  controlHeight={50}
+                  // 
                   borderRadius={5}
                 >
                   Show more
@@ -301,7 +301,7 @@ const File = () => {
                   colorBorder={colorsObject.info}
                   style={{ width: 128 }}
                   selectorBg={colorsObject.info}
-                  className={`h-[50px] ${FileStyle["File__select"]}`}
+                  className={`h-[40px] ${FileStyle["File__select"]}`}
                   value={"Filter by"}
                   options={[
                     {
@@ -384,7 +384,7 @@ const File = () => {
 
               <div className="text-end">
                 <ButtonComponent
-                  controlHeight={50}
+                  // 
                   defaultBg={colorsObject.main}
                   defaultHoverBg={colorsObject.main}
                   defaultColor={colorsObject.black}
