@@ -13,6 +13,7 @@ import { News } from "@/pages/help/news";
 import { TicketSpa } from "@/pages/help/ticket/ticket-spa.jsx";
 // import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
+import Modal from "@/pages/modal/index.jsx";
 // import ManagementSpa from "@/pages/managment/management-spa.jsx";
 // import ManagementSpaIndex from "@/pages/managment/management-spa/index.jsx";
 // import ModalPage from "@/pages/managment/modal-page.jsx";
@@ -132,44 +133,10 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      // {
-      //   path: "/management",
-      //   element: <Management />,
-      //   children: [
-      //     {
-      //       path: "service",
-      //       element: <Service />,
-      //       children: [
-      //         {
-      //           path: ":title",
-      //           element: <ServiceSpa />,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       path: "file",
-      //       element: <File />,
-      //     },
-      //     {
-      //       path: "staff",
-      //       element: <Staff />,
-      //     },
-      //     {
-      //       path: "single-page",
-      //       element: <ManagementSpa />,
-      //       children: [
-      //         {
-      //           path: ":title",
-      //           element: <ManagementSpaIndex />,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       path: "modal/:modal",
-      //       element: <ModalPage />,
-      //     },
-      //   ],
-      // },
+      {
+        path: "/modals/:title/:page_modal",
+        element: <Modal />,
+      },
       {
         path: "/student/account",
         element: <Student />,

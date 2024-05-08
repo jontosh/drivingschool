@@ -1,5 +1,5 @@
-import { Table } from "antd";
+import TableComponent from "@/components/table/index.jsx";
 
 export const Product = ({ columns, data }) => {
-  return <Table columns={columns} dataSource={data} pagination={false} />;
+  return <TableComponent columns={columns} data={data} />;
 };
