@@ -871,7 +871,7 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                 }
                 spanText={"Service Name:"}
-                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"name"}
                 value={values.name}
                 onChange={handleChange}
@@ -887,7 +887,7 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                 }
                 spanText={"Service Code:"}
-                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"code"}
                 value={values.code}
                 onChange={handleChange}
@@ -900,7 +900,7 @@ export const AddServiceModalContent = () => {
                 className={`inline-flex justify-end gap-x-10 items-center w-full`}
               >
                 <span
-                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Status:
                 </span>
@@ -922,7 +922,7 @@ export const AddServiceModalContent = () => {
               <div className={`space-y-5`}>
                 <div className={`flex items-center gap-10`}>
                   <span
-                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
                     Assign Locations:
                   </span>
@@ -938,7 +938,7 @@ export const AddServiceModalContent = () => {
 
                 <div className={`flex items-center gap-10`}>
                   <span
-                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
                     Service Items:
                   </span>
@@ -962,7 +962,7 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
                 }
                 spanText={"Service Price:"}
-                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"price"}
                 value={values.price}
                 onChange={handleChange}
@@ -979,7 +979,7 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                 }
                 spanText={"Web Name:"}
-                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"web_name"}
                 value={values.web_name}
                 onChange={handleChange}
@@ -992,13 +992,13 @@ export const AddServiceModalContent = () => {
                 className={`inline-flex items-center w-full justify-between gap-10`}
               >
                 <span
-                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Web description
                 </span>
                 <div className={"w-full"}>
                   <textarea
-                    className={`w-full p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
+                    className={`w-full min-h-[428px] p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
                     name={"web_description"}
                     value={values.web_description}
                     onChange={handleChange}
@@ -1013,13 +1013,13 @@ export const AddServiceModalContent = () => {
                 className={`inline-flex items-center w-full justify-between gap-10`}
               >
                 <span
-                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Enrollment Email Content:
                 </span>
                 <div className={"w-full"}>
                   <textarea
-                    className={`w-full p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full min-h-[428px] p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     name={"enrollment_email_content"}
                     value={values.enrollment_email_content}
                     onChange={handleChange}
@@ -1146,7 +1146,7 @@ export const AddServiceModalContent = () => {
                 </span>
                 <div className={"w-full"}>
                   <textarea
-                    className={`w-full p-3 min-h-28 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
+                    className={`w-full p-3 min-h-[428px] rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
                     name={"notes"}
                     value={values.notes}
                     onChange={handleChange}
