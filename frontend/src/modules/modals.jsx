@@ -98,7 +98,7 @@ export const CheckModal = () => {
             fontWeightStrong={600}
             titleMarginBottom={20}
           >
-            Discounts
+            Miscellaneous
           </Title>
 
           <div className="bg-white rounded-xl py-5 shadow-2xl">
@@ -107,7 +107,7 @@ export const CheckModal = () => {
         </Fragment>
       );
     }
-    case "quiz-report": {
+    case "quiz-exam": {
       return (
         <Fragment>
           <Helmet>
@@ -123,7 +123,7 @@ export const CheckModal = () => {
             Quiz Report
           </Title>
 
-          <div className="bg-white rounded-xl py-5 shadow-2xl">@todo</div>
+          <div className="bg-white rounded-xl shadow-2xl p-5">@todo</div>
         </Fragment>
       );
     }
