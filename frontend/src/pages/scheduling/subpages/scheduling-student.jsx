@@ -3,6 +3,7 @@ import { CustomInput } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { SchedulingModule } from "@/modules/scheduling.jsx";
 import { Calendar, Table } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext } from "react";
@@ -12,6 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const FormResult = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { columns, data } = SchedulingModule();
   return (
     <Fragment>
       <Formik
@@ -68,6 +70,9 @@ const FormResult = () => {
                       defaultHoverColor={colorsObject.black}
                       paddingInline={24}
                       className={"w-full text-start"}
+                      style={{
+                        boxShadow: 'none'
+                      }}
                     >
                       Aminov Makhsud, 2004, BMR RX6 Teacher, Adult
                     </ButtonComponent>
@@ -100,12 +105,12 @@ const FormResult = () => {
           </NavLink>
         </div>
 
-        <div className="py-6 space-y-7">
+        <div className="space-y-7">
           <div className="space-x-4">
             <NavLink
               to={""}
               className={
-                "hover:text-indigo-500 text-gray-500 text-xl py-8 font-medium"
+                "hover:text-indigo-500 text-gray-500 text-xl py-7 font-medium"
               }
             >
               Book my lesson
@@ -113,7 +118,7 @@ const FormResult = () => {
             <NavLink
               to={""}
               className={
-                "hover:text-indigo-500 text-gray-500 text-xl py-8 font-medium"
+                "hover:text-indigo-500 text-gray-500 text-xl py-7 font-medium"
               }
             >
               Aminov Makhsudjon
@@ -132,23 +137,12 @@ const FormResult = () => {
                 <span>+</span>
               </div>
             </li>
-            <li className={"cursor-pointer"}>
-              <div className="bg-white shadow-xl py-3 px-8 hover:text-indigo-500 flex justify-between">
-                <Paragraph
-                  fontSize={"text-base text-inherit"}
-                  className={"text-inherit"}
-                >
-                  Click here to view scheduled lessons
-                </Paragraph>
-                <span>+</span>
-              </div>
-            </li>
           </ul>
 
-          <div className={"grid grid-cols-2"}>
+          <div className={"flex justify-between pb-7"}>
             <div className={"grid grid-cols-2 gap-5"}>
-              <Calendar fullscreen={false} className={"shadow-xl"} />
-              <Calendar fullscreen={false} className={"shadow-xl"} />
+              <Calendar fullscreen={false} className={"w-[300px] shadow-xl"} />
+              <Calendar fullscreen={false} className={"w-[300px] shadow-xl"} />
             </div>
 
             <div className={"flex flex-col gap-5 m-auto"}>
@@ -161,7 +155,7 @@ const FormResult = () => {
                 borderRadius={5}
                 controlHeight={40}
                 style={{
-                  width: 210
+                  width: 210,
                 }}
               >
                 Refine search
@@ -175,7 +169,7 @@ const FormResult = () => {
                 borderRadius={5}
                 controlHeight={40}
                 style={{
-                  width: 210
+                  width: 210,
                 }}
               >
                 Clear search
@@ -223,7 +217,12 @@ const FormResult = () => {
           </div>
         </div>
 
-        <Table className={"pt-5"} />
+        <Table
+          className={"pt-5"}
+          columns={columns}
+          dataSource={data}
+          pagination={false}
+        />
       </div>
     </Fragment>
   );

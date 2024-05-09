@@ -4,6 +4,7 @@ import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { EnrollmentsSelections } from "@/modules/enrollments.jsx";
 import { InfoForm } from "@/pages/enrollment/info-form.jsx";
 import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
@@ -12,52 +13,10 @@ import { IoArrowForwardSharp } from "react-icons/io5";
 import { MdOutlineContentCopy } from "react-icons/md";
 import EnrollmentStyle from "./enrollment.module.scss";
 
-const PackageSelectionArray = [
-    {
-      id: 1,
-      label: "8h in car instruction",
-      hours: 74,
-      price: 169,
-      value: 1,
-    },
-    {
-      id: 2,
-      label: "10h in car instruction",
-      hours: 74,
-      price: 209,
-      value: 2,
-    },
-    {
-      id: 3,
-      label: "3h in car instruction",
-      hours: 15,
-      price: 103,
-      value: 3,
-    },
-  ],
-  ClassSelectionArray = [
-    {
-      id: 1,
-      label: "8h in car instruction",
-      value: 1,
-      price: 169,
-    },
-    {
-      id: 2,
-      label: "10h in car instruction",
-      value: 2,
-      price: 209,
-    },
-    {
-      id: 3,
-      label: "3h in car instruction",
-      value: 3,
-      price: 103,
-    },
-  ];
-
 const Enrollment = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { ClassSelectionArray, PackageSelectionArray } =
+    EnrollmentsSelections();
   const defaultValue = "Package selection";
   const [Package, setPackage] = useState(defaultValue);
   const [Classes, setClasses] = useState(defaultValue);
@@ -66,20 +25,24 @@ const Enrollment = () => {
   const [SelectedClass, setSelectedClass] = useState([]);
   const [IsOpen, setIsOpen] = useState(false);
 
-  const handleCuponModal = () => setIsOpen((prev) => !prev);
+  const handleCouponModal = () => setIsOpen((prev) => !prev);
 
   const InfoTypeOptions = [
     {
       value: "Teen",
+      label: "Teen",
     },
     {
       value: "Adult",
+      label: "Adult",
     },
     {
       value: "Knowledge test",
+      label: "Knowledge test",
     },
     {
       value: "Road test",
+      label: "Road test",
     },
   ];
 
@@ -207,7 +170,7 @@ const Enrollment = () => {
                 onChange={(value) => setPackage(value)}
                 options={PackageSelectionArray}
                 style={{ width: "100%" }}
-                className={"mb-2.5"}
+                className={"mb-2.5 h-[50px]"}
                 optionFontSize={14}
                 optionSelectedFontWeight={400}
                 fontSize={16}
@@ -218,7 +181,7 @@ const Enrollment = () => {
                 <Fragment>
                   <div className="flex justify-between mb-2.5">
                     <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                      You choosen:
+                      You chosen:
                     </Paragraph>
                     <Paragraph fontSize={"text-xs text-gray-600"}>
                       Sub total ${totalPrice} Tax: $0 Coupon: $338
@@ -242,7 +205,7 @@ const Enrollment = () => {
                       paddingInline={28}
                       controlHeight={40}
                       borderRadius={5}
-                      onClick={handleCuponModal}
+                      onClick={handleCouponModal}
                     >
                       Coupon
                     </ButtonComponent>
@@ -274,7 +237,7 @@ const Enrollment = () => {
                 onChange={(value) => setClasses(value)}
                 options={ClassSelectionArray}
                 style={{ width: "100%" }}
-                className={"mb-2.5"}
+                className={"mb-2.5 h-[50px]"}
                 colorBorder={colorsObject.primary}
               />
 
@@ -300,10 +263,11 @@ const Enrollment = () => {
 
           <CustomSelect
             value={InfoType}
+            fontSize={14}
             onChange={(value) => setInfoType(value)}
             options={InfoTypeOptions}
             style={{ width: "100%", maxWidth: "570px" }}
-            className={"mb-2.5"}
+            className={"mb-2.5 h-[50px]"}
             colorBorder={colorsObject.primary}
             disabled={defaultValue === Package}
           />

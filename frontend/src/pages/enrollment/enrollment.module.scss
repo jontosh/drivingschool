@@ -14,7 +14,7 @@
 
   &__heavy {
     &:after {
-      content: " \2731";
+      content: "\2731" !important;
       position: absolute;
       display: block;
       top: 0;
@@ -34,11 +34,8 @@
   }
 
   &__input {
-    outline: none;
-    width: 300px;
 
     &-wrap {
-      border: 1px solid $primary;
 
       & > * + * {
         border-left: 1px solid $black;
@@ -62,7 +59,7 @@
 
   &__select {
     span {
-      color: #fff;
+      color: #fff !important;
     }
   }
 }

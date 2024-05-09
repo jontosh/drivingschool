@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import FormStyle from "./form.module.scss";
 import { ConfigProvider, Input, Select, Transfer } from "antd";
 const { Option } = Select;
@@ -11,6 +11,7 @@ export const CustomCheckBox = ({
   children,
   onChange,
   checked,
+  customWrapClassName,
   ...props
 }) => {
   className = classNames([
@@ -35,7 +36,12 @@ export const CustomCheckBox = ({
             checked={checked}
             className={`${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`}
           />
-          <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
+          <span
+            className={classNames(
+              `relative ${FormStyle["Custom-checkbox"]}`,
+              customWrapClassName,
+            )}
+          ></span>
         </div>
         {children}
       </label>
@@ -118,6 +124,8 @@ export const CustomSelect = ({
   colorText = "#000",
   ...props
 }) => {
+  useEffect(() => {}, []);
+
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
       {option.label}
@@ -149,6 +157,7 @@ export const CustomSelect = ({
           popupClassName={dropdownClassName}
           style={style}
           onBlur={onBlur}
+          //ref={ref}
           {...props}
         >
           {option}
@@ -165,6 +174,7 @@ export const CustomRadio = ({
   className,
   name,
   checked,
+  customWrapClassName,
   ...props
 }) => {
   return (
@@ -186,7 +196,12 @@ export const CustomRadio = ({
             className,
           )}
         />
-        <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
+        <span
+          className={classNames(
+            `relative ${FormStyle["Custom-checkbox"]}`,
+            customWrapClassName,
+          )}
+        ></span>
       </div>
       {children}
     </label>
@@ -245,6 +260,7 @@ export const CustomTransfer = ({
             fontSize,
             listHeight,
             headerHeight,
+            // listWidth: "100%"
           },
         },
       }}
@@ -262,4 +278,8 @@ export const CustomTransfer = ({
       />
     </ConfigProvider>
   );
+};
+
+export const CustomDate = () => {
+  return <ConfigProvider></ConfigProvider>;
 };

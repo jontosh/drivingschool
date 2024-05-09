@@ -1,5 +1,6 @@
+import TableComponent from "@/components/table/index.jsx";
 import { Table } from "antd";
 
 export const Hear = ({ columns, data }) => {
-  return <Table pagination={false} columns={columns} dataSource={data} />;
+  return <TableComponent columns={columns} data={data} />;
 };

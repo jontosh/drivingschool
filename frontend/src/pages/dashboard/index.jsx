@@ -2,7 +2,9 @@ import ButtonComponent from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { ChartDashboard } from "@/pages/dashboard/items/chart.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
+import { DashboardTeachers } from "@/pages/dashboard/items/teachers.jsx";
 import { Button, Checkbox, ConfigProvider, Tabs } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
@@ -16,27 +18,6 @@ import DollarIcon from "../../assets/icons/Dollar.svg";
 import Studying from "../../assets/icons/User.svg";
 import Register from "../../assets/icons/Profile.svg";
 import TeacherAvatar from "../../assets/user/teacher.jpeg";
-
-import {
-  Chart as ChartJS,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-import { Bar } from "react-chartjs-2";
-
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
-
-const OverviewChart = ({ data, options }) => {
-  return (
-    <Fragment>
-      <Bar data={data} options={options}></Bar>
-    </Fragment>
-  );
-};
 
 const DashboardFormik = () => (
   <Formik
@@ -91,101 +72,10 @@ const DashboardFormik = () => (
   </Formik>
 );
 
-const DashboardTeachers = () => {
-  return (
-    <Formik
-      initialValues={{
-        search: "",
-      }}
-      validate={(values) => {
-        const errors = {};
-        if (values.search === "") {
-          errors.search = "Error input is empty";
-        }
-        return errors;
-      }}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
-      {({ values, handleBlur, handleChange, errors, touched }) => {
-        return (
-          <form
-            className={`${DashboardStyle["Dashboard__teachers-form"]} mb-7`}
-          >
-            <div className="flex items-center">
-              <Title
-                fontSize={"text-base"}
-                fontWeightStrong={500}
-                className={"w-24"}
-              >
-                Teachers
-              </Title>
-              <label className={`relative`}>
-                <input
-                  value={values.search}
-                  type={"text"}
-                  name={"search"}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={"Find teacher"}
-                  className={`${DashboardStyle["Dashboard__form-input"]} rounded-lg inline-block outline-0 px-12 py-2.5 bg-white border-2 ${errors.search && touched.search && "border-red-600 "}`}
-                />
-
-                <span
-                  className={`absolute w-4 h-4 left-4 ${DashboardStyle["Dashboard__form-search"]}`}
-                >
-                  <AiOutlineSearch />
-                </span>
-              </label>
-            </div>
-            {errors.search && touched.search && (
-              <div className={`text-red-600`}>{errors.search}</div>
-            )}
-          </form>
-        );
-      }}
-    </Formik>
-  );
-};
-
 const Dashboard = () => {
-  const date = new Date();
   const { colorsObject } = useContext(ColorsContext);
 
   const [ShowCalendar, setSowCalendar] = useState(false);
-
-  const data = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "San"],
-    datasets: [
-      {
-        label: "Sign ups per day",
-        data: [5, 7, 6, 8, 7, 5, 7],
-        backgroundColor: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "San"].map(
-          (item, index) => {
-            index += 1;
-
-            return index === date.getDay() ? "#5F66E973" : "#D2D2D2BF";
-          },
-        ),
-      },
-    ],
-  };
-
-  const options = {
-    plugins: {
-      legend: {
-        labels: {
-          font: {
-            size: 14,
-            weight: 600,
-          },
-          color: "#000",
-        },
-        align: "start",
-      },
-    },
-  };
 
   const handleClickTeacher = () => setSowCalendar((prev) => !prev);
 
@@ -314,7 +204,7 @@ const Dashboard = () => {
             </div>
 
             <div>
-              <OverviewChart data={data} options={options} />
+              <ChartDashboard />
             </div>
           </div>
 
@@ -341,13 +231,13 @@ const Dashboard = () => {
               className={`${DashboardStyle["Dashboard__links-list"]} space-y-3.5`}
             >
               <ButtonComponent
-                href={"/notfound/"}
+                href={"/enrollment/"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
-                className={"w-full "}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                defaultHoverBg={colorsObject.infoHover}
+                className={"w-full"}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 New student
               </ButtonComponent>
@@ -355,11 +245,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/enrollment/"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 Add new student
               </ButtonComponent>
@@ -367,11 +257,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/NotFound"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 Class list
               </ButtonComponent>
@@ -379,11 +269,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/management/file"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 File Management
               </ButtonComponent>
@@ -391,11 +281,11 @@ const Dashboard = () => {
               <ButtonComponent
                 href={"/NotFound"}
                 defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
                 className={"w-full"}
-                controlHeight={44}
-                paddingBlock={9}
-                borderRadius={10}
+                controlHeight={40}
+                paddingBlock={7}
+                borderRadius={5}
               >
                 Built App editing
               </ButtonComponent>
@@ -407,189 +297,6 @@ const Dashboard = () => {
             className={`${DashboardStyle["Dashboard__teachers"]} shadow-xl p-5 bg-white rounded-lg`}
           >
             <DashboardTeachers />
-            <div
-              className={`${DashboardStyle["Dashboard__teachers-list"]} px-6 grid grid-cols-9 gap-x-14`}
-            >
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-
-              {/*Teacher Avatar Start*/}
-              <div
-                className={`${DashboardStyle["Dashboard__teachers-list__item"]} w-20 cursor-pointer`}
-                onClick={handleClickTeacher}
-              >
-                <div
-                  className={`${DashboardStyle["Dashboard__teachers-list__item-imageholder"]} mb-5 h-20 overflow-hidden rounded-full`}
-                >
-                  <Image
-                    src={TeacherAvatar}
-                    srcSet={TeacherAvatar}
-                    alt={"Teacher Avatar"}
-                  />
-                </div>
-                <Title fontSize={"text-base"} level={5} fontWeightStrong={500}>
-                  Kate Park
-                </Title>
-              </div>
-              {/*Teacher Avatar end*/}
-            </div>
           </div>
           {/*Result*/}
           {ShowCalendar && (

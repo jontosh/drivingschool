@@ -4,8 +4,10 @@ import {
   CustomInput,
   CustomSelect,
 } from "@/components/form/index.jsx";
+import IconComponent from "@/components/icons";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import { Pagination, Table } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -136,10 +138,28 @@ export const OpenTimeSlots = () => {
       dataIndex: "action",
       key: "action",
       align: "center",
+      width: 110,
       render: () => (
         <div className={"text-center space-x-2.5"}>
-          <CustomCheckBox />
-          <CustomCheckBox />
+          <IconComponent
+            className={"text-xl text-red-600 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<DeleteOutlined />}
+          />
+
+          <IconComponent
+            className={"text-xl text-indigo-500 border border-indigo-600"}
+            style={{
+              borderRadius: 5,
+              paddingLeft: 4,
+              paddingRight: 4,
+            }}
+            icon={<ExportOutlined />}
+          />
         </div>
       ),
     },

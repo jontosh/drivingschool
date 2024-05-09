@@ -21,7 +21,7 @@ const ButtonComponent = ({
   defaultHoverBg = "inherit",
   defaultHoverBorderColor = "none",
   defaultHoverColor = "white",
-  controlHeight = 30,
+  controlHeight = 40,
   fontSize = 16,
   style,
   borderRadius,

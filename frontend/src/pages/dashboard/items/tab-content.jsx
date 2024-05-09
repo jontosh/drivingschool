@@ -33,7 +33,7 @@ export const UploadFiles = () => {
           </Paragraph>
           <div>
             <ButtonComponent
-              defaultHoverBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
               defaultBg={colorsObject.info}
               defaultHoverColor={colorsObject.main}
               defaultColor={colorsObject.main}
@@ -41,7 +41,7 @@ export const UploadFiles = () => {
               controlHeight={32}
               paddingBlock={4}
               paddingInline={15}
-              borderRadius={3}
+              borderRadius={5}
               href={"#!"}
             >
               Show all files
