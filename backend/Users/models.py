@@ -92,7 +92,7 @@ class Student(User):
     location = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)
     # student_id = models.AutoField()
     home_pickup = models.TextField(blank=True,null=True)
-    Gender = models.CharField(choices=GENDER,max_length=30,default="Male")
+    gender = models.CharField(choices=GENDER,max_length=30,default="Male")
     high_school = models.ForeignKey(School,on_delete=models.CASCADE,blank=True,null=True)
     preferred_pronoun = models.CharField(max_length=30,choices=PREFERRED_PRONOUNS,default=0)
     dl_permit = models.TextField(blank=True,null=True)
