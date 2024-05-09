@@ -148,7 +148,6 @@ const Service = ({ subpage }) => {
                       defaultBorderColor={colorsObject.success}
                       defaultHoverBorderColor={colorsObject.successHover}
                       paddingInline={26}
-                      // 
                       borderRadius={5}
                       className={"inline-flex items-center"}
                       href={`/modals/management-service/${subpage}`}

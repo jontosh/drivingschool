@@ -798,7 +798,7 @@ export const AddServiceModalContent = () => {
                 "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Service Name:"}
-              spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <CustomInput
               placeholder={"Service Code: *"}
@@ -807,7 +807,7 @@ export const AddServiceModalContent = () => {
                 "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Service Code:"}
-              spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <CustomInput
               placeholder={"Service Status: *"}
@@ -816,13 +816,13 @@ export const AddServiceModalContent = () => {
                 "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Service Status:"}
-              spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <label
               className={`inline-flex items-center w-full justify-between gap-10`}
             >
               <span
-                className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Service Status:
               </span>
@@ -842,7 +842,7 @@ export const AddServiceModalContent = () => {
             <div className={`space-y-5`}>
               <div className={`flex items-center gap-10`}>
                 <span
-                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Assign Locations:
                 </span>
@@ -858,7 +858,7 @@ export const AddServiceModalContent = () => {
 
               <div className={`flex items-center gap-10`}>
                 <span
-                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Service Items:
                 </span>
@@ -882,7 +882,7 @@ export const AddServiceModalContent = () => {
                 "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
               }
               spanText={"Service Price:"}
-              spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <CustomInput
               placeholder={"Web Name:"}
@@ -891,13 +891,13 @@ export const AddServiceModalContent = () => {
                 "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
               }
               spanText={"Web Name:"}
-              spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
             />
             <label
               className={`inline-flex items-center w-full justify-between gap-10`}
             >
               <span
-                className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Web description
               </span>
@@ -909,7 +909,7 @@ export const AddServiceModalContent = () => {
               className={`inline-flex items-center w-full justify-between gap-10`}
             >
               <span
-                className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Enrollment Email Content:
               </span>
