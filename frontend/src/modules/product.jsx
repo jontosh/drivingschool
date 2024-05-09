@@ -92,7 +92,7 @@ export const ProductModule = () => {
             <ButtonComponent
               defaultBg={bg}
               defaultHoverBg={hover}
-              // 
+              //
               borderRadius={5}
               style={{ width: 128 }}
             >
@@ -175,4 +175,12 @@ export const ProductModule = () => {
   ];
 
   return { data, columns };
+};
+
+export const ProductModalValidate = (values) => {
+  const errors = {};
+  if (!values.code) {
+    errors.code = "Component name";
+  }
+  return errors;
 };

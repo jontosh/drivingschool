@@ -7,12 +7,13 @@ import {
 } from "@/components/form/index.jsx";
 import Title, { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { FormError } from "@/modules/errors.jsx";
+import { ProductModalValidate } from "@/modules/product.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
-import FileStyle from "@/pages/managment/management.module.scss";
 import { ColorPicker, ConfigProvider, DatePicker, Switch } from "antd";
 import classNames from "classnames";
-import { Fragment, useContext } from "react";
-import { Helmet } from "react-helmet";
+import { Formik } from "formik";
+import { Fragment, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StatusSelect } from "./index.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
@@ -36,129 +37,205 @@ const mockData = [
 export const ProductModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [Status, setStatus] = useState("");
+  const [Type, setType] = useState("");
+  const [SubType, setSubType] = useState("");
+  const [Selections, setSelections] = useState(false);
+  // dep
+  const selects = [Status, Type, SubType];
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status, Type, SubType]);
+
+  // func
+  const handleStatus = (values) => setStatus(values);
+  const handleType = (values) => setType(values);
+  const handleSubType = (values) => setSubType(values);
+  const handleSubmit = (values) => {
+    setSelections(stateSelects);
+    if (!Selections) {
+      console.log({ ...values, status: Status, type: Type, subtype: SubType });
+    }
+  };
   return (
     <Fragment>
-      <form className={classNames("space-y-5")}>
-        <CustomInput
-          classNames={
-            "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
-          }
-          spanText={"Component name"}
-          placeholder={"Component name"}
-          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          spanClassName={`w-40 text-right`}
-          fontSize="text-base"
-          colorBorder={colorsObject.primary}
-        />
-
-        <CustomInput
-          classNames={
-            "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
-          }
-          spanText={"Item#/Code:"}
-          placeholder={"Item#/Code"}
-          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          spanClassName={`w-40 text-right relative flex-shrink-0 after:left-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
-          fontSize="text-base"
-          colorBorder={colorsObject.primary}
-        />
-
-        <label
-          className={`inline-flex items-center gap-10 w-full justify-center`}
-        >
-          <span
-            className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+      <Formik
+        initialValues={{
+          name: "",
+          code: "",
+          public_name: "",
+        }}
+        validate={(values) => ProductModalValidate(values)}
+        onSubmit={handleSubmit}
+      >
+        {({ values, handleSubmit, errors, handleChange, handleReset }) => (
+          <form
+            className={classNames("space-y-5 px-5")}
+            onSubmit={handleSubmit}
           >
-            Status:
-          </span>
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+              }
+              spanText={"Component name"}
+              placeholder={"Component name"}
+              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              spanClassName={`w-40 text-right`}
+              fontSize="text-base"
+              colorBorder={colorsObject.primary}
+              name={"name"}
+              value={values.name}
+              onChange={handleChange}
+            />
 
-          <CustomSelect
-            placeholder={"Select status"}
-            style={{ maxWidth: 240, width: "100%" }}
-            className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-            options={StatusSelect}
-            colorBorder={colorsObject.primary}
-          />
-        </label>
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+              }
+              spanText={"Item#/Code:"}
+              placeholder={"Item#/Code"}
+              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              spanClassName={`w-40 text-right relative flex-shrink-0 after:left-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
+              fontSize="text-base"
+              colorBorder={colorsObject.primary}
+              name={"code"}
+              value={values.code}
+              onChange={handleChange}
+            >
+              {errors.code && (
+                <FormError className={"pl-[50%]"}>{errors.code}</FormError>
+              )}
+            </CustomInput>
 
-        <CustomInput
-          classNames={
-            "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
-          }
-          spanText={"Public Name:"}
-          placeholder={"Public Name"}
-          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          spanClassName={`w-40 text-right`}
-          fontSize="text-base"
-          colorBorder={colorsObject.primary}
-        />
+            <label
+              className={`inline-flex items-center gap-10 w-full justify-center`}
+            >
+              <span
+                className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
+                Status:
+              </span>
 
-        <label
-          className={`inline-flex items-center gap-10 w-full justify-center`}
-        >
-          <span
-            className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-          >
-            Type:
-          </span>
+              <div className={"flex-shrink-0"}>
+                <CustomSelect
+                  placeholder={"Select status"}
+                  style={{ width: 240 }}
+                  className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={StatusSelect}
+                  colorBorder={colorsObject.primary}
+                  onChange={handleStatus}
+                  value={Status ? Status : undefined}
+                />
 
-          <CustomSelect
-            placeholder={"Select status"}
-            style={{ maxWidth: 240, width: "100%" }}
-            className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-            options={StatusSelect}
-            colorBorder={colorsObject.primary}
-          />
-        </label>
+                {Selections && <FormError>Select Status:</FormError>}
+              </div>
+            </label>
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+              }
+              spanText={"Public Name:"}
+              placeholder={"Public Name"}
+              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              spanClassName={`w-40 text-right`}
+              fontSize="text-base"
+              colorBorder={colorsObject.primary}
+              value={values.paublic_name}
+              name={"public_name"}
+              onChange={handleChange}
+            />
+            <label
+              className={`inline-flex items-center gap-10 w-full justify-center`}
+            >
+              <span
+                className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
+                Type:
+              </span>
 
-        <label
-          className={`inline-flex items-center gap-10 w-full justify-center`}
-        >
-          <span
-            className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-          >
-            Sub Type:
-          </span>
+              <div className={"flex-shrink-0"}>
+                <CustomSelect
+                  placeholder={"Select status"}
+                  style={{ width: 240 }}
+                  className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={StatusSelect}
+                  colorBorder={colorsObject.primary}
+                  value={Type ? Type : undefined}
+                  onChange={handleType}
+                />
 
-          <CustomSelect
-            placeholder={"Select status"}
-            style={{ width: 240 }}
-            className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-            options={StatusSelect}
-            colorBorder={colorsObject.primary}
-          />
-        </label>
+                {Selections && <FormError>Select Type</FormError>}
+              </div>
+            </label>
+            <label
+              className={`inline-flex items-center gap-10 w-full justify-center`}
+            >
+              <span
+                className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
+                Sub Type:
+              </span>
 
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
+              <div className={"flex-shrink-0"}>
+                <CustomSelect
+                  placeholder={"Select status"}
+                  style={{ width: 240 }}
+                  className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={StatusSelect}
+                  colorBorder={colorsObject.primary}
+                  value={SubType ? SubType : undefined}
+                  onChange={handleSubType}
+                />
 
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
+                {Selections && <FormError>Select Subtype</FormError>}
+              </div>
+            </label>
+            <div className="text-center space-x-5">
+              <ButtonComponent
+                defaultBg={colorsObject.success}
+                defaultHoverBg={colorsObject.successHover}
+                defaultColor={colorsObject.main}
+                defaultHoverColor={colorsObject.main}
+                borderRadius={5}
+                paddingInline={44}
+                type={"submit"}
+              >
+                Save
+              </ButtonComponent>
+
+              <ButtonComponent
+                defaultBg={colorsObject.main}
+                defaultHoverBg={colorsObject.main}
+                defaultBorderColor={colorsObject.primary}
+                defaultHoverBorderColor={colorsObject.primary}
+                defaultColor={colorsObject.primary}
+                defaultHoverColor={colorsObject.primary}
+                borderRadius={5}
+                paddingInline={44}
+                onClick={() => {
+                  handleReset();
+                  setSubType("");
+                  setType("");
+                  setStatus("");
+                  setTimeout(() => {
+                    navigate("/management/service/product");
+                  }, 1000);
+                }}
+              >
+                Cancel
+              </ButtonComponent>
+            </div>
+          </form>
+        )}
+      </Formik>
     </Fragment>
   );
 };
@@ -166,90 +243,164 @@ export const ProductModalContent = () => {
 export const FeesModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [Status, setStatus] = useState("");
+  const [Selections, setSelections] = useState(false);
+
+  // dep
+  const selects = [Status];
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status]);
+
+  // func
+  const handleStatus = (values) => setStatus(values);
+  const handleSubmit = (values) => {
+    setSelections(stateSelects);
+    if (!stateSelects) {
+      console.log({ ...values, status: Status });
+    }
+  };
+
   return (
     <Fragment>
-      <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
-        <CustomInput
-          classNames={
-            "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
+      <Formik
+        initialValues={{
+          name: "",
+          free_amount: "",
+          notes: "",
+        }}
+        validate={(values) => {
+          const errors = {};
+          if (!values.free_amount) {
+            errors.free_amount = "Input Free amount is empty";
           }
-          spanText={"Free name"}
-          fontSize="text-base"
-          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          spanClassName={`max-w-46 text-right`}
-          colorBorder={colorsObject.primary}
-        />
 
-        <label
-          className={`inline-flex items-center gap-10 w-full justify-center`}
-        >
-          <span
-            className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+          return errors;
+        }}
+        onSubmit={handleSubmit}
+      >
+        {({ values, errors, handleChange, handleSubmit, handleReset }) => (
+          <form
+            className={classNames("pb-5 grid gap-y-5 justify-center")}
+            onSubmit={handleSubmit}
           >
-            Status:
-          </span>
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
+              }
+              spanText={"Free name"}
+              placeholder={"Free name"}
+              fontSize="text-base"
+              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              spanClassName={`max-w-46 text-right`}
+              colorBorder={colorsObject.primary}
+              onChange={handleChange}
+              value={values.name}
+              name={"name"}
+            />
 
-          <CustomSelect
-            placeholder={"Select status"}
-            style={{ maxWidth: 240, width: "100%" }}
-            className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-            options={StatusSelect}
-            colorBorder={colorsObject.primary}
-          />
-        </label>
+            <label
+              className={`inline-flex items-center gap-10 w-full justify-center`}
+            >
+              <span
+                className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
+                Status:
+              </span>
 
-        <CustomInput
-          classNames={
-            "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
-          }
-          spanText={"Public Name:"}
-          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          fontSize="text-base"
-          spanClassName={`max-w-46`}
-          colorBorder={colorsObject.primary}
-        />
+              <div className="flex-shrink-0">
+                <CustomSelect
+                  placeholder={"Select status"}
+                  style={{ width: 240 }}
+                  className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={StatusSelect}
+                  colorBorder={colorsObject.primary}
+                  onChange={handleStatus}
+                  value={Status ? Status : undefined}
+                />
+                {Selections && <FormError>Select Status</FormError>}
+              </div>
+            </label>
 
-        <CustomInput
-          classNames={
-            "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
-          }
-          spanText={"Fee Amount:"}
-          className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-          fontSize="text-base"
-          spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-          colorBorder={colorsObject.primary}
-        />
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
+              }
+              spanText={"Fee Amount:"}
+              placeholder={"Fee Amount:"}
+              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              fontSize="text-base"
+              spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+              colorBorder={colorsObject.primary}
+              name={"free_amount"}
+              value={values.free_amount}
+              onChange={handleChange}
+            >
+              {errors.free_amount && (
+                <FormError className={"pl-[50%]"}>
+                  {errors.free_amount}
+                </FormError>
+              )}
+            </CustomInput>
 
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
+              }
+              spanText={"Notes"}
+              placeholder={"Notes"}
+              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              fontSize="text-base"
+              spanClassName={`max-w-46`}
+              colorBorder={colorsObject.primary}
+              onChange={handleChange}
+              name={"notes"}
+              value={values.notes}
+            />
 
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
+            <div className="text-center space-x-5">
+              <ButtonComponent
+                defaultBg={colorsObject.success}
+                defaultHoverBg={colorsObject.successHover}
+                defaultColor={colorsObject.main}
+                defaultHoverColor={colorsObject.main}
+                borderRadius={5}
+                paddingInline={44}
+                type={"submit"}
+              >
+                Save
+              </ButtonComponent>
+
+              <ButtonComponent
+                defaultBg={colorsObject.main}
+                defaultHoverBg={colorsObject.main}
+                defaultBorderColor={colorsObject.primary}
+                defaultHoverBorderColor={colorsObject.primary}
+                defaultColor={colorsObject.primary}
+                defaultHoverColor={colorsObject.primary}
+                borderRadius={5}
+                paddingInline={44}
+                onClick={() => {
+                  handleReset();
+                  setTimeout(() => {
+                    navigate("/management/service/fees");
+                  }, 1000);
+                }}
+              >
+                Cancel
+              </ButtonComponent>
+            </div>
+          </form>
+        )}
+      </Formik>
     </Fragment>
   );
 };
@@ -257,227 +408,376 @@ export const FeesModalContent = () => {
 export const DiscountModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [Status, setStatus] = useState("");
+  const [Selections, setSelections] = useState(false);
 
+  // dep
+  const selects = [Status];
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status]);
+
+  // func
+  const handleCancel = () => navigate(-1);
   const onChange = (date, dateString) => {
     console.log(date, dateString);
   };
 
+  const handleSubmit = (values) => {
+    setSelections(stateSelects);
+
+    if (!stateSelects) {
+      console.log(values);
+    }
+  };
+
   return (
-    <Fragment>
-      <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
-        <div className={`flex grid gap-y-5 justify-center`}>
-          <CustomInput
-            classNames={
-              "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5 h-[50px]"
-            }
-            spanText={"Discount name"}
-            className={"w-60"}
-            fontSize="text-base"
-            spanClassName={`max-w-46`}
-            colorBorder={colorsObject.primary}
-          />
-
-          <label className={`inline-flex gap-x-7 items-center`}>
-            <span
-              className={`w-[190px] text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-            >
-              Status:
-            </span>
-
-            <CustomSelect
-              value={"Select status"}
-              style={{ maxWidth: 440, width: "100%" }}
-              className={"h-[50px]"}
-              options={StatusSelect}
+    <Formik
+      initialValues={{
+        name: "",
+        discount_code: "",
+        free_amount: "",
+      }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.discount_code) {
+          errors.discount_code = "Input Discount code is empty";
+        }
+        if (!values.free_amount) {
+          errors.free_amount = "Input Free Amount is empty";
+        }
+        return errors;
+      }}
+      onSubmit={handleSubmit}
+    >
+      {({ values, errors, handleChange, handleSubmit, handleReset }) => (
+        <form
+          className={classNames("pb-5 grid gap-y-5 justify-center")}
+          onSubmit={handleSubmit}
+        >
+          <div className={`flex grid gap-y-5 justify-center`}>
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-3.5 items-center flex-row-reverse gap-5 h-[50px]"
+              }
+              spanText={"Discount name"}
+              placeholder={"Discount name"}
+              className={"w-60"}
+              fontSize="text-base"
+              spanClassName={`max-w-46`}
               colorBorder={colorsObject.primary}
+              value={values.name}
+              onChange={handleChange}
             />
+
+            <label className={`inline-flex gap-x-7 items-center`}>
+              <span
+                className={`w-[190px] text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
+                Status:
+              </span>
+
+              <div className="flex-shrink-0">
+                <CustomSelect
+                  placeholder={"Select status"}
+                  style={{ width: 240 }}
+                  className={"h-[50px]"}
+                  options={StatusSelect}
+                  colorBorder={colorsObject.primary}
+                />
+                {Selections && <FormError>Select Status</FormError>}
+              </div>
+            </label>
+
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
+              }
+              spanText={`Discount code:`}
+              placeholder={`Discount code`}
+              className={"w-60"}
+              fontSize="text-base"
+              spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+              colorBorder={colorsObject.primary}
+              value={values.discount_code}
+              onChange={handleChange}
+              name={"discount_code"}
+            >
+              {errors.discount_code && (
+                <FormError className={"pl-[50%]"}>
+                  {errors.discount_code}
+                </FormError>
+              )}
+            </CustomInput>
+
+            <CustomInput
+              classNames={
+                "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
+              }
+              spanText={`Free Amount:`}
+              placeholder={`Free Amount`}
+              className={"w-60"}
+              fontSize="text-base"
+              spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+              colorBorder={colorsObject.primary}
+              name={"free_amount"}
+              value={values.free_amount}
+              onChange={handleChange}
+            >
+              {errors.free_amount && (
+                <FormError className={"pl-[50%]"}>
+                  {errors.free_amount}
+                </FormError>
+              )}
+            </CustomInput>
+          </div>
+
+          <div className={`space-y-10`}>
+            <div className={`flex items-center space-x-12`}>
+              <span
+                className={`w-[190px] text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
+                Eligible Service
+              </span>
+              <CustomTransfer
+                dataSource={mockData}
+                listHeight={200}
+                colorBorder={colorsObject.primary}
+              />
+            </div>
+
+            <div className={`flex items-center space-x-10`}>
+              <span className={`w-[190px] text-base text-right`}>
+                Eligible Class(es):
+              </span>
+              <CustomTransfer
+                dataSource={mockData}
+                listHeight={200}
+                colorBorder={colorsObject.primary}
+              />
+            </div>
+
+            <div className={`flex items-center space-x-11`}>
+              <span className={`w-[190px] text-base text-right`}>
+                Eligible Class(es):
+              </span>
+              <CustomTransfer
+                dataSource={mockData}
+                listHeight={200}
+                colorBorder={colorsObject.primary}
+              />
+            </div>
+          </div>
+
+          <label className={"text-center space-x-5"}>
+            <Text fontSize={"text-base"} fontWeightStrong={400}>
+              Discount Expiration:
+            </Text>
+            <>
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBorder: colorsObject.primary,
+                    controlHeight: 40,
+                  },
+                }}
+              >
+                <DatePicker onChange={onChange} />
+              </ConfigProvider>
+            </>
           </label>
 
-          <CustomInput
-            classNames={
-              "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
-            }
-            spanText={`Discount code:`}
-            className={"w-60"}
-            fontSize="text-base"
-            spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-            colorBorder={colorsObject.primary}
-          />
+          <div className="text-center space-x-5">
+            <ButtonComponent
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={44}
+              type={"submit"}
+            >
+              Save
+            </ButtonComponent>
 
-          <CustomInput
-            classNames={
-              "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
-            }
-            spanText={`Free Amount:`}
-            className={"w-60"}
-            fontSize="text-base"
-            spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-            colorBorder={colorsObject.primary}
-          />
-        </div>
-
-        <div className={`space-y-10`}>
-          <div className={`flex items-center space-x-12`}>
-            <Title level={2}>Eligible Service:*</Title>
-            <CustomTransfer
-              dataSource={mockData}
-              listHeight={200}
-              colorBorder={colorsObject.primary}
-            />
-          </div>
-
-          <div className={`flex items-center space-x-10`}>
-            <Title level={2}>Eligible Class(es):</Title>
-            <CustomTransfer
-              dataSource={mockData}
-              listHeight={200}
-              colorBorder={colorsObject.primary}
-            />
-          </div>
-
-          <div className={`flex items-center space-x-11`}>
-            <Title level={2}>Eligible Class(es):</Title>
-            <CustomTransfer
-              dataSource={mockData}
-              listHeight={200}
-              colorBorder={colorsObject.primary}
-            />
-          </div>
-        </div>
-
-        <label className={"text-center space-x-5"}>
-          <Text fontSize={"text-base"} fontWeightStrong={400}>
-            Discount Expiration:
-          </Text>
-          <>
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorBorder: colorsObject.primary,
-                  controlHeight: 40
-                },
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={() => {
+                handleReset();
+                navigate("/management/service/discounts");
               }}
             >
-              <DatePicker onChange={onChange} />
-            </ConfigProvider>
-          </>
-        </label>
-
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
-
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
-    </Fragment>
+              Cancel
+            </ButtonComponent>
+          </div>
+        </form>
+      )}
+    </Formik>
   );
 };
 
 export const MiscellaneousModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [Status, setStatus] = useState("");
+  const [SubType, setSubType] = useState("");
+  const [Selections, setSelections] = useState(false);
+
+  // dep
+  const selects = [Status, SubType];
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status, SubType]);
+
+  // func
+  const handleSubmit = (values) => {
+    setSelections(stateSelects);
+
+    if (!stateSelects) {
+      console.log({ ...values, status: Status, subtype: SubType });
+    }
+  };
+  const handleStatus = (values) => setStatus(values);
+  const handleSubType = (values) => setSubType(values);
 
   return (
-    <Fragment>
-      <form className={classNames("pb-5 grid gap-y-5 justify-center")}>
-        <CustomInput
-          classNames={
-            "inline-flex items-center flex-row-reverse gap-10 h-[50px]"
-          }
-          spanText={"Miscellaneous Item Name:"}
-          fontSize="text-base"
-          className={"w-60"}
-          spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-          colorBorder={colorsObject.primary}
-        />
-
-        <label className={`inline-flex justify-end gap-x-10 items-center`}>
-          <span
-            className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-          >
-            Status:
-          </span>
-
-          <CustomSelect
-            value={"Select status"}
-            style={{ maxWidth: 240, width: "100%" }}
-            options={StatusSelect}
-            className={"h-[50px]"}
+    <Formik
+      validate={(values) => {
+        const errors = {};
+        if (!values.name) {
+          errors.name = "Name is required";
+        }
+        return errors;
+      }}
+      initialValues={{
+        name: "",
+      }}
+      onSubmit={handleSubmit}
+    >
+      {({ handleSubmit, errors, handleChange, values, handleReset }) => (
+        <form
+          className={classNames("pb-5 grid gap-y-5 justify-center")}
+          onSubmit={handleSubmit}
+        >
+          <CustomInput
+            classNames={
+              "inline-flex items-center flex-row-reverse gap-10 h-[50px]"
+            }
+            spanText={"Miscellaneous Item Name:"}
+            placeholder={"Miscellaneous Item Name"}
+            fontSize="text-base"
+            className={"w-60"}
+            spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
             colorBorder={colorsObject.primary}
-          />
-        </label>
-
-        <label className={`inline-flex justify-end gap-x-10 items-center`}>
-          <span
-            className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+            name={"name"}
+            value={values.name}
+            onChange={handleChange}
           >
-            Type:
-          </span>
+            {errors.name && (
+              <FormError className={"pl-[50%]"}>{errors.name}</FormError>
+            )}
+          </CustomInput>
 
-          <CustomSelect
-            value={"Select status"}
-            style={{ maxWidth: 240, width: "100%" }}
-            options={StatusSelect}
-            className={"h-[50px]"}
-            colorBorder={colorsObject.primary}
-          />
-        </label>
+          <label className={`inline-flex justify-end gap-x-10 items-center`}>
+            <span
+              className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+            >
+              Status:
+            </span>
 
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
+            <div className="flex-shrink-0">
+              <CustomSelect
+                placeholder={"Select status"}
+                style={{ width: 240 }}
+                className={"h-[50px]"}
+                options={StatusSelect}
+                colorBorder={colorsObject.primary}
+                value={Status ? Status : undefined}
+                onChange={handleStatus}
+              />
+              {Selections && <FormError>Select Status</FormError>}
+            </div>
+          </label>
 
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
-    </Fragment>
+          <label className={`inline-flex justify-end gap-x-10 items-center`}>
+            <span
+              className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+            >
+              Type:
+            </span>
+
+            <div className="flex-shrink-0">
+              <CustomSelect
+                placeholder={"Select Sub type"}
+                style={{ width: 240 }}
+                options={StatusSelect}
+                className={"h-[50px]"}
+                colorBorder={colorsObject.primary}
+                value={SubType ? SubType : undefined}
+                onChange={handleSubType}
+              />
+              {Selections && <FormError>Select Sub Type</FormError>}
+            </div>
+          </label>
+
+          <div className="text-center space-x-5">
+            <ButtonComponent
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={44}
+              type={"submit"}
+            >
+              Save
+            </ButtonComponent>
+
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={() => {
+                handleReset();
+                setTimeout(() => {
+                  navigate("/management/service/miscellaneous");
+                }, 1000);
+              }}
+            >
+              Cancel
+            </ButtonComponent>
+          </div>
+        </form>
+      )}
+    </Formik>
   );
 };
 
@@ -572,9 +872,7 @@ export const AddServiceModalContent = () => {
                 </label>
               </div>
             </div>
-            <CustomCheckBox
-              className={"gap-x-2.5 pl-[185px]"}
-            >
+            <CustomCheckBox className={"gap-x-2.5 pl-[185px]"}>
               Is Service Taxable
             </CustomCheckBox>
             <CustomInput
@@ -738,7 +1036,6 @@ export const AddServiceModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            
             paddingInline={44}
           >
             Save
@@ -752,7 +1049,6 @@ export const AddServiceModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -907,7 +1203,6 @@ export const FileCategoryModalContent = () => {
           defaultColor={colorsObject.main}
           defaultHoverColor={colorsObject.main}
           borderRadius={5}
-          
           paddingInline={44}
         >
           Save
@@ -921,7 +1216,6 @@ export const FileCategoryModalContent = () => {
           defaultColor={colorsObject.primary}
           defaultHoverColor={colorsObject.primary}
           borderRadius={5}
-          
           paddingInline={44}
           onClick={handleCancel}
         >
@@ -1294,7 +1588,6 @@ export const AddStaffModalContent = () => {
           defaultColor={colorsObject.main}
           defaultHoverColor={colorsObject.main}
           borderRadius={5}
-          
           paddingInline={44}
         >
           Save
@@ -1308,7 +1601,6 @@ export const AddStaffModalContent = () => {
           defaultColor={colorsObject.primary}
           defaultHoverColor={colorsObject.primary}
           borderRadius={5}
-          
           paddingInline={44}
           onClick={handleCancel}
         >
@@ -1591,9 +1883,9 @@ export const LocationModalContent = () => {
               />
             </label>
             <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span
-                className="text-sm flex-shrink-0 font-medium w-56 text-right"
-              >Location note</span>
+              <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                Location note
+              </span>
               <textarea
                 className={`p-3 min-h-[240px] w-full outline-0 border border-indigo-600 shadow-2xl rounded-lg`}
               ></textarea>
@@ -1656,7 +1948,6 @@ export const LocationModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            
             paddingInline={44}
           >
             Save
@@ -1670,7 +1961,6 @@ export const LocationModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -1813,7 +2103,6 @@ export const AddSchoolModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            
             paddingInline={44}
           >
             Save
@@ -1827,7 +2116,6 @@ export const AddSchoolModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -1920,7 +2208,6 @@ export const HowHearModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            
             paddingInline={44}
           >
             Save
@@ -1934,7 +2221,6 @@ export const HowHearModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            
             paddingInline={44}
             onClick={handleCancel}
           >
@@ -2160,7 +2446,6 @@ export const VehiclesModalContent = () => {
             defaultColor={colorsObject.main}
             defaultHoverColor={colorsObject.main}
             borderRadius={5}
-            
             paddingInline={44}
           >
             Save
@@ -2174,7 +2459,6 @@ export const VehiclesModalContent = () => {
             defaultColor={colorsObject.primary}
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
-            
             paddingInline={44}
             onClick={handleCancel}
           >

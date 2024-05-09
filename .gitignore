@@ -24,6 +24,7 @@ dist-ssr
 *.sln
 *.sw?
 .env
+frontend/.env
 #Backend
 backend/servises/migrations/*
 backend/location/migrations/*

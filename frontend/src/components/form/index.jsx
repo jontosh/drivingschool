@@ -266,7 +266,7 @@ export const CustomTransfer = ({
       }}
     >
       <Transfer
-        className={className}
+        className={classNames(className, "overflow-hidden")}
         onChange={handleChange}
         dataSource={dataSource}
         titles={titles}
