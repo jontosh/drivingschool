@@ -161,7 +161,6 @@ const File = () => {
                     defaultBg={colorsObject.success}
                     defaultHoverBg={colorsObject.successHover}
                     paddingInline={27}
-                    // 
                     borderRadius={5}
                     href={"/modals/management-file/new-category"}
                     className={"inline-flex items-center"}

@@ -1765,7 +1765,7 @@ export const LocationModalContent = () => {
               spanText={"Location name"}
               placeholder={"Location name"}
               spanClassName={
-                "text-sm font-medium w-56 flex-shrink-0 text-right"
+                "text-sm font-medium w-32 flex-shrink-0 text-right"
               }
               colorBorder={colorsObject.primary}
             />
@@ -1776,13 +1776,13 @@ export const LocationModalContent = () => {
               className={ManagementStyle["CheckModal__form-element__shadow"]}
               spanText={"Location name"}
               placeholder={"Location Code *"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               colorBorder={colorsObject.primary}
             />
 
             <label className="inline-flex gap-8 items-center w-full">
               <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Location Status
               </span>
@@ -1802,7 +1802,7 @@ export const LocationModalContent = () => {
 
             <label className="inline-flex gap-8 items-center w-full">
               <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Location Type
               </span>
@@ -1812,7 +1812,7 @@ export const LocationModalContent = () => {
                   className={"space-x-2.5 "}
                   classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 >
-                  <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                  <span className={"text-sm flex-shrink-0 font-medium w-32"}>
                     Main office only
                   </span>
                 </CustomCheckBox>
@@ -1821,7 +1821,7 @@ export const LocationModalContent = () => {
                   className={"space-x-2.5 "}
                   classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 >
-                  <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                  <span className={"text-sm flex-shrink-0 font-medium w-32"}>
                     Main office with classroom
                   </span>
                 </CustomCheckBox>
@@ -1830,7 +1830,7 @@ export const LocationModalContent = () => {
                   className={"space-x-2.5 "}
                   classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 >
-                  <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                  <span className={"text-sm flex-shrink-0 font-medium w-32"}>
                     Class Room
                   </span>
                 </CustomCheckBox>
@@ -1839,7 +1839,7 @@ export const LocationModalContent = () => {
                   className={"space-x-2.5 "}
                   classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 >
-                  <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                  <span className={"text-sm flex-shrink-0 font-medium w-32"}>
                     Other (Satellite Office Only)
                   </span>
                 </CustomCheckBox>
@@ -1848,7 +1848,7 @@ export const LocationModalContent = () => {
                   className={"space-x-2.5 "}
                   classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 >
-                  <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                  <span className={"text-sm flex-shrink-0 font-medium w-32"}>
                     Other Classroom (Satellite Office with Classroom)
                   </span>
                 </CustomCheckBox>
@@ -1857,7 +1857,7 @@ export const LocationModalContent = () => {
                   className={"space-x-2.5 "}
                   classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 >
-                  <span className={"text-sm flex-shrink-0 font-medium w-56"}>
+                  <span className={"text-sm flex-shrink-0 font-medium w-32"}>
                     Range
                   </span>
                 </CustomCheckBox>
@@ -1871,7 +1871,7 @@ export const LocationModalContent = () => {
               className={ManagementStyle["CheckModal__form-element__shadow"]}
               spanText={"Address"}
               placeholder={"Address"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+              spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
               colorBorder={colorsObject.primary}
             />
 
@@ -1882,7 +1882,7 @@ export const LocationModalContent = () => {
               className={ManagementStyle["CheckModal__form-element__shadow"]}
               spanText={"City"}
               placeholder={"City"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+              spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
               colorBorder={colorsObject.primary}
             />
 
@@ -1893,7 +1893,7 @@ export const LocationModalContent = () => {
               className={ManagementStyle["CheckModal__form-element__shadow"]}
               spanText={"State"}
               placeholder={"State"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+              spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
               colorBorder={colorsObject.primary}
             />
 
@@ -1904,7 +1904,7 @@ export const LocationModalContent = () => {
               className={ManagementStyle["CheckModal__form-element__shadow"]}
               spanText={"Zip"}
               placeholder={"Zip"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+              spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
               colorBorder={colorsObject.primary}
             />
 
@@ -1915,13 +1915,13 @@ export const LocationModalContent = () => {
               className={ManagementStyle["CheckModal__form-element__shadow"]}
               spanText={"Location Manager"}
               placeholder={"Location Manager"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+              spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
               colorBorder={colorsObject.primary}
             />
 
             <label className="inline-flex gap-8 items-center w-full">
               <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Pickup location
               </span>
@@ -1941,7 +1941,7 @@ export const LocationModalContent = () => {
 
             <label className="inline-flex gap-8 items-center w-full">
               <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Drop off location
               </span>
@@ -1966,7 +1966,7 @@ export const LocationModalContent = () => {
               className={ManagementStyle["CheckModal__form-element__shadow"]}
               spanText={"County"}
               placeholder={"County"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+              spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
               colorBorder={colorsObject.primary}
             />
           </div>
