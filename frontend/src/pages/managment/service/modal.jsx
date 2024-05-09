@@ -784,279 +784,415 @@ export const MiscellaneousModalContent = () => {
 export const AddServiceModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [Selections, setSelections] = useState(false);
+  const [Status, setStatus] = useState("");
+  const [AssociateContract, setAssociateContract] = useState("");
+  // dep
+  const selects = [Status];
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status]);
+
+  // func
+  const handleSubmit = (values) => {
+    setSelections(stateSelects);
+
+    if (!stateSelects) {
+      console.log({ ...values, status: Status, contact: AssociateContract });
+    }
+  };
+  const handleStatus = (values) => setStatus(values);
+  const handleAssociateContract = (values) => setAssociateContract(values);
 
   return (
-    <Fragment>
-      <form className={"space-y-5"}>
-        <div className="grid grid-cols-2 gap-x-10 px-5">
-          <div className={"space-y-5"}>
-            <CustomInput
-              placeholder={"Service Name: *"}
-              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              classNames={
-                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
-              }
-              spanText={"Service Name:"}
-              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-            />
-            <CustomInput
-              placeholder={"Service Code: *"}
-              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              classNames={
-                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
-              }
-              spanText={"Service Code:"}
-              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-            />
-            <CustomInput
-              placeholder={"Service Status: *"}
-              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              classNames={
-                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
-              }
-              spanText={"Service Status:"}
-              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-            />
-            <label
-              className={`inline-flex items-center w-full justify-between gap-10`}
-            >
-              <span
-                className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Service Status:
-              </span>
-              <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
-                placeholder={"Service Status: *"}
-                options={[
-                  {
-                    value: "Active",
-                    label: "Active",
-                  },
-                ]}
-              />
-            </label>
-            <div className={`space-y-5`}>
-              <div className={`flex items-center gap-10`}>
-                <span
-                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
-                  Assign Locations:
-                </span>
-                <label className={`flex flex-col gap-5 items-center`}>
-                  <span>Click to select</span>
-                  <CustomTransfer
-                    dataSource={mockData}
-                    listHeight={200}
-                    colorBorder={colorsObject.primary}
-                  />
-                </label>
-              </div>
+    <Formik
+      initialValues={{
+        name: "",
+        code: "",
+        price: "",
+        web_name: "",
+        web_description: "",
+        enrollment_email_content: "",
+        web_purchase: false,
+        portal_purchase: false,
+        notes: "",
+      }}
+      validate={(values) => {
+        const errors = {};
 
-              <div className={`flex items-center gap-10`}>
-                <span
-                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
-                  Service Items:
-                </span>
-                <label className={`flex flex-col gap-5 items-center`}>
-                  <span>Click to select</span>
-                  <CustomTransfer
-                    dataSource={mockData}
-                    listHeight={200}
-                    colorBorder={colorsObject.primary}
-                  />
-                </label>
-              </div>
-            </div>
-            <CustomCheckBox className={"gap-x-2.5 pl-[185px]"}>
-              Is Service Taxable
-            </CustomCheckBox>
-            <CustomInput
-              placeholder={"Service Price: *"}
-              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              classNames={
-                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
-              }
-              spanText={"Service Price:"}
-              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-            />
-            <CustomInput
-              placeholder={"Web Name:"}
-              className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              classNames={
-                "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
-              }
-              spanText={"Web Name:"}
-              spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-            />
-            <label
-              className={`inline-flex items-center w-full justify-between gap-10`}
-            >
-              <span
-                className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Web description
-              </span>
-              <textarea
-                className={`w-full p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__thrid-textarea"]}`}
-              ></textarea>
-            </label>
-            <label
-              className={`inline-flex items-center w-full justify-between gap-10`}
-            >
-              <span
-                className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Enrollment Email Content:
-              </span>
-              <textarea
-                className={`w-full p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__thrid-textarea"]}`}
-              ></textarea>
-            </label>
-          </div>
-          {/*------------*/}
-          <div className={`space-y-5`}>
-            <label className={"inline-flex items-center w-full gap-10"}>
-              <span className={`w-36 text-sm text-end flex-shrink-0 `}>
-                Allow Web Purchase:
-              </span>
-              <div className={"space-x-5"}>
-                <CustomRadio
-                  classNames={"inline-flex items-center gap-x-2.5"}
-                  name={"web"}
-                >
-                  <span className={"text-sm font-medium"}>Yes</span>
-                </CustomRadio>
+        if (!values.name) {
+          errors.name = "Input Service name is empty";
+        }
 
-                <CustomRadio
-                  classNames={"inline-flex items-center gap-x-2.5"}
-                  name={"web"}
-                >
-                  <span className={"text-sm font-medium"}>None</span>
-                </CustomRadio>
-              </div>
-            </label>
-            <label className={"inline-flex items-center w-full gap-10"}>
-              <span className={`w-36 text-sm text-end flex-shrink-0 `}>
-                Allow Portal Purchase:
-              </span>
-              <div className={"space-x-5"}>
-                <CustomRadio
-                  classNames={"inline-flex items-center gap-x-2.5"}
-                  name={"portal"}
-                >
-                  <span className={"text-sm font-medium"}>Yes</span>
-                </CustomRadio>
+        if (!values.code) {
+          errors.code = "Input Service code is empty";
+        }
 
-                <CustomRadio
-                  classNames={"inline-flex items-center gap-x-2.5"}
-                  name={"portal"}
-                >
-                  <span className={"text-sm font-medium"}>None</span>
-                </CustomRadio>
-              </div>
-            </label>
-            <div className={`space-y-5`}>
-              <div className={`flex items-center gap-10`}>
+        if (!values.price) {
+          errors.price = "Input Price is empty";
+        }
+
+        if (!values.web_name) {
+          errors.web_name = "Input Web name is empty";
+        }
+
+        if (!values.web_description) {
+          errors.web_description = "Input Web description is empty";
+        }
+
+        if (!values.enrollment_email_content) {
+          errors.enrollment_email_content = "Input Web description is empty";
+        }
+
+        if (!values.notes) {
+          errors.notes = "Input Notes is empty";
+        }
+
+        return errors;
+      }}
+      onSubmit={handleSubmit}
+    >
+      {({ values, errors, handleChange, handleSubmit, handleReset }) => (
+        <form className={"space-y-5"} onSubmit={handleSubmit}>
+          <div className="grid grid-cols-2 gap-x-10 px-5">
+            <div className={"space-y-5"}>
+              <CustomInput
+                placeholder={"Service Name"}
+                className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                classNames={
+                  "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
+                }
+                spanText={"Service Name:"}
+                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                name={"name"}
+                value={values.name}
+                onChange={handleChange}
+              >
+                {errors.name && (
+                  <FormError className={"pl-48"}>{errors.name}</FormError>
+                )}
+              </CustomInput>
+              <CustomInput
+                placeholder={"Service Code"}
+                className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                classNames={
+                  "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
+                }
+                spanText={"Service Code:"}
+                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                name={"code"}
+                value={values.code}
+                onChange={handleChange}
+              >
+                {errors.code && (
+                  <FormError className={"pl-48"}>{errors.code}</FormError>
+                )}
+              </CustomInput>
+              <label
+                className={`inline-flex justify-end gap-x-10 items-center w-full`}
+              >
                 <span
                   className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
-                  Assign Locations:
+                  Status:
                 </span>
-                <label className={`flex flex-col gap-5 items-center`}>
-                  <span>Click to select</span>
-                  <CustomTransfer
-                    dataSource={mockData}
-                    listHeight={200}
-                    colorBorder={colorsObject.primary}
-                  />
-                </label>
-              </div>
 
-              <div className={`flex items-center gap-10`}>
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Select status"}
+                    style={{ width: "100%" }}
+                    className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                    options={StatusSelect}
+                    colorBorder={colorsObject.primary}
+                    value={Status ? Status : undefined}
+                    onChange={handleStatus}
+                  />
+                  {Selections && <FormError>Select Status</FormError>}
+                </div>
+              </label>
+
+              <div className={`space-y-5`}>
+                <div className={`flex items-center gap-10`}>
+                  <span
+                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  >
+                    Assign Locations:
+                  </span>
+                  <label className={`flex flex-col gap-5 items-center`}>
+                    <span>Click to select</span>
+                    <CustomTransfer
+                      dataSource={mockData}
+                      listHeight={200}
+                      colorBorder={colorsObject.primary}
+                    />
+                  </label>
+                </div>
+
+                <div className={`flex items-center gap-10`}>
+                  <span
+                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  >
+                    Service Items:
+                  </span>
+                  <label className={`flex flex-col gap-5 items-center`}>
+                    <span>Click to select</span>
+                    <CustomTransfer
+                      dataSource={mockData}
+                      listHeight={200}
+                      colorBorder={colorsObject.primary}
+                    />
+                  </label>
+                </div>
+              </div>
+              <CustomCheckBox className={"gap-x-2.5 pl-[185px]"}>
+                Is Service Taxable
+              </CustomCheckBox>
+              <CustomInput
+                placeholder={"Service Price:"}
+                className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                classNames={
+                  "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
+                }
+                spanText={"Service Price:"}
+                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                name={"price"}
+                value={values.price}
+                onChange={handleChange}
+              >
+                {errors.price && (
+                  <FormError className={"pl-48"}>{errors.price}</FormError>
+                )}
+              </CustomInput>
+
+              <CustomInput
+                placeholder={"Web Name:"}
+                className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                classNames={
+                  "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
+                }
+                spanText={"Web Name:"}
+                spanClassName={`w-36 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                name={"web_name"}
+                value={values.web_name}
+                onChange={handleChange}
+              >
+                {errors.web_name && (
+                  <FormError className={"pl-48"}>{errors.web_name}</FormError>
+                )}
+              </CustomInput>
+              <label
+                className={`inline-flex items-center w-full justify-between gap-10`}
+              >
                 <span
                   className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
-                  Service Items:
+                  Web description
                 </span>
-                <label className={`flex flex-col gap-5 items-center`}>
-                  <span>Click to select</span>
-                  <CustomTransfer
-                    dataSource={mockData}
-                    listHeight={200}
-                    colorBorder={colorsObject.primary}
-                  />
-                </label>
-              </div>
+                <div className={"w-full"}>
+                  <textarea
+                    className={`w-full p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
+                    name={"web_description"}
+                    value={values.web_description}
+                    onChange={handleChange}
+                    placeholder={"text"}
+                  ></textarea>
+                  {errors.web_description && (
+                    <FormError>{errors.web_description}</FormError>
+                  )}
+                </div>
+              </label>
+              <label
+                className={`inline-flex items-center w-full justify-between gap-10`}
+              >
+                <span
+                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
+                  Enrollment Email Content:
+                </span>
+                <div className={"w-full"}>
+                  <textarea
+                    className={`w-full p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    name={"enrollment_email_content"}
+                    value={values.enrollment_email_content}
+                    onChange={handleChange}
+                    placeholder={"text"}
+                  ></textarea>
+                  {errors.enrollment_email_content && (
+                    <FormError>{errors.enrollment_email_content}</FormError>
+                  )}
+                </div>
+              </label>
             </div>
-            <label
-              className={`inline-flex items-center w-full justify-between gap-10`}
-            >
-              <span
-                className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+            {/*------------*/}
+            <div className={`space-y-5`}>
+              <label className={"inline-flex items-center w-full gap-10"}>
+                <span className={`w-36 text-sm text-end flex-shrink-0 `}>
+                  Allow Web Purchase:
+                </span>
+                <div className={"space-x-5"}>
+                  <CustomRadio
+                    classNames={"inline-flex items-center gap-x-2.5"}
+                    name={"web_purchase"}
+                    onChange={handleChange}
+                  >
+                    <span className={"text-sm font-medium"}>Yes</span>
+                  </CustomRadio>
+
+                  <CustomRadio
+                    classNames={"inline-flex items-center gap-x-2.5"}
+                    name={"portal_purchase"}
+                    onChange={handleChange}
+                  >
+                    <span className={"text-sm font-medium"}>None</span>
+                  </CustomRadio>
+                </div>
+              </label>
+              <label className={"inline-flex items-center w-full gap-10"}>
+                <span className={`w-36 text-sm text-end flex-shrink-0 `}>
+                  Allow Portal Purchase:
+                </span>
+                <div className={"space-x-5"}>
+                  <CustomRadio
+                    classNames={"inline-flex items-center gap-x-2.5"}
+                    name={"portal"}
+                  >
+                    <span className={"text-sm font-medium"}>Yes</span>
+                  </CustomRadio>
+
+                  <CustomRadio
+                    classNames={"inline-flex items-center gap-x-2.5"}
+                    name={"portal"}
+                  >
+                    <span className={"text-sm font-medium"}>None</span>
+                  </CustomRadio>
+                </div>
+              </label>
+              <div className={`space-y-5`}>
+                <div className={`flex items-center gap-10`}>
+                  <span
+                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  >
+                    Assign Locations:
+                  </span>
+                  <label className={`flex flex-col gap-5 items-center`}>
+                    <span>Click to select</span>
+                    <CustomTransfer
+                      dataSource={mockData}
+                      listHeight={200}
+                      colorBorder={colorsObject.primary}
+                    />
+                  </label>
+                </div>
+
+                <div className={`flex items-center gap-10`}>
+                  <span
+                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  >
+                    Service Items:
+                  </span>
+                  <label className={`flex flex-col gap-5 items-center`}>
+                    <span>Click to select</span>
+                    <CustomTransfer
+                      dataSource={mockData}
+                      listHeight={200}
+                      colorBorder={colorsObject.primary}
+                    />
+                  </label>
+                </div>
+              </div>
+              <label
+                className={`inline-flex items-center w-full justify-between gap-10`}
               >
-                Associate Contract From OE:
-              </span>
-              <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
-                placeholder={"Service Status: *"}
-                options={[
-                  {
-                    value: "Active",
-                    label: "Active",
-                  },
-                ]}
-              />
-            </label>
-            <label
-              className={`inline-flex items-center w-full justify-between gap-10`}
-            >
-              <span
-                className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                <span
+                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
+                  Associate Contract From OE:
+                </span>
+                <div className="w-full">
+                  <CustomSelect
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
+                    placeholder={"Service Status"}
+                    value={AssociateContract ? AssociateContract : undefined}
+                    onChange={handleAssociateContract}
+                    options={[
+                      {
+                        value: "Active",
+                        label: "Active",
+                      },
+                    ]}
+                  />
+                  {Selections && (
+                    <FormError>Select Associate Contract From OE</FormError>
+                  )}
+                </div>
+              </label>
+              <label
+                className={`inline-flex items-center w-full justify-between gap-10`}
               >
-                Service Notes:
-              </span>
-              <textarea
-                className={`w-full p-3 ${ManagementStyle["CheckModal__form-element__shadow"]} ${ManagementStyle["CheckModal__thrid-textarea"]}`}
-              ></textarea>
-            </label>
+                <span
+                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
+                  Service Notes:
+                </span>
+                <div className={"w-full"}>
+                  <textarea
+                    className={`w-full p-3 min-h-28 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
+                    name={"notes"}
+                    value={values.notes}
+                    onChange={handleChange}
+                    placeholder={"text"}
+                  ></textarea>
+                  {errors.notes && <FormError>{errors.notes}</FormError>}
+                </div>
+              </label>
+            </div>
           </div>
-        </div>
 
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
+          <div className="text-center space-x-5">
+            <ButtonComponent
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={44}
+              type={"submit"}
+            >
+              Save
+            </ButtonComponent>
 
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
-    </Fragment>
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={() => {
+                handleReset();
+                setTimeout(() => {
+                  navigate("/management/service/packages");
+                }, 1000);
+              }}
+            >
+              Cancel
+            </ButtonComponent>
+          </div>
+        </form>
+      )}
+    </Formik>
   );
 };
 

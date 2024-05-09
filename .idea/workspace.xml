@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Updated component styles to use a constant 50px height to improve UI consistency. Components have been refactored to use TableComponent instead of Table from antd, data display and styling has been improved; aligned and styled rendering methods in the HighSchoolData component.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Refactored form elements and added state validation and handling for better user experience and error prevention. Updated form elements for heavy registration style and implement status selection on form.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +148,7 @@
       <workItem from="1715233412764" duration="1276000" />
       <workItem from="1715235678218" duration="5832000" />
       <workItem from="1715248922977" duration="3640000" />
-      <workItem from="1715253061780" duration="965000" />
+      <workItem from="1715253061780" duration="7022000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -280,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715161928415</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="#fix #jsx Refactored form elements and added state validation and handling for better user experience and error prevention. Updated form elements for heavy registration style and implement status selection on form.">
+      <option name="closed" value="true" />
+      <created>1715254143759</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715254143759</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,32 +314,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use Table" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from ant" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling" />
-    <MESSAGE value="- Update component styles to use a consistent height of 50px for improved UI consistency.&#10;- Refactored components to use `TableComponent` instead of `Table` from antd, improved data display and styling; aligned and styled rendering methods in the `HighSchoolData` component.&#10;- Update components to use TableComponent instead of Table from antd and make necessary adjustments to render the data appropriately and improve styling." />
-    <MESSAGE value="#fix #jsx Updated component styles to use a constant 50px height to improve UI consistency. Components have been refactored to use TableComponent instead of Table from antd, data display and styling has been improved; aligned and styled rendering methods in the HighSchoolData component." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated component styles to use a constant 50px height to improve UI consistency. Components have been refactored to use TableComponent instead of Table from antd, data display and styling has been improved; aligned and styled rendering methods in the HighSchoolData component." />
+    <MESSAGE value="- Refactor form elements and add validation&#10;- Update form elements" />
+    <MESSAGE value="- Refactor form elements and add validation&#10;- Update form elements for" />
+    <MESSAGE value="- Refactor form elements and add validation and&#10;- Update form elements for" />
+    <MESSAGE value="- Refactor form elements and add validation and state&#10;- Update form elements for" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling&#10;- Update form elements for" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for&#10;- Update form elements for" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better&#10;- Update form elements for" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user&#10;- Update form elements for" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user&#10;- Update form elements for Enrollment" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user&#10;- Update form elements for Enrollment heavy" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction&#10;- Update form elements for Enrollment heavy" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy styling" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy styling and" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy styling and implement" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error&#10;- Update form elements for Enrollment heavy styling and implement" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention&#10;- Update form elements for Enrollment heavy styling and implement" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in the" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in the form" />
+    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in the form." />
+    <MESSAGE value="#fix #jsx Refactored form elements and added state validation and handling for better user experience and error prevention. Updated form elements for heavy registration style and implement status selection on form." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored form elements and added state validation and handling for better user experience and error prevention. Updated form elements for heavy registration style and implement status selection on form." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
