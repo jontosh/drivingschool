@@ -1643,9 +1643,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Staff code"}
                 placeholder={"Staff code"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"staff_code"}
@@ -1668,7 +1666,9 @@ export const AddStaffModalContent = () => {
                 value={values.first_name}
               >
                 {errors.first_name && (
-                  <FormError className="pl-[245px]">{errors.first_name}</FormError>
+                  <FormError className="pl-[245px]">
+                    {errors.first_name}
+                  </FormError>
                 )}
               </CustomInput>
 
@@ -1680,9 +1680,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Middle name"}
                 placeholder={"Middle name"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 colorBorder={colorsObject.primary}
                 value={values.middle_name}
                 name={"middle_name"}
@@ -1696,9 +1694,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Last name"}
                 placeholder={"Last name"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"last_name"}
@@ -1714,9 +1710,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Address"}
                 placeholder={"Address"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 colorBorder={colorsObject.primary}
                 name={"address"}
                 onChange={handleChange}
@@ -1730,9 +1724,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"City"}
                 placeholder={"City"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"city"}
@@ -1767,9 +1759,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Zip"}
                 placeholder={"Zip"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"zip"}
@@ -1785,16 +1775,16 @@ export const AddStaffModalContent = () => {
                 type={"email"}
                 spanText={"Email"}
                 placeholder={"Email"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"email"}
                 onChange={handleChange}
                 value={values.email}
               >
-                {errors.email && <FormError className="pl-[245px]">{errors.email}</FormError>}
+                {errors.email && (
+                  <FormError className="pl-[245px]">{errors.email}</FormError>
+                )}
               </CustomInput>
 
               <CustomInput
@@ -1804,9 +1794,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Home phone"}
                 placeholder={"Home phone"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"home_phone"}
@@ -1821,9 +1809,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Cell phone"}
                 placeholder={"Cell phone"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"cell_phone"}
@@ -1838,9 +1824,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Emergency Contact Name"}
                 placeholder={"Emergency Contact Name"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"emergency_contact_name"}
@@ -1877,9 +1861,7 @@ export const AddStaffModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Emergency Contact Phone"}
                 placeholder={"Emergency Contact Phone"}
-                spanClassName={
-                  "font-medium w-56 flex-shrink-0 text-right"
-                }
+                spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                 fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"emergency_contact_phone"}
@@ -1962,7 +1944,11 @@ export const AddStaffModalContent = () => {
                 value={values.password}
                 name="password"
               >
-                {errors.password && <FormError className="pl-[265px]">{errors.password}</FormError>}
+                {errors.password && (
+                  <FormError className="pl-[265px]">
+                    {errors.password}
+                  </FormError>
+                )}
               </CustomInput>
 
               <CustomInput
@@ -1978,7 +1964,11 @@ export const AddStaffModalContent = () => {
                 value={values.password}
                 name="password"
               >
-                {errors.password && <FormError className="pl-[265px]">{errors.password}</FormError>}
+                {errors.password && (
+                  <FormError className="pl-[265px]">
+                    {errors.password}
+                  </FormError>
+                )}
               </CustomInput>
 
               <CustomCheckBox className={"w-full flex justify-center"}>
@@ -2033,6 +2023,7 @@ export const AddStaffModalContent = () => {
               defaultHoverColor={colorsObject.main}
               borderRadius={5}
               paddingInline={44}
+              type={"submit"}
             >
               Save
             </ButtonComponent>
