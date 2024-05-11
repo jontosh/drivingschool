@@ -65,7 +65,7 @@ const DashboardFormik = () => (
             
           )}
 
-          <Checkbox.Group>
+          <Checkbox.Group className="pt-5">
             <Checkbox name={"checkbox"}>Active students only</Checkbox>
           </Checkbox.Group>
         </form>
