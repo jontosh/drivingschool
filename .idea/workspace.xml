@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Updated the web name input field and added validation error handling for entering a web name in the form. Refactored form elements, added state checks and handling to improve user experience and prevent errors, updated elements for heavy registration style, and implemented status selection on the form.">
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Updated form elements and switched component styles for better user experience. Reworked form elements and added state checking and handling for better user experience and error prevention; updated heavy registration style elements and implemented status selection in the form.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/file-reader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +151,7 @@
       <workItem from="1715248922977" duration="3640000" />
       <workItem from="1715253061780" duration="7313000" />
       <workItem from="1715405188815" duration="5787000" />
-      <workItem from="1715411069362" duration="58000" />
+      <workItem from="1715411069362" duration="10678000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -295,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715260630098</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="#fix #jsx Updated form elements and switched component styles for better user experience. Reworked form elements and added state checking and handling for better user experience and error prevention; updated heavy registration style elements and implemented status selection in the form.">
+      <option name="closed" value="true" />
+      <created>1715411193435</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1715411193435</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,7 +333,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Update form elements and switch components styles for better user interaction&#10;- Refactored form elements and added validation and state handling for" />
     <MESSAGE value="- Update form elements and switch components styles for better user interaction&#10;- Refactored form elements and added validation and state handling for better" />
     <MESSAGE value="- Update form elements and switch components styles for better user interaction and&#10;- Refactored form elements and added validation and state handling for better" />
     <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience&#10;- Refactored form elements and added validation and state handling for better" />
@@ -350,7 +357,8 @@
     <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the" />
     <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the form" />
     <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the form." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the form." />
+    <MESSAGE value="#fix #jsx Updated form elements and switched component styles for better user experience. Reworked form elements and added state checking and handling for better user experience and error prevention; updated heavy registration style elements and implemented status selection in the form." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated form elements and switched component styles for better user experience. Reworked form elements and added state checking and handling for better user experience and error prevention; updated heavy registration style elements and implemented status selection in the form." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
