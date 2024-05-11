@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from collections import defaultdict
 from rest_framework import viewsets
 from django.db.models import Sum, Count
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import render
 from .models import  TimeRange,Instructor,Student,TimeSlot,WeekRange,TimeOff,DateRange,Enrollment,\
     Appointment,FileCategory,HowDidYouHearUs,UserType,Files,Bill
 from .serializer import TimeRangeSerializer ,InstructorSerializer, StudentSerializer, TimeSlotSerializer, \
@@ -152,3 +152,8 @@ class StudentHomeAPI(APIView):
             i["appointments"] = appointments.data
 
         return Response(enrolment.data)
+
+
+
+def landing_page(request):
+    return render(request, 'index.html')
