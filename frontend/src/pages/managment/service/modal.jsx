@@ -1553,7 +1553,7 @@ export const AddStaffModalContent = () => {
           <div className={"grid grid-cols-2 gap-5 px-5"}>
             <div className={"space-y-5"}>
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                <span className="text-base flex-shrink-0 font-medium w-56 text-right">
                   Status
                 </span>
 
@@ -1574,7 +1574,7 @@ export const AddStaffModalContent = () => {
               </label>
 
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                <span className="text-base flex-shrink-0 font-medium w-56 text-right">
                   Staff type
                 </span>
 
@@ -1595,7 +1595,7 @@ export const AddStaffModalContent = () => {
               </label>
 
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                <span className="text-base flex-shrink-0 font-medium w-56 text-right">
                   Location
                 </span>
 
@@ -1616,7 +1616,7 @@ export const AddStaffModalContent = () => {
               </label>
 
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="text-sm font-medium w-56 flex-shrink-0 text-right">
+                <span className="text-base font-medium w-56 flex-shrink-0 text-right">
                   Vehicle assigned
                 </span>
 
@@ -1644,8 +1644,9 @@ export const AddStaffModalContent = () => {
                 spanText={"Staff code"}
                 placeholder={"Staff code"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"staff_code"}
                 onChange={handleChange}
@@ -1656,17 +1657,18 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex flex-row-reverse gap-9 items-center w-full h-[50px]"
                 }
+                fontSize="text-base"
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"First name"}
                 placeholder={"First name"}
-                spanClassName={`text-sm font-medium w-52 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`font-medium w-52 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 colorBorder={colorsObject.primary}
                 name={"first_name"}
                 onChange={handleChange}
                 value={values.first_name}
               >
                 {errors.first_name && (
-                  <FormError>{errors.first_name}</FormError>
+                  <FormError className="pl-[245px]">{errors.first_name}</FormError>
                 )}
               </CustomInput>
 
@@ -1674,11 +1676,12 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
                 }
+                fontSize="text-base"
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Middle name"}
                 placeholder={"Middle name"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
                 colorBorder={colorsObject.primary}
                 value={values.middle_name}
@@ -1694,8 +1697,9 @@ export const AddStaffModalContent = () => {
                 spanText={"Last name"}
                 placeholder={"Last name"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"last_name"}
                 value={values.last_name}
@@ -1706,11 +1710,12 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
                 }
+                fontSize="text-base"
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Address"}
                 placeholder={"Address"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
                 colorBorder={colorsObject.primary}
                 name={"address"}
@@ -1726,8 +1731,9 @@ export const AddStaffModalContent = () => {
                 spanText={"City"}
                 placeholder={"City"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"city"}
                 onChange={handleChange}
@@ -1735,7 +1741,7 @@ export const AddStaffModalContent = () => {
               />
 
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                <span className="text-base flex-shrink-0 font-medium w-56 text-right">
                   State
                 </span>
                 <CustomSelect
@@ -1762,8 +1768,9 @@ export const AddStaffModalContent = () => {
                 spanText={"Zip"}
                 placeholder={"Zip"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"zip"}
                 onChange={handleChange}
@@ -1779,14 +1786,15 @@ export const AddStaffModalContent = () => {
                 spanText={"Email"}
                 placeholder={"Email"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"email"}
                 onChange={handleChange}
                 value={values.email}
               >
-                {errors.email && <FormError>{errors.email}</FormError>}
+                {errors.email && <FormError className="pl-[245px]">{errors.email}</FormError>}
               </CustomInput>
 
               <CustomInput
@@ -1797,8 +1805,9 @@ export const AddStaffModalContent = () => {
                 spanText={"Home phone"}
                 placeholder={"Home phone"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"home_phone"}
                 onChange={handleChange}
@@ -1813,8 +1822,9 @@ export const AddStaffModalContent = () => {
                 spanText={"Cell phone"}
                 placeholder={"Cell phone"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"cell_phone"}
                 value={values.cell_phone}
@@ -1829,8 +1839,9 @@ export const AddStaffModalContent = () => {
                 spanText={"Emergency Contact Name"}
                 placeholder={"Emergency Contact Name"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"emergency_contact_name"}
                 onChange={handleChange}
@@ -1838,7 +1849,7 @@ export const AddStaffModalContent = () => {
               />
 
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                <span className="text-base flex-shrink-0 font-medium w-56 text-right">
                   Emergency Contact Relation
                 </span>
                 <CustomSelect
@@ -1867,8 +1878,9 @@ export const AddStaffModalContent = () => {
                 spanText={"Emergency Contact Phone"}
                 placeholder={"Emergency Contact Phone"}
                 spanClassName={
-                  "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  "font-medium w-56 flex-shrink-0 text-right"
                 }
+                fontSize="text-base"
                 colorBorder={colorsObject.primary}
                 name={"emergency_contact_phone"}
                 value={values.emergency_contact_phone}
@@ -1877,7 +1889,7 @@ export const AddStaffModalContent = () => {
             </div>
             <div className={"space-y-5"}>
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="w-60 font-medium text-end flex-shrink-0">
+                <span className="w-60 text-base font-medium text-end flex-shrink-0">
                   Emergency Contact Relation
                 </span>
                 <DatePicker
@@ -1893,6 +1905,7 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                 }
+                fontSize="text-base"
                 spanText={"Instructor Permit Number"}
                 spanClassName={`w-56 font-medium text-end flex-shrink-0`}
                 name={"instructor_permit_number"}
@@ -1901,7 +1914,7 @@ export const AddStaffModalContent = () => {
               />
 
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="w-60 font-medium text-end flex-shrink-0">
+                <span className="w-60 text-base font-medium text-end flex-shrink-0">
                   In Car Permit Issued Date
                 </span>
                 <DatePicker
@@ -1912,7 +1925,7 @@ export const AddStaffModalContent = () => {
               </label>
 
               <label className="inline-flex gap-5 items-center w-full">
-                <span className="w-60 font-medium text-end flex-shrink-0">
+                <span className="w-60 text-base font-medium text-end flex-shrink-0">
                   Permit Expiration Date
                 </span>
                 <DatePicker
@@ -1930,6 +1943,7 @@ export const AddStaffModalContent = () => {
                 }
                 spanText={"User name"}
                 spanClassName={`w-56 font-medium text-end flex-shrink-0`}
+                fontSize="text-base"
                 name={"user_name"}
                 value={values.user_name}
                 onChange={handleChange}
@@ -1941,13 +1955,14 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                 }
+                fontSize="text-base"
                 spanText={"Password"}
                 spanClassName={`w-56 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]} `}
                 onChange={handleChange}
                 value={values.password}
                 name="password"
               >
-                {errors.password && <FormError>{errors.password}</FormError>}
+                {errors.password && <FormError className="pl-[265px]">{errors.password}</FormError>}
               </CustomInput>
 
               <CustomInput
@@ -1956,17 +1971,18 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                 }
+                fontSize="text-base"
                 spanText={"Re Enter Password"}
                 spanClassName={`w-56 text-end font-medium flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]} `}
                 onChange={handleChange}
                 value={values.password}
                 name="password"
               >
-                {errors.password && <FormError>{errors.password}</FormError>}
+                {errors.password && <FormError className="pl-[265px]">{errors.password}</FormError>}
               </CustomInput>
 
               <CustomCheckBox className={"w-full flex justify-center"}>
-                <span className={`font-medium text-sm`}>
+                <span className={`font-medium text-base`}>
                   Assign Appointment Color
                 </span>
               </CustomCheckBox>
@@ -1977,6 +1993,7 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                 }
+                fontSize="text-base"
                 spanText={"Appointment Color"}
                 spanClassName={`w-56 text-end font-medium flex-shrink-0`}
                 name={"appointment_color"}
@@ -1990,6 +2007,7 @@ export const AddStaffModalContent = () => {
                 classNames={
                   "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                 }
+                fontSize="text-base"
                 spanText={"Zoom PMI"}
                 spanClassName={`w-56 text-end font-medium flex-shrink-0`}
                 name={"zoom_pmi"}

@@ -74,7 +74,6 @@ const Staff = () => {
                   defaultBg={colorsObject.success}
                   defaultHoverBg={colorsObject.successHover}
                   paddingInline={26}
-                  
                   borderRadius={5}
                   className={"inline-flex items-center"}
                   href={"/modals/staff/add-staff"}

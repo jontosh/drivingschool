@@ -86,7 +86,6 @@ export const StaffModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            // 
             borderRadius={5}
             style={{ width: 128 }}
           >
