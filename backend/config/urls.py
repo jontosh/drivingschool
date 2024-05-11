@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .router import Router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(f'servises/', include("servises.urls")),
-    path(f'location/', include("location.urls")),
-    path(f'configuration/', include("configuration.urls")),
-    path(f'interaction/', include("interaction.urls")),
-    path(f'web_users/', include("Users.urls")),
+    path(f'{Router["services"]["base"]}', include("servises.urls")),
+    path(f'{Router["location"]["base"]}', include("location.urls")),
+    path(f'{Router["configurations"]["base"]}', include("configuration.urls")),
+    path(f'{Router["interaction"]["base"]}', include("interaction.urls")),
+    path(f'{Router["users"]["base"]}', include("Users.urls")),
     #MADE FOR STATISTICS
-    path(f'statistics/', include("interaction.statistics")),
+    path(f'{Router["statistics"]["base"]}', include("interaction.statistics")),
 
 ]

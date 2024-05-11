@@ -49,3 +49,5 @@ servises/__pycache__/
 /backend/abstracts/migrations/
 /backend/interaction/migrations/
 /backend/mainadmin/migrations/
+/package.json
+/package-lock.json
