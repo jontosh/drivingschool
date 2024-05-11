@@ -4,6 +4,7 @@ import {
   CustomRadio,
   CustomSelect,
   CustomTransfer,
+  SwitchCustom,
 } from "@/components/form/index.jsx";
 import Title, { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -1199,166 +1200,250 @@ export const AddServiceModalContent = () => {
 export const FileCategoryModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [Status, setStatus] = useState("");
+  const [DisplayStudentPortal, setDisplayStudentPortal] = useState(true);
+  const [DisallowStudentPortal, setDisallowStudentPortal] = useState(false);
+  const [UploadedStudentAccount, setUploadedStudentAccount] = useState(false);
+  const [InstructorPortal, setInstructorPortal] = useState(false);
+
+  // func
+  const handleSubmit = (values) => {
+    console.log({
+      ...values,
+      status: Status,
+      display_student_portal: DisplayStudentPortal,
+      disallow_student_portal: DisallowStudentPortal,
+      uploaded_student_account: UploadedStudentAccount,
+      instructor_portal: InstructorPortal,
+    });
+  };
+  const handleStatus = (values) => setStatus(values);
+  const handleDisplayStudentPortal = (e) =>
+    setDisplayStudentPortal(e.target.checked);
+  const handleDisallowStudentPortal = (e) =>
+    setDisallowStudentPortal(e.target.checked);
+  const handleUploadedStudentAccount = (e) =>
+    setUploadedStudentAccount(e.target.checked);
+  const handleInstructorPortal = (e) => setInstructorPortal(e.target.checked);
 
   return (
-    <form className="flex gap-5 flex-col px-5">
-      <CustomInput
-        className={"border-indigo-700 border w-60"}
-        classNames={
-          "inline-flex justify-center h-[50px] items-center flex-row-reverse gap-5"
-        }
-        spanText={"Category name"}
-        spanClassName={"font-semibold flex-shrink-0"}
-        fontSize={"text-base"}
-        placeholder={"Category name"}
-      />
-
-      <label className={"inline-flex justify-center items-center gap-5"}>
-        <span className={"font-semibold text-end w-32 flex-shrink-0 text-base"}>
-          File status
-        </span>
-
-        <div className={"w-60"}>
-          <CustomSelect
-            placeholder={"Select"}
-            style={{ width: "100%" }}
-            colorBorder={colorsObject.primary}
-            className={"h-[50px]"}
-            options={[
-              {
-                value: "active",
-                label: "active",
-              },
-            ]}
-          />
-        </div>
-      </label>
-
-      <label className={"inline-flex justify-center items-center gap-5"}>
-        <span className={"font-semibold text-end w-32 flex-shrink-0 text-base"}>
-          Packages:
-        </span>
-
-        <CustomTransfer
-          dataSource={mockData}
-          titles={["Source", "Target"]}
-          colorBorder={colorsObject.primary}
-          colorBgContainer={"transparent"}
-          headerHeight={30}
-          listHeight={200}
-        />
-      </label>
-
-      <label className={"inline-flex justify-center items-center gap-5"}>
-        <span className={"font-semibold text-end w-32 flex-shrink-0 text-base"}>
-          Signature link:
-        </span>
-
-        <textarea
-          className={
-            "border w-[451px] outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
-          }
-          placeholder={"text"}
-        ></textarea>
-      </label>
-
-      <label className={"inline-flex justify-center items-center gap-5"}>
-        <span className={"font-semibold text-end w-32 flex-shrink-0 text-base"}>
-          Note:
-        </span>
-
-        <textarea
-          className={
-            "border w-[451px] outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
-          }
-          placeholder={"text"}
-        ></textarea>
-      </label>
-
-      <div className={"grid grid-cols-2 gap-y-5 pt-8"}>
-        <label className={"inline-flex justify-center items-center gap-8"}>
-          <span
-            className={"font-semibold text-end w-52 flex-shrink-0 text-base"}
+    <Formik
+      initialValues={{
+        name: "",
+        signature_link: "",
+        note: "",
+      }}
+      onSubmit={handleSubmit}
+    >
+      {({ handleReset, errors, handleChange, values, handleSubmit }) => (
+        <form className="flex gap-5 flex-col px-5" onSubmit={handleSubmit}>
+          <CustomInput
+            className={"border-indigo-700 border w-[451px]"}
+            classNames={
+              "inline-flex justify-center h-[50px] items-center flex-row-reverse gap-5"
+            }
+            spanText={"Category name"}
+            spanClassName={"font-semibold flex-shrink-0"}
+            fontSize={"text-base"}
+            placeholder={"Category name"}
+            name={"name"}
+            onChange={handleChange}
+            value={values.name}
           >
-            Display on Student Portal:
-          </span>
-          <Switch
-            style={{
-              width: 50,
-            }}
-          />
-        </label>
+            {errors.name && (
+              <FormError className={"pl-48"}>{errors.name}</FormError>
+            )}
+          </CustomInput>
 
-        <label className={"inline-flex justify-center items-center gap-8"}>
-          <span
-            className={"font-semibold text-end w-52 flex-shrink-0 text-base"}
-          >
-            Must Be Uploaded to Student Account:
-          </span>
-          <Switch
-            style={{
-              width: 50,
-            }}
-          />
-        </label>
+          <label className={"inline-flex justify-center items-center gap-5"}>
+            <span
+              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
+            >
+              File status
+            </span>
 
-        <label className={"inline-flex justify-center items-center gap-8"}>
-          <span
-            className={"font-semibold text-end w-52 flex-shrink-0 text-base"}
-          >
-            Disallow files associated with category from displaying on Student
-            Portal:
-          </span>
-          <Switch
-            style={{
-              width: 50,
-            }}
-          />
-        </label>
+            <div className={"w-[451px]"}>
+              <CustomSelect
+                placeholder={"Select"}
+                style={{ width: "100%" }}
+                colorBorder={colorsObject.primary}
+                className={"h-[50px]"}
+                options={[
+                  {
+                    value: "active",
+                    label: "active",
+                  },
+                ]}
+                onChange={handleStatus}
+                value={Status ? Status : undefined}
+              />
+            </div>
+          </label>
 
-        <label className={"inline-flex justify-center items-center gap-8"}>
-          <span
-            className={"font-semibold text-end w-52 flex-shrink-0 text-base"}
-          >
-            Disallow files associated with this category from displaying on
-            Instructor/Teacher Portal:
-          </span>
-          <Switch
-            style={{
-              width: 50,
-            }}
-          />
-        </label>
-      </div>
+          <label className={"inline-flex justify-center items-center gap-5"}>
+            <span
+              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
+            >
+              Packages:
+            </span>
 
-      <div className="text-center space-x-5">
-        <ButtonComponent
-          defaultBg={colorsObject.success}
-          defaultHoverBg={colorsObject.successHover}
-          defaultColor={colorsObject.main}
-          defaultHoverColor={colorsObject.main}
-          borderRadius={5}
-          paddingInline={44}
-        >
-          Save
-        </ButtonComponent>
+            <CustomTransfer
+              dataSource={mockData}
+              titles={["Source", "Target"]}
+              colorBorder={colorsObject.primary}
+              colorBgContainer={"transparent"}
+              headerHeight={30}
+              listHeight={200}
+            />
+          </label>
 
-        <ButtonComponent
-          defaultBg={colorsObject.main}
-          defaultHoverBg={colorsObject.main}
-          defaultBorderColor={colorsObject.primary}
-          defaultHoverBorderColor={colorsObject.primary}
-          defaultColor={colorsObject.primary}
-          defaultHoverColor={colorsObject.primary}
-          borderRadius={5}
-          paddingInline={44}
-          onClick={handleCancel}
-        >
-          Cancel
-        </ButtonComponent>
-      </div>
-    </form>
+          <label className={"inline-flex justify-center items-center gap-5"}>
+            <span
+              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
+            >
+              Signature link:
+            </span>
+
+            <div className={"w-[451px]"}>
+              <textarea
+                className={
+                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
+                }
+                name={"signature_link"}
+                placeholder={"text"}
+                onChange={handleChange}
+                value={values.signature_link}
+              ></textarea>
+            </div>
+          </label>
+
+          <label className={"inline-flex justify-center items-center gap-5"}>
+            <span
+              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
+            >
+              Note:
+            </span>
+
+            <div className={"w-[451px]"}>
+              <textarea
+                className={
+                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
+                }
+                name={"note"}
+                placeholder={"text"}
+                onChange={handleChange}
+                value={values.note}
+              ></textarea>
+            </div>
+          </label>
+
+          <div className={"grid grid-cols-2 gap-5 pt-8"}>
+            <div className="space-y-5">
+              <label
+                className={"inline-flex w-full justify-end items-center gap-6"}
+              >
+                <span
+                  className={"font-semibold text-end flex-shrink-0 text-base"}
+                >
+                  Display on Student Portal:
+                </span>
+                <SwitchCustom
+                  checked={DisplayStudentPortal}
+                  onChange={handleDisplayStudentPortal}
+                />
+              </label>
+
+              <label
+                className={"inline-flex w-full justify-end items-center gap-6"}
+              >
+                <span
+                  className={
+                    "font-semibold text-end w-72 flex-shrink-0 text-base"
+                  }
+                >
+                  Disallow files associated with category from displaying on
+                  Student Portal:
+                </span>
+                <SwitchCustom
+                  checked={DisallowStudentPortal}
+                  onChange={handleDisallowStudentPortal}
+                />
+              </label>
+            </div>
+
+            <div className="space-y-5">
+              <label
+                className={
+                  "inline-flex w-full justify-start items-center gap-6"
+                }
+              >
+                <span
+                  className={"font-semibold text-end flex-shrink-0 text-base"}
+                >
+                  Must Be Uploaded to Student Account:
+                </span>
+                <SwitchCustom
+                  checked={UploadedStudentAccount}
+                  onChange={handleUploadedStudentAccount}
+                />
+              </label>
+
+              <label
+                className={
+                  "inline-flex w-full justify-start items-center gap-6"
+                }
+              >
+                <span
+                  className={
+                    "font-semibold text-end w-80 flex-shrink-0 text-base"
+                  }
+                >
+                  Disallow files associated with this category from displaying
+                  on Instructor/Teacher Portal:
+                </span>
+                <SwitchCustom
+                  checked={InstructorPortal}
+                  onChange={handleInstructorPortal}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="text-center space-x-5">
+            <ButtonComponent
+              type={"submit"}
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={44}
+            >
+              Save
+            </ButtonComponent>
+
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={() => {
+                handleReset();
+                setTimeout(() => {
+                  navigate("/management/file/");
+                }, 1000);
+              }}
+            >
+              Cancel
+            </ButtonComponent>
+          </div>
+        </form>
+      )}
+    </Formik>
   );
 };
 
