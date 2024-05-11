@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Refactored form elements and added state validation and handling for better user experience and error prevention. Updated form elements for heavy registration style and implement status selection on form.">
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Updated the web name input field and added validation error handling for entering a web name in the form. Refactored form elements, added state checks and handling to improve user experience and prevent errors, updated elements for heavy registration style, and implemented status selection on the form.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +149,9 @@
       <workItem from="1715233412764" duration="1276000" />
       <workItem from="1715235678218" duration="5832000" />
       <workItem from="1715248922977" duration="3640000" />
-      <workItem from="1715253061780" duration="7022000" />
+      <workItem from="1715253061780" duration="7313000" />
+      <workItem from="1715405188815" duration="5787000" />
+      <workItem from="1715411069362" duration="58000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -284,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715254143759</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="#fix #jsx Updated the web name input field and added validation error handling for entering a web name in the form. Refactored form elements, added state checks and handling to improve user experience and prevent errors, updated elements for heavy registration style, and implemented status selection on the form.">
+      <option name="closed" value="true" />
+      <created>1715260630098</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1715260630098</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,32 +325,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor form elements and add validation&#10;- Update form elements" />
-    <MESSAGE value="- Refactor form elements and add validation&#10;- Update form elements for" />
-    <MESSAGE value="- Refactor form elements and add validation and&#10;- Update form elements for" />
-    <MESSAGE value="- Refactor form elements and add validation and state&#10;- Update form elements for" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling&#10;- Update form elements for" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for&#10;- Update form elements for" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better&#10;- Update form elements for" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user&#10;- Update form elements for" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user&#10;- Update form elements for Enrollment" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user&#10;- Update form elements for Enrollment heavy" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction&#10;- Update form elements for Enrollment heavy" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy styling" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy styling and" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and&#10;- Update form elements for Enrollment heavy styling and implement" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error&#10;- Update form elements for Enrollment heavy styling and implement" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention&#10;- Update form elements for Enrollment heavy styling and implement" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in the" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in the form" />
-    <MESSAGE value="- Refactor form elements and add validation and state handling for better user interaction and error prevention.&#10;- Update form elements for Enrollment heavy styling and implement status selection in the form." />
-    <MESSAGE value="#fix #jsx Refactored form elements and added state validation and handling for better user experience and error prevention. Updated form elements for heavy registration style and implement status selection on form." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored form elements and added state validation and handling for better user experience and error prevention. Updated form elements for heavy registration style and implement status selection on form." />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction&#10;- Refactored form elements and added validation and state handling for" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction&#10;- Refactored form elements and added validation and state handling for better" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and&#10;- Refactored form elements and added validation and state handling for better" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience&#10;- Refactored form elements and added validation and state handling for better" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention;" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the form" />
+    <MESSAGE value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the form." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Update form elements and switch components styles for better user interaction and experience.&#10;- Refactored form elements and added validation and state handling for better user interaction and error prevention; updated elements for heavy registration style and implemented status selection on the form." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
