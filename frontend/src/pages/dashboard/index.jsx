@@ -18,6 +18,7 @@ import DollarIcon from "../../assets/icons/Dollar.svg";
 import Studying from "../../assets/icons/User.svg";
 import Register from "../../assets/icons/Profile.svg";
 import TeacherAvatar from "../../assets/user/teacher.jpeg";
+import { FormError } from "@/modules/errors.jsx";
 
 const DashboardFormik = () => (
   <Formik
@@ -41,7 +42,7 @@ const DashboardFormik = () => (
           className={`${DashboardStyle["Dashboard__form"]}`}
           onSubmit={handleSubmit}
         >
-          <label className={`relative w-full mb-5`}>
+          <label className={`relative w-full`}>
             <input
               value={values.search}
               type={"text"}
@@ -60,7 +61,8 @@ const DashboardFormik = () => (
           </label>
 
           {errors.search && touched.search && (
-            <div className={`text-red-600 mb-5`}>{errors.search}</div>
+            <FormError className="pt-2.5 pb-5">{errors.search}</FormError>
+            
           )}
 
           <Checkbox.Group>
