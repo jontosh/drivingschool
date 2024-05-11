@@ -129,7 +129,7 @@ export const ProductModalContent = () => {
               onChange={handleChange}
             >
               {errors.code && (
-                <FormError className={"pl-[50%]"}>{errors.code}</FormError>
+                <FormError className={"pl-[48%]"}>{errors.code}</FormError>
               )}
             </CustomInput>
 
@@ -344,7 +344,7 @@ export const FeesModalContent = () => {
                   onChange={handleStatus}
                   value={Status ? Status : undefined}
                 />
-                {Selections && <FormError>Select Status</FormError>}
+                {Selections && <FormError className="pl-[46%]">Select Status</FormError>}
               </div>
             </label>
 
@@ -363,7 +363,7 @@ export const FeesModalContent = () => {
               onChange={handleChange}
             >
               {errors.free_amount && (
-                <FormError className={"pl-[50%]"}>
+                <FormError className={"pl-[46%]"}>
                   {errors.free_amount}
                 </FormError>
               )}
@@ -511,7 +511,7 @@ export const DiscountModalContent = () => {
                   options={StatusSelect}
                   colorBorder={colorsObject.primary}
                 />
-                {Selections && <FormError>Select Status</FormError>}
+                {Selections && <FormError className="pl-[48%]">Select Status</FormError>}
               </div>
             </label>
 
@@ -530,7 +530,7 @@ export const DiscountModalContent = () => {
               name={"discount_code"}
             >
               {errors.discount_code && (
-                <FormError className={"pl-[50%]"}>
+                <FormError className={"pl-[48%]"}>
                   {errors.discount_code}
                 </FormError>
               )}
@@ -551,7 +551,7 @@ export const DiscountModalContent = () => {
               onChange={handleChange}
             >
               {errors.free_amount && (
-                <FormError className={"pl-[50%]"}>
+                <FormError className={"pl-[48%]"}>
                   {errors.free_amount}
                 </FormError>
               )}
@@ -715,7 +715,7 @@ export const MiscellaneousModalContent = () => {
             onChange={handleChange}
           >
             {errors.name && (
-              <FormError className={"pl-[50%]"}>{errors.name}</FormError>
+              <FormError className={"pl-[51%]"}>{errors.name}</FormError>
             )}
           </CustomInput>
 
@@ -736,7 +736,7 @@ export const MiscellaneousModalContent = () => {
                 value={Status ? Status : undefined}
                 onChange={handleStatus}
               />
-              {Selections && <FormError>Select Status</FormError>}
+              {Selections && <FormError className={"pl-[51%]"}>Select Status</FormError>}
             </div>
           </label>
 
@@ -757,7 +757,7 @@ export const MiscellaneousModalContent = () => {
                 value={SubType ? SubType : undefined}
                 onChange={handleSubType}
               />
-              {Selections && <FormError>Select Sub Type</FormError>}
+              {Selections && <FormError className={"pl-[51%]"}>Select Sub Type</FormError>}
             </div>
           </label>
 
@@ -895,7 +895,7 @@ export const AddServiceModalContent = () => {
                 onChange={handleChange}
               >
                 {errors.name && (
-                  <FormError className={"pl-48"}>{errors.name}</FormError>
+                  <FormError className={"pl-[170px]"}>{errors.name}</FormError>
                 )}
               </CustomInput>
               <CustomInput
@@ -911,7 +911,7 @@ export const AddServiceModalContent = () => {
                 onChange={handleChange}
               >
                 {errors.code && (
-                  <FormError className={"pl-48"}>{errors.code}</FormError>
+                  <FormError className={"pl-[170px]"}>{errors.code}</FormError>
                 )}
               </CustomInput>
               <label
@@ -933,7 +933,7 @@ export const AddServiceModalContent = () => {
                     value={Status ? Status : undefined}
                     onChange={handleStatus}
                   />
-                  {Selections && <FormError>Select Status</FormError>}
+                  {Selections && <FormError className={"pl-[170px]"}>Select Status</FormError>}
                 </div>
               </label>
 
@@ -986,7 +986,7 @@ export const AddServiceModalContent = () => {
                 onChange={handleChange}
               >
                 {errors.price && (
-                  <FormError className={"pl-48"}>{errors.price}</FormError>
+                  <FormError className={"pl-[170px]"}>{errors.price}</FormError>
                 )}
               </CustomInput>
 
@@ -1003,7 +1003,7 @@ export const AddServiceModalContent = () => {
                 onChange={handleChange}
               >
                 {errors.web_name && (
-                  <FormError className={"pl-48"}>{errors.web_name}</FormError>
+                  <FormError className={"pl-[170px]"}>{errors.web_name}</FormError>
                 )}
               </CustomInput>
               <label
@@ -1150,7 +1150,7 @@ export const AddServiceModalContent = () => {
                     ]}
                   />
                   {Selections && (
-                    <FormError>Select Associate Contract From OE</FormError>
+                    <FormError className={"pl-[170px]"}>Select Associate Contract From OE</FormError>
                   )}
                 </div>
               </label>
