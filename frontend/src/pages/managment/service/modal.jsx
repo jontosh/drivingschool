@@ -2076,14 +2076,42 @@ export const LocationModalContent = () => {
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
   const [PickupLocation, setPickupLocation] = useState("");
-  const [DropoffLocation, setDropoffLocation] = useState("");
+  const [DropOffLocation, setDropOffLocation] = useState("");
   const [NotesValue, setNotesValue] = useState("");
+  const [Selections, setSelections] = useState(false);
   // dep
+
+  const selects = [Status, PickupLocation, DropOffLocation];
+
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status]);
 
   // func
   const handleSubmit = (values) => {
-    console.log({ ...values });
+    setSelections(stateSelects);
+
+    if (!stateSelects) {
+      console.log({
+        ...values,
+        status: Status,
+        pick_up_location: PickupLocation,
+        drop_off_location: DropOffLocation,
+        note: NotesValue,
+      });
+    }
   };
+  const handleStatus = (value) => setStatus(value);
+  const handlePickupLocation = (value) => setPickupLocation(value);
+  const handleDropOffLocation = (value) => setDropOffLocation(value);
 
   return (
     <Formik
@@ -2100,8 +2128,6 @@ export const LocationModalContent = () => {
         knowledge_test: "",
         phone_main: "",
         fax: "",
-        other: "",
-        note: "",
         appointment_color: "",
         color_picker: "",
         scheduling: "",
@@ -2136,28 +2162,40 @@ export const LocationModalContent = () => {
                 placeholder={"Location Code"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 colorBorder={colorsObject.primary}
-              />
-
+                name={"name"}
+                value={values.name}
+                onChange={handleChange}
+              >
+                {errors.name && (
+                  <FormError className="pl-[245px]">{errors.name}</FormError>
+                )}
+              </CustomInput>
               <label className="inline-flex gap-8 items-center w-full">
                 <span
                   className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Location Status
                 </span>
-                <CustomSelect
-                  placeholder={"Location Status *"}
-                  style={{ width: "100%" }}
-                  colorBorder={colorsObject.primary}
-                  className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={[
-                    {
-                      value: "Number",
-                      label: "Number",
-                    },
-                  ]}
-                />
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Location Status"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "Number",
+                        label: "Number",
+                      },
+                    ]}
+                    onChange={handleStatus}
+                    value={Status ? Status : undefined}
+                  />
+                  {Selections && (
+                    <FormError>Location Status is not selected</FormError>
+                  )}
+                </div>
               </label>
-
               <label className="inline-flex gap-8 items-center w-full">
                 <span
                   className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
@@ -2166,74 +2204,100 @@ export const LocationModalContent = () => {
                 </span>
 
                 <div className="space-y-4">
-                  <CustomRadio
-                    className={"space-x-2.5 "}
-                    classNames={"inline-flex items-center gap-2.5"}
-                    customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"type"}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                      Main office only
-                    </span>
-                  </CustomRadio>
+                  <div className="space-y-4">
+                    <CustomRadio
+                      className={"space-x-2.5 "}
+                      classNames={"inline-flex items-center gap-2.5"}
+                      customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      name={"type"}
+                      onChange={handleChange}
+                      value={`Main office only`}
+                    >
+                      <span
+                        className={"text-sm flex-shrink-0 font-medium w-32"}
+                      >
+                        Main office only
+                      </span>
+                    </CustomRadio>
 
-                  <CustomRadio
-                    className={"space-x-2.5 "}
-                    classNames={"inline-flex items-center gap-2.5"}
-                    customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"type"}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                      Main office with classroom
-                    </span>
-                  </CustomRadio>
+                    <CustomRadio
+                      className={"space-x-2.5 "}
+                      classNames={"inline-flex items-center gap-2.5"}
+                      customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      name={"type"}
+                      onChange={handleChange}
+                      value={`Main office with classroom`}
+                    >
+                      <span
+                        className={"text-sm flex-shrink-0 font-medium w-32"}
+                      >
+                        Main office with classroom
+                      </span>
+                    </CustomRadio>
 
-                  <CustomRadio
-                    className={"space-x-2.5 "}
-                    classNames={"inline-flex items-center gap-2.5"}
-                    customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"type"}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                      Class Room
-                    </span>
-                  </CustomRadio>
+                    <CustomRadio
+                      className={"space-x-2.5 "}
+                      classNames={"inline-flex items-center gap-2.5"}
+                      customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      name={"type"}
+                      onChange={handleChange}
+                      value={`Class Room`}
+                    >
+                      <span
+                        className={"text-sm flex-shrink-0 font-medium w-32"}
+                      >
+                        Class Room
+                      </span>
+                    </CustomRadio>
 
-                  <CustomRadio
-                    className={"space-x-2.5 "}
-                    classNames={"inline-flex items-center gap-2.5"}
-                    customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"type"}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                      Other (Satellite Office Only)
-                    </span>
-                  </CustomRadio>
+                    <CustomRadio
+                      className={"space-x-2.5 "}
+                      classNames={"inline-flex items-center gap-2.5"}
+                      customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      name={"type"}
+                      onChange={handleChange}
+                      value={`Other (Satellite Office Only)`}
+                    >
+                      <span
+                        className={"text-sm flex-shrink-0 font-medium w-32"}
+                      >
+                        Other (Satellite Office Only)
+                      </span>
+                    </CustomRadio>
 
-                  <CustomRadio
-                    className={"space-x-2.5 "}
-                    classNames={"inline-flex items-center gap-2.5"}
-                    customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"type"}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                      Other Classroom (Satellite Office with Classroom)
-                    </span>
-                  </CustomRadio>
+                    <CustomRadio
+                      className={"space-x-2.5 "}
+                      classNames={"inline-flex items-center gap-2.5"}
+                      customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      name={"type"}
+                      onChange={handleChange}
+                      value={`Other Classroom (Satellite Office with Classroom)`}
+                    >
+                      <span
+                        className={"text-sm flex-shrink-0 font-medium w-32"}
+                      >
+                        Other Classroom (Satellite Office with Classroom)
+                      </span>
+                    </CustomRadio>
 
-                  <CustomRadio
-                    className={"space-x-2.5 "}
-                    classNames={"inline-flex items-center gap-2.5"}
-                    customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"type"}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                      Range
-                    </span>
-                  </CustomRadio>
+                    <CustomRadio
+                      className={"space-x-2.5 "}
+                      classNames={"inline-flex items-center gap-2.5"}
+                      customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                      name={"type"}
+                      onChange={handleChange}
+                      value={`Range`}
+                    >
+                      <span
+                        className={"text-sm flex-shrink-0 font-medium w-32"}
+                      >
+                        Range
+                      </span>
+                    </CustomRadio>
+                  </div>
+                  {errors.type && <FormError>Location Type</FormError>}
                 </div>
               </label>
-
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2243,8 +2307,10 @@ export const LocationModalContent = () => {
                 placeholder={"Address"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"address"}
+                onChange={handleChange}
+                value={values.address}
               />
-
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2254,8 +2320,10 @@ export const LocationModalContent = () => {
                 placeholder={"City"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"city"}
+                onChange={handleChange}
+                value={values.city}
               />
-
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2265,8 +2333,10 @@ export const LocationModalContent = () => {
                 placeholder={"State"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"state"}
+                onChange={handleChange}
+                value={values.state}
               />
-
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2276,8 +2346,10 @@ export const LocationModalContent = () => {
                 placeholder={"Zip"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"zip"}
+                onChange={handleChange}
+                value={values.zip}
               />
-
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2287,48 +2359,64 @@ export const LocationModalContent = () => {
                 placeholder={"Location Manager"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"manager"}
+                onChange={handleChange}
+                value={values.manager}
               />
-
               <label className="inline-flex gap-8 items-center w-full">
                 <span
                   className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Pickup location
                 </span>
-                <CustomSelect
-                  placeholder={"Pickup location"}
-                  style={{ width: "100%" }}
-                  colorBorder={colorsObject.primary}
-                  className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={[
-                    {
-                      value: "Number",
-                      label: "Number",
-                    },
-                  ]}
-                />
-              </label>
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Pickup location"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "Number",
+                        label: "Number",
+                      },
+                    ]}
+                    value={PickupLocation ? PickupLocation : undefined}
+                    onChange={handlePickupLocation}
+                  />
 
+                  {Selections && (
+                    <FormError>Pickup location is not selected</FormError>
+                  )}
+                </div>
+              </label>
               <label className="inline-flex gap-8 items-center w-full">
                 <span
                   className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Drop off location
                 </span>
-                <CustomSelect
-                  placeholder={"Drop off location"}
-                  style={{ width: "100%" }}
-                  colorBorder={colorsObject.primary}
-                  className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={[
-                    {
-                      value: "Number",
-                      label: "Number",
-                    },
-                  ]}
-                />
-              </label>
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Drop off location"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "Number",
+                        label: "Number",
+                      },
+                    ]}
+                    value={DropOffLocation ? DropOffLocation : undefined}
+                    onChange={handleDropOffLocation}
+                  />
 
+                  {Selections && (
+                    <FormError>Drop off location is not selected</FormError>
+                  )}
+                </div>
+              </label>
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2338,12 +2426,18 @@ export const LocationModalContent = () => {
                 placeholder={"County"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"country"}
+                onChange={handleChange}
+                value={values.country}
               />
             </div>
             <div className={"space-y-5"}>
               <CustomCheckBox
                 className={"space-x-2.5 w-full justify-center h-[50px]"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                name={"road_test"}
+                value={"Road Test"}
+                onChange={handleChange}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
                   Road Test
@@ -2352,6 +2446,9 @@ export const LocationModalContent = () => {
               <CustomCheckBox
                 className={"space-x-2.5 w-full justify-center"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                name={"knowledge_test"}
+                value={`Knowledge Test`}
+                onChange={handleChange}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
                   Knowledge Test
@@ -2366,6 +2463,9 @@ export const LocationModalContent = () => {
                 placeholder={"Phone Main"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"phone_main"}
+                value={values.phone_main}
+                onChange={handleChange}
               />
               <CustomInput
                 classNames={
@@ -2376,6 +2476,9 @@ export const LocationModalContent = () => {
                 placeholder={"Fax"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"fax"}
+                value={values.fax}
+                onChange={handleChange}
               />
               <label className="inline-flex justify-end gap-8 items-center w-full">
                 <span className="text-right">Area Coverage</span>
@@ -2405,6 +2508,8 @@ export const LocationModalContent = () => {
               <CustomCheckBox
                 className={"space-x-2.5 w-full justify-center pl-8"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                name={"appointment_color"}
+                onChange={handleChange}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
                   Appointment Color
@@ -2423,11 +2528,17 @@ export const LocationModalContent = () => {
                   type="color"
                   placeholder={"#FFFFFF"}
                   colorBorder={colorsObject.primary}
+                  name={"color_picker"}
+                  onChange={handleChange}
+                  value={values.color_picker}
                 />
               </label>
               <CustomCheckBox
                 className={"space-x-2.5 w-full justify-center pl-9"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                onChange={handleChange}
+                value={"Distance based scheduling"}
+                name={"scheduling"}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
                   Distance based scheduling
@@ -2442,6 +2553,9 @@ export const LocationModalContent = () => {
                 placeholder={"Distance Coverage in Miles"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                value={values.distance_coverage}
+                onChange={handleChange}
+                name={"distance_coverage"}
               />
               <CustomInput
                 classNames={
@@ -2452,6 +2566,9 @@ export const LocationModalContent = () => {
                 placeholder={"Provider Location Id"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"provider_location_id"}
+                value={values.provider_location_id}
+                onChange={handleChange}
               />
             </div>
           </div>
