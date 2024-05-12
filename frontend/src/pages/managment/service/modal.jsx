@@ -2151,7 +2151,7 @@ export const LocationModalContent = () => {
     >
       {({ values, errors, handleChange, handleReset, handleSubmit }) => (
         <form className={"space-y-5 px-5"} onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-5 ">
+          <div className="grid grid-cols-2 gap-7">
             <div className={"space-y-5"}>
               <CustomInput
                 classNames={

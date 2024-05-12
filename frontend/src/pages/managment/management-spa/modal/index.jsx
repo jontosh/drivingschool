@@ -266,7 +266,6 @@ export const ModalContent = ({ page }) => {
                 defaultBg={colorsObject.secondary}
                 paddingInline={62}
                 borderRadius={5}
-                // controlHeight={39}
               >
                 Close
               </ButtonComponent>
@@ -276,7 +275,6 @@ export const ModalContent = ({ page }) => {
                 defaultBg={"#24C18F"}
                 paddingInline={47}
                 borderRadius={5}
-                // controlHeight={39}
               >
                 Continue
               </ButtonComponent>
