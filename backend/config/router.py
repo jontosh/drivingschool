@@ -1,45 +1,46 @@
 Router = {
-    "interaction":{
-        "base":"interaction/",
+    "communication":{
+        "base":"communication/",
         "children":{
-            "question":"question/",
-            "question_type":"question_type/",
-            "test":"test/",
-            "answer":"answer/",
             "task":"task/",
             "email_templates":"email_templates/",
             "logs":"logs/",
             "latest_news":"latest_news/",
         }
     },
-    "location":{
-        "base":"location/",
+    "account_management":{
+        "base":"account_management/",
         "children":{
             "schools":"schools/",
             "class":"class/",
             "location":"location/",
             "vehicle":"vehicle/",
             "location_small":"location_small/",
+            "how_did_you_hear_us":"how_did_you_hear_us/"
         }
     },
     "services":{
-        "base":"services/",
+        "base":"account_management/services/",
         "children":{
             "add_on":"add_on/",
             "component":"component/",
             "fee":"fee/",
             "service":"service/",
             "discount":"discount/",
+            "question":"question/",
+            "question_type":"question_type/",
+            "test":"test/",
+            "answer":"answer/",
         }
     },
-    "configurations": {
-        "base": "configurations/",
+    "configuration": {
+        "base": "configuration/",
         "children": {
             "company":"company",
             "zipcode":"zipcode",
             "storage_management":"storage_management",
             "web_content":"web_content",
-            "emergency_data":"emergency_data",
+            "emergency_data": "emergency_data",
             "messages_items":"messages_items",
             "messages":"messages",
             "fields":"fields",
@@ -50,20 +51,13 @@ Router = {
             "expanses":"expanses",
         }
     },
-    "users":{
-        "base":"users/",
+    "student_account":{
+        "base":"student_account/",
         "children":{
-            "time_range":"time_range/",
             "instructor":"instructor/",
             "student":"student/",
-            "time_slot":"time_slot/",
-            "week_range":"week_range/",
-            "timeOff":"timeOff/",
-            "date_range":"date_range/",
             "enrollment":"enrollment/",
-            "appointment":"appointment/",
             "file_category":"file_category/",
-            "how_did_you_hear_us":"how_did_you_hear_us/",
             "user_type":"user_type/",
             "files":"files/",
             "bill":"bill/",
@@ -81,8 +75,19 @@ Router = {
             "expanses":"expanses",
             "bill":"bill",
         }
+    },
+    "scheduling":{
+        "base":"scheduling/",
+        "children":{
+            "time_slot":"time_slot/",
+            "week_range":"week_range/",
+            "timeOff":"timeOff/",
+            "date_range":"date_range/",
+            "appointment":"appointment/",
+            "time_range":"time_range/",
+        }
     }
-    #TODO:       statistics
+
 }
 
 def get_route_url(route_name, child_name=None):

@@ -4,7 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from colorfield.fields import ColorField
-from Users.models import Weekday
+from scheduling.models import Weekday
 from abstracts.models import Extra,Status
 # Create your models here.
 class CompanyInfo(models.Model):

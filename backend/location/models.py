@@ -81,7 +81,7 @@ class Class(Extra):
     status = models.CharField(choices=Status, max_length=40, default="ACTIVE")
     details = models.TextField(blank=True,null=True)
     note = models.TextField(blank=True,null=True)
-    day = models.ManyToManyField("Users.TimeRange",related_name="day_class")
+    day = models.ManyToManyField("scheduling.TimeRange",related_name="day_class")
     teacher = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE,null=True,blank=True)
 
 
@@ -126,3 +126,13 @@ class Vehicle(models.Model):
     initial_mileage = models.IntegerField(blank=True)
     image = models.ImageField(storage="image/vehicles",blank=True)
 
+class HowDidYouHearUs(models.Model):
+    name = models.CharField(max_length=200)
+    STATUS = [
+        ["Active", "Active"],
+        ["Deleted", "Deleted"],
+        ["Pending", "Pending"],
+    ]
+    status = models.CharField(choices=STATUS, max_length=30, default="Pending")
+    def __str__(self):
+        return f"{self.name} \t {self.status}"
