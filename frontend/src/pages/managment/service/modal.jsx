@@ -2079,8 +2079,8 @@ export const LocationModalContent = () => {
   const [DropOffLocation, setDropOffLocation] = useState("");
   const [NotesValue, setNotesValue] = useState("");
   const [Selections, setSelections] = useState(false);
-  // dep
 
+  // dep
   const selects = [Status, PickupLocation, DropOffLocation];
 
   const stateSelects = useMemo(() => {
@@ -2093,7 +2093,7 @@ export const LocationModalContent = () => {
     }
 
     return state;
-  }, [Status]);
+  }, [Status, PickupLocation, DropOffLocation]);
 
   // func
   const handleSubmit = (values) => {
@@ -2495,7 +2495,7 @@ export const LocationModalContent = () => {
                 <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
                   Location note
                 </span>
-                <span className="w-full">
+                <div className="w-full">
                   <MDEditor
                     value={NotesValue}
                     onChange={(value) => setNotesValue(value)}
@@ -2503,7 +2503,7 @@ export const LocationModalContent = () => {
                       rehypePlugins: [[rehypeSanitize]],
                     }}
                   />
-                </span>
+                </div>
               </label>
               <CustomCheckBox
                 className={"space-x-2.5 w-full justify-center pl-8"}
@@ -2586,6 +2586,7 @@ export const LocationModalContent = () => {
             </ButtonComponent>
 
             <ButtonComponent
+              type={"reset"}
               defaultBg={colorsObject.main}
               defaultHoverBg={colorsObject.main}
               defaultBorderColor={colorsObject.primary}
@@ -2613,155 +2614,269 @@ export const LocationModalContent = () => {
 export const AddSchoolModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [NotesValue, setNotesValue] = useState("");
+  const [Status, setStatus] = useState("");
+  const [State, setState] = useState("");
+  const [Selections, setSelections] = useState(false);
+
+  // dep
+  const selects = [Status];
+
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status]);
+
+  // func
+  const handleNotes = (value) => setNotesValue(value);
+  const handleStatus = (value) => setStatus(value);
+  const handleState = (value) => setState(value);
+  const handleSubmit = (values) => {
+    setSelections(stateSelects);
+
+    if (!stateSelects) {
+      console.log({
+        ...values,
+        notes: NotesValue,
+        status: Status,
+        state: State,
+      });
+    }
+  };
 
   return (
-    <Fragment>
-      <form className={"space-y-5"}>
-        <div className="grid grid-cols-2 gap-5 px-5">
-          <div className={"space-y-5"}>
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"School Name"}
-              placeholder={"School Name"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right  relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              colorBorder={colorsObject.primary}
-            />
+    <Formik
+      initialValues={{
+        name: "",
+        code: "",
+        address: "",
+        school_address: "",
+        city: "",
+        zip: "",
+        email: "",
+      }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.email) {
+          errors.email = "Required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
 
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                School Status
-              </span>
-              <CustomSelect
-                placeholder={"Location Status *"}
-                style={{ width: "100%" }}
+        if (!values.name) {
+          errors.name = "Name is empty";
+        }
+
+        return errors;
+      }}
+      onSubmit={handleSubmit}
+    >
+      {({ handleReset, handleChange, handleSubmit, values, errors }) => (
+        <form className={"space-y-5"} onSubmit={handleSubmit}>
+          <div className="grid grid-cols-2 gap-5 px-5">
+            <div className={"space-y-5"}>
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"School Name"}
+                placeholder={"School Name"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right  relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 colorBorder={colorsObject.primary}
-                className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                options={[
-                  {
-                    value: "Number",
-                    label: "Number",
-                  },
-                ]}
-              />
-            </label>
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"School Code"}
-              placeholder={"School Code"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"School Address"}
-              placeholder={"School Address"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"School City"}
-              placeholder={"School City"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right`}
+                name={"name"}
+                onChange={handleChange}
+                value={values.name}
               >
-                State
-              </span>
-              <CustomSelect
-                placeholder={"Pickup location"}
-                style={{ width: "100%" }}
+                {errors.name && <FormError>{errors.name}</FormError>}
+              </CustomInput>
+
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
+                  School Status
+                </span>
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Location Status *"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "Number",
+                        label: "Number",
+                      },
+                    ]}
+                    onChange={handleStatus}
+                    value={Status ? Status : undefined}
+                  />
+
+                  {Selections && (
+                    <FormError>School Status is not selected</FormError>
+                  )}
+                </div>
+              </label>
+
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"School Code"}
+                placeholder={"School Code"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                className={"h-[50px]"}
-                options={[
-                  {
-                    value: "Number",
-                    label: "Number",
-                  },
-                ]}
+                name={"code"}
+                onChange={handleChange}
+                value={values.code}
               />
-            </label>
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"School Address"}
+                placeholder={"School Address"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                colorBorder={colorsObject.primary}
+                name={"address"}
+                onChange={handleChange}
+                value={values.address}
+              />
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"School City"}
+                placeholder={"School City"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                colorBorder={colorsObject.primary}
+                name={"city"}
+                onChange={handleChange}
+                value={values.city}
+              />
 
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Zip Code"}
-              placeholder={"Zip Code"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              type={"email"}
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Email"}
-              placeholder={"Email"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
-          </div>
-          <div>
-            <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span>School notes</span>
-              <textarea
-                className={`p-3 outline-0 border border-indigo-600 shadow-2xl rounded-lg w-full min-h-[145px]`}
-                placeholder={"School notes"}
-              ></textarea>
-            </label>
-          </div>
-        </div>
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right`}
+                >
+                  State
+                </span>
+                <CustomSelect
+                  placeholder={"Select State"}
+                  style={{ width: "100%" }}
+                  colorBorder={colorsObject.primary}
+                  className={"h-[50px]"}
+                  options={[
+                    {
+                      value: "Number",
+                      label: "Number",
+                    },
+                  ]}
+                  value={State ? State : undefined}
+                  onChange={handleState}
+                />
+              </label>
 
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
-    </Fragment>
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Zip Code"}
+                placeholder={"Zip Code"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                colorBorder={colorsObject.primary}
+                name={"zip"}
+                value={values.zip}
+                onChange={handleChange}
+              />
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                type={"email"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Email"}
+                placeholder={"Email"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                colorBorder={colorsObject.primary}
+                name={"email"}
+                onChange={handleChange}
+                value={values.email}
+              >
+                {errors.email && <FormError>{errors.email}</FormError>}
+              </CustomInput>
+            </div>
+            <div>
+              <label className="inline-flex justify-end gap-8 items-center w-full">
+                <span
+                  className={
+                    "text-sm flex-shrink-0 font-medium w-32 text-right"
+                  }
+                >
+                  School notes
+                </span>
+
+                <div className={"w-full"}>
+                  <MDEditor
+                    value={NotesValue}
+                    onChange={handleNotes}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="text-center space-x-5">
+            <ButtonComponent
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={44}
+              type={"submit"}
+            >
+              Save
+            </ButtonComponent>
+
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={() => {
+                handleReset();
+                setTimeout(() => {
+                  navigate("/management/single-page/high school");
+                }, 1000);
+              }}
+            >
+              Cancel
+            </ButtonComponent>
+          </div>
+        </form>
+      )}
+    </Formik>
   );
 };
 
