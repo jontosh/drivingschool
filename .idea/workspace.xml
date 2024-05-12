@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling. Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection, and improve input fields for first and middle names.">
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
@@ -151,7 +151,8 @@
       <workItem from="1715253061780" duration="7313000" />
       <workItem from="1715405188815" duration="5787000" />
       <workItem from="1715411069362" duration="15624000" />
-      <workItem from="1715447061018" duration="5964000" />
+      <workItem from="1715447061018" duration="8403000" />
+      <workItem from="1715489957086" duration="2710000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -319,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715447722697</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="#fix #jsx Update location status and type elements in the form.">
+      <option name="closed" value="true" />
+      <created>1715453607371</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715453607371</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,18 +358,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment," />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code" />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code," />
-    <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state" />
     <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection" />
     <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection," />
     <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection, and" />
@@ -374,7 +371,19 @@
     <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection, and improve input fields for first and middle names" />
     <MESSAGE value="- Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling.&#10;- Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection, and improve input fields for first and middle names." />
     <MESSAGE value="#fix #jsx Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling. Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection, and improve input fields for first and middle names." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update form elements and switch component styles for better user interaction and error prevention; refine form validation and state handling. Update form elements and switch components styles for better user interaction and experience, refactor form elements, add validation and state handling for improved interaction and error prevention, update elements for heavy registration; include new file-reader module, update imports and state management for modal component, and enhance form elements by adding CustomSelect for location, vehicle assignment, staff code, state selection, and improve input fields for first and middle names." />
+    <MESSAGE value="-" />
+    <MESSAGE value="- Update" />
+    <MESSAGE value="- Update location" />
+    <MESSAGE value="- Update location status" />
+    <MESSAGE value="- Update location status and" />
+    <MESSAGE value="- Update location status and type" />
+    <MESSAGE value="- Update location status and type elements" />
+    <MESSAGE value="- Update location status and type elements in" />
+    <MESSAGE value="- Update location status and type elements in the" />
+    <MESSAGE value="- Update location status and type elements in the form" />
+    <MESSAGE value="- Update location status and type elements in the form." />
+    <MESSAGE value="#fix #jsx Update location status and type elements in the form." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update location status and type elements in the form." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
