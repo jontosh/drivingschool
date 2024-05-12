@@ -2883,105 +2883,192 @@ export const AddSchoolModalContent = () => {
 export const HowHearModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const handleCancel = () => navigate(-1);
+  const [NotesValue, setNotesValue] = useState("");
+  const [Status, setStatus] = useState("");
+  const [Expiration, setExpiration] = useState("");
+  const [Selections, setSelections] = useState(false);
+
+  // dep
+  const selects = [Status];
+
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status]);
+
+  // func
+  const handleNotes = (value) => setNotesValue(value);
+  const handleStatus = (value) => setStatus(value);
+  const handleExpiration = (day) => setExpiration(day["$d"]);
+  const handleSubmit = (values) => {
+    setSelections(stateSelects);
+
+    if (!stateSelects) {
+      console.log({
+        ...values,
+        notes: NotesValue,
+        status: Status,
+        expiration: Expiration,
+      });
+    }
+  };
 
   return (
-    <Fragment>
-      <form className={"space-y-5"}>
-        <div className="grid grid-cols-2 gap-5 px-5">
-          <div className={"space-y-5"}>
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Lead Name"}
-              placeholder={"Lead Name"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right  relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              colorBorder={colorsObject.primary}
-            />
+    <Formik
+      initialValues={{
+        name: "",
+        code: "",
+      }}
+      validate={(values) => {
+        const errors = {};
 
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Lead Status
-              </span>
-              <CustomSelect
-                placeholder={"Lead Status"}
-                style={{ width: "100%" }}
+        if (!values.name) {
+          errors.name = "Lead Name is empty";
+        }
+
+        return errors;
+      }}
+      onSubmit={handleSubmit}
+    >
+      {({ handleSubmit, values, errors, handleReset, handleChange }) => (
+        <form className={"space-y-5"} onSubmit={handleSubmit}>
+          <div className="grid grid-cols-2 gap-5 px-5">
+            <div className={"space-y-5"}>
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Lead Name"}
+                placeholder={"Lead Name"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right  relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 colorBorder={colorsObject.primary}
-                className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                options={[
-                  {
-                    value: "Number",
-                    label: "Number",
-                  },
-                ]}
-              />
-            </label>
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Lead Code"}
-              placeholder={"Lead Code"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                name={"name"}
+                onChange={handleChange}
+                value={values.name}
               >
-                Lead Status
-              </span>
-              <DatePicker
-                className={"w-full border border-indigo-600 h-[50px]"}
-                placeholder={"DD/MM/YYYY"}
-              />
-            </label>
-          </div>
-          <div>
-            <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span>School notes</span>
-              <textarea
-                className={`p-3 outline-0 border border-indigo-600 shadow-2xl rounded-lg w-full min-h-[145px]`}
-                placeholder={"School notes"}
-              ></textarea>
-            </label>
-          </div>
-        </div>
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
+                {errors.name && <FormError>{errors.name}</FormError>}
+              </CustomInput>
 
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
-    </Fragment>
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
+                  Lead Status
+                </span>
+
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Lead Status"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "Number",
+                        label: "Number",
+                      },
+                    ]}
+                    onChange={handleStatus}
+                    value={Status ? Status : undefined}
+                  />
+                  {Selections && (
+                    <FormError> Lead Status is not selected</FormError>
+                  )}
+                </div>
+              </label>
+
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Lead Code"}
+                placeholder={"Lead Code"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
+                colorBorder={colorsObject.primary}
+                name={"code"}
+                onChange={handleChange}
+                value={values.code}
+              />
+
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right`}
+                >
+                  Expiration
+                </span>
+                <DatePicker
+                  className={`w-full border border-indigo-600 h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  placeholder={"DD/MM/YYYY"}
+                  onChange={handleExpiration}
+                />
+              </label>
+            </div>
+            <div>
+              <label className="inline-flex justify-end gap-8 items-center w-full">
+                <span
+                  className={
+                    "text-sm flex-shrink-0 font-medium w-32 text-right"
+                  }
+                >
+                  Lead notes
+                </span>
+
+                <div className={"w-full"}>
+                  <MDEditor
+                    value={NotesValue}
+                    onChange={handleNotes}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="text-center space-x-5">
+            <ButtonComponent
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={44}
+              type={"submit"}
+            >
+              Save
+            </ButtonComponent>
+
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={() => {
+                handleReset();
+                setTimeout(() => {
+                  navigate("/management/single-page/how did you hear");
+                }, 1000);
+              }}
+            >
+              Cancel
+            </ButtonComponent>
+          </div>
+        </form>
+      )}
+    </Formik>
   );
 };
 
