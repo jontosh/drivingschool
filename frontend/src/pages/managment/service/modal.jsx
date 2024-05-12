@@ -3075,237 +3075,258 @@ export const HowHearModalContent = () => {
 export const VehiclesModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
+  const [Name, setName] = useState("");
+  const [Status, setStatus] = useState("");
+  const [Location, setLocation] = useState("");
+  const [Type, setType] = useState("");
+  const [Selections, setSelections] = useState(false);
+  const { FileReaderResult, Result } = useFileReader();
+
+  //func
   const handleCancel = () => navigate(-1);
+  const handleSubmit = (values) => {
+    console.log({ ...values, image: Result, name: Name });
+  };
 
   return (
-    <Fragment>
-      <form className={"space-y-5 px-5"}>
-        <div className="grid grid-cols-2 gap-5">
-          <div className={"space-y-5"}>
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Vehicle Name
-              </span>
-              <CustomSelect
-                placeholder={"Vehicle Name"}
-                style={{ width: "100%" }}
+    <Formik initialValues={{}} onSubmit={handleSubmit}>
+      {({ handleSubmit, handleReset, handleChange, values, errors }) => (
+        <form className={"space-y-5 px-5"} onSubmit={handleSubmit}>
+          <div className="grid grid-cols-2 gap-5">
+            <div className={"space-y-5"}>
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
+                  Vehicle Name
+                </span>
+                <CustomSelect
+                  placeholder={"Vehicle Name"}
+                  style={{ width: "100%" }}
+                  colorBorder={colorsObject.primary}
+                  className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={[
+                    {
+                      value: "Number",
+                      label: "Number",
+                    },
+                  ]}
+                />
+              </label>
+
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
+                  Vehicle Status
+                </span>
+                <CustomSelect
+                  placeholder={"Vehicle Status"}
+                  style={{ width: "100%" }}
+                  colorBorder={colorsObject.primary}
+                  className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={[
+                    {
+                      value: "Number",
+                      label: "Number",
+                    },
+                  ]}
+                />
+              </label>
+
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right`}
+                >
+                  At Location
+                </span>
+                <CustomSelect
+                  placeholder={"At Location"}
+                  style={{ width: "100%" }}
+                  colorBorder={colorsObject.primary}
+                  className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={[
+                    {
+                      value: "Number",
+                      label: "Number",
+                    },
+                  ]}
+                />
+              </label>
+
+              <label className="inline-flex gap-8 items-center w-full">
+                <span
+                  className={`text-sm flex-shrink-0 font-medium w-56 text-right `}
+                >
+                  Vehicle Type
+                </span>
+                <CustomSelect
+                  placeholder={"Vehicle Type"}
+                  style={{ width: "100%" }}
+                  colorBorder={colorsObject.primary}
+                  className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={[
+                    {
+                      value: "Number",
+                      label: "Number",
+                    },
+                  ]}
+                />
+              </label>
+
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Vehicle No"}
+                placeholder={"Vehicle No"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                options={[
-                  {
-                    value: "Number",
-                    label: "Number",
-                  },
-                ]}
               />
-            </label>
 
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Vehicle Status
-              </span>
-              <CustomSelect
-                placeholder={"Vehicle Status"}
-                style={{ width: "100%" }}
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Vehicle Make"}
+                placeholder={"Vehicle Make"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                options={[
-                  {
-                    value: "Number",
-                    label: "Number",
-                  },
-                ]}
               />
-            </label>
 
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right`}
-              >
-                At Location
-              </span>
-              <CustomSelect
-                placeholder={"At Location"}
-                style={{ width: "100%" }}
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"License Plate"}
+                placeholder={"License Plate"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                options={[
-                  {
-                    value: "Number",
-                    label: "Number",
-                  },
-                ]}
               />
-            </label>
 
-            <label className="inline-flex gap-8 items-center w-full">
-              <span
-                className={`text-sm flex-shrink-0 font-medium w-56 text-right `}
-              >
-                Vehicle Type
-              </span>
-              <CustomSelect
-                placeholder={"Vehicle Type"}
-                style={{ width: "100%" }}
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"VIN#"}
+                placeholder={"VIN#"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                options={[
-                  {
-                    value: "Number",
-                    label: "Number",
-                  },
-                ]}
               />
-            </label>
+            </div>
+            <div className={"space-y-5"}>
+              <label className="inline-flex gap-8 items-center w-full">
+                <span className={"flex-shrink-0 w-56"}>Appointment Color</span>
 
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Vehicle No"}
-              placeholder={"Vehicle No"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
+                <CustomInput
+                  classNames={
+                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                  }
+                  className={classNames(
+                    ManagementStyle["CheckModal__form-element__shadow"],
+                    "w-full",
+                  )}
+                  type="color"
+                  placeholder={"#FFFFFF"}
+                  colorBorder={colorsObject.primary}
+                  name={"color_picker"}
+                />
+              </label>
 
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Vehicle Make"}
-              placeholder={"Vehicle Make"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Enable Appointment Color"}
+                placeholder={"Enable Appointment Color"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                colorBorder={colorsObject.primary}
+              />
 
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"License Plate"}
-              placeholder={"License Plate"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Vehicle Note"}
+                placeholder={"Vehicle Note"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                colorBorder={colorsObject.primary}
+              />
 
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"VIN#"}
-              placeholder={"VIN#"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
-              colorBorder={colorsObject.primary}
-            />
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Vehicle ESN Or AIR ID"}
+                placeholder={"Vehicle ESN Or AIR ID"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                colorBorder={colorsObject.primary}
+              />
+
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Odometer Value"}
+                placeholder={"Odometer Value"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                colorBorder={colorsObject.primary}
+              />
+
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Vehicle Initial Mileage"}
+                placeholder={"Vehicle Initial Mileage"}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                colorBorder={colorsObject.primary}
+              />
+
+              <label className="inline-flex justify-end gap-8 items-center w-full">
+                <span className={"flex-shrink-0 w-56"}>Vehicle Image</span>
+
+                <FileReaderResult className={"overflow-hidden w-60 h-60"} />
+              </label>
+            </div>
           </div>
-          <div className={"space-y-5"}>
-            <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span className={"flex-shrink-0 w-56"}>Appointment Color</span>
+          <div className="text-center space-x-5">
+            <ButtonComponent
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={44}
+            >
+              Save
+            </ButtonComponent>
 
-              <ColorPicker
-                defaultValue="#000"
-                showText={(color) => <span>{color.toHexString()}</span>}
-                className={`w-full justify-start pl-2 border border-indigo-600 h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              />
-            </label>
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Enable Appointment Color"}
-              placeholder={"Enable Appointment Color"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Vehicle Note"}
-              placeholder={"Vehicle Note"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Vehicle ESN Or AIR ID"}
-              placeholder={"Vehicle ESN Or AIR ID"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Odometer Value"}
-              placeholder={"Odometer Value"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-              }
-              className={ManagementStyle["CheckModal__form-element__shadow"]}
-              spanText={"Vehicle Initial Mileage"}
-              placeholder={"Vehicle Initial Mileage"}
-              spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
-              colorBorder={colorsObject.primary}
-            />
-
-            <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span className={"flex-shrink-0 w-56"}>Vehicle Image</span>
-
-              <div className="w-full ">@todo</div>
-            </label>
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={handleCancel}
+            >
+              Cancel
+            </ButtonComponent>
           </div>
-        </div>
-        <div className="text-center space-x-5">
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
-            borderRadius={5}
-            paddingInline={44}
-          >
-            Save
-          </ButtonComponent>
-
-          <ButtonComponent
-            defaultBg={colorsObject.main}
-            defaultHoverBg={colorsObject.main}
-            defaultBorderColor={colorsObject.primary}
-            defaultHoverBorderColor={colorsObject.primary}
-            defaultColor={colorsObject.primary}
-            defaultHoverColor={colorsObject.primary}
-            borderRadius={5}
-            paddingInline={44}
-            onClick={handleCancel}
-          >
-            Cancel
-          </ButtonComponent>
-        </div>
-      </form>
-    </Fragment>
+        </form>
+      )}
+    </Formik>
   );
 };
