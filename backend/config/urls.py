@@ -20,10 +20,10 @@ from .router import Router
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(f'{Router["services"]["base"]}', include("servises.urls")),
-    path(f'{Router["location"]["base"]}', include("location.urls")),
-    path(f'{Router["configurations"]["base"]}', include("configuration.urls")),
-    path(f'{Router["interaction"]["base"]}', include("interaction.urls")),
-    path(f'{Router["users"]["base"]}', include("Users.urls")),
+    path(f'{Router["account_management"]["base"]}', include("location.urls")),
+    path(f'{Router["configuration"]["base"]}', include("configuration.urls")),
+    path(f'{Router["communication"]["base"]}', include("interaction.urls")),
+    path(f'{Router["student_account"]["base"]}', include("Users.urls")),
     #MADE FOR STATISTICS
     path(f'{Router["statistics"]["base"]}', include("interaction.statistics")),
 

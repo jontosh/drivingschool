@@ -4,45 +4,10 @@ from django.apps import apps
 from rest_framework.response import Response
 from markdown import markdown
 from rest_framework import viewsets
-from .models import Question ,Answer,QuestionType,Test,Tasks,EmailTemplates ,Logs, LatestNews
-from .serializer import QuestionSerializer,AnswerSerializer,TasksSerializer,QuestionTypeSerializer,\
-    TestSerializer,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer
-class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
-    def perform_create(self, serializer):
-        # Perform any custom logic before saving the school, e.g., validation checks
-        serializer.save()
-    def perform_update(self, serializer):
-        # Perform any custom logic before updating the school, e.g., authorization checks
-        serializer.save()
-class AnswerViewSet(viewsets.ModelViewSet):
-    queryset = Answer.objects.all()
-    serializer_class = AnswerSerializer
-    def perform_create(self, serializer):
-        # Perform any custom logic before saving the school, e.g., validation checks
-        serializer.save()
-    def perform_update(self, serializer):
-        # Perform any custom logic before updating the school, e.g., authorization checks
-        serializer.save()
-class QuestionTypeViewSet(viewsets.ModelViewSet):
-    queryset = QuestionType.objects.all()
-    serializer_class = QuestionTypeSerializer
-    def perform_create(self, serializer):
-        # Perform any custom logic before saving the school, e.g., validation checks
-        serializer.save()
-    def perform_update(self, serializer):
-        # Perform any custom logic before updating the school, e.g., authorization checks
-        serializer.save()
-class TestViewSet(viewsets.ModelViewSet):
-    queryset = Test.objects.all()
-    serializer_class = TestSerializer
-    def perform_create(self, serializer):
-        # Perform any custom logic before saving the school, e.g., validation checks
-        serializer.save()
-    def perform_update(self, serializer):
-        # Perform any custom logic before updating the school, e.g., authorization checks
-        serializer.save()
+from .models import Tasks,EmailTemplates ,Logs, LatestNews
+from .serializer import TasksSerializer\
+    ,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer
+
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer

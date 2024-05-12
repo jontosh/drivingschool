@@ -25,14 +25,8 @@ dist-ssr
 *.sw?
 .env
 #Backend
-backend/servises/migrations/*
-backend/location/migrations/*
-backend/Users/migrations/*
 .idea/inspectionProfiles/Project_Default.xml
 .idea/workspace.xml
-/backend/configuration/migrations/
-/backend/abstracts/migrations/
-/backend/interaction/migrations/
 Users/__pycache__/
 abstracts/__pycache__/
 backend/config/__pycache__/urls.cpython-311.pyc
@@ -45,9 +39,6 @@ servises/__pycache__/
 /.idea/inspectionProfiles/Project_Default.xml
 .idea/workspace.xml
 .idea/*
-/backend/configuration/migrations/
-/backend/abstracts/migrations/
-/backend/interaction/migrations/
-/backend/mainadmin/migrations/
 /package.json
 /package-lock.json
+/backend/practice/

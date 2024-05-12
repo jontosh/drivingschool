@@ -6,57 +6,6 @@ from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 
-class Question(models.Model):
-    type = models.ForeignKey("QuestionType",on_delete=models.CASCADE)
-    question = models.TextField()
-    answers = models.ManyToManyField("Answer")
-class Answer(models.Model):
-    """
-    Model to represent possible answers for multiple choice questions
-    """
-    text = models.TextField()
-    is_correct = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.text} ({'Correct' if self.is_correct else 'Incorrect'})"
-class QuestionType(models.Model):
-    """
-    Model to represent different types of quiz questions (e.g., Multiple Choice, True/False)
-    """
-    name = models.CharField(max_length=50, unique=True)
-
-    def __str__(self):
-        return self.name
-
-
-
-class Test(Status,Extra,models.Model):
-    """
-    Model to represent tests containing a collection of questions
-    """
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    questions = models.ManyToManyField(Question, )#related_name="question_test")
-    _is_display_name = models.BooleanField(default=False)
-    count = models.IntegerField(verbose_name="number of question")
-    passing_grade = models.IntegerField(default=1)
-    is_final = models.BooleanField(default=False)
-    is_class_session = models.BooleanField(default=False,verbose_name="Associate with This Class Session")
-    is_attendance_required = models.BooleanField(default=False,verbose_name="Attendance Required for Associated Session only")
-    timer = models.TimeField(blank=True)
-    is_timer = models.BooleanField(default=False)
-    allow_view_complete = models.BooleanField(default=False,verbose_name="Allow Students to View Completed Quizzes")
-    welcome_text = models.TextField(blank=True)
-    pass_text = models.TextField(blank=True)
-    fall_text = models.TextField(blank=True)
-    service = models.ManyToManyField("servises.Services",)
-    cr = models.ManyToManyField("location.Class",related_name="classroom")
-
-
-
-    def __str__(self):
-        return self.name
-
 
 
 class Tasks(Extra):
