@@ -1,19 +1,33 @@
-<!-- landing_page.html -->
+<!-- url_list.html -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to Your Website</title>
+    <meta charset="UTF-8">
+    <title>URL List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .url-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .url-list li {
+            margin-bottom: 10px;
+        }
+        .url-pattern {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Your Website</h1>
-    <ul>
-        <li><a href="{% url 'servises:add_on' %}">Locations</a></li>
-        <li><a href="{% url 'location' %}">Locations</a></li>
-        <li><a href="{% url 'configuration' %}">Locations</a></li>
-        <li><a href="{% url 'interaction' %}">Locations</a></li>
-        <li><a href="{% url 'web_users' %}">Locations</a></li>
-        <li><a href="{% url 'statistics' %}">Locations</a></li>
-        <!-- Add more links to other sections as needed -->
+    <h1>URL List</h1>
+    <ul class="url-list">
+
+            {{ url_pattern }}
+
     </ul>
 </body>
 </html>

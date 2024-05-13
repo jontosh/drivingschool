@@ -17,14 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from .router import Router
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(f'{Router["services"]["base"]}', include("servises.urls")),
-    path(f'{Router["account_management"]["base"]}', include("location.urls")),
-    path(f'{Router["configuration"]["base"]}', include("configuration.urls")),
-    path(f'{Router["communication"]["base"]}', include("interaction.urls")),
-    path(f'{Router["student_account"]["base"]}', include("Users.urls")),
+    path(f'{Router["services"]["base"]}', include("servises.urls"),name=Router["services"]["base"]),
+    path(f'{Router["account_management"]["base"]}', include("location.urls"),name=Router["account_management"]["base"]),
+    path(f'{Router["configuration"]["base"]}', include("configuration.urls"),name=Router["configuration"]["base"]),
+    path(f'{Router["communication"]["base"]}', include("interaction.urls"),name=Router["communication"]["base"]),
+    path(f'{Router["student_account"]["base"]}', include("Users.urls"),name=Router["student_account"]["base"]),
+    path(f'{Router[ "abstracts" ][ "base" ]}', include("abstracts.urls"),name=Router["abstracts"]["base"]),
+    path(f'{Router[ "scheduling" ][ "base" ]}', include("scheduling.urls"),name=Router["scheduling"]["base"]),
     #MADE FOR STATISTICS
-    path(f'{Router["statistics"]["base"]}', include("interaction.statistics")),
+    path(f'{Router["statistics"]["base"]}', include("interaction.statistics"),name=Router["statistics"]["base"]),
 
 ]

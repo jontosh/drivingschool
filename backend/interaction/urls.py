@@ -15,6 +15,6 @@ router.register(f'{Router["communication"]["children"]["latest_news"]}', LatestN
 
 urlpatterns = [
     path("api/",your_api_view.as_view()),
-    path("",include(router.urls))
+    path("",include(router.urls)),
 
 ]
