@@ -8,13 +8,7 @@ export const ClassroomAbsences = ({ ...props }) => {
         className={"bg-[#FFB82F80] py-8 px-4 rounded-lg"}
         fontSize={"text-base"}
       >
-        Student Event Log is a report designed to display data based on the
-        students or parents activity inside the student center. Admin staff can
-        search for activity data for a specific student account within a certain
-        date range, or for all activity within a certain date range or a
-        specific date. Information provided will include details about the
-        date/time and type of activity, as well as the browser used and the
-        users device IP information.
+        The Classroom Absences Report searches based on CR Start Date. The report will be populated by all students who have missed at least one class session, for a class that started within the date range you select.
       </Paragraph>
     </Fragment>
   );

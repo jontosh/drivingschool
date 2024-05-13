@@ -8,13 +8,7 @@ export const TransactionSummaryReport = ({ ...props }) => {
         className={"bg-[#FFB82F80] py-8 px-4 rounded-lg"}
         fontSize={"text-base"}
       >
-        Student Event Log is a report designed to display data based on the
-        students or parents activity inside the student center. Admin staff can
-        search for activity data for a specific student account within a certain
-        date range, or for all activity within a certain date range or a
-        specific date. Information provided will include details about the
-        date/time and type of activity, as well as the browser used and the
-        users device IP information.
+        The Transaction Summary Report allows you to generate a list of billing transactions for a specific date range. You can further filter by the type of transaction and the staff member who entered the transaction. Some of these filtering options have info buttons you can hover over to see more details. Once you have filtered, you will select the fields you'd like to populate your report. Please email support@drivingschoolsoftware.com with any questions.
       </Paragraph>
     </Fragment>
   );
