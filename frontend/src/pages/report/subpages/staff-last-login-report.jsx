@@ -8,13 +8,7 @@ export const StaffLastLoginReport = ({ ...props }) => {
         className={"bg-[#FFB82F80] py-8 px-4 rounded-lg"}
         fontSize={"text-base"}
       >
-        Student Event Log is a report designed to display data based on the
-        students or parents activity inside the student center. Admin staff can
-        search for activity data for a specific student account within a certain
-        date range, or for all activity within a certain date range or a
-        specific date. Information provided will include details about the
-        date/time and type of activity, as well as the browser used and the
-        users device IP information.
+        This report allows you to view the last date your staff members logged into the software. Simply click the button below and you will get an Excel file listing all active and pending staff, along with their staff type, status and last login date/time.
       </Paragraph>
     </Fragment>
   );
