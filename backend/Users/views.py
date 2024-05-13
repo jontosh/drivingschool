@@ -3,10 +3,13 @@ from rest_framework import viewsets
 from django.db.models import Sum, Count
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from scheduling.models import Appointment,TimeSlot
 from django.shortcuts import render
 from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill
 from .serializer import InstructorSerializer, StudentSerializer,  \
-       EnrollmentSerializer, FileCategorySerializer,  UserTypeSerializer, FilesSerializer, BillSerializer
+       EnrollmentSerializer, FileCategorySerializer,  UserTypeSerializer, FilesSerializer, BillSerializer,\
+    AppointmentSerializer_,EnrollmentSerializer_,TimeSlotSerializer_
+
 # Create your views here.
 
 class InstructorViewSet(viewsets.ModelViewSet):
@@ -61,6 +64,16 @@ class BillViewSet(viewsets.ModelViewSet):
         serializer.save()
     def perform_update(self, serializer):
         serializer.save()
+class EnrollmentViewSet(viewsets.ModelViewSet):
+    queryset = Enrollment.objects.all()
+    serializer_class = EnrollmentSerializer
+    def perform_create(self, serializer):
+        serializer.save()
+    def perform_update(self, serializer):
+        serializer.save()
+
+
+
 class BillStatisticsByType(APIView):
     def get(self,request):
         data = Bill.objects.values("package", "type").annotate(
@@ -82,9 +95,9 @@ class InstructorHomeAPI(APIView):
     def get(self,request,id):
         ready_data = {}
         appointments  = Appointment.objects.filter(time_slot__staff_id=id)
-        serializer = AppointmentSerializer(appointments,many=True)
+        serializer = AppointmentSerializer_(appointments,many=True)
         for i in serializer.data:
-            i["time_slot"] = TimeSlotSerializer(TimeSlot.objects.get(id=i["time_slot"])).data
+            i["time_slot"] = TimeSlotSerializer_(TimeSlot.objects.get(id=i["time_slot"])).data
 
         return Response(serializer.data)
 
@@ -92,13 +105,13 @@ class StudentHomeAPI(APIView):
     def get(self,request,id):
         enrolment = Enrollment.objects.filter(student__id=id)
         print(enrolment)
-        enrolment = EnrollmentSerializer(enrolment,many=True)
+        enrolment = EnrollmentSerializer_(enrolment,many=True)
         bill = Bill.objects.filter(student__id=id)
         bill = BillSerializer(bill,many=True)
         files = Files.objects.filter(student__id=id)
         files = FilesSerializer(files,many=True)
         appointments  = Appointment.objects.filter(student__id=id)
-        appointments = AppointmentSerializer(appointments,many=True)
+        appointments = AppointmentSerializer_(appointments,many=True)
         for i in enrolment.data:
             i["bill"] = bill.data
             i["files"]= files.data

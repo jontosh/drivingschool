@@ -1,3 +1,6 @@
-from django.shortcuts import render
+import importlib
 
-# Create your views here.
+from django.shortcuts import render,HttpResponse
+
+def vie(requests):
+    return render(requests,"Doccumentation.html")

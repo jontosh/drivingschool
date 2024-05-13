@@ -59,7 +59,8 @@ TENANT_APPS = [
     "colorfield",
     "creditcards",
     "rest_framework",
-    "phonenumber_field"
+    "phonenumber_field",
+    "abstracts"
 
 ]
 
@@ -91,6 +92,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #CUSTOM CONTEXT
+                'abstracts.custom_context.url_patterns_context',
             ],
         },
     },

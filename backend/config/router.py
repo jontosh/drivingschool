@@ -86,7 +86,13 @@ Router = {
             "appointment":"appointment/",
             "time_range":"time_range/",
         }
-    }
+    },
+    "abstracts":{
+        "base":"",
+        "children":{
+            "admin":"admin/"
+        }
+    },
 
 }
 
