@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 from rest_framework import viewsets
-from .models import School ,Vehicle,LocationSmall,Class,Location
-from .serializer import SchoolSerializer,VehicleSerializer,LocationSerializer,LocationSmallSerializer,ClassSerializer
+from .models import School ,Vehicle,LocationSmall,Class,Location,HowDidYouHearUs
+from .serializer import SchoolSerializer,VehicleSerializer,LocationSerializer,LocationSmallSerializer,ClassSerializer,HowDidYouHearUsSerializer
 
 class SchoolViewSet(viewsets.ModelViewSet):
     queryset = School.objects.all()
@@ -48,4 +48,11 @@ class LocationViewSet(viewsets.ModelViewSet):
         serializer.save()
     def perform_update(self, serializer):
         # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()
+class HowDidYouHearUsViewSet(viewsets.ModelViewSet):
+    queryset = HowDidYouHearUs.objects.all()
+    serializer_class = HowDidYouHearUsSerializer
+    def perform_create(self, serializer):
+        serializer.save()
+    def perform_update(self, serializer):
         serializer.save()

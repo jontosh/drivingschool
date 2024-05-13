@@ -48,11 +48,13 @@ SHARED_APPS = [
 ]
 TENANT_APPS = [
     #APPS
+
     "Users",
     "servises",
     "location",
     "configuration",
     "interaction",
+    "scheduling",
      #INSTALLED LIBRARIES
     "colorfield",
     "creditcards",
