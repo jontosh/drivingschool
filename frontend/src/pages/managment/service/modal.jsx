@@ -3081,15 +3081,62 @@ export const VehiclesModalContent = () => {
   const [Type, setType] = useState("");
   const [Selections, setSelections] = useState(false);
   const { FileReaderResult, Result } = useFileReader();
+  const [NotesValue, setNotesValue] = useState("");
+
+  // dep
+  const selects = [Status, Name];
+
+  const stateSelects = useMemo(() => {
+    let state = false;
+    for (let i = 0; i < selects.length; i++) {
+      if (selects[i] === "") {
+        state = true;
+        break;
+      }
+    }
+
+    return state;
+  }, [Status, Name]);
 
   //func
   const handleCancel = () => navigate(-1);
   const handleSubmit = (values) => {
-    console.log({ ...values, image: Result, name: Name });
+    setSelections(stateSelects);
+
+    if (!stateSelects) {
+      console.log({
+        ...values,
+        image: Result,
+        name: Name,
+        status: Status,
+        location: Location,
+        type: Type,
+        note: NotesValue,
+      });
+    }
   };
 
+  const handleStatus = (value) => setStatus(value);
+  const handleName = (value) => setName(value);
+  const handleLocation = (value) => setLocation(value);
+  const handleType = (value) => setType(value);
+  const handleNotes = (value) => setNotesValue(value);
+
   return (
-    <Formik initialValues={{}} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={{
+        vehicle_no: "",
+        make: "",
+        license_plate: "",
+        vin: "",
+        appointment_color: "#000",
+        enable_appointment_color: "",
+        vehicle_esn: "",
+        odometer_value: "",
+        initial_mileage: "",
+      }}
+      onSubmit={handleSubmit}
+    >
       {({ handleSubmit, handleReset, handleChange, values, errors }) => (
         <form className={"space-y-5 px-5"} onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-5">
@@ -3100,18 +3147,25 @@ export const VehiclesModalContent = () => {
                 >
                   Vehicle Name
                 </span>
-                <CustomSelect
-                  placeholder={"Vehicle Name"}
-                  style={{ width: "100%" }}
-                  colorBorder={colorsObject.primary}
-                  className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={[
-                    {
-                      value: "Number",
-                      label: "Number",
-                    },
-                  ]}
-                />
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Vehicle Name"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "Number",
+                        label: "Number",
+                      },
+                    ]}
+                    value={Name ? Name : undefined}
+                    onChange={handleName}
+                  />
+                  {Selections && (
+                    <FormError>Vehicle Name is not selected</FormError>
+                  )}
+                </div>
               </label>
 
               <label className="inline-flex gap-8 items-center w-full">
@@ -3120,18 +3174,25 @@ export const VehiclesModalContent = () => {
                 >
                   Vehicle Status
                 </span>
-                <CustomSelect
-                  placeholder={"Vehicle Status"}
-                  style={{ width: "100%" }}
-                  colorBorder={colorsObject.primary}
-                  className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={[
-                    {
-                      value: "Number",
-                      label: "Number",
-                    },
-                  ]}
-                />
+                <div className="w-full">
+                  <CustomSelect
+                    placeholder={"Vehicle Status"}
+                    style={{ width: "100%" }}
+                    colorBorder={colorsObject.primary}
+                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    options={[
+                      {
+                        value: "Number",
+                        label: "Number",
+                      },
+                    ]}
+                    value={Status ? Status : undefined}
+                    onChange={handleStatus}
+                  />
+                  {Selections && (
+                    <FormError>Vehicle Status is not selected</FormError>
+                  )}
+                </div>
               </label>
 
               <label className="inline-flex gap-8 items-center w-full">
@@ -3151,6 +3212,8 @@ export const VehiclesModalContent = () => {
                       label: "Number",
                     },
                   ]}
+                  value={Location ? Location : undefined}
+                  onChange={handleLocation}
                 />
               </label>
 
@@ -3171,6 +3234,8 @@ export const VehiclesModalContent = () => {
                       label: "Number",
                     },
                   ]}
+                  value={Type ? Type : undefined}
+                  onChange={handleType}
                 />
               </label>
 
@@ -3183,6 +3248,9 @@ export const VehiclesModalContent = () => {
                 placeholder={"Vehicle No"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"vehicle_no"}
+                value={values.vehicle_no}
+                onChange={handleChange}
               />
 
               <CustomInput
@@ -3194,6 +3262,9 @@ export const VehiclesModalContent = () => {
                 placeholder={"Vehicle Make"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"make"}
+                value={values.make}
+                onChange={handleChange}
               />
 
               <CustomInput
@@ -3205,6 +3276,9 @@ export const VehiclesModalContent = () => {
                 placeholder={"License Plate"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"license_plate"}
+                value={values.license_plate}
+                onChange={handleChange}
               />
 
               <CustomInput
@@ -3216,6 +3290,9 @@ export const VehiclesModalContent = () => {
                 placeholder={"VIN#"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
+                name={"vin"}
+                value={values.vin}
+                onChange={handleChange}
               />
             </div>
             <div className={"space-y-5"}>
@@ -3231,9 +3308,10 @@ export const VehiclesModalContent = () => {
                     "w-full",
                   )}
                   type="color"
-                  placeholder={"#FFFFFF"}
                   colorBorder={colorsObject.primary}
-                  name={"color_picker"}
+                  name={"appointment_color"}
+                  value={values.appointment_color}
+                  onChange={handleChange}
                 />
               </label>
 
@@ -3244,20 +3322,29 @@ export const VehiclesModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Enable Appointment Color"}
                 placeholder={"Enable Appointment Color"}
-                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                spanClassName={`font-medium w-56 flex-shrink-0`}
                 colorBorder={colorsObject.primary}
+                name={"enable_appointment_color"}
+                value={values.enable_appointment_color}
+                onChange={handleChange}
+                fontSize={"text-sm"}
               />
 
-              <CustomInput
-                classNames={
-                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-                }
-                className={ManagementStyle["CheckModal__form-element__shadow"]}
-                spanText={"Vehicle Note"}
-                placeholder={"Vehicle Note"}
-                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
-                colorBorder={colorsObject.primary}
-              />
+              <label className="inline-flex justify-end gap-8 items-center w-full">
+                <span className={"text-sm font-medium w-56 flex-shrink-0"}>
+                  Vehicle Note
+                </span>
+
+                <div className={"w-full"}>
+                  <MDEditor
+                    value={NotesValue}
+                    onChange={handleNotes}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
+                  />
+                </div>
+              </label>
 
               <CustomInput
                 classNames={
@@ -3268,6 +3355,9 @@ export const VehiclesModalContent = () => {
                 placeholder={"Vehicle ESN Or AIR ID"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
                 colorBorder={colorsObject.primary}
+                name={"vehicle_esn"}
+                value={values.vehicle_esn}
+                onChange={handleChange}
               />
 
               <CustomInput
@@ -3279,6 +3369,9 @@ export const VehiclesModalContent = () => {
                 placeholder={"Odometer Value"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
                 colorBorder={colorsObject.primary}
+                name={"odometer_value"}
+                onChange={handleChange}
+                value={values.odometer_value}
               />
 
               <CustomInput
@@ -3290,10 +3383,15 @@ export const VehiclesModalContent = () => {
                 placeholder={"Vehicle Initial Mileage"}
                 spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
                 colorBorder={colorsObject.primary}
+                name={"initial_mileage"}
+                value={values.initial_mileage}
+                onChange={handleChange}
               />
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
-                <span className={"flex-shrink-0 w-56"}>Vehicle Image</span>
+                <span className={"text-sm font-medium w-56 flex-shrink-0"}>
+                  Vehicle Image
+                </span>
 
                 <FileReaderResult className={"overflow-hidden w-60 h-60"} />
               </label>
@@ -3307,6 +3405,7 @@ export const VehiclesModalContent = () => {
               defaultHoverColor={colorsObject.main}
               borderRadius={5}
               paddingInline={44}
+              type={"submit"}
             >
               Save
             </ButtonComponent>
@@ -3320,7 +3419,12 @@ export const VehiclesModalContent = () => {
               defaultHoverColor={colorsObject.primary}
               borderRadius={5}
               paddingInline={44}
-              onClick={handleCancel}
+              onClick={() => {
+                handleReset();
+                setTimeout(() => {
+                  navigate("/management/single-page/vehicles");
+                }, 1000);
+              }}
             >
               Cancel
             </ButtonComponent>

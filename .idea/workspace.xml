@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add form state management and input validation for lead information in modal component. Update form elements, add state selection input, zip code input, email input, and include notes text area with correct style and functionality.">
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
@@ -152,7 +152,8 @@
       <workItem from="1715405188815" duration="5787000" />
       <workItem from="1715411069362" duration="15624000" />
       <workItem from="1715447061018" duration="8403000" />
-      <workItem from="1715489957086" duration="11789000" />
+      <workItem from="1715489957086" duration="11986000" />
+      <workItem from="1715577196508" duration="2074000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -352,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715499791706</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="#fix #jsx Refactor form elements to use CustomInput with improved styling and consistency.">
+      <option name="closed" value="true" />
+      <created>1715502209881</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1715502209881</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,22 +391,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Add form state management and input validation for lead information&#10;- Update form elements, add state selection input" />
-    <MESSAGE value="- Add form state management and input validation for lead information&#10;- Update form elements, add state selection input," />
-    <MESSAGE value="- Add form state management and input validation for lead information&#10;- Update form elements, add state selection input, zip" />
-    <MESSAGE value="- Add form state management and input validation for lead information in&#10;- Update form elements, add state selection input, zip" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal&#10;- Update form elements, add state selection input, zip" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component&#10;- Update form elements, add state selection input, zip" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input," />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input," />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and include" />
-    <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and include notes" />
     <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and include notes text" />
     <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and include notes text area" />
     <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and include notes text area with" />
@@ -407,7 +400,23 @@
     <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and include notes text area with correct style and functionality" />
     <MESSAGE value="- Add form state management and input validation for lead information in modal component.&#10;- Update form elements, add state selection input, zip code input, email input, and include notes text area with correct style and functionality." />
     <MESSAGE value="#fix #jsx Add form state management and input validation for lead information in modal component. Update form elements, add state selection input, zip code input, email input, and include notes text area with correct style and functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add form state management and input validation for lead information in modal component. Update form elements, add state selection input, zip code input, email input, and include notes text area with correct style and functionality." />
+    <MESSAGE value="-" />
+    <MESSAGE value="- Ref" />
+    <MESSAGE value="- Refactor" />
+    <MESSAGE value="- Refactor form" />
+    <MESSAGE value="- Refactor form elements" />
+    <MESSAGE value="- Refactor form elements to" />
+    <MESSAGE value="- Refactor form elements to use" />
+    <MESSAGE value="- Refactor form elements to use Custom" />
+    <MESSAGE value="- Refactor form elements to use CustomInput" />
+    <MESSAGE value="- Refactor form elements to use CustomInput with" />
+    <MESSAGE value="- Refactor form elements to use CustomInput with improved" />
+    <MESSAGE value="- Refactor form elements to use CustomInput with improved styling" />
+    <MESSAGE value="- Refactor form elements to use CustomInput with improved styling and" />
+    <MESSAGE value="- Refactor form elements to use CustomInput with improved styling and consistency" />
+    <MESSAGE value="- Refactor form elements to use CustomInput with improved styling and consistency." />
+    <MESSAGE value="#fix #jsx Refactor form elements to use CustomInput with improved styling and consistency." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form elements to use CustomInput with improved styling and consistency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
