@@ -9,8 +9,8 @@ export const FormError = ({ children, className }) => {
       spaceIconX={2}
       icon={<TbAlertCircle />}
       className={classNames(
-        `text-[#FF3932] text-xs flex items-center mt-2.5 cursor-text`,
         className,
+        `text-[#FF3932] text-xs flex items-center mt-2.5 cursor-text`,
       )}
     >
       {children}
