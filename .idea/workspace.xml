@@ -4,38 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #styles Remove unused files and update import statements in the index and report-form files. Refactor form styling and class names in ReportForm component, update file paths and workspace settings.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-signatures.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/btw-openings-and-schedule-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-absences.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-information-details.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-session-details.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/evaluation-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/in-car-evaluation-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/instructor-hours-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/open-balance-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/outstanding-hours-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payment-log-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payroll-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/print-receipts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/sales-detail-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/signed-documents.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-event-logs.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-last-login-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-ad-word-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-data-export.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-log.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-tracking.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-file-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-updated-profile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/transaction-summary-report.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/upcoming-task-report.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-signatures.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-signatures.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/btw-openings-and-schedule-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/btw-openings-and-schedule-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-absences.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-absences.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-information-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-information-details.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-session-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-session-details.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/evaluation-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/evaluation-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/in-car-evaluation-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/in-car-evaluation-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/instructor-hours-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/instructor-hours-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/open-balance-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/open-balance-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/outstanding-hours-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/outstanding-hours-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payment-log-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payment-log-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payroll-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payroll-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/print-receipts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/print-receipts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/sales-detail-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/sales-detail-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/signed-documents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/signed-documents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-event-logs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-event-logs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-last-login-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-last-login-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-ad-word-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-ad-word-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-data-export.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-data-export.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-log.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-log.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-tracking.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-tracking.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-file-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-file-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-updated-profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-updated-profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/transaction-summary-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/transaction-summary-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/upcoming-task-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/upcoming-task-report.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +183,7 @@
       <workItem from="1715447061018" duration="8403000" />
       <workItem from="1715489957086" duration="11986000" />
       <workItem from="1715577196508" duration="2074000" />
-      <workItem from="1715588161391" duration="7764000" />
+      <workItem from="1715588161391" duration="9113000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -400,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715588234841</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration.">
+      <option name="closed" value="true" />
+      <created>1715597781065</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1715597781065</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,32 +437,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component," />
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component, update" />
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component, update file" />
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component, update file paths" />
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component, update file paths and" />
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component, update file paths and workspace" />
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component, update file paths and workspace settings" />
-    <MESSAGE value="- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- &#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in the&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in the index&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in the index and&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in the index and report&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in the index and report-form&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in the index and report-form files&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="- Remove unused files and update import statements in the index and report-form files.&#10;- Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <MESSAGE value="#fix #jsx #styles Remove unused files and update import statements in the index and report-form files. Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #styles Remove unused files and update import statements in the index and report-form files. Refactor form styling and class names in ReportForm component, update file paths and workspace settings." />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on&#10;- Update file paths and workspace settings, refactor form" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form styling" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form styling," />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and sub&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task with" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated duration" />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- &#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
+    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update&#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
+    <MESSAGE value="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/drivingschool$models.coverage" NAME="models Coverage Results" MODIFIED="1714608625027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/configuration" />

@@ -35,17 +35,16 @@ const Report = ({ className, ...props }) => {
 
         <NavSubpage />
 
-        <div className="text-center pt-11">
+        <div className="w-[972px] mx-auto pb-8 pt-11 space-y-7">
           <Title
             level={3}
             fontSize={"text-3xl capitalize"}
-            titleMarginBottom={30}
+            className={"text-center"}
           >
             {subpage?.split("-")?.join(" ")}
           </Title>
-          <div className={`w-[972px] mx-auto text-center pb-8`}>
-            <Subpages page={subpage} />
-          </div>
+
+          <Subpages page={subpage} />
         </div>
       </section>
     </Fragment>
