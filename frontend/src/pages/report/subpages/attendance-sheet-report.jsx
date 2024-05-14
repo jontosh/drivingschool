@@ -39,7 +39,7 @@ export const AttendanceSheetReport = ({ ...props }) => {
                   colorBorder={"#667085"}
                   spanText={"Class Number Search"}
                   placeholder={"Class Number Search"}
-                  className={"flex-grow"}
+                  className={"h-[50px]"}
                   classNames={"inline-flex w-full flex-col-reverse gap-1.5"}
                   name="class_number"
                   value={values.class_number}
