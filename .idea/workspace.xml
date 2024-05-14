@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration.">
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,7 @@
       <workItem from="1715608093315" duration="629000" />
       <workItem from="1715665026859" duration="1804000" />
       <workItem from="1715666838384" duration="425000" />
-      <workItem from="1715667333492" duration="675000" />
+      <workItem from="1715667333492" duration="2636000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -383,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715597781065</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction.">
+      <option name="closed" value="true" />
+      <created>1715668101116</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1715668101116</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,23 +421,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on&#10;- Update file paths and workspace settings, refactor form" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form styling" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form styling," />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and sub&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add" />
-    <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new" />
     <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task" />
     <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task with" />
     <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated" />
@@ -438,7 +429,24 @@
     <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- &#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
     <MESSAGE value="- [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx.&#10;- Update&#10;- Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
     <MESSAGE value="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration." />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor component" />
+    <MESSAGE value="Refactor component to" />
+    <MESSAGE value="Refactor component to include" />
+    <MESSAGE value="Refactor component to include date" />
+    <MESSAGE value="Refactor component to include date pick" />
+    <MESSAGE value="Refactor component to include date pickers" />
+    <MESSAGE value="Refactor component to include date pickers and" />
+    <MESSAGE value="Refactor component to include date pickers and form" />
+    <MESSAGE value="Refactor component to include date pickers and form handling" />
+    <MESSAGE value="Refactor component to include date pickers and form handling for" />
+    <MESSAGE value="Refactor component to include date pickers and form handling for improved" />
+    <MESSAGE value="Refactor component to include date pickers and form handling for improved user" />
+    <MESSAGE value="Refactor component to include date pickers and form handling for improved user interaction" />
+    <MESSAGE value="Refactor component to include date pickers and form handling for improved user interaction." />
+    <MESSAGE value="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/drivingschool$models.coverage" NAME="models Coverage Results" MODIFIED="1714608625027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/configuration" />
