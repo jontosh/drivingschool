@@ -2,7 +2,6 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets
-from django.db.models import Sum
 from .models import CompanyInfo ,WebContent,ZipCode,StorageManagement,EmergencyData,MessageItems ,Messages,\
     Fields,PasswordManagement,GraphicalScheduleSetting,GeneralSetting,Instructions,Expanses
 from .serializer import CompanyInfoSerializer,WebContentSerializer,EmergencyDataSerializer,ZipCodeSerializer,\
@@ -137,24 +136,5 @@ class ExpansesDataViewSet(viewsets.ModelViewSet):
 
 
 
-class CategorizedDataAPIView(APIView):
-    """
-    API endpoint to retrieve data categorized by name and status with summed amounts.
-    """
 
-    def get(self, request):
-        # Group the model instances by 'name' and 'status' and calculate the sum of 'amount'
-        grouped_data = Expanses.objects.values('name', 'status').annotate(total_amount=Sum('amount'))
-
-        # Convert the queryset to a dictionary for easier serialization
-        categorized_data = {}
-        for item in grouped_data:
-            name = item['name']
-            status = item['status']
-            total_amount = item['total_amount']
-            if name not in categorized_data:
-                categorized_data[name] = {}
-            categorized_data[name][status] = total_amount
-
-        return Response(categorized_data)
 

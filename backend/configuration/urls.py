@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from config.router import Router
 from .views import CompanyInfoViewSet,WebContentViewSet,ZipCodeViewSet,StorageManagementViewSet,EmergencyDataViewSet,\
     MessageItemsViewSet,MessagesDataViewSet,FieldsDataViewSet,PasswordManagementDataViewSet,GraphicalScheduleSettingDataViewSet,\
-    GeneralSettingDataViewSet,InstructionsDataViewSet,CategorizedDataAPIView,ExpansesDataViewSet
+    GeneralSettingDataViewSet,InstructionsDataViewSet,ExpansesDataViewSet
 router = DefaultRouter()
 router.register(f'{Router["configuration"]["children"]["company"]}', CompanyInfoViewSet, basename='company')
 router.register(f'{Router["configuration"]["children"]["zipcode"]}', ZipCodeViewSet, basename='zipcode')

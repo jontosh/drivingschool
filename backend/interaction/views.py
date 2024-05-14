@@ -5,8 +5,13 @@ from rest_framework.response import Response
 from markdown import markdown
 from rest_framework import viewsets
 from .models import Tasks,EmailTemplates ,Logs, LatestNews
+from configuration.models import Expanses
+from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer
+from scheduling.models import Appointment,TimeSlot
+from django.db.models import Sum,Count
+from collections import defaultdict
 from .serializer import TasksSerializer\
-    ,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer
+    ,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_
 
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
@@ -123,3 +128,72 @@ class SendEmailAPIView(APIView):
         print("Request Data:", markdown_text)
         parsed_text = parse_markdown(markdown_text)
         return Response({'status': f'{parsed_text}'}, status=status.HTTP_200_OK)
+#STATISTIC API
+class CategorizedDataAPIView(APIView):
+    """
+    API endpoint to retrieve data categorized by name and status with summed amounts.
+    """
+
+    def get(self, request):
+        # Group the model instances by 'name' and 'status' and calculate the sum of 'amount'
+        grouped_data = Expanses.objects.values('name', 'status').annotate(total_amount=Sum('amount'))
+
+        # Convert the queryset to a dictionary for easier serialization
+        categorized_data = {}
+        for item in grouped_data:
+            name = item['name']
+            status = item['status']
+            total_amount = item['total_amount']
+            if name not in categorized_data:
+                categorized_data[name] = {}
+            categorized_data[name][status] = total_amount
+
+        return Response(categorized_data)
+
+class BillStatisticsByType(APIView):
+    def get(self,request):
+        data = Bill.objects.values("package", "type").annotate(
+            total_amount=Sum("price"), count=Count("package")
+        )
+        ready_data = defaultdict(lambda: {"Count": 0})
+        for bill in data:
+            package = bill["package"]
+            type = bill["type"]
+            price = bill["total_amount"]
+            count = bill["count"]
+            ready_data[package][type] = price
+            ready_data[package]["Count"] += count
+        ready_data = dict(ready_data)
+
+        return Response(ready_data)
+
+
+
+
+#PAGE API
+class InstructorHomeAPI(APIView):
+    def get(self,request,id):
+        ready_data = {}
+        appointments  = Appointment.objects.filter(time_slot__staff_id=id)
+        serializer = AppointmentSerializer_(appointments,many=True)
+        for i in serializer.data:
+            i["time_slot"] = TimeSlotSerializer_(TimeSlot.objects.get(id=i["time_slot"])).data
+
+        return Response(serializer.data)
+
+class StudentHomeAPI(APIView):
+    def get(self,request,id):
+        enrolment = Enrollment.objects.filter(student__id=id)
+        enrolment = EnrollmentSerializer_(enrolment,many=True)
+        bill = Bill.objects.filter(student__id=id)
+        bill = BillSerializer(bill,many=True)
+        files = Files.objects.filter(student__id=id)
+        files = FilesSerializer(files,many=True)
+        appointments  = Appointment.objects.filter(student__id=id)
+        appointments = AppointmentSerializer_(appointments,many=True)
+        for i in enrolment.data:
+            i["bill"] = bill.data
+            i["files"]= files.data
+            i["appointments"] = appointments.data
+
+        return Response(enrolment.data)

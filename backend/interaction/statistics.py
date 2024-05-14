@@ -1,6 +1,6 @@
 from django.urls import path
-from configuration.views import CategorizedDataAPIView
-from Users.views import BillStatisticsByType
+from .views import CategorizedDataAPIView
+from .views import BillStatisticsByType
 from config.router import Router
 urlpatterns = [
     path(f'{Router["statistics"]["children"]["expanses"]}',CategorizedDataAPIView.as_view()),
