@@ -33,19 +33,19 @@ export const AttendanceSheetReport = ({ ...props }) => {
             onSubmit={handleSubmit}
             className={"bg-white rounded-lg px-10 py-7 space-y-7"}
           >
-            <div className={"grid grid-cols-2 gap-20"}>
-              <div className={"flex items-end gap-3"}>
+            <div className={"grid grid-cols-2 gap-20 items-center"}>
+              <div className={"flex gap-3"}>
                 <CustomInput
                   colorBorder={"#667085"}
                   spanText={"Class Number Search"}
                   placeholder={"Class Number Search"}
                   className={"h-[50px]"}
-                  classNames={"inline-flex w-full flex-col-reverse gap-1.5"}
+                  classNames={"inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"}
                   name="class_number"
                   value={values.class_number}
                   onChange={handleChange}
                 />
-                <span className={"pb-2"}>
+                <span className={"pb-2 pt-[41px]"}>
                   <FiHelpCircle
                     className={"text-xl text-[#98A2B3] cursor-pointer"}
                   />

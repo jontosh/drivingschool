@@ -39,8 +39,8 @@ export const AttendanceSignatures = ({ ...props }) => {
                 colorBorder={"#667085"}
                 spanText={"CR LIST"}
                 placeholder={"SELECT CLASS ROOM"}
-                className={"h-[50px]"}
-                classNames={"inline-flex w-full flex-col-reverse gap-1.5"}
+                className={""}
+                classNames={"inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"}
                 name="cr_list"
                 value={values.cr_list}
                 onChange={handleChange}
@@ -51,6 +51,7 @@ export const AttendanceSignatures = ({ ...props }) => {
                 <CustomSelect
                   style={{ width: "100%" }}
                   placeholder={"SELECT SESSION #"}
+                  className={"h-[50px]"}
                   options={[
                     {
                       value: 1,
