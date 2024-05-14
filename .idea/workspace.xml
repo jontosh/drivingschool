@@ -6,35 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx [refactor] Import and render new subpages components dynamically based on the URL parameter in index.jsx and subpages.jsx. Update file paths and workspace settings, refactor form styling, and add new task with updated duration.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-signatures.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-signatures.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/btw-openings-and-schedule-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/btw-openings-and-schedule-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-absences.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-absences.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-information-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-information-details.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-session-details.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/classroom-session-details.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/evaluation-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/evaluation-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/in-car-evaluation-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/in-car-evaluation-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/instructor-hours-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/instructor-hours-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/open-balance-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/open-balance-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/outstanding-hours-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/outstanding-hours-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payment-log-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payment-log-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payroll-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payroll-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/print-receipts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/print-receipts.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/sales-detail-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/sales-detail-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/signed-documents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/signed-documents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-event-logs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-event-logs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-last-login-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-last-login-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-ad-word-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-ad-word-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-data-export.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-data-export.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-log.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-log.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-tracking.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-event-tracking.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-file-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-file-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-updated-profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/student-updated-profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/transaction-summary-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/transaction-summary-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/upcoming-task-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/upcoming-task-report.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +156,10 @@
       <workItem from="1715489957086" duration="11986000" />
       <workItem from="1715577196508" duration="2074000" />
       <workItem from="1715588161391" duration="9113000" />
+      <workItem from="1715608093315" duration="629000" />
+      <workItem from="1715665026859" duration="1804000" />
+      <workItem from="1715666838384" duration="425000" />
+      <workItem from="1715667333492" duration="675000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
