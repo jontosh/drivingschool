@@ -1,40 +1,55 @@
 Router = {
     "communication":{
         "base":"communication/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
         "children":{
-            "task":"task/",
-            "email_templates":"email_templates/",
-            "logs":"logs/",
-            "latest_news":"latest_news/",
+            "task":"task",
+            "email_templates":"email_templates",
+            "logs":"logs",
+            "latest_news":"latest_news",
         }
     },
     "account_management":{
         "base":"account_management/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children":{
-            "schools":"schools/",
-            "class":"class/",
-            "location":"location/",
-            "vehicle":"vehicle/",
-            "location_small":"location_small/",
+            "schools":"schools",
+            "class":"class",
+            "location":"location",
+            "vehicle":"vehicle",
+            "location_small":"location_small",
             "how_did_you_hear_us":"how_did_you_hear_us/"
         }
     },
     "services":{
         "base":"account_management/services/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children":{
-            "add_on":"add_on/",
-            "component":"component/",
-            "fee":"fee/",
-            "service":"service/",
-            "discount":"discount/",
-            "question":"question/",
-            "question_type":"question_type/",
-            "test":"test/",
-            "answer":"answer/",
+            "add_on":"add_on",
+            "component":"component",
+            "fee":"fee",
+            "service":"service",
+            "discount":"discount",
+            "question":"question",
+            "question_type":"question_type",
+            "test":"test",
+            "answer":"answer",
         }
     },
     "configuration": {
         "base": "configuration/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children": {
             "company":"company",
             "zipcode":"zipcode",
@@ -53,24 +68,36 @@ Router = {
     },
     "student_account":{
         "base":"student_account/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children":{
-            "instructor":"instructor/",
-            "student":"student/",
-            "enrollment":"enrollment/",
-            "file_category":"file_category/",
-            "user_type":"user_type/",
-            "files":"files/",
-            "bill":"bill/",
+            "instructor":"instructor",
+            "student":"student",
+            "enrollment":"enrollment",
+            "file_category":"file_category",
+            "user_type":"user_type",
+            "files":"files",
+            "bill":"bill",
         }
     },
     "main_admin":{
         "base":"main_admin/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children":{
 
         }
     },
     "statistics":{
         "base":"statistics/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children":{
             "expanses":"expanses",
             "bill":"bill",
@@ -78,19 +105,27 @@ Router = {
     },
     "scheduling":{
         "base":"scheduling/",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children":{
-            "time_slot":"time_slot/",
-            "week_range":"week_range/",
-            "timeOff":"timeOff/",
-            "date_range":"date_range/",
-            "appointment":"appointment/",
-            "time_range":"time_range/",
+            "time_slot":"time_slot",
+            "week_range":"week_range",
+            "timeOff":"timeOff",
+            "date_range":"date_range",
+            "appointment":"appointment",
+            "time_range":"time_range",
         }
     },
     "abstracts":{
         "base":"",
+        "methods":["POST","GET","UPDATE","DELETE"],
+        "descriptions":"Here we provide simple URLs to represent the communication part of our website",
+        "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
+
         "children":{
-            "admin":"admin/"
+            "":""
         }
     },
 

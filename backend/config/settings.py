@@ -94,6 +94,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 #CUSTOM CONTEXT
                 'abstracts.custom_context.url_patterns_context',
+                'abstracts.custom_context.url_from_json',
+
             ],
         },
     },

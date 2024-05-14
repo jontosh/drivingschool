@@ -1,5 +1,5 @@
 # In context_processors.py
-
+from config.router import Router
 from django.urls import get_resolver
 
 def url_patterns_context(request):
@@ -30,3 +30,8 @@ def group_urls_by_root(urls):
         url_dict[root].append(url)
 
     return url_dict
+
+
+def url_from_json(request):
+    url_patterns = Router
+    return { 'url_patterns_json': url_patterns }
