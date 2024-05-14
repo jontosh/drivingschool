@@ -44,7 +44,7 @@ export const AllBtwHoursCompleted = ({ ...props }) => {
                 </span>
                 <div className="flex items-center gap-3">
                   <DatePicker
-                    className="w-full border border-[#667085]"
+                    className="w-full border border-[#667085] h-[50px]"
                     placeholder={"DD/MM/YYYY"}
                     onChange={handleStartDate}
                   />
@@ -60,7 +60,7 @@ export const AllBtwHoursCompleted = ({ ...props }) => {
 
                 <div className="flex items-center gap-3">
                   <DatePicker
-                    className="w-full border border-[#667085]"
+                    className="w-full border border-[#667085] h-[50px]"
                     placeholder={"DD/MM/YYYY"}
                     onChange={handleEndDate}
                   />
