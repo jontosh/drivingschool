@@ -30,4 +30,7 @@ urlpatterns = [
     #MADE FOR STATISTICS
     path(f'{Router["statistics"]["base"]}', include("interaction.statistics"),name=Router["statistics"]["base"]),
 
+    #MADE FOR PAGE API
+    path(f'{Router["page_api"]["base"]}', include("interaction.page_api"),name=Router["page_api"]["base"]),
+
 ]
