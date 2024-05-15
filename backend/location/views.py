@@ -2,7 +2,8 @@ from django.shortcuts import render
 
 from rest_framework import viewsets
 from .models import School ,Vehicle,LocationSmall,Class,Location,HowDidYouHearUs
-from .serializer import SchoolSerializer,VehicleSerializer,LocationSerializer,LocationSmallSerializer,ClassSerializer,HowDidYouHearUsSerializer
+from .serializer import SchoolSerializer,VehicleSerializer,LocationSerializer,LocationSmallSerializer,ClassSerializer,\
+    HowDidYouHearUsSerializer
 
 class SchoolViewSet(viewsets.ModelViewSet):
     queryset = School.objects.all()

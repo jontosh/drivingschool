@@ -108,7 +108,8 @@ Router = {
         "children":{
             "instructor":"instructor/",
             "student":"student/",
-            "email_templates":"email_templates/"
+            "student_email_templates":"student_email_templates/",
+            "instructor_email_templates":"instructor_email_templates/"
         }
     },
     "scheduling":{
