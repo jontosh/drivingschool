@@ -1,18 +1,29 @@
 from rest_framework import serializers
 from .models import Tasks,EmailTemplates,Logs,LatestNews
-from location.views import LocationSerializer,VehicleSerializer,LocationSmallSerializer,SchoolSerializer
+from location.views import LocationSerializer,VehicleSerializer,LocationSmallSerializer,SchoolSerializer,Vehicle,Class
 from servises.serializer import ServicesSerializer
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,WeekRangeSerializer,TimeRangeSerializer,\
-    TimeSlot,Appointment
-from Users.serializer import StudentSerializer,UserSerializer,BillSerializer,FilesSerializer,Enrollment,Student
+    TimeSlot,Appointment, TimeOffSerializer
+from Users.serializer import StudentSerializer,UserSerializer,BillSerializer,FilesSerializer,Enrollment,Student,Instructor
 
 
 class LocationFullSerializer(serializers.ModelSerializer):
     pick_up = LocationSmallSerializer(read_only=True)
     drop_off = LocationSmallSerializer(read_only=True)
+class VehicleFullSerializer(serializers.ModelSerializer):
+    location = LocationFullSerializer(read_only=True)
+    class Meta:
+        fields = '__all__'
+        model = Vehicle
+
 class InstructorFullSerializer(serializers.ModelSerializer):
     location = LocationFullSerializer(read_only=True)
-    vehicle = VehicleSerializer(read_only = True)
+    vehicle = VehicleFullSerializer(read_only = True)
+    working_hours = TimeRangeSerializer(read_only=True,many=True)
+
+    class Meta:
+        fields ='__all__'
+        model = Instructor
 
 
 class TimeSlotSerializer_(serializers.ModelSerializer):
@@ -77,7 +88,13 @@ class AppointmentSerializer_(serializers.ModelSerializer):
         model = Appointment
         fields = ( "student", "id","time_slot")
 
-
+class ClassFullSerializer(serializers.ModelSerializer):
+    location = LocationFullSerializer(read_only=True)
+    day = TimeRangeSerializer(read_only=True,many=True)
+    teacher= InstructorFullSerializer(read_only=True)
+    class Meta:
+        fields= "__all__"
+        model = Class
 class StudentSerializerEmail(serializers.ModelSerializer):
     """
         Here we will use this API to catch up email templates variable
@@ -128,3 +145,26 @@ class StudentSerializerEmail(serializers.ModelSerializer):
 
         ]
         extra_kwargs = { field: { 'read_only': True } for field in fields }
+
+
+class InstructorEmailSerializer(serializers.ModelSerializer):
+    """
+    TimeOff
+    TimeSlot
+    Class > location ,  timeRange
+    """
+    location = LocationFullSerializer(read_only=True)
+    vehicle = VehicleFullSerializer(read_only = True)
+    working_hours = TimeRangeSerializer(read_only=True,many=True)
+    student = StudentSerializer(read_only=True)
+    classes = ClassFullSerializer(many=True,read_only=True)
+    time_slot = TimeSlotSerializer_(read_only=True,many=True)
+    time_off = TimeOffSerializer(read_only=True,many=True)
+    class Meta:
+        fields =["id","status","first_name","mid_name","last_name","address","city","state","zip","email","code",
+                 "home_photo","cell_phone","birth","username","password","type","staff_type","location","vehicle",
+                 "emergency_name","emergency_relation","emergency_phone","permit_number","car_permit_data","car_permit_expire",
+                 "color","zoom","picture","working_hours","message_items","classes","time_slot","time_off",
+        ]
+        model = Instructor
+

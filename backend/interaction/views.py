@@ -6,13 +6,14 @@ from markdown import markdown
 from rest_framework import viewsets
 from .models import Tasks,EmailTemplates ,Logs, LatestNews
 from configuration.models import Expanses
-from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer,Student
-from scheduling.models import Appointment,TimeSlot
+from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer,Student,Instructor
+from location.views import Class,ClassSerializer
+from scheduling.views import Appointment,TimeSlot,TimeOff,TimeOffSerializer
 from django.db.models import Sum,Count
 from collections import defaultdict
 from .serializer import TasksSerializer\
     ,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
-    StudentSerializerEmail,AppointmentEmailSerializer
+    StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer
 
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
@@ -200,3 +201,25 @@ class StudentEmailTemplateView(APIView):
         student.appointments = appointments
         return Response(student.data)
 
+class InstructorEmailTemplateView(APIView):
+    def get(self, request, id):
+        """
+            classes = ClassFullSerializer(many=True,read_only=True)
+            time_slot = TimeSlotSerializer_(read_only=True,many=True)
+            time_off = TimeOffSerializer(read_only=True,many=True)
+        """
+        instructor = Instructor.objects.get(pk=id)
+        instructor = InstructorEmailSerializer(instructor)
+        classes = Class.objects.filter(teacher__id=id)
+        classes = ClassSerializer(classes,many=True)
+        instructor.classes = classes
+        time_slot = TimeSlot.objects.filter(staff__id=id)
+        time_slot = TimeSlotSerializer_(time_slot,many=True)
+        time_slot.time_slot = time_slot
+
+        time_off = TimeOff.objects.filter(staff__id=id)
+        time_off = TimeOffSerializer(time_off, many=True)
+        time_off.time_slot = time_off
+
+
+        return Response(instructor.data)
