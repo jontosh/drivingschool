@@ -72,7 +72,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Type:</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Type:</span>
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
@@ -99,7 +99,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Instructor:</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Instructor:</span>
 
             <CustomSelect
               style={{ width: "100%" }}
@@ -121,7 +121,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Start Date</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Start Date</span>
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
@@ -148,7 +148,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Location</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Location</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"Instructor Selection"}

@@ -79,6 +79,8 @@ export const EvaluationReport = ({ ...props }) => {
               name="class_number"
               value={StudentName}
               onChange={handleStudentName}
+              spanClassName={"font-normal text-gray-500"}
+              fontSize="text-base"
             />
             <span className={"pb-2 pt-[41px]"}>
               <FiHelpCircle
@@ -88,7 +90,7 @@ export const EvaluationReport = ({ ...props }) => {
           </div>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Eval/Lesson #</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Eval/Lesson #</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"Select Lesson #"}

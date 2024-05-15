@@ -36,7 +36,7 @@ export const InstructorHoursReport = ({ ...props }) => {
       >
         <div className="grid grid-cols-2 gap-x-7 gap-y-5">
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>BTW Status</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>BTW Status</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"SELECT  Instructor"}
@@ -57,7 +57,7 @@ export const InstructorHoursReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Instructor</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Instructor</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"SELECT  Instructor"}
@@ -79,13 +79,13 @@ export const InstructorHoursReport = ({ ...props }) => {
         </div>
 
         <CustomCheckBox
-          className={"justify-end"}
+          className={"justify-end text-xl"}
           onChange={handleObservationHours}
         >
           Include Observation Hours
         </CustomCheckBox>
 
-        <div className={"grid grid-cols-2 gap-20"}>
+        <div className={"grid grid-cols-2 gap-x-7 gap-y-5"}>
           <label className={"space-y-1.5"}>
             <span className={"text-base font-normal w-full"}>Start Date</span>
             <div className="flex items-center gap-3">

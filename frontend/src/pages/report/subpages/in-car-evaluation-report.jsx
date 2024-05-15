@@ -38,7 +38,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
       >
         <div className="grid grid-cols-2">
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>CR Status</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>CR Status</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"SELECT  STATUS"}
@@ -76,7 +76,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
         {/*-------------*/}
         <div className="grid grid-cols-2 gap-5">
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>CR #</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>CR #</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"SELECT  STATUS"}
@@ -97,7 +97,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>OR</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>OR</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"Student Last Name"}
@@ -136,7 +136,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
 
         <div className=" grid grid-cols-2 gap-x-7 gap-y-5">
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Students</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Students</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"SELECT STUDENTS"}
@@ -157,7 +157,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Instructor</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Instructor</span>
             <CustomSelect
               style={{ width: "100%" }}
               placeholder={"SELECT  Instructor"}

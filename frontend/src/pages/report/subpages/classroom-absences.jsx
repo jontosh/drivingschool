@@ -89,9 +89,9 @@ export const ClassroomAbsences = ({ ...props }) => {
         <Fragment>
           <form className={"space-y-5"} onSubmit={(e) => e.preventDefault()}>
             <div className="grid grid-cols-2 gap-7 items-center">
-              <Paragraph>Classroom Absences Report Columns:</Paragraph>
+              <Paragraph className={"text-gray-500 text-base font-normal"}>Classroom Absences Report Columns:</Paragraph>
               <label className={"space-y-1.5 w-full"}>
-                <span className={"text-gray-500 w-full"}>CR LIST</span>
+                <span className={"text-gray-500 text-base font-normal w-full"}>Start Date</span>
                 <CustomSelect
                   style={{ width: "100%" }}
                   placeholder={"SELECT CLASS ROOM"}
