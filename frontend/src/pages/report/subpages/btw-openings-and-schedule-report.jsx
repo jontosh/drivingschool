@@ -34,7 +34,7 @@ export const BtwOpeningsAndScheduleReport = ({ ...props }) => {
       </Paragraph>
 
       <form
-        className={"bg-white rounded-lg px-10 py-7 space-y-7 space-y-5"}
+        className={"bg-white rounded-lg px-10 py-7 space-y-7"}
         onSubmit={(e) => e.preventDefault()}
       >
         <div className="space-y-5">
