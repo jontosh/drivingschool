@@ -258,7 +258,6 @@ const File = () => {
                 <ButtonComponent
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.infoHover}
-                  // 
                   borderRadius={5}
                 >
                   Show more
