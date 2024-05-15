@@ -107,7 +107,8 @@ Router = {
         "note":"Any attempt to <span>POST</span>  <span>DELETE</span>  <span>UPDATE</span> will result with  <span class='highlight-red'>ERROR</span>",
         "children":{
             "instructor":"instructor/",
-            "student":"student/"
+            "student":"student/",
+            "email_templates":"email_templates/"
         }
     },
     "scheduling":{

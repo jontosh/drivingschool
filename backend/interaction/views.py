@@ -6,12 +6,13 @@ from markdown import markdown
 from rest_framework import viewsets
 from .models import Tasks,EmailTemplates ,Logs, LatestNews
 from configuration.models import Expanses
-from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer
+from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer,Student
 from scheduling.models import Appointment,TimeSlot
 from django.db.models import Sum,Count
 from collections import defaultdict
 from .serializer import TasksSerializer\
-    ,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_
+    ,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
+    StudentSerializerEmail,AppointmentEmailSerializer
 
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
@@ -53,29 +54,19 @@ class LatestNewsViewSet(viewsets.ModelViewSet):
         # Perform any custom logic before updating the school, e.g., authorization checks
         serializer.save()
 
-def get_model_field_info():
-    not_include = ["Tasks","EmailTemplates","Fields","Rights","Question","Answer","QuestionType"]
-    all_fields = []
-    for app in apps.get_app_configs():
-        for model in app.get_models():
-            if not model._meta.abstract:
-                model_data = {f'app': app.label, f'model': model.__name__,'fields': []}  # Use app label for consistency
-                for field in model._meta.get_fields():
-                    # if not model.__name__ in [a.lower() for a in not_include]:
-                    #     get ,create = Fields.objects.get_or_create(app_name=app.label,model_name=model.__name__,field_name=field.name)
-                    #     if create:
-                    #         get.save()
-                    #     else:
-                    #         get.delete()
-                    model_data['fields'].append(field.name)
-                all_fields.append(model_data)  # Append model data to the list
+class GetFieldNamesView(APIView):
 
-    return all_fields
-class your_api_view(APIView):
-    def get(self, request):
-        model_field_info = get_model_field_info()
-        return Response(model_field_info)
 
+    def get(self, request, format=None):
+        not_include = ["admin","auth","contenttypes","mainadmin","sessions","PasswordManagement","GraphicalScheduleSetting","GeneralSetting", "Tasks", "EmailTemplates", "Fields", "Rights", "Question", "Answer", "QuestionType","HowDidYouHearUs" ]
+        field_names = []
+        for app_config in apps.get_app_configs():
+            for model in app_config.get_models():
+                for field in model._meta.fields:
+                    if  model.__name__ not in not_include and app_config.label not in not_include:
+                        field_name = f"{app_config.label} {model.__name__} {field.name}"
+                        field_names.append(field_name)
+        return Response(field_names)
 
 def get_field_value(input_string):
     # Split the input string to extract model name and field name
@@ -128,6 +119,8 @@ class SendEmailAPIView(APIView):
         print("Request Data:", markdown_text)
         parsed_text = parse_markdown(markdown_text)
         return Response({'status': f'{parsed_text}'}, status=status.HTTP_200_OK)
+
+
 #STATISTIC API
 class CategorizedDataAPIView(APIView):
     """
@@ -197,3 +190,13 @@ class StudentHomeAPI(APIView):
             i["appointments"] = appointments.data
 
         return Response(enrolment.data)
+
+class StudentEmailTemplateView(APIView):
+    def get(self, request, id):
+        student = Student.objects.get(pk=id)
+        student = StudentSerializerEmail(student,many=False)
+        appointments = Appointment.objects.filter(student__id=id)
+        appointments = AppointmentEmailSerializer(appointments,many=True)
+        student.appointments = appointments
+        return Response(student.data)
+
