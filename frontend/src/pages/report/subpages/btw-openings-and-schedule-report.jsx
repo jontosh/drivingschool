@@ -40,7 +40,7 @@ export const BtwOpeningsAndScheduleReport = ({ ...props }) => {
         <div className="space-y-5">
           <div className="grid grid-cols-2 gap-6">
             <label className={"space-y-1.5 w-full"}>
-              <span className={"text-gray-500 w-full"}>CR LIST</span>
+              <span className={"text-gray-500 w-full text-base font-normal"}>CR LIST</span>
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"SELECT CLASS ROOM"}
@@ -69,6 +69,8 @@ export const BtwOpeningsAndScheduleReport = ({ ...props }) => {
               classNames={"inline-flex w-full flex-col-reverse gap-1.5"}
               value={StudentLastName}
               onChange={handleStudentLastName}
+              spanClassName={"text-gray-500 font-normal"}
+              fontSize="text-base"
             />
           </div>
 
@@ -88,7 +90,7 @@ export const BtwOpeningsAndScheduleReport = ({ ...props }) => {
         <div className="space-y-5">
           <div className="grid grid-cols-2 gap-6">
             <label className={"space-y-1.5 w-full"}>
-              <span className={"text-gray-500 w-full"}>STUDENT</span>
+              <span className={"text-gray-500 w-full text-base font-normal"}>STUDENT</span>
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"SELECT STUDENT"}
@@ -110,7 +112,7 @@ export const BtwOpeningsAndScheduleReport = ({ ...props }) => {
             </label>
 
             <label className={"space-y-1.5 w-full"}>
-              <span className={"text-gray-500 w-full"}>STUDENT</span>
+              <span className={"text-gray-500 w-full text-base font-normal"}>STUDENT</span>
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"SELECT FILE CATEGORY"}

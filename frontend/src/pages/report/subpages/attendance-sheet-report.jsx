@@ -38,7 +38,7 @@ export const AttendanceSheetReport = ({ ...props }) => {
                 <CustomInput
                   colorBorder={"#667085"}
                   spanText={"Class Number Search"}
-                  spanClassName={"text-gray-800 font-normal"}
+                  spanClassName={"font-normal"}
                   fontSize="text-base"
                   placeholder={"Class Number Search"}
                   className={"h-[50px]"}
@@ -55,7 +55,7 @@ export const AttendanceSheetReport = ({ ...props }) => {
               </div>
 
               <CustomCheckBox
-                className={"justify-end text-black text-opacity-45 text-base font-normal"}
+                className={"justify-end text-gray-500 text-base font-normal"}
                 name={"score"}
                 onChange={handleChange}
               >

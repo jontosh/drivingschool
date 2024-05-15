@@ -44,10 +44,12 @@ export const AttendanceSignatures = ({ ...props }) => {
                 name="cr_list"
                 value={values.cr_list}
                 onChange={handleChange}
+                spanClassName={"text-gray-500 font-normal"}
+                fontSize="text-base"
               />
 
               <label className={"space-y-1.5 w-full"}>
-                <span className={"text-gray-500 w-full"}>Session#:</span>
+                <span className={"text-gray-500 w-full text-base font-normal"}>Session#:</span>
                 <CustomSelect
                   style={{ width: "100%" }}
                   placeholder={"SELECT SESSION #"}
