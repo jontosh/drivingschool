@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/instructor-hours-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/instructor-hours-report.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +159,7 @@
       <workItem from="1715665026859" duration="1804000" />
       <workItem from="1715666838384" duration="425000" />
       <workItem from="1715667333492" duration="5486000" />
-      <workItem from="1715750957475" duration="16654000" />
+      <workItem from="1715750957475" duration="17326000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -456,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715771657777</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <option name="closed" value="true" />
+      <created>1715772760633</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1715772760633</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,32 +493,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name," />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students," />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor," />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;-" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component," />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings," />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and task" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and task information" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and task information for" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and task information for improved" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and task information for improved user" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and task information for improved user interaction" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Update component, workspace settings, and task information for improved user interaction." />
-    <MESSAGE value="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report" />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component" />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/drivingschool$models.coverage" NAME="models Coverage Results" MODIFIED="1714608625027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/configuration" />
