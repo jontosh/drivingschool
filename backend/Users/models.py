@@ -1,5 +1,4 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from colorfield.fields import ColorField
 from location.models import Vehicle,Location,School
 from django.contrib.contenttypes.fields import GenericRelation
@@ -26,8 +25,8 @@ class User(models.Model):
     zip = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
     code = models.CharField(max_length=150, blank=True, null=True)
-    home_photo = PhoneNumberField(blank=True, null=True)
-    cell_phone = PhoneNumberField()
+    home_photo = models.CharField(blank=True,null=True,max_length=30)
+    cell_phone = models.CharField(max_length=30)
     birth = models.DateField(default="1999/01/01", help_text="Data of birth")
     username = models.CharField(max_length=200, unique=True)
     password = models.CharField(max_length=200, blank=True, null=True)
@@ -54,7 +53,7 @@ class Instructor(User):
     vehicle = models.ForeignKey("location.Vehicle",on_delete=models.CASCADE, blank=True,null=True)
     emergency_name= models.CharField(max_length=200,blank=True,null=True,help_text="Emergency contact name")
     emergency_relation= models.CharField(max_length=200,blank=True,null=True,help_text="Emergency  relation")
-    emergency_phone= PhoneNumberField(blank=True,null=True,help_text="Emergency contact phone")
+    emergency_phone= models.CharField(blank=True,null=True,help_text="Emergency contact phone",max_length=30)
     permit_number = models.CharField(max_length=200, blank=True,null=True)
     car_permit_data = models.DateField(default="1999/01/01",blank=True,null=True,help_text="MM/DD/YYYY")
     car_permit_expire = models.DateField(default="1999/01/01",blank=True,null=True,help_text="MM/DD/YYYY")
@@ -75,9 +74,9 @@ class Instructor(User):
 class Student(User):
 
     PREFERRED_PRONOUNS = [
-        ["He, Him",0],
-        ["She, Her",1],
-        ["They, Them",2],
+        ["He", "He"],
+        ["She", "She"],
+        ["Other", "Other"],
     ]
     GENDER = [
         ["Male","Male"],
@@ -98,10 +97,10 @@ class Student(User):
     medical_condition = models.TextField(blank=True,null=True)
     parent_name = models.CharField(max_length=200)
     parent_email = models.EmailField(blank=True,null=True)
-    parent_phone = PhoneNumberField(blank=True,null=True)
+    parent_phone = models.CharField(blank=True,null=True,max_length=30)
     parent_2_name = models.CharField(max_length=200)
     parent_2_email = models.EmailField(blank=True,null=True)
-    parent_2_phone = PhoneNumberField(blank=True,null=True)
+    parent_2_phone = models.CharField(max_length=30,blank=True,null=True,db_column="sd")
     def __str__(self):
         return  f"{self.first_name} {self.last_name}"
 class Enrollment(Extra):
