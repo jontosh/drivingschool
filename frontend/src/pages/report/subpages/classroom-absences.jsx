@@ -31,12 +31,12 @@ export const ClassroomAbsences = ({ ...props }) => {
           <form className={"space-y-5"} onSubmit={(e) => e.preventDefault()}>
             <div className="grid grid-cols-2 gap-7">
               <label className={"space-y-1.5"}>
-                <span className={"text-base font-normal w-full"}>
+                <span className={"text-base font-normal w-full text-gray-500"}>
                   Start Date
                 </span>
                 <div className="flex items-center gap-3">
                   <DatePicker
-                    className="w-full border border-[#667085] h-[50px]"
+                    className="w-full border border-[#DEE2E6] h-[50px]"
                     placeholder={"DD/MM/YYYY"}
                     onChange={handleStartDate}
                   />
@@ -44,10 +44,10 @@ export const ClassroomAbsences = ({ ...props }) => {
               </label>
 
               <label className={"space-y-1.5"}>
-                <span className={"text-base font-normal w-full"}>End Date</span>
+                <span className={"text-base font-normal w-full text-gray-500"}>End Date</span>
                 <div className="flex items-center gap-3">
                   <DatePicker
-                    className="w-full border border-[#667085] h-[50px]"
+                    className="w-full border border-[#DEE2E6] h-[50px]"
                     placeholder={"DD/MM/YYYY"}
                     onChange={handleEndDate}
                   />

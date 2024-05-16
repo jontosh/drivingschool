@@ -46,7 +46,7 @@ export const PayrollReport = ({ ...props }) => {
       >
         <div className="grid grid-cols-2 gap-20">
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>Staff Status</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>Staff Status</span>
 
             <CustomSelect
               onChange={handleStaffStatus}
@@ -63,13 +63,13 @@ export const PayrollReport = ({ ...props }) => {
                 },
               ]}
               className={`h-[50px] w-full rounded`}
-              colorBorder={"#667085"}
+              colorBorder={"#DEE2E6"}
               value={StaffStatus ? StaffStatus : undefined}
             />
           </label>
 
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>SELECT STAFF</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>SELECT STAFF</span>
 
             <CustomSelect
               onChange={handleStaff}
@@ -86,7 +86,7 @@ export const PayrollReport = ({ ...props }) => {
                 },
               ]}
               className={`h-[50px] w-full rounded`}
-              colorBorder={"#667085"}
+              colorBorder={"#DEE2E6"}
               value={Staff ? Staff : undefined}
             />
           </label>
@@ -105,7 +105,7 @@ export const PayrollReport = ({ ...props }) => {
         </ButtonComponent>
 
         <div className={"grid grid-cols-2 gap-y-10 gap-x-20"}>
-          <Paragraph fontSize={"text-xl font-semibold"}>
+          <Paragraph fontSize={"text-xl font-semibold text-gray-500"}>
             Payroll Report
           </Paragraph>
 
@@ -113,7 +113,7 @@ export const PayrollReport = ({ ...props }) => {
             <CustomRadio
               value={"BTW"}
               name={"payroll_report"}
-              classNames={"w-full"}
+              classNames={"w-full text-gray-500"}
               onChange={handlePayrollReport}
             >
               BTW
@@ -121,7 +121,7 @@ export const PayrollReport = ({ ...props }) => {
             <CustomRadio
               value={"BTW"}
               name={"payroll_report"}
-              classNames={"w-full"}
+              classNames={"w-full text-gray-500"}
               onChange={handlePayrollReport}
             >
               Classroom
@@ -130,18 +130,19 @@ export const PayrollReport = ({ ...props }) => {
             <CustomCheckBox
               checked={CancelledAppts}
               onChange={handleCancelledAppts}
+              className={"text-gray-500"}
             >
               Show Late Cancelled Apps
             </CustomCheckBox>
           </div>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal text-gray-800 w-full"}>
+            <span className={"text-base font-normal text-gray-500 w-full"}>
               Appointment Date
             </span>
 
             <DatePicker
-              className="w-full border border-[#667085] h-[50px]"
+              className="w-full border border-[#DEE2E6] h-[50px]"
               placeholder={"DD/MM/YYYY"}
               onChange={handleAppointmentDate}
             />

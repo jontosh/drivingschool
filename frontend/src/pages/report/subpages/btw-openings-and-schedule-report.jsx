@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { DatePicker } from "antd";
 import { Fragment, useContext, useState } from "react";
 
 export const BtwOpeningsAndScheduleReport = ({ ...props }) => {
@@ -130,6 +131,18 @@ export const BtwOpeningsAndScheduleReport = ({ ...props }) => {
                 ]}
                 onChange={handleCategory}
                 value={Category ? Category : undefined}
+              />
+            </label>
+
+            <label className={"space-y-1.5"}>
+              <span className={"text-base font-normal w-full text-gray-500"}>
+                Date Range (of file upload)
+              </span>
+
+              <DatePicker
+                className="w-full border border-[#DEE2E6] h-[50px]"
+                placeholder={"DD/MM/YYYY"}
+                // onChange={handleDateRange}
               />
             </label>
           </div>

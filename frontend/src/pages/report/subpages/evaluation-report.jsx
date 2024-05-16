@@ -37,10 +37,10 @@ export const EvaluationReport = ({ ...props }) => {
       >
         <div className=" grid grid-cols-2 gap-x-7 gap-y-5">
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>Start Date</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>Start Date</span>
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleStartDate}
               />
@@ -52,11 +52,11 @@ export const EvaluationReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>End Date</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>End Date</span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleEndDate}
               />
@@ -69,7 +69,7 @@ export const EvaluationReport = ({ ...props }) => {
 
           <div className={"flex gap-3"}>
             <CustomInput
-              colorBorder={"#667085"}
+              colorBorder={"#DEE2E6"}
               spanText={"Student Name"}
               placeholder={"Enter at least two characters."}
               className={"h-[50px]"}
@@ -95,6 +95,7 @@ export const EvaluationReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"Select Lesson #"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,

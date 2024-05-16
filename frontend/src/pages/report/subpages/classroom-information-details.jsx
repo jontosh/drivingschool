@@ -41,12 +41,12 @@ export const ClassroomInformationDetails = ({ ...props }) => {
       >
         <div className=" grid grid-cols-2 gap-x-7 gap-y-5">
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>
+            <span className={"text-gray-500 w-full text-base font-normall"}>
               CR Data Start:
             </span>
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleStartDate}
               />
@@ -58,11 +58,11 @@ export const ClassroomInformationDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>CR Date End:</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>CR Date End:</span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleEndDate}
               />
@@ -74,12 +74,13 @@ export const ClassroomInformationDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"w-full"}>Type:</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Type:</span>
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"Type Selection"}
                 className={"h-[50px]"}
+                colorBorder="#DEE2E6"
                 options={[
                   {
                     value: 1,
@@ -101,12 +102,13 @@ export const ClassroomInformationDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"w-full"}>Instructor:</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Instructor:</span>
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"Instructor Selection"}
                 className={"h-[50px]"}
+                colorBorder="#DEE2E6"
                 options={[
                   {
                     value: 1,
@@ -128,12 +130,13 @@ export const ClassroomInformationDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"w-full"}>Start Date</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Start Date</span>
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"Instructor Selection"}
                 className={"h-[50px]"}
+                colorBorder="#DEE2E6"
                 options={[
                   {
                     value: 1,
@@ -155,12 +158,13 @@ export const ClassroomInformationDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"w-full"}>Location</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Location</span>
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"Instructor Selection"}
                 className={"h-[50px]"}
+                colorBorder="#DEE2E6"
                 options={[
                   {
                     value: 1,

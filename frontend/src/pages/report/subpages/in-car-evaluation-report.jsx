@@ -43,6 +43,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"SELECT  STATUS"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,
@@ -81,6 +82,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"SELECT  STATUS"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,
@@ -102,6 +104,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"Student Last Name"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,
@@ -141,6 +144,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"SELECT STUDENTS"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,
@@ -162,6 +166,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"SELECT  Instructor"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,
@@ -178,10 +183,10 @@ export const InCarEvaluationReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>Start Date</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>Start Date</span>
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleStartDate}
               />

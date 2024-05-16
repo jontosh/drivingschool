@@ -23,6 +23,7 @@ export const OnlineCourseCodes = ({ ...props }) => {
             style={{ width: "100%" }}
             placeholder={"PLEASE SELECT PRODUCT"}
             className={"h-[50px]"}
+            colorBorder={"#DEE2E6"}
             options={[
               {
                 value: 1,

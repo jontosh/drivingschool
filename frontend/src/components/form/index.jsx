@@ -179,7 +179,7 @@ export const CustomRadio = ({
 }) => {
   return (
     <label
-      className={classNames(props.classNames, FormStyle["Radio"])}
+      className={`flex gap-1 items-center ${classNames(props.classNames, FormStyle["Radio"])}`}
       {...props}
     >
       <div

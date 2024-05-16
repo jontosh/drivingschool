@@ -28,13 +28,13 @@ export const SignedDoc = ({ ...props }) => {
       <form onSubmit={(e) => e.preventDefault()}>
         <div className={"grid grid-cols-2 gap-x-20 gap-y-5"}>
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal text-gray-800 w-full"}>
+            <span className={"text-base font-normal text-gray-500 w-full"}>
               Select Date Range
             </span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleStartDate}
               />
@@ -46,13 +46,13 @@ export const SignedDoc = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal text-gray-800 w-full"}>
+            <span className={"text-base font-normal text-gray-500 w-full"}>
               CR Date End:
             </span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleEndDate}
               />
@@ -67,11 +67,12 @@ export const SignedDoc = ({ ...props }) => {
             <span className={"text-gray-500 w-full text-base font-normal"}>
               OR:
             </span>
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"Student Last Name"}
                 className={"h-[50px]"}
+                colorBorder={"#DEE2E6"}
                 options={[
                   {
                     value: 1,
@@ -95,11 +96,12 @@ export const SignedDoc = ({ ...props }) => {
             <span className={"text-gray-500 w-full text-base font-normal"}>
               Document Name:
             </span>
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
                 placeholder={"Enter Document Name"}
                 className={"h-[50px]"}
+                colorBorder={"#DEE2E6"}
                 options={[
                   {
                     value: 1,

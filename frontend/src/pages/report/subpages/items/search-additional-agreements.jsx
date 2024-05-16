@@ -22,14 +22,14 @@ export const SearchAdditionalAgreements = ({ ...props }) => {
   return (
     <Fragment>
       <form className=" space-y-5" onSubmit={(e) => e.preventDefault()}>
-        <label className={"space-y-1.5 w-1/2"}>
-          <span className={"text-base font-normal text-gray-800 w-full"}>
+        <label className={"space-y-1.5 w-full"}>
+          <span className={"text-base font-normal text-gray-500 w-full"}>
             Select Date Range
           </span>
 
           <div className="flex items-center gap-3">
             <DatePicker
-              className="w-full border border-[#667085] h-[50px]"
+              className="w-full max-w-[375px] border border-[#DEE2E6] h-[50px]"
               placeholder={"DD/MM/YYYY"}
               onChange={handleStartDate}
             />
@@ -40,22 +40,17 @@ export const SearchAdditionalAgreements = ({ ...props }) => {
           </div>
         </label>
 
-        <div className={"flex gap-3"}>
-          <CustomInput
-            colorBorder={"#DEE2E6"}
-            spanText={"Classroom List"}
-            spanClassName={"font-normal text-gray-500"}
-            fontSize="text-base"
-            placeholder={"Enter CR#"}
-            className={"h-[50px]"}
-            classNames={"inline-flex w-1/2 flex-col-reverse gap-1.5 h-[76px]"}
-            value={ClassroomList}
-            onChange={handleClassroomList}
-          />
-          <span className={"pb-2 pt-[41px]"}>
-            <FiHelpCircle className={"text-xl text-[#98A2B3] cursor-pointer"} />
-          </span>
-        </div>
+        <CustomInput
+          colorBorder={"#DEE2E6"}
+          spanText={"Classroom List"}
+          spanClassName={"font-normal text-gray-500"}
+          fontSize="text-base"
+          placeholder={"Enter CR#"}
+          className={"h-[50px]"}
+          classNames={"inline-flex w-full max-w-[375px] flex-col-reverse gap-1.5 h-[76px]"}
+          value={ClassroomList}
+          onChange={handleClassroomList}
+        />
 
         <div className={"flex gap-3"}>
           <CustomInput
@@ -65,7 +60,7 @@ export const SearchAdditionalAgreements = ({ ...props }) => {
             fontSize="text-base"
             placeholder={"Enter Staff Last Name"}
             className={"h-[50px]"}
-            classNames={"inline-flex w-1/2 flex-col-reverse gap-1.5 h-[76px]"}
+            classNames={"inline-flex w-full max-w-[375px] flex-col-reverse gap-1.5 h-[76px]"}
             value={StaffLastName}
             onChange={handleStaffLastName}
           />

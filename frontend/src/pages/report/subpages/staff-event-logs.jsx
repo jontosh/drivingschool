@@ -51,7 +51,7 @@ export const StaffEventLogs = ({ ...props }) => {
       >
         <div className="grid grid-cols-2 gap-x-20 gap-y-5">
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>
+            <span className={"text-base font-normal w-full text-gray-500"}>
               Select Services (Packages)
             </span>
 
@@ -70,7 +70,7 @@ export const StaffEventLogs = ({ ...props }) => {
                 },
               ]}
               className={`h-[50px] w-full rounded`}
-              colorBorder={"#667085"}
+              colorBorder={"#DEE2E6"}
               value={StaffStatus ? StaffStatus : undefined}
             />
           </label>
@@ -90,7 +90,7 @@ export const StaffEventLogs = ({ ...props }) => {
 
         <div className="grid grid-cols-2 gap-x-20 gap-y-5">
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>SELECT STAFF</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>SELECT STAFF</span>
 
             <CustomSelect
               onChange={handleStaff}
@@ -107,24 +107,24 @@ export const StaffEventLogs = ({ ...props }) => {
                 },
               ]}
               className={`h-[50px] w-full rounded`}
-              colorBorder={"#667085"}
+              colorBorder={"#DEE2E6"}
               value={Staff ? Staff : undefined}
             />
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal text-gray-800 w-full"}>
+            <span className={"text-base font-normal w-full text-gray-500"}>
               Date Range (of event logs)
             </span>
 
             <DatePicker
-              className="w-full border border-[#667085] h-[50px]"
+              className="w-full border border-[#DEE2E6] h-[50px]"
               placeholder={"DD/MM/YYYY"}
               onChange={handleDateRange}
             />
           </label>
 
-          <Paragraph fontSize={"text-xl font-semibold"}>
+          <Paragraph fontSize={"text-xl font-semibold text-gray-500"}>
             Staff Event Logs
           </Paragraph>
 
@@ -132,7 +132,7 @@ export const StaffEventLogs = ({ ...props }) => {
             <CustomRadio
               value={"New Admin Events"}
               name={"staff_event_logs"}
-              classNames={"w-full"}
+              classNames={"w-full text-gray-500"}
               onChange={handleStaffEvent}
             >
               New Admin Events
@@ -140,7 +140,7 @@ export const StaffEventLogs = ({ ...props }) => {
             <CustomRadio
               value={"InsTractor/Teacher Portal Events"}
               name={"staff_event_logs"}
-              classNames={"w-full"}
+              classNames={"w-full text-gray-500"}
               onChange={handleStaffEvent}
             >
               InsTractor/Teacher Portal Events
@@ -150,7 +150,7 @@ export const StaffEventLogs = ({ ...props }) => {
 
         <div className="grid grid-cols-2">
           <label className="space-y-1.5 w-full">
-            <span className={"text-base w-full"}>Select Data Field</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>Select Data Field</span>
 
             <CustomSelect
               onChange={handleDataField}
@@ -167,7 +167,7 @@ export const StaffEventLogs = ({ ...props }) => {
                 },
               ]}
               className={`h-[50px] w-full rounded`}
-              colorBorder={"#667085"}
+              colorBorder={"#DEE2E6"}
               value={DataField ? DataField : undefined}
             />
           </label>

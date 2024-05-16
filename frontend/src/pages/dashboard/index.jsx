@@ -62,7 +62,7 @@ const DashboardFormik = () => (
 
           {errors.search && touched.search && (
             <FormError className="pt-2.5 pb-5">{errors.search}</FormError>
-            
+
           )}
 
           <Checkbox.Group className="pt-5">

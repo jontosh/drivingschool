@@ -41,6 +41,7 @@ export const InstructorHoursReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"SELECT  Instructor"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,
@@ -62,6 +63,7 @@ export const InstructorHoursReport = ({ ...props }) => {
               style={{ width: "100%" }}
               placeholder={"SELECT  Instructor"}
               className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
               options={[
                 {
                   value: 1,
@@ -79,7 +81,7 @@ export const InstructorHoursReport = ({ ...props }) => {
         </div>
 
         <CustomCheckBox
-          className={"justify-end text-xl"}
+          className={"justify-end text-xl text-gray-500"}
           onChange={handleObservationHours}
         >
           Include Observation Hours
@@ -87,10 +89,10 @@ export const InstructorHoursReport = ({ ...props }) => {
 
         <div className={"grid grid-cols-2 gap-x-7 gap-y-5"}>
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>Start Date</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>Start Date</span>
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleStartDate}
               />
@@ -102,11 +104,11 @@ export const InstructorHoursReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>End Date</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>End Date</span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleEndDate}
               />
