@@ -4,7 +4,7 @@ from django.apps import apps
 from rest_framework.response import Response
 from markdown import markdown
 from rest_framework import viewsets
-from .models import Tasks,EmailTemplates ,Logs, LatestNews
+from .models import Tasks ,Logs, LatestNews
 from configuration.models import Expanses
 from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer,Student,Instructor
 from location.views import Class,ClassSerializer
@@ -12,7 +12,7 @@ from scheduling.views import Appointment,TimeSlot,TimeOff,TimeOffSerializer
 from django.db.models import Sum,Count
 from collections import defaultdict
 from .serializer import TasksSerializer\
-    ,EmailTemplatesSerializer,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
+    ,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
     StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer
 
 class TasksViewSet(viewsets.ModelViewSet):
@@ -25,15 +25,6 @@ class TasksViewSet(viewsets.ModelViewSet):
         # Perform any custom logic before updating the school, e.g., authorization checks
         serializer.save()
 
-class EmailTemplatesViewSet(viewsets.ModelViewSet):
-    queryset = EmailTemplates.objects.all()
-    serializer_class = EmailTemplatesSerializer
-    def perform_create(self, serializer):
-        # Perform any custom logic before saving the school, e.g., validation checks
-        serializer.save()
-    def perform_update(self, serializer):
-        # Perform any custom logic before updating the school, e.g., authorization checks
-        serializer.save()
 
 class LogsDataViewSet(viewsets.ModelViewSet):
     queryset = Logs.objects.all()

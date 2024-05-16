@@ -32,7 +32,8 @@ class Tasks(Extra):
     due_date = models.DateTimeField()
     assign = models.CharField(choices=ASSIGN_TYPE,max_length=40,default=0)
     priority = models.CharField(max_length=10,default="LOW",choices=PRIORITY)
-
+    def __str__(self):
+        return self.subject
 class LatestNews(models.Model):
     title = models.TextField()
     description = models.TextField()
@@ -40,23 +41,7 @@ class LatestNews(models.Model):
     order_number = models.AutoField(primary_key=True)
     def __str__(self):
         return self.title
-class EmailTemplates(models.Model):
-    text = models.CharField(max_length=500,choices=[["a","a"],["a","a"],])
 
-class EmailTemplatesAdmin(admin.ModelAdmin):
-    def get_form(self, request, obj=None, change=False, **kwargs):
-        form = super().get_form(request, obj, change, **kwargs)
-        all_fields = {}
-        for app in apps.get_app_configs():
-            for model in app.get_models():
-                field_names = [field.name for field in model._meta.get_fields()]
-                all_fields[model.__name__] = field_names
-        model_fields = all_fields.get(obj.__class__.__name__, [])  # Filter based on model
-        form.base_fields['text'].choices = [(field, field) for field in model_fields]
-
-        print(f"Choices for text field: {form.base_fields['text'].choices}")
-
-        return form
 
 class Logs(models.Model):
     time = models.DateTimeField(auto_now=True)
@@ -76,7 +61,6 @@ class Logs(models.Model):
 
 
 
-admin.site.register(EmailTemplates,EmailTemplatesAdmin)
 
 
 # @receiver(pre_save, sender=Logs)

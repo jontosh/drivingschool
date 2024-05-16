@@ -6,7 +6,6 @@ Router = {
         "note":"If you access this API, you will receive all data. Adding <span>ID</span> after the endpoint will retrieve specific data of that model.",
         "children":{
             "task":"task",
-            "email_templates":"email_templates",
             "logs":"logs",
             "latest_news":"latest_news",
         }
