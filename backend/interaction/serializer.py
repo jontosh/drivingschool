@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Tasks,Logs,LatestNews
+from .models import Tasks,Logs,LatestNews,EmailTemplate
 from location.views import LocationSerializer,VehicleSerializer,LocationSmallSerializer,SchoolSerializer,Vehicle,Class,Location
 from servises.serializer import ServicesSerializer
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,WeekRangeSerializer,TimeRangeSerializer,\
@@ -18,7 +18,6 @@ class VehicleFullSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = Vehicle
-
 class InstructorFullSerializer(serializers.ModelSerializer):
     location = LocationFullSerializer(read_only=True)
     vehicle = VehicleFullSerializer(read_only = True)
@@ -27,8 +26,6 @@ class InstructorFullSerializer(serializers.ModelSerializer):
     class Meta:
         fields ='__all__'
         model = Instructor
-
-
 class TimeSlotSerializer_(serializers.ModelSerializer):
     date_range = DateRangeSerializer(read_only=True)
     location = LocationSerializer(read_only=True)
@@ -42,9 +39,6 @@ class TimeSlotSerializer_(serializers.ModelSerializer):
 
     def get_authors(self, obj):
         return obj.authors.all()
-
-
-
 class AppointmentEmailSerializer(serializers.ModelSerializer):
     time_slot = TimeSlotSerializer_(read_only=True)
     class Meta:
@@ -52,8 +46,7 @@ class AppointmentEmailSerializer(serializers.ModelSerializer):
         fields = (  "id","time_slot")
 
 
-
-
+#COMMUNICATION SERIALIZERS
 class TasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tasks
@@ -94,6 +87,8 @@ class ClassFullSerializer(serializers.ModelSerializer):
     class Meta:
         fields= "__all__"
         model = Class
+
+#EMAIL TEMPLATE
 class StudentSerializerEmail(serializers.ModelSerializer):
     """
         Here we will use this API to catch up email templates variable
@@ -144,13 +139,9 @@ class StudentSerializerEmail(serializers.ModelSerializer):
 
         ]
         extra_kwargs = { field: { 'read_only': True } for field in fields }
-
-
 class InstructorEmailSerializer(serializers.ModelSerializer):
     """
-    TimeOff
-    TimeSlot
-    Class > location ,  timeRange
+    This will show all data of Instructor even if reversely connected ones like time_off
     """
     location = LocationFullSerializer(read_only=True)
     vehicle = VehicleFullSerializer(read_only = True)
@@ -167,3 +158,11 @@ class InstructorEmailSerializer(serializers.ModelSerializer):
         ]
         model = Instructor
 
+class EmailTemplateSerializer(serializers.ModelSerializer):
+    """
+    This is email Template serializer. It will help to get text and Student or Instructor. while saving data it
+    will change text by itself
+    """
+    class Meta:
+        model = EmailTemplate
+        fields = "__all__"

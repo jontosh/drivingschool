@@ -56,8 +56,18 @@ class Logs(models.Model):
     def __str__(self):
         return f"{self.action}\t{self.method}"
 
+class EmailTemplate(models.Model):
+    """
+    Here we will save data which will come from email template section. It will be automatically edited
+    It will be linked to Student or Instructor. User have to choose one
+    if you choose 2 of them or nether of them data will not be saved
+    """
+    email = models.TextField()
+    student = models.ForeignKey("Users.Student",on_delete=models.CASCADE,blank=True,null=True)
+    instructor = models.ForeignKey("Users.Instructor",on_delete=models.CASCADE,blank=True,null=True)
 
-
+    def __str__(self):
+        return str(self.id)
 
 
 
