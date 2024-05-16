@@ -5,6 +5,15 @@ export const useDate = () => {
       label: new Date(0, i).toLocaleString("en-US", { month: "long" }),
     };
   });
+
+  const Days = Array.from({ length: 31 }, (item, i) => {
+    i += 1;
+    return {
+      value: i,
+      label: i,
+    };
+  });
+
   const YearsOptions = () => {
     let currentYear = new Date().getFullYear(),
       years = [];
@@ -15,5 +24,5 @@ export const useDate = () => {
     return years;
   };
 
-  return { Months, YearsOptions };
+  return { Months, YearsOptions, Days };
 };
