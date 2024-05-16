@@ -1,6 +1,6 @@
 from django.db import models
 from location.models import Vehicle,Location,School
-
+import uuid
 # Create your models here.
 class Weekday(models.TextChoices):
     MONDAY = 'MON', 'Monday'
@@ -35,7 +35,7 @@ class TimeOff(models.Model):
         ["Religious Holiday","Religious Holiday"],
         ["Corporate Off","Corporate Off"],
     ]
-    id = models.UUIDField(auto_created=True, primary_key=True, unique=True)
+    id = models.UUIDField(auto_created=True, primary_key=True, unique=True,blank=True,)
     name = models.CharField(max_length=200)
     status = models.CharField(choices=STATUS, max_length=30, default="Pending")
     code = models.CharField(max_length=150, blank=True,null=True)
@@ -51,6 +51,10 @@ class TimeOff(models.Model):
     extra = models.JSONField(blank=True)
     def __str__(self):
         return self.name
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.id = uuid.uuid4()
+        super().save(*args, **kwargs)
 class TimeSlot(models.Model):
     """
     Here we will store available slots for staff

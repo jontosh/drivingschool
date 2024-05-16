@@ -84,6 +84,8 @@ class Class(Extra):
     note = models.TextField(blank=True,null=True)
     day = models.ManyToManyField("scheduling.TimeRange",related_name="day_class")
     teacher = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE,null=True,blank=True)
+    def __str__(self):
+        return f"id \t{self.class_id}  {self.teacher.username}"
 
 
 
@@ -126,7 +128,8 @@ class Vehicle(models.Model):
     odometer = models.PositiveIntegerField(blank=True,null=True)
     initial_mileage = models.IntegerField(blank=True,null=True)
     image = models.ImageField(storage="image/vehicles",blank=True,null=True)
-
+    def __str__(self):
+        return f"{self.name} {self.plate}"
 class HowDidYouHearUs(models.Model):
     name = models.CharField(max_length=200)
     STATUS = [

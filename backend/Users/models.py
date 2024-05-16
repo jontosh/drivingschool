@@ -176,3 +176,5 @@ class Files(Extra):
     category = models.ForeignKey("FileCategory",on_delete=models.CASCADE)
     file = models.FileField(upload_to="files/student")
     date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.name

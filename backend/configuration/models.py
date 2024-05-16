@@ -1,10 +1,10 @@
 from django.core.validators import MinValueValidator, MaxValueValidator, StepValueValidator
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from colorfield.fields import ColorField
 from scheduling.models import Weekday
+import uuid
 from abstracts.models import Extra,Status
 # Create your models here.
 class CompanyInfo(models.Model):
@@ -15,11 +15,15 @@ class CompanyInfo(models.Model):
     city = models.CharField(max_length=200, blank=True, null=True)
     zip = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
-    cell_phone = PhoneNumberField()
+    cell_phone = models.CharField(blank=True,null=True)
     fax = models.TextField(blank=True)
     extra = models.JSONField(blank=True)
     url = models.TextField()
     notes = models.TextField(blank=True)
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.id = uuid.uuid4()
+        super().save(*args, **kwargs)
 
 class WebContent(models.Model):
     title = models.CharField(max_length=200)
@@ -33,7 +37,7 @@ class WebContent(models.Model):
 class ZipCode(models.Model):
     zip_code = models.IntegerField(blank=True)
     def __str__(self):
-        return self.zip_code
+        return str(self.zip_code)
 
 class StorageManagement(models.Model):
     id = models.UUIDField(primary_key=True)
