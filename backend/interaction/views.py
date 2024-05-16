@@ -193,33 +193,62 @@ class StudentHomeAPI(APIView):
         return Response(enrolment.data)
 
 class StudentEmailTemplateView(APIView):
-    def get(self, request, id):
-        student = Student.objects.get(pk=id)
+    def get(self, request, UUID):
+        student = Student.objects.get(pk=UUID)
         student = StudentSerializerEmail(student,many=False)
-        appointments = Appointment.objects.filter(student__id=id)
+        appointments = Appointment.objects.filter(student__id=UUID)
         appointments = AppointmentEmailSerializer(appointments,many=True)
         student.appointments = appointments
         return Response(student.data)
+class StudentEmailListView(APIView):
+    def get(self,request):
+        key_list = generate_key_list(StudentSerializerEmail(Student.objects.first()).data,name="student")
+        return Response(key_list)
 
 class InstructorEmailTemplateView(APIView):
-    def get(self, request, id):
+    def get(self, request, UUID):
         """
             classes = ClassFullSerializer(many=True,read_only=True)
             time_slot = TimeSlotSerializer_(read_only=True,many=True)
             time_off = TimeOffSerializer(read_only=True,many=True)
         """
-        instructor = Instructor.objects.get(pk=id)
+        instructor = Instructor.objects.get(pk=UUID)
         instructor = InstructorEmailSerializer(instructor)
-        classes = Class.objects.filter(teacher__id=id)
+        classes = Class.objects.filter(teacher__id=UUID)
         classes = ClassSerializer(classes,many=True)
         instructor.classes = classes
-        time_slot = TimeSlot.objects.filter(staff__id=id)
+        time_slot = TimeSlot.objects.filter(staff__id=UUID)
         time_slot = TimeSlotSerializer_(time_slot,many=True)
         time_slot.time_slot = time_slot
 
-        time_off = TimeOff.objects.filter(staff__id=id)
+        time_off = TimeOff.objects.filter(staff__id=UUID)
         time_off = TimeOffSerializer(time_off, many=True)
         time_off.time_slot = time_off
 
 
         return Response(instructor.data)
+class InstructorEmailListView(APIView):
+    def get(self,request):
+        key_list = generate_key_list(InstructorEmailSerializer(Instructor.objects.first()).data,name="instructor")
+        return Response(key_list)
+
+def extract_keys(data, parent_key=''):
+    """
+    Extract keys from a nested dictionary and generate paths in the format 'data.key1.key2'.
+    """
+    items = []
+    for k, v in data.items():
+        new_key = f"{parent_key}.{k}" if parent_key else k
+        if isinstance(v, dict):
+            items.extend(extract_keys(v, new_key))
+        else:
+            items.append(new_key)
+    return items
+
+def generate_key_list(data,name:str):
+    """
+    Generate the list in the format data=[data.high_school.id, data.staff.location.name]
+    """
+    keys = extract_keys(data)
+    key_list = [f"{name}.{key}" for key in keys]
+    return key_list

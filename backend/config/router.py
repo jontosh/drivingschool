@@ -103,13 +103,18 @@ Router = {
     "page_api":{
         "base":"page_api/",
         "methods":["GET","REST METHODS ARE BLOCKED"],
-        "descriptions":"Here we provide simple URLs to get page base api this is longest api and here you can create or delete. This api designed only for get method",
-        "note":"Any attempt to <span>POST</span>  <span>DELETE</span>  <span>UPDATE</span> will result with  <span class='highlight-red'>ERROR</span>",
+        "descriptions":"Here we provide simple URLs to get page base api this is longest api and here you can create or delete. This api designed only for get method ",
+        "note":"If you request to <span>student_email_templates/</span> you will get only the list of available variables for email templates \n"
+               "if you provide UUID after <span class='highlight-red'>/</span> then you will get all data belongs to student or instructor \n"
+               "providing wrong UUID and requesting <span class=>POST</span><span class=>UPDATE</span><span class=>DELETE</span> methods will end up with <span class='highlight-red'>ERROR</span>",
+
         "children":{
             "instructor":"instructor/",
             "student":"student/",
-            "student_email_templates":"student_email_templates/",
-            "instructor_email_templates":"instructor_email_templates/"
+            "student_list_email_templates":"student_email_templates/",
+            "instructor_list_email_templates":"instructor_email_templates/",
+            "student_email_templates":"student_email_templates/<str:UUID>",
+            "instructor_email_templates":"instructor_email_templates/<str:UUID>"
         }
     },
     "scheduling":{

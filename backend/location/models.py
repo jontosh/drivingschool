@@ -44,7 +44,8 @@ class Location(models.Model):
     distance_based_scheduling = models.IntegerField(default=0)
     provider_location_id = models.CharField(blank=True,null=True,max_length=200)
     send_drive_available_email_on_appointment_cancellation= models.BooleanField(default=False)
-
+    def __str__(self):
+        return self.name
 # SCHOOL
 class School(models.Model):
     """We will use this module to get school of our clients."""
@@ -54,13 +55,13 @@ class School(models.Model):
         ["INACTIVE","INACTIVE"]
     ]
     name = models.CharField(max_length=200)
-    code = models.PositiveBigIntegerField()
-    address = models.ForeignKey("LocationSmall",on_delete=models.CASCADE)
-    email = models.EmailField()
-    note = models.TextField()
-    zipcode = models.IntegerField()
-    city = models.CharField(max_length=200)
-    state = models.CharField(max_length=200)
+    code = models.PositiveBigIntegerField(null=True,blank=True)
+    address = models.ForeignKey("LocationSmall",on_delete=models.CASCADE,null=True,blank=True)
+    email = models.EmailField(null=True,blank=True)
+    note = models.TextField(null=True,blank=True)
+    zipcode = models.IntegerField(null=True,blank=True)
+    city = models.CharField(max_length=200,null=True,blank=True)
+    state = models.CharField(max_length=200,null=True,blank=True)
     status = models.CharField(choices=Status,default="INACTIVE",max_length=100)
 #CLASS
 class Class(Extra):
@@ -120,11 +121,11 @@ class Vehicle(models.Model):
     plate = models.CharField(max_length=100)
     has_color = models.BooleanField(default=False)
     color = ColorField(default='#FF0000',blank=True)
-    note = models.TextField(blank=True)
+    note = models.TextField(blank=True,null=True)
     asr_esn_id = models.TextField()
-    odometer = models.PositiveIntegerField(blank=True)
-    initial_mileage = models.IntegerField(blank=True)
-    image = models.ImageField(storage="image/vehicles",blank=True)
+    odometer = models.PositiveIntegerField(blank=True,null=True)
+    initial_mileage = models.IntegerField(blank=True,null=True)
+    image = models.ImageField(storage="image/vehicles",blank=True,null=True)
 
 class HowDidYouHearUs(models.Model):
     name = models.CharField(max_length=200)
