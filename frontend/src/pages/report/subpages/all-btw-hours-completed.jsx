@@ -39,8 +39,10 @@ export const AllBtwHoursCompleted = ({ ...props }) => {
           >
             <div className={"grid grid-cols-2 gap-20"}>
               <label className={"space-y-1.5"}>
-                <span className={"text-base font-normal text-gray-800 w-full"}> Start Date </span>
-                
+                <span className={"text-base font-normal text-gray-800 w-full"}>
+                  Start Date
+                </span>
+
                 <div className="flex items-center gap-3">
                   <DatePicker
                     className="w-full border border-[#667085] h-[50px]"
@@ -55,7 +57,9 @@ export const AllBtwHoursCompleted = ({ ...props }) => {
               </label>
 
               <label className={"space-y-1.5"}>
-                <span className={"text-base font-normal text-gray-800 w-full"}>End Date</span>
+                <span className={"text-base font-normal text-gray-800 w-full"}>
+                  End Date
+                </span>
 
                 <div className="flex items-center gap-3">
                   <DatePicker
