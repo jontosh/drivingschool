@@ -36,7 +36,7 @@ export const AttendanceSignatures = ({ ...props }) => {
           >
             <div className="space-y-6 max-w-[490px] mx-auto">
               <CustomInput
-                colorBorder={"#667085"}
+                colorBorder={"#DEE2E6"}
                 spanText={"CR LIST"}
                 placeholder={"SELECT CLASS ROOM"}
                 className={""}
@@ -54,6 +54,7 @@ export const AttendanceSignatures = ({ ...props }) => {
                   style={{ width: "100%" }}
                   placeholder={"SELECT SESSION #"}
                   className={"h-[50px]"}
+                  colorBorder={"#DEE2E6"}
                   options={[
                     {
                       value: 1,

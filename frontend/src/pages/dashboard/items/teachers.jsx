@@ -87,7 +87,7 @@ export const DashboardTeachers = () => {
               className={values.search !== "" ? `mb-7` : undefined}
               onSubmit={handleSubmit}
             >
-              <div className="flex">
+              <div className="flex items-center">
                 <Title
                   fontSize={"text-base"}
                   fontWeightStrong={500}
@@ -100,7 +100,8 @@ export const DashboardTeachers = () => {
                     <CustomInput
                       colorBorder={colorsObject.primary}
                       placeholder={"Search"}
-                      className={`w-96 pl-12 pr-4 text-sm  ${errors.search && "border border-[#FF9D83]"}`}
+                      className={`w-96 pl-12 pr-4 text-sm ${errors.search && "border border-[#FF9D83]"}`}
+                      classNames={"h-[50px]"}
                       value={values.search}
                       name={"search"}
                       onChange={handleChange}

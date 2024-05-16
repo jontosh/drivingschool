@@ -34,20 +34,20 @@ export const OpenBalanceReport = ({ ...props }) => {
       >
         <div className="grid grid-cols-2 gap-x-7 gap-y-5">
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>Start Date</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>Start Date</span>
             <DatePicker
-              className="w-full border border-[#667085] h-[50px]"
+              className="w-full border border-[#DEE2E6] h-[50px]"
               placeholder={"DD/MM/YYYY"}
               onChange={handleStartDate}
             />
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal w-full"}>End Date</span>
+            <span className={"text-base font-normal w-full text-gray-500"}>End Date</span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleEndDate}
               />
@@ -59,27 +59,35 @@ export const OpenBalanceReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full"}>Student Status</span>
-            <CustomSelect
-              style={{ width: "100%" }}
-              placeholder={"SELECT"}
-              className={"h-[50px]"}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-                {
-                  value: 2,
-                  label: 2,
-                },
-              ]}
-              onChange={handleStudentStatus}
-              value={StudentStatus ? StudentStatus : undefined}
-            />
+            <span className={"text-gray-500 w-full text-gray-500"}>Student Status</span>
+
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                style={{ width: "100%" }}
+                placeholder={"SELECT"}
+                className={"h-[50px]"}
+                colorBorder={"#DEE2E6"}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                  {
+                    value: 2,
+                    label: 2,
+                  },
+                ]}
+                onChange={handleStudentStatus}
+                value={StudentStatus ? StudentStatus : undefined}
+              />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </label>
 
-          <CustomCheckBox onChange={handleShowBalance}>
+          <CustomCheckBox onChange={handleShowBalance} className={"text-gray-500 text-base font-normal pt-6"}>
             Show Negative Balances
           </CustomCheckBox>
         </div>

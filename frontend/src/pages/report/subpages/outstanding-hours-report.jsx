@@ -8,6 +8,7 @@ import ManagementStyle from "@/pages/managment/management.module.scss";
 import { DatePicker } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useMemo, useState } from "react";
+import { FiHelpCircle } from "react-icons/fi";
 
 export const OutstandingHoursReport = ({ ...props }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -73,7 +74,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
             onSubmit={handleSubmit}
           >
             <div className="flex items-center justify-between">
-              <Paragraph fontSize={"text-xl font-semibold"}>
+              <Paragraph fontSize={"text-xl font-semibold text-gray-500"}>
                 Filter Students By Date (Select one):
               </Paragraph>
 
@@ -81,6 +82,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
                 name={"by_date"}
                 onChange={handleChange}
                 value={"Date Activated"}
+                classNames={"text-gray-500"}
               >
                 Date Activated
               </CustomRadio>
@@ -89,6 +91,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
                 name={"by_date"}
                 onChange={handleChange}
                 value={"Classroom Start Date"}
+                classNames={"text-gray-500"}
               >
                 Classroom Start Date
               </CustomRadio>
@@ -96,18 +99,25 @@ export const OutstandingHoursReport = ({ ...props }) => {
 
             <div className={"grid grid-cols-2 gap-x-7 gap-y-5"}>
               <label className={"space-y-1.5"}>
-                <span className={`text-base font-normal w-full`}>
+                <span className={`text-base font-normal w-full text-gray-500`}>
                   Start Date *
                 </span>
-                <DatePicker
-                  className="w-full border border-[#667085] h-[50px]"
-                  placeholder={"DD/MM/YYYY"}
-                  onChange={handleStartDate}
-                />
+
+                <div className="flex items-center gap-3">
+                  <DatePicker
+                    className="w-full border border-[#DEE2E6] h-[50px]"
+                    placeholder={"DD/MM/YYYY"}
+                    onChange={handleStartDate}
+                  />
+
+                  <span>
+                    <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                  </span>
+                </div>
               </label>
 
               <label className="space-y-1.5">
-                <span className={"text-base w-full"}>
+                <span className={"text-base font-normal w-full text-gray-500"}>
                   Behind the Wheel Products *
                 </span>
 
@@ -127,7 +137,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
                       },
                     ]}
                     className={`h-[50px] w-full rounded`}
-                    colorBorder={"#667085"}
+                    colorBorder={"#DEE2E6"}
                     value={WheelProduct ? WheelProduct : undefined}
                   />
 
@@ -138,7 +148,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
               </label>
 
               <label className="space-y-1.5">
-                <span className={"text-base w-full"}>Classroom Products *</span>
+                <span className={"text-base font-normal w-full text-gray-500"}>Classroom Products *</span>
 
                 <div className={"w-full"}>
                   <CustomSelect
@@ -156,7 +166,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
                       },
                     ]}
                     className={`h-[50px] w-full rounded`}
-                    colorBorder={"#667085"}
+                    colorBorder={"#DEE2E6"}
                     value={ClassroomProduct ? ClassroomProduct : undefined}
                   />
 
@@ -165,7 +175,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
               </label>
 
               <label className="space-y-1.5">
-                <span className={"text-base w-full"}>Location Assigned</span>
+                <span className={"text-base font-normal w-full text-gray-500"}>Location Assigned</span>
 
                 <CustomSelect
                   onChange={handleLocation}
@@ -182,13 +192,13 @@ export const OutstandingHoursReport = ({ ...props }) => {
                     },
                   ]}
                   className={`h-[50px] w-full rounded`}
-                  colorBorder={"#667085"}
+                  colorBorder={"#DEE2E6"}
                   value={Location ? Location : undefined}
                 />
               </label>
 
               <label className="space-y-1.5">
-                <span className={"text-base w-full"}>Staff Assigned</span>
+                <span className={"text-base font-normal w-full text-gray-500"}>Staff Assigned</span>
 
                 <CustomSelect
                   onChange={handleStaffAssigned}
@@ -205,7 +215,7 @@ export const OutstandingHoursReport = ({ ...props }) => {
                     },
                   ]}
                   className={`h-[50px] w-full rounded`}
-                  colorBorder={"#667085"}
+                  colorBorder={"#DEE2E6"}
                   value={StaffAssigned ? StaffAssigned : undefined}
                 />
               </label>

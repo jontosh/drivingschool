@@ -21,13 +21,13 @@ export const ReviewLog = ({ ...props }) => {
     <Fragment>
       <form className=" space-y-5" onSubmit={(e) => e.preventDefault()}>
         <label className={"space-y-1.5 w-1/2"}>
-          <span className={"text-base font-normal text-gray-800 w-full"}>
+          <span className={"text-base font-normal text-gray-500 w-full"}>
             Select Date Range
           </span>
 
           <div className="flex items-center gap-3">
             <DatePicker
-              className="w-full border border-[#667085] h-[50px]"
+              className="w-full max-w-[375px] border border-[#DEE2E6] h-[50px]"
               placeholder={"DD/MM/YYYY"}
               onChange={handleStartDate}
             />
@@ -46,7 +46,7 @@ export const ReviewLog = ({ ...props }) => {
             fontSize="text-base"
             placeholder={"Enter Staff Last Name"}
             className={"h-[50px]"}
-            classNames={"inline-flex w-1/2 flex-col-reverse gap-1.5 h-[76px]"}
+            classNames={"inline-flex w-full max-w-[375px] flex-col-reverse gap-1.5 h-[76px]"}
             value={StaffLastName}
             onChange={handleStaffLastName}
           />

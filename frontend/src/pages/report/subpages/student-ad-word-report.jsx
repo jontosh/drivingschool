@@ -30,13 +30,13 @@ export const StudentAdWordReport = ({ ...props }) => {
       >
         <div className={"grid grid-cols-2 gap-20"}>
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal text-gray-800 w-full"}>
+            <span className={"text-base font-normal text-gray-500 w-full"}>
               Start Date
             </span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleStartDate}
               />
@@ -48,13 +48,13 @@ export const StudentAdWordReport = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5"}>
-            <span className={"text-base font-normal text-gray-800 w-full"}>
+            <span className={"text-base font-normal text-gray-500 w-full"}>
               End Date
             </span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleEndDate}
               />

@@ -40,11 +40,11 @@ export const SalesDetailReport = ({ ...props }) => {
       >
         <div className="grid grid-cols-2 gap-x-20 gap-y-5">
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>
+            <span className={"text-base w-full text-gray-500"}>
               Select Services (Packages)
             </span>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <CustomSelect
                 onChange={handleServices}
                 placeholder={"SELECT"}
@@ -60,7 +60,7 @@ export const SalesDetailReport = ({ ...props }) => {
                   },
                 ]}
                 className={`h-[50px] w-full rounded`}
-                colorBorder={"#667085"}
+                colorBorder={"#DEE2E6"}
                 value={Services ? Services : undefined}
               />
 
@@ -71,11 +71,11 @@ export const SalesDetailReport = ({ ...props }) => {
           </label>
 
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>
+            <span className={"text-base w-full text-gray-500"}>
               Select Components (Products)
             </span>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <CustomSelect
                 onChange={handleComponents}
                 placeholder={"SELECT"}
@@ -91,7 +91,7 @@ export const SalesDetailReport = ({ ...props }) => {
                   },
                 ]}
                 className={`h-[50px] w-full rounded`}
-                colorBorder={"#667085"}
+                colorBorder={"#DEE2E6"}
                 value={Components ? Components : undefined}
               />
 
@@ -102,11 +102,11 @@ export const SalesDetailReport = ({ ...props }) => {
           </label>
 
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>
+            <span className={"text-base w-full text-gray-500"}>
               Locations (Assigned to Students)
             </span>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <CustomSelect
                 onChange={handleLocation}
                 placeholder={"SELECT"}
@@ -122,7 +122,7 @@ export const SalesDetailReport = ({ ...props }) => {
                   },
                 ]}
                 className={`h-[50px] w-full rounded`}
-                colorBorder={"#667085"}
+                colorBorder={"#DEE2E6"}
                 value={Location ? Location : undefined}
               />
 
@@ -133,11 +133,11 @@ export const SalesDetailReport = ({ ...props }) => {
           </label>
 
           <label className="space-y-1.5">
-            <span className={"text-base w-full"}>Date Range</span>
+            <span className={"text-base w-full text-gray-500"}>Date Range</span>
 
             <div className="flex items-center gap-3">
               <DatePicker
-                className="w-full border border-[#667085] h-[50px]"
+                className="w-full border border-[#DEE2E6] h-[50px]"
                 placeholder={"DD/MM/YYYY"}
                 onChange={handleDateRange}
               />

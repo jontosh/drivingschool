@@ -67,7 +67,7 @@ export const Settings = ({ ...props }) => {
           <form onSubmit={handleSubmit} className={"space-y-5"}>
             <div className="grid grid-cols-2 gap-x-20 gap-y-5">
               <label className="w-full space-y-4">
-                <span className={"w-full"}>Enable Additional Agreement</span>
+                <span className={"text-gray-500 w-full text-base font-normal"}>Enable Additional Agreement</span>
                 <SwitchCustom
                   checked={EnableAdditionalAgreement}
                   onChange={handleEnableAdditionalAgreement}
@@ -75,7 +75,7 @@ export const Settings = ({ ...props }) => {
               </label>
 
               <label className="w-full space-y-4">
-                <span className={"w-full"}>Enable Student Signature</span>
+                <span className={"text-gray-500 w-full text-base font-normal"}>Enable Student Signature</span>
                 <SwitchCustom
                   checked={EnableStudentSignature}
                   onChange={handleEnableStudentSignature}
@@ -83,7 +83,7 @@ export const Settings = ({ ...props }) => {
               </label>
 
               <label className="w-full space-y-4">
-                <span className={"w-full"}>Enable Parent Signature</span>
+                <span className={"text-gray-500 w-full text-base font-normal"}>Enable Parent Signature</span>
                 <SwitchCustom
                   checked={EnableParentSignature}
                   onChange={handleEnableParentSignature}
@@ -91,7 +91,7 @@ export const Settings = ({ ...props }) => {
               </label>
 
               <label className="w-full space-y-4">
-                <span className={"w-full"}>
+                <span className={"text-gray-500 w-full text-base font-normal"}>
                   Make Additional Agreement Mandatory to Sign
                 </span>
                 <SwitchCustom
@@ -103,19 +103,19 @@ export const Settings = ({ ...props }) => {
 
             <div className={"grid grid-cols-2 gap-x-20 gap-y-5"}>
               <label className={"space-y-1.5"}>
-                <span className={"text-base font-normal text-gray-800 w-full"}>
+                <span className={"text-gray-500 w-full text-base font-normal"}>
                   Signing required for enrollments after this date
                 </span>
 
                 <DatePicker
-                  className="w-full border border-[#667085] h-[50px]"
+                  className="w-full border border-[#DEE2E6] h-[50px]"
                   placeholder={"DD/MM/YYYY"}
                   onChange={handleEnrollmentDate}
                 />
               </label>
 
-              <div>
-                <span className={"text-base font-normal text-gray-800 w-full"}>
+              <div className="space-y-1.5">
+                <span className={"text-gray-500 w-full text-base font-normal"}>
                   Student Maximum Age for Parents Signature Required
                 </span>
 
@@ -125,18 +125,24 @@ export const Settings = ({ ...props }) => {
                     placeholder={"Select Month"}
                     value={Month ? Month : undefined}
                     onChange={handleMonth}
+                    colorBorder="#DEE2E6"
+                    className={"h-[50px]"}
                   />
                   <CustomSelect
                     options={Days}
                     placeholder={"Select day"}
                     value={Day ? Day : undefined}
                     onChange={handleDay}
+                    colorBorder="#DEE2E6"
+                    className={"h-[50px]"}
                   />
                   <CustomSelect
                     options={YearsOptions()}
                     placeholder={"Select Month"}
                     value={Year ? Year : undefined}
                     onChange={handleYear}
+                    colorBorder="#DEE2E6"
+                    className={"h-[50px]"}
                   />
                 </div>
               </div>
