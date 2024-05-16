@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.">
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/online-course-codes.jsx" afterDir="false" />
+    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/all-btw-hours-completed.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/attendance-sheet-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/open-balance-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/open-balance-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/outstanding-hours-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/outstanding-hours-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payment-log-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payment-log-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payroll-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/payroll-report.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/print-receipts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/print-receipts.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +167,9 @@
       <workItem from="1715665026859" duration="1804000" />
       <workItem from="1715666838384" duration="425000" />
       <workItem from="1715667333492" duration="5486000" />
-      <workItem from="1715750957475" duration="17326000" />
+      <workItem from="1715750957475" duration="18105000" />
+      <workItem from="1715841193354" duration="199000" />
+      <workItem from="1715841400517" duration="8487000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -463,7 +473,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715772760633</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <option name="closed" value="true" />
+      <created>1715773432588</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1715773432588</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,32 +511,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component" />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings,&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add form inputs and handlers for filtering classes based on various criteria, including CR status, CR number, student last name, students, instructor, and start date. Update component, workspace settings, and task information for improved user interaction.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;-" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Ref" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pick" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user interaction" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user interaction in" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component" />
+    <MESSAGE value="- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor component to include date pickers and form handling for improved user interaction in the evaluation report component." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/drivingschool$models.coverage" NAME="models Coverage Results" MODIFIED="1714608625027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/configuration" />

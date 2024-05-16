@@ -63,7 +63,7 @@ export const LocationModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            // 
+            //
             borderRadius={5}
             style={{ width: 128 }}
           >
@@ -201,7 +201,7 @@ export const HighSchoolModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            // 
+            //
             borderRadius={5}
             style={{ width: 128 }}
           >
@@ -272,7 +272,7 @@ export const HearModule = () => {
       align: "center",
       render: (text) => {
         return (
-          <Paragraph className={"text-start"} fontSize={"text-lg"}>
+          <Paragraph className={"text-start pl-10"} fontSize={"text-lg"}>
             {text}
           </Paragraph>
         );
@@ -302,7 +302,7 @@ export const HearModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            // 
+            //
             borderRadius={5}
             style={{ width: 128 }}
           >

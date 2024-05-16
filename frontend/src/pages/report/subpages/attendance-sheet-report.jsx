@@ -2,9 +2,8 @@ import ButtonComponent from "@/components/button/index.jsx";
 import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { DatePicker } from "antd";
 import { Formik } from "formik";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext } from "react";
 import { FiHelpCircle } from "react-icons/fi";
 
 export const AttendanceSheetReport = ({ ...props }) => {
@@ -36,13 +35,15 @@ export const AttendanceSheetReport = ({ ...props }) => {
             <div className={"grid grid-cols-2 gap-20 items-center"}>
               <div className={"flex gap-3"}>
                 <CustomInput
-                  colorBorder={"#667085"}
+                  colorBorder={"#DEE2E6"}
                   spanText={"Class Number Search"}
-                  spanClassName={"font-normal"}
+                  spanClassName={"font-normal text-gray-500"}
                   fontSize="text-base"
                   placeholder={"Class Number Search"}
                   className={"h-[50px]"}
-                  classNames={"inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"}
+                  classNames={
+                    "inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"
+                  }
                   name="class_number"
                   value={values.class_number}
                   onChange={handleChange}
