@@ -103,17 +103,22 @@ Router = {
         "base":"page_api/",
         "methods":["GET","REST METHODS ARE BLOCKED"],
         "descriptions":"Here we provide simple URLs to get page base api this is longest api and here you can create or delete. This api designed only for get method ",
-        "note":"If you request to <span>student_email_templates/</span> you will get only the list of available variables for email templates \n"
-               "if you provide UUID after <span class='highlight-red'>/</span> then you will get all data belongs to student or instructor \n"
-               "providing wrong UUID and requesting <span class=>POST</span><span class=>UPDATE</span><span class=>DELETE</span> methods will end up with <span class='highlight-red'>ERROR</span>",
+        "note":"<li>If you request to <span>student_email_templates/</span> or <span>instructor_email_templates/</span> you will get the list of available variables for email templates </li>"
+               "<li>if you provide UUID after <span class='highlight-red'>/</span> then you will get all data belongs to student or instructor </li>"
+               "<li>In <span>email_template/</span> you can do <span class=>POST</span><span class=>UPDATE</span><span class=>DELETE</span> but should not forget that you can only provide <span class='highlight-red'>Student</span> or <span class='highlight-red'>Instructor</span> never leave them blank and never provide both of them. You have to provide only one of them else you will end up with <span class='highlight-red'>ERROR</span></li>"
+               "<li>Providing wrong UUID or ID and requesting <span class=>POST</span><span class=>UPDATE</span><span class=>DELETE</span> methods will end up with <span class='highlight-red'>ERROR</span></li><br>",
 
         "children":{
-            "instructor":"instructor/",
-            "student":"student/",
-            "student_list_email_templates":"student_email_templates/",
-            "instructor_list_email_templates":"instructor_email_templates/",
-            "student_email_templates":"student_email_templates/<str:UUID>",
-            "instructor_email_templates":"instructor_email_templates/<str:UUID>"
+            "email_template":"email_template",
+            "student_list_email_templates":    "student_email_templates",
+            "instructor_list_email_templates": "instructor_email_templates",
+            "instructor":"instructor/<str:id>/",
+            "student":"student/<str:id>/",
+            "student_email_templates":"student_email_templates/<str:UUID>/",
+            "instructor_email_templates":"instructor_email_templates/<str:UUID>/",
+
+
+
         }
     },
     "scheduling":{

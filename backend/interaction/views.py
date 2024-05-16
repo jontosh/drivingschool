@@ -13,8 +13,10 @@ from django.db.models import Sum,Count
 from collections import defaultdict
 from .serializer import TasksSerializer\
     ,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
-    StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer
-
+    StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate
+import  re
+from django import forms
+from django.shortcuts import render
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
@@ -47,8 +49,9 @@ class LatestNewsViewSet(viewsets.ModelViewSet):
         serializer.save()
 
 class GetFieldNamesView(APIView):
-
-
+    """
+    This API provides all app  model and field name like this "appname modelname fieldname"
+    """
     def get(self, request, format=None):
         not_include = ["admin","auth","contenttypes","mainadmin","sessions","PasswordManagement","GraphicalScheduleSetting","GeneralSetting", "Tasks", "EmailTemplates", "Fields", "Rights", "Question", "Answer", "QuestionType","HowDidYouHearUs" ]
         field_names = []
@@ -59,58 +62,6 @@ class GetFieldNamesView(APIView):
                         field_name = f"{app_config.label} {model.__name__} {field.name}"
                         field_names.append(field_name)
         return Response(field_names)
-
-def get_field_value(input_string):
-    # Split the input string to extract model name and field name
-    parts = input_string.split('.')
-    if len(parts) != 3:
-        print("1\n\n\n")
-        return None  # Invalid input format
-    model_name, field_name, field = parts
-    print("1\n\n\n")
-
-
-    try:
-        # Get the model class using apps.get_model()
-        model = apps.get_model(model_name,field_name)
-        print(model)
-        if model:
-            # Query the database to retrieve the field value
-            queryset = model.objects.first()
-            queryset = getattr(queryset, field, None)
-            if queryset:
-                return queryset # Return the first value
-            else:
-                return None  # No data found for the given model and field
-    except LookupError:
-        return None  # Model not found
-
-
-def parse_markdown(markdown_text):
-    models = apps.get_models()
-    for model in models:
-        app_label = model._meta.app_label
-        model_name = model.__name__.lower()
-        for field in model._meta.fields:
-            placeholder = f'{app_label}.{model_name}.{field.name}'
-            print(placeholder, "\t",)
-            if placeholder in markdown_text:
-                value = get_field_value(placeholder)
-                markdown_text = markdown_text.replace(placeholder, str(value))
-
-    print("Request Data:", markdown_text)
-
-    return markdown(markdown_text)
-
-
-class SendEmailAPIView(APIView):
-    def post(self, request, *args, **kwargs):
-
-        for key, value in  request.data.items():
-            markdown_text = key
-        print("Request Data:", markdown_text)
-        parsed_text = parse_markdown(markdown_text)
-        return Response({'status': f'{parsed_text}'}, status=status.HTTP_200_OK)
 
 
 #STATISTIC API
@@ -184,6 +135,9 @@ class StudentHomeAPI(APIView):
         return Response(enrolment.data)
 
 class StudentEmailTemplateView(APIView):
+    """
+    This API provides all data Students have
+    """
     def get(self, request, UUID):
         student = Student.objects.get(pk=UUID)
         student = StudentSerializerEmail(student,many=False)
@@ -192,11 +146,17 @@ class StudentEmailTemplateView(APIView):
         student.appointments = appointments
         return Response(student.data)
 class StudentEmailListView(APIView):
+    """
+    This API provides all keys Students have
+    """
     def get(self,request):
         key_list = generate_key_list(StudentSerializerEmail(Student.objects.first()).data,name="student")
         return Response(key_list)
 
 class InstructorEmailTemplateView(APIView):
+    """
+    This API provides all data Instructors have
+    """
     def get(self, request, UUID):
         """
             classes = ClassFullSerializer(many=True,read_only=True)
@@ -219,6 +179,9 @@ class InstructorEmailTemplateView(APIView):
 
         return Response(instructor.data)
 class InstructorEmailListView(APIView):
+    """
+    This API provides all keys Instructors have
+    """
     def get(self,request):
         key_list = generate_key_list(InstructorEmailSerializer(Instructor.objects.first()).data,name="instructor")
         return Response(key_list)
@@ -243,3 +206,51 @@ def generate_key_list(data,name:str):
     keys = extract_keys(data)
     key_list = [f"{name}.{key}" for key in keys]
     return key_list
+
+
+class EmailTemplateStudentView(viewsets.ModelViewSet):
+    """
+    Here we will receive email with variable and change them by accessing serializers data.
+    It will save email then gets text out of it simultaneously gets matching data from serializer.
+    Then pass data and text to replace_placeholders it will return edited email text
+    """
+    queryset = EmailTemplate.objects.all( )
+    serializer_class = EmailTemplateSerializer
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            email = serializer.save()
+            text = email.email
+            if email.student:
+                student = email.student
+                data = StudentSerializerEmail(student).data
+                email.email = self.replace_placeholders(text, data)
+                email.save()
+            elif email.Instructor:
+                Instructor = email.instructor
+                data = InstructorEmailSerializer(Instructor).data
+                email.email = self.replace_placeholders(text, data)
+                email.save()
+    def perform_update(self, serializer):
+        serializer.save()
+    def get_nested_value(self,data, key_path):
+        """
+        Here this will return value of variable provided by user in email template
+        """
+        keys = key_path.split('.')
+        value = data
+        print(keys)
+        for key in keys[1:]:
+            value = value.get(key)
+            if value is None:
+                return ''
+        return value
+    def replace_placeholders(self,text, data):
+        """
+        Here we will find is there any variable in text email template .
+        """
+        pattern = r'{{(.*?)}}'
+        def replacer(match):
+            key = match.group(1).strip()
+            return str(self.get_nested_value(data, key))
+
+        return re.sub(pattern, replacer, text)
