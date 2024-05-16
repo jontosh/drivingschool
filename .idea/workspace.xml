@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/items/review-log.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/items/search-additional-agreements.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/items/settings.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/items/signed-doc.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/sales-detail-report.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/sales-detail-report.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/signed-documents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/signed-documents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-event-logs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/subpages/staff-event-logs.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +162,7 @@
       <workItem from="1715667333492" duration="5486000" />
       <workItem from="1715750957475" duration="18105000" />
       <workItem from="1715841193354" duration="199000" />
-      <workItem from="1715841400517" duration="17264000" />
+      <workItem from="1715841400517" duration="19834000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />
@@ -488,7 +482,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715849999971</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <option name="closed" value="true" />
+      <created>1715860147595</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1715860147595</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
