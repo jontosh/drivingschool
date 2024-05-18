@@ -91,7 +91,7 @@ class Component(models.Model):
     type_component = models.CharField(choices=TYPE,max_length=50,default="BTW")
     subtype_btw = models.CharField(choices=BTW_TYPE,max_length=50,blank=True,null=True)
     subtype_web = models.CharField(choices=WEB_TYPE,max_length=50,blank=True,null=True)
-    driving_hours = models.TimeField()
+    driving_hours = models.DateTimeField(blank=True,null=True)
     enrolment_size= models.IntegerField(default=0,blank=True,null=True)
     make_up_size = models.IntegerField(default=0,blank=True,null=True)
     web_stu_enrolment = models.BooleanField(help_text="Website/Student Portal Enrollment",blank=True,null=True)
@@ -99,9 +99,9 @@ class Component(models.Model):
     days = models.CharField(choices=WEEK,max_length=10,default="MON",blank=True,null=True)
     number_sessions = models.IntegerField(default=0,blank=True,null=True)
     sessions_day = models.IntegerField(default=0,blank=True,null=True)
-    session_duration = models.TimeField(blank=True,null=True)
-    start_time = models.TimeField(blank=True,null=True)
-    end_time = models.TimeField(blank=True,null=True)
+    session_duration = models.DateField(blank=True,null=True)
+    start = models.DateTimeField(blank=True,null=True)
+    end = models.DateTimeField(blank=True,null=True)
 class Fee(models.Model):
     """
     Represents a fee that customers should pay.
@@ -171,7 +171,7 @@ class Test(Status,Extra,models.Model):
     is_final = models.BooleanField(default=False)
     is_class_session = models.BooleanField(default=False,verbose_name="Associate with This Class Session")
     is_attendance_required = models.BooleanField(default=False,verbose_name="Attendance Required for Associated Session only")
-    timer = models.TimeField(blank=True)
+    timer = models.DateTimeField(blank=True,null=True)
     is_timer = models.BooleanField(default=False)
     allow_view_complete = models.BooleanField(default=False,verbose_name="Allow Students to View Completed Quizzes")
     welcome_text = models.TextField(blank=True)

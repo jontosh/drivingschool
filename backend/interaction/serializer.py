@@ -146,7 +146,6 @@ class InstructorEmailSerializer(serializers.ModelSerializer):
     location = LocationFullSerializer(read_only=True)
     vehicle = VehicleFullSerializer(read_only = True)
     working_hours = TimeRangeSerializer(read_only=True,many=True)
-    student = StudentSerializer(read_only=True)
     classes = ClassFullSerializer(many=True,read_only=True)
     time_slot = TimeSlotSerializer_(read_only=True,many=True)
     time_off = TimeOffSerializer(read_only=True,many=True)
@@ -154,7 +153,7 @@ class InstructorEmailSerializer(serializers.ModelSerializer):
         fields =["id","status","first_name","mid_name","last_name","address","city","state","zip","email","code",
                  "home_photo","cell_phone","birth","username","password","type","staff_type","location","vehicle",
                  "emergency_name","emergency_relation","emergency_phone","permit_number","car_permit_data","car_permit_expire",
-                 "color","zoom","picture","working_hours","message_items","classes","time_slot","time_off",
+                 "color","zoom","picture","working_hours","classes","time_slot","time_off",
         ]
         model = Instructor
 
