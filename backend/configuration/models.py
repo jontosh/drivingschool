@@ -132,9 +132,8 @@ class GraphicalScheduleSetting(models.Model):
     schedule_row_height = models.IntegerField(default=25,verbose_name="Scheduler Row Height")
     week_start = models.CharField(max_length=30,choices=Weekday,default="MON")
     schedule_view = models.CharField(max_length=30,choices=SCHEDULE_VIEW,default="Day")
-    #TODO: Student Detail Settings
-    #TODO: Instructor Detail Settings
-    #TODO: Multi Instructor: Staff Default Display & Order of Display
+    student_details = models.JSONField(blank=True,null=True)
+    instructor_details = models.JSONField(blank=True, null=True)
 class Instructions(models.Model):
     description = models.TextField()
     def __str__(self):

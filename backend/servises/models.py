@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from abstracts.models import Status,Extra
+
+#SERVICES
 class AddOn(models.Model):
     name = models.CharField(max_length=200)
     def __str__(self):
@@ -100,7 +102,6 @@ class Component(models.Model):
     session_duration = models.TimeField(blank=True,null=True)
     start_time = models.TimeField(blank=True,null=True)
     end_time = models.TimeField(blank=True,null=True)
-
 class Fee(models.Model):
     """
     Represents a fee that customers should pay.
@@ -115,7 +116,6 @@ class Fee(models.Model):
     status = models.CharField(choices=STATUS, max_length=50,default="INACTIVE")
     amount = models.IntegerField(default=0)
     notes = models.TextField(blank=True,null=True)
-
 class Discount(models.Model):
     """
     Represents a discount that can be applied to services, classes, or locations.
@@ -135,6 +135,8 @@ class Discount(models.Model):
     classes = models.ManyToManyField("location.Class",related_name="Discount_classes",blank=True)
     locations = models.ManyToManyField("location.Location",related_name="Discount_locations",blank=True)
     expiration_data = models.DateField(default="1999/01/01",)
+
+#QUESTIONS || TESTS
 class Question(models.Model):
     type = models.ForeignKey("QuestionType",on_delete=models.CASCADE)
     question = models.TextField()
@@ -156,9 +158,6 @@ class QuestionType(models.Model):
 
     def __str__(self):
         return self.name
-
-
-
 class Test(Status,Extra,models.Model):
     """
     Model to represent tests containing a collection of questions
@@ -188,7 +187,7 @@ class Test(Status,Extra,models.Model):
 
 
 
-
+#SIGNAL TO CREATE ADD_ON AUTOMATICALLY
 @receiver(post_save, sender=Services)
 @receiver(post_save, sender=Component)
 @receiver(post_save, sender=Fee)

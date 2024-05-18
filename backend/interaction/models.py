@@ -58,7 +58,7 @@ class Logs(models.Model):
 
 class EmailTemplate(models.Model):
     """
-    Here we will save data which will come from email template section. It will be automatically edited
+    Here we will save data which will come from email template section. It will automatically edited
     It will be linked to Student or Instructor. User have to choose one
     if you choose 2 of them or nether of them data will not be saved
     """

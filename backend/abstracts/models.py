@@ -6,6 +6,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class Status(models.Model):
+    """
+    This model is abstract model which adds only status to each inherited model
+    """
     Status = [
         ["ACTIVE", "ACTIVE"],
         ["DELETED", "DELETED"],
@@ -19,8 +22,10 @@ class Status(models.Model):
         return self.status
 
 class Extra(models.Model):
+    """
+    This model is abstract model which adds only Extra json field and note(textfield) to each inherited model
+    """
     extra = models.JSONField(blank=True,null=True)
-
     note = models.TextField(blank=True,null=True)
     class Meta:
         abstract = True
