@@ -272,7 +272,7 @@ export const HearModule = () => {
       align: "center",
       render: (text) => {
         return (
-          <Paragraph className={"text-start pl-10"} fontSize={"text-lg"}>
+          <Paragraph className={"text-start pl-[285px]"} fontSize={"text-lg"}>
             {text}
           </Paragraph>
         );
@@ -302,7 +302,6 @@ export const HearModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            //
             borderRadius={5}
             style={{ width: 128 }}
           >
@@ -316,7 +315,7 @@ export const HearModule = () => {
       key: "action",
       align: "center",
       render: () => (
-        <div className={" space-x-2.5 "}>
+        <div className={"space-x-2.5 "}>
           <IconComponent
             className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{

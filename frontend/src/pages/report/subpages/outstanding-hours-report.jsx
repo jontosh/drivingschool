@@ -4,7 +4,6 @@ import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { FormError } from "@/modules/errors.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
-import ManagementStyle from "@/pages/managment/management.module.scss";
 import { DatePicker } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useMemo, useState } from "react";
@@ -99,8 +98,8 @@ export const OutstandingHoursReport = ({ ...props }) => {
 
             <div className={"grid grid-cols-2 gap-x-7 gap-y-5"}>
               <label className={"space-y-1.5"}>
-                <span className={`text-base font-normal w-full text-gray-500`}>
-                  Start Date *
+                <span className={`text-base font-normal w-full text-gray-500 relative after:left-24  ${EnrollmentStyle["Enrollment__heavy"]}`}>
+                  Start Date
                 </span>
 
                 <div className="flex items-center gap-3">
@@ -117,8 +116,8 @@ export const OutstandingHoursReport = ({ ...props }) => {
               </label>
 
               <label className="space-y-1.5">
-                <span className={"text-base font-normal w-full text-gray-500"}>
-                  Behind the Wheel Products *
+                <span className={`text-base font-normal w-full text-gray-500 relative after:left-60 ${EnrollmentStyle["Enrollment__heavy"]}`}>
+                  Behind the Wheel Products
                 </span>
 
                 <div className={"w-full"}>
@@ -148,7 +147,9 @@ export const OutstandingHoursReport = ({ ...props }) => {
               </label>
 
               <label className="space-y-1.5">
-                <span className={"text-base font-normal w-full text-gray-500"}>Classroom Products *</span>
+                <span className={`text-base font-normal w-full text-gray-500 text-gray-500 relative after:left-48 ${EnrollmentStyle["Enrollment__heavy"]}`}>
+                  Classroom Products
+                </span>
 
                 <div className={"w-full"}>
                   <CustomSelect

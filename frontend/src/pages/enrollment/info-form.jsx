@@ -216,7 +216,7 @@ export const InfoForm = () => {
                     spanText={"Student id"}
                     placeholder={"Student ID"}
                     fontSize={"text-base"}
-                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
                     colorBorder={colorsObject.primary}
                     value={values.studentId}
                     onChange={handleChange}
@@ -239,7 +239,7 @@ export const InfoForm = () => {
                     spanText={"First name"}
                     placeholder={"First name"}
                     fontSize={"text-base"}
-                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
                     colorBorder={colorsObject.primary}
                     value={values.first_name}
                     onChange={handleChange}
@@ -262,7 +262,7 @@ export const InfoForm = () => {
                     spanText={"Last name"}
                     placeholder={"Last name"}
                     fontSize={"text-base"}
-                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
                     colorBorder={colorsObject.primary}
                     value={values.last_name}
                     onChange={handleChange}
@@ -285,7 +285,7 @@ export const InfoForm = () => {
                     spanText={" Middle name"}
                     placeholder={" Middle name"}
                     fontSize={"text-base"}
-                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-11 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-11 ${EnrollmentStyle["Enrollment__heavy"]}`}
                     colorBorder={colorsObject.primary}
                     value={values.middle_name}
                     onChange={handleChange}
@@ -418,6 +418,7 @@ export const InfoForm = () => {
                       className={
                         "inline-flex flex-row-reverse items-center justify-end w-full h-[50px]"
                       }
+                      classNames={"w-[40px] h-[40px]"}
                       name={"home_phone_2"}
                       onChange={handleChange}
                       value={"+www"}
@@ -877,23 +878,50 @@ export const InfoForm = () => {
                     </span>
 
                     <div className={`grid grid-cols-3 gap-5`}>
-                      <CustomInput
-                        type={"text"}
+                      <CustomSelect
                         colorBorder={colorsObject.primary}
                         className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                         placeholder={"Day"}
+                        options={[
+                          {
+                            value: 1,
+                            label: 1,
+                          },
+                          {
+                            value: 2,
+                            label: 2,
+                          },
+                        ]}
                       />
-                      <CustomInput
-                        type={"text"}
+                      <CustomSelect
                         colorBorder={colorsObject.primary}
                         className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                         placeholder={"Month"}
+                        options={[
+                          {
+                            value: 1,
+                            label: 1,
+                          },
+                          {
+                            value: 2,
+                            label: 2,
+                          },
+                        ]}
                       />
-                      <CustomInput
-                        type={"text"}
+                      <CustomSelect
                         colorBorder={colorsObject.primary}
                         className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                         placeholder={"Year"}
+                        options={[
+                          {
+                            value: 1,
+                            label: 1,
+                          },
+                          {
+                            value: 2,
+                            label: 2,
+                          },
+                        ]}
                       />
                     </div>
                   </label>
