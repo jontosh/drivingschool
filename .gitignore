@@ -28,6 +28,7 @@ frontend/.env
 #Backend
 .idea/inspectionProfiles/Project_Default.xml
 .idea/workspace.xml
+**/__pycache__/
 Users/__pycache__/
 abstracts/__pycache__/
 backend/config/__pycache__/urls.cpython-311.pyc

@@ -1,7 +1,8 @@
+from django import forms
 from rest_framework import serializers
 from .models import CompanyInfo ,WebContent,ZipCode,StorageManagement,EmergencyData,MessageItems,Messages,Fields,\
     PasswordManagement, GraphicalScheduleSetting, GeneralSetting,Instructions,Expanses
-
+from .admin import FieldSelectionForm,Student,Instructor
 class CompanyInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompanyInfo
@@ -43,6 +44,16 @@ class  PasswordManagementSerializer(serializers.ModelSerializer):
         model = PasswordManagement
         fields = "__all__"
 class  GraphicalScheduleSettingSerializer(serializers.ModelSerializer):
+    student_fields = [ (field.name, field.verbose_name) for field in Student._meta.get_fields( ) if
+                       hasattr(field, 'verbose_name') ]
+    instructor_fields = [ (field.name, field.verbose_name) for field in Instructor._meta.get_fields( ) if
+                          hasattr(field, 'verbose_name') ]
+    student_details = serializers.MultipleChoiceField(
+        choices=student_fields,
+    )
+    instructor_details = serializers.MultipleChoiceField(
+        choices=instructor_fields,
+    )
     class Meta:
         model = GraphicalScheduleSetting
         fields = "__all__"
