@@ -17,12 +17,12 @@ class WeekRange(models.Model):
 class TimeRange(models.Model):
     day_of_week = models.CharField(max_length=3, choices=Weekday.choices,blank=True,null=True)
     name = models.CharField(max_length=200,blank=True,null=True)
-    start_time = models.TimeField(blank=True,null=True, )
-    end_time = models.TimeField(blank=True,null=True, )
+    start = models.DateTimeField(blank=True,null=True, )
+    end = models.DateTimeField(blank=True,null=True, )
 class DateRange(models.Model):
     name = models.CharField(max_length=200,blank=True,null=True)
-    start_time = models.TimeField(blank=True,null=True, )
-    end_time = models.TimeField(blank=True,null=True, )
+    start = models.DateField(blank=True,null=True, )
+    end = models.DateField(blank=True,null=True, )
 class TimeOff(models.Model):
     STATUS = [
         ["Active", "Active"],
@@ -42,8 +42,8 @@ class TimeOff(models.Model):
     type = models.CharField(choices=TYPES, max_length=30, default="Corporate Off")
     date = models.DateField(default="02/22/2024",help_text="MM/DD/YYYY")
     is_all_day = models.BooleanField(default=False)
-    start_time = models.TimeField(blank=True, null=True, )
-    end_time = models.TimeField(blank=True, null=True, )
+    start = models.DateField(blank=True, null=True, )
+    end = models.DateField(blank=True, null=True, )
     is_assign_new_staff = models.BooleanField(default=False)
     is_assign_all_staff = models.BooleanField(default=False)
     staff = models.ManyToManyField("Users.Instructor",related_name="time_off_staff")

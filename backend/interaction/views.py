@@ -109,12 +109,11 @@ class BillStatisticsByType(APIView):
 #PAGE API
 class InstructorHomeAPI(APIView):
     def get(self,request,id):
-        ready_data = {}
         appointments  = Appointment.objects.filter(time_slot__staff_id=id)
         serializer = AppointmentSerializer_(appointments,many=True)
-        for i in serializer.data:
-            i["time_slot"] = TimeSlotSerializer_(TimeSlot.objects.get(id=i["time_slot"])).data
 
+        for i in serializer.data:
+            i["time_slot"] = TimeSlotSerializer_(TimeSlot.objects.get(id=i["time_slot"]["id"])).data
         return Response(serializer.data)
 
 class StudentHomeAPI(APIView):
@@ -171,7 +170,6 @@ class InstructorEmailTemplateView(APIView):
         time_slot = TimeSlot.objects.filter(staff__id=UUID)
         time_slot = TimeSlotSerializer_(time_slot,many=True)
         time_slot.time_slot = time_slot
-
         time_off = TimeOff.objects.filter(staff__id=UUID)
         time_off = TimeOffSerializer(time_off, many=True)
         time_off.time_slot = time_off
