@@ -76,7 +76,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
-                placeholder={"Type Selection"}
+                placeholder={"TYPE SELECTION"}
                 className={"h-[50px]"}
                 colorBorder={"#DEE2E6"}
                 options={[
@@ -104,7 +104,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
 
             <CustomSelect
               style={{ width: "100%" }}
-              placeholder={"Instructor Selection"}
+              placeholder={"INSTRUCTOR SELECTION"}
               className={"h-[50px]"}
               colorBorder={"#DEE2E6"}
               options={[
@@ -123,11 +123,11 @@ export const ClassroomSessionDetails = ({ ...props }) => {
           </label>
 
           <label className={"space-y-1.5 w-full"}>
-            <span className={"text-gray-500 w-full text-base font-normal"}>Start Date</span>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Status:</span>
             <div className="flex items-center gap-3">
               <CustomSelect
                 style={{ width: "100%" }}
-                placeholder={"Instructor Selection"}
+                placeholder={"STATUS SELECTION"}
                 className={"h-[50px]"}
                 colorBorder={"#DEE2E6"}
                 options={[
@@ -154,7 +154,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
             <span className={"text-gray-500 w-full text-base font-normal"}>Location</span>
             <CustomSelect
               style={{ width: "100%" }}
-              placeholder={"Instructor Selection"}
+              placeholder={"LOCATION SELECTION"}
               className={"h-[50px]"}
               colorBorder={"#DEE2E6"}
               options={[

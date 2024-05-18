@@ -81,7 +81,7 @@ export const InstructorHoursReport = ({ ...props }) => {
         </div>
 
         <CustomCheckBox
-          className={"justify-end text-xl text-gray-500"}
+          className={"justify-end text-lg text-gray-500"}
           onChange={handleObservationHours}
         >
           Include Observation Hours
