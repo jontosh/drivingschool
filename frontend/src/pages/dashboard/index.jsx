@@ -14,7 +14,6 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaBars, FaRegListAlt } from "react-icons/fa";
 import { VscGraph } from "react-icons/vsc";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import DashboardStyle from "./dashboard.module.scss";
@@ -26,86 +25,6 @@ import StudentsRegistration from "../../assets/icons/student-registration.svg";
 import Expenses from "../../assets/icons/expenses.svg";
 import DiagramUpBold from "../../assets/icons/overview.svg";
 import LinksIcon from "../../assets/icons/links.svg";
-
-  useEffect(() => {
-    if (SearchStudent === "") {
-      dispatch(FilterStudent({ data: [], SearchStudent, active: false }));
-    }
-
-    dispatch(
-      FilterStudent({ data, search: SearchStudent, active: ActiveStudent }),
-    );
-
-    setListStudents(FindStudentState);
-  }, [SearchStudent]);
-
-  const student = ListStudents.map((student) => {
-    return (
-      <Link key={student.id} to={`/student/account/profile/${student.id}`}>
-        {student.first_name}, {student.last_name}
-      </Link>
-    );
-  });
-
-  return (
-    <Fragment>
-      <Formik
-        initialValues={{
-          search: "",
-          status: false,
-        }}
-        validate={(values) => {
-          const errors = {};
-
-          if (!values.search) {
-            errors.search = "Input is empty";
-          }
-
-          setSearchStudent(values.search);
-          setActiveStudent(values.status);
-
-          return errors;
-        }}
-      >
-        {({ values, handleSubmit, handleChange, errors }) => {
-          return (
-            <form onSubmit={handleSubmit} className={"relative space-y-5"}>
-              <label className={"relative shadow-xl w-full"}>
-                <CustomInput
-                  colorBorder={
-                    (errors.search && colorsObject.danger) || colorsObject.main
-                  }
-                  placeholder={"Find student"}
-                  className={`pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
-                  classNames={"w-full"}
-                  value={values.search}
-                  onChange={handleChange}
-                  name={"search"}
-                />
-                <span
-                  className={
-                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                  }
-                >
-                  <AiOutlineSearch />
-                </span>
-              </label>
-
-          
-              {FindStudentState?.length > 0 && (
-                <div className={"bg-white"}>{student}</div>
-              )}
-
-              <CustomCheckBox name={"status"} onChange={handleChange}>
-                Active students only
-              </CustomCheckBox>
-            </form>
-          );
-        }}
-      </Formik>
-    </Fragment>
-  );
-};
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
