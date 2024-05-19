@@ -4,7 +4,8 @@ export const APIRequest = createApi({
   reducerPath: "APIRequest",
   tagTypes: ["Device"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:9000",
+    // baseUrl: "http://localhost:9000",
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
 
   endpoints: (builder) => ({

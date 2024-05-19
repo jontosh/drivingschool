@@ -19,7 +19,7 @@ import StudentAccountStyle from "./student-account.module.scss";
 
 const StudentAccount = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { title } = useParams();
+  const { title, studentId } = useParams();
   const setActiveNav = ({ isActive }) =>
     isActive
       ? `${ServiceStyle["Tab__link-active"]} text-lg`
@@ -121,34 +121,52 @@ const StudentAccount = () => {
           <div
             className={"space-x-6 px-5 -mx-5 pb-5 border-b border-b-gray-400"}
           >
-            <NavLink to={"/student/account/profile/"} className={setActiveNav}>
+            <NavLink
+              to={`/student/account/profile/${studentId}`}
+              className={setActiveNav}
+            >
               Profile
             </NavLink>
 
-            <NavLink to={"/student/account/billing"} className={setActiveNav}>
+            <NavLink
+              to={`/student/account/billing/${studentId}`}
+              className={setActiveNav}
+            >
               Enrollment/Billing
             </NavLink>
 
             <NavLink
-              to={"/student/account/appointments"}
+              to={`/student/account/appointments/${studentId}`}
               className={setActiveNav}
             >
               Appointments
             </NavLink>
 
-            <NavLink to={"/student/account/files"} className={setActiveNav}>
+            <NavLink
+              to={`/student/account/files/${studentId}`}
+              className={setActiveNav}
+            >
               Files
             </NavLink>
 
-            <NavLink to={"/student/account/messages"} className={setActiveNav}>
+            <NavLink
+              to={`/student/account/messages/${studentId}`}
+              className={setActiveNav}
+            >
               Messages
             </NavLink>
 
-            <NavLink to={"/student/account/tests"} className={setActiveNav}>
+            <NavLink
+              to={`/student/account/tests/${studentId}`}
+              className={setActiveNav}
+            >
               Quiz/Tests
             </NavLink>
 
-            <NavLink to={"/student/account/log"} className={setActiveNav}>
+            <NavLink
+              to={`/student/account/log/${studentId}`}
+              className={setActiveNav}
+            >
               Activity Log
             </NavLink>
           </div>

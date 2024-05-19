@@ -8,12 +8,13 @@ import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import { DashboardTeachers } from "@/pages/dashboard/items/teachers.jsx";
 import { Button, Checkbox, ConfigProvider, Statistic, Tabs } from "antd";
 import { Formik } from "formik";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaBars, FaRegListAlt } from "react-icons/fa";
 import { VscGraph } from "react-icons/vsc";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import DashboardStyle from "./dashboard.module.scss";
 import { FormError } from "@/modules/errors.jsx";
@@ -24,59 +25,6 @@ import StudentsRegistration from "../../assets/icons/student-registration.svg";
 import Expenses from "../../assets/icons/expenses.svg";
 import DiagramUpBold from "../../assets/icons/overview.svg";
 import LinksIcon from "../../assets/icons/links.svg";
-
-const DashboardFormik = () => (
-  <Formik
-    initialValues={{
-      search: "",
-    }}
-    validate={(values) => {
-      const errors = {};
-      if (values.search === "") {
-        errors.search = "Error input is empty";
-      }
-      return errors;
-    }}
-    onSubmit={(values) => {
-      console.log(values);
-    }}
-  >
-    {({ values, handleBlur, handleSubmit, handleChange, errors, touched }) => {
-      return (
-        <form
-          className={`${DashboardStyle["Dashboard__form"]}`}
-          onSubmit={handleSubmit}
-        >
-          <label className={`relative w-full`}>
-            <input
-              value={values.search}
-              type={"text"}
-              name={"search"}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder={"Find student"}
-              className={`${DashboardStyle["Dashboard__form-input"]} rounded-lg inline-block w-full outline-0 px-12 py-2.5 bg-white border-2 ${errors.search && touched.search && "border-red-600 "}`}
-            />
-
-            <span
-              className={`absolute w-4 h-4 left-4 ${DashboardStyle["Dashboard__form-search"]}`}
-            >
-              <AiOutlineSearch />
-            </span>
-          </label>
-
-          {errors.search && touched.search && (
-            <FormError className="pt-2.5 pb-5">{errors.search}</FormError>
-          )}
-
-          <Checkbox.Group className="pt-5">
-            <Checkbox name={"checkbox"}>Active students only</Checkbox>
-          </Checkbox.Group>
-        </form>
-      );
-    }}
-  </Formik>
-);
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
