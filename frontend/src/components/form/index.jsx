@@ -34,7 +34,7 @@ export const CustomCheckBox = ({
             onChange={onChange}
             name={name}
             checked={checked}
-            className={`${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`}
+            className={`${FormStyle["Origin-checkbox"]} shadow-2xl absolute top-0 left-0 -z-10 opacity-0`}
           />
           <span
             className={classNames(

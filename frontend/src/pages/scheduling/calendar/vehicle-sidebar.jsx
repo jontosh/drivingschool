@@ -53,7 +53,8 @@ export const VehicleSidebar = () => {
           <span className={"font-medium"}>Select instructor</span>
           <CustomSelect
             colorBorder={colorsObject.primary}
-            style={{ width: "100%" }}
+            // style={{ width: "100%" }}
+            className={"w-full h-[50px]"}
             options={[
               {
                 value: 1,
@@ -69,10 +70,10 @@ export const VehicleSidebar = () => {
           </CustomCheckBox>
         </label>
 
-        <label className={"w-full"}>
+        <label className={"w-full h-[74px]"}>
           <CustomInput
             spanText={"Search student"}
-            classNames={"flex flex-col-reverse gap-1"}
+            classNames={"flex flex-col-reverse gap-1 h-full"}
             colorBorder={colorsObject.primary}
           />
         </label>

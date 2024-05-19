@@ -267,7 +267,7 @@ const Enrollment = () => {
             onChange={(value) => setInfoType(value)}
             options={InfoTypeOptions}
             style={{ width: "100%", maxWidth: "570px" }}
-            className={"mb-2.5 h-[50px]"}
+            className={"mb-2.5 h-[50px] shadow-lg"}
             colorBorder={colorsObject.primary}
             disabled={defaultValue === Package}
           />
