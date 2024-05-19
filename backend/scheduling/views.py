@@ -13,10 +13,21 @@ class TimeRangeViewSet(viewsets.ModelViewSet):
 class TimeSlotViewSet(viewsets.ModelViewSet):
     queryset = TimeSlot.objects.all()
     serializer_class = TimeSlotSerializer
+
     def perform_create(self, serializer):
-        serializer.save()
+        # Handle week_range field if necessary
+        week_range = self.request.data.getlist('week_range', [])
+        print(self.request.data)
+        print(week_range)
+        serializer.save(week_range=week_range)
+
     def perform_update(self, serializer):
-        serializer.save()
+        # Handle week_range field if necessary
+
+        week_range = self.request.data.getlist('week_range')
+        print(self.request.data)
+        print(week_range)
+        serializer.save(week_range=week_range)
 class WeekRangeViewSet(viewsets.ModelViewSet):
     queryset = WeekRange.objects.all()
     serializer_class = WeekRangeSerializer
