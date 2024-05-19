@@ -101,21 +101,21 @@ const Dashboard = () => {
         </Title>
 
         <div className="grid grid-cols-4 gap-7">
-          <div className="bg-white flex items-center py-5 px-10 rounded-xl gap-5">
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
             <div className="bg-[#FFF5D9] w-20 h-20 rounded-full flex items-center justify-center">
               <Image className={"w-8"} src={Earning} srcSet={Earning} />
             </div>
 
             <Statistic
               title="Earning"
-              value={198000}
+              value={198}
               suffix="k"
               prefix={"$"}
               formatter={formatter}
             />
           </div>
 
-          <div className="bg-white flex items-center py-5 px-10 rounded-xl gap-5">
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
             <div className="bg-[#E7EDFF] w-20 h-20 rounded-full flex items-center justify-center">
               <Image
                 className={"w-8"}
@@ -126,13 +126,13 @@ const Dashboard = () => {
 
             <Statistic
               title="Student stadying"
-              value={2400}
+              value={24}
               formatter={formatter}
               suffix="k"
             />
           </div>
 
-          <div className="bg-white flex items-center py-5 px-10 rounded-xl gap-5">
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
             <div className="bg-[#FFE0EB] w-20 h-20 rounded-full flex items-center justify-center">
               <Image
                 className={"w-8"}
@@ -148,7 +148,7 @@ const Dashboard = () => {
             />
           </div>
 
-          <div className="bg-white flex items-center py-5 px-10 rounded-xl gap-5">
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
             <div className="bg-[#DCFAF8] w-20 h-20 rounded-full flex items-center justify-center">
               <Image className={"w-8"} src={Expenses} srcSet={Expenses} />
             </div>
@@ -176,7 +176,7 @@ const Dashboard = () => {
               />
             </div>
 
-            <div className="bg-white rounded-xl py-7 px-10">
+            <div className="bg-white rounded-xl py-7 px-10 mt-3">
               <ChartDashboard />
             </div>
           </div>
@@ -188,14 +188,41 @@ const Dashboard = () => {
 
               <Image className={"w-6"} src={LinksIcon} srcSet={LinksIcon} />
             </div>
-            <div className="bg-white px-6 py-8 rounded-xl space-y-6">
+            <div className="bg-white px-6 py-8 rounded-xl space-y-6 mt-3">
               <Link
-                to={"/enrollment"}
+                to={"/student/account/profile/"}
                 className={
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
               >
-                New Student
+                Student Account
+              </Link>
+
+              <Link
+                to={"/enrollment/"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
+              >
+                Add new Student
+              </Link>
+
+              <Link
+                to={"/"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
+              >
+                Class list
+              </Link>
+
+              <Link
+                to={"/management/file"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
+              >
+                File Managment
               </Link>
 
               <Link
@@ -204,34 +231,7 @@ const Dashboard = () => {
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
               >
-                New Student
-              </Link>
-
-              <Link
-                to={"/enrollment"}
-                className={
-                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
-                }
-              >
-                New Student
-              </Link>
-
-              <Link
-                to={"/enrollment"}
-                className={
-                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
-                }
-              >
-                New Student
-              </Link>
-
-              <Link
-                to={"/enrollment"}
-                className={
-                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
-                }
-              >
-                New Student
+                Built App editing
               </Link>
             </div>
           </div>
