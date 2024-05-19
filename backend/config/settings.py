@@ -60,7 +60,8 @@ TENANT_APPS = [
     "creditcards",
     "rest_framework",
     "phonenumber_field",
-    "abstracts"
+    "abstracts",
+    "multiselectfield"
 
 ]
 
