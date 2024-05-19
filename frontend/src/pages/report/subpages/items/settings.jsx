@@ -160,7 +160,11 @@ export const Settings = ({ ...props }) => {
               />
             </div>
 
-            <div className="w-full">
+            <div className="w-full space-y-1.5">
+              <span className={"text-gray-500 w-full text-base font-normal"}>
+                Additional Agreement Content
+              </span>
+
               <MDEditor
                 value={NotesValue}
                 onChange={handleNotesValue}

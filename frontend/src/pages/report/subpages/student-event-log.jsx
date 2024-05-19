@@ -49,10 +49,10 @@ export const StudentEventLog = ({ ...props }) => {
               <div className={"flex gap-3"}>
                 <CustomInput
                   colorBorder={"#DEE2E6"}
-                  spanText={"Class Number Search"}
+                  spanText={"Student Name"}
                   spanClassName={"font-normal text-gray-500"}
                   fontSize="text-base"
-                  placeholder={"Class Number Search"}
+                  placeholder={"Enter Student Name"}
                   className={"h-[50px]"}
                   classNames={
                     "inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"
@@ -69,7 +69,7 @@ export const StudentEventLog = ({ ...props }) => {
               </div>
 
               <CustomCheckBox
-                className={"justify-end text-gray-500 text-base font-normal"}
+                className={"justify-start text-gray-500 text-base font-normal"}
                 name={"show_cancellation"}
                 onChange={handleChange}
               >

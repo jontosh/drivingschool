@@ -39,7 +39,7 @@ export const InstructorHoursReport = ({ ...props }) => {
             <span className={"text-gray-500 w-full text-base font-normal"}>BTW Status</span>
             <CustomSelect
               style={{ width: "100%" }}
-              placeholder={"SELECT  Instructor"}
+              placeholder={"SELECT BTW STATUS"}
               className={"h-[50px]"}
               colorBorder={"#DEE2E6"}
               options={[
@@ -61,7 +61,7 @@ export const InstructorHoursReport = ({ ...props }) => {
             <span className={"text-gray-500 w-full text-base font-normal"}>Instructor</span>
             <CustomSelect
               style={{ width: "100%" }}
-              placeholder={"SELECT  Instructor"}
+              placeholder={"SELECT INSTRUCTOR"}
               className={"h-[50px]"}
               colorBorder={"#DEE2E6"}
               options={[

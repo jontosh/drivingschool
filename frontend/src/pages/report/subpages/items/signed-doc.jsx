@@ -121,7 +121,11 @@ export const SignedDoc = ({ ...props }) => {
             </div>
           </label>
 
-          <CustomCheckBox onChange={handleReview} checked={Review}>
+          <CustomCheckBox
+            className={"justify-start text-gray-500 text-base font-normal"}
+            onChange={handleReview}
+            checked={Review}
+          >
             Reviewed Documents only
           </CustomCheckBox>
         </div>
