@@ -163,10 +163,9 @@ const Profile = () => {
                 Student type
               </span>
               <CustomSelect
-                style={{ width: "100%", height: 40 }}
                 placeholder={"Select"}
                 colorBorder={colorsObject.primary}
-                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                className={`shadow-lg w-full h-[50px]`}
                 options={[
                   {
                     value: 1,
@@ -182,9 +181,8 @@ const Profile = () => {
               </span>
               <CustomSelect
                 placeholder={"Select"}
-                style={{ width: "100%", height: 40 }}
                 colorBorder={colorsObject.primary}
-                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                className={`shadow-lg w-full h-[50px]`}
                 options={[
                   {
                     value: 1,
@@ -200,9 +198,8 @@ const Profile = () => {
               </span>
               <CustomSelect
                 placeholder={"Select"}
-                style={{ width: "100%", height: 40 }}
                 colorBorder={colorsObject.primary}
-                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                className={`shadow-lg w-full h-[50px]`}
                 options={[
                   {
                     value: 1,
@@ -214,66 +211,65 @@ const Profile = () => {
 
             <CustomInput
               placeholder={"Student id"}
-              className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 p-2.5`}
               spanText={"Student id"}
               colorBorder={colorsObject.primary}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"First name"}
-              className={`shadow-lg border border-indigo-700 w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg border border-indigo-700 w-full px-4 p-2.5`}
               spanText={"First name"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Last name"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Last name"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Middle name"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Middle name"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Address"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Address"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"City"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"City"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <label className="inline-flex items-center w-full gap-5">
               <span className={"w-40 text-base flex-shrink-0"}>State</span>
               <CustomSelect
                 placeholder={"State"}
-                style={{ width: "100%", height: 40 }}
                 colorBorder={colorsObject.primary}
-                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                className={`shadow-lg w-full h-[50px]`}
                 options={[
                   {
                     value: "USA",
@@ -285,29 +281,29 @@ const Profile = () => {
 
             <CustomInput
               placeholder={"Zip/Postal code"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Zip/Postal code"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Home Pickup"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Home Pickup"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Cell Phone"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Cell Phone"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomCheckBox
@@ -321,13 +317,13 @@ const Profile = () => {
               <div className="flex items-center gap-3 flex-grow">
                 <CustomInput
                   placeholder={"Email"}
-                  classNames={"w-full px-4"}
-                  className={`shadow-lg border border-indigo-700 w-full p-2.5 ${ProfileStyle["Student-profile__meail-div"]}`}
+                  classNames={"w-full h-[50px] px-4"}
+                  className={`shadow-lg border border-indigo-700 w-full p-2.5`}
                   type="email"
                 />
                 <IconComponent classNames={"items-center"}>
                   <TfiEmail
-                    className={`${ProfileStyle["Student-profile__email-icon"]}`}
+                    className={`w-[25.5px] h-[23.57px] text-[#00000073]`}
                   />
                 </IconComponent>
               </div>
@@ -367,9 +363,8 @@ const Profile = () => {
               </span>
               <CustomSelect
                 placeholder={"State"}
-                style={{ width: "100%", height: 40 }}
                 colorBorder={colorsObject.primary}
-                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                className={`shadow-lg w-full h-[50px]`}
                 options={[
                   {
                     value: "USA",
@@ -391,48 +386,48 @@ const Profile = () => {
                   placeholder={"Month"}
                   colorBorder={colorsObject.primary}
                   options={Months}
-                  style={{ width: 90, height: 40 }}
+                  className={"w-[90px] h-[50px]"}
                 />
                 <CustomSelect
                   placeholder={"Day"}
                   colorBorder={colorsObject.primary}
                   options={Days}
-                  style={{ width: 90, height: 40 }}
+                  className={"w-[90px] h-[50px]"}
                 />
                 <CustomSelect
                   placeholder={"Year"}
                   colorBorder={colorsObject.primary}
                   options={YearsOptions()}
-                  style={{ width: 90, height: 40 }}
+                  className={"w-[90px] h-[50px]"}
                 />
               </div>
             </div>
 
             <CustomInput
               placeholder={"Account #"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"DL/Permit"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"First name"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"DL/Permit Issued"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Last name"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"DL Permit Expiration"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomCheckBox
@@ -464,7 +459,7 @@ const Profile = () => {
                 }}
               >
                 <DatePicker
-                  style={{ width: "100%", height: 40 }}
+                  className={`w-full h-[50px] shadow-lg`}
                   onChange={onChange}
                 />
               </ConfigProvider>
@@ -476,9 +471,8 @@ const Profile = () => {
               </span>
               <CustomSelect
                 placeholder={"High School"}
-                style={{ width: "100%", height: 40 }}
                 colorBorder={colorsObject.primary}
-                className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                className={`shadow-lg w-full h-[50px]`}
                 options={[
                   {
                     value: "High School",
@@ -490,65 +484,65 @@ const Profile = () => {
 
             <CustomInput
               placeholder={"Parent name"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Parent name"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Parent Phone"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Parent Phone"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Parent Email"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Parent Email"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
               type={"email"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Parent name 2"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Parent name 2"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Parent Phone 2"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Parent Phone 2"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <CustomInput
               placeholder={"Parent Email 2"}
-              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
+              className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Parent Email 2"}
               spanClassName={"w-40 flex-shrink-0"}
               fontSize={"text-base"}
               type={"email"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
             />
 
             <label className="flex items-center gap-8">
               <span className={"w-36"}>Home Drop off</span>
 
-              <div className={`${ProfileStyle["Student-profile__div"]}`}>
-                <CustomCheckBox />
+              <div>
+                <CustomCheckBox className={"shadow-lg"} />
               </div>
             </label>
           </div>
@@ -583,14 +577,14 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex gap-6 justify-between">
+                  <div className="flex gap-6 justify-between items-center">
                     <CustomInput
-                      classNames={"w-full"}
-                      className={"border border-indigo-700 px-4 py-2.5"}
+                      classNames={"w-full h-[50px]"}
+                      className={"border border-indigo-700 px-4"}
                     />
                     <ButtonComponent
                       defaultBg={"#24C18F"}
-                      defaultHoverBg={"#24C18F"}
+                      defaultHoverBg={"#3CE3AE"}
                       defaultColor={colorsObject.main}
                       paddingInline={97}
                       controlHeight={40}
@@ -641,27 +635,27 @@ const Profile = () => {
                   <div className="space-y-5">
                     <CustomInput
                       placeholder={"Emergency name"}
-                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700 ${ProfileStyle["Student-profile__div"]}`}
+                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700`}
                       spanText={"Emergency name"}
                       spanClassName={"w-48 flex-shrink-0"}
                       fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full gap-5 flex-row-reverse`}
+                      classNames={`inline-flex justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                     />
                     <CustomInput
                       placeholder={"Emergency relationship"}
-                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700 ${ProfileStyle["Student-profile__div"]}`}
+                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700`}
                       spanText={"Emergency relationship"}
                       spanClassName={"w-48 flex-shrink-0"}
                       fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full gap-5 flex-row-reverse`}
+                      classNames={`inline-flex justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                     />
                     <CustomInput
                       placeholder={"Emergency phone"}
-                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700 ${ProfileStyle["Student-profile__div"]}`}
+                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700`}
                       spanText={"Emergency phone"}
                       spanClassName={"w-48 flex-shrink-0"}
                       fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full gap-5 flex-row-reverse`}
+                      classNames={`inline-flex justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                     />
 
                     <label className="inline-flex items-center w-full gap-5">
@@ -670,9 +664,8 @@ const Profile = () => {
                       </span>
                       <CustomSelect
                         placeholder={"Lead"}
-                        style={{ width: "100%", height: 40 }}
                         colorBorder={colorsObject.primary}
-                        className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                        className={`shadow-lg w-full h-[50px]`}
                         options={[
                           {
                             value: "Facebook",
@@ -684,11 +677,11 @@ const Profile = () => {
 
                     <CustomInput
                       placeholder={"Medial condition"}
-                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700 ${ProfileStyle["Student-profile__div"]}`}
+                      className={`shadow-lg px-4 py-2.5 w-full border border-indigo-700`}
                       spanText={"Medial condition"}
                       spanClassName={"w-48 flex-shrink-0"}
                       fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full gap-5 flex-row-reverse`}
+                      classNames={`inline-flex justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                     />
 
                     <label className="inline-flex items-center w-full gap-5">
@@ -697,9 +690,8 @@ const Profile = () => {
                       </span>
                       <CustomSelect
                         placeholder={"No"}
-                        style={{ width: "100%", height: 40 }}
                         colorBorder={colorsObject.primary}
-                        className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                        className={`shadow-lg w-full h-[50px]`}
                         options={[
                           {
                             value: 1,
@@ -713,12 +705,8 @@ const Profile = () => {
                       <span className={"w-48 flex-shrink-0"}>
                         Terms & condition
                       </span>
-
-                      <div
-                        className={`${ProfileStyle["Student-profile__div"]}`}
-                      >
-                        <CustomCheckBox />
-                      </div>
+                        
+                      <CustomCheckBox className={"shadow-lg"} />
                     </label>
                   </div>
                 </div>
@@ -739,6 +727,7 @@ const Profile = () => {
                       defaultBg={colorsObject.main}
                       defaultHoverBg={colorsObject.main}
                       defaultColor={colorsObject.primary}
+                      defaultActiveColor={colorsObject.primary}
                       defaultHoverColor={colorsObject.primary}
                       defaultBorderColor={colorsObject.primary}
                       paddingInline={53}
@@ -748,14 +737,14 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex gap-6 justify-between">
+                  <div className="flex gap-6 justify-between items-center">
                     <CustomInput
-                      classNames={"w-full"}
+                      classNames={"w-full h-[50px]"}
                       className={"border border-indigo-700 px-4 py-2.5"}
                     />
                     <ButtonComponent
                       defaultBg={"#24C18F"}
-                      defaultHoverBg={"#24C18F"}
+                      defaultHoverBg={"#3CE3AE"}
                       defaultColor={colorsObject.main}
                       paddingInline={97}
                       controlHeight={40}
@@ -771,12 +760,12 @@ const Profile = () => {
         )}
 
         <div
-          className={`text-center space-y-6 pt-6  ${!IsMore ? "bg-white" : ""}`}
+          className={`text-center space-y-6 pt-6 ${!IsMore ? "bg-white" : ""}`}
         >
           <div>
             <ButtonComponent
               defaultBg="#3366FF"
-              defaultHoverBg="#3366FF"
+              defaultHoverBg="#4BA9FF"
               style={{ width: "198.86px" }}
               controlHeight={39}
               borderRadius={5}
@@ -788,7 +777,7 @@ const Profile = () => {
           <div>
             <ButtonComponent
               defaultBg="#24C18F"
-              defaultHoverBg="#24C18F"
+              defaultHoverBg={"#3CE3AE"}
               style={{ width: "198.86px" }}
               controlHeight={39}
               borderRadius={5}

@@ -94,7 +94,7 @@ export const ClassroomAbsences = ({ ...props }) => {
                 <span className={"text-gray-500 text-base font-normal w-full"}>Start Date</span>
                 <CustomSelect
                   style={{ width: "100%" }}
-                  placeholder={"SELECT CLASS ROOM"}
+                  placeholder={"SELECT START DATE"}
                   className={"h-[50px]"}
                   colorBorder={"#DEE2E6"}
                   options={[

@@ -183,7 +183,7 @@ export const ClassroomSessionDetails = ({ ...props }) => {
             type={"submit"}
             onClick={handleSubmit}
           >
-            Download
+            EXPORT INTO EXCEL
           </ButtonComponent>
           <ButtonComponent
             paddingInline={43}

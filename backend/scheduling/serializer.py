@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers ,fields
 from .models import  TimeRange,TimeSlot,WeekRange,TimeOff,DateRange,Appointment
 class TimeRangeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,6 +22,16 @@ class AppointmentSerializer(serializers.ModelSerializer):
         fields = "*"
 
 class TimeSlotSerializer(serializers.ModelSerializer):
+    WEEK_CHOICES = [
+        [ 'Monday', 'Monday' ],
+        [ 'Tuesday', 'Tuesday' ],
+        [ 'Wednesday', 'Wednesday' ],
+        [ 'Thursday', 'Thursday' ],
+        [ 'Friday', 'Friday' ],
+        [ 'Saturday', 'Saturday' ],
+        [ 'Sunday', 'Sunday' ],
+    ]
+    week_range = fields.MultipleChoiceField(choices=WEEK_CHOICES)
     class Meta:
         model = TimeSlot
         fields = "__all__"

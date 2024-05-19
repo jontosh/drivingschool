@@ -49,48 +49,62 @@ export const TransactionSummaryReport = ({ ...props }) => {
             <span className={"text-gray-500 w-full text-base font-normal"}>
               Staff{" "}
             </span>
-            <CustomSelect
-              style={{ width: "100%" }}
-              placeholder={"SELECT"}
-              className={"h-[50px]"}
-              colorBorder={"#DEE2E6"}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-                {
-                  value: 2,
-                  label: 2,
-                },
-              ]}
-              onChange={handleStaff}
-              value={Staff ? Staff : undefined}
-            />
+
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                style={{ width: "100%" }}
+                placeholder={"SELECT"}
+                className={"h-[50px]"}
+                colorBorder={"#DEE2E6"}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                  {
+                    value: 2,
+                    label: 2,
+                  },
+                ]}
+                onChange={handleStaff}
+                value={Staff ? Staff : undefined}
+              />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </label>
 
           <label className={"space-y-1.5 w-full"}>
             <span className={"text-gray-500 w-full text-base font-normal"}>
               Payment Method
             </span>
-            <CustomSelect
-              style={{ width: "100%" }}
-              placeholder={"SELECT Payment Method"}
-              className={"h-[50px]"}
-              colorBorder={"#DEE2E6"}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-                {
-                  value: 2,
-                  label: 2,
-                },
-              ]}
-              onChange={handlePaymentMethod}
-              value={PaymentMethod ? PaymentMethod : undefined}
-            />
+
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                style={{ width: "100%" }}
+                placeholder={"SELECT Payment Method"}
+                className={"h-[50px]"}
+                colorBorder={"#DEE2E6"}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                  {
+                    value: 2,
+                    label: 2,
+                  },
+                ]}
+                onChange={handlePaymentMethod}
+                value={PaymentMethod ? PaymentMethod : undefined}
+              />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </label>
 
           <label className={"space-y-1.5"}>
@@ -139,24 +153,31 @@ export const TransactionSummaryReport = ({ ...props }) => {
             <span className={"text-gray-500 w-full text-base font-normal"}>
               Select Data Field
             </span>
-            <CustomSelect
-              style={{ width: "100%" }}
-              placeholder={"SELECT"}
-              className={"h-[50px]"}
-              colorBorder={"#DEE2E6"}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-                {
-                  value: 2,
-                  label: 2,
-                },
-              ]}
-              onChange={handleDataField}
-              value={DataField ? DataField : undefined}
-            />
+
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                style={{ width: "100%" }}
+                placeholder={"SELECT"}
+                className={"h-[50px]"}
+                colorBorder={"#DEE2E6"}
+                options={[
+                  {
+                    value: 1,
+                    label: 1,
+                  },
+                  {
+                    value: 2,
+                    label: 2,
+                  },
+                ]}
+                onChange={handleDataField}
+                value={DataField ? DataField : undefined}
+              />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </label>
         </div>
 

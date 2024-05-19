@@ -1,6 +1,8 @@
 from django.db import models
 from location.models import Vehicle,Location,School
 import uuid
+from multiselectfield import MultiSelectField
+from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 class Weekday(models.TextChoices):
     MONDAY = 'MON', 'Monday'
@@ -63,14 +65,22 @@ class TimeSlot(models.Model):
         ["Single Appointment(Driver Only)Road","Single Appointment (Driver Only)"],
         ["Road Test(DriverOnly)","Road Test (Driver Only)"],
     ]
-
+    WEEK_CHOICES = [
+        ['mon', 'Monday'],
+        ['tue', 'Tuesday'],
+        ['wed', 'Wednesday'],
+        ['thu', 'Thursday'],
+        ['fri', 'Friday'],
+        ['sat', 'Saturday'],
+        ['sun', 'Sunday'],
+    ]
     type = models.CharField(choices=TYPE,max_length=50)
     staff = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE, related_name="appointment_staff")
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     date = models.DateField()
     date_range = models.ForeignKey("DateRange",on_delete=models.CASCADE)
-    week_range = models.ManyToManyField(WeekRange,related_name="weeks")
+    week_range = ArrayField(models.CharField(choices=WEEK_CHOICES,max_length=15,default='mon'),default=list)
     slots = models.ManyToManyField(TimeRange,related_name="time_slot")
     pu_location = models.CharField(max_length=200)
     show_in_student_center = models.BooleanField(default=False)

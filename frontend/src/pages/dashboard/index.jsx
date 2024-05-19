@@ -1,14 +1,12 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
+import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { ChartDashboard } from "@/pages/dashboard/items/chart.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import { DashboardTeachers } from "@/pages/dashboard/items/teachers.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { FilterStudent } from "@/redux/slice/find-student-slice.jsx";
-import { Button, ConfigProvider, Dropdown, Tabs } from "antd";
+import { Button, Checkbox, ConfigProvider, Statistic, Tabs } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -16,21 +14,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaBars, FaRegListAlt } from "react-icons/fa";
 import { VscGraph } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import DashboardStyle from "./dashboard.module.scss";
-import DollarIcon from "../../assets/icons/Dollar.svg";
-import Studying from "../../assets/icons/User.svg";
-import Register from "../../assets/icons/Profile.svg";
-
-const DashboardFormik = () => {
-  const { colorsObject } = useContext(ColorsContext);
-  const { data } = useRequestGetQuery({ path: "/student_account/student/" });
-  const dispatch = useDispatch();
-  const [SearchStudent, setSearchStudent] = useState("");
-  const [ListStudents, setListStudents] = useState([]);
-  const [ActiveStudent, setActiveStudent] = useState(false);
-  const FindStudentState = useSelector((state) => state.findStudent.items);
+import { FormError } from "@/modules/errors.jsx";
+import Earning from "../../assets/icons/earning.svg";
+import StudentStudying from "../../assets/icons/student-studying.svg";
+import CountUp from "react-countup";
+import StudentsRegistration from "../../assets/icons/student-registration.svg";
+import Expenses from "../../assets/icons/expenses.svg";
+import DiagramUpBold from "../../assets/icons/overview.svg";
+import LinksIcon from "../../assets/icons/links.svg";
 
   useEffect(() => {
     if (SearchStudent === "") {
@@ -96,6 +91,7 @@ const DashboardFormik = () => {
                 </span>
               </label>
 
+          
               {FindStudentState?.length > 0 && (
                 <div className={"bg-white"}>{student}</div>
               )}
@@ -116,219 +112,160 @@ const Dashboard = () => {
 
   const [ShowCalendar, setSowCalendar] = useState(false);
 
+  const formatter = (value) => <CountUp end={value} separator="," />;
+
   return (
     <Fragment>
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
-      <section
-        className={`${DashboardStyle["Dashboard"]} px-11 space-y-5 max-w-full w-full`}
-      >
+      <section className={`px-11 space-y-5 max-w-full w-full`}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
           fontWeightStrong={600}
+          titleMarginBottom={26}
         >
           Dashboard
         </Title>
 
-        <DashboardFormik />
-
-        <div
-          className={`${DashboardStyle["Dashboard__statistics"]} bg-white rounded-lg py-8 flex justify-evenly `}
-        >
-          {/*statistics start*/}
-          <div
-            className={`${DashboardStyle["Dashboard__statistics-item"]} relative items-center flex gap-6`}
-          >
-            <div
-              className={`${DashboardStyle["Dashboard__statistics-item__icon"]} ${DashboardStyle["Dashboard__statistics-item__money"]} p-6 w-20 h-20 rounded-full`}
-            >
-              <Image src={DollarIcon} srcSet={DollarIcon} alt={"Dollar icon"} />
+        <div className="grid grid-cols-4 gap-7">
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
+            <div className="bg-[#FFF5D9] w-20 h-20 rounded-full flex items-center justify-center">
+              <Image className={"w-8"} src={Earning} srcSet={Earning} />
             </div>
 
-            <div
-              className={`${DashboardStyle["Dashboard__statistics-item__content"]} space-y-1`}
-            >
-              <Paragraph
-                fontWeightStrong={400}
-                fontSize={"text-sm text-stone-400"}
-              >
-                Earning
-              </Paragraph>
-
-              <Title level={3} fontSize={"text-3xl"}>
-                $198k
-              </Title>
-            </div>
+            <Statistic
+              title="Earning"
+              value={198}
+              suffix="k"
+              prefix={"$"}
+              formatter={formatter}
+            />
           </div>
-          {/*statistics end*/}
 
-          {/*statistics start*/}
-          <div
-            className={`${DashboardStyle["Dashboard__statistics-item"]} relative items-center flex gap-6`}
-          >
-            <div
-              className={`${DashboardStyle["Dashboard__statistics-item__icon"]} ${DashboardStyle["Dashboard__statistics-item__studying"]} p-6 w-20 h-20 rounded-full`}
-            >
-              <Image src={Studying} srcSet={Studying} alt={"Dollar icon"} />
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
+            <div className="bg-[#E7EDFF] w-20 h-20 rounded-full flex items-center justify-center">
+              <Image
+                className={"w-8"}
+                src={StudentStudying}
+                srcSet={StudentStudying}
+              />
             </div>
 
-            <div
-              className={`${DashboardStyle["Dashboard__statistics-item__content"]} space-y-1`}
-            >
-              <Paragraph
-                fontWeightStrong={400}
-                fontSize={"text-sm text-stone-400"}
-              >
-                Student stadying
-              </Paragraph>
-
-              <Title level={3} fontSize={"text-3xl"}>
-                2.4k
-              </Title>
-            </div>
+            <Statistic
+              title="Student stadying"
+              value={24}
+              formatter={formatter}
+              suffix="k"
+            />
           </div>
-          {/*statistics end*/}
 
-          {/*statistics start*/}
-          <div
-            className={`${DashboardStyle["Dashboard__statistics-item"]} relative items-center flex gap-6`}
-          >
-            <div
-              className={`${DashboardStyle["Dashboard__statistics-item__icon"]} ${DashboardStyle["Dashboard__statistics-item__registration"]} p-6 w-20 h-20 rounded-full`}
-            >
-              <Image src={Register} srcSet={Register} alt={"Dollar icon"} />
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
+            <div className="bg-[#FFE0EB] w-20 h-20 rounded-full flex items-center justify-center">
+              <Image
+                className={"w-8"}
+                src={StudentsRegistration}
+                srcSet={StudentsRegistration}
+              />
             </div>
 
-            <div
-              className={`${DashboardStyle["Dashboard__statistics-item__content"]} space-y-1`}
-            >
-              <Paragraph
-                fontWeightStrong={400}
-                fontSize={"text-sm text-stone-400"}
-              >
-                Students registration
-              </Paragraph>
-
-              <Title level={3} fontSize={"text-3xl"}>
-                200
-              </Title>
-            </div>
+            <Statistic
+              title="Students registration"
+              value={200}
+              formatter={formatter}
+            />
           </div>
-          {/*statistics end*/}
+
+          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
+            <div className="bg-[#DCFAF8] w-20 h-20 rounded-full flex items-center justify-center">
+              <Image className={"w-8"} src={Expenses} srcSet={Expenses} />
+            </div>
+
+            <Statistic
+              title="Expenses"
+              value={7920}
+              formatter={formatter}
+              prefix={"$"}
+            />
+          </div>
         </div>
 
-        <div className={`${DashboardStyle["Dashboard__extra"]} gap-11`}>
-          <div
-            className={`${DashboardStyle["Dashboard__overview"]} bg-white rounded-lg p-5 space-y-2.5`}
-          >
-            <div className={`flex gap-2.5 items-center`}>
-              <div
-                className={`${DashboardStyle["Dashboard__overview-icon"]} w-12 h-12 p-3 rounded-full`}
-              >
-                <VscGraph />
-              </div>
+        <div className="flex gap-5">
+          <div className="flex-grow">
+            <div className="flex items-center gap-4">
+              <Title level={4} fontSize={"text-xl"}>
+                Overview
+              </Title>
 
-              <div
-                className={`${DashboardStyle["Dashboard__overview-titles"]}`}
-              >
-                <Title level={5} fontSize={"text-base"}>
-                  Overview
-                </Title>
-                <Text>Week</Text>
-              </div>
+              <Image
+                className={"w-6"}
+                src={DiagramUpBold}
+                srcSet={DiagramUpBold}
+              />
             </div>
 
-            <div>
+            <div className="bg-white rounded-xl py-7 px-10 mt-3">
               <ChartDashboard />
             </div>
           </div>
+          <div className="w-[300px]">
+            <div className="flex items-center gap-4">
+              <Title level={4} fontSize={"text-xl"}>
+                Quick links
+              </Title>
 
-          <div
-            className={`rounded-lg bg-white p-5 ${DashboardStyle["Dashboard__links"]}`}
-          >
-            <div className={`flex gap-2.5 items-center mb-6`}>
-              <div
-                className={` w-12 h-12 p-3 ${DashboardStyle["Dashboard__overview-icon"]} bg-inherit `}
-              >
-                <FaRegListAlt />
-              </div>
-
-              <div
-                className={`${DashboardStyle["Dashboard__overview-titles"]} `}
-              >
-                <Title level={5} fontSize={"text-base"}>
-                  Quick links
-                </Title>
-              </div>
+              <Image className={"w-6"} src={LinksIcon} srcSet={LinksIcon} />
             </div>
-
-            <ul
-              className={`${DashboardStyle["Dashboard__links-list"]} space-y-3.5`}
-            >
-              <ButtonComponent
-                href={"/enrollment/"}
-                defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.infoHover}
-                className={"w-full"}
-                controlHeight={40}
-                paddingBlock={7}
-                borderRadius={5}
+            <div className="bg-white px-6 py-8 rounded-xl space-y-6 mt-3">
+              <Link
+                to={"/student/account/profile/"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
               >
-                New student
-              </ButtonComponent>
+                Student Account
+              </Link>
 
-              <ButtonComponent
-                href={"/enrollment/"}
-                defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.infoHover}
-                className={"w-full"}
-                controlHeight={40}
-                paddingBlock={7}
-                borderRadius={5}
+              <Link
+                to={"/enrollment/"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
               >
-                Add new student
-              </ButtonComponent>
+                Add new Student
+              </Link>
 
-              <ButtonComponent
-                href={"/NotFound"}
-                defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.infoHover}
-                className={"w-full"}
-                controlHeight={40}
-                paddingBlock={7}
-                borderRadius={5}
+              <Link
+                to={"/"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
               >
                 Class list
-              </ButtonComponent>
+              </Link>
 
-              <ButtonComponent
-                href={"/management/file"}
-                defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.infoHover}
-                className={"w-full"}
-                controlHeight={40}
-                paddingBlock={7}
-                borderRadius={5}
+              <Link
+                to={"/management/file"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
               >
-                File Management
-              </ButtonComponent>
+                File Managment
+              </Link>
 
-              <ButtonComponent
-                href={"/NotFound"}
-                defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.infoHover}
-                className={"w-full"}
-                controlHeight={40}
-                paddingBlock={7}
-                borderRadius={5}
+              <Link
+                to={"/enrollment"}
+                className={
+                  "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                }
               >
                 Built App editing
-              </ButtonComponent>
-            </ul>
+              </Link>
+            </div>
           </div>
         </div>
+
         <div>
           <div
             className={`${DashboardStyle["Dashboard__teachers"]} shadow-xl p-5 bg-white rounded-lg`}

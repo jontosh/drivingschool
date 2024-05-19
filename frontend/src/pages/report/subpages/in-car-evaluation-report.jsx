@@ -137,7 +137,7 @@ export const InCarEvaluationReport = ({ ...props }) => {
 
         {/*--------------------*/}
 
-        <div className=" grid grid-cols-2 gap-x-7 gap-y-5">
+        <div className="grid grid-cols-2 gap-x-7 gap-y-5">
           <label className={"space-y-1.5 w-full"}>
             <span className={"text-gray-500 w-full text-base font-normal"}>Students</span>
             <CustomSelect
@@ -211,6 +211,30 @@ export const InCarEvaluationReport = ({ ...props }) => {
         >
           FILTER CLASS
         </ButtonComponent>
+
+        <div className="grid grid-cols-2">
+          <label className={"space-y-1.5 w-full"}>
+            <span className={"text-gray-500 w-full text-base font-normal"}>Appointments</span>
+            <CustomSelect
+              style={{ width: "100%" }}
+              placeholder={"SELECT APPOINTMENTS"}
+              className={"h-[50px]"}
+              colorBorder={"#DEE2E6"}
+              options={[
+                {
+                  value: 1,
+                  label: 1,
+                },
+                {
+                  value: 2,
+                  label: 2,
+                },
+              ]}
+              onChange={handleInstructor}
+              value={Instructor ? Instructor : undefined}
+            />
+          </label>
+        </div>
       </form>
     </Fragment>
   );
