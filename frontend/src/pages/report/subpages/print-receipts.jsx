@@ -103,7 +103,7 @@ export const PrintReceipts = ({ ...props }) => {
             type={"submit"}
             onClick={handleFilterStudent}
           >
-            FILTER STAFF
+            FILTER STUDENT
           </ButtonComponent>
 
           <label className={"space-y-1.5 w-full"}>
@@ -145,7 +145,7 @@ export const PrintReceipts = ({ ...props }) => {
               type={"submit"}
               onClick={handleDownload}
             >
-              EXPORT INTO EXCEL
+              DOWNLOAD PDF
             </ButtonComponent>
             <ButtonComponent
               type={"reset"}

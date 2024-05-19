@@ -52,12 +52,12 @@ export const StaffEventLogs = ({ ...props }) => {
         <div className="grid grid-cols-2 gap-x-20 gap-y-5">
           <label className="space-y-1.5">
             <span className={"text-base font-normal w-full text-gray-500"}>
-              Select Services (Packages)
+              CR LIST
             </span>
 
             <CustomSelect
               onChange={handleStaffStatus}
-              placeholder={"SELECT"}
+              placeholder={"SELECT STAFF STATUS"}
               fontSize={14}
               options={[
                 {
@@ -154,7 +154,7 @@ export const StaffEventLogs = ({ ...props }) => {
 
             <CustomSelect
               onChange={handleDataField}
-              placeholder={"SELECT"}
+              placeholder={"SELECT DATA FIELD"}
               fontSize={14}
               options={[
                 {
