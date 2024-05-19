@@ -24,12 +24,14 @@
 }
 
 .Origin-checkbox {
-  &:checked ~ .Custom-checkbox {
+  &:checked~.Custom-checkbox {
     background: $primary;
     border: 1px solid $primary;
+
     &:after {
       scale: 1;
     }
+
     transition: all 0.2s linear;
   }
 }

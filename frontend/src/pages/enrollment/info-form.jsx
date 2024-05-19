@@ -563,7 +563,7 @@ export const InfoForm = () => {
 
                   <CustomCheckBox
                     className={
-                      "text-base font-normal inline-flex w-full justify-center"
+                      "text-base font-normal inline-flex w-full justify-center pl-44"
                     }
                   >
                     I have read and agreed to Terms and Conditions

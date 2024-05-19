@@ -485,33 +485,29 @@ export const Single = () => {
                 spanText={"Student name"}
                 spanClassName={"w-40 font-medium text-base"}
                 placeholder={"Find Student"}
-                classNames={"flex flex-row-reverse gap-2.5 items-center h-10"}
+                classNames={"flex flex-row-reverse gap-2.5 items-center h-[50px]"}
                 className={"shadow-xl"}
               />
 
-              <label className="flex items-start gap-5">
+              <label className="flex items-center gap-5">
                 <span className="font-medium text-base">Date</span>
                 <CustomInput
                   spanText={"Start date"}
                   placeholder={"MM/DD/YYYY"}
-                  classNames={"h-10 shadow-xl"}
+                  classNames={"h-10 shadow-xl h-[50px]"}
                 />
                 <CustomInput
                   spanText={"End date"}
                   placeholder={"MM/DD/YYYY"}
-                  classNames={"h-10 shadow-xl"}
+                  classNames={"h-10 shadow-xl h-[50px]"}
                 />
               </label>
 
               <label className="flex items-center gap-5 pt-3">
                 <span className="font-medium text-base">Pick up location</span>
                 <CustomSelect
-                  style={{
-                    width: 94,
-                    height: 32,
-                  }}
                   colorBorder={colorsObject.primary}
-                  className={"shadow-xl"}
+                  className={"shadow-xl w-[94px] h-[50px]"}
                   placeholder={"Home"}
                   options={[
                     {
@@ -536,9 +532,8 @@ export const Single = () => {
                   controlHeight={40}
                   borderRadius={10}
                   defaultBg="#24C18F"
-                  defaultHoverBg="#24C18F"
+                  defaultHoverBg="#3CE3AE"
                   defaultColor="#FFFFFF"
-                  defaultHoverColor="#FFFFFF"
                   className={"font-medium"}
                   style={{ width: 125 }}
                 >
