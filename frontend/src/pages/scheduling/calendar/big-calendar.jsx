@@ -146,6 +146,7 @@ export const BigCalendar = ({ handleBurger }) => {
                     placeholder={"Months"}
                     colorText={colorsObject.primary}
                     options={months}
+                    className={"h-[50px]"}
                   />
                 </div>
 
@@ -166,6 +167,7 @@ export const BigCalendar = ({ handleBurger }) => {
                   <ButtonComponent
                     defaultBg={"#0C41FF"}
                     defaultHoverBg={"#0C41FF"}
+                    defaultActiveColor={"#0C41FF"}
                     borderRadius={5}
                     paddingInline={8}
                     controlHeight={30}

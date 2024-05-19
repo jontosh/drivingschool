@@ -45,7 +45,7 @@ export const SingleMultiSidebar = () => {
           <span className={"font-medium"}>Select vehicle</span>
           <CustomSelect
             colorBorder={colorsObject.primary}
-            style={{ width: "100%" }}
+            className={"w-full h-[50px]"}
             options={[
               {
                 value: 1,

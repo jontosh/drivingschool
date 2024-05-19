@@ -199,6 +199,7 @@ export const MultiTableCalendar = () => {
               placeholder={"Months"}
               colorText={colorsObject.primary}
               options={months}
+              className={"h-[50px]"}
             />
           </div>
 
