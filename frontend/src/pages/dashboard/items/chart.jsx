@@ -9,57 +9,68 @@ export const ChartDashboard = () => {
       name: "Lessons",
       data: [5, 7, 6, 8, 7, 5, 7],
     },
+    {
+      name: "Lessons",
+      data: [5, 7, 6, 8, 7, 5, 7],
+    },
   ];
   const options = {
-    chart: {
-      // background: "#000",
-      type: "bar",
-      events: (chart, w, e) => {
-        console.log(chart, w, e);
+    title: {
+      text: "Sign ups per day",
+      align: "left",
+    },
+    legend: {
+      position: "top",
+      horizontalAlign: "right",
+      fontSize: 0,
+      markers: {
+        width: 20,
+        height: 15,
       },
+    },
+    chart: {
+      type: "bar",
+      height: 350,
       toolbar: {
         show: false,
       },
     },
-    // colors: ["#DEDEDE", "#E91E63"],
-    fill: {
-      type: "solid",
-      colors: Weekdays.map((_, index) => {
-        index += 1;
-        return index === time.getDay() ? "#1890FF" : "#DEDEDE";
-      }),
-    },
     plotOptions: {
       bar: {
-        columnWidth: "70%",
-        distributed: true,
+        horizontal: false,
+        columnWidth: "55%",
+        endingShape: "rounded",
       },
     },
     dataLabels: {
-      enabled: true,
+      enabled: false,
     },
-    legend: {
-      show: false,
+    stroke: {
+      show: true,
+      width: 2,
+      colors: ["transparent"],
+    },
+    xaxis: {
+      categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      axisTicks: {
+        show: false,
+      },
     },
     yaxis: {
       show: false,
     },
-    xaxis: {
-      categories: [
-        ["Mon"],
-        ["Tue"],
-        ["Wed"],
-        ["Thu"],
-        ["Fri"],
-        ["Sat"],
-        ["Sun"],
-      ],
-      labels: {
-        style: {
-          // colors: "red",
-          fontSize: "12px",
-        },
-      },
+    fill: {
+      colors: ["#A3ABBD", "#1890FF"],
+    },
+    grid: {
+      show: false,
+    },
+    tooltip: {
+      // y: {
+      //   formatter: function (val) {
+      //     return "$ " + val + " thousands";
+      //   },
+      // },
     },
   };
 
