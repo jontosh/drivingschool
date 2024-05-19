@@ -1,85 +1,120 @@
 import ButtonComponent from "@/components/button/index.jsx";
+import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { ChartDashboard } from "@/pages/dashboard/items/chart.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import { DashboardTeachers } from "@/pages/dashboard/items/teachers.jsx";
-import { Button, Checkbox, ConfigProvider, Tabs } from "antd";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { FilterStudent } from "@/redux/slice/find-student-slice.jsx";
+import { Button, ConfigProvider, Dropdown, Tabs } from "antd";
 import { Formik } from "formik";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { FaBars, FaRegListAlt } from "react-icons/fa";
 import { VscGraph } from "react-icons/vsc";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import DashboardStyle from "./dashboard.module.scss";
 import DollarIcon from "../../assets/icons/Dollar.svg";
 import Studying from "../../assets/icons/User.svg";
 import Register from "../../assets/icons/Profile.svg";
-import TeacherAvatar from "../../assets/user/teacher.jpeg";
-import { FormError } from "@/modules/errors.jsx";
 
-const DashboardFormik = () => (
-  <Formik
-    initialValues={{
-      search: "",
-    }}
-    validate={(values) => {
-      const errors = {};
-      if (values.search === "") {
-        errors.search = "Error input is empty";
-      }
-      return errors;
-    }}
-    onSubmit={(values) => {
-      console.log(values);
-    }}
-  >
-    {({ values, handleBlur, handleSubmit, handleChange, errors, touched }) => {
-      return (
-        <form
-          className={`${DashboardStyle["Dashboard__form"]}`}
-          onSubmit={handleSubmit}
-        >
-          <label className={`relative w-full`}>
-            <input
-              value={values.search}
-              type={"text"}
-              name={"search"}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder={"Find student"}
-              className={`${DashboardStyle["Dashboard__form-input"]} rounded-lg inline-block w-full outline-0 px-12 py-2.5 bg-white border-2 ${errors.search && touched.search && "border-red-600 "}`}
-            />
+const DashboardFormik = () => {
+  const { colorsObject } = useContext(ColorsContext);
+  const { data } = useRequestGetQuery({ path: "/student_account/student/" });
+  const dispatch = useDispatch();
+  const [SearchStudent, setSearchStudent] = useState("");
+  const [ListStudents, setListStudents] = useState([]);
+  const [ActiveStudent, setActiveStudent] = useState(false);
+  const FindStudentState = useSelector((state) => state.findStudent.items);
 
-            <span
-              className={`absolute w-4 h-4 left-4 ${DashboardStyle["Dashboard__form-search"]}`}
-            >
-              <AiOutlineSearch />
-            </span>
-          </label>
+  useEffect(() => {
+    if (SearchStudent === "") {
+      dispatch(FilterStudent({ data: [], SearchStudent, active: false }));
+    }
 
-          {errors.search && touched.search && (
-            <FormError className="pt-2.5 pb-5">{errors.search}</FormError>
+    dispatch(
+      FilterStudent({ data, search: SearchStudent, active: ActiveStudent }),
+    );
 
-          )}
+    setListStudents(FindStudentState);
+  }, [SearchStudent]);
 
-          <Checkbox.Group className="pt-5">
-            <Checkbox name={"checkbox"}>Active students only</Checkbox>
-          </Checkbox.Group>
-        </form>
-      );
-    }}
-  </Formik>
-);
+  const student = ListStudents.map((student) => {
+    return (
+      <Link key={student.id} to={`/student/account/profile/${student.id}`}>
+        {student.first_name}, {student.last_name}
+      </Link>
+    );
+  });
+
+  return (
+    <Fragment>
+      <Formik
+        initialValues={{
+          search: "",
+          status: false,
+        }}
+        validate={(values) => {
+          const errors = {};
+
+          if (!values.search) {
+            errors.search = "Input is empty";
+          }
+
+          setSearchStudent(values.search);
+          setActiveStudent(values.status);
+
+          return errors;
+        }}
+      >
+        {({ values, handleSubmit, handleChange, errors }) => {
+          return (
+            <form onSubmit={handleSubmit} className={"relative space-y-5"}>
+              <label className={"relative shadow-xl w-full"}>
+                <CustomInput
+                  colorBorder={
+                    (errors.search && colorsObject.danger) || colorsObject.main
+                  }
+                  placeholder={"Find student"}
+                  className={`pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
+                  classNames={"w-full"}
+                  value={values.search}
+                  onChange={handleChange}
+                  name={"search"}
+                />
+                <span
+                  className={
+                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
+                  }
+                >
+                  <AiOutlineSearch />
+                </span>
+              </label>
+
+              {FindStudentState?.length > 0 && (
+                <div className={"bg-white"}>{student}</div>
+              )}
+
+              <CustomCheckBox name={"status"} onChange={handleChange}>
+                Active students only
+              </CustomCheckBox>
+            </form>
+          );
+        }}
+      </Formik>
+    </Fragment>
+  );
+};
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
 
   const [ShowCalendar, setSowCalendar] = useState(false);
-
-  const handleClickTeacher = () => setSowCalendar((prev) => !prev);
 
   return (
     <Fragment>
