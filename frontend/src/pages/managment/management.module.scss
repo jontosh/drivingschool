@@ -20,7 +20,9 @@
 }
 
 .Service__select {
-  span {
+
+  span,
+  .ant-select-selection-placeholder {
     color: #fff;
   }
 }

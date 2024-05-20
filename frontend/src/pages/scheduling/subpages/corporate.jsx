@@ -1,5 +1,5 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomCheckBox, CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import { CustomCheckBox, CustomInput, CustomRadio, CustomSelect } from "@/components/form/index.jsx";
 import Modal from "@/components/modal";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -184,6 +184,7 @@ export const Corporate = () => {
               colorBorder={colorsObject.primary}
               placeholder={"Find student"}
               className={`w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
+              classNames={"h-[50px]"}
             />
             <span
               className={"absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "}
@@ -232,10 +233,7 @@ export const Corporate = () => {
             <form>
               <CustomSelect
                 placeholder={"Insert us standart holiday"}
-                className={"shadow-xl w-96"}
-                style={{
-                  height: 40
-                }}
+                className={"shadow-xl w-96 h-[50px]"}
                 options={[
                   {
                     value: 1,
@@ -248,7 +246,7 @@ export const Corporate = () => {
                   <CustomInput
                     spanText={"Name"}
                     spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-10"}
+                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
                     className={"shadow-xl"}
                     placeholder={"Name"}
                   />
@@ -257,10 +255,7 @@ export const Corporate = () => {
                     <span className="w-40 font-medium text-base">Status</span>
                     <CustomSelect
                       placeholder={"Select status"}
-                      className={"w-full shadow-xl"}
-                      style={{
-                        height: 40
-                      }}
+                      className={"w-full shadow-xl h-[50px]"}
                       options={[
                         {
                           value: 1,
@@ -273,7 +268,7 @@ export const Corporate = () => {
                   <CustomInput
                     spanText={"Code"}
                     spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-10"}
+                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
                     className={"shadow-xl"}
                     placeholder={"Code"}
                   />
@@ -282,10 +277,7 @@ export const Corporate = () => {
                     <span className="w-40 font-medium text-base">Type</span>
                     <CustomSelect
                       placeholder={"Select status"}
-                      className={"w-full shadow-xl"}
-                      style={{
-                        height: 40
-                      }}
+                      className={"w-full shadow-xl h-[50px]"}
                       options={[
                         {
                           value: 1,
@@ -298,7 +290,7 @@ export const Corporate = () => {
                   <CustomInput
                     spanText={"Affected Date(s)"}
                     spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-10"}
+                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
                     className={"shadow-xl"}
                     placeholder={"Affected dates"}
                   />
@@ -350,7 +342,7 @@ export const Corporate = () => {
                   <CustomInput
                     spanText={"Note"}
                     spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-10"}
+                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
                     className={"shadow-xl"}
                     placeholder={"Note"}
                   />

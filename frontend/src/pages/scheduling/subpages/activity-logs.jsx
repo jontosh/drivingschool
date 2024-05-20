@@ -37,7 +37,7 @@ export const ActivityLogs = () => {
               </span>
               <CustomSelect
                 colorBorder={colorsObject.primary}
-                className={`h-10 shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
+                className={`h-[50px]  shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
                 options={[
                   {
                     value: 1,
@@ -54,7 +54,7 @@ export const ActivityLogs = () => {
               fontSize="text-base"
               className={`flex-grow border border-indigo-700 shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
               classNames={
-                "inline-flex h-10 flex-row-reverse items-center gap-5 m-auto"
+                "inline-flex h-[50px] flex-row-reverse items-center gap-5 m-auto"
               }
             />
           </div>
