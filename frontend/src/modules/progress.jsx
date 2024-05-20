@@ -10,6 +10,8 @@ export const CheckProgress = (status = "") => {
       return { bg: colorsObject.orange, hover: colorsObject.orange };
     case "close":
       return { bg: colorsObject.danger, hover: colorsObject.dangerHover };
+    case "deleted":
+      return { bg: colorsObject.danger, hover: colorsObject.dangerHover };
     default:
       return { bg: colorsObject.bg, hover: colorsObject.bg };
   }
