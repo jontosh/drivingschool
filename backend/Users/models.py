@@ -8,11 +8,7 @@ from servises.models import Services
 from scheduling.models import TimeRange
 from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 import uuid
-class CustomBaseUser(AbstractUser):
-    first_name = models.CharField(max_length=200)
-    mid_name = models.CharField(max_length=200, blank=True, null=True)
-    last_name = models.CharField(max_length=200)
-class CustomUser(CustomBaseUser):
+class User(models.Model):
     STATUS = [
         ["Active", "Active"],
         ["Deleted", "Deleted"],
@@ -21,6 +17,9 @@ class CustomUser(CustomBaseUser):
     id = models.UUIDField(auto_created=True, primary_key=True, unique=True,blank=True)
     status = models.CharField(choices=STATUS, max_length=30, default="Pending")
     address = models.TextField()
+    first_name = models.CharField(max_length=200)
+    mid_name = models.CharField(max_length=200, blank=True, null=True)
+    last_name = models.CharField(max_length=200)
     city = models.CharField(max_length=200, blank=True, null=True)
     state = models.CharField(max_length=200, blank=True, null=True)
     zip = models.CharField(max_length=30, blank=True, null=True)
@@ -39,10 +38,9 @@ class CustomUser(CustomBaseUser):
         super().save(*args, **kwargs)
     def __str__(self):
         return  self.username
-    class Meta:
-        abstract = True
+
 #INSTRACTOR
-class Instructor(CustomUser):
+class Instructor(User):
     STAFF_TYPE = [
         ["Instructor","Instructor"],
         ["Instructor / Teacher","Instructor/Teacher"],
@@ -69,13 +67,13 @@ class Instructor(CustomUser):
         'configuration.MessageItems',
         'product_object_id',
         'product_content_type_id',
-        related_query_name='CustomUser',
+        related_query_name='User',
     )
     def __str__(self):
         return self.username
 
 #STUDENT
-class Student(CustomUser):
+class Student(User):
 
     PREFERRED_PRONOUNS = [
         ["He", "He"],
@@ -89,7 +87,6 @@ class Student(CustomUser):
     ]
     staff = models.ForeignKey(Instructor,on_delete=models.CASCADE,related_name="student_staff",null=True)
     location = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)
-    # student_id = models.AutoField()
     home_pickup = models.TextField(blank=True,null=True)
     gender = models.CharField(choices=GENDER,max_length=30,default="Male")
     high_school = models.ForeignKey(School,on_delete=models.CASCADE,blank=True,null=True)
@@ -111,7 +108,7 @@ class Enrollment(Extra):
     student = models.ForeignKey("Student",on_delete=models.CASCADE,related_name="enrolled_user")
     data = models.DateField(auto_now_add=True)
     code = models.IntegerField()
-    by  = models.ForeignKey("CustomUser",on_delete=models.CASCADE,related_name="enrolled_by")
+    by  = models.ForeignKey("User",on_delete=models.CASCADE,related_name="enrolled_by")
     price = models.PositiveIntegerField(default=0)
     cr = models.ForeignKey("location.Class",on_delete=models.CASCADE,blank=True,null=True)
     cr_start = models.DateField(blank=True,null=True)
@@ -175,7 +172,7 @@ class FileCategory(Status,Extra):
 
 class Files(Extra):
     name = models.TextField()
-    by = models.ForeignKey("CustomUser", on_delete=models.CASCADE,related_name="file_by")
+    by = models.ForeignKey("User", on_delete=models.CASCADE,related_name="file_by")
     student = models.ForeignKey("Student",on_delete=models.CASCADE,blank=True,null=True,related_name="file_from")
     category = models.ForeignKey("FileCategory",on_delete=models.CASCADE)
     file = models.FileField(upload_to="files/student")

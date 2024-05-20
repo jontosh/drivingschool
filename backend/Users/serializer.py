@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill, CustomUser
+from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill, User
 
 class InstructorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,7 +12,7 @@ class StudentSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
+        model = User
         fields = "__all__"
 
 
