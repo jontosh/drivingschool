@@ -91,7 +91,7 @@ class Component(models.Model):
     type_component = models.CharField(choices=TYPE,max_length=50,default="BTW")
     subtype_btw = models.CharField(choices=BTW_TYPE,max_length=50,blank=True,null=True)
     subtype_web = models.CharField(choices=WEB_TYPE,max_length=50,blank=True,null=True)
-    driving_hours = models.DateTimeField(blank=True,null=True)
+    driving_hours = models.TimeField(blank=True,null=True)
     enrolment_size= models.IntegerField(default=0,blank=True,null=True)
     make_up_size = models.IntegerField(default=0,blank=True,null=True)
     web_stu_enrolment = models.BooleanField(help_text="Website/Student Portal Enrollment",blank=True,null=True)
