@@ -43,6 +43,7 @@ SHARED_APPS = [
     'django.contrib.staticfiles',
 #     APPS
     "mainadmin",
+    "corsheaders",
 
 
 ]
@@ -69,6 +70,7 @@ INSTALLED_APPS = SHARED_APPS + [ apps for apps in TENANT_APPS if apps not in SHA
 
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
 "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -169,6 +171,19 @@ TENANT_DOMAIN_MODEL = "mainadmin.Domain"
 
 PUBLIC_SCHEMA_URLCONF = "mainadmin.urls"
 DJANGO_SETTINGS_MODULE = "config.settings"
-
+CORS_ALLOWED_ORIGINS = [
+    "https://drivingschool-zeta.vercel.app/",
+    "https://sub.example.com",
+    "http://localhost:53",
+    "http://127.0.0.1:9000",
+]
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
