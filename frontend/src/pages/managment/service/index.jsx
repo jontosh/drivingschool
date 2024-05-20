@@ -156,11 +156,11 @@ const Service = ({ subpage }) => {
                     </ButtonComponent>
 
                     <CustomSelect
-                      placeholder={"Status"}
+                      value={"Status"}
                       options={StatusSelect}
                       className={`w-[122px] h-[40px] ${ServiceStyle["Service__select"]}`}
-                      colorBorder={colorsObject.info}
-                      selectorBg={colorsObject.info}
+                      colorBorder={"#1890FF"}
+                      selectorBg={"#1890FF"}
                     />
                   </Fragment>
                 )}

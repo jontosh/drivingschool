@@ -65,7 +65,7 @@ const ZipCodeFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse relative`}
+                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse relative h-[50px]`}
               >
                 <ButtonComponent
                   defaultBg={"#24C18F"}
@@ -92,14 +92,14 @@ const ZipCodeFormik = () => {
                   placeholder={"Zip code"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   colorBorder={colorsObject.primary}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
                   placeholder={"Company Zip Code"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   colorBorder={colorsObject.primary}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
               </div>
             </div>

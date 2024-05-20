@@ -2,7 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { CommentOutlined } from "@ant-design/icons";
+import { CommentOutlined, EyeOutlined } from "@ant-design/icons";
 import { Fragment, useContext } from "react";
 import {
   AiOutlineCloudUpload,
@@ -133,7 +133,7 @@ export const Enrollments = () => {
         <div className="flex items-center flex-col gap-5 text-center">
           <IconComponent
             className={"text-5xl"}
-            icon={<AiOutlineShoppingCart />}
+            icon={<EyeOutlined />}
           />
           <Paragraph fontSize={"text-base"} fontWeightStrong={500}>
             There are 0 new text messages received in the last 24 hours.
@@ -194,7 +194,11 @@ const TabItem = () => {
     },
     {
       key: "4",
-      label: <span>Website enrollments 0</span>,
+      label: (
+        <span>
+          Website enrollments <span className="text-red-600">0</span>
+        </span>
+      ),
       children: <Enrollments />,
       icon: <AiOutlineSolution />,
     },

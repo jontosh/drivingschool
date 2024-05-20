@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user/instructor.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/slice/filter-slice.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/button/button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/button/button.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/button/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/button/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/dashboard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/dashboard.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/slice/find-student-slice.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/store.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/store.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/help/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/help/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/help/news.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/help/news.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/help/ticket/ticket-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/help/ticket/ticket-spa.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +37,20 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "theyuunus"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="66df6fa0-04d1-4a3e-8bf8-92e36c34f8c4" />
+        <option name="url" value="git@github.com:jontosh/drivingschool.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -64,7 +76,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dashboard",
+    "git-widget-placeholder": "refactoring",
     "last_opened_file_path": "/Users/a/Development/driving_school/drivingschool",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
@@ -128,13 +140,6 @@
       <item itemvalue="npm.start" />
     </list>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-WS-241.15989.105" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -180,6 +185,7 @@
       <workItem from="1715841400517" duration="35741000" />
       <workItem from="1716033526369" duration="4524000" />
       <workItem from="1716040712784" duration="3244000" />
+      <workItem from="1716215073190" duration="1090000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
       <option name="closed" value="true" />

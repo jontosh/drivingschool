@@ -125,6 +125,7 @@ const Dashboard = () => {
               suffix="k"
               prefix={"$"}
               formatter={formatter}
+              valueStyle={{fontWeight: 600}}
             />
           </div>
 
@@ -142,6 +143,7 @@ const Dashboard = () => {
               value={24}
               formatter={formatter}
               suffix="k"
+              valueStyle={{fontWeight: 600}}
             />
           </div>
 
@@ -158,6 +160,7 @@ const Dashboard = () => {
               title="Students registration"
               value={200}
               formatter={formatter}
+              valueStyle={{fontWeight: 600}}
             />
           </div>
 
@@ -171,6 +174,7 @@ const Dashboard = () => {
               value={7920}
               formatter={formatter}
               prefix={"$"}
+              valueStyle={{fontWeight: 600}}
             />
           </div>
         </div>
@@ -276,11 +280,13 @@ const Dashboard = () => {
                   <CustomInput
                     colorBorder={colorsObject.main}
                     spanText={"Teacher"}
+                    spanClassName={"font-medium"}
+                    fontSize="text-base"
                     placeholder={"Find teacher"}
                     classNames={
                       "inline-flex flex-row-reverse items-center gap-5"
                     }
-                    className={`w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse shadow-xl`}
+                    className={`w-96 pl-12 pr-4 py-2.5  h-10 text-sm inline-flex flex-row-reverse shadow-xl`}
                     value={values.search}
                     onChange={handleChange}
                     name={"search"}
@@ -298,6 +304,8 @@ const Dashboard = () => {
                   defaultColor={colorsObject.black}
                   defaultHoverColor={colorsObject.black}
                   onClick={handleViewAll}
+                  fontSize={"text-base"}
+                  className={"font-medium"}
                 >
                   View All
                 </ButtonComponent>
