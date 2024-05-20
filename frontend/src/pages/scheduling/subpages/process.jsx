@@ -155,9 +155,8 @@ export const Process = () => {
                   Appointment type:
                 </span>
                 <CustomSelect
-                  style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
-                  className={"h-10 shadow-xl"}
+                  className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
                       value: 1,
@@ -173,7 +172,7 @@ export const Process = () => {
                 spanClassName={"flex-shrink-0 w-40 text-right"}
                 className={" flex-grow border border-indigo-700 shadow-xl"}
                 classNames={
-                  "inline-flex w-full h-10 flex-row-reverse items-center gap-5"
+                  "inline-flex w-full h-[50px] flex-row-reverse items-center gap-5"
                 }
               />
             </div>
@@ -182,9 +181,8 @@ export const Process = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-40 text-right"}>Location</span>
                 <CustomSelect
-                  style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
-                  className={"h-10 shadow-xl"}
+                  className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
                       value: 1,
@@ -196,9 +194,8 @@ export const Process = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-40 text-right"}>Instruction</span>
                 <CustomSelect
-                  style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
-                  className={"h-10 shadow-xl"}
+                  className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
                       value: 1,
@@ -247,6 +244,7 @@ export const Process = () => {
                   colorBorder={colorsObject.primary}
                   placeholder={"Find student"}
                   className={`w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
+                  classNames={"h-[50px]"}
                 />
                 <span
                   className={

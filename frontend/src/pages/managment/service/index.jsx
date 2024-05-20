@@ -158,10 +158,7 @@ const Service = ({ subpage }) => {
                     <CustomSelect
                       placeholder={"Status"}
                       options={StatusSelect}
-                      style={{
-                        width: 122,
-                      }}
-                      className={`h-[40px] ${ServiceStyle["Service__select"]}`}
+                      className={`w-[122px] h-[40px] ${ServiceStyle["Service__select"]}`}
                       colorBorder={colorsObject.info}
                       selectorBg={colorsObject.info}
                     />
