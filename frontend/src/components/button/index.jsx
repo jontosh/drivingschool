@@ -50,6 +50,7 @@ const ButtonComponent = ({
               controlHeight,
               borderRadius,
               fontSize,
+              defaultShadow: "0 2px 0 transparent",
             },
           },
         }}

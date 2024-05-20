@@ -44,7 +44,6 @@ export const Single = () => {
                 placeholder={"Find teacher"}
                 className={`${DashboardStyle["Dashboard__form-input"]} rounded-lg inline-block outline-0 px-12 py-2.5 bg-white border-2`}
               />
-
               <span
                 className={`absolute w-4 h-4 left-4 ${DashboardStyle["Dashboard__form-search"]}`}
               >
@@ -368,7 +367,9 @@ export const Single = () => {
       </div>
       {IsPrintOpen && (
         <Modal setIsOpen={setIsPrintOpen}>
-          <div className={`${SingleStyle["Single__modal"]} bg-white py-9 px-12 w-full rounded-2xl overflow-scroll m-2.5`}>
+          <div
+            className={`${SingleStyle["Single__modal"]} bg-white py-9 px-12 w-full rounded-2xl overflow-scroll m-2.5`}
+          >
             <Title
               level={2}
               fontSize={"text-indigo-600 text-4xl"}
@@ -417,7 +418,9 @@ export const Single = () => {
       )}
       {IsExportOpen && (
         <Modal setIsOpen={setIsExportOpen}>
-          <div className={`${SingleStyle["Single__modal"]} bg-white py-10 px-12 w-full rounded-2xl overflow-scroll m-2.5`}>
+          <div
+            className={`${SingleStyle["Single__modal"]} bg-white py-10 px-12 w-full rounded-2xl overflow-scroll m-2.5`}
+          >
             <Title
               level={2}
               fontSize={"text-indigo-600 text-4xl"}
@@ -428,17 +431,13 @@ export const Single = () => {
             </Title>
             <form className="flex flex-col gap-7">
               <label className="w-44 grid grid-cols-2 gap-y-7 justify-center">
-                <CustomCheckBox
-                  className={"text-base font-semibold"}
-                >
+                <CustomCheckBox className={"text-base font-semibold"}>
                   PSD
                 </CustomCheckBox>
                 <CustomCheckBox className={"text-base font-semibold"}>
                   JPG
                 </CustomCheckBox>
-                <CustomCheckBox
-                  className={"text-base font-semibold"}
-                >
+                <CustomCheckBox className={"text-base font-semibold"}>
                   txt
                 </CustomCheckBox>
                 <CustomCheckBox className={"text-base font-semibold"}>
@@ -478,14 +477,20 @@ export const Single = () => {
       )}
       {IsInstructorOpen && (
         <Modal setIsOpen={IsInstructorOpen}>
-          <div className={`${SingleStyle["Single__modal-instructor"]} bg-white py-2.5 px-7 w-full rounded-2xl overflow-scroll m-2.5`}>
-            <span className="font-medium text-base">Instuctor name: Karina Park</span>
+          <div
+            className={`${SingleStyle["Single__modal-instructor"]} bg-white py-2.5 px-7 w-full rounded-2xl overflow-scroll m-2.5`}
+          >
+            <span className="font-medium text-base">
+              Instuctor name: Karina Park
+            </span>
             <form className="flex flex-col gap-7 pt-10">
               <CustomInput
                 spanText={"Student name"}
                 spanClassName={"w-40 font-medium text-base"}
                 placeholder={"Find Student"}
-                classNames={"flex flex-row-reverse gap-2.5 items-center h-[50px]"}
+                classNames={
+                  "flex flex-row-reverse gap-2.5 items-center h-[50px]"
+                }
                 className={"shadow-xl"}
               />
 
@@ -523,7 +528,7 @@ export const Single = () => {
                 placeholder="Notes..."
                 style={{
                   borderRadius: 10,
-                  height: 123
+                  height: 123,
                 }}
               ></textarea>
 

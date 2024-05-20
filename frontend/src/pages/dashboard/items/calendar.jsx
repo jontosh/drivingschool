@@ -1,17 +1,79 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
-import Title, { Paragraph, Text } from "@/components/title/index.jsx";
+import Image from "@/components/image/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { formatPhoneNumber } from "@/modules/formatter.jsx";
-import { Button, ConfigProvider } from "antd";
-import { useState, useEffect, useMemo, useCallback, useContext } from "react";
+import { Dropdown } from "antd";
+import {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useContext,
+  Fragment,
+} from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsPlusCircleFill } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
+import { BsPersonFillGear } from "react-icons/bs";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { SlClock } from "react-icons/sl";
+import CalendarStyle from "../dashboard.module.scss";
+import InstructorAva from "../../../assets/user/instructor.jpeg";
+
+const items = [
+  {
+    key: "1",
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.antgroup.com"
+      >
+        Edit Information
+      </a>
+    ),
+  },
+  {
+    key: "2",
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.aliyun.com"
+      >
+        Time Log
+      </a>
+    ),
+  },
+  {
+    key: "3",
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.luohanacademy.com"
+      >
+        Add Time off
+      </a>
+    ),
+  },
+  {
+    key: "4",
+    label: (
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.luohanacademy.com"
+      >
+        Add Slots
+      </a>
+    ),
+  },
+];
+
 export const DashboardCalendar = ({ data }) => {
+  console.log(data);
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
@@ -21,6 +83,7 @@ export const DashboardCalendar = ({ data }) => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
   const [days, setDays] = useState(new Date().getDay());
+  const [date, setDate] = useState(new Date().getDate());
   let EventsList = [
     {
       title: "Event Name",
@@ -119,21 +182,91 @@ export const DashboardCalendar = ({ data }) => {
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
       components: {
-        // timeGutterHeader: () => {}, HTML structure
+        timeGutterHeader: () => {
+          return (
+            <div className={"flex justify-center min-h-[62px]"}>
+              <SlClock className={"w-7 text-[#C3CAD9]"} />
+            </div>
+          );
+        },
+
+        toolbar: (e) => {
+          console.log(e);
+          return (
+            <div className={"flex items-center justify-between p-7"}>
+              <ButtonComponent
+                borderRadius={20}
+                defaultBorderColor={"#F5F6F7"}
+                defaultHoverBorderColor={"#F5F6F7"}
+                defaultColor={"#6B7A99"}
+                defaultHoverColor={"#6B7A99"}
+                controlHeight={40}
+                paddingInline={20}
+              >
+                Today
+              </ButtonComponent>
+
+              <div className="flex items-center gap-8">
+                <ButtonComponent
+                  borderRadius={20}
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={12}
+                >
+                  <MdKeyboardArrowLeft />
+                </ButtonComponent>
+
+                <Title fontSize={"text-[#6B7A99]"}>{e.label}</Title>
+
+                <ButtonComponent
+                  borderRadius={20}
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={12}
+                >
+                  <MdKeyboardArrowRight />
+                </ButtonComponent>
+              </div>
+
+              <div className="flex border border-[#26334D08]">
+                {e.views.map((item, key) => (
+                  <Fragment key={key}>
+                    <ButtonComponent
+                      defaultBorderColor={"#F5F6F7"}
+                      defaultHoverBorderColor={"#F5F6F7"}
+                      defaultColor={"#6B7A99"}
+                      defaultHoverColor={"#6B7A99"}
+                      controlHeight={40}
+                      paddingInline={20}
+                      className={"uppercase"}
+                      onClick={e.onView}
+                    >
+                      {item}
+                    </ButtonComponent>
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          );
+        },
       },
       defaultDate: new Date(),
       formats: {
         timeGutterFormat: (date, culture, localizer) =>
           localizer.format(date, "hh:mm", culture),
         dayFormat: (date, culture, localizer) =>
-          localizer.format(date, "ddd", culture),
+          localizer.format(date, "ddd DD", culture),
         eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
-          localizer.format(start, "hh:mm a", culture),
-        // " - " +
-        // localizer.format(end, "hh:mm a", culture),
+          localizer.format(start, "hh:mm ", culture),
       },
-      views: [Views.WEEK],
-      toolbar: false,
+      views: [Views.MONTH, Views.WEEK, Views.DAY],
+      toolbar: true,
     };
   });
 
@@ -141,7 +274,14 @@ export const DashboardCalendar = ({ data }) => {
     (event, start, end, isSelected) => ({
       ...(event && {
         // For event config and classNames
-        className: "text-[#2C5A41] bg-[#BDFFDB] border-[#8FDCB2]",
+        className: `text-[#2C5A41] bg-[#29CC390D] `,
+        style: {
+          border: "1px solid #29CC39",
+        },
+      }),
+
+      ...(isSelected && {
+        className: "text-white",
       }),
     }),
     [],
@@ -149,13 +289,12 @@ export const DashboardCalendar = ({ data }) => {
 
   const dayPropGetter = useCallback(
     (date) => ({
-      ...((moment(date).day() === 6 || moment(date).day() === 0) && {
-        className: "bg-[#F2F2F2]",
+      // ...((moment(date).day() === 6 || moment(date).day() === 0) && {
+      //   className: "bg-[#F2F2F2]",
+      // }),
+      ...(moment(date).day() > -1 && {
+        className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
       }),
-      ...(moment(date).day() > 0 &&
-        moment(date).day() < 5 && {
-          className: "bg-[#fff]",
-        }),
     }),
     [],
   );
@@ -186,7 +325,7 @@ export const DashboardCalendar = ({ data }) => {
 
   const slotPropGetter = useCallback(
     (date) => ({
-      className: "px-2.5",
+      className: "px-2.5 pt-6 text-[#ADB8CC]",
       // ...(moment(date).hour() < 8 && {
       //   style: {
       //     backgroundColor: "powderblue",
@@ -203,166 +342,67 @@ export const DashboardCalendar = ({ data }) => {
     [],
   );
 
-  const { formattedNumber } = formatPhoneNumber(data?.home_phone);
+  // const { formattedNumber } = formatPhoneNumber(data?.home_phone);
 
   return (
-    <div className={"px-4 py-2.5"}>
-      <div className={"flex items-center justify-between px-4 mb-8"}>
-        <div className={"flex items-center gap-x-4"}>
-          <Title level={1} fontSize={"text-3xl"} fontWeightStrong={500}>
-            {data?.first_name}
+    <Fragment>
+      <div className={"flex justify-between items-center"}>
+        <div className="flex items-center gap-5">
+          <Image
+            className={"w-16 h-16 overflow-hidden rounded-full"}
+            src={data?.picture ?? InstructorAva}
+            srcSet={data?.picture ?? InstructorAva}
+          />
+
+          <Title level={2} fontSize={"text-2xl"}>
+            {data?.first_name} {data?.last_name}
           </Title>
-          <Paragraph
-            className={"text-gray-500 font-semibold"}
-            fontSize={"text-xl"}
-          >
-            {formattedNumber}
-          </Paragraph>
-          <Paragraph fontSize={"text-base font-semibold"}>
-            120h on week
-          </Paragraph>
         </div>
 
-        <div className={"space-x-7"}>
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultHoverColor={colorsObject.main}
-            defaultColor={colorsObject.main}
-            borderRadius={5}
-            controlHeight={30}
-            paddingInline={4}
-            fontSize={12}
-          >
-            Edit information
-          </ButtonComponent>
-
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultHoverColor={colorsObject.main}
-            defaultColor={colorsObject.main}
-            borderRadius={5}
-            controlHeight={30}
-            paddingInline={25}
-            fontSize={12}
-          >
-            Time log
-          </ButtonComponent>
-
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultHoverColor={colorsObject.main}
-            defaultColor={colorsObject.main}
-            borderRadius={5}
-            controlHeight={30}
-            paddingInline={13}
-            fontSize={12}
-          >
-            Add time off
-          </ButtonComponent>
-
-          <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultHoverColor={colorsObject.main}
-            defaultColor={colorsObject.main}
-            borderRadius={5}
-            controlHeight={30}
-            paddingInline={24}
-            fontSize={12}
-          >
-            Add Slots
-          </ButtonComponent>
+        <Dropdown
+          menu={{
+            items,
+          }}
+          placement="bottomRight"
+        >
+          <IconComponent
+            className={"w-6"}
+            icon={<BsPersonFillGear className={"text-xl"} />}
+          />
+        </Dropdown>
+      </div>
+      <div className={"overflow-hidden rounded-xl"}>
+        <div className="bg-white -mx-1">
+          <Calendar
+            // To selection column and add events
+            // selectable
+            localizer={localizer}
+            events={events}
+            // To scroll
+            startAccessor="start"
+            endAccessor="end"
+            // onSelectSlot={handleSelect}
+            // onSelectEvent={(event) => alert(event.title)}
+            defaultView={Views.WEEK}
+            defaultDate={defaultDate}
+            style={{ height: 564 }}
+            views={views}
+            formats={formats}
+            // {/*Header toolbar*/}
+            toolbar={toolbar}
+            //{/*Event Item*/}
+            eventPropGetter={eventPropGetter}
+            //{/*Day column*/}
+            dayPropGetter={dayPropGetter}
+            showMultiDayTimes
+            // Slot
+            slotGroupPropGetter={slotGroupPropGetter}
+            slotPropGetter={slotPropGetter}
+            //compo
+            components={components}
+          />
         </div>
       </div>
-
-      <div className="border border-blue-500 rounded-[20px] overflow-hidden">
-        <div className="p-4 flex justify-between items-center border-b border-b-gray-300">
-          <div className={"flex items-center gap-4"}>
-            <IconComponent
-              className={"flex-shrink-0 text-3xl pt-2"}
-              icon={<FaBars />}
-              // onClick={handleBurger}
-            />
-
-            <Title level={2} fontSize={"text-3xl"}>
-              <span>01-07 {MonthName}</span> &nbsp;
-              <span className={"font-normal"}> {Time.getFullYear()}</span>
-            </Title>
-
-            <CustomSelect
-              colorBorder={colorsObject.primary}
-              placeholder={"Months"}
-              colorText={colorsObject.primary}
-              options={months}
-            />
-          </div>
-          <div className={"gap-x-4 inline-flex items-center"}>
-            <ConfigProvider
-              theme={{
-                components: {
-                  Button: {
-                    defaultBg: "#F5F5F5",
-                    defaultHoverBg: "#F5F5F5",
-                  },
-                },
-              }}
-            >
-              <Button shape={"circle"} icon={<AiOutlineSearch />} />
-            </ConfigProvider>
-
-            <ButtonComponent
-              defaultBg={"#0C41FF"}
-              defaultHoverBg={"#0C41FF"}
-              borderRadius={5}
-              paddingInline={8}
-              controlHeight={30}
-            >
-              <div className={"inline-flex gap-x-4 text-white items-center"}>
-                <Text
-                  fontWeightStrong={500}
-                  fontSize={12}
-                  className={"text-white"}
-                >
-                  Add event
-                </Text>
-                &nbsp;
-                <BsPlusCircleFill className={"w-4"} />
-              </div>
-            </ButtonComponent>
-          </div>
-        </div>
-        <Calendar
-          // To selection column and add events
-          // selectable
-          localizer={localizer}
-          events={events}
-          // To scroll
-          startAccessor="start"
-          endAccessor="end"
-          // onSelectSlot={handleSelect}
-          // onSelectEvent={(event) => alert(event.title)}
-          defaultView={Views.WEEK}
-          defaultDate={defaultDate}
-          style={{ height: 564 }}
-          views={views}
-          formats={formats}
-          // {/*Header toolbar*/}
-          toolbar={toolbar}
-          //{/*Event Item*/}
-          eventPropGetter={eventPropGetter}
-          //{/*Day column*/}
-          dayPropGetter={dayPropGetter}
-          showMultiDayTimes
-          // Slot
-          slotGroupPropGetter={slotGroupPropGetter}
-          slotPropGetter={slotPropGetter}
-          //compo
-          components={components}
-        />
-      </div>
-    </div>
+    </Fragment>
   );
 };
