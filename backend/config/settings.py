@@ -169,3 +169,6 @@ TENANT_DOMAIN_MODEL = "mainadmin.Domain"
 
 PUBLIC_SCHEMA_URLCONF = "mainadmin.urls"
 DJANGO_SETTINGS_MODULE = "config.settings"
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
