@@ -61,7 +61,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -71,7 +71,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -81,7 +81,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -91,7 +91,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -101,7 +101,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <div className="flex items-center gap-5">
@@ -110,10 +110,9 @@ export const CompanyFormik = () => {
                 </span>
                 <div className="grid flex-grow grid-cols-2 items-center gap-5">
                   <CustomSelect
-                    style={{ width: "100%", height: 40 }}
                     placeholder={"Select"}
                     colorBorder={colorsObject.primary}
-                    className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
                         value: "OH",
@@ -126,7 +125,7 @@ export const CompanyFormik = () => {
                     placeholder={"Zip Number"}
                     className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                     colorBorder={colorsObject.primary}
-                    classNames={`inline-flex flex-shrink-0 items-center w-full gap-5 flex-row-reverse`}
+                    classNames={`inline-flex flex-shrink-0 items-center w-full gap-5 flex-row-reverse h-[50px]`}
                   />
                 </div>
               </div>
@@ -140,7 +139,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -150,7 +149,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -160,7 +159,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -170,7 +169,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -180,7 +179,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -190,7 +189,7 @@ export const CompanyFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
             </div>
           </div>

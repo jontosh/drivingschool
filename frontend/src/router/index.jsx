@@ -61,13 +61,12 @@ export const router = createBrowserRouter([
         element: <HelpMain />,
         children: [
           {
-            path: "ticket/:title",
+            path: "news/ticket/:title/:id",
             element: <TicketSpa />,
-            children: [
-              {
-                path: ":id",
-              },
-            ],
+          },
+          {
+            path: "help/ticket/:title/:id",
+            element: <TicketSpa />,
           },
           {
             path: "help",

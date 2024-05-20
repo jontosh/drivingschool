@@ -1317,7 +1317,7 @@ export const FileCategoryModalContent = () => {
       {({ handleReset, errors, handleChange, values, handleSubmit }) => (
         <form className="flex gap-5 flex-col px-5" onSubmit={handleSubmit}>
           <CustomInput
-            className={"border-indigo-700 border w-[451px]"}
+            className={"border-indigo-700 border w-[451px] shadow-xl"}
             classNames={
               "inline-flex justify-center h-[50px] items-center flex-row-reverse gap-5"
             }
@@ -1344,9 +1344,8 @@ export const FileCategoryModalContent = () => {
             <div className={"w-[451px]"}>
               <CustomSelect
                 placeholder={"Select"}
-                style={{ width: "100%" }}
                 colorBorder={colorsObject.primary}
-                className={"h-[50px]"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: "active",
@@ -1386,7 +1385,7 @@ export const FileCategoryModalContent = () => {
             <div className={"w-[451px]"}>
               <textarea
                 className={
-                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
+                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px] shadow-xl"
                 }
                 name={"signature_link"}
                 placeholder={"text"}
@@ -1406,7 +1405,7 @@ export const FileCategoryModalContent = () => {
             <div className={"w-[451px]"}>
               <textarea
                 className={
-                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px]"
+                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px] shadow-xl"
                 }
                 name={"note"}
                 placeholder={"text"}
@@ -2747,10 +2746,8 @@ export const AddSchoolModalContent = () => {
                 </span>
                 <div className="w-full">
                   <CustomSelect
-                    placeholder={"Location Status *"}
-                    style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
                         value: "Number",
@@ -2815,9 +2812,8 @@ export const AddSchoolModalContent = () => {
                 </span>
                 <CustomSelect
                   placeholder={"Select State"}
-                  style={{ width: "100%" }}
                   colorBorder={colorsObject.primary}
-                  className={"h-[50px]"}
+                  className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   options={[
                     {
                       value: "Number",
@@ -3336,21 +3332,11 @@ export const VehiclesModalContent = () => {
             </div>
             <div className={"space-y-5"}>
               <label className="inline-flex gap-8 items-center w-full">
-                <span className={"flex-shrink-0 w-56"}>Appointment Color</span>
+                <span className={"flex-shrink-0 w-56 text-right"}>Appointment Color</span>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-                  }
-                  className={classNames(
-                    ManagementStyle["CheckModal__form-element__shadow"],
-                    "w-full",
-                  )}
-                  type="color"
-                  colorBorder={colorsObject.primary}
-                  name={"appointment_color"}
-                  value={values.appointment_color}
-                  onChange={handleChange}
+                <ColorPicker
+                  showText={(color) => <span>{color.toHexString()}</span>}
+                  className={`w-full h-10 justify-start pl-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 />
               </label>
 
@@ -3361,7 +3347,7 @@ export const VehiclesModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Enable Appointment Color"}
                 placeholder={"Enable Appointment Color"}
-                spanClassName={`font-medium w-56 flex-shrink-0`}
+                spanClassName={`font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
                 name={"enable_appointment_color"}
                 value={values.enable_appointment_color}
@@ -3370,7 +3356,7 @@ export const VehiclesModalContent = () => {
               />
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
-                <span className={"text-sm font-medium w-56 flex-shrink-0"}>
+                <span className={"text-sm font-medium w-56 flex-shrink-0 text-right"}>
                   Vehicle Note
                 </span>
 
@@ -3392,7 +3378,7 @@ export const VehiclesModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Vehicle ESN Or AIR ID"}
                 placeholder={"Vehicle ESN Or AIR ID"}
-                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
                 name={"vehicle_esn"}
                 value={values.vehicle_esn}
@@ -3406,7 +3392,7 @@ export const VehiclesModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Odometer Value"}
                 placeholder={"Odometer Value"}
-                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
                 name={"odometer_value"}
                 onChange={handleChange}
@@ -3420,7 +3406,7 @@ export const VehiclesModalContent = () => {
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Vehicle Initial Mileage"}
                 placeholder={"Vehicle Initial Mileage"}
-                spanClassName={`text-sm font-medium w-56 flex-shrink-0`}
+                spanClassName={`text-sm font-medium w-56 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
                 name={"initial_mileage"}
                 value={values.initial_mileage}
@@ -3428,7 +3414,7 @@ export const VehiclesModalContent = () => {
               />
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
-                <span className={"text-sm font-medium w-56 flex-shrink-0"}>
+                <span className={"text-sm font-medium w-56 flex-shrink-0 text-right"}>
                   Vehicle Image
                 </span>
 

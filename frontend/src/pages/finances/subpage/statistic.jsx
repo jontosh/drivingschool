@@ -200,7 +200,7 @@ export const Statistic = () => {
                 },
               ]}
               colorBorder={colorsObject.primary}
-              style={{ width: 150 }}
+              className={"w-[150px] h-[50px]"}
             />
           </div>
 

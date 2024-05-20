@@ -35,7 +35,7 @@ export const Finances = () => {
                   },
                 ]}
                 colorBorder={colorsObject.primary}
-                style={{ width: 150 }}
+                className={"w-[150px] h-[50px]"}
               />
             </div>
 
@@ -57,7 +57,7 @@ export const Finances = () => {
                   },
                 ]}
                 colorBorder={colorsObject.primary}
-                style={{ width: 150 }}
+                className={"w-[150px] h-[50px]"}
               />
             </div>
 
@@ -146,7 +146,7 @@ export const Finances = () => {
                   },
                 ]}
                 colorBorder={colorsObject.primary}
-                style={{ width: 150 }}
+                className={"w-[150px] h-[50px]"}
               />
             </div>
 
@@ -170,7 +170,7 @@ export const Finances = () => {
                   },
                 ]}
                 colorBorder={colorsObject.primary}
-                style={{ width: 150 }}
+                className={"w-[150px] h-[50px]"}
               />
             </div>
 
