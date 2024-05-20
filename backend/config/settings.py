@@ -171,12 +171,6 @@ TENANT_DOMAIN_MODEL = "mainadmin.Domain"
 
 PUBLIC_SCHEMA_URLCONF = "mainadmin.urls"
 DJANGO_SETTINGS_MODULE = "config.settings"
-CORS_ALLOWED_ORIGINS = [
-    "https://drivingschool-zeta.vercel.app/",
-    "https://sub.example.com",
-    "http://localhost:53",
-    "http://127.0.0.1:9000",
-]
 CORS_ALLOW_METHODS = (
     "DELETE",
     "GET",
