@@ -23,18 +23,23 @@ import ServiceStyle from "../management.module.scss";
 export const StatusSelect = [
   {
     id: 1,
-    label: "Active",
-    value: "Active",
+    label: "ACTIVE",
+    value: "ACTIVE",
   },
   {
     id: 2,
-    label: "Close",
-    value: "Close",
+    label: "DELETED",
+    value: "DELETED",
   },
   {
     id: 3,
-    label: "Process",
-    value: "Process",
+    label: "INACTIVE",
+    value: "INACTIVE",
+  },
+  {
+    id: 4,
+    label: "PENDING",
+    value: "PENDING",
   },
 ];
 

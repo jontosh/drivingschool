@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "https://drivingschool-zeta.vercel.app",
   "scripts": {
     "start": "concurrently \"npx json-server --watch db/db.json --port=9000\" \"vite --open\"",
     "build": "vite build",

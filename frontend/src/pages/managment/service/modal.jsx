@@ -12,6 +12,7 @@ import { useFileReader } from "@/hooks/file-reader.jsx";
 import { FormError } from "@/modules/errors.jsx";
 import { ProductModalValidate } from "@/modules/product.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
+import { useRequestPostMutation } from "@/redux/query/index.jsx";
 import { PlusOutlined } from "@ant-design/icons";
 import MDEditor from "@uiw/react-md-editor";
 import {
@@ -56,6 +57,7 @@ const mockData = [
 
 export const ProductModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
   const [Type, setType] = useState("");
@@ -81,8 +83,27 @@ export const ProductModalContent = () => {
   const handleSubType = (values) => setSubType(values);
   const handleSubmit = (values) => {
     setSelections(stateSelects);
-    if (!Selections) {
-      console.log({ ...values, status: Status, type: Type, subtype: SubType });
+    if (!stateSelects) {
+      try {
+        requestPost({
+          path: "/account_management/services/component/",
+          data: {
+            ...values,
+            status: Status,
+            type_component: Type,
+            subtype_btw: SubType,
+          },
+        });
+
+        console.log({
+          ...values,
+          status: Status,
+          type_component: Type,
+          subtype_btw: SubType,
+        });
+      } catch (error) {
+        console.error(error.message);
+      }
     }
   };
   return (
@@ -186,7 +207,20 @@ export const ProductModalContent = () => {
                   placeholder={"Select status"}
                   style={{ width: 240 }}
                   className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={StatusSelect}
+                  options={[
+                    {
+                      value: "BTW",
+                      label: "BTW",
+                    },
+                    {
+                      value: "CR",
+                      label: "CR",
+                    },
+                    {
+                      value: "WEB",
+                      label: "WEB",
+                    },
+                  ]}
                   colorBorder={colorsObject.primary}
                   value={Type ? Type : undefined}
                   onChange={handleType}
@@ -209,7 +243,10 @@ export const ProductModalContent = () => {
                   placeholder={"Select status"}
                   style={{ width: 240 }}
                   className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={StatusSelect}
+                  options={[
+                    { value: "ADULT BTW", label: "ADULT BTW" },
+                    { value: "CORP BTW", label: "CORP BTW" },
+                  ]}
                   colorBorder={colorsObject.primary}
                   value={SubType ? SubType : undefined}
                   onChange={handleSubType}
@@ -262,9 +299,11 @@ export const ProductModalContent = () => {
 
 export const FeesModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
   const [Selections, setSelections] = useState(false);
+  const [NotesValue, setNotesValue] = useState("Hello");
 
   // dep
   const selects = [Status];
@@ -285,7 +324,15 @@ export const FeesModalContent = () => {
   const handleSubmit = (values) => {
     setSelections(stateSelects);
     if (!stateSelects) {
-      console.log({ ...values, status: Status });
+      try {
+        requestPost({
+          path: `/account_management/services/fee/`,
+          data: { ...values, status: Status, notes: NotesValue },
+        });
+      } catch (error) {
+        console.error(error.message);
+      }
+      console.log({ ...values, status: Status, notes: NotesValue });
     }
   };
 
@@ -294,13 +341,12 @@ export const FeesModalContent = () => {
       <Formik
         initialValues={{
           name: "",
-          free_amount: "",
-          notes: "",
+          amount: "",
         }}
         validate={(values) => {
           const errors = {};
-          if (!values.free_amount) {
-            errors.free_amount = "Input Free amount is empty";
+          if (!values.amount) {
+            errors.amount = "Input Free amount is empty";
           }
 
           return errors;
@@ -362,31 +408,29 @@ export const FeesModalContent = () => {
               fontSize="text-base"
               spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               colorBorder={colorsObject.primary}
-              name={"free_amount"}
-              value={values.free_amount}
+              name={"amount"}
+              value={values.amount}
               onChange={handleChange}
             >
-              {errors.free_amount && (
-                <FormError className={"pl-[46%]"}>
-                  {errors.free_amount}
-                </FormError>
+              {errors.amount && (
+                <FormError className={"pl-[46%]"}>{errors.amount}</FormError>
               )}
             </CustomInput>
 
-            <CustomInput
-              classNames={
-                "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
-              }
-              spanText={"Notes"}
-              placeholder={"Notes"}
-              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              fontSize="text-base"
-              spanClassName={`max-w-46`}
-              colorBorder={colorsObject.primary}
-              onChange={handleChange}
-              name={"notes"}
-              value={values.notes}
-            />
+            <label className="inline-flex justify-end gap-8 items-center w-full">
+              <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                Notes
+              </span>
+              <div className="w-full">
+                <MDEditor
+                  value={NotesValue}
+                  onChange={(value) => setNotesValue(value)}
+                  previewOptions={{
+                    rehypePlugins: [[rehypeSanitize]],
+                  }}
+                />
+              </div>
+            </label>
 
             <div className="text-center space-x-5">
               <ButtonComponent
@@ -2516,7 +2560,9 @@ export const LocationModalContent = () => {
                 </span>
               </CustomCheckBox>
               <label className="flex items-center gap-4 justify-center">
-                <span className="text-sm flex-shrink-0 font-medium w-[237px] text-end">Color picker</span>
+                <span className="text-sm flex-shrink-0 font-medium w-[237px] text-end">
+                  Color picker
+                </span>
                 <CustomCheckBox />
                 <ColorPicker
                   name={"color_picker"}

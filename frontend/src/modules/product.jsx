@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
@@ -10,6 +11,10 @@ import {
 import { Space } from "antd";
 
 export const ProductModule = () => {
+  const { data: ProductData } = useRequestGetQuery({
+    path: "/account_management/services/component/",
+  });
+
   const columns = [
     {
       title: "Item Name",
@@ -23,8 +28,8 @@ export const ProductModule = () => {
     },
     {
       title: "Code number",
-      dataIndex: "codeNumber",
-      key: "codeNumber",
+      dataIndex: "code",
+      key: "code",
       render: (text) => (
         <div className={"text-center"}>
           <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
@@ -35,8 +40,8 @@ export const ProductModule = () => {
     },
     {
       title: "Type",
-      dataIndex: "type",
-      key: "type",
+      dataIndex: "type_component",
+      key: "type_component",
       render: (text) => (
         <div className={"text-center"}>
           <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
@@ -47,8 +52,8 @@ export const ProductModule = () => {
     },
     {
       title: "Sub type",
-      dataIndex: "subtype",
-      key: "subtype",
+      dataIndex: "subtype_btw",
+      key: "subtype_btw",
       render: (text) => (
         <div className={"text-center"}>
           <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
@@ -141,38 +146,7 @@ export const ProductModule = () => {
     },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "Advanced Parking",
-      codeNumber: "001",
-      type: "Owner",
-      subtype: "Teen BTW",
-      hours: 1,
-      observation: 1,
-      status: "Active",
-    },
-    {
-      key: "2",
-      name: "Advanced Parking",
-      codeNumber: "001",
-      type: "Owner",
-      subtype: "Teen BTW",
-      hours: 1,
-      observation: 1,
-      status: "Close",
-    },
-    {
-      key: "2",
-      name: "Advanced Parking",
-      codeNumber: "001",
-      type: "Owner",
-      subtype: "Teen BTW",
-      hours: 1,
-      observation: 1,
-      status: "process",
-    },
-  ];
+  const data = ProductData;
 
   return { data, columns };
 };
