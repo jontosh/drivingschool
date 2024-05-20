@@ -93,3 +93,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.rbc-header span[role="columnheader"]{
+  color: #6B7A99;
+}
+
+.rbc-event{
+  border-color: inherit !important;
+}
