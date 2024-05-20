@@ -4,9 +4,7 @@ from django.apps import apps
 from django.contrib import admin
 from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
-from django.contrib.auth.models import User
-
-
+from django.conf import settings
 
 class Tasks(Extra):
     STATUS = [
@@ -45,7 +43,7 @@ class LatestNews(models.Model):
 
 class Logs(models.Model):
     time = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,blank=True,null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,blank=True,null=True)
     action = models.TextField()
     method = models.TextField()
     ip_address = models.GenericIPAddressField(blank=True,null=True)

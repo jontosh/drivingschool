@@ -19,7 +19,7 @@ class DateRangeSerializer(serializers.ModelSerializer):
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
-        fields = "*"
+        fields = "__all__"
 
 class TimeSlotSerializer(serializers.ModelSerializer):
     WEEK_CHOICES = [

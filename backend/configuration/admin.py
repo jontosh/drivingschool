@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from django import  forms
 from Users.models import Student,Instructor
 from .models import CompanyInfo, WebContent,ZipCode,StorageManagement,EmergencyData,MessageItems,Messages,Fields,\
@@ -39,3 +40,4 @@ admin.site.register(GeneralSetting)
 admin.site.register(GraphicalScheduleSetting,FieldSelectionAdmin)
 admin.site.register(PasswordManagement)
 admin.site.register(Expanses)
+admin.site.unregister(Group)

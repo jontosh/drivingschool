@@ -1,3 +1,4 @@
+from django.contrib.auth.models import  AbstractUser
 from django.db import models
 from colorfield.fields import ColorField
 from location.models import Vehicle,Location,School
@@ -7,8 +8,11 @@ from servises.models import Services
 from scheduling.models import TimeRange
 from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 import uuid
-
-class User(models.Model):
+class CustomBaseUser(AbstractUser):
+    first_name = models.CharField(max_length=200)
+    mid_name = models.CharField(max_length=200, blank=True, null=True)
+    last_name = models.CharField(max_length=200)
+class CustomUser(CustomBaseUser):
     STATUS = [
         ["Active", "Active"],
         ["Deleted", "Deleted"],
@@ -16,9 +20,6 @@ class User(models.Model):
     ]
     id = models.UUIDField(auto_created=True, primary_key=True, unique=True,blank=True)
     status = models.CharField(choices=STATUS, max_length=30, default="Pending")
-    first_name = models.CharField(max_length=200)
-    mid_name = models.CharField(max_length=200, blank=True, null=True)
-    last_name = models.CharField(max_length=200)
     address = models.TextField()
     city = models.CharField(max_length=200, blank=True, null=True)
     state = models.CharField(max_length=200, blank=True, null=True)
@@ -36,9 +37,12 @@ class User(models.Model):
         if not self.id:
             self.id = uuid.uuid4()
         super().save(*args, **kwargs)
-
+    def __str__(self):
+        return  self.username
+    class Meta:
+        abstract = True
 #INSTRACTOR
-class Instructor(User):
+class Instructor(CustomUser):
     STAFF_TYPE = [
         ["Instructor","Instructor"],
         ["Instructor / Teacher","Instructor/Teacher"],
@@ -65,13 +69,13 @@ class Instructor(User):
         'configuration.MessageItems',
         'product_object_id',
         'product_content_type_id',
-        related_query_name='User',
+        related_query_name='CustomUser',
     )
     def __str__(self):
         return self.username
 
 #STUDENT
-class Student(User):
+class Student(CustomUser):
 
     PREFERRED_PRONOUNS = [
         ["He", "He"],
@@ -107,7 +111,7 @@ class Enrollment(Extra):
     student = models.ForeignKey("Student",on_delete=models.CASCADE,related_name="enrolled_user")
     data = models.DateField(auto_now_add=True)
     code = models.IntegerField()
-    by  = models.ForeignKey("User",on_delete=models.CASCADE,related_name="enrolled_by")
+    by  = models.ForeignKey("CustomUser",on_delete=models.CASCADE,related_name="enrolled_by")
     price = models.PositiveIntegerField(default=0)
     cr = models.ForeignKey("location.Class",on_delete=models.CASCADE,blank=True,null=True)
     cr_start = models.DateField(blank=True,null=True)
@@ -171,7 +175,7 @@ class FileCategory(Status,Extra):
 
 class Files(Extra):
     name = models.TextField()
-    by = models.ForeignKey("User", on_delete=models.CASCADE,related_name="file_by")
+    by = models.ForeignKey("CustomUser", on_delete=models.CASCADE,related_name="file_by")
     student = models.ForeignKey("Student",on_delete=models.CASCADE,blank=True,null=True,related_name="file_from")
     category = models.ForeignKey("FileCategory",on_delete=models.CASCADE)
     file = models.FileField(upload_to="files/student")
