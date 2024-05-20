@@ -37,7 +37,7 @@ class Services(models.Model):
                                                   "member registered to this service",blank=True,null=True)
     purchase = models.BooleanField(default=False)
     portal_purchase = models.BooleanField(default=False)
-    add_ons = models.ManyToManyField("AddOn",related_name="addons",blank=True,null=True)
+    add_ons = models.ManyToManyField("AddOn",related_name="addons",blank=True)
     discount = models.ManyToManyField("Discount",related_name="service_discount",blank=True)
     oe = models.CharField(choices=OE,max_length=50,default="NO CONTRACT NEEDED", help_text="Associate Contract From OE")
     notes = models.TextField(blank=True,null=True)

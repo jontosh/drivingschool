@@ -1,3 +1,4 @@
+from django.contrib.auth.models import  AbstractUser
 from django.db import models
 from colorfield.fields import ColorField
 from location.models import Vehicle,Location,School
@@ -7,7 +8,6 @@ from servises.models import Services
 from scheduling.models import TimeRange
 from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 import uuid
-
 class User(models.Model):
     STATUS = [
         ["Active", "Active"],
@@ -16,10 +16,10 @@ class User(models.Model):
     ]
     id = models.UUIDField(auto_created=True, primary_key=True, unique=True,blank=True)
     status = models.CharField(choices=STATUS, max_length=30, default="Pending")
+    address = models.TextField()
     first_name = models.CharField(max_length=200)
     mid_name = models.CharField(max_length=200, blank=True, null=True)
     last_name = models.CharField(max_length=200)
-    address = models.TextField()
     city = models.CharField(max_length=200, blank=True, null=True)
     state = models.CharField(max_length=200, blank=True, null=True)
     zip = models.CharField(max_length=30, blank=True, null=True)
@@ -36,6 +36,8 @@ class User(models.Model):
         if not self.id:
             self.id = uuid.uuid4()
         super().save(*args, **kwargs)
+    def __str__(self):
+        return  self.username
 
 #INSTRACTOR
 class Instructor(User):
@@ -85,7 +87,6 @@ class Student(User):
     ]
     staff = models.ForeignKey(Instructor,on_delete=models.CASCADE,related_name="student_staff",null=True)
     location = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)
-    # student_id = models.AutoField()
     home_pickup = models.TextField(blank=True,null=True)
     gender = models.CharField(choices=GENDER,max_length=30,default="Male")
     high_school = models.ForeignKey(School,on_delete=models.CASCADE,blank=True,null=True)
