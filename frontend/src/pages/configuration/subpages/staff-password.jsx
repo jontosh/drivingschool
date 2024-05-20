@@ -49,7 +49,7 @@ const StaffPasswordFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <label className="inline-flex items-center w-full gap-5">
@@ -57,10 +57,9 @@ const StaffPasswordFormik = () => {
                   Max Password Age Policy
                 </span>
                 <CustomSelect
-                  style={{ width: "100%", height: 40 }}
                   placeholder={"Select"}
                   colorBorder={colorsObject.primary}
-                  className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                  className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                   options={[
                     {
                       value: "Action",
@@ -79,7 +78,7 @@ const StaffPasswordFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
 
               <CustomInput
@@ -91,7 +90,7 @@ const StaffPasswordFormik = () => {
                 colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
               />
             </div>
 

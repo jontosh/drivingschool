@@ -1,8 +1,11 @@
 import Title, { Paragraph } from "@/components/title";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
 export const TicketSpa = () => {
+  const { title, id } = useParams();
+
   return (
     <Fragment>
       <Helmet>
@@ -25,7 +28,7 @@ export const TicketSpa = () => {
               fontSize={"text-black text-2xl"}
               fontWeightStrong={700}
             >
-              Application No. 1234
+              Application No. {id}
             </Title>
 
             <div className="flex items-center gap-5">
@@ -49,7 +52,7 @@ export const TicketSpa = () => {
               fontSize={"text-black text-lg"}
               fontWeightStrong={400}
             >
-              Application No. 1234
+              {title}
             </Title>
 
             <span className="text-xs text-gray-600">DESCRIPTION</span>
@@ -76,3 +79,5 @@ export const TicketSpa = () => {
     </Fragment>
   )
 };
+
+export default TicketSpa;
