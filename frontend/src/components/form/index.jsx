@@ -222,9 +222,12 @@ export const CustomTransfer = ({
   initialTargetKeys,
   listHeight,
   headerHeight,
+  selectedKeys,
+  setSelectedKeys,
+  ...props
 }) => {
   const [targetKeysState, setTargetKeysState] = useState(initialTargetKeys);
-  const [selectedKeys, setSelectedKeys] = useState([]);
+  // const [selectedKeys, setSelectedKeys] = useState([]);
 
   const handleChange = (nextTargetKeys, direction, moveKeys) => {
     console.log("targetKeys:", nextTargetKeys);
@@ -260,7 +263,6 @@ export const CustomTransfer = ({
             fontSize,
             listHeight,
             headerHeight,
-            // listWidth: "100%"
           },
         },
       }}

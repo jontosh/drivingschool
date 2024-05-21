@@ -105,13 +105,16 @@ svg {
   border-bottom: none !important;
 }
 
-
-.Menu__icons{
-  .ant-menu-item{
+.Menu__icons {
+  .ant-menu-item {
     width: 100% !important;
   }
 }
 
 .ant-menu {
-  background: #FBFBFB;
+  background: #fbfbfb;
+}
+
+.ant-transfer-list {
+  padding: 8px 12px;
 }

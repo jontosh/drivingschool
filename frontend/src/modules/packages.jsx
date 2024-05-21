@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
@@ -10,6 +11,10 @@ import {
 import { Space } from "antd";
 
 export const PackagesModule = () => {
+  const { data } = useRequestGetQuery({
+    path: "/account_management/services/service/",
+  });
+
   const columns = [
     {
       title: "Service name",
@@ -68,7 +73,7 @@ export const PackagesModule = () => {
             <ButtonComponent
               defaultBg={bg}
               defaultHoverBg={hover}
-              // 
+              //
               borderRadius={5}
               style={{ width: "128px" }}
             >
@@ -80,8 +85,8 @@ export const PackagesModule = () => {
     },
     {
       title: "Web Purchase",
-      key: "web",
-      dataIndex: "web",
+      key: "purchase",
+      dataIndex: "purchase",
       align: "center",
       render: (access) => {
         return (
@@ -98,8 +103,8 @@ export const PackagesModule = () => {
     },
     {
       title: "Student Portal Purchase",
-      key: "portal",
-      dataIndex: "portal",
+      key: "portal_purchase",
+      dataIndex: "portal_purchase",
       align: "center",
       render: (access) => {
         return (
@@ -170,42 +175,6 @@ export const PackagesModule = () => {
           />
         </div>
       ),
-    },
-  ];
-
-  const data = [
-    {
-      key: "1",
-      name: "Advanced Parking",
-      code: "001",
-      price: 649.99,
-      content: "Advanced Parking",
-      status: "Active",
-      web: true,
-      portal: false,
-      enrolled: true,
-    },
-    {
-      key: "2",
-      name: "Advanced Parking",
-      code: "001",
-      price: 649.99,
-      content: "Advanced Parking",
-      status: "Close",
-      web: true,
-      portal: true,
-      enrolled: true,
-    },
-    {
-      key: "3",
-      name: "Advanced Parking",
-      code: "001",
-      price: 649.99,
-      content: "Advanced Parking",
-      status: "Process",
-      web: true,
-      portal: false,
-      enrolled: false,
     },
   ];
 
