@@ -340,13 +340,13 @@ export const FeesModalContent = () => {
           >
             <CustomInput
               classNames={
-                "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
+                "inline-flex gap-x-10 items-center flex-row-reverse justify-center gap-5 h-[50px] pl-5"
               }
               spanText={"Fee name"}
               placeholder={"Fee name"}
               fontSize="text-base"
               className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              spanClassName={`max-w-46 text-right`}
+              spanClassName={`text-right`}
               colorBorder={colorsObject.primary}
               onChange={handleChange}
               value={values.name}
@@ -354,10 +354,10 @@ export const FeesModalContent = () => {
             />
 
             <label
-              className={`inline-flex items-center gap-10 w-full justify-center`}
+              className={`inline-flex items-center gap-10 w-full justify-center pl-1`}
             >
               <span
-                className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-24 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Status:
               </span>
@@ -365,28 +365,27 @@ export const FeesModalContent = () => {
               <div className="flex-shrink-0">
                 <CustomSelect
                   placeholder={"Select status"}
-                  style={{ width: 240 }}
-                  className={`h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-60 h-[50px] text-base ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   options={StatusSelect}
                   colorBorder={colorsObject.primary}
                   onChange={handleStatus}
                   value={Status ? Status : undefined}
                 />
                 {Selections && (
-                  <FormError className="pl-[46%]">Select Status</FormError>
+                  <FormError className="pl-[42%]">Select Status</FormError>
                 )}
               </div>
             </label>
 
             <CustomInput
               classNames={
-                "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
+                "inline-flex gap-x-10 items-center flex-row-reverse justify-center gap-5 h-[50px]"
               }
               spanText={"Fee Amount:"}
               placeholder={"Fee Amount:"}
               className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               fontSize="text-base"
-              spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               colorBorder={colorsObject.primary}
               name={"amount"}
               value={values.amount}
@@ -394,7 +393,7 @@ export const FeesModalContent = () => {
               type={"number"}
             >
               {errors.amount && (
-                <FormError className={"pl-[46%]"}>{errors.amount}</FormError>
+                <FormError className={"pl-[42%]"}>{errors.amount}</FormError>
               )}
             </CustomInput>
 
