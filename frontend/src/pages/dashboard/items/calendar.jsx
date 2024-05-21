@@ -263,7 +263,9 @@ export const DashboardCalendar = ({ data }) => {
         dayFormat: (date, culture, localizer) =>
           localizer.format(date, "ddd DD", culture),
         eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
-          localizer.format(start, "hh:mm ", culture),
+          localizer.format(start, "hh:mm", culture) +
+          " " +
+          localizer.format(end, "hh:mm a", culture),
       },
       views: [Views.MONTH, Views.WEEK, Views.DAY],
       toolbar: true,

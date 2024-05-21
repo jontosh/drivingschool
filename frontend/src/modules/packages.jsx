@@ -52,14 +52,16 @@ export const PackagesModule = () => {
     },
     {
       title: "Service content",
-      key: "content",
-      dataIndex: "content",
+      key: "items",
+      dataIndex: "items",
       align: "center",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
+      render: (text, ...props) => {
+        return (
+          <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+            {text}
+          </Paragraph>
+        );
+      },
     },
     {
       title: "Status",

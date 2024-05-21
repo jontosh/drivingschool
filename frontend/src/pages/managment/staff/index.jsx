@@ -38,7 +38,7 @@ const Staff = () => {
           fontWeightStrong={600}
           titleMarginBottom={20}
         >
-          Account managment
+          Account management
         </Title>
 
         <Title

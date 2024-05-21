@@ -3,6 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
@@ -13,6 +14,9 @@ import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 
 export const LocationModule = () => {
+  const { data } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
   const columns = [
     {
       title: "Location name",
@@ -112,46 +116,12 @@ export const LocationModule = () => {
     },
   ];
 
-  const data = [
-    {
-      name: "Mason Location",
-      code: 8581,
-      status: "Active",
-      type: "Main office only",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
-    },
-    {
-      name: "Mason Location",
-      code: 8581,
-      status: "Process",
-      type: "Main office only",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
-    },
-    {
-      name: "Mason Location",
-      code: 8581,
-      status: "Close",
-      type: "Main office only",
-      render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
-        </Paragraph>
-      ),
-    },
-  ];
-
   return { columns, data };
 };
 
 export const HighSchoolModule = () => {
+  const { data } = useRequestGetQuery({ path: "/account_management/schools/" });
+
   const columns = [
     {
       title: "School name",
@@ -242,28 +212,13 @@ export const HighSchoolModule = () => {
     },
   ];
 
-  const data = [
-    {
-      name: "Mason Location",
-      code: 8581,
-      status: "Active",
-    },
-    {
-      name: "Mason Location",
-      code: 8581,
-      status: "Process",
-    },
-    {
-      name: "Mason Location",
-      code: 8581,
-      status: "Close",
-    },
-  ];
-
   return { columns, data };
 };
 
 export const HearModule = () => {
+  const { data } = useRequestGetQuery({
+    path: "/account_management/how_did_you_hear_us/",
+  });
   const columns = [
     {
       title: "Name",
@@ -342,39 +297,13 @@ export const HearModule = () => {
     },
   ];
 
-  const data = [
-    {
-      name: "Facebook",
-      code: 8581,
-      status: "Active",
-    },
-    {
-      name: "Google",
-      code: 8581,
-      status: "Process",
-    },
-    {
-      name: "Other",
-      code: 8581,
-      status: "Close",
-    },
-    {
-      name: "Recommendation",
-      code: 8581,
-      status: "Close",
-    },
-    {
-      name: "Yelp",
-      code: 8581,
-      status: "Active",
-    },
-  ];
-
   return { columns, data };
 };
 
 export const VehiclesModule = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { data } = useRequestGetQuery({ path: "/account_management/vehicle/" });
+
   const columns = [
     {
       title: "Location name",
@@ -416,8 +345,8 @@ export const VehiclesModule = () => {
     },
     {
       title: "Appointment color",
-      key: "appointment",
-      dataIndex: "appointment",
+      key: "color",
+      dataIndex: "color",
       align: "center",
       render: (color) => {
         return (
@@ -428,7 +357,7 @@ export const VehiclesModule = () => {
               borderRadius: 5,
               background: color,
             }}
-          ></div>
+          />
         );
       },
     },
@@ -474,27 +403,6 @@ export const VehiclesModule = () => {
           />
         </div>
       ),
-    },
-  ];
-
-  const data = [
-    {
-      name: "Mason Location",
-      code: 8581,
-      appointment: colorsObject.info,
-      type: "Car",
-    },
-    {
-      name: "Mason Location",
-      code: 8581,
-      appointment: colorsObject.secondary,
-      type: "Car",
-    },
-    {
-      name: "Mason Location",
-      code: 8581,
-      appointment: colorsObject.danger,
-      type: "Car",
     },
   ];
 
