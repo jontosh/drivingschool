@@ -2,10 +2,14 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 
 export const FeesModule = () => {
+  const { data } = useRequestGetQuery({
+    path: "https://drivingschool-zeta.vercel.app/account_management/services/component/",
+  });
   const columns = [
     {
       title: "Location name",
@@ -44,7 +48,7 @@ export const FeesModule = () => {
             <ButtonComponent
               defaultBg={bg}
               defaultHoverBg={hover}
-              // 
+              //
               borderRadius={5}
               style={{ width: "128px" }}
             >
@@ -83,28 +87,5 @@ export const FeesModule = () => {
     },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "Mason Location",
-      price: 75.0,
-      subtype: "Fee Miscellaneous",
-      status: "Active",
-    },
-    {
-      key: "2",
-      name: "Mason Location",
-      price: 75.0,
-      subtype: "Fee Miscellaneous",
-      status: "Process",
-    },
-    {
-      key: "3",
-      name: "Mason Location",
-      price: 75.0,
-      subtype: "Fee Miscellaneous",
-      status: "Close",
-    },
-  ];
   return { columns, data };
 };

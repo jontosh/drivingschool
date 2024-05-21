@@ -6,36 +6,21 @@ import {
   CustomTransfer,
   SwitchCustom,
 } from "@/components/form/index.jsx";
-import Title, { Text } from "@/components/title/index.jsx";
+import { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useFileReader } from "@/hooks/file-reader.jsx";
 import { FormError } from "@/modules/errors.jsx";
+import { ToNumber } from "@/modules/number.jsx";
 import { ProductModalValidate } from "@/modules/product.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import { useRequestPostMutation } from "@/redux/query/index.jsx";
-import { PlusOutlined } from "@ant-design/icons";
 import MDEditor from "@uiw/react-md-editor";
-import {
-  ColorPicker,
-  ConfigProvider,
-  DatePicker,
-  Image,
-  Switch,
-  Upload,
-} from "antd";
+import { ColorPicker, ConfigProvider, DatePicker, message } from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
-import {
-  Fragment,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { Fragment, useContext, useMemo, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import rehypeSanitize from "rehype-sanitize";
-import { zip } from "rxjs/internal/operators/zip";
 import { StatusSelect } from "./index.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import ButtonComponent from "@/components/button/index.jsx";
@@ -92,14 +77,8 @@ export const ProductModalContent = () => {
             status: Status,
             type_component: Type,
             subtype_btw: SubType,
+            location: 1,
           },
-        });
-
-        console.log({
-          ...values,
-          status: Status,
-          type_component: Type,
-          subtype_btw: SubType,
         });
       } catch (error) {
         console.error(error.message);
@@ -298,6 +277,7 @@ export const ProductModalContent = () => {
 };
 
 export const FeesModalContent = () => {
+  const [messageApi, contextHolder] = message.useMessage();
   const { colorsObject } = useContext(ColorsContext);
   const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
@@ -321,23 +301,23 @@ export const FeesModalContent = () => {
 
   // func
   const handleStatus = (values) => setStatus(values);
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setSelections(stateSelects);
     if (!stateSelects) {
       try {
-        requestPost({
+        await requestPost({
           path: `/account_management/services/fee/`,
           data: { ...values, status: Status, notes: NotesValue },
         });
       } catch (error) {
         console.error(error.message);
       }
-      console.log({ ...values, status: Status, notes: NotesValue });
     }
   };
 
   return (
     <Fragment>
+      {contextHolder}
       <Formik
         initialValues={{
           name: "",
@@ -362,8 +342,8 @@ export const FeesModalContent = () => {
               classNames={
                 "inline-flex gap-x-10 items-center flex-row-reverse gap-5 h-[50px]"
               }
-              spanText={"Free name"}
-              placeholder={"Free name"}
+              spanText={"Fee name"}
+              placeholder={"Fee name"}
               fontSize="text-base"
               className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
               spanClassName={`max-w-46 text-right`}
@@ -411,6 +391,7 @@ export const FeesModalContent = () => {
               name={"amount"}
               value={values.amount}
               onChange={handleChange}
+              type={"number"}
             >
               {errors.amount && (
                 <FormError className={"pl-[46%]"}>{errors.amount}</FormError>
@@ -418,9 +399,7 @@ export const FeesModalContent = () => {
             </CustomInput>
 
             <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
-                Notes
-              </span>
+              <span className="max-w-46">Notes</span>
               <div className="w-full">
                 <MDEditor
                   value={NotesValue}
@@ -473,9 +452,14 @@ export const FeesModalContent = () => {
 
 export const DiscountModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
   const [Selections, setSelections] = useState(false);
+  const [EligibleService, setEligibleService] = useState([]);
+  const [EligibleClass, setEligibleClass] = useState([]);
+  const [EligibleClassLocation, setEligibleClassLocation] = useState([]);
+  const [ExpirationDate, setExpirationDate] = useState(null);
 
   // dep
   const selects = [Status];
@@ -492,16 +476,39 @@ export const DiscountModalContent = () => {
   }, [Status]);
 
   // func
-  const handleCancel = () => navigate(-1);
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
+  const onChange = (date) => {
+    setExpirationDate(`${date["$y"]}-${date["$M"] + 1}-${date["$D"]}`);
   };
 
-  const handleSubmit = (values) => {
+  const handleStatus = (value) => setStatus(value);
+
+  const handleSubmit = async (values) => {
     setSelections(stateSelects);
 
     if (!stateSelects) {
-      console.log(values);
+      try {
+        await requestPost({
+          path: "/account_management/services/discount/",
+          data: {
+            ...values,
+            status: Status,
+            expiration_data: ExpirationDate,
+            services: ToNumber(EligibleService),
+            classes: ToNumber(EligibleClass),
+            locations: ToNumber(EligibleClassLocation),
+          },
+        });
+        console.log({
+          ...values,
+          status: Status,
+          expiration_data: ExpirationDate,
+          services: EligibleService,
+          classes: EligibleClass,
+          locations: EligibleClassLocation,
+        });
+      } catch (error) {
+        console.error(error.message);
+      }
     }
   };
 
@@ -509,16 +516,16 @@ export const DiscountModalContent = () => {
     <Formik
       initialValues={{
         name: "",
-        discount_code: "",
-        free_amount: "",
+        code: "",
+        amount: "",
       }}
       validate={(values) => {
         const errors = {};
-        if (!values.discount_code) {
-          errors.discount_code = "Input Discount code is empty";
+        if (!values.code) {
+          errors.code = "Input Discount code is empty";
         }
-        if (!values.free_amount) {
-          errors.free_amount = "Input Free Amount is empty";
+        if (!values.amount) {
+          errors.amount = "Input Free Amount is empty";
         }
         return errors;
       }}
@@ -542,6 +549,7 @@ export const DiscountModalContent = () => {
               colorBorder={colorsObject.primary}
               value={values.name}
               onChange={handleChange}
+              name={"name"}
             />
 
             <label className={`inline-flex gap-x-7 items-center`}>
@@ -558,6 +566,8 @@ export const DiscountModalContent = () => {
                   className={"h-[50px]"}
                   options={StatusSelect}
                   colorBorder={colorsObject.primary}
+                  value={Status ? Status : undefined}
+                  onChange={handleStatus}
                 />
                 {Selections && (
                   <FormError className="pl-[48%]">Select Status</FormError>
@@ -575,14 +585,12 @@ export const DiscountModalContent = () => {
               fontSize="text-base"
               spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               colorBorder={colorsObject.primary}
-              value={values.discount_code}
+              value={values.code}
               onChange={handleChange}
-              name={"discount_code"}
+              name={"code"}
             >
-              {errors.discount_code && (
-                <FormError className={"pl-[48%]"}>
-                  {errors.discount_code}
-                </FormError>
+              {errors.code && (
+                <FormError className={"pl-[48%]"}>{errors.code}</FormError>
               )}
             </CustomInput>
 
@@ -596,14 +604,13 @@ export const DiscountModalContent = () => {
               fontSize="text-base"
               spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               colorBorder={colorsObject.primary}
-              name={"free_amount"}
-              value={values.free_amount}
+              name={"amount"}
+              value={values.amount}
               onChange={handleChange}
+              type={"number"}
             >
-              {errors.free_amount && (
-                <FormError className={"pl-[48%]"}>
-                  {errors.free_amount}
-                </FormError>
+              {errors.amount && (
+                <FormError className={"pl-[48%]"}>{errors.amount}</FormError>
               )}
             </CustomInput>
           </div>
@@ -619,6 +626,8 @@ export const DiscountModalContent = () => {
                 dataSource={mockData}
                 listHeight={200}
                 colorBorder={colorsObject.primary}
+                setSelectedKeys={setEligibleService}
+                selectedKeys={EligibleService}
               />
             </div>
 
@@ -630,17 +639,21 @@ export const DiscountModalContent = () => {
                 dataSource={mockData}
                 listHeight={200}
                 colorBorder={colorsObject.primary}
+                setSelectedKeys={setEligibleClass}
+                selectedKeys={EligibleClass}
               />
             </div>
 
             <div className={`flex items-center space-x-11`}>
               <span className={`w-[190px] text-base text-right`}>
-                Eligible Class(es):
+                Eligible class Location:
               </span>
               <CustomTransfer
                 dataSource={mockData}
                 listHeight={200}
                 colorBorder={colorsObject.primary}
+                setSelectedKeys={setEligibleClassLocation}
+                selectedKeys={EligibleClassLocation}
               />
             </div>
           </div>
@@ -855,10 +868,18 @@ export const MiscellaneousModalContent = () => {
 
 export const AddServiceModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
   const [Selections, setSelections] = useState(false);
   const [Status, setStatus] = useState("");
   const [AssociateContract, setAssociateContract] = useState("");
+  const [WebDescriptionValue, setWebDescriptionValue] = useState("Hello");
+  const [EnrollmentContent, setEnrollmentContent] = useState("Hello");
+  const [NotesValue, setNotesValue] = useState("Hello");
+  const [AssignLocation, setAssignLocation] = useState([]);
+  const [ServiceItems, setServiceItems] = useState([]);
+  const [AddOnServices, setAddOnServices] = useState([]);
+  const [Discount, setDiscount] = useState([]);
   // dep
   const selects = [Status];
   const stateSelects = useMemo(() => {
@@ -874,11 +895,41 @@ export const AddServiceModalContent = () => {
   }, [Status]);
 
   // func
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setSelections(stateSelects);
 
     if (!stateSelects) {
-      console.log({ ...values, status: Status, contact: AssociateContract });
+      try {
+        await requestPost({
+          path: "/account_management/services/service/",
+          data: {
+            ...values,
+            status: Status,
+            oe: AssociateContract,
+            notes: NotesValue,
+            web_description: WebDescriptionValue,
+            enrolment_email: EnrollmentContent,
+            add_ons: ToNumber(AddOnServices),
+            discount: ToNumber(Discount),
+            locations: ToNumber(AssignLocation),
+            items: ToNumber(ServiceItems),
+          },
+        });
+        console.log({
+          ...values,
+          status: Status,
+          oe: AssociateContract,
+          notes: NotesValue,
+          web_description: WebDescriptionValue,
+          enrolment_email: EnrollmentContent,
+          add_ons: ToNumber(AddOnServices),
+          discount: ToNumber(Discount),
+          locations: ToNumber(AssignLocation),
+          items: ToNumber(ServiceItems),
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
   const handleStatus = (values) => setStatus(values);
@@ -889,13 +940,11 @@ export const AddServiceModalContent = () => {
       initialValues={{
         name: "",
         code: "",
+        taxable: false,
         price: "",
         web_name: "",
-        web_description: "",
-        enrollment_email_content: "",
-        web_purchase: false,
+        purchase: false,
         portal_purchase: false,
-        notes: "",
       }}
       validate={(values) => {
         const errors = {};
@@ -914,18 +963,6 @@ export const AddServiceModalContent = () => {
 
         if (!values.web_name) {
           errors.web_name = "Input Web name is empty";
-        }
-
-        if (!values.web_description) {
-          errors.web_description = "Input Web description is empty";
-        }
-
-        if (!values.enrollment_email_content) {
-          errors.enrollment_email_content = "Input Web description is empty";
-        }
-
-        if (!values.notes) {
-          errors.notes = "Input Notes is empty";
         }
 
         return errors;
@@ -1008,6 +1045,8 @@ export const AddServiceModalContent = () => {
                       dataSource={mockData}
                       listHeight={200}
                       colorBorder={colorsObject.primary}
+                      setSelectedKeys={setAssignLocation}
+                      selectedKeys={AssignLocation}
                     />
                   </label>
                 </div>
@@ -1024,11 +1063,17 @@ export const AddServiceModalContent = () => {
                       dataSource={mockData}
                       listHeight={200}
                       colorBorder={colorsObject.primary}
+                      setSelectedKeys={setServiceItems}
+                      selectedKeys={ServiceItems}
                     />
                   </label>
                 </div>
               </div>
-              <CustomCheckBox className={"gap-x-2.5 pl-[185px]"}>
+              <CustomCheckBox
+                className={"gap-x-2.5 pl-[185px]"}
+                name={"taxable"}
+                onChange={handleChange}
+              >
                 Is Service Taxable
               </CustomCheckBox>
               <CustomInput
@@ -1066,46 +1111,34 @@ export const AddServiceModalContent = () => {
                   </FormError>
                 )}
               </CustomInput>
-              <label
-                className={`inline-flex items-center w-full justify-between gap-10`}
-              >
-                <span
-                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
+
+              <label className="inline-flex justify-end gap-8 items-center w-full">
+                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
                   Web description
                 </span>
-                <div className={"w-full"}>
-                  <textarea
-                    className={`w-full min-h-[428px] p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
-                    name={"web_description"}
-                    value={values.web_description}
-                    onChange={handleChange}
-                    placeholder={"text"}
-                  ></textarea>
-                  {errors.web_description && (
-                    <FormError>{errors.web_description}</FormError>
-                  )}
+                <div className="w-full">
+                  <MDEditor
+                    value={WebDescriptionValue}
+                    onChange={(value) => setWebDescriptionValue(value)}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
+                  />
                 </div>
               </label>
-              <label
-                className={`inline-flex items-center w-full justify-between gap-10`}
-              >
-                <span
-                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
-                  Enrollment Email Content:
+
+              <label className="inline-flex justify-end gap-8 items-center w-full">
+                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
+                  Enrollment Email Content
                 </span>
-                <div className={"w-full"}>
-                  <textarea
-                    className={`w-full min-h-[428px] p-3 rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    name={"enrollment_email_content"}
-                    value={values.enrollment_email_content}
-                    onChange={handleChange}
-                    placeholder={"text"}
-                  ></textarea>
-                  {errors.enrollment_email_content && (
-                    <FormError>{errors.enrollment_email_content}</FormError>
-                  )}
+                <div className="w-full">
+                  <MDEditor
+                    value={EnrollmentContent}
+                    onChange={(value) => setEnrollmentContent(value)}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
+                  />
                 </div>
               </label>
             </div>
@@ -1118,7 +1151,30 @@ export const AddServiceModalContent = () => {
                 <div className={"space-x-5"}>
                   <CustomRadio
                     classNames={"inline-flex items-center gap-x-2.5"}
-                    name={"web_purchase"}
+                    name={"purchase"}
+                    onChange={handleChange}
+                  >
+                    <span className={"text-sm font-medium"}>Yes</span>
+                  </CustomRadio>
+
+                  <CustomRadio
+                    classNames={"inline-flex items-center gap-x-2.5"}
+                    name={"purchase"}
+                    onChange={handleChange}
+                  >
+                    <span className={"text-sm font-medium"}>None</span>
+                  </CustomRadio>
+                </div>
+              </label>
+
+              <label className={"inline-flex items-center w-full gap-10"}>
+                <span className={`w-36 text-sm text-end flex-shrink-0 `}>
+                  Allow Portal Purchase:
+                </span>
+                <div className={"space-x-5"}>
+                  <CustomRadio
+                    classNames={"inline-flex items-center gap-x-2.5"}
+                    name={"portal_purchase"}
                     onChange={handleChange}
                   >
                     <span className={"text-sm font-medium"}>Yes</span>
@@ -1133,32 +1189,11 @@ export const AddServiceModalContent = () => {
                   </CustomRadio>
                 </div>
               </label>
-              <label className={"inline-flex items-center w-full gap-10"}>
-                <span className={`w-36 text-sm text-end flex-shrink-0 `}>
-                  Allow Portal Purchase:
-                </span>
-                <div className={"space-x-5"}>
-                  <CustomRadio
-                    classNames={"inline-flex items-center gap-x-2.5"}
-                    name={"portal"}
-                  >
-                    <span className={"text-sm font-medium"}>Yes</span>
-                  </CustomRadio>
 
-                  <CustomRadio
-                    classNames={"inline-flex items-center gap-x-2.5"}
-                    name={"portal"}
-                  >
-                    <span className={"text-sm font-medium"}>None</span>
-                  </CustomRadio>
-                </div>
-              </label>
               <div className={`space-y-5`}>
                 <div className={`flex items-center gap-10`}>
-                  <span
-                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Assign Locations:
+                  <span className={`w-36 text-sm text-end flex-shrink-0 `}>
+                    Add-On Services:
                   </span>
                   <label className={`flex flex-col gap-5 items-center`}>
                     <span>Click to select</span>
@@ -1166,15 +1201,15 @@ export const AddServiceModalContent = () => {
                       dataSource={mockData}
                       listHeight={200}
                       colorBorder={colorsObject.primary}
+                      setSelectedKeys={setServiceItems}
+                      selectedKeys={ServiceItems}
                     />
                   </label>
                 </div>
 
                 <div className={`flex items-center gap-10`}>
-                  <span
-                    className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Service Items:
+                  <span className={`w-36 text-sm text-end flex-shrink-0`}>
+                    Eligible Discounts:
                   </span>
                   <label className={`flex flex-col gap-5 items-center`}>
                     <span>Click to select</span>
@@ -1182,6 +1217,8 @@ export const AddServiceModalContent = () => {
                       dataSource={mockData}
                       listHeight={200}
                       colorBorder={colorsObject.primary}
+                      setSelectedKeys={setDiscount}
+                      selectedKeys={Discount}
                     />
                   </label>
                 </div>
@@ -1216,23 +1253,19 @@ export const AddServiceModalContent = () => {
                   )}
                 </div>
               </label>
-              <label
-                className={`inline-flex items-center w-full justify-between gap-10`}
-              >
-                <span
-                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
+
+              <label className="inline-flex justify-end gap-8 items-center w-full">
+                <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
                   Service Notes:
                 </span>
-                <div className={"w-full"}>
-                  <textarea
-                    className={`w-full p-3 min-h-[428px] rounded-xl outline-0 border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]} `}
-                    name={"notes"}
-                    value={values.notes}
-                    onChange={handleChange}
-                    placeholder={"text"}
-                  ></textarea>
-                  {errors.notes && <FormError>{errors.notes}</FormError>}
+                <div className="w-full">
+                  <MDEditor
+                    value={NotesValue}
+                    onChange={(value) => setNotesValue(value)}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
+                  />
                 </div>
               </label>
             </div>
@@ -3332,7 +3365,9 @@ export const VehiclesModalContent = () => {
             </div>
             <div className={"space-y-5"}>
               <label className="inline-flex gap-8 items-center w-full">
-                <span className={"flex-shrink-0 w-56 text-right"}>Appointment Color</span>
+                <span className={"flex-shrink-0 w-56 text-right"}>
+                  Appointment Color
+                </span>
 
                 <ColorPicker
                   showText={(color) => <span>{color.toHexString()}</span>}
@@ -3356,7 +3391,11 @@ export const VehiclesModalContent = () => {
               />
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
-                <span className={"text-sm font-medium w-56 flex-shrink-0 text-right"}>
+                <span
+                  className={
+                    "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  }
+                >
                   Vehicle Note
                 </span>
 
@@ -3414,7 +3453,11 @@ export const VehiclesModalContent = () => {
               />
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
-                <span className={"text-sm font-medium w-56 flex-shrink-0 text-right"}>
+                <span
+                  className={
+                    "text-sm font-medium w-56 flex-shrink-0 text-right"
+                  }
+                >
                   Vehicle Image
                 </span>
 

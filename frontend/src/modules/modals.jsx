@@ -57,7 +57,7 @@ export const CheckModal = () => {
             fontWeightStrong={600}
             titleMarginBottom={20}
           >
-            Frees
+            Fee
           </Title>
           <div className="bg-white rounded-xl py-5 shadow-2xl">
             <FeesModalContent />

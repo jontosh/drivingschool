@@ -2,10 +2,15 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 
 export const DiscountsModule = () => {
+  const { data } = useRequestGetQuery({
+    path: "/account_management/services/discount/",
+  });
+
   const columns = [
     {
       title: "Item name",
@@ -44,7 +49,7 @@ export const DiscountsModule = () => {
             <ButtonComponent
               defaultBg={bg}
               defaultHoverBg={hover}
-              // 
+              //
               borderRadius={5}
               style={{ width: "128px" }}
             >
@@ -83,28 +88,5 @@ export const DiscountsModule = () => {
     },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "Mason Location",
-      discount: 75.0,
-      subtype: "Fee Miscellaneous",
-      status: "Active",
-    },
-    {
-      key: "2",
-      name: "Mason Location",
-      discount: 75.0,
-      subtype: "Fee Miscellaneous",
-      status: "Process",
-    },
-    {
-      key: "3",
-      name: "Mason Location",
-      discount: 75.0,
-      subtype: "Fee Miscellaneous",
-      status: "Close",
-    },
-  ];
   return { columns, data };
 };
