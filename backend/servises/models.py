@@ -95,13 +95,15 @@ class Component(models.Model):
     enrolment_size= models.IntegerField(default=0,blank=True,null=True)
     make_up_size = models.IntegerField(default=0,blank=True,null=True)
     web_stu_enrolment = models.BooleanField(help_text="Website/Student Portal Enrollment",blank=True,null=True)
-    location = models.ForeignKey("location.Location",on_delete=models.CASCADE)
+    location = models.ForeignKey("location.Location",on_delete=models.CASCADE,null=True,blank=True)
     days = models.CharField(choices=WEEK,max_length=10,default="MON",blank=True,null=True)
     number_sessions = models.IntegerField(default=0,blank=True,null=True)
     sessions_day = models.IntegerField(default=0,blank=True,null=True)
     session_duration = models.DateField(blank=True,null=True)
     start = models.DateTimeField(blank=True,null=True)
     end = models.DateTimeField(blank=True,null=True)
+    def __str__(self):
+        return self.name
 class Fee(models.Model):
     """
     Represents a fee that customers should pay.
