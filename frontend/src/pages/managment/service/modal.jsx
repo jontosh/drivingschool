@@ -154,7 +154,9 @@ export const ProductModalContent = () => {
                   value={Status ? Status : undefined}
                 />
 
-                {Selections && <FormError className={"pl-[48.8%]"}>Select Status:</FormError>}
+                {Selections && (
+                  <FormError className={"pl-[48.8%]"}>Select Status:</FormError>
+                )}
               </div>
             </label>
             <CustomInput
@@ -203,7 +205,9 @@ export const ProductModalContent = () => {
                   onChange={handleType}
                 />
 
-                {Selections && <FormError className={"pl-[48.8%]"}>Select Type</FormError>}
+                {Selections && (
+                  <FormError className={"pl-[48.8%]"}>Select Type</FormError>
+                )}
               </div>
             </label>
             <label
@@ -228,7 +232,9 @@ export const ProductModalContent = () => {
                   onChange={handleSubType}
                 />
 
-                {Selections && <FormError className={"pl-[48.8%]"}>Select Subtype</FormError>}
+                {Selections && (
+                  <FormError className={"pl-[48.8%]"}>Select Subtype</FormError>
+                )}
               </div>
             </label>
             <div className="text-center space-x-5">
@@ -498,9 +504,9 @@ export const DiscountModalContent = () => {
           ...values,
           status: Status,
           expiration_data: ExpirationDate,
-          services: EligibleService,
-          classes: EligibleClass,
-          locations: EligibleClassLocation,
+          services: ToNumber(EligibleService),
+          classes: ToNumber(EligibleClass),
+          locations: ToNumber(EligibleClassLocation),
         });
       } catch (error) {
         console.error(error.message);
@@ -2145,12 +2151,14 @@ export const AddStaffModalContent = () => {
 
 export const LocationModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
   const [PickupLocation, setPickupLocation] = useState("");
   const [DropOffLocation, setDropOffLocation] = useState("");
-  const [NotesValue, setNotesValue] = useState("");
+  const [NotesValue, setNotesValue] = useState("Hello");
   const [Selections, setSelections] = useState(false);
+  const [AreaCoverage, setAreaCoverage] = useState([]);
 
   // dep
   const selects = [Status, PickupLocation, DropOffLocation];
@@ -2168,17 +2176,33 @@ export const LocationModalContent = () => {
   }, [Status, PickupLocation, DropOffLocation]);
 
   // func
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setSelections(stateSelects);
 
     if (!stateSelects) {
-      console.log({
-        ...values,
-        status: Status,
-        pick_up_location: PickupLocation,
-        drop_off_location: DropOffLocation,
-        note: NotesValue,
-      });
+      try {
+        await requestPost({
+          path: `/account_management/location/`,
+          data: {
+            ...values,
+            status: Status,
+            pick_up: PickupLocation,
+            drop_off: DropOffLocation,
+            location_note: NotesValue,
+            area_coverage: ToNumber(AreaCoverage),
+          },
+        });
+        console.log({
+          ...values,
+          status: Status,
+          pick_up: PickupLocation,
+          drop_off: DropOffLocation,
+          location_note: NotesValue,
+          area_coverage: ToNumber(AreaCoverage),
+        });
+      } catch (error) {
+        console.error(error?.message);
+      }
     }
   };
   const handleStatus = (value) => setStatus(value);
@@ -2189,21 +2213,22 @@ export const LocationModalContent = () => {
     <Formik
       initialValues={{
         name: "",
+        code: "",
         type: "",
         address: "",
         city: "",
         state: "",
         zip: "",
-        manager: "",
-        country: "",
-        road_test: "",
-        knowledge_test: "",
+        location_manager: "",
+        county: "",
+        road_test: false,
+        knowledge_test: false,
         phone_main: "",
         fax: "",
-        appointment_color: "",
-        color_picker: "",
-        scheduling: "",
-        distance_coverage: "",
+        has_color: false,
+        color: "#333",
+        has_distance_based_scheduling: false,
+        distance_based_scheduling: "",
         provider_location_id: "",
       }}
       validate={(values) => {
@@ -2215,6 +2240,10 @@ export const LocationModalContent = () => {
 
         if (!values.type) {
           errors.type = "Type is not chosen";
+        }
+
+        if (!values.code) {
+          errors.type = "Code is empty";
         }
 
         return errors;
@@ -2231,7 +2260,7 @@ export const LocationModalContent = () => {
                 }
                 className={ManagementStyle["CheckModal__form-element__shadow"]}
                 spanText={"Location name"}
-                placeholder={"Location Code"}
+                placeholder={"Location name"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 colorBorder={colorsObject.primary}
                 name={"name"}
@@ -2242,6 +2271,25 @@ export const LocationModalContent = () => {
                   <FormError className="pl-[160px]">{errors.name}</FormError>
                 )}
               </CustomInput>
+
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Location code"}
+                placeholder={"Location Code"}
+                spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                colorBorder={colorsObject.primary}
+                name={"code"}
+                value={values.code}
+                onChange={handleChange}
+              >
+                {errors.code && (
+                  <FormError className="pl-[160px]">{errors.code}</FormError>
+                )}
+              </CustomInput>
+
               <label className="inline-flex gap-8 items-center w-full">
                 <span
                   className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
@@ -2254,12 +2302,7 @@ export const LocationModalContent = () => {
                     style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
                     className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "Number",
-                        label: "Number",
-                      },
-                    ]}
+                    options={StatusSelect}
                     onChange={handleStatus}
                     value={Status ? Status : undefined}
                   />
@@ -2370,6 +2413,7 @@ export const LocationModalContent = () => {
                   {errors.type && <FormError>Location Type</FormError>}
                 </div>
               </label>
+
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2431,9 +2475,9 @@ export const LocationModalContent = () => {
                 placeholder={"Location Manager"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                name={"manager"}
+                name={"location_manager"}
                 onChange={handleChange}
-                value={values.manager}
+                value={values.location_manager}
               />
               <label className="inline-flex gap-8 items-center w-full">
                 <span
@@ -2498,9 +2542,9 @@ export const LocationModalContent = () => {
                 placeholder={"County"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                name={"country"}
+                name={"county"}
                 onChange={handleChange}
-                value={values.country}
+                value={values.county}
               />
             </div>
             <div className={"space-y-5"}>
@@ -2508,7 +2552,6 @@ export const LocationModalContent = () => {
                 className={"space-x-2.5 w-full justify-center ml-[140px]"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 name={"road_test"}
-                value={"Road Test"}
                 onChange={handleChange}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
@@ -2519,7 +2562,6 @@ export const LocationModalContent = () => {
                 className={"space-x-2.5 w-full justify-center ml-[140px]"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 name={"knowledge_test"}
-                value={`Knowledge Test`}
                 onChange={handleChange}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
@@ -2556,11 +2598,10 @@ export const LocationModalContent = () => {
                 <span className="text-right">Area Coverage</span>
                 <CustomTransfer
                   dataSource={mockData}
-                  titles={["Source", "Target"]}
-                  colorBorder={colorsObject.primary}
-                  colorBgContainer={"transparent"}
-                  headerHeight={30}
                   listHeight={200}
+                  colorBorder={colorsObject.primary}
+                  setSelectedKeys={setAreaCoverage}
+                  selectedKeys={AreaCoverage}
                 />
               </label>
               <label className="inline-flex justify-end gap-8 items-center w-full">
@@ -2580,7 +2621,7 @@ export const LocationModalContent = () => {
               <CustomCheckBox
                 className={"space-x-2.5 w-full justify-center ml-28"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                name={"appointment_color"}
+                name={"has_color"}
                 onChange={handleChange}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
@@ -2591,27 +2632,32 @@ export const LocationModalContent = () => {
                 <span className="text-sm flex-shrink-0 font-medium w-32 text-end ml-4">
                   Color picker
                 </span>
-                <CustomCheckBox />
-                <ColorPicker
-                  name={"color_picker"}
+
+                <CustomInput
+                  type={"color"}
+                  className={"w-12"}
                   onChange={handleChange}
-                  value={values.color_picker}
-                  className={`w-full h-[50px] justify-start pl-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  showText={(color) => <span>{color.toHexString()}</span>}
+                  name={"color"}
+                  value={values.color}
+                />
+                <CustomInput
+                  onChange={handleChange}
+                  name={"color"}
+                  value={values.color}
                 />
               </label>
               <CustomCheckBox
                 className={"space-x-2.5 w-full justify-center ml-28"}
                 classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                 onChange={handleChange}
-                value={"Distance based scheduling"}
-                name={"scheduling"}
+                name={"has_distance_based_scheduling"}
               >
                 <span className={"text-sm flex-shrink-0 font-medium w-56"}>
                   Distance based scheduling
                 </span>
               </CustomCheckBox>
               <CustomInput
+                type={"number"}
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
                 }
@@ -2620,9 +2666,9 @@ export const LocationModalContent = () => {
                 placeholder={"Distance Coverage in Miles"}
                 spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                value={values.distance_coverage}
+                value={values.distance_based_scheduling}
                 onChange={handleChange}
-                name={"distance_coverage"}
+                name={"distance_based_scheduling"}
               />
               <CustomInput
                 classNames={
@@ -2681,10 +2727,11 @@ export const LocationModalContent = () => {
 export const AddSchoolModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const [NotesValue, setNotesValue] = useState("");
+  const [NotesValue, setNotesValue] = useState("Hello");
   const [Status, setStatus] = useState("");
   const [State, setState] = useState("");
   const [Selections, setSelections] = useState(false);
+  const [requestPost] = useRequestPostMutation();
 
   // dep
   const selects = [Status];
@@ -2705,16 +2752,30 @@ export const AddSchoolModalContent = () => {
   const handleNotes = (value) => setNotesValue(value);
   const handleStatus = (value) => setStatus(value);
   const handleState = (value) => setState(value);
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setSelections(stateSelects);
 
     if (!stateSelects) {
-      console.log({
-        ...values,
-        notes: NotesValue,
-        status: Status,
-        state: State,
-      });
+      try {
+        await requestPost({
+          path: "/account_management/schools/",
+          data: {
+            ...values,
+            note: NotesValue,
+            status: Status,
+            state: State,
+          },
+        });
+
+        console.log({
+          ...values,
+          note: NotesValue,
+          status: Status,
+          state: State,
+        });
+      } catch (error) {
+        console.log(error?.message);
+      }
     }
   };
 
@@ -2724,9 +2785,8 @@ export const AddSchoolModalContent = () => {
         name: "",
         code: "",
         address: "",
-        school_address: "",
         city: "",
-        zip: "",
+        zipcode: "",
         email: "",
       }}
       validate={(values) => {
@@ -2764,7 +2824,9 @@ export const AddSchoolModalContent = () => {
                 onChange={handleChange}
                 value={values.name}
               >
-                {errors.name && <FormError className="pl-[35%]">{errors.name}</FormError>}
+                {errors.name && (
+                  <FormError className="pl-[35%]">{errors.name}</FormError>
+                )}
               </CustomInput>
 
               <label className="inline-flex gap-8 items-center w-full">
@@ -2775,20 +2837,18 @@ export const AddSchoolModalContent = () => {
                 </span>
                 <div className="w-full">
                   <CustomSelect
+                    placeholder={"Select School Status"}
                     colorBorder={colorsObject.primary}
                     className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "Number",
-                        label: "Number",
-                      },
-                    ]}
+                    options={StatusSelect}
                     onChange={handleStatus}
                     value={Status ? Status : undefined}
                   />
 
                   {Selections && (
-                    <FormError className="pl-[35%]">School Status is not selected</FormError>
+                    <FormError className="pl-[35%]">
+                      School Status is not selected
+                    </FormError>
                   )}
                 </div>
               </label>
@@ -2845,8 +2905,8 @@ export const AddSchoolModalContent = () => {
                   className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   options={[
                     {
-                      value: "Number",
-                      label: "Number",
+                      value: "Tashkent",
+                      label: "Tashkent",
                     },
                   ]}
                   value={State ? State : undefined}
@@ -2863,10 +2923,12 @@ export const AddSchoolModalContent = () => {
                 placeholder={"Zip Code"}
                 spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                name={"zip"}
-                value={values.zip}
+                name={"zipcode"}
+                value={values.zipcode}
                 onChange={handleChange}
+                type={"number"}
               />
+
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2881,7 +2943,9 @@ export const AddSchoolModalContent = () => {
                 onChange={handleChange}
                 value={values.email}
               >
-                {errors.email && <FormError className="pl-[35%]">{errors.email}</FormError>}
+                {errors.email && (
+                  <FormError className="pl-[35%]">{errors.email}</FormError>
+                )}
               </CustomInput>
             </div>
             <div>
@@ -2947,7 +3011,8 @@ export const AddSchoolModalContent = () => {
 export const HowHearModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const [NotesValue, setNotesValue] = useState("");
+  const [requestPost] = useRequestPostMutation();
+  const [NotesValue, setNotesValue] = useState("Hello");
   const [Status, setStatus] = useState("");
   const [Expiration, setExpiration] = useState("");
   const [Selections, setSelections] = useState(false);
@@ -2971,16 +3036,30 @@ export const HowHearModalContent = () => {
   const handleNotes = (value) => setNotesValue(value);
   const handleStatus = (value) => setStatus(value);
   const handleExpiration = (day) => setExpiration(day["$d"]);
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setSelections(stateSelects);
 
     if (!stateSelects) {
-      console.log({
-        ...values,
-        notes: NotesValue,
-        status: Status,
-        expiration: Expiration,
-      });
+      try {
+        await requestPost({
+          path: "/account_management/how_did_you_hear_us/",
+          data: {
+            ...values,
+            notes: NotesValue,
+            status: Status,
+            expiration: Expiration,
+          },
+        });
+
+        console.log({
+          ...values,
+          notes: NotesValue,
+          status: Status,
+          expiration: Expiration,
+        });
+      } catch (error) {
+        console.error(error?.message);
+      }
     }
   };
 
@@ -3018,7 +3097,9 @@ export const HowHearModalContent = () => {
                 onChange={handleChange}
                 value={values.name}
               >
-                {errors.name && <FormError className="pl-[20%]">{errors.name}</FormError>}
+                {errors.name && (
+                  <FormError className="pl-[20%]">{errors.name}</FormError>
+                )}
               </CustomInput>
 
               <label className="inline-flex gap-8 items-center w-full">
@@ -3033,17 +3114,14 @@ export const HowHearModalContent = () => {
                     placeholder={"Lead Status"}
                     colorBorder={colorsObject.primary}
                     className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "Number",
-                        label: "Number",
-                      },
-                    ]}
+                    options={StatusSelect}
                     onChange={handleStatus}
                     value={Status ? Status : undefined}
                   />
                   {Selections && (
-                    <FormError className="pl-[20%]">Lead Status is not selected</FormError>
+                    <FormError className="pl-[20%]">
+                      Lead Status is not selected
+                    </FormError>
                   )}
                 </div>
               </label>
@@ -3137,17 +3215,17 @@ export const HowHearModalContent = () => {
 
 export const VehiclesModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
-  const [Name, setName] = useState("");
   const [Status, setStatus] = useState("");
   const [Location, setLocation] = useState("");
   const [Type, setType] = useState("");
   const [Selections, setSelections] = useState(false);
   const { FileReaderResult, Result } = useFileReader();
-  const [NotesValue, setNotesValue] = useState("");
+  const [NotesValue, setNotesValue] = useState("Hello");
 
   // dep
-  const selects = [Status, Name];
+  const selects = [Status];
 
   const stateSelects = useMemo(() => {
     let state = false;
@@ -3159,28 +3237,41 @@ export const VehiclesModalContent = () => {
     }
 
     return state;
-  }, [Status, Name]);
+  }, [Status]);
 
   //func
   const handleCancel = () => navigate(-1);
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setSelections(stateSelects);
 
     if (!stateSelects) {
-      console.log({
-        ...values,
-        image: Result,
-        name: Name,
-        status: Status,
-        location: Location,
-        type: Type,
-        note: NotesValue,
-      });
+      try {
+        await requestPost({
+          path: "/account_management/vehicle/",
+          data: {
+            ...values,
+            image: Result,
+            status: Status,
+            location: Location,
+            type: Type,
+            note: NotesValue,
+          },
+        });
+        console.log({
+          ...values,
+          image: Result,
+          status: Status,
+          location: Location,
+          type: Type,
+          note: NotesValue,
+        });
+      } catch (error) {
+        console.error(error?.message);
+      }
     }
   };
 
   const handleStatus = (value) => setStatus(value);
-  const handleName = (value) => setName(value);
   const handleLocation = (value) => setLocation(value);
   const handleType = (value) => setType(value);
   const handleNotes = (value) => setNotesValue(value);
@@ -3188,15 +3279,25 @@ export const VehiclesModalContent = () => {
   return (
     <Formik
       initialValues={{
-        vehicle_no: "",
+        name: "",
+        number: "",
         make: "",
-        license_plate: "",
+        plate: "",
         vin: "",
-        appointment_color: "#000",
-        enable_appointment_color: "",
-        vehicle_esn: "",
-        odometer_value: "",
+        color: "#000",
+        has_color: false,
+        asr_esn_id: "",
+        odometer: "",
         initial_mileage: "",
+      }}
+      validate={(values) => {
+        const errors = {};
+
+        if (!values.name) {
+          errors.name = "Name is empty";
+        }
+
+        return errors;
       }}
       onSubmit={handleSubmit}
     >
@@ -3204,31 +3305,21 @@ export const VehiclesModalContent = () => {
         <form className={"space-y-5 px-5"} onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-5">
             <div className={"space-y-5"}>
-              <label className="inline-flex gap-8 items-center w-full">
-                <span
-                  className={`text-sm flex-shrink-0 font-medium w-28 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
-                  Vehicle Name
-                </span>
-                <div className="w-full">
-                  <CustomSelect
-                    placeholder={"Vehicle Name"}
-                    colorBorder={colorsObject.primary}
-                    className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "Number",
-                        label: "Number",
-                      },
-                    ]}
-                    value={Name ? Name : undefined}
-                    onChange={handleName}
-                  />
-                  {Selections && (
-                    <FormError>Vehicle Name is not selected</FormError>
-                  )}
-                </div>
-              </label>
+              <CustomInput
+                classNames={
+                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                }
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                spanText={"Vehicle Name"}
+                placeholder={"Vehicle Name"}
+                spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                colorBorder={colorsObject.primary}
+                name={"name"}
+                value={values.name}
+                onChange={handleChange}
+              >
+                {errors.name && <FormError>{errors.name}</FormError>}
+              </CustomInput>
 
               <label className="inline-flex gap-8 items-center w-full">
                 <span
@@ -3241,12 +3332,7 @@ export const VehiclesModalContent = () => {
                     placeholder={"Vehicle Status"}
                     colorBorder={colorsObject.primary}
                     className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "Number",
-                        label: "Number",
-                      },
-                    ]}
+                    options={StatusSelect}
                     value={Status ? Status : undefined}
                     onChange={handleStatus}
                   />
@@ -3268,8 +3354,8 @@ export const VehiclesModalContent = () => {
                   className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   options={[
                     {
-                      value: "Number",
-                      label: "Number",
+                      value: 1,
+                      label: "Mason",
                     },
                   ]}
                   value={Location ? Location : undefined}
@@ -3289,8 +3375,12 @@ export const VehiclesModalContent = () => {
                   className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   options={[
                     {
-                      value: "Number",
-                      label: "Number",
+                      value: "BUS",
+                      label: "BUS",
+                    },
+                    {
+                      value: "CAR",
+                      label: "CAR",
                     },
                   ]}
                   value={Type ? Type : undefined}
@@ -3307,8 +3397,8 @@ export const VehiclesModalContent = () => {
                 placeholder={"Vehicle No"}
                 spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                name={"vehicle_no"}
-                value={values.vehicle_no}
+                name={"number"}
+                value={values.number}
                 onChange={handleChange}
               />
 
@@ -3335,8 +3425,8 @@ export const VehiclesModalContent = () => {
                 placeholder={"License Plate"}
                 spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                name={"license_plate"}
-                value={values.license_plate}
+                name={"plate"}
+                value={values.plate}
                 onChange={handleChange}
               />
 
@@ -3360,26 +3450,22 @@ export const VehiclesModalContent = () => {
                   Appointment Color
                 </span>
 
-                <ColorPicker
-                  showText={(color) => <span>{color.toHexString()}</span>}
-                  className={`w-full h-10 justify-start pl-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                />
+                <div className="flex flex-grow items-center">
+                  <CustomInput
+                    type={"color"}
+                    name={"color"}
+                    onChange={handleChange}
+                    value={values.color}
+                    //className={"w-full"}
+                    classNames={"w-14"}
+                  />
+                  <CustomInput value={values.color} />
+                </div>
               </label>
 
-              <CustomInput
-                classNames={
-                  "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
-                }
-                className={ManagementStyle["CheckModal__form-element__shadow"]}
-                spanText={"Enable Appointment Color"}
-                placeholder={"Enable Appointment Color"}
-                spanClassName={`font-medium w-28 flex-shrink-0 text-right`}
-                colorBorder={colorsObject.primary}
-                name={"enable_appointment_color"}
-                value={values.enable_appointment_color}
-                onChange={handleChange}
-                fontSize={"text-sm"}
-              />
+              <CustomCheckBox name={"has_color"} onChange={handleChange}>
+                <span>Enable Appointment Color</span>
+              </CustomCheckBox>
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
                 <span
@@ -3410,8 +3496,8 @@ export const VehiclesModalContent = () => {
                 placeholder={"Vehicle ESN Or AIR ID"}
                 spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                name={"vehicle_esn"}
-                value={values.vehicle_esn}
+                name={"asr_esn_id"}
+                value={values.asr_esn_id}
                 onChange={handleChange}
               />
 
@@ -3424,9 +3510,10 @@ export const VehiclesModalContent = () => {
                 placeholder={"Odometer Value"}
                 spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
                 colorBorder={colorsObject.primary}
-                name={"odometer_value"}
+                name={"odometer"}
                 onChange={handleChange}
-                value={values.odometer_value}
+                value={values.odometer}
+                type={"number"}
               />
 
               <CustomInput
@@ -3441,6 +3528,7 @@ export const VehiclesModalContent = () => {
                 name={"initial_mileage"}
                 value={values.initial_mileage}
                 onChange={handleChange}
+                type={"number"}
               />
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
