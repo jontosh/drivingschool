@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
@@ -10,11 +11,13 @@ import {
 import { Space } from "antd";
 
 export const StaffModule = () => {
+  const { data } = useRequestGetQuery({ path: "/student_account/instructor/" });
+
   const columns = [
     {
       title: "Last name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "last_name",
+      key: "last_name",
       render: (text) => {
         return (
           <Paragraph
@@ -29,8 +32,8 @@ export const StaffModule = () => {
     },
     {
       title: "First name",
-      dataIndex: "firstName",
-      key: "firstName",
+      dataIndex: "first_name",
+      key: "first_name",
       render: (text) => {
         return (
           <Paragraph
@@ -61,8 +64,8 @@ export const StaffModule = () => {
     },
     {
       title: "Cell phone",
-      dataIndex: "phone",
-      key: "phone",
+      dataIndex: "cell_phone",
+      key: "cell_phone",
       render: (text) => {
         return (
           <Paragraph
@@ -130,42 +133,6 @@ export const StaffModule = () => {
           />
         </Space>
       ),
-    },
-  ];
-
-  const data = [
-    {
-      key: "1",
-      name: "Aminov",
-      firstName: "Makhsud",
-      type: "Owner",
-      subtype: "Teen BTW",
-      hours: 1,
-      observation: 1,
-      status: "Active",
-      phone: "(513)837-5128",
-    },
-    {
-      key: "2",
-      name: "Aminov",
-      firstName: "Makhsud",
-      type: "Owner",
-      subtype: "Teen BTW",
-      hours: 1,
-      observation: 1,
-      status: "Close",
-      phone: "(513)837-5128",
-    },
-    {
-      key: "3",
-      name: "Aminov",
-      firstName: "Makhsud",
-      type: "Owner",
-      subtype: "Teen BTW",
-      hours: 1,
-      observation: 1,
-      status: "process",
-      phone: "(513)837-5128",
     },
   ];
 
