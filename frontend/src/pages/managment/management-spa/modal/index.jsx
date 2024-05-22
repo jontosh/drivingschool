@@ -10,7 +10,7 @@ import { Fragment, useContext } from "react";
 export const ModalContent = ({ page }) => {
   const { colorsObject } = useContext(ColorsContext);
 
-  switch (page.toLowerCase()) {
+  switch (page?.toLowerCase()) {
     case "high school": {
       return (
         <Fragment>

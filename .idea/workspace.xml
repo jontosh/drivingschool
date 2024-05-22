@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/modal/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,23 +43,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactoring",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;API&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -76,6 +79,13 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-WS-241.15989.105" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,6 +98,8 @@
       <workItem from="1716306256256" duration="35000" />
       <workItem from="1716306298806" duration="15455000" />
       <workItem from="1716378691446" duration="49000" />
+      <workItem from="1716382866659" duration="6319000" />
+      <workItem from="1716402466055" duration="11894000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -97,39 +109,47 @@
       <option name="project" value="LOCAL" />
       <updated>1716289491899</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <option name="closed" value="true" />
+      <created>1716331688025</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716331688025</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component" />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- &#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Ref&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pick&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
     <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
     <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
     <MESSAGE value="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor components" />
+    <MESSAGE value="Refactor components to" />
+    <MESSAGE value="Refactor components to include" />
+    <MESSAGE value="Refactor components to include date" />
+    <MESSAGE value="Refactor components to include date pick" />
+    <MESSAGE value="Refactor components to include date pickers" />
+    <MESSAGE value="Refactor components to include date pickers and" />
+    <MESSAGE value="Refactor components to include date pickers and form" />
+    <MESSAGE value="Refactor components to include date pickers and form handling" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component" />
+    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -138,11 +158,6 @@
           <url>file://$PROJECT_DIR$/frontend/src/components/form/index.jsx</url>
           <line>246</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
-          <line>1209</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

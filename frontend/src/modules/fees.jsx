@@ -8,7 +8,7 @@ import { Space } from "antd";
 
 export const FeesModule = () => {
   const { data } = useRequestGetQuery({
-    path: "https://drivingschool-zeta.vercel.app/account_management/services/component/",
+    path: "/account_management/services/fee/",
   });
   const columns = [
     {

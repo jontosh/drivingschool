@@ -9,7 +9,7 @@ import {
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { useContext } from "react";
+import { useContext, useMemo, useState } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 
@@ -301,8 +301,9 @@ export const HearModule = () => {
 };
 
 export const VehiclesModule = () => {
-  const { colorsObject } = useContext(ColorsContext);
-  const { data } = useRequestGetQuery({ path: "/account_management/vehicle/" });
+  const { data } = useRequestGetQuery({
+    path: "/account_management/vehicle/",
+  });
 
   const columns = [
     {
@@ -318,10 +319,10 @@ export const VehiclesModule = () => {
       key: "code",
       dataIndex: "code",
       align: "center",
-      render: (text) => {
+      render: (code) => {
         return (
           <Paragraph className={"text-center"} fontSize={"text-lg"}>
-            {text}
+            {code}
           </Paragraph>
         );
       },
