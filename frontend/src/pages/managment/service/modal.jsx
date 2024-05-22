@@ -1073,7 +1073,7 @@ export const AddServiceModalContent = () => {
                 </div>
               </div>
               <CustomCheckBox
-                className={"gap-x-2.5 pl-[185px] text-base font-medium"}
+                className={"gap-x-2.5 pl-[169px] text-base font-medium"}
                 name={"taxable"}
                 onChange={handleChange}
               >
@@ -2551,26 +2551,32 @@ export const LocationModalContent = () => {
               />
             </div>
             <div className={"space-y-5"}>
-              <CustomCheckBox
-                className={"space-x-2.5 w-full justify-center ml-[140px]"}
-                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                name={"road_test"}
-                onChange={handleChange}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-56"}>
-                  Road Test
-                </span>
-              </CustomCheckBox>
-              <CustomCheckBox
-                className={"space-x-2.5 w-full justify-center ml-[140px]"}
-                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                name={"knowledge_test"}
-                onChange={handleChange}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-56"}>
-                  Knowledge Test
-                </span>
-              </CustomCheckBox>
+              <label className="flex itmes-center gap-x-8">
+                <span className="w-32 flex-shrink-0"></span>
+                <CustomCheckBox
+                  className={"space-x-2.5 w-full"}
+                  classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  name={"road_test"}
+                  onChange={handleChange}
+                >
+                  <span className={"text-sm flex-shrink-0 font-medium"}>
+                    Road Test
+                  </span>
+                </CustomCheckBox>
+              </label>
+              <label className="flex itmes-center gap-x-8">
+                <span className="w-32 flex-shrink-0"></span>
+                <CustomCheckBox
+                  className={"space-x-2.5 w-full"}
+                  classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  name={"knowledge_test"}
+                  onChange={handleChange}
+                >
+                  <span className={"text-sm flex-shrink-0 font-medium"}>
+                    Knowledge Test
+                  </span>
+                </CustomCheckBox>
+              </label>
               <CustomInput
                 classNames={
                   "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
@@ -2598,7 +2604,7 @@ export const LocationModalContent = () => {
                 onChange={handleChange}
               />
               <label className="inline-flex justify-end gap-8 items-center w-full">
-                <span className="text-right">Area Coverage</span>
+                <span className="text-right text-sm font-medium">Area Coverage</span>
                 <CustomTransfer
                   dataSource={mockData}
                   listHeight={200}
@@ -2621,16 +2627,19 @@ export const LocationModalContent = () => {
                   />
                 </div>
               </label>
-              <CustomCheckBox
-                className={"space-x-2.5 w-full justify-center ml-28"}
-                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                name={"has_color"}
-                onChange={handleChange}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-56"}>
-                  Appointment Color
-                </span>
-              </CustomCheckBox>
+              <label className="flex itmes-center gap-x-8">
+                <span className="w-32 flex-shrink-0"></span>
+                <CustomCheckBox
+                  className={"space-x-2.5 w-full"}
+                  classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  name={"has_color"}
+                  onChange={handleChange}
+                >
+                  <span className={"text-sm flex-shrink-0 font-medium"}>
+                    Appointment Color
+                  </span>
+                </CustomCheckBox>
+              </label>
               <label className="flex items-center gap-4 justify-center">
                 <span className="text-sm flex-shrink-0 font-medium w-32 text-end ml-4">
                   Color picker
@@ -2653,16 +2662,19 @@ export const LocationModalContent = () => {
                   colorBorder={colorsObject.primary}
                 />
               </label>
-              <CustomCheckBox
-                className={"space-x-2.5 w-full justify-center ml-28"}
-                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                onChange={handleChange}
-                name={"has_distance_based_scheduling"}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-56"}>
-                  Distance based scheduling
-                </span>
-              </CustomCheckBox>
+              <label className="flex itmes-center gap-x-8">
+                <span className="w-32 flex-shrink-0"></span>
+                <CustomCheckBox
+                  className={"space-x-2.5 w-full"}
+                  classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  onChange={handleChange}
+                  name={"has_distance_based_scheduling"}
+                >
+                  <span className={"text-sm flex-shrink-0 font-medium"}>
+                    Distance based scheduling
+                  </span>
+                </CustomCheckBox>
+              </label>
               <CustomInput
                 type={"number"}
                 classNames={
@@ -3463,7 +3475,7 @@ export const VehiclesModalContent = () => {
                     name={"color"}
                     onChange={handleChange}
                     value={values.color}
-                    className={"w-full"}
+                    className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     classNames={"w-14"}
                     colorBorder={colorsObject.primary}
                   />
@@ -3471,13 +3483,17 @@ export const VehiclesModalContent = () => {
                     value={values.color}
                     classNames="w-full h-[50px]"
                     colorBorder={colorsObject.primary}
+                    className={ManagementStyle["CheckModal__form-element__shadow"]}
                   />
                 </div>
               </label>
 
-              <CustomCheckBox name={"has_color"} onChange={handleChange}>
-                <span>Enable Appointment Color</span>
-              </CustomCheckBox>
+              <label className="flex itmes-center gap-x-8">
+                <span className="w-28 flex-shrink-0"></span>
+                <CustomCheckBox name={"has_color"} onChange={handleChange}>
+                  <span>Enable Appointment Color</span>
+                </CustomCheckBox>
+              </label>
 
               <label className="inline-flex justify-end gap-8 items-center w-full">
                 <span
@@ -3552,7 +3568,7 @@ export const VehiclesModalContent = () => {
                   Vehicle Image
                 </span>
 
-                <FileReaderResult className={"overflow-hidden w-60 h-60"} />
+                <FileReaderResult className={`overflow-hidden w-60 h-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`} />
               </label>
             </div>
           </div>
