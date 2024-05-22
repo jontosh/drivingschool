@@ -383,6 +383,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   placeholder={"Search"}
                   className={`w-96 pl-12 pr-4 text-sm shadow-lg`}
+                  classNames={"h-[50px]"}
                 />
 
                 <span

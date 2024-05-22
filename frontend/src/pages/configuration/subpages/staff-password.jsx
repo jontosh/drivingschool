@@ -1,5 +1,5 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import { CustomInput, CustomSelect, SwitchCustom } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ProfileStyle from "@/pages/student/student-account.module.scss";
 import { Switch } from "antd";
@@ -99,21 +99,21 @@ const StaffPasswordFormik = () => {
                 <span className={"w-40 text-base flex-shrink-0"}>
                   Uppercase Letters
                 </span>
-                <Switch defaultChecked />
+                <SwitchCustom />
               </label>
               <label className="inline-flex items-center w-full gap-5">
                 <span className={"w-40 text-base flex-shrink-0"}>Numbers</span>
-                <Switch />
+                <SwitchCustom />
               </label>
               <label className="inline-flex items-center w-full gap-5">
                 <span className={"w-40 text-base flex-shrink-0"}>Symbols</span>
-                <Switch />
+                <SwitchCustom />
               </label>
               <label className="inline-flex items-center w-full gap-5">
                 <span className={"w-40 text-base flex-shrink-0"}>
                   Enable reCaptcha
                 </span>
-                <Switch />
+                <SwitchCustom />
               </label>
             </div>
 
@@ -122,19 +122,19 @@ const StaffPasswordFormik = () => {
                 <span className={"w-40 text-base flex-shrink-0"}>
                   Enable Two Factor Authentication (2FA) for Staff
                 </span>
-                <Switch defaultChecked />
+                <SwitchCustom defaultChecked />
               </label>
               <label className="inline-flex items-center w-full gap-5">
                 <span className={"w-40 text-base flex-shrink-0"}>
                   Enable Two Factor Authentication (2FA) for Admin
                 </span>
-                <Switch />
+                <SwitchCustom />
               </label>
               <label className="inline-flex items-center w-full gap-5">
                 <span className={"w-40 text-base flex-shrink-0"}>
                   Lowercase Letters
                 </span>
-                <Switch />
+                <SwitchCustom />
               </label>
             </div>
           </div>

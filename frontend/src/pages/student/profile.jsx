@@ -314,14 +314,14 @@ const Profile = () => {
 
             <label className="inline-flex items-center w-full gap-5">
               <span className={"w-36"}>Email</span>
-              <div className="flex items-center gap-3 flex-grow">
+              <div className="flex items-center gap-2 flex-grow">
                 <CustomInput
                   placeholder={"Email"}
                   classNames={"w-full h-[50px] px-4"}
-                  className={`shadow-lg border border-indigo-700 w-full p-2.5`}
+                  className={`shadow-lg border border-indigo-700 w-full px-4 p-2.5`}
                   type="email"
                 />
-                <IconComponent classNames={"items-center"}>
+                <IconComponent>
                   <TfiEmail
                     className={`w-[25.5px] h-[23.57px] text-[#00000073]`}
                   />

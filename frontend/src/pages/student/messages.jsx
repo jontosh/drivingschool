@@ -82,39 +82,24 @@ export const Messages = () => {
                 size={"small"}
               />
             </div>
-            <div className="text-center">
-              <Paragraph fontSize={"text-base"}>No record exist</Paragraph>
+            <div className="text-center pt-2.5">
+              <Paragraph fontSize={"text-base font-medium"}>No record exist</Paragraph>
             </div>
           </div>
         </div>
         {/*--------------------*/}
         <div>
           <div className={"border border-indigo-700 rounded-2xl p-5 space-y-4"}>
-            <div className="flex justify-between">
-              <Title level={2}>
-                <IconComponent
-                  icon={<AiOutlineMessage />}
-                  className={"text-indigo-700 text-xl cursor-text"}
-                  classNames={"items-center"}
-                  spaceIconX={2.5}
-                >
-                  Text messages
-                </IconComponent>
-              </Title>
-              {/*<ButtonComponent*/}
-              {/*  borderRadius={5}*/}
-              {/*  defaultHoverBg={colorsObject.main}*/}
-              {/*  defaultBg={colorsObject.main}*/}
-              {/*  defaultBorderColor={colorsObject.primary}*/}
-              {/*  defaultColor={colorsObject.black}*/}
-              {/*  defaultHoverColor={colorsObject.black}*/}
-              {/*  controlHeight={26}*/}
-              {/*  paddingInline={18}*/}
-              {/*  fontSize={10}*/}
-              {/*>*/}
-              {/*  Send text*/}
-              {/*</ButtonComponent>*/}
-            </div>
+            <Title level={2}>
+              <IconComponent
+                icon={<AiOutlineMessage />}
+                className={"text-indigo-700 text-xl cursor-text"}
+                classNames={"items-center"}
+                spaceIconX={2.5}
+              >
+                Text messages
+              </IconComponent>
+            </Title>
 
             <div className={"space-x-5"}>
               <a className={"text-indigo-700 font-normal"}>(513)837-5128</a>
@@ -167,27 +152,29 @@ export const Messages = () => {
                 paddingInline={30}
                 fontSize={10}
               >
-                Send text
+                Send
               </ButtonComponent>
             </div>
           </div>
         </div>
       </div>
-      {IsOpen && (
-        <Modal setIsOpen={setIsOpen} className={"py-2"}>
-          <div
-            className={classNames(
-              "py-6 px-8 bg-white rounded-2xl w-full overflow-y-scroll ",
-              BillingStyle["Modal__content"],
-            )}
-          >
-            <ResultOfModalContent
-              modalButton={ModalCase}
-              handleClose={() => setIsOpen(false)}
-            />
-          </div>
-        </Modal>
-      )}
-    </Fragment>
+      {
+        IsOpen && (
+          <Modal setIsOpen={setIsOpen} className={"py-2"}>
+            <div
+              className={classNames(
+                "py-6 px-8 bg-white rounded-2xl w-full overflow-y-scroll ",
+                BillingStyle["Modal__content"],
+              )}
+            >
+              <ResultOfModalContent
+                modalButton={ModalCase}
+                handleClose={() => setIsOpen(false)}
+              />
+            </div>
+          </Modal>
+        )
+      }
+    </Fragment >
   );
 };
