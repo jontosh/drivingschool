@@ -982,10 +982,11 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                 }
                 spanText={"Service Name:"}
-                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"name"}
                 value={values.name}
                 onChange={handleChange}
+                fontSize="text-base"
               >
                 {errors.name && (
                   <FormError className={"pl-[170px]"}>{errors.name}</FormError>
@@ -998,10 +999,11 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                 }
                 spanText={"Service Code:"}
-                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"code"}
                 value={values.code}
                 onChange={handleChange}
+                fontSize="text-base"
               >
                 {errors.code && (
                   <FormError className={"pl-[170px]"}>{errors.code}</FormError>
@@ -1011,7 +1013,7 @@ export const AddServiceModalContent = () => {
                 className={`inline-flex justify-end gap-x-10 items-center w-full`}
               >
                 <span
-                  className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`w-32 text-base font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Status:
                 </span>
@@ -1019,8 +1021,7 @@ export const AddServiceModalContent = () => {
                 <div className="w-full">
                   <CustomSelect
                     placeholder={"Select status"}
-                    style={{ width: "100%" }}
-                    className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                     options={StatusSelect}
                     colorBorder={colorsObject.primary}
                     value={Status ? Status : undefined}
@@ -1037,12 +1038,12 @@ export const AddServiceModalContent = () => {
               <div className={`space-y-5`}>
                 <div className={`flex items-center gap-10`}>
                   <span
-                    className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    className={`w-32 text-base font-medium  text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
                     Assign Locations:
                   </span>
                   <label className={`flex flex-col gap-5 items-center`}>
-                    <span>Click to select</span>
+                    <span className="text-base">Click to select</span>
                     <CustomTransfer
                       dataSource={mockData}
                       listHeight={200}
@@ -1055,12 +1056,12 @@ export const AddServiceModalContent = () => {
 
                 <div className={`flex items-center gap-10`}>
                   <span
-                    className={`w-32 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    className={`w-32 text-base font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
                     Service Items:
                   </span>
                   <label className={`flex flex-col gap-5 items-center`}>
-                    <span>Click to select</span>
+                    <span className="text-base">Click to select</span>
                     <CustomTransfer
                       dataSource={mockData}
                       listHeight={200}
@@ -1072,7 +1073,7 @@ export const AddServiceModalContent = () => {
                 </div>
               </div>
               <CustomCheckBox
-                className={"gap-x-2.5 pl-[185px]"}
+                className={"gap-x-2.5 pl-[185px] text-base font-medium"}
                 name={"taxable"}
                 onChange={handleChange}
               >
@@ -1085,10 +1086,11 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
                 }
                 spanText={"Service Price:"}
-                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"price"}
                 value={values.price}
                 onChange={handleChange}
+                fontSize="text-base"
               >
                 {errors.price && (
                   <FormError className={"pl-[170px]"}>{errors.price}</FormError>
@@ -1102,10 +1104,11 @@ export const AddServiceModalContent = () => {
                   "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                 }
                 spanText={"Web Name:"}
-                spanClassName={`w-32 text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"web_name"}
                 value={values.web_name}
                 onChange={handleChange}
+                fontSize="text-base"
               >
                 {errors.web_name && (
                   <FormError className={"pl-[170px]"}>
@@ -1115,7 +1118,7 @@ export const AddServiceModalContent = () => {
               </CustomInput>
 
               <label className="inline-flex justify-end gap-10 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-32 text-right">
+                <span className="text-base flex-shrink-0 font-medium w-32 text-right">
                   Web description
                 </span>
                 <div className="w-full">
@@ -1130,7 +1133,7 @@ export const AddServiceModalContent = () => {
               </label>
 
               <label className="inline-flex justify-end gap-10 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-32 text-right">
+                <span className="text-base flex-shrink-0 font-medium w-32 text-right">
                   Enrollment Email Content
                 </span>
                 <div className="w-full">
@@ -1147,7 +1150,7 @@ export const AddServiceModalContent = () => {
             {/*------------*/}
             <div className={`space-y-5`}>
               <label className={"inline-flex items-center w-full gap-10"}>
-                <span className={`w-36 text-sm text-end flex-shrink-0 `}>
+                <span className={`w-36 text-base font-medium text-end flex-shrink-0 `}>
                   Allow Web Purchase:
                 </span>
                 <div className={"space-x-5"}>
@@ -1170,7 +1173,7 @@ export const AddServiceModalContent = () => {
               </label>
 
               <label className={"inline-flex items-center w-full gap-10"}>
-                <span className={`w-36 text-sm text-end flex-shrink-0 `}>
+                <span className={`w-36 text-base font-medium text-end flex-shrink-0 `}>
                   Allow Portal Purchase:
                 </span>
                 <div className={"space-x-5"}>
@@ -1194,11 +1197,11 @@ export const AddServiceModalContent = () => {
 
               <div className={`space-y-5`}>
                 <div className={`flex items-center gap-10`}>
-                  <span className={`w-36 text-sm text-end flex-shrink-0 `}>
+                  <span className={`w-36 text-base font-medium text-end flex-shrink-0 `}>
                     Add-On Services:
                   </span>
                   <label className={`flex flex-col gap-5 items-center`}>
-                    <span>Click to select</span>
+                    <span className="text-base">Click to select</span>
                     <CustomTransfer
                       dataSource={mockData}
                       listHeight={200}
@@ -1210,11 +1213,11 @@ export const AddServiceModalContent = () => {
                 </div>
 
                 <div className={`flex items-center gap-10`}>
-                  <span className={`w-36 text-sm text-end flex-shrink-0`}>
+                  <span className={`w-36 text-base font-medium text-end flex-shrink-0`}>
                     Eligible Discounts:
                   </span>
                   <label className={`flex flex-col gap-5 items-center`}>
-                    <span>Click to select</span>
+                    <span className="text-base">Click to select</span>
                     <CustomTransfer
                       dataSource={mockData}
                       listHeight={200}
@@ -1229,7 +1232,7 @@ export const AddServiceModalContent = () => {
                 className={`inline-flex items-center w-full justify-between gap-10`}
               >
                 <span
-                  className={`w-36 text-sm text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`w-36 text-base font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Associate Contract From OE:
                 </span>
@@ -1257,7 +1260,7 @@ export const AddServiceModalContent = () => {
               </label>
 
               <label className="inline-flex justify-end gap-10 items-center w-full">
-                <span className="text-sm flex-shrink-0 font-medium w-36 text-right">
+                <span className="text-base font-medium flex-shrink-0 font-medium w-36 text-right">
                   Service Notes:
                 </span>
                 <div className="w-full">
@@ -2636,14 +2639,18 @@ export const LocationModalContent = () => {
                 <CustomInput
                   type={"color"}
                   className={"w-12"}
+                  classNames={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   onChange={handleChange}
                   name={"color"}
                   value={values.color}
+                  colorBorder={colorsObject.primary}
                 />
                 <CustomInput
+                  classNames={`w-full h-[50px] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   onChange={handleChange}
                   name={"color"}
                   value={values.color}
+                  colorBorder={colorsObject.primary}
                 />
               </label>
               <CustomCheckBox
@@ -2825,7 +2832,7 @@ export const AddSchoolModalContent = () => {
                 value={values.name}
               >
                 {errors.name && (
-                  <FormError className="pl-[35%]">{errors.name}</FormError>
+                  <FormError className="pl-[145px]">{errors.name}</FormError>
                 )}
               </CustomInput>
 
@@ -2944,7 +2951,7 @@ export const AddSchoolModalContent = () => {
                 value={values.email}
               >
                 {errors.email && (
-                  <FormError className="pl-[35%]">{errors.email}</FormError>
+                  <FormError className="pl-[145px]">{errors.email}</FormError>
                 )}
               </CustomInput>
             </div>
@@ -3098,7 +3105,7 @@ export const HowHearModalContent = () => {
                 value={values.name}
               >
                 {errors.name && (
-                  <FormError className="pl-[20%]">{errors.name}</FormError>
+                  <FormError className="pl-[145px]">{errors.name}</FormError>
                 )}
               </CustomInput>
 
@@ -3119,7 +3126,7 @@ export const HowHearModalContent = () => {
                     value={Status ? Status : undefined}
                   />
                   {Selections && (
-                    <FormError className="pl-[20%]">
+                    <FormError className="pl-[145px]">
                       Lead Status is not selected
                     </FormError>
                   )}
@@ -3318,7 +3325,7 @@ export const VehiclesModalContent = () => {
                 value={values.name}
                 onChange={handleChange}
               >
-                {errors.name && <FormError>{errors.name}</FormError>}
+                {errors.name && <FormError className="pl-[145px]">{errors.name}</FormError>}
               </CustomInput>
 
               <label className="inline-flex gap-8 items-center w-full">
@@ -3337,7 +3344,7 @@ export const VehiclesModalContent = () => {
                     onChange={handleStatus}
                   />
                   {Selections && (
-                    <FormError>Vehicle Status is not selected</FormError>
+                    <FormError className="pl-[145px]">Vehicle Status is not selected</FormError>
                   )}
                 </div>
               </label>
@@ -3450,16 +3457,21 @@ export const VehiclesModalContent = () => {
                   Appointment Color
                 </span>
 
-                <div className="flex flex-grow items-center">
+                <div className="flex flex-grow items-center gap-4">
                   <CustomInput
                     type={"color"}
                     name={"color"}
                     onChange={handleChange}
                     value={values.color}
-                    //className={"w-full"}
+                    className={"w-full"}
                     classNames={"w-14"}
+                    colorBorder={colorsObject.primary}
                   />
-                  <CustomInput value={values.color} />
+                  <CustomInput
+                    value={values.color}
+                    classNames="w-full h-[50px]"
+                    colorBorder={colorsObject.primary}
+                  />
                 </div>
               </label>
 

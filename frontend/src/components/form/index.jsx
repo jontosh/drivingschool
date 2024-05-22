@@ -150,7 +150,7 @@ export const CustomSelect = ({
         }}
       >
         <Select
-          className={classNames(className)}
+          className={`${classNames(className)} rounded`}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
