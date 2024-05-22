@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .router import Router
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,4 @@ urlpatterns = [
     #MADE FOR PAGE API
     path(f'{Router["page_api"]["base"]}', include("interaction.page_api"),name=Router["page_api"]["base"]),
 
-]
+]+  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,12 +10,12 @@ from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeFie
 import uuid
 class User(models.Model):
     STATUS = [
-        ["Active", "Active"],
-        ["Deleted", "Deleted"],
-        ["Pending", "Pending"],
+        ["ACTIVE", "ACTIVE"],
+        ["DELETED", "DELETED"],
+        ["PENDING", "PENDING"],
     ]
     id = models.UUIDField(auto_created=True, primary_key=True, unique=True,blank=True)
-    status = models.CharField(choices=STATUS, max_length=30, default="Pending")
+    status = models.CharField(choices=STATUS, max_length=30, default="PENDING")
     address = models.TextField()
     first_name = models.CharField(max_length=200)
     mid_name = models.CharField(max_length=200, blank=True, null=True)

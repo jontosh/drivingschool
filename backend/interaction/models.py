@@ -8,12 +8,12 @@ from django.conf import settings
 
 class Tasks(Extra):
     STATUS = [
-        ["New","New"],
-        ["Open","Open"],
-        ["Dormant","Dormant"],
-        ["FollowUp","FollowUp"],
-        ["Waiting Feedback","Waiting Feedback"],
-        ["Completed","Completed"],
+        ["NEW","NEW"],
+        ["OPEN","OPEN"],
+        ["DORMANT","DORMANT"],
+        ["FOLLOWUP","FOLLOWUP"],
+        ["WAITING FEEDBACK","WAITING FEEDBACK"],
+        ["COMPLETED","COMPLETED"],
     ]
     ASSIGN_TYPE = [
         ["For My Eyes Only","For My Eyes Only"],
@@ -26,7 +26,7 @@ class Tasks(Extra):
         ["URGENT", "URGENT"],
     ]
     subject = models.CharField(max_length=100)
-    status = models.CharField(choices=STATUS,max_length=40,default="New")
+    status = models.CharField(choices=STATUS,max_length=40,default="NEW")
     due_date = models.DateTimeField()
     assign = models.CharField(choices=ASSIGN_TYPE,max_length=40,default=0)
     priority = models.CharField(max_length=10,default="LOW",choices=PRIORITY)

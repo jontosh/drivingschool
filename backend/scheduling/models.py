@@ -27,9 +27,9 @@ class DateRange(models.Model):
     end = models.DateField(blank=True,null=True, )
 class TimeOff(models.Model):
     STATUS = [
-        ["Active", "Active"],
-        ["Deleted", "Deleted"],
-        ["Pending", "Pending"],
+        ["ACTIVE", "ACTIVE"],
+        ["DELETED", "DELETED"],
+        ["PENDING", "PENDING"],
     ]
     TYPES= [
         ["Federal Holiday","Federal Holiday"],
@@ -39,7 +39,7 @@ class TimeOff(models.Model):
     ]
     id = models.UUIDField(auto_created=True, primary_key=True, unique=True,blank=True,)
     name = models.CharField(max_length=200)
-    status = models.CharField(choices=STATUS, max_length=30, default="Pending")
+    status = models.CharField(choices=STATUS, max_length=30, default="PENDING")
     code = models.CharField(max_length=150, blank=True,null=True)
     type = models.CharField(choices=TYPES, max_length=30, default="Corporate Off")
     date = models.DateField(default="02/22/2024",help_text="MM/DD/YYYY")
