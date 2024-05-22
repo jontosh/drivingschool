@@ -87,10 +87,9 @@ const SearchFormik = () => {
                     Account status
                   </span>
                   <CustomSelect
-                    style={{ width: "100%", height: 40 }}
                     placeholder={"Select"}
                     colorBorder={colorsObject.primary}
-                    className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
                         value: "Active",
@@ -110,7 +109,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -120,7 +119,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -130,7 +129,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -140,7 +139,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -150,7 +149,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -160,7 +159,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -170,7 +169,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -180,7 +179,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <CustomInput
@@ -190,7 +189,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
               </div>
               <div className={"space-y-5"}>
@@ -199,10 +198,9 @@ const SearchFormik = () => {
                     Associated staff
                   </span>
                   <CustomSelect
-                    style={{ width: "100%", height: 40 }}
                     placeholder={"Select"}
                     colorBorder={colorsObject.primary}
-                    className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
                         value: "Active",
@@ -219,7 +217,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <div className="inline-flex items-center w-full gap-5">
@@ -248,10 +246,9 @@ const SearchFormik = () => {
                     Location
                   </span>
                   <CustomSelect
-                    style={{ width: "100%", height: 40 }}
                     placeholder={"Select"}
                     colorBorder={colorsObject.primary}
-                    className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
                         value: "USA",
@@ -266,10 +263,9 @@ const SearchFormik = () => {
                     High school
                   </span>
                   <CustomSelect
-                    style={{ width: "100%", height: 40 }}
                     placeholder={"Select"}
                     colorBorder={colorsObject.primary}
-                    className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
                         value: "School",
@@ -282,10 +278,9 @@ const SearchFormik = () => {
                 <label className="inline-flex items-center w-full gap-5">
                   <span className={"w-40 text-base flex-shrink-0"}>CR No</span>
                   <CustomSelect
-                    style={{ width: "100%", height: 40 }}
                     placeholder={"Select"}
                     colorBorder={colorsObject.primary}
-                    className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
+                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
                         value: "School",
@@ -302,7 +297,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
 
                 <div>
@@ -316,10 +311,10 @@ const SearchFormik = () => {
                     name={"email"}
                     onChange={handleChange}
                     value={values.email}
-                    classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                    classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                   />
                   {errors.email && (
-                    <div className={"text-red-600"}>{errors.email}</div>
+                    <div className={"pl-[180px] pt-2.5 text-red-600"}>{errors.email}</div>
                   )}
                 </div>
 
@@ -330,7 +325,7 @@ const SearchFormik = () => {
                   colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
+                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
                 />
               </div>
             </div>
