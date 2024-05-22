@@ -41,6 +41,9 @@ class Services(models.Model):
     discount = models.ManyToManyField("Discount",related_name="service_discount",blank=True)
     oe = models.CharField(choices=OE,max_length=50,default="NO CONTRACT NEEDED", help_text="Associate Contract From OE")
     notes = models.TextField(blank=True,null=True)
+    key = models.PositiveIntegerField(default=0,blank=True)
+    title = models.CharField(max_length=200,blank=True,null=True)
+    discription = models.TextField(null=True,blank=True)
     def __str__(self):
         return f"{self.name}"
 class Component(models.Model):
