@@ -182,7 +182,7 @@ export const ResultModalButton = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    style={{ width: "100%" }}
+                    className={"w-full h-[50px]"}
                     colorBorder={colorsObject.primary}
                     options={[
                       {
@@ -197,7 +197,7 @@ export const ResultModalButton = () => {
                   className={"py-2.5 px-5 border border-indigo-700"}
                   placeholder={"Account #"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Email Subject"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -208,7 +208,7 @@ export const ResultModalButton = () => {
                   className={"py-2.5 px-5 border border-indigo-700"}
                   placeholder={"Student Email"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Student Email"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -219,7 +219,7 @@ export const ResultModalButton = () => {
                   className={"py-2.5 px-5 border border-indigo-700"}
                   placeholder={"Parent Email 1"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Parent Email 1"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -230,7 +230,7 @@ export const ResultModalButton = () => {
                   className={"py-2.5 px-5 border border-indigo-700"}
                   placeholder={"Parent Email 2"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Parent Email 2"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -241,7 +241,7 @@ export const ResultModalButton = () => {
                   className={"py-2.5 px-5 border border-indigo-700"}
                   placeholder={"Additional Email"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Additional Email"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}

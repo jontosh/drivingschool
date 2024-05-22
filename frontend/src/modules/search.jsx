@@ -89,14 +89,13 @@ export const SearchModule = () => {
       align: "center",
       render: (status) => (
         <ButtonComponent
-          className={"shadow-2xl"}
+          className={"w-[107px] shadow-2xl"}
           defaultBg={status ? "#24C18F" : colorsObject.danger}
           defaultHoverBg={status ? "#24C18F" : colorsObject.danger}
           defaultColor={colorsObject.main}
           defaultHoverColor={colorsObject.main}
-          fontSize={12}
+          fontSize={16}
           borderRadius={5}
-          style={{ width: 107 }}
         >
           {status ? "activated" : "not activated"}
         </ButtonComponent>
