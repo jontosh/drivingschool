@@ -4,19 +4,31 @@ import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { AccountManagementLocation } from "@/redux/slice/account-management-slice.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
 
 export const LocationModule = () => {
   const { data } = useRequestGetQuery({
     path: "/account_management/location/",
   });
+
+  const LocationState = useSelector(
+    (state) => state.account_management.location,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(AccountManagementLocation({ data }));
+  }, [data]);
+
   const columns = [
     {
       title: "Location name",
@@ -122,6 +134,15 @@ export const LocationModule = () => {
 export const HighSchoolModule = () => {
   const { data } = useRequestGetQuery({ path: "/account_management/schools/" });
 
+  const LocationState = useSelector(
+    (state) => state.account_management.location,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(AccountManagementLocation({ data }));
+  }, [data]);
+
   const columns = [
     {
       title: "School name",
@@ -219,6 +240,16 @@ export const HearModule = () => {
   const { data } = useRequestGetQuery({
     path: "/account_management/how_did_you_hear_us/",
   });
+
+  const LocationState = useSelector(
+    (state) => state.account_management.location,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(AccountManagementLocation({ data }));
+  }, [data]);
+
   const columns = [
     {
       title: "Name",
@@ -305,6 +336,13 @@ export const VehiclesModule = () => {
     path: "/account_management/vehicle/",
   });
 
+  const LocationState = useSelector(
+    (state) => state.account_management.location,
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, [data]);
+
   const columns = [
     {
       title: "Location name",
@@ -319,10 +357,11 @@ export const VehiclesModule = () => {
       key: "code",
       dataIndex: "code",
       align: "center",
-      render: (code) => {
+      render: (code, _, index) => {
+        // console.log(LocationState[index]?.code);
         return (
           <Paragraph className={"text-center"} fontSize={"text-lg"}>
-            {code}
+            {LocationState[index]?.code}
           </Paragraph>
         );
       },
