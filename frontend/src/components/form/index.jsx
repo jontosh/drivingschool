@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Fragment, useEffect, useRef, useState } from "react";
 import FormStyle from "./form.module.scss";
-import { ConfigProvider, Input, Select, Transfer } from "antd";
+import { ConfigProvider, Input, Select, Transfer, Checkbox, Row, Col } from "antd";
 const { Option } = Select;
 
 export const CustomCheckBox = ({
@@ -124,7 +124,7 @@ export const CustomSelect = ({
   colorText = "#000",
   ...props
 }) => {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
@@ -316,5 +316,75 @@ export const SwitchCustom = ({
       </label>
       {children}
     </Fragment>
+  );
+};
+
+export const SelectCheckbox = ({
+  options,
+  className,
+  placeholder,
+  ...props
+}) => {
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+
+  const handleChange = (values) => {
+    setSelectedItems(values);
+    setSelectAll(values.length === options.length);
+  };
+
+  const handleSelectAll = (checked) => {
+    const allValues = options.map(option => option.value);
+    setSelectedItems(checked ? allValues : []);
+    setSelectAll(checked);
+  };
+
+  const dropdownRender = (menu) => (
+    <div className="flex flex-col">
+        <CustomCheckBox
+          checked={selectAll}
+          onChange={(e) => handleSelectAll(e.target.checked)}
+          className="inline-flex items-center px-4 py-2 font-bold"
+        >
+          Select All
+        </CustomCheckBox>
+        {options.map((option) => (
+          <CustomCheckBox
+            key={option.value}
+            value={option.value}
+            checked={selectedItems.includes(option.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (e.target.checked) {
+                setSelectedItems([...selectedItems, value]);
+              } else {
+                setSelectedItems(selectedItems.filter(item => item !== value));
+              }
+              setSelectAll(selectedItems.length === options.length - 1 && !selectedItems.includes(value));
+            }}
+            className="block px-4 py-2 flex items-center text-base font-medium"
+          >
+            {option.label}
+          </CustomCheckBox>
+        ))}
+    </div >
+  );
+
+  return (
+    <div className={classNames} {...props}>
+      <Select
+        className={`w-full h-[50px] ${className}`}
+        placeholder={placeholder}
+        onChange={handleChange}
+        value={selectedItems}
+        dropdownRender={dropdownRender}
+      >
+        {options.map((option) => (
+          <Option key={option.value} value={option.value}>
+            {option.label}
+          </Option>
+        ))}
+      </Select>
+    </div>
   );
 };

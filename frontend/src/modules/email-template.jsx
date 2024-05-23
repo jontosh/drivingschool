@@ -34,7 +34,7 @@ export const EmailTemplateModule = () => {
       align: "center",
       render: (text) => (
         <Paragraph
-          className={"text-start"}
+          className={"text-center"}
           fontSize={"text-base"}
           fontWeightStrong={400}
         >
@@ -70,19 +70,19 @@ export const EmailTemplateModule = () => {
       render: () => (
         <div className="space-x-2">
           <IconComponent
-            className={"text-2xl border border-indigo-600 rounded-lg p-1.5"}
+            className={"text-2xl border border-indigo-600 rounded-lg pt-1 pl-1 pr-1"}
             icon={<TbEdit />}
           />
           <IconComponent
-            className={"text-2xl border border-indigo-600 rounded-lg p-1.5"}
+            className={"text-2xl border border-indigo-600 rounded-lg pt-1 pl-1 pr-1"}
             icon={<LuSmartphone />}
           />
           <IconComponent
-            className={"text-2xl border border-indigo-600 rounded-lg p-1.5"}
+            className={"text-2xl border border-indigo-600 rounded-lg pt-1 pl-1 pr-1"}
             icon={<AiOutlineEye />}
           />
           <IconComponent
-            className={"text-2xl border border-indigo-600 rounded-lg p-1.5"}
+            className={"text-2xl border border-indigo-600 rounded-lg pt-1 pl-1 pr-1"}
             icon={<IoTimeOutline />}
           />
         </div>
