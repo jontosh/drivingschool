@@ -4,6 +4,7 @@ import {
   CustomInput,
   CustomRadio,
   CustomSelect,
+  SelectCheckbox,
 } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { useDate } from "@/hooks/useDate.jsx";
@@ -770,8 +771,50 @@ export const StudentDataExport = ({ ...props }) => {
             </div>
 
             <div className="space-y-5">
-              <div className="grid grid-cols-2 gap-5">
-                @to do
+              <div className="grid grid-cols-2 gap-x-5 w-full">
+                <label className="w-full space-y-1.5">
+                  <span className="text-base font-medium text-gray-500">SELECT STUDENTS:</span>
+
+                  <SelectCheckbox
+                    placeholder={"SELECT STUDENTS:"}
+                    options={[
+                      {
+                        value: "Khaetbek",
+                        label: "Khaetbek"
+                      },
+                      {
+                        value: "Nurmuhammadov Hasanboy",
+                        label: "Nurmuhammadov Hasanboy"
+                      },
+                      {
+                        value: "Anvar Ortiqov",
+                        label: "Anvar Ortiqov"
+                      },
+                    ]}
+                  />
+                </label>
+
+                <label className="w-full space-y-1.5">
+                  <span className="text-base font-medium text-gray-500">Select Data Fields:</span>
+
+                  <SelectCheckbox
+                    placeholder={"Select Data Fields:"}
+                    options={[
+                      {
+                        value: "Khaetbek",
+                        label: "Khaetbek"
+                      },
+                      {
+                        value: "Nurmuhammadov Hasanboy",
+                        label: "Nurmuhammadov Hasanboy"
+                      },
+                      {
+                        value: "Anvar Ortiqov",
+                        label: "Anvar Ortiqov"
+                      },
+                    ]}
+                  />
+                </label>
               </div>
 
               <div className="text-center">
