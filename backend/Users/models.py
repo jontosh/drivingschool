@@ -25,7 +25,7 @@ class User(models.Model):
     zip = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField()
     code = models.CharField(max_length=150, blank=True, null=True)
-    home_photo = models.CharField(blank=True,null=True,max_length=30)
+    home_phone = models.CharField(blank=True,null=True,max_length=30)
     cell_phone = models.CharField(max_length=30)
     birth = models.DateField(default="1999/01/01", help_text="Data of birth")
     username = models.CharField(max_length=200, unique=True)
