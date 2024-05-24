@@ -55,12 +55,7 @@ const reducer = (state, action) => {
         status: <AlertError />,
       };
     }
-    case "DELETE": {
-      return {
-        ...state,
-        status: <AlertDelete />,
-      };
-    }
+
     default: {
       console.error(`Unknown action: ${action.type}`);
     }
@@ -98,7 +93,7 @@ export const ProductModalContent = () => {
     setSelections(stateSelects);
     if (!stateSelects) {
       try {
-        await requestPost({
+        const res = await requestPost({
           path: "/account_management/services/component/",
           data: {
             ...values,
@@ -108,7 +103,12 @@ export const ProductModalContent = () => {
             location: 1,
           },
         });
-        dispatch({ type: "SUCCESS" });
+
+        if (res.error.status >= 400) {
+          dispatch({ type: "ERROR" });
+        } else {
+          dispatch({ type: "SUCCESS" });
+        }
       } catch (error) {
         console.error(error.message);
         dispatch({ type: "ERROR" });

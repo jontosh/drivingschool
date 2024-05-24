@@ -3,7 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { MdClose } from "react-icons/md";
 import { MdErrorOutline } from "react-icons/md";
@@ -99,67 +99,81 @@ export const AlertError = () => {
     </Fragment>
   );
 };
-export const AlertDelete = () => {
-  const [IsOpen, setIsOpen] = useState(true);
+export const AlertDelete = (isOpen) => {
+  const [IsOpen, setIsOpen] = useState(isOpen);
   const [Confirm, setConfirm] = useState(false);
   const { colorsObject } = useContext(ColorsContext);
   const handleClose = () => setIsOpen((prev) => !prev);
 
-  return (
-    <Fragment>
-      {IsOpen && (
-        <Modal setIsOpen={setIsOpen}>
-          <div className="bg-white max-w-[490px] w-full px-10 py-8 text-center">
-            <div className="relative mb-6">
-              <Title
-                fontSize={"text-3xl"}
-                titleMarginBottom={8}
-                fontWeightStrong={600}
-              >
-                Are you sure?
-              </Title>
+  useEffect(() => {
+    setIsOpen(isOpen);
+  }, [isOpen]);
 
-              <Paragraph
-                fontWeightStrong={400}
-                fontSize={"text-xs text-[#54595E99]"}
-              >
-                You won't be able to revert this!
-              </Paragraph>
+  const AlertDeleteComponent = () => {
+    return (
+      <Fragment>
+        {IsOpen && (
+          <Modal setIsOpen={setIsOpen}>
+            <div className="bg-white max-w-[490px] w-full px-10 py-8 text-center">
+              <div className="relative mb-6">
+                <Title
+                  fontSize={"text-3xl"}
+                  titleMarginBottom={8}
+                  fontWeightStrong={600}
+                >
+                  Are you sure?
+                </Title>
 
-              <IconComponent
-                onClick={handleClose}
-                icon={<MdClose />}
-                className={
-                  "absolute -top-3 -right-3 rounded-full p-2 bg-[#E5E5E5] inline-flex items-center"
-                }
-              />
+                <Paragraph
+                  fontWeightStrong={400}
+                  fontSize={"text-xs text-[#54595E99]"}
+                >
+                  You won't be able to revert this!
+                </Paragraph>
+
+                <IconComponent
+                  onClick={handleClose}
+                  icon={<MdClose />}
+                  className={
+                    "absolute -top-3 -right-3 rounded-full p-2 bg-[#E5E5E5] inline-flex items-center"
+                  }
+                />
+              </div>
+
+              <div className="space-x-4">
+                <ButtonComponent
+                  defaultHoverColor={colorsObject.dangerHover}
+                  defaultColor={colorsObject.danger}
+                  defaultHoverBorderColor={colorsObject.dangerHover}
+                  defaultBorderColor={colorsObject.danger}
+                  borderRadius={5}
+                  paddingInline={43}
+                  onClick={() => {
+                    setConfirm(false);
+                    setIsOpen(false);
+                  }}
+                >
+                  No, cancel
+                </ButtonComponent>
+                <ButtonComponent
+                  defaultBg={colorsObject.success}
+                  defaultHoverBg={colorsObject.successHover}
+                  borderRadius={5}
+                  paddingInline={43}
+                  onClick={() => {
+                    setConfirm(true);
+                    setIsOpen(false);
+                  }}
+                >
+                  Yes, confirm
+                </ButtonComponent>
+              </div>
             </div>
+          </Modal>
+        )}
+      </Fragment>
+    );
+  };
 
-            <div className="space-x-4">
-              <ButtonComponent
-                defaultHoverColor={colorsObject.dangerHover}
-                defaultColor={colorsObject.danger}
-                defaultHoverBorderColor={colorsObject.dangerHover}
-                defaultBorderColor={colorsObject.danger}
-                borderRadius={5}
-                paddingInline={43}
-                onClick={() => setConfirm(false)}
-              >
-                No, cancel
-              </ButtonComponent>
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                borderRadius={5}
-                paddingInline={43}
-                onClick={() => setConfirm(true)}
-              >
-                Yes, confirm
-              </ButtonComponent>
-            </div>
-          </div>
-        </Modal>
-      )}
-    </Fragment>
-  );
+  return { AlertDeleteComponent, Confirm, IsOpen };
 };

@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { AlertDelete, AlertError, AlertSuccess } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { AccountManagementLocation } from "@/redux/slice/account-management-slice.jsx";
@@ -19,11 +20,14 @@ export const LocationModule = () => {
   const { data } = useRequestGetQuery({
     path: "/account_management/location/",
   });
+  const [IsOpen, setIsOpen] = useState(false);
 
   const LocationState = useSelector(
     (state) => state.account_management.location,
   );
   const dispatch = useDispatch();
+
+  const { Confirm, AlertDeleteComponent } = AlertDelete(IsOpen);
 
   useEffect(() => {
     dispatch(AccountManagementLocation({ data }));
@@ -112,6 +116,9 @@ export const LocationModule = () => {
               paddingRight: 4,
             }}
             icon={<DeleteOutlined />}
+            onClick={() => {
+              setIsOpen((prev) => !prev);
+            }}
           />
 
           <IconComponent
@@ -128,20 +135,21 @@ export const LocationModule = () => {
     },
   ];
 
-  return { columns, data };
+  return { columns, data, AlertDeleteComponent };
 };
 
 export const HighSchoolModule = () => {
   const { data } = useRequestGetQuery({ path: "/account_management/schools/" });
+  const [IsOpen, setIsOpen] = useState(false);
 
   const LocationState = useSelector(
     (state) => state.account_management.location,
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(AccountManagementLocation({ data }));
-  }, [data]);
+  const { Confirm, AlertDeleteComponent } = AlertDelete();
+
+  useEffect(() => {}, [data]);
 
   const columns = [
     {
@@ -233,22 +241,23 @@ export const HighSchoolModule = () => {
     },
   ];
 
-  return { columns, data };
+  return { columns, data, AlertDeleteComponent };
 };
 
 export const HearModule = () => {
   const { data } = useRequestGetQuery({
     path: "/account_management/how_did_you_hear_us/",
   });
+  const [IsOpen, setIsOpen] = useState(false);
 
   const LocationState = useSelector(
     (state) => state.account_management.location,
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(AccountManagementLocation({ data }));
-  }, [data]);
+  const { Confirm, AlertDeleteComponent } = AlertDelete();
+
+  useEffect(() => {}, [data]);
 
   const columns = [
     {
@@ -328,18 +337,20 @@ export const HearModule = () => {
     },
   ];
 
-  return { columns, data };
+  return { columns, data, AlertDeleteComponent };
 };
 
 export const VehiclesModule = () => {
   const { data } = useRequestGetQuery({
     path: "/account_management/vehicle/",
   });
-
+  const [IsOpen, setIsOpen] = useState(false);
   const LocationState = useSelector(
     (state) => state.account_management.location,
   );
   const dispatch = useDispatch();
+
+  const { Confirm, AlertDeleteComponent } = AlertDelete(IsOpen);
 
   useEffect(() => {}, [data]);
 
@@ -446,5 +457,5 @@ export const VehiclesModule = () => {
     },
   ];
 
-  return { columns, data };
+  return { columns, data, AlertDeleteComponent };
 };
