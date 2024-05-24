@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/slice/account-management-slice.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/store.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/store.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,29 +115,21 @@
       <option name="project" value="LOCAL" />
       <updated>1716331688025</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks.">
+      <option name="closed" value="true" />
+      <created>1716459969047</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716459969047</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.&#10;- Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="Ref" />
-    <MESSAGE value="Refactor" />
-    <MESSAGE value="Refactor components" />
-    <MESSAGE value="Refactor components to" />
-    <MESSAGE value="Refactor components to include" />
-    <MESSAGE value="Refactor components to include date" />
-    <MESSAGE value="Refactor components to include date pick" />
-    <MESSAGE value="Refactor components to include date pickers" />
-    <MESSAGE value="Refactor components to include date pickers and" />
-    <MESSAGE value="Refactor components to include date pickers and form" />
-    <MESSAGE value="Refactor components to include date pickers and form handling" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved" />
     <MESSAGE value="Refactor components to include date pickers and form handling for improved user" />
     <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction" />
     <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in" />
@@ -146,7 +139,23 @@
     <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component" />
     <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
     <MESSAGE value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update account" />
+    <MESSAGE value="Update account management" />
+    <MESSAGE value="Update account management slice" />
+    <MESSAGE value="Update account management slice to" />
+    <MESSAGE value="Update account management slice to include" />
+    <MESSAGE value="Update account management slice to include location" />
+    <MESSAGE value="Update account management slice to include location data" />
+    <MESSAGE value="Update account management slice to include location data and" />
+    <MESSAGE value="Update account management slice to include location data and dispatch" />
+    <MESSAGE value="Update account management slice to include location data and dispatch actions" />
+    <MESSAGE value="Update account management slice to include location data and dispatch actions using" />
+    <MESSAGE value="Update account management slice to include location data and dispatch actions using Redux" />
+    <MESSAGE value="Update account management slice to include location data and dispatch actions using Redux hooks" />
+    <MESSAGE value="Update account management slice to include location data and dispatch actions using Redux hooks." />
+    <MESSAGE value="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

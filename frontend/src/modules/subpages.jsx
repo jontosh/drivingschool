@@ -129,46 +129,51 @@ export const Subpages = ({ page }) => {
       );
     }
     case "location": {
-      const { columns, data } = LocationModule();
+      const { columns, data, AlertDeleteComponent } = LocationModule();
       return (
         <Fragment>
           <Helmet>
             <title>Account management - Location</title>
           </Helmet>
           <Location columns={columns} data={data} />
+
+          <AlertDeleteComponent />
         </Fragment>
       );
     }
     case "high school": {
-      const { columns, data } = HighSchoolModule();
+      const { columns, data, AlertDeleteComponent } = HighSchoolModule();
       return (
         <Fragment>
           <Helmet>
             <title>Account management - High School</title>
           </Helmet>
           <HighSchool columns={columns} data={data} />
+          <AlertDeleteComponent />
         </Fragment>
       );
     }
     case "how did you hear": {
-      const { columns, data } = HearModule();
+      const { columns, data, AlertDeleteComponent } = HearModule();
       return (
         <Fragment>
           <Helmet>
             <title>Account management - How did you hear</title>
           </Helmet>
           <Hear columns={columns} data={data} />
+          <AlertDeleteComponent />
         </Fragment>
       );
     }
     case "vehicles": {
-      const { columns, data } = VehiclesModule();
+      const { columns, data, AlertDeleteComponent } = VehiclesModule();
       return (
         <Fragment>
           <Helmet>
             <title>Account management - Vehicles</title>
           </Helmet>
           <Vehicles columns={columns} data={data} />
+          <AlertDeleteComponent />
         </Fragment>
       );
     }
