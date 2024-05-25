@@ -38,7 +38,7 @@ export const useFileReader = () => {
   }, [File?.type]);
 
   const FileReaderResult = ({ title, className, ...props }) => (
-    <div className={classNames("relative inline-block w-full", className)}>
+    <div className={classNames("relative inline-block", className)}>
       <input
         className={"opacity-0 absolute top-0 left-0 -z-10"}
         type={

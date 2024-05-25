@@ -1,37 +1,21 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
-import ColorsContext from "@/context/colors.jsx";
-import { AlertDelete, AlertError, AlertSuccess } from "@/hooks/alert.jsx";
+import AccountManagementContext from "@/context/account-management.jsx";
+import { AlertDelete } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { AccountManagementLocation } from "@/redux/slice/account-management-slice.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
-import { useDispatch, useSelector } from "react-redux";
 
 export const LocationModule = () => {
-  const { data } = useRequestGetQuery({
-    path: "/account_management/location/",
-  });
-  const [IsOpen, setIsOpen] = useState(false);
-
-  const LocationState = useSelector(
-    (state) => state.account_management.location,
-  );
-  const dispatch = useDispatch();
-
-  const { Confirm, AlertDeleteComponent } = AlertDelete(IsOpen);
-
-  useEffect(() => {
-    dispatch(AccountManagementLocation({ data }));
-  }, [data]);
+  const { LocationData: data } = useContext(AccountManagementContext);
+  const { AlertDeleteComponent } = AlertDelete();
 
   const columns = [
     {
@@ -139,17 +123,8 @@ export const LocationModule = () => {
 };
 
 export const HighSchoolModule = () => {
-  const { data } = useRequestGetQuery({ path: "/account_management/schools/" });
-  const [IsOpen, setIsOpen] = useState(false);
-
-  const LocationState = useSelector(
-    (state) => state.account_management.location,
-  );
-  const dispatch = useDispatch();
-
-  const { Confirm, AlertDeleteComponent } = AlertDelete();
-
-  useEffect(() => {}, [data]);
+  const { SchoolData: data } = useContext(AccountManagementContext);
+  const { AlertDeleteComponent } = AlertDelete();
 
   const columns = [
     {
@@ -245,19 +220,8 @@ export const HighSchoolModule = () => {
 };
 
 export const HearModule = () => {
-  const { data } = useRequestGetQuery({
-    path: "/account_management/how_did_you_hear_us/",
-  });
-  const [IsOpen, setIsOpen] = useState(false);
-
-  const LocationState = useSelector(
-    (state) => state.account_management.location,
-  );
-  const dispatch = useDispatch();
-
-  const { Confirm, AlertDeleteComponent } = AlertDelete();
-
-  useEffect(() => {}, [data]);
+  const { HearData: data } = useContext(AccountManagementContext);
+  const { AlertDeleteComponent } = AlertDelete();
 
   const columns = [
     {
@@ -341,18 +305,10 @@ export const HearModule = () => {
 };
 
 export const VehiclesModule = () => {
-  const { data } = useRequestGetQuery({
-    path: "/account_management/vehicle/",
-  });
-  const [IsOpen, setIsOpen] = useState(false);
-  const LocationState = useSelector(
-    (state) => state.account_management.location,
+  const { VehicleData: data, LocationData: LocationState } = useContext(
+    AccountManagementContext,
   );
-  const dispatch = useDispatch();
-
-  const { Confirm, AlertDeleteComponent } = AlertDelete(IsOpen);
-
-  useEffect(() => {}, [data]);
+  const { AlertDeleteComponent } = AlertDelete();
 
   const columns = [
     {

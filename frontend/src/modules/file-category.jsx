@@ -1,15 +1,20 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { FormOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 
 export const FileCategoryModule = () => {
+  const { data } = useRequestGetQuery({
+    path: "/student_account/file_category/",
+  });
+
   const columns = [
     {
       title: "Category",
-      key: "category",
-      dataIndex: "category",
+      key: "name",
+      dataIndex: "name",
     },
     {
       title: "File status",
@@ -22,7 +27,7 @@ export const FileCategoryModule = () => {
           <ButtonComponent
             defaultBg={bg}
             defaultHoverBg={hover}
-            // 
+            //
             style={{ width: 81 }}
             borderRadius={10}
           >
@@ -64,21 +69,6 @@ export const FileCategoryModule = () => {
           </div>
         );
       },
-    },
-  ];
-
-  const data = [
-    {
-      category: "Student contract",
-      status: "active",
-    },
-    {
-      category: "Student contract",
-      status: "process",
-    },
-    {
-      category: "Student contract",
-      status: "close",
     },
   ];
 
