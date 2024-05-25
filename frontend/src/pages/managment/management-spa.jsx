@@ -1,11 +1,8 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
-import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import ModalStyle from "@/components/modal/modal.module.scss";
-import ManagementSpaIndex from "@/pages/managment/management-spa/index.jsx";
-import { ModalContent } from "@/pages/managment/management-spa/modal/index.jsx";
+import { Subpages } from "@/modules/subpages.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
@@ -13,19 +10,20 @@ import ManagementStyle from "@/pages/managment/management.module.scss";
 import { Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const ManagementSpa = ({ page }) => {
-  const { subpage } = page;
+const ManagementSpa = ({ page: { subpage } }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
-  const [IsOpen, setIsOpen] = useState(false);
+  const [Status, setStatus] = useState("");
+  const [Search, setSearch] = useState("");
 
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
 
-  const handleModal = () => setIsOpen((prev) => !prev);
+  const handleStatus = (value) => setStatus(value);
+  const handleSearch = (e) => setSearch(e.target.value?.toLowerCase());
 
   return (
     <Fragment>
@@ -81,7 +79,10 @@ const ManagementSpa = ({ page }) => {
 
           <div className={"pt-5 pb-7"}>
             <div className={"flex justify-between"}>
-              <form className={"flex gap-x-5 items-center"}>
+              <form
+                className={"flex gap-x-5 items-center"}
+                onSubmit={(e) => e.preventDefault()}
+              >
                 <label
                   className={`relative h-[50px] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 >
@@ -90,6 +91,8 @@ const ManagementSpa = ({ page }) => {
                     placeholder={"Search"}
                     classNames={"h-[50px]"}
                     className={`w-96 pl-12 pr-4 text-sm ${subpage === "quiz-report" && `inline-flex flex-row-reverse`} `}
+                    value={Search}
+                    onChange={handleSearch}
                   />
 
                   <span
@@ -112,7 +115,7 @@ const ManagementSpa = ({ page }) => {
                 </ButtonComponent>
 
                 <CustomSelect
-                  value={"Status"}
+                  placeholder={"Status"}
                   options={StatusSelect}
                   style={{
                     width: 122,
@@ -120,6 +123,7 @@ const ManagementSpa = ({ page }) => {
                   className={`h-[40px] ${ServiceStyle["Service__select"]}`}
                   colorBorder={colorsObject.info}
                   selectorBg={colorsObject.info}
+                  onChange={handleStatus}
                 />
               </form>
 
@@ -132,7 +136,7 @@ const ManagementSpa = ({ page }) => {
             </div>
 
             <div className="pt-5 -mx-5">
-              <ManagementSpaIndex />
+              <Subpages page={subpage} search={Search} status={Status} />
             </div>
           </div>
         </div>

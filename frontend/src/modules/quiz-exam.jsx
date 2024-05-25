@@ -27,5 +27,7 @@ export const ExamModule = () => {
     },
   ];
 
-  return { columns };
+  const data = [];
+
+  return { columns, data };
 };

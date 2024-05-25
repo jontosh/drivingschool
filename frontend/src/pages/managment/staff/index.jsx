@@ -4,6 +4,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { useFilterStatus } from "@/hooks/filter.jsx";
 import { StaffModule } from "@/modules/staff.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import ServiceStyle from "@/pages/managment/management.module.scss";
@@ -22,9 +23,15 @@ const Staff = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { data, columns } = StaffModule();
   const [CurrentPagination, setCurrentPagination] = useState(1);
+  const [Status, setStatus] = useState("");
+  const [Search, setSearch] = useState("");
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
+  const handleStatus = (value) => setStatus(value);
+  const handleSearch = (e) => setSearch(e.target.value?.toLowerCase());
+  const { Data } = useFilterStatus({ data, search: Search, status: Status });
+
   return (
     <Fragment>
       <Helmet>
@@ -61,6 +68,8 @@ const Staff = () => {
                   placeholder={"Search"}
                   classNames={"h-[50px]"}
                   className={`w-96 pl-12 pr-4 text-sm`}
+                  value={Search}
+                  onChange={handleSearch}
                 />
 
                 <span
@@ -90,6 +99,7 @@ const Staff = () => {
                 className={`h-[40px] ${ServiceStyle["Service__select"]}`}
                 colorBorder={"#1890FF"}
                 selectorBg={"#1890FF"}
+                onChange={handleStatus}
               />
             </form>
 
@@ -101,7 +111,7 @@ const Staff = () => {
             />
           </div>
 
-          <TableComponent columns={columns} data={data} />
+          <TableComponent columns={columns} data={Data} />
         </div>
       </Fragment>
     </Fragment>

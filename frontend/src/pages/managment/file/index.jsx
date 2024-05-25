@@ -9,6 +9,7 @@ import Modal from "@/components/modal/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { useFilterStatus } from "@/hooks/filter.jsx";
 import { useDate } from "@/hooks/useDate.jsx";
 import { FileCategoryModule } from "@/modules/file-category.jsx";
 import { FileChart } from "@/pages/managment/file/items/chart.jsx";
@@ -62,6 +63,8 @@ const File = () => {
   const [Filter, setFilter] = useState("");
 
   const handleFilter = (value) => setFilter(value);
+
+  const { Data } = useFilterStatus({ data, status: Filter, search: "" });
 
   return (
     <Fragment>
@@ -179,7 +182,7 @@ const File = () => {
                   />
                 </div>
               </div>
-              <TableComponent columns={columns} data={data} />
+              <TableComponent columns={columns} data={Data} />
             </div>
           </div>
           <div className={"space-y-2.5"}>

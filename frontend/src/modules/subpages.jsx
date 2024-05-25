@@ -47,63 +47,74 @@ import { StudentFileReport } from "@/pages/report/subpages/student-file-report.j
 import { StudentUpdatedProfile } from "@/pages/report/subpages/student-updated-profile.jsx";
 import { TransactionSummaryReport } from "@/pages/report/subpages/transaction-summary-report.jsx";
 import { UpcomingTaskReport } from "@/pages/report/subpages/upcoming-task-report.jsx";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useFilterStatus } from "@/hooks/filter.jsx";
 
-export const Subpages = ({ page }) => {
+export const Subpages = ({ page, status, search }) => {
   switch (page) {
     case "product": {
       const { columns, data } = ProductModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Service - Product</title>
           </Helmet>
-          <Product data={data} columns={columns} />
+          <Product data={Data} columns={columns} />
         </Fragment>
       );
     }
     case "fees": {
       const { columns, data } = FeesModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Service - Frees</title>
           </Helmet>
-          <Fees data={data} columns={columns} />
+          <Fees data={Data} columns={columns} />
         </Fragment>
       );
     }
     case "discounts": {
       const { columns, data } = DiscountsModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Service - Discounts</title>
           </Helmet>
-          <Fees data={data} columns={columns} />
+          <Fees data={Data} columns={columns} />
         </Fragment>
       );
     }
     case "miscellaneous": {
       const { columns, data } = FeesModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Service - Miscellaneous</title>
           </Helmet>
-          <Miscellaneous data={data} columns={columns} />
+          <Miscellaneous data={Data} columns={columns} />
         </Fragment>
       );
     }
     case "quiz-exam": {
-      const { columns } = ExamModule();
+      const { columns, data } = ExamModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Service - Quiz Exam</title>
           </Helmet>
-          <Exam columns={columns} />
+          <Exam columns={columns} data={Data} />
         </Fragment>
       );
     }
@@ -119,61 +130,65 @@ export const Subpages = ({ page }) => {
     }
     case "packages": {
       const { columns, data } = PackagesModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Service - Quiz Exam</title>
           </Helmet>
-          <Packages columns={columns} data={data} />
+          <Packages columns={columns} data={Data} />
         </Fragment>
       );
     }
     case "location": {
-      const { columns, data, AlertDeleteComponent } = LocationModule();
+      const { columns, data } = LocationModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Account management - Location</title>
           </Helmet>
-          <Location columns={columns} data={data} />
-
-          <AlertDeleteComponent />
+          <Location columns={columns} data={Data} />
         </Fragment>
       );
     }
     case "high school": {
-      const { columns, data, AlertDeleteComponent } = HighSchoolModule();
+      const { columns, data } = HighSchoolModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Account management - High School</title>
           </Helmet>
-          <HighSchool columns={columns} data={data} />
-          <AlertDeleteComponent />
+          <HighSchool columns={columns} data={Data} />
         </Fragment>
       );
     }
     case "how did you hear": {
-      const { columns, data, AlertDeleteComponent } = HearModule();
+      const { columns, data } = HearModule();
+      const { Data } = useFilterStatus({ data, status, search });
       return (
         <Fragment>
           <Helmet>
             <title>Account management - How did you hear</title>
           </Helmet>
-          <Hear columns={columns} data={data} />
-          <AlertDeleteComponent />
+          <Hear columns={columns} data={Data} />
         </Fragment>
       );
     }
     case "vehicles": {
-      const { columns, data, AlertDeleteComponent } = VehiclesModule();
+      const { columns, data } = VehiclesModule();
+      const { Data } = useFilterStatus({ data, status, search });
+
       return (
         <Fragment>
           <Helmet>
             <title>Account management - Vehicles</title>
           </Helmet>
-          <Vehicles columns={columns} data={data} />
-          <AlertDeleteComponent />
+          <Vehicles columns={columns} data={Data} />
         </Fragment>
       );
     }
