@@ -9,13 +9,14 @@ import {
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 
 export const LocationModule = () => {
   const { LocationData: data } = useContext(AccountManagementContext);
-  const { AlertDeleteComponent } = AlertDelete();
+  const [IsOpen, setIsOpen] = useState(false);
+  const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
     {
@@ -124,7 +125,8 @@ export const LocationModule = () => {
 
 export const HighSchoolModule = () => {
   const { SchoolData: data } = useContext(AccountManagementContext);
-  const { AlertDeleteComponent } = AlertDelete();
+  const [IsOpen, setIsOpen] = useState(false);
+  const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
     {
@@ -221,7 +223,8 @@ export const HighSchoolModule = () => {
 
 export const HearModule = () => {
   const { HearData: data } = useContext(AccountManagementContext);
-  const { AlertDeleteComponent } = AlertDelete();
+  const [IsOpen, setIsOpen] = useState(false);
+  const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
     {
@@ -308,7 +311,8 @@ export const VehiclesModule = () => {
   const { VehicleData: data, LocationData: LocationState } = useContext(
     AccountManagementContext,
   );
-  const { AlertDeleteComponent } = AlertDelete();
+  const [IsOpen, setIsOpen] = useState(false);
+  const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
     {

@@ -45,12 +45,16 @@ export const StatusSelect = [
 
 const Service = ({ subpage }) => {
   const { colorsObject } = useContext(ColorsContext);
-
+  const [Status, setStatus] = useState("");
+  const [Search, setSearch] = useState("");
   const [CurrentPagination, setCurrentPagination] = useState(1);
 
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
+
+  const handleStatus = (value) => setStatus(value);
+  const handleSearch = (e) => setSearch(e?.target?.value?.toLowerCase());
 
   return (
     <Fragment>
@@ -126,7 +130,10 @@ const Service = ({ subpage }) => {
           </div>
           <div className={"pt-4 pb-7"} hidden={!subpage}>
             <div className={"flex justify-between"}>
-              <form className={"flex gap-x-5 items-center"}>
+              <form
+                className={"flex gap-x-5 items-center"}
+                onSubmit={(e) => e.preventDefault()}
+              >
                 <label
                   className={`relative h-[50px] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 >
@@ -135,6 +142,8 @@ const Service = ({ subpage }) => {
                     placeholder={"Search"}
                     classNames={"h-[50px]"}
                     className={`w-96 pl-12 pr-4 text-sm ${subpage === "quiz-report" && `inline-flex flex-row-reverse`} `}
+                    onChange={handleSearch}
+                    value={Search}
                   />
 
                   <span
@@ -161,11 +170,12 @@ const Service = ({ subpage }) => {
                     </ButtonComponent>
 
                     <CustomSelect
-                      value={"Status"}
+                      placeholder={"Status"}
                       options={StatusSelect}
                       className={`w-[122px] h-[40px] ${ServiceStyle["Service__select"]}`}
                       colorBorder={"#1890FF"}
                       selectorBg={"#1890FF"}
+                      onChange={handleStatus}
                     />
                   </Fragment>
                 )}
@@ -183,7 +193,7 @@ const Service = ({ subpage }) => {
               </div>
             </div>
             <div className={"pt-5 -mx-5"}>
-              <Subpages page={subpage} />
+              <Subpages page={subpage} status={Status} search={Search} />
             </div>
           </div>
         </div>
