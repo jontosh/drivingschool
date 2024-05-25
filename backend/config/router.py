@@ -20,7 +20,6 @@ Router = {
             "class":"class",
             "location":"location",
             "vehicle":"vehicle",
-            "location_small":"location_small",
             "how_did_you_hear_us":"how_did_you_hear_us"
         }
     },
