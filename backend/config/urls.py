@@ -34,4 +34,4 @@ urlpatterns = [
     #MADE FOR PAGE API
     path(f'{Router["page_api"]["base"]}', include("interaction.page_api"),name=Router["page_api"]["base"]),
 
-]+  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

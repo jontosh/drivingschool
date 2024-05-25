@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Tasks,Logs,LatestNews,EmailTemplate
-from location.views import LocationSerializer,VehicleSerializer,LocationSmallSerializer,SchoolSerializer,Vehicle,Class,Location
+from location.views import LocationSerializer,VehicleSerializer,SchoolSerializer,Vehicle,Class,Location
 from servises.serializer import ServicesSerializer
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,WeekRangeSerializer,TimeRangeSerializer,\
     TimeSlot,Appointment, TimeOffSerializer
@@ -8,8 +8,6 @@ from Users.serializer import StudentSerializer,UserSerializer,BillSerializer,Fil
 
 
 class LocationFullSerializer(serializers.ModelSerializer):
-    pick_up = LocationSmallSerializer(read_only=True)
-    drop_off = LocationSmallSerializer(read_only=True)
     class Meta:
         fields = '__all__'
         model = Location
