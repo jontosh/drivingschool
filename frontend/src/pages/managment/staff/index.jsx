@@ -69,29 +69,28 @@ const Staff = () => {
                   <AiOutlineSearch />
                 </span>
               </label>
-              <Fragment>
-                <ButtonComponent
-                  defaultBg={colorsObject.success}
-                  defaultHoverBg={colorsObject.successHover}
-                  paddingInline={26}
-                  borderRadius={5}
-                  className={"inline-flex items-center"}
-                  href={"/modals/staff/add-staff"}
-                >
-                  Add new
-                </ButtonComponent>
 
-                <CustomSelect
-                  value={"Status"}
-                  options={StatusSelect}
-                  style={{
-                    width: 122,
-                  }}
-                  className={`h-[40px] ${ServiceStyle["Service__select"]}`}
-                  colorBorder={"#1890FF"}
-                  selectorBg={"#1890FF"}
-                />
-              </Fragment>
+              <ButtonComponent
+                defaultBg={colorsObject.success}
+                defaultHoverBg={colorsObject.successHover}
+                paddingInline={26}
+                borderRadius={5}
+                className={"inline-flex items-center"}
+                href={"/modals/staff/add-staff"}
+              >
+                Add new
+              </ButtonComponent>
+
+              <CustomSelect
+                placeholder={"Status"}
+                options={StatusSelect}
+                style={{
+                  width: 122,
+                }}
+                className={`h-[40px] ${ServiceStyle["Service__select"]}`}
+                colorBorder={"#1890FF"}
+                selectorBg={"#1890FF"}
+              />
             </form>
 
             <Pagination

@@ -12,6 +12,7 @@ import ColorsContext from "@/context/colors.jsx";
 import { useDate } from "@/hooks/useDate.jsx";
 import { FileCategoryModule } from "@/modules/file-category.jsx";
 import { FileChart } from "@/pages/managment/file/items/chart.jsx";
+import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import { Space, Switch, Table } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
@@ -57,10 +58,10 @@ const mockData = [
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { columns, data } = FileCategoryModule();
-  const [IsOpen, setIsOpen] = useState(false);
-  const handleCategoryModal = () => setIsOpen((prev) => !prev);
-
   const { Months, YearsOptions } = useDate();
+  const [Filter, setFilter] = useState("");
+
+  const handleFilter = (value) => setFilter(value);
 
   return (
     <Fragment>
@@ -95,7 +96,7 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    // 
+                    //
                     borderRadius={5}
                   >
                     Show more
@@ -112,7 +113,7 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    // 
+                    //
                     borderRadius={5}
                   >
                     Show more
@@ -130,7 +131,7 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    // 
+                    //
                     borderRadius={5}
                   >
                     Show more
@@ -172,21 +173,9 @@ const File = () => {
                     style={{ width: 128 }}
                     selectorBg={colorsObject.info}
                     className={`h-[40px] ${FileStyle["File__select"]}`}
-                    value={"Filter by"}
-                    options={[
-                      {
-                        value: "Active",
-                        label: "Active",
-                      },
-                      {
-                        value: "Deleted",
-                        label: "Deleted",
-                      },
-                      {
-                        value: "Inactive",
-                        label: "Inactive",
-                      },
-                    ]}
+                    placeholder={"Filter by"}
+                    options={StatusSelect}
+                    onChange={handleFilter}
                   />
                 </div>
               </div>
@@ -382,7 +371,7 @@ const File = () => {
 
               <div className="text-end">
                 <ButtonComponent
-                  // 
+                  //
                   defaultBg={colorsObject.main}
                   defaultHoverBg={colorsObject.main}
                   defaultColor={colorsObject.black}

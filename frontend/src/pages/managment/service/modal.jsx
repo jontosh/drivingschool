@@ -109,6 +109,8 @@ export const ProductModalContent = () => {
         } else {
           dispatch({ type: "SUCCESS" });
         }
+
+        // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.error(error.message);
         dispatch({ type: "ERROR" });
@@ -340,11 +342,16 @@ export const FeesModalContent = () => {
     setSelections(stateSelects);
     if (!stateSelects) {
       try {
-        // await requestPost({
-        //   path: `/account_management/services/fee/`,
-        //   data: { ...values, status: Status, notes: NotesValue },
-        // });
-        dispatch({ type: "SUCCESS" });
+        const res = await requestPost({
+          path: `/account_management/services/fee/`,
+          data: { ...values, status: Status, notes: NotesValue },
+        });
+
+        if (res.error.status >= 400) {
+          dispatch({ type: "ERROR" });
+        } else {
+          dispatch({ type: "SUCCESS" });
+        }
       } catch (error) {
         console.error(error.message);
         dispatch({ type: "ERROR" });
@@ -537,18 +544,12 @@ export const DiscountModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          console.log({
-            ...values,
-            status: Status,
-            expiration_data: ExpirationDate,
-            services: ToNumber(EligibleService),
-            classes: ToNumber(EligibleClass),
-            locations: ToNumber(EligibleClassLocation),
-          });
           dispatch({ type: "ERROR" });
         } else {
           dispatch({ type: "SUCCESS" });
         }
+
+        // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.error(error.message);
         dispatch({ type: "ERROR" });
@@ -978,20 +979,10 @@ export const AddServiceModalContent = () => {
         if (res.error.status >= 400) {
           dispatch({ type: "ERROR" });
         } else {
-          console.log({
-            ...values,
-            status: Status,
-            oe: AssociateContract,
-            notes: NotesValue,
-            web_description: WebDescriptionValue,
-            enrolment_email: EnrollmentContent,
-            add_ons: ToNumber(AddOnServices),
-            discount: ToNumber(Discount),
-            locations: ToNumber(AssignLocation),
-            items: ToNumber(ServiceItems),
-          });
           dispatch({ type: "SUCCESS" });
         }
+
+        // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.error(error);
         dispatch({ type: "ERROR" });
@@ -1698,6 +1689,7 @@ export const AddStaffModalContent = () => {
 
         dispatch({ type: "SUCCESS" });
       }
+      dispatch({ type: "SUCCESS" });
     } catch (e) {
       console.error(e.message);
       dispatch({ type: "ERROR" });
@@ -2344,16 +2336,10 @@ export const LocationModalContent = () => {
         if (res.error.status >= 400) {
           dispatch({ type: "ERROR" });
         } else {
-          console.log({
-            ...values,
-            status: Status,
-            pick_up: PickupLocation,
-            drop_off: DropOffLocation,
-            location_note: NotesValue,
-            area_coverage: ToNumber(AreaCoverage),
-          });
           dispatch({ type: "SUCCESS" });
         }
+
+        // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.error(error?.message);
         dispatch({ type: "ERROR" });
@@ -2971,14 +2957,10 @@ export const AddSchoolModalContent = () => {
         if (res.error.status >= 400) {
           dispatch({ type: "ERROR" });
         } else {
-          console.log({
-            ...values,
-            note: NotesValue,
-            status: Status,
-            state: State,
-          });
           dispatch({ type: "SUCCESS" });
         }
+
+        // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.log(error?.message);
         dispatch({ type: "ERROR" });
@@ -3277,12 +3259,6 @@ export const HowHearModalContent = () => {
         if (res.error.status >= 400) {
           dispatch({ type: "ERROR" });
         } else {
-          console.log({
-            ...values,
-            notes: NotesValue,
-            status: Status,
-            expiration: Expiration,
-          });
           dispatch({ type: "SUCCESS" });
         }
       } catch (error) {
@@ -3497,16 +3473,9 @@ export const VehiclesModalContent = () => {
         if (res.error.status >= 400) {
           dispatch({ type: "ERROR" });
         } else {
-          console.log({
-            ...values,
-            image: Result,
-            status: Status,
-            location: Location,
-            type: Type,
-            note: NotesValue,
-          });
           dispatch({ type: "SUCCESS" });
         }
+        // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.error(error?.message);
         dispatch({ type: "ERROR" });
