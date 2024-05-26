@@ -206,7 +206,7 @@ export const InfoForm = () => {
 
                   <CustomInput
                     classNames={
-                      "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                      "inline-flex flex-row-reverse items-center w-full"
                     }
                     className={classNames(
                       ManagementStyle["CheckModal__form-element__shadow"],
