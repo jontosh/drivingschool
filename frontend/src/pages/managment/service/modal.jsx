@@ -368,71 +368,70 @@ export const FeesModalContent = () => {
       >
         {({ values, errors, handleChange, handleSubmit, handleReset }) => (
           <form
-            className={classNames("pb-5 grid gap-y-5 justify-center")}
+            className={classNames("pb-5 grid gap-y-5")}
             onSubmit={handleSubmit}
           >
             <CustomInput
               classNames={
-                "inline-flex gap-x-10 items-center flex-row-reverse justify-center gap-5 h-[50px] pl-5"
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
               }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"text"}
               spanText={"Fee name"}
               placeholder={"Fee name"}
-              fontSize="text-base"
-              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              spanClassName={`text-right`}
-              colorBorder={colorsObject.primary}
+              fontSize={"text-base"}
+              spanClassName={`flex-shrink-0 w-44 text-right`}
               onChange={handleChange}
               value={values.name}
               name={"name"}
             />
 
-            <label
-              className={`inline-flex items-center gap-10 w-full justify-center pl-1`}
-            >
-              <span
-                className={`w-24 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
                 Status:
               </span>
 
-              <div className="flex-shrink-0">
-                <CustomSelect
-                  placeholder={"Select status"}
-                  className={`w-60 h-[50px] text-base ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={StatusSelect}
-                  colorBorder={colorsObject.primary}
-                  onChange={handleStatus}
-                  value={Status ? Status : undefined}
-                />
-                {Selections && (
-                  <FormError className="pl-[42%]">Select Status</FormError>
-                )}
-              </div>
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={StatusSelect}
+                onChange={handleStatus}
+                value={Status ? Status : undefined}
+              />
+
+              {Selections && (
+                <FormError className="pl-[42%]">Select Status</FormError>
+              )}
             </label>
 
             <CustomInput
               classNames={
-                "inline-flex gap-x-10 items-center flex-row-reverse justify-center gap-5 h-[50px]"
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
               }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"number"}
               spanText={"Fee Amount:"}
               placeholder={"Fee Amount:"}
-              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              fontSize="text-base"
-              spanClassName={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              colorBorder={colorsObject.primary}
+              fontSize={"text-base"}
+              spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               name={"amount"}
               value={values.amount}
               onChange={handleChange}
-              type={"number"}
             >
               {errors.amount && (
                 <FormError className={"pl-[42%]"}>{errors.amount}</FormError>
               )}
             </CustomInput>
 
-            <label className="inline-flex justify-end gap-8 items-center w-full">
-              <span className="max-w-46">Notes</span>
-              <div className="w-full">
+            <label className="inline-flex justify-center gap-10 items-center w-full">
+              <span className="w-44 text-right">Notes</span>
+              <div className="w-[40%]">
                 <MDEditor
                   value={NotesValue}
                   onChange={(value) => setNotesValue(value)}
