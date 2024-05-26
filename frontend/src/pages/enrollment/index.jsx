@@ -6,6 +6,7 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { EnrollmentsSelections } from "@/modules/enrollments.jsx";
 import { InfoForm } from "@/pages/enrollment/info-form.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -14,51 +15,53 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import EnrollmentStyle from "./enrollment.module.scss";
 
 const Enrollment = () => {
+  const { data: ServicePackage } = useRequestGetQuery({
+    path: "/account_management/services/service/",
+  });
+
   const { colorsObject } = useContext(ColorsContext);
-  const { ClassSelectionArray, PackageSelectionArray } =
+  const { ClassSelectionArray, StudentInfoTypeOptions } =
     EnrollmentsSelections();
-  const defaultValue = "Package selection";
-  const [Package, setPackage] = useState(defaultValue);
-  const [Classes, setClasses] = useState(defaultValue);
-  const [InfoType, setInfoType] = useState(defaultValue);
-  const [SelectedPackages, setSelectedPackages] = useState([]);
-  const [SelectedClass, setSelectedClass] = useState([]);
-  const [IsOpen, setIsOpen] = useState(false);
 
-  const handleCouponModal = () => setIsOpen((prev) => !prev);
-
-  const InfoTypeOptions = [
-    {
-      value: "Teen",
-      label: "Teen",
-    },
-    {
-      value: "Adult",
-      label: "Adult",
-    },
-    {
-      value: "Knowledge test",
-      label: "Knowledge test",
-    },
-    {
-      value: "Road test",
-      label: "Road test",
-    },
-  ];
+  const [PackageSelection, setPackageSelection] = useState([]);
+  const [PackageTotal, setPackageTotal] = useState([]);
+  const [PackageValue, setPackageValue] = useState("");
+  const [StudentInfoType, setStudentInfoType] = useState("");
 
   useEffect(() => {
-    PackageSelectionArray.map((item) => {
-      if (Package === item.value) {
-        setSelectedPackages([...SelectedPackages, item]);
+    let options = [];
+
+    for (let i = 0; i < ServicePackage?.length; i++) {
+      if (ServicePackage[i]?.status?.toLowerCase() === "active") {
+        options.push({
+          ...ServicePackage[i],
+          label: ServicePackage[i].web_name,
+          value: ServicePackage[i].id,
+          price: parseFloat(ServicePackage[i].price),
+        });
       }
-    });
-  }, [Package]);
+    }
+
+    setPackageSelection(options);
+  }, [ServicePackage]);
+
+  const handlePackage = (value) => setPackageValue(value);
+  const handleStudentInfoType = (value) => setStudentInfoType(value);
+  const handlePackageDelete = (id) => {
+    setPackageTotal((prev) => prev?.filter((item) => item.id !== id));
+
+    setPackageValue("");
+  };
+
+  useEffect(() => {
+    setPackageTotal(() =>
+      PackageSelection?.filter((item) => item.value === PackageValue),
+    );
+  }, [PackageValue]);
 
   let totalPrice = 0;
 
-  const packageItem = SelectedPackages.filter(
-    (item, index) => SelectedPackages.indexOf(item) === index,
-  ).map(({ price, hours, label, id }, index) => {
+  const packageItem = PackageTotal.map(({ price, label, id }, index) => {
     totalPrice += price;
     index += 1;
     return (
@@ -72,12 +75,12 @@ const Enrollment = () => {
             <Paragraph fontSize={"text-xs"} fontWeightStrong={400}>
               {label}
             </Paragraph>
-            <Paragraph
-              fontSize={"text-xs text-gray-600"}
-              fontWeightStrong={400}
-            >
-              {hours}h
-            </Paragraph>
+            {/*<Paragraph*/}
+            {/*  fontSize={"text-xs text-gray-600"}*/}
+            {/*  fontWeightStrong={400}*/}
+            {/*>*/}
+            {/*  {hours}h*/}
+            {/*</Paragraph>*/}
           </div>
 
           <div className="flex items-center gap-2 5">
@@ -88,11 +91,7 @@ const Enrollment = () => {
             <IconComponent
               className="w-5 inline-flex items-center"
               icon={<Icons type={"cross"} />}
-              onClick={() => {
-                setSelectedPackages((prev) =>
-                  prev?.filter((item) => item.id !== id),
-                );
-              }}
+              onClick={() => handlePackageDelete(id)}
             />
           </div>
         </div>
@@ -101,16 +100,8 @@ const Enrollment = () => {
     );
   });
 
-  useEffect(() => {
-    ClassSelectionArray.map((item) => {
-      if (item.value === Classes) {
-        setSelectedClass([item]);
-      }
-    });
-  }, [Classes]);
-
   let totalClassPrice = 0;
-  const classItem = SelectedClass?.map(({ label, price }, index) => {
+  const classItem = [].map(({ label, price }, index) => {
     index += 1;
     totalClassPrice += price;
     return (
@@ -166,18 +157,18 @@ const Enrollment = () => {
               </Paragraph>
 
               <CustomSelect
-                value={Package}
-                onChange={(value) => setPackage(value)}
-                options={PackageSelectionArray}
-                style={{ width: "100%" }}
-                className={"mb-2.5 h-[50px]"}
+                placeholder={"Package selection"}
+                onChange={handlePackage}
+                options={PackageSelection}
+                value={PackageValue ? PackageValue : undefined}
+                className={"w-full mb-2.5 h-[50px]"}
                 optionFontSize={14}
                 optionSelectedFontWeight={400}
                 fontSize={16}
                 colorBorder={colorsObject.primary}
               />
 
-              {SelectedPackages?.length > 0 ? (
+              {PackageTotal?.length > 0 ? (
                 <Fragment>
                   <div className="flex justify-between mb-2.5">
                     <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
@@ -190,13 +181,13 @@ const Enrollment = () => {
                 </Fragment>
               ) : null}
 
-              {SelectedPackages?.length > 0 ? (
+              {PackageTotal?.length > 0 ? (
                 <div className={`flex flex-col gap-y-3.5 pl-4 mb-5`}>
                   {packageItem}
                 </div>
               ) : null}
 
-              {SelectedPackages?.length > 0 ? (
+              {PackageTotal?.length > 0 ? (
                 <div className="flex justify-between">
                   <div className={"space-x-2.5"}>
                     <ButtonComponent
@@ -205,7 +196,7 @@ const Enrollment = () => {
                       paddingInline={28}
                       controlHeight={40}
                       borderRadius={5}
-                      onClick={handleCouponModal}
+                      // onClick={handleCouponModal}
                     >
                       Coupon
                     </ButtonComponent>
@@ -233,17 +224,17 @@ const Enrollment = () => {
               </Paragraph>
 
               <CustomSelect
-                value={Classes}
-                onChange={(value) => setClasses(value)}
+                placeholder={"Select class"}
+                // onChange={(value) => setClasses(value)}
                 options={ClassSelectionArray}
-                style={{ width: "100%" }}
-                className={"mb-2.5 h-[50px]"}
+                // style={{ width: "100%" }}
+                className={"w-full mb-2.5 h-[50px]"}
                 colorBorder={colorsObject.primary}
               />
 
-              {SelectedClass?.length > 0 ? (
-                <div className={"mb-5 space-y-2.5"}>{classItem}</div>
-              ) : null}
+              {/*{SelectedClass?.length > 0 ? (*/}
+              {/*  <div className={"mb-5 space-y-2.5"}>{classItem}</div>*/}
+              {/*) : null}*/}
             </div>
           </div>
         </div>
@@ -262,86 +253,18 @@ const Enrollment = () => {
           </Paragraph>
 
           <CustomSelect
-            value={InfoType}
+            placeholder={"Student information type"}
             fontSize={14}
-            onChange={(value) => setInfoType(value)}
-            options={InfoTypeOptions}
-            style={{ width: "100%", maxWidth: "570px" }}
-            className={"mb-2.5 h-[50px] shadow-lg"}
+            onChange={handleStudentInfoType}
+            options={StudentInfoTypeOptions}
+            className={"mb-2.5 h-[50px] shadow-lg max-w-[570px] w-full"}
             colorBorder={colorsObject.primary}
-            disabled={defaultValue === Package}
+            disabled={!PackageTotal?.length}
           />
 
-          {defaultValue !== InfoType && <InfoForm />}
+          {StudentInfoType !== "" && <InfoForm />}
         </div>
       </section>
-
-      {IsOpen && (
-        <Modal setIsOpen={setIsOpen}>
-          <div
-            className={classNames(
-              EnrollmentStyle["Modal__content"],
-              "bg-white rounded-2xl p-5 w-full space-y-7",
-            )}
-          >
-            <div>
-              <Title
-                level={3}
-                fontWeightStrong={500}
-                fontSize={"text-2xl"}
-                titleMarginBottom={5}
-              >
-                5% OFF
-              </Title>
-              <Title level={3} fontWeightStrong={500} fontSize={"text-xl"}>
-                For whole order
-              </Title>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <code className={"text-sm text-[#163ED4]"}>
-                Code: NEWCUSTOMER_1234
-              </code>
-              <div className={"flex"}>
-                <IconComponent
-                  className={"font-semibold text-sm py-2 px-3"}
-                  icon={<MdOutlineContentCopy />}
-                  iconWidth={"w-5"}
-                  vertical={"items-center"}
-                  spaceIconX={2}
-                >
-                  Copy
-                </IconComponent>
-
-                <IconComponent
-                  className={"font-semibold text-sm py-2 px-3"}
-                  icon={<IoArrowForwardSharp />}
-                  iconWidth={"w-5"}
-                  vertical={"items-center"}
-                  spaceIconX={2}
-                >
-                  Apply
-                </IconComponent>
-              </div>
-            </div>
-
-            <div className={"text-[#8B94B2]"}>
-              <ul className={classNames("list-disc")}>
-                <li className={EnrollmentStyle["Modal__list-item"]}>
-                  05/08/2021 04:00 – 09/08/2021 12:00
-                </li>
-                <li className={EnrollmentStyle["Modal__list-item"]}>
-                  For all products.
-                </li>
-                <li className={EnrollmentStyle["Modal__list-item"]}>
-                  Combinations: Get 20% off when you spend over $169.00 or get
-                  15% off when you spend over $89.00.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Modal>
-      )}
     </Fragment>
   );
 };

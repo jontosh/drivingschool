@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/filter.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/select-options.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/quiz-exam.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/quiz-exam.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/staff/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/staff/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +104,9 @@
       <workItem from="1716616731195" duration="585000" />
       <workItem from="1716617336228" duration="150000" />
       <workItem from="1716618668373" duration="7977000" />
-      <workItem from="1716661832131" duration="6907000" />
+      <workItem from="1716661832131" duration="9170000" />
+      <workItem from="1716702728152" duration="7077000" />
+      <workItem from="1716753358331" duration="13398000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -132,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716459969047</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery.">
+      <option name="closed" value="true" />
+      <created>1716674769197</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716674769197</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,32 +158,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component" />
-    <MESSAGE value="Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update account" />
-    <MESSAGE value="Update account management" />
-    <MESSAGE value="Update account management slice" />
-    <MESSAGE value="Update account management slice to" />
-    <MESSAGE value="Update account management slice to include" />
-    <MESSAGE value="Update account management slice to include location" />
-    <MESSAGE value="Update account management slice to include location data" />
-    <MESSAGE value="Update account management slice to include location data and" />
-    <MESSAGE value="Update account management slice to include location data and dispatch" />
-    <MESSAGE value="Update account management slice to include location data and dispatch actions" />
-    <MESSAGE value="Update account management slice to include location data and dispatch actions using" />
-    <MESSAGE value="Update account management slice to include location data and dispatch actions using Redux" />
-    <MESSAGE value="Update account management slice to include location data and dispatch actions using Redux hooks" />
-    <MESSAGE value="Update account management slice to include location data and dispatch actions using Redux hooks." />
-    <MESSAGE value="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks." />
+    <MESSAGE value="Refactor file-category component to" />
+    <MESSAGE value="Refactor file-category component to use" />
+    <MESSAGE value="Refactor file-category component to use new" />
+    <MESSAGE value="Refactor file-category component to use new data" />
+    <MESSAGE value="Refactor file-category component to use new data key" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot;" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot;" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using use" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequest" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGet" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery" />
+    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery." />
+    <MESSAGE value="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
