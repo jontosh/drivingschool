@@ -568,58 +568,59 @@ export const DiscountModalContent = () => {
       >
         {({ values, errors, handleChange, handleSubmit, handleReset }) => (
           <form
-            className={classNames("pb-5 grid gap-y-5 justify-center")}
+            className={classNames("pb-5 grid gap-y-5")}
             onSubmit={handleSubmit}
           >
-            <div className={`flex grid gap-y-5 justify-center`}>
+            <div className={`flex grid gap-y-5`}>
               <CustomInput
                 classNames={
-                  "inline-flex gap-x-7 items-center flex-row-reverse h-[50px]"
+                  "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
                 }
+                className={classNames(
+                  ManagementStyle["CheckModal__form-element__shadow"],
+                  "w-[40%] text-base",
+                )}
+                type={"text"}
                 spanText={"Discount name"}
                 placeholder={"Discount name"}
-                className={"w-60"}
-                fontSize="text-base"
-                spanClassName={`max-w-46`}
-                colorBorder={colorsObject.primary}
+                fontSize={"text-base"}
+                spanClassName={`flex-shrink-0 w-44 text-right relative`}
                 value={values.name}
                 onChange={handleChange}
                 name={"name"}
               />
 
-              <label className={`inline-flex gap-x-7 items-center`}>
-                <span
-                  className={`w-[190px] text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
+              <label className="inline-flex items-center justify-center gap-10 w-full">
+                <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
                   Status:
                 </span>
 
-                <div className="flex-shrink-0">
-                  <CustomSelect
-                    placeholder={"Select status"}
-                    style={{ width: 240 }}
-                    className={"h-[50px]"}
-                    options={StatusSelect}
-                    colorBorder={colorsObject.primary}
-                    value={Status ? Status : undefined}
-                    onChange={handleStatus}
-                  />
-                  {Selections && (
-                    <FormError className="pl-[48%]">Select Status</FormError>
-                  )}
-                </div>
+                <CustomSelect
+                  placeholder={"Select status"}
+                  className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  options={StatusSelect}
+                  value={Status ? Status : undefined}
+                  onChange={handleStatus}
+                />
+
+                {Selections && (
+                  <FormError className="pl-[48%]">Select Status</FormError>
+                )}
               </label>
 
               <CustomInput
                 classNames={
-                  "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
+                  "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
                 }
-                spanText={`Discount code:`}
-                placeholder={`Discount code`}
-                className={"w-60"}
-                fontSize="text-base"
-                spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                colorBorder={colorsObject.primary}
+                className={classNames(
+                  ManagementStyle["CheckModal__form-element__shadow"],
+                  "w-[40%] text-base",
+                )}
+                type={"text"}
+                spanText={"Discount code:"}
+                placeholder={"Discount code"}
+                fontSize={"text-base"}
+                spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
                 value={values.code}
                 onChange={handleChange}
                 name={"code"}
@@ -631,18 +632,20 @@ export const DiscountModalContent = () => {
 
               <CustomInput
                 classNames={
-                  "inline-flex gap-x-7 items-center flex-row-reverse gap-5 h-[50px]"
+                  "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
                 }
-                spanText={`Free Amount:`}
-                placeholder={`Free Amount`}
-                className={"w-60"}
-                fontSize="text-base"
-                spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                colorBorder={colorsObject.primary}
+                className={classNames(
+                  ManagementStyle["CheckModal__form-element__shadow"],
+                  "w-[40%] text-base",
+                )}
+                type={"text"}
+                spanText={"Fee Amount:"}
+                placeholder={"Fee Amount"}
+                fontSize={"text-base"}
+                spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
                 name={"amount"}
                 value={values.amount}
                 onChange={handleChange}
-                type={"number"}
               >
                 {errors.amount && (
                   <FormError className={"pl-[48%]"}>{errors.amount}</FormError>
@@ -651,9 +654,9 @@ export const DiscountModalContent = () => {
             </div>
 
             <div className={`space-y-10`}>
-              <div className={`flex items-center space-x-12`}>
+              <div className={`flex items-center justify-center space-x-12`}>
                 <span
-                  className={`w-[190px] text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  className={`text-base flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
                 >
                   Eligible Service
                 </span>
@@ -666,8 +669,8 @@ export const DiscountModalContent = () => {
                 />
               </div>
 
-              <div className={`flex items-center space-x-12`}>
-                <span className={`w-[190px] text-base text-right`}>
+              <div className={`flex items-center justify-center space-x-12`}>
+                <span className={`text-base flex-shrink-0 w-44 text-right`}>
                   Eligible Class(es):
                 </span>
                 <CustomTransfer
@@ -679,8 +682,8 @@ export const DiscountModalContent = () => {
                 />
               </div>
 
-              <div className={`flex items-center space-x-12`}>
-                <span className={`w-[190px] text-base text-right`}>
+              <div className={`flex items-center justify-center space-x-12`}>
+                <span className={`text-base flex-shrink-0 w-44 text-right`}>
                   Eligible class Location:
                 </span>
                 <CustomTransfer
@@ -694,19 +697,19 @@ export const DiscountModalContent = () => {
             </div>
 
             <label className={"text-center space-x-7"}>
-              <Text fontSize={"text-base"} fontWeightStrong={400}>
+              <Text fontSize={"text-base"} fontWeightStrong={400} className={"w-44 text-right"}>
                 Discount Expiration:
               </Text>
               <>
                 <ConfigProvider
                   theme={{
                     token: {
-                      colorBorder: colorsObject.primary,
-                      controlHeight: 40,
+                      colorBorder: "#667085",
+                      controlHeight: 50,
                     },
                   }}
                 >
-                  <DatePicker onChange={onChange} className="w-60 h-[50px]" />
+                  <DatePicker onChange={onChange} className="w-[40%]" />
                 </ConfigProvider>
               </>
             </label>
