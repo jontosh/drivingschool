@@ -136,14 +136,17 @@ export const ProductModalContent = () => {
           >
             <CustomInput
               classNames={
-                "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
               }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"text"}
               spanText={"Component name"}
               placeholder={"Component name"}
-              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              spanClassName={`w-40 text-right`}
-              fontSize="text-base"
-              colorBorder={colorsObject.primary}
+              fontSize={"text-base"}
+              spanClassName={`flex-shrink-0 w-44 text-right`}
               name={"name"}
               value={values.name}
               onChange={handleChange}
@@ -151,14 +154,17 @@ export const ProductModalContent = () => {
 
             <CustomInput
               classNames={
-                "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
               }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"text"}
               spanText={"Item#/Code:"}
               placeholder={"Item#/Code"}
-              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              spanClassName={`w-40 text-right relative flex-shrink-0 after:left-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize="text-base"
-              colorBorder={colorsObject.primary}
+              fontSize={"text-base"}
+              spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               name={"code"}
               value={values.code}
               onChange={handleChange}
@@ -168,107 +174,91 @@ export const ProductModalContent = () => {
               )}
             </CustomInput>
 
-            <label
-              className={`inline-flex items-center gap-10 w-full justify-center`}
-            >
-              <span
-                className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Status:
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+                Assign to Location
               </span>
 
-              <div className={"flex-shrink-0"}>
-                <CustomSelect
-                  placeholder={"Select status"}
-                  className={`w-[240px] h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={StatusSelect}
-                  colorBorder={colorsObject.primary}
-                  onChange={handleStatus}
-                  value={Status ? Status : undefined}
-                />
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-[40%] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                fontSize={"text-base"}
+                options={StatusSelect}
+                onChange={handleStatus}
+                value={Status ? Status : undefined}
+              />
 
-                {Selections && (
-                  <FormError className={"pl-[48.8%]"}>Select Status:</FormError>
-                )}
-              </div>
+              {Selections && (
+                <FormError className={"pl-[48.8%]"}>Select Status:</FormError>
+              )}
             </label>
+
             <CustomInput
               classNames={
-                "inline-flex gap-x-10 items-center justify-center flex-row-reverse gap-5 h-[50px] w-full"
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
               }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"text"}
               spanText={"Public Name:"}
               placeholder={"Public Name"}
-              className={`w-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-              spanClassName={`w-40 text-right`}
-              fontSize="text-base"
-              colorBorder={colorsObject.primary}
+              fontSize={"text-base"}
+              spanClassName={`flex-shrink-0 w-44 text-right`}
               value={values.paublic_name}
               name={"public_name"}
               onChange={handleChange}
             />
-            <label
-              className={`inline-flex items-center gap-10 w-full justify-center`}
-            >
-              <span
-                className={`w-40 text-right after:left-24 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
                 Type:
               </span>
 
-              <div className={"flex-shrink-0"}>
-                <CustomSelect
-                  placeholder={"Select status"}
-                  className={`w-[240px] h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={[
-                    {
-                      value: "BTW",
-                      label: "BTW",
-                    },
-                    {
-                      value: "CR",
-                      label: "CR",
-                    },
-                    {
-                      value: "WEB",
-                      label: "WEB",
-                    },
-                  ]}
-                  colorBorder={colorsObject.primary}
-                  value={Type ? Type : undefined}
-                  onChange={handleType}
-                />
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={[
+                  {
+                    value: "BTW",
+                    label: "BTW",
+                  },
+                  {
+                    value: "CR",
+                    label: "CR",
+                  },
+                  {
+                    value: "WEB",
+                    label: "WEB",
+                  },
+                ]}
+                value={Type ? Type : undefined}
+                onChange={handleType}
+              />
 
-                {Selections && (
-                  <FormError className={"pl-[48.8%]"}>Select Type</FormError>
-                )}
-              </div>
+              {Selections && (
+                <FormError className={"pl-[48.8%]"}>Select Type</FormError>
+              )}
             </label>
-            <label
-              className={`inline-flex items-center gap-10 w-full justify-center`}
-            >
-              <span
-                className={`w-40 text-right after:left-16 relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
                 Sub Type:
               </span>
 
-              <div className={"flex-shrink-0"}>
-                <CustomSelect
-                  placeholder={"Select status"}
-                  className={`w-[240px] h-[50px] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  options={[
-                    { value: "ADULT BTW", label: "ADULT BTW" },
-                    { value: "CORP BTW", label: "CORP BTW" },
-                  ]}
-                  colorBorder={colorsObject.primary}
-                  value={SubType ? SubType : undefined}
-                  onChange={handleSubType}
-                />
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={[
+                  { value: "ADULT BTW", label: "ADULT BTW" },
+                  { value: "CORP BTW", label: "CORP BTW" },
+                ]}
+                value={SubType ? SubType : undefined}
+                onChange={handleSubType}
+              />
 
-                {Selections && (
-                  <FormError className={"pl-[48.8%]"}>Select Subtype</FormError>
-                )}
-              </div>
+              {Selections && (
+                <FormError className={"pl-[48.8%]"}>Select Subtype</FormError>
+              )}
             </label>
             <div className="text-center space-x-5">
               <ButtonComponent

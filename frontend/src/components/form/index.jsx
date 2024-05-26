@@ -62,7 +62,7 @@ export const CustomInput = ({
   spanClassName,
   type = "text",
   children,
-  colorBorder = "#000",
+  colorBorder = "#667085",
   fontSize = "text-sm",
   ...props
 }) => {
@@ -82,7 +82,7 @@ export const CustomInput = ({
       >
         <label className={props.classNames} {...props}>
           <Input
-            className={`h-full focus:border-[1px] focus:border-solid focus:border-[#5f66e9] ${className}`}
+            className={`h-[50px] focus:border-[1px] focus:border-solid focus:border-[#5f66e9] ${className}`}
             type={type}
             value={value}
             name={name}
@@ -150,7 +150,7 @@ export const CustomSelect = ({
         }}
       >
         <Select
-          className={`${classNames(className)} rounded`}
+          className={`${classNames(className)} rounded-lg h-[50px]`}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
