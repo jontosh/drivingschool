@@ -1301,7 +1301,7 @@ export const AddServiceModalContent = () => {
                   </span>
                   <div className="w-full">
                     <CustomSelect
-                      className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
+                      className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]} h-[50px]`}
                       placeholder={"Service Status"}
                       value={AssociateContract ? AssociateContract : undefined}
                       onChange={handleAssociateContract}
@@ -1418,14 +1418,18 @@ export const FileCategoryModalContent = () => {
       {({ handleReset, errors, handleChange, values, handleSubmit }) => (
         <form className="flex gap-5 flex-col px-5" onSubmit={handleSubmit}>
           <CustomInput
-            className={"border-indigo-700 border w-[451px] shadow-xl"}
             classNames={
-              "inline-flex justify-center h-[50px] items-center flex-row-reverse gap-5"
+              "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
             }
+            className={classNames(
+              ManagementStyle["CheckModal__form-element__shadow"],
+              "w-[40%] text-base",
+            )}
+            type={"text"}
             spanText={"Category name"}
-            spanClassName={"font-semibold flex-shrink-0"}
-            fontSize={"text-base"}
             placeholder={"Category name"}
+            fontSize={"text-base"}
+            spanClassName={`flex-shrink-0 w-44 text-right font-semibold`}
             name={"name"}
             onChange={handleChange}
             value={values.name}
@@ -1435,34 +1439,28 @@ export const FileCategoryModalContent = () => {
             )}
           </CustomInput>
 
-          <label className={"inline-flex justify-center items-center gap-5"}>
-            <span
-              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
-            >
+          <label className="inline-flex items-center justify-center gap-10 w-full">
+            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
               File status
             </span>
 
-            <div className={"w-[451px]"}>
-              <CustomSelect
-                placeholder={"Select"}
-                colorBorder={colorsObject.primary}
-                className={"w-full h-[50px] shadow-xl"}
-                options={[
-                  {
-                    value: "active",
-                    label: "active",
-                  },
-                ]}
-                onChange={handleStatus}
-                value={Status ? Status : undefined}
-              />
-            </div>
+            <CustomSelect
+              placeholder={"Select"}
+              className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+              fontSize={"text-base"}
+              options={[
+                {
+                  value: "active",
+                  label: "active",
+                },
+              ]}
+              onChange={handleStatus}
+              value={Status ? Status : undefined}
+            />
           </label>
 
-          <label className={"inline-flex justify-center items-center gap-5"}>
-            <span
-              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
-            >
+          <label className="inline-flex items-center justify-center gap-10 w-full">
+            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
               Packages:
             </span>
 
@@ -1476,17 +1474,15 @@ export const FileCategoryModalContent = () => {
             />
           </label>
 
-          <label className={"inline-flex justify-center items-center gap-5"}>
-            <span
-              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
-            >
+          <label className="inline-flex items-center justify-center gap-10 w-full">
+            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
               Signature link:
             </span>
 
             <div className={"w-[451px]"}>
               <textarea
                 className={
-                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px] shadow-xl"
+                  `w-full outline-0 border border-solid border-[#667085] p-5 rounded-2xl min-h-[90px] shadow-xl ${ManagementStyle["CheckModal__form-element__shadow"]}`
                 }
                 name={"signature_link"}
                 placeholder={"text"}
@@ -1496,17 +1492,15 @@ export const FileCategoryModalContent = () => {
             </div>
           </label>
 
-          <label className={"inline-flex justify-center items-center gap-5"}>
-            <span
-              className={"font-semibold text-end w-32 flex-shrink-0 text-base"}
-            >
+          <label className="inline-flex items-center justify-center gap-10 w-full">
+            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
               Note:
             </span>
 
             <div className={"w-[451px]"}>
               <textarea
                 className={
-                  "border w-full outline-0 border-indigo-700 p-5 rounded-2xl min-h-[90px] shadow-xl"
+                  `w-full outline-0 border border-solid border-[#667085] p-5 rounded-2xl min-h-[90px] shadow-xl ${ManagementStyle["CheckModal__form-element__shadow"]}`
                 }
                 name={"note"}
                 placeholder={"text"}
@@ -1621,8 +1615,9 @@ export const FileCategoryModalContent = () => {
             </ButtonComponent>
           </div>
         </form>
-      )}
-    </Formik>
+      )
+      }
+    </Formik >
   );
 };
 
@@ -2384,7 +2379,7 @@ export const LocationModalContent = () => {
               <div className={"space-y-5"}>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2392,19 +2387,18 @@ export const LocationModalContent = () => {
                   spanText={"Location name"}
                   placeholder={"Location name"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  colorBorder={colorsObject.primary}
                   name={"name"}
                   value={values.name}
                   onChange={handleChange}
                 >
                   {errors.name && (
-                    <FormError className="pl-[160px]">{errors.name}</FormError>
+                    <FormError className="pl-[170px]">{errors.name}</FormError>
                   )}
                 </CustomInput>
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2412,17 +2406,16 @@ export const LocationModalContent = () => {
                   spanText={"Location code"}
                   placeholder={"Location Code"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  colorBorder={colorsObject.primary}
                   name={"code"}
                   value={values.code}
                   onChange={handleChange}
                 >
                   {errors.code && (
-                    <FormError className="pl-[160px]">{errors.code}</FormError>
+                    <FormError className="pl-[170px]">{errors.code}</FormError>
                   )}
                 </CustomInput>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
@@ -2431,8 +2424,7 @@ export const LocationModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Location Status"}
-                      colorBorder={colorsObject.primary}
-                      className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={StatusSelect}
                       onChange={handleStatus}
                       value={Status ? Status : undefined}
@@ -2442,7 +2434,7 @@ export const LocationModalContent = () => {
                     )}
                   </div>
                 </label>
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
@@ -2527,7 +2519,7 @@ export const LocationModalContent = () => {
                       </CustomRadio>
 
                       <CustomRadio
-                        className={"space-x-2.5 "}
+                        className={"space-x-2.5"}
                         classNames={"inline-flex items-center gap-2.5"}
                         customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                         name={"type"}
@@ -2547,7 +2539,7 @@ export const LocationModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2555,14 +2547,13 @@ export const LocationModalContent = () => {
                   spanText={"Address"}
                   placeholder={"Address"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"address"}
                   onChange={handleChange}
                   value={values.address}
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2570,14 +2561,13 @@ export const LocationModalContent = () => {
                   spanText={"City"}
                   placeholder={"City"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"city"}
                   onChange={handleChange}
                   value={values.city}
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2585,14 +2575,13 @@ export const LocationModalContent = () => {
                   spanText={"State"}
                   placeholder={"State"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"state"}
                   onChange={handleChange}
                   value={values.state}
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2600,14 +2589,13 @@ export const LocationModalContent = () => {
                   spanText={"Zip"}
                   placeholder={"Zip"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"zip"}
                   onChange={handleChange}
                   value={values.zip}
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2615,12 +2603,11 @@ export const LocationModalContent = () => {
                   spanText={"Location Manager"}
                   placeholder={"Location Manager"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"location_manager"}
                   onChange={handleChange}
                   value={values.location_manager}
                 />
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
@@ -2629,7 +2616,6 @@ export const LocationModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Pickup location"}
-                      colorBorder={colorsObject.primary}
                       className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={[
                         {
@@ -2642,11 +2628,11 @@ export const LocationModalContent = () => {
                     />
 
                     {Selections && (
-                      <FormError>Pickup location is not selected</FormError>
+                      <FormError className="pl-[170px]">Pickup location is not selected</FormError>
                     )}
                   </div>
                 </label>
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
@@ -2655,7 +2641,6 @@ export const LocationModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Drop off location"}
-                      colorBorder={colorsObject.primary}
                       className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={[
                         {
@@ -2668,13 +2653,13 @@ export const LocationModalContent = () => {
                     />
 
                     {Selections && (
-                      <FormError>Drop off location is not selected</FormError>
+                      <FormError className="pl-[170px]">Drop off location is not selected</FormError>
                     )}
                   </div>
                 </label>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2682,14 +2667,13 @@ export const LocationModalContent = () => {
                   spanText={"County"}
                   placeholder={"County"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"county"}
                   onChange={handleChange}
                   value={values.county}
                 />
               </div>
               <div className={"space-y-5"}>
-                <label className="flex itmes-center gap-x-8">
+                <label className="flex itmes-center gap-x-10">
                   <span className="w-32 flex-shrink-0"></span>
                   <CustomCheckBox
                     className={"space-x-2.5 w-full"}
@@ -2702,7 +2686,7 @@ export const LocationModalContent = () => {
                     </span>
                   </CustomCheckBox>
                 </label>
-                <label className="flex itmes-center gap-x-8">
+                <label className="flex itmes-center gap-x-10">
                   <span className="w-32 flex-shrink-0"></span>
                   <CustomCheckBox
                     className={"space-x-2.5 w-full"}
@@ -2717,7 +2701,7 @@ export const LocationModalContent = () => {
                 </label>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2725,14 +2709,13 @@ export const LocationModalContent = () => {
                   spanText={"Phone Main"}
                   placeholder={"Phone Main"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"phone_main"}
                   value={values.phone_main}
                   onChange={handleChange}
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2740,12 +2723,11 @@ export const LocationModalContent = () => {
                   spanText={"Fax"}
                   placeholder={"Fax"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"fax"}
                   value={values.fax}
                   onChange={handleChange}
                 />
-                <label className="inline-flex justify-end gap-8 items-center w-full">
+                <label className="inline-flex justify-end gap-10 items-center w-full">
                   <span className="text-right text-sm font-medium">
                     Area Coverage
                   </span>
@@ -2757,7 +2739,7 @@ export const LocationModalContent = () => {
                     selectedKeys={AreaCoverage}
                   />
                 </label>
-                <label className="inline-flex justify-end gap-8 items-center w-full">
+                <label className="inline-flex justify-end gap-10 items-center w-full">
                   <span className="text-sm flex-shrink-0 font-medium w-32 text-right">
                     Location note
                   </span>
@@ -2771,7 +2753,7 @@ export const LocationModalContent = () => {
                     />
                   </div>
                 </label>
-                <label className="flex itmes-center gap-x-8">
+                <label className="flex itmes-center gap-x-10">
                   <span className="w-32 flex-shrink-0"></span>
                   <CustomCheckBox
                     className={"space-x-2.5 w-full"}
@@ -2784,7 +2766,7 @@ export const LocationModalContent = () => {
                     </span>
                   </CustomCheckBox>
                 </label>
-                <label className="flex items-center gap-4 justify-center">
+                <label className="flex items-center gap-6 justify-center">
                   <span className="text-sm flex-shrink-0 font-medium w-32 text-end ml-4">
                     Color picker
                   </span>
@@ -2796,17 +2778,15 @@ export const LocationModalContent = () => {
                     onChange={handleChange}
                     name={"color"}
                     value={values.color}
-                    colorBorder={colorsObject.primary}
                   />
                   <CustomInput
                     classNames={`w-full h-[50px] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     onChange={handleChange}
                     name={"color"}
                     value={values.color}
-                    colorBorder={colorsObject.primary}
                   />
                 </label>
-                <label className="flex itmes-center gap-x-8">
+                <label className="flex itmes-center gap-x-10">
                   <span className="w-32 flex-shrink-0"></span>
                   <CustomCheckBox
                     className={"space-x-2.5 w-full"}
@@ -2822,7 +2802,7 @@ export const LocationModalContent = () => {
                 <CustomInput
                   type={"number"}
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2830,14 +2810,13 @@ export const LocationModalContent = () => {
                   spanText={"Distance Coverage in Miles"}
                   placeholder={"Distance Coverage in Miles"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   value={values.distance_based_scheduling}
                   onChange={handleChange}
                   name={"distance_based_scheduling"}
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -2845,7 +2824,6 @@ export const LocationModalContent = () => {
                   spanText={"Provider Location Id"}
                   placeholder={"Provider Location Id"}
                   spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"provider_location_id"}
                   value={values.provider_location_id}
                   onChange={handleChange}
@@ -2986,7 +2964,7 @@ export const AddSchoolModalContent = () => {
               <div className={"space-y-5"}>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3000,11 +2978,11 @@ export const AddSchoolModalContent = () => {
                   value={values.name}
                 >
                   {errors.name && (
-                    <FormError className="pl-[145px]">{errors.name}</FormError>
+                    <FormError className="pl-[154px]">{errors.name}</FormError>
                   )}
                 </CustomInput>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-28 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
@@ -3021,7 +2999,7 @@ export const AddSchoolModalContent = () => {
                     />
 
                     {Selections && (
-                      <FormError className="pl-[35%]">
+                      <FormError className="pl-[154px]">
                         School Status is not selected
                       </FormError>
                     )}
@@ -3030,7 +3008,7 @@ export const AddSchoolModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3045,7 +3023,7 @@ export const AddSchoolModalContent = () => {
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3060,7 +3038,7 @@ export const AddSchoolModalContent = () => {
                 />
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3074,7 +3052,7 @@ export const AddSchoolModalContent = () => {
                   value={values.city}
                 />
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-28 text-right`}
                   >
@@ -3097,7 +3075,7 @@ export const AddSchoolModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3114,7 +3092,7 @@ export const AddSchoolModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   type={"email"}
                   className={
@@ -3129,12 +3107,12 @@ export const AddSchoolModalContent = () => {
                   value={values.email}
                 >
                   {errors.email && (
-                    <FormError className="pl-[145px]">{errors.email}</FormError>
+                    <FormError className="pl-[154px]">{errors.email}</FormError>
                   )}
                 </CustomInput>
               </div>
               <div>
-                <label className="inline-flex justify-end gap-8 items-center w-full">
+                <label className="inline-flex justify-end gap-10 items-center w-full">
                   <span
                     className={
                       "text-sm flex-shrink-0 font-medium w-32 text-right"
@@ -3275,7 +3253,7 @@ export const HowHearModalContent = () => {
               <div className={"space-y-5"}>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3283,17 +3261,16 @@ export const HowHearModalContent = () => {
                   spanText={"Lead Name"}
                   placeholder={"Lead Name"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right  relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  colorBorder={colorsObject.primary}
                   name={"name"}
                   onChange={handleChange}
                   value={values.name}
                 >
                   {errors.name && (
-                    <FormError className="pl-[145px]">{errors.name}</FormError>
+                    <FormError className="pl-[154px]">{errors.name}</FormError>
                   )}
                 </CustomInput>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-28 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
@@ -3310,7 +3287,7 @@ export const HowHearModalContent = () => {
                       value={Status ? Status : undefined}
                     />
                     {Selections && (
-                      <FormError className="pl-[145px]">
+                      <FormError className="pl-[154px]">
                         Lead Status is not selected
                       </FormError>
                     )}
@@ -3319,7 +3296,7 @@ export const HowHearModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3333,7 +3310,7 @@ export const HowHearModalContent = () => {
                   value={values.code}
                 />
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-28 text-right`}
                   >
@@ -3347,7 +3324,7 @@ export const HowHearModalContent = () => {
                 </label>
               </div>
               <div>
-                <label className="inline-flex justify-end gap-8 items-center w-full">
+                <label className="inline-flex justify-end gap-10 items-center w-full">
                   <span
                     className={
                       "text-sm flex-shrink-0 font-medium w-32 text-right"
@@ -3503,7 +3480,7 @@ export const VehiclesModalContent = () => {
               <div className={"space-y-5"}>
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3511,17 +3488,16 @@ export const VehiclesModalContent = () => {
                   spanText={"Vehicle Name"}
                   placeholder={"Vehicle Name"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  colorBorder={colorsObject.primary}
                   name={"name"}
                   value={values.name}
                   onChange={handleChange}
                 >
                   {errors.name && (
-                    <FormError className="pl-[145px]">{errors.name}</FormError>
+                    <FormError className="pl-[154px]">{errors.name}</FormError>
                   )}
                 </CustomInput>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-28 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
@@ -3530,21 +3506,20 @@ export const VehiclesModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Vehicle Status"}
-                      colorBorder={colorsObject.primary}
-                      className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={StatusSelect}
                       value={Status ? Status : undefined}
                       onChange={handleStatus}
                     />
                     {Selections && (
-                      <FormError className="pl-[145px]">
+                      <FormError className="pl-[154px]">
                         Vehicle Status is not selected
                       </FormError>
                     )}
                   </div>
                 </label>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-28 text-right`}
                   >
@@ -3552,7 +3527,6 @@ export const VehiclesModalContent = () => {
                   </span>
                   <CustomSelect
                     placeholder={"At Location"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
@@ -3565,7 +3539,7 @@ export const VehiclesModalContent = () => {
                   />
                 </label>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span
                     className={`text-sm flex-shrink-0 font-medium w-28 text-right`}
                   >
@@ -3573,7 +3547,6 @@ export const VehiclesModalContent = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Vehicle Type"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
@@ -3592,7 +3565,7 @@ export const VehiclesModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3600,7 +3573,6 @@ export const VehiclesModalContent = () => {
                   spanText={"Vehicle No"}
                   placeholder={"Vehicle No"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"number"}
                   value={values.number}
                   onChange={handleChange}
@@ -3608,7 +3580,7 @@ export const VehiclesModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3616,7 +3588,6 @@ export const VehiclesModalContent = () => {
                   spanText={"Vehicle Make"}
                   placeholder={"Vehicle Make"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"make"}
                   value={values.make}
                   onChange={handleChange}
@@ -3624,7 +3595,7 @@ export const VehiclesModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3632,7 +3603,6 @@ export const VehiclesModalContent = () => {
                   spanText={"License Plate"}
                   placeholder={"License Plate"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"plate"}
                   value={values.plate}
                   onChange={handleChange}
@@ -3640,7 +3610,7 @@ export const VehiclesModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3648,19 +3618,18 @@ export const VehiclesModalContent = () => {
                   spanText={"VIN#"}
                   placeholder={"VIN#"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"vin"}
                   value={values.vin}
                   onChange={handleChange}
                 />
               </div>
               <div className={"space-y-5"}>
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-10 items-center w-full">
                   <span className={"flex-shrink-0 w-28 text-right"}>
                     Appointment Color
                   </span>
 
-                  <div className="flex flex-grow items-center gap-4">
+                  <div className="flex flex-grow items-center gap-6">
                     <CustomInput
                       type={"color"}
                       name={"color"}
@@ -3668,12 +3637,10 @@ export const VehiclesModalContent = () => {
                       value={values.color}
                       className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       classNames={"w-14"}
-                      colorBorder={colorsObject.primary}
                     />
                     <CustomInput
                       value={values.color}
                       classNames="w-full h-[50px]"
-                      colorBorder={colorsObject.primary}
                       className={
                         ManagementStyle["CheckModal__form-element__shadow"]
                       }
@@ -3681,14 +3648,14 @@ export const VehiclesModalContent = () => {
                   </div>
                 </label>
 
-                <label className="flex itmes-center gap-x-8">
+                <label className="flex itmes-center gap-x-10">
                   <span className="w-28 flex-shrink-0"></span>
                   <CustomCheckBox name={"has_color"} onChange={handleChange}>
                     <span>Enable Appointment Color</span>
                   </CustomCheckBox>
                 </label>
 
-                <label className="inline-flex justify-end gap-8 items-center w-full">
+                <label className="inline-flex justify-end gap-10 items-center w-full">
                   <span
                     className={
                       "text-sm font-medium w-28 flex-shrink-0 text-right"
@@ -3710,7 +3677,7 @@ export const VehiclesModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3718,7 +3685,6 @@ export const VehiclesModalContent = () => {
                   spanText={"Vehicle ESN Or AIR ID"}
                   placeholder={"Vehicle ESN Or AIR ID"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"asr_esn_id"}
                   value={values.asr_esn_id}
                   onChange={handleChange}
@@ -3726,7 +3692,7 @@ export const VehiclesModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3734,7 +3700,6 @@ export const VehiclesModalContent = () => {
                   spanText={"Odometer Value"}
                   placeholder={"Odometer Value"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"odometer"}
                   onChange={handleChange}
                   value={values.odometer}
@@ -3743,7 +3708,7 @@ export const VehiclesModalContent = () => {
 
                 <CustomInput
                   classNames={
-                    "inline-flex flex-row-reverse gap-8 items-center w-full h-[50px]"
+                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
                   }
                   className={
                     ManagementStyle["CheckModal__form-element__shadow"]
@@ -3751,14 +3716,13 @@ export const VehiclesModalContent = () => {
                   spanText={"Vehicle Initial Mileage"}
                   placeholder={"Vehicle Initial Mileage"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"initial_mileage"}
                   value={values.initial_mileage}
                   onChange={handleChange}
                   type={"number"}
                 />
 
-                <label className="inline-flex justify-end gap-8 items-center w-full">
+                <label className="inline-flex justify-end gap-10 items-center w-full">
                   <span
                     className={
                       "text-sm font-medium w-28 flex-shrink-0 text-right"
@@ -3768,7 +3732,7 @@ export const VehiclesModalContent = () => {
                   </span>
 
                   <FileReaderResult
-                    className={`overflow-hidden w-60 h-60 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`overflow-hidden w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   />
                 </label>
               </div>
