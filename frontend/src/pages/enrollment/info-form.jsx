@@ -101,17 +101,11 @@ export const InfoForm = () => {
   const handlePronoun = (value) => setPronoun(value);
   const handleLead = (value) => setLead(value);
   const handleDLIssued = (day) =>
-    setDLIssued(
-      `${day["$y"]}-${Number(parseInt(day["$M"]) + 1) > 9 ? parseInt(day["$M"]) + 1 : "0" + (parseInt(day["$M"]) + 1)}-${day["$D"]}`,
-    );
+    setDLIssued(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
   const handleDLExpireDate = (day) =>
-    setDLExpireDate(
-      `${day["$y"]}-${Number(parseInt(day["$M"]) + 1) > 9 ? parseInt(day["$M"]) + 1 : "0" + (parseInt(day["$M"]) + 1)}-${day["$D"]}`,
-    );
+    setDLExpireDate(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
   const handleExtinctionDate = (day) =>
-    setExtinctionDate(
-      `${day["$y"]}-${Number(parseInt(day["$M"]) + 1) > 9 ? parseInt(day["$M"]) + 1 : "0" + (parseInt(day["$M"]) + 1)}-${day["$D"]}`,
-    );
+    setExtinctionDate(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
 
   useEffect(() => {
     let options = [];
@@ -151,7 +145,7 @@ export const InfoForm = () => {
     }
 
     return state;
-  }, [State, Staff, AssignLocation, HighSchool, Lead, Pronoun]);
+  }, [Staff, AssignLocation, State, Pronoun, HighSchool, Lead]);
 
   const handleSubmit = async (values) => {
     setSelectSubmit(!stateSelects);
@@ -182,14 +176,14 @@ export const InfoForm = () => {
         if (response.error.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
-          console.log("failed");
         } else {
           dispatch({ type: "SUCCESS", setIsOpen });
           setIsOpen(true);
-          console.log("ok");
         }
       } catch (error) {
         console.error(error?.message);
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -206,7 +200,7 @@ export const InfoForm = () => {
           city: "",
           zip: "",
           home_phone: "",
-          home_phone_2: "",
+          cell_phone: "",
           gender: "",
           email: "",
           dl_permit: "",
@@ -218,6 +212,7 @@ export const InfoForm = () => {
           parent_2_name: "",
           parent_2_phone: "",
           parent_2_email: "",
+          username: "",
           home_drop_off: false,
           read_and_agreed: false,
         }}
@@ -481,27 +476,28 @@ export const InfoForm = () => {
                     </div>
                   </label>
 
-                  <div>
-                    <CustomCheckBox
-                      className={
-                        "inline-flex flex-row-reverse items-center justify-end w-full h-[50px]"
-                      }
-                      classNames={"w-[40px] h-[40px]"}
-                      name={"home_phone_2"}
-                      onChange={handleChange}
-                      value={"+www"}
-                    >
-                      <span className={`text-base flex-shrink-0 w-44`}>
-                        Home Phone
-                      </span>
-                    </CustomCheckBox>
-
-                    {errors.error && (
-                      <FormError className={"pl-44"}>
-                        Select Home phone
-                      </FormError>
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                    }
+                    className={classNames(
+                      ManagementStyle["CheckModal__form-element__shadow"],
+                      "w-full text-base",
                     )}
-                  </div>
+                    type={"text"}
+                    spanText={"Cell phone"}
+                    placeholder={"Cell phone"}
+                    fontSize={"text-base"}
+                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-6 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    colorBorder={colorsObject.primary}
+                    value={values.cell_phone}
+                    onChange={handleChange}
+                    name={"cell_phone"}
+                  >
+                    {errors.error && (
+                      <FormError className={"pl-44"}>{errors.error}</FormError>
+                    )}
+                  </CustomInput>
 
                   <CustomInput
                     classNames={
@@ -886,6 +882,24 @@ export const InfoForm = () => {
                     onChange={handleChange}
                     name={"parent_2_email"}
                     value={values.parent_2_email}
+                  />
+
+                  <CustomInput
+                    classNames={
+                      "inline-flex flex-row-reverse items-center w-full h-[50px]"
+                    }
+                    className={classNames(
+                      ManagementStyle["CheckModal__form-element__shadow"],
+                      "w-full text-base",
+                    )}
+                    spanText={"User Name"}
+                    placeholder={"Parent Email"}
+                    fontSize={"text-base"}
+                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
+                    colorBorder={colorsObject.primary}
+                    onChange={handleChange}
+                    name={"username"}
+                    value={values.username}
                   />
 
                   <div>

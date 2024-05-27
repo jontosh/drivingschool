@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/select-options.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +103,8 @@
       <workItem from="1716661832131" duration="9170000" />
       <workItem from="1716702728152" duration="7077000" />
       <workItem from="1716753358331" duration="13398000" />
+      <workItem from="1716767352509" duration="346000" />
+      <workItem from="1716798370501" duration="8236000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -140,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716674769197</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling.">
+      <option name="closed" value="true" />
+      <created>1716767392285</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716767392285</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,32 +164,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor file-category component to" />
-    <MESSAGE value="Refactor file-category component to use" />
-    <MESSAGE value="Refactor file-category component to use new" />
-    <MESSAGE value="Refactor file-category component to use new data" />
-    <MESSAGE value="Refactor file-category component to use new data key" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot;" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot;" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using use" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequest" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGet" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery" />
-    <MESSAGE value="Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery." />
-    <MESSAGE value="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery." />
+    <MESSAGE value="- Refactor components to include a" />
+    <MESSAGE value="- Refactor components to include a DatePicker" />
+    <MESSAGE value="- Refactor components to include a DatePicker for" />
+    <MESSAGE value="- Refactor components to include a DatePicker for improved" />
+    <MESSAGE value="- Refactor components to include a DatePicker for improved user" />
+    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction" />
+    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and" />
+    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and form" />
+    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and form handling" />
+    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- &#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Ref&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new state&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new state management&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new state management and&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new state management and optimize&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new state management and optimize form&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new state management and optimize form inputs&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="- Refactor component to utilize new state management and optimize form inputs.&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

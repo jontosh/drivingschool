@@ -46,13 +46,13 @@ const reducer = (state, action) => {
     case "SUCCESS": {
       return {
         ...state,
-        status: <AlertSuccess />,
+        status: <AlertSuccess setIsOpen={action.setIsOpen} />,
       };
     }
     case "ERROR": {
       return {
         ...state,
-        status: <AlertError />,
+        status: <AlertError setIsOpen={action.setIsOpen} />,
       };
     }
 
@@ -70,7 +70,8 @@ export const ProductModalContent = () => {
   const [Type, setType] = useState("");
   const [SubType, setSubType] = useState("");
   const [Selections, setSelections] = useState(false);
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
   // dep
   const selects = [Status, Type, SubType];
   const stateSelects = useMemo(() => {
@@ -105,15 +106,18 @@ export const ProductModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
 
         // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.error(error.message);
-        dispatch({ type: "ERROR" });
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -175,7 +179,9 @@ export const ProductModalContent = () => {
             </CustomInput>
 
             <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+              <span
+                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
                 Assign to Location
               </span>
 
@@ -211,7 +217,9 @@ export const ProductModalContent = () => {
               onChange={handleChange}
             />
             <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+              <span
+                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
                 Type:
               </span>
 
@@ -241,7 +249,9 @@ export const ProductModalContent = () => {
               )}
             </label>
             <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+              <span
+                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
                 Sub Type:
               </span>
 
@@ -298,13 +308,14 @@ export const ProductModalContent = () => {
           </form>
         )}
       </Formik>
-      {state.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
 
 export const FeesModalContent = () => {
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
   const { colorsObject } = useContext(ColorsContext);
   const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
@@ -338,13 +349,16 @@ export const FeesModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
       } catch (error) {
         console.error(error.message);
-        dispatch({ type: "ERROR" });
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -390,7 +404,9 @@ export const FeesModalContent = () => {
             />
 
             <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+              <span
+                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
                 Status:
               </span>
 
@@ -477,14 +493,15 @@ export const FeesModalContent = () => {
           </form>
         )}
       </Formik>
-      {state.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
 
 export const DiscountModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
   const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
@@ -533,15 +550,16 @@ export const DiscountModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
-
-        // dispatch({ type: "SUCCESS" });
       } catch (error) {
         console.error(error.message);
-        dispatch({ type: "ERROR" });
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -591,7 +609,9 @@ export const DiscountModalContent = () => {
               />
 
               <label className="inline-flex items-center justify-center gap-10 w-full">
-                <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+                <span
+                  className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+                >
                   Status:
                 </span>
 
@@ -697,7 +717,11 @@ export const DiscountModalContent = () => {
             </div>
 
             <label className={"text-center space-x-7"}>
-              <Text fontSize={"text-base"} fontWeightStrong={400} className={"w-44 text-right"}>
+              <Text
+                fontSize={"text-base"}
+                fontWeightStrong={400}
+                className={"w-44 text-right"}
+              >
                 Discount Expiration:
               </Text>
               <>
@@ -747,7 +771,7 @@ export const DiscountModalContent = () => {
           </form>
         )}
       </Formik>
-      {state.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -758,7 +782,8 @@ export const MiscellaneousModalContent = () => {
   const [Status, setStatus] = useState("");
   const [SubType, setSubType] = useState("");
   const [Selections, setSelections] = useState(false);
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
   // dep
   const selects = [Status, SubType];
@@ -781,10 +806,12 @@ export const MiscellaneousModalContent = () => {
     if (!stateSelects) {
       try {
         console.log({ ...values, status: Status, subtype: SubType });
-        dispatch({ type: "SUCCESS" });
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
       } catch (error) {
         console.error(error?.message);
-        dispatch({ type: "ERROR" });
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -911,7 +938,7 @@ export const MiscellaneousModalContent = () => {
           </form>
         )}
       </Formik>
-      {state.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -930,7 +957,8 @@ export const AddServiceModalContent = () => {
   const [ServiceItems, setServiceItems] = useState([]);
   const [AddOnServices, setAddOnServices] = useState([]);
   const [Discount, setDiscount] = useState([]);
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
   // dep
   const selects = [Status];
@@ -969,15 +997,16 @@ export const AddServiceModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
-
-        // dispatch({ type: "SUCCESS" });
       } catch (error) {
-        console.error(error);
-        dispatch({ type: "ERROR" });
+        console.error(error.message);
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -1373,7 +1402,7 @@ export const AddServiceModalContent = () => {
           </form>
         )}
       </Formik>
-      {state.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -1640,7 +1669,8 @@ export const AddStaffModalContent = () => {
   const [PermitIssueDate, setPermitIssueDate] = useState("");
   const [PermitExpirationDate, setPermitExpirationDate] = useState("");
   const [requestPost] = useRequestPostMutation();
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
   // func
   const handleSubmit = async (values) => {
@@ -1663,28 +1693,16 @@ export const AddStaffModalContent = () => {
       });
 
       if (res.error.status >= 400) {
-        dispatch({ type: "ERROR" });
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       } else {
-        console.log({
-          ...values,
-          status: Status,
-          staff_type: StaffType,
-          location: Location,
-          state: State,
-          vehicle: Vehicle,
-          picture: Result,
-          birth: DOB,
-          car_permit_data: PermitIssueDate,
-          car_permit_expire: PermitExpirationDate,
-          working_hours: [],
-        });
-
-        dispatch({ type: "SUCCESS" });
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
       }
-      dispatch({ type: "SUCCESS" });
-    } catch (e) {
-      console.error(e.message);
-      dispatch({ type: "ERROR" });
+    } catch (error) {
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
     }
   };
 
@@ -2275,7 +2293,7 @@ export const AddStaffModalContent = () => {
           </form>
         )}
       </Formik>
-      {state?.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -2290,7 +2308,8 @@ export const LocationModalContent = () => {
   const [NotesValue, setNotesValue] = useState("Hello");
   const [Selections, setSelections] = useState(false);
   const [AreaCoverage, setAreaCoverage] = useState([]);
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
   // dep
   const selects = [Status, PickupLocation, DropOffLocation];
@@ -2326,15 +2345,16 @@ export const LocationModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
-
-        // dispatch({ type: "SUCCESS" });
       } catch (error) {
-        console.error(error?.message);
-        dispatch({ type: "ERROR" });
+        console.error(error.message);
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -2897,7 +2917,7 @@ export const LocationModalContent = () => {
           </form>
         )}
       </Formik>
-      {state?.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -2910,7 +2930,8 @@ export const AddSchoolModalContent = () => {
   const [State, setState] = useState("");
   const [Selections, setSelections] = useState(false);
   const [requestPost] = useRequestPostMutation();
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
   // dep
   const selects = [Status];
@@ -2947,15 +2968,16 @@ export const AddSchoolModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
-
-        // dispatch({ type: "SUCCESS" });
       } catch (error) {
-        console.log(error?.message);
-        dispatch({ type: "ERROR" });
+        console.error(error.message);
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -3199,7 +3221,7 @@ export const AddSchoolModalContent = () => {
           </form>
         )}
       </Formik>
-      {state?.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -3212,7 +3234,8 @@ export const HowHearModalContent = () => {
   const [Status, setStatus] = useState("");
   const [Expiration, setExpiration] = useState("");
   const [Selections, setSelections] = useState(false);
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
   // dep
   const selects = [Status];
@@ -3249,13 +3272,16 @@ export const HowHearModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
       } catch (error) {
-        console.error(error?.message);
-        dispatch({ type: "ERROR" });
+        console.error(error.message);
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -3412,7 +3438,7 @@ export const HowHearModalContent = () => {
           </form>
         )}
       </Formik>
-      {state?.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -3427,7 +3453,8 @@ export const VehiclesModalContent = () => {
   const [Selections, setSelections] = useState(false);
   const { FileReaderResult, Result } = useFileReader();
   const [NotesValue, setNotesValue] = useState("Hello");
-  const [state, dispatch] = useReducer(reducer, { status: false });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
   // dep
   const selects = [Status];
@@ -3463,14 +3490,16 @@ export const VehiclesModalContent = () => {
         });
 
         if (res.error.status >= 400) {
-          dispatch({ type: "ERROR" });
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS" });
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
         }
-        // dispatch({ type: "SUCCESS" });
       } catch (error) {
-        console.error(error?.message);
-        dispatch({ type: "ERROR" });
+        console.error(error.message);
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
       }
     }
   };
@@ -3817,7 +3846,7 @@ export const VehiclesModalContent = () => {
           </form>
         )}
       </Formik>
-      {state?.status}
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
