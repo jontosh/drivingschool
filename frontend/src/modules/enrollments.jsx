@@ -77,7 +77,7 @@ export const FormValidate = (values) => {
     !values.address ||
     !values.zip ||
     !values.home_phone ||
-    !values.home_phone_2 ||
+    !values.cell_phone ||
     !values.gender ||
     !values.dl_permit ||
     !values.scheduling ||
