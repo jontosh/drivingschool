@@ -150,7 +150,7 @@ export const CustomSelect = ({
         }}
       >
         <Select
-          className={`${classNames(className)} rounded-lg h-[50px]`}
+          className={`${classNames(className)} rounded-lg`}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
@@ -341,32 +341,32 @@ export const SelectCheckbox = ({
 
   const dropdownRender = (menu) => (
     <div className="flex flex-col">
+      <CustomCheckBox
+        checked={selectAll}
+        onChange={(e) => handleSelectAll(e.target.checked)}
+        className="inline-flex items-center px-4 py-2 font-bold"
+      >
+        Select All
+      </CustomCheckBox>
+      {options.map((option) => (
         <CustomCheckBox
-          checked={selectAll}
-          onChange={(e) => handleSelectAll(e.target.checked)}
-          className="inline-flex items-center px-4 py-2 font-bold"
+          key={option.value}
+          value={option.value}
+          checked={selectedItems.includes(option.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (e.target.checked) {
+              setSelectedItems([...selectedItems, value]);
+            } else {
+              setSelectedItems(selectedItems.filter(item => item !== value));
+            }
+            setSelectAll(selectedItems.length === options.length - 1 && !selectedItems.includes(value));
+          }}
+          className="block px-4 py-2 flex items-center text-base font-medium"
         >
-          Select All
+          {option.label}
         </CustomCheckBox>
-        {options.map((option) => (
-          <CustomCheckBox
-            key={option.value}
-            value={option.value}
-            checked={selectedItems.includes(option.value)}
-            onChange={(e) => {
-              const value = e.target.value;
-              if (e.target.checked) {
-                setSelectedItems([...selectedItems, value]);
-              } else {
-                setSelectedItems(selectedItems.filter(item => item !== value));
-              }
-              setSelectAll(selectedItems.length === options.length - 1 && !selectedItems.includes(value));
-            }}
-            className="block px-4 py-2 flex items-center text-base font-medium"
-          >
-            {option.label}
-          </CustomCheckBox>
-        ))}
+      ))}
     </div >
   );
 
