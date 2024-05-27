@@ -170,7 +170,7 @@ export const ProductModalContent = () => {
               onChange={handleChange}
             >
               {errors.code && (
-                <FormError className={"pl-[48.8%]"}>{errors.code}</FormError>
+                <FormError className={"pl-[40%]"}>{errors.code}</FormError>
               )}
             </CustomInput>
 
@@ -181,7 +181,7 @@ export const ProductModalContent = () => {
 
               <CustomSelect
                 placeholder={"Select status"}
-                className={`w-[40%] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 fontSize={"text-base"}
                 options={StatusSelect}
                 onChange={handleStatus}
@@ -189,7 +189,7 @@ export const ProductModalContent = () => {
               />
 
               {Selections && (
-                <FormError className={"pl-[48.8%]"}>Select Status:</FormError>
+                <FormError className={"pl-[40%]"}>Select Status:</FormError>
               )}
             </label>
 
@@ -217,7 +217,8 @@ export const ProductModalContent = () => {
 
               <CustomSelect
                 placeholder={"Select status"}
-                className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                fontSize={"text-base"}
                 options={[
                   {
                     value: "BTW",
@@ -237,7 +238,7 @@ export const ProductModalContent = () => {
               />
 
               {Selections && (
-                <FormError className={"pl-[48.8%]"}>Select Type</FormError>
+                <FormError className={"pl-[40%]"}>Select Type</FormError>
               )}
             </label>
             <label className="inline-flex items-center justify-center gap-10 w-full">
@@ -247,7 +248,8 @@ export const ProductModalContent = () => {
 
               <CustomSelect
                 placeholder={"Select status"}
-                className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                fontSize={"text-base"}
                 options={[
                   { value: "ADULT BTW", label: "ADULT BTW" },
                   { value: "CORP BTW", label: "CORP BTW" },
@@ -257,7 +259,7 @@ export const ProductModalContent = () => {
               />
 
               {Selections && (
-                <FormError className={"pl-[48.8%]"}>Select Subtype</FormError>
+                <FormError className={"pl-[40%]"}>Select Subtype</FormError>
               )}
             </label>
             <div className="text-center space-x-5">
@@ -396,14 +398,15 @@ export const FeesModalContent = () => {
 
               <CustomSelect
                 placeholder={"Select status"}
-                className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                fontSize={"text-base"}
                 options={StatusSelect}
                 onChange={handleStatus}
                 value={Status ? Status : undefined}
               />
 
               {Selections && (
-                <FormError className="pl-[42%]">Select Status</FormError>
+                <FormError className="pl-[40%]">Select Status</FormError>
               )}
             </label>
 
@@ -425,7 +428,7 @@ export const FeesModalContent = () => {
               onChange={handleChange}
             >
               {errors.amount && (
-                <FormError className={"pl-[42%]"}>{errors.amount}</FormError>
+                <FormError className={"pl-[40%]"}>{errors.amount}</FormError>
               )}
             </CustomInput>
 
@@ -597,14 +600,15 @@ export const DiscountModalContent = () => {
 
                 <CustomSelect
                   placeholder={"Select status"}
-                  className={`w-[40%] text-base rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  fontSize={"text-base"}
                   options={StatusSelect}
                   value={Status ? Status : undefined}
                   onChange={handleStatus}
                 />
 
                 {Selections && (
-                  <FormError className="pl-[48%]">Select Status</FormError>
+                  <FormError className="pl-[40%]">Select Status</FormError>
                 )}
               </label>
 
@@ -626,7 +630,7 @@ export const DiscountModalContent = () => {
                 name={"code"}
               >
                 {errors.code && (
-                  <FormError className={"pl-[48%]"}>{errors.code}</FormError>
+                  <FormError className={"pl-[40%]"}>{errors.code}</FormError>
                 )}
               </CustomInput>
 
@@ -648,7 +652,7 @@ export const DiscountModalContent = () => {
                 onChange={handleChange}
               >
                 {errors.amount && (
-                  <FormError className={"pl-[48%]"}>{errors.amount}</FormError>
+                  <FormError className={"pl-[40%]"}>{errors.amount}</FormError>
                 )}
               </CustomInput>
             </div>
@@ -709,7 +713,11 @@ export const DiscountModalContent = () => {
                     },
                   }}
                 >
-                  <DatePicker onChange={onChange} className="w-[40%]" />
+                  <DatePicker
+                    onChange={onChange}
+                    fontSize={"text-base"}
+                    className={`w-[40%] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  />
                 </ConfigProvider>
               </>
             </label>
@@ -808,72 +816,66 @@ export const MiscellaneousModalContent = () => {
       >
         {({ handleSubmit, errors, handleChange, values, handleReset }) => (
           <form
-            className={classNames("pb-5 grid gap-y-5 justify-center")}
+            className={classNames("pb-5 grid gap-y-5")}
             onSubmit={handleSubmit}
           >
             <CustomInput
               classNames={
-                "inline-flex items-center flex-row-reverse gap-10 h-[50px]"
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
               }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"text"}
               spanText={"Miscellaneous Item Name:"}
               placeholder={"Miscellaneous Item Name"}
-              fontSize="text-base"
-              className={"w-60"}
-              spanClassName={`max-w-46 relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              colorBorder={colorsObject.primary}
+              fontSize={"text-base"}
+              spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
               name={"name"}
               value={values.name}
               onChange={handleChange}
             >
               {errors.name && (
-                <FormError className={"pl-[51%]"}>{errors.name}</FormError>
+                <FormError className={"pl-[40%]"}>{errors.name}</FormError>
               )}
             </CustomInput>
 
-            <label className={`inline-flex justify-end gap-x-10 items-center`}>
-              <span
-                className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
                 Status:
               </span>
 
-              <div className="flex-shrink-0">
-                <CustomSelect
-                  placeholder={"Select status"}
-                  style={{ width: 240 }}
-                  className={"h-[50px]"}
-                  options={StatusSelect}
-                  colorBorder={colorsObject.primary}
-                  value={Status ? Status : undefined}
-                  onChange={handleStatus}
-                />
-                {Selections && (
-                  <FormError className={"pl-[51%]"}>Select Status</FormError>
-                )}
-              </div>
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                fontSize={"text-base"}
+                options={StatusSelect}
+                value={Status ? Status : undefined}
+                onChange={handleStatus}
+              />
+
+              {Selections && (
+                <FormError className={"pl-[40%]"}>Select Status</FormError>
+              )}
             </label>
 
-            <label className={`inline-flex justify-end gap-x-10 items-center`}>
-              <span
-                className={`max-w-40 text-base text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
                 Type:
               </span>
 
-              <div className="flex-shrink-0">
-                <CustomSelect
-                  placeholder={"Select Sub type"}
-                  style={{ width: 240 }}
-                  options={StatusSelect}
-                  className={"h-[50px]"}
-                  colorBorder={colorsObject.primary}
-                  value={SubType ? SubType : undefined}
-                  onChange={handleSubType}
-                />
-                {Selections && (
-                  <FormError className={"pl-[51%]"}>Select Sub Type</FormError>
-                )}
-              </div>
+              <CustomSelect
+                placeholder={"Select Sub type"}
+                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                fontSize={"text-base"}
+                options={StatusSelect}
+                value={SubType ? SubType : undefined}
+                onChange={handleSubType}
+              />
+              {Selections && (
+                <FormError className={"pl-[40%]"}>Select Sub Type</FormError>
+              )}
             </label>
 
             <div className="text-center space-x-5">
@@ -1025,7 +1027,7 @@ export const AddServiceModalContent = () => {
               <div className={"space-y-5"}>
                 <CustomInput
                   placeholder={"Service Name"}
-                  className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                   }
@@ -1044,7 +1046,7 @@ export const AddServiceModalContent = () => {
                 </CustomInput>
                 <CustomInput
                   placeholder={"Service Code"}
-                  className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                   }
@@ -1075,7 +1077,6 @@ export const AddServiceModalContent = () => {
                       placeholder={"Select status"}
                       className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                       options={StatusSelect}
-                      colorBorder={colorsObject.primary}
                       value={Status ? Status : undefined}
                       onChange={handleStatus}
                     />
@@ -1133,7 +1134,7 @@ export const AddServiceModalContent = () => {
                 </CustomCheckBox>
                 <CustomInput
                   placeholder={"Service Price:"}
-                  className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
                   }
@@ -1153,7 +1154,7 @@ export const AddServiceModalContent = () => {
 
                 <CustomInput
                   placeholder={"Web Name:"}
-                  className={`text-gray-500 px-5 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
                   }
@@ -1300,9 +1301,7 @@ export const AddServiceModalContent = () => {
                   </span>
                   <div className="w-full">
                     <CustomSelect
-                      style={{ width: "100%" }}
-                      colorBorder={colorsObject.primary}
-                      className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
+                      className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded h-[50px]`}
                       placeholder={"Service Status"}
                       value={AssociateContract ? AssociateContract : undefined}
                       onChange={handleAssociateContract}
@@ -1751,9 +1750,8 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Status"}
-                    style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={StatusSelect}
                     onChange={handleStatus}
                     value={Status ? Status : undefined}
@@ -1767,9 +1765,8 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
                         value: "Instructor",
@@ -1788,9 +1785,8 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
                         value: 1,
@@ -1809,9 +1805,8 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
                         value: 1,
@@ -1941,9 +1936,8 @@ export const AddStaffModalContent = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Select"}
-                    style={{ width: "100%" }}
                     colorBorder={colorsObject.primary}
-                    className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
                         value: "USA",
@@ -2437,9 +2431,8 @@ export const LocationModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Location Status"}
-                      style={{ width: "100%" }}
                       colorBorder={colorsObject.primary}
-                      className={`rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={StatusSelect}
                       onChange={handleStatus}
                       value={Status ? Status : undefined}
@@ -2636,9 +2629,8 @@ export const LocationModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Pickup location"}
-                      style={{ width: "100%" }}
                       colorBorder={colorsObject.primary}
-                      className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={[
                         {
                           value: 1,
@@ -2663,9 +2655,8 @@ export const LocationModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Drop off location"}
-                      style={{ width: "100%" }}
                       colorBorder={colorsObject.primary}
-                      className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={[
                         {
                           value: 1,
