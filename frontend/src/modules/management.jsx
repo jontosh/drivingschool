@@ -2,20 +2,21 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import AccountManagementContext from "@/context/account-management.jsx";
-import { AlertDelete } from "@/hooks/alert.jsx";
+import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 
 export const LocationModule = () => {
   const { LocationData: data } = useContext(AccountManagementContext);
   const [IsOpen, setIsOpen] = useState(false);
+  const [ModalType, setModalType] = useState("");
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -80,42 +81,54 @@ export const LocationModule = () => {
     {
       title: "Action",
       key: "action",
-      align: "center",
       render: () => (
-        <div className={" space-x-2.5 "}>
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<FormOutlined />}
-          />
+        <Fragment>
+          <div className={"space-x-2.5"}>
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<FormOutlined />}
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("edit");
+              }}
+            />
 
-          <IconComponent
-            className={"text-xl text-red-600 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<DeleteOutlined />}
-            onClick={() => {
-              setIsOpen((prev) => !prev);
-            }}
-          />
+            <IconComponent
+              className={"text-xl text-red-600 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<DeleteOutlined />}
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("delete");
+              }}
+            />
 
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<ExportOutlined />}
-          />
-        </div>
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<ExportOutlined />}
+            />
+          </div>
+          {IsOpen && ModalType === "delete" && (
+            <AlertDeleteComponent setIsOpen={setIsOpen} />
+          )}
+          {IsOpen && ModalType === "edit" && (
+            <AlertEdit setIsOpen={setIsOpen} />
+          )}
+        </Fragment>
       ),
     },
   ];
@@ -126,6 +139,7 @@ export const LocationModule = () => {
 export const HighSchoolModule = () => {
   const { SchoolData: data } = useContext(AccountManagementContext);
   const [IsOpen, setIsOpen] = useState(false);
+  const [ModalType, setModalType] = useState("");
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -191,29 +205,35 @@ export const HighSchoolModule = () => {
       key: "action",
       align: "center",
       render: () => (
-        <div className={" space-x-2.5 "}>
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<FormOutlined />}
-          />
+        <Fragment>
+          <div className={" space-x-2.5 "}>
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<FormOutlined />}
+              onClick={() => setModalType("edit")}
+            />
 
-          <IconComponent
-            className={
-              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
-            icon={<GoClock />}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-          />
-        </div>
+            <IconComponent
+              className={
+                "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              }
+              icon={<GoClock />}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+            />
+          </div>
+          {IsOpen && ModalType === "edit" && (
+            <AlertEdit setIsOpen={setIsOpen} />
+          )}
+        </Fragment>
       ),
     },
   ];
@@ -224,6 +244,7 @@ export const HighSchoolModule = () => {
 export const HearModule = () => {
   const { HearData: data } = useContext(AccountManagementContext);
   const [IsOpen, setIsOpen] = useState(false);
+  const [ModalType, setModalType] = useState("");
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -277,29 +298,35 @@ export const HearModule = () => {
       key: "action",
       align: "center",
       render: () => (
-        <div className={"space-x-2.5 "}>
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<FormOutlined />}
-          />
+        <Fragment>
+          <div className={" space-x-2.5 "}>
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<FormOutlined />}
+              onClick={() => setModalType("edit")}
+            />
 
-          <IconComponent
-            className={
-              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
-            icon={<GoClock />}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-          />
-        </div>
+            <IconComponent
+              className={
+                "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              }
+              icon={<GoClock />}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+            />
+          </div>
+          {IsOpen && ModalType === "edit" && (
+            <AlertEdit setIsOpen={setIsOpen} />
+          )}
+        </Fragment>
       ),
     },
   ];
@@ -312,6 +339,7 @@ export const VehiclesModule = () => {
     AccountManagementContext,
   );
   const [IsOpen, setIsOpen] = useState(false);
+  const [ModalType, setModalType] = useState("");
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -377,42 +405,51 @@ export const VehiclesModule = () => {
       key: "action",
       align: "center",
       render: () => (
-        <div className={" space-x-2.5 "}>
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<FormOutlined />}
-          />
+        <Fragment>
+          <div className={" space-x-2.5 "}>
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<FormOutlined />}
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("edit");
+              }}
+            />
 
-          <IconComponent
-            className={
-              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
-            icon={<TbActivityHeartbeat />}
-            classNames={"items-center"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-          />
+            <IconComponent
+              className={
+                "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              }
+              icon={<TbActivityHeartbeat />}
+              classNames={"items-center"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+            />
 
-          <IconComponent
-            className={
-              "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
-            }
-            icon={<GoClock />}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-          />
-        </div>
+            <IconComponent
+              className={
+                "text-xl text-indigo-600 hover:text-indigo-600 border border-indigo-600"
+              }
+              icon={<GoClock />}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+            />
+          </div>
+          {IsOpen && ModalType === "edit" && (
+            <AlertEdit setIsOpen={setIsOpen} />
+          )}
+        </Fragment>
       ),
     },
   ];

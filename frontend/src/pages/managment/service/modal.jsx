@@ -8,18 +8,28 @@ import {
 } from "@/components/form/index.jsx";
 import { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { AlertSuccess, AlertError, AlertDelete } from "@/hooks/alert.jsx";
+import { AlertSuccess, AlertError } from "@/hooks/alert.jsx";
 import { useFileReader } from "@/hooks/file-reader.jsx";
 import { FormError } from "@/modules/errors.jsx";
 import { ToNumber } from "@/modules/number.jsx";
 import { ProductModalValidate } from "@/modules/product.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
-import { useRequestPostMutation } from "@/redux/query/index.jsx";
+import {
+  useRequestGetQuery,
+  useRequestPostMutation,
+} from "@/redux/query/index.jsx";
 import MDEditor from "@uiw/react-md-editor";
-import { ConfigProvider, DatePicker, message } from "antd";
+import { ConfigProvider, DatePicker } from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
-import { Fragment, useContext, useMemo, useReducer, useState } from "react";
+import {
+  Fragment,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import rehypeSanitize from "rehype-sanitize";
 import { StatusSelect } from "./index.jsx";
@@ -33,12 +43,6 @@ const mockData = [
   { key: "3", title: "Title 3", description: "Sample Description 3" },
   { key: "4", title: "Title 4", description: "Sample Description 4" },
   { key: "5", title: "Title 5", description: "Sample Description 5" },
-  { key: "6", title: "Title 0", description: "Sample Description 0" },
-  { key: "7", title: "Title 1", description: "Sample Description 1" },
-  { key: "8", title: "Title 2", description: "Sample Description 2" },
-  { key: "9", title: "Title 3", description: "Sample Description 3" },
-  { key: "10", title: "Title 4", description: "Sample Description 4" },
-  { key: "11", title: "Title 5", description: "Sample Description 5" },
 ];
 
 const reducer = (state, action) => {
@@ -869,7 +873,9 @@ export const MiscellaneousModalContent = () => {
             </CustomInput>
 
             <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+              <span
+                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
                 Status:
               </span>
 
@@ -888,7 +894,9 @@ export const MiscellaneousModalContent = () => {
             </label>
 
             <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}>
+              <span
+                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
+              >
                 Type:
               </span>
 
@@ -1124,7 +1132,7 @@ export const AddServiceModalContent = () => {
                     >
                       Assign Locations:
                     </span>
-                    <label className={`flex flex-col gap-5 items-center`}>
+                    <div className={`flex flex-col gap-5 items-center`}>
                       <span className="text-base">Click to select</span>
                       <CustomTransfer
                         dataSource={mockData}
@@ -1133,7 +1141,7 @@ export const AddServiceModalContent = () => {
                         setSelectedKeys={setAssignLocation}
                         selectedKeys={AssignLocation}
                       />
-                    </label>
+                    </div>
                   </div>
 
                   <div className={`flex items-center gap-10`}>
@@ -1142,7 +1150,7 @@ export const AddServiceModalContent = () => {
                     >
                       Service Items:
                     </span>
-                    <label className={`flex flex-col gap-5 items-center`}>
+                    <div className={`flex flex-col gap-5 items-center`}>
                       <span className="text-base">Click to select</span>
                       <CustomTransfer
                         dataSource={mockData}
@@ -1151,7 +1159,7 @@ export const AddServiceModalContent = () => {
                         setSelectedKeys={setServiceItems}
                         selectedKeys={ServiceItems}
                       />
-                    </label>
+                    </div>
                   </div>
                 </div>
                 <CustomCheckBox
@@ -1290,7 +1298,7 @@ export const AddServiceModalContent = () => {
                     >
                       Add-On Services:
                     </span>
-                    <label className={`flex flex-col gap-5 items-center`}>
+                    <div className={`flex flex-col gap-5 items-center`}>
                       <span className="text-base">Click to select</span>
                       <CustomTransfer
                         dataSource={mockData}
@@ -1299,7 +1307,7 @@ export const AddServiceModalContent = () => {
                         setSelectedKeys={setServiceItems}
                         selectedKeys={ServiceItems}
                       />
-                    </label>
+                    </div>
                   </div>
 
                   <div className={`flex items-center gap-10`}>
@@ -1308,7 +1316,7 @@ export const AddServiceModalContent = () => {
                     >
                       Eligible Discounts:
                     </span>
-                    <label className={`flex flex-col gap-5 items-center`}>
+                    <div className={`flex flex-col gap-5 items-center`}>
                       <span className="text-base">Click to select</span>
                       <CustomTransfer
                         dataSource={mockData}
@@ -1317,7 +1325,7 @@ export const AddServiceModalContent = () => {
                         setSelectedKeys={setDiscount}
                         selectedKeys={Discount}
                       />
-                    </label>
+                    </div>
                   </div>
                 </div>
                 <label
@@ -1408,23 +1416,49 @@ export const AddServiceModalContent = () => {
 
 export const FileCategoryModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
+  const { data } = useRequestGetQuery({
+    path: "/account_management/services/service/",
+  });
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
   const [DisplayStudentPortal, setDisplayStudentPortal] = useState(true);
   const [DisallowStudentPortal, setDisallowStudentPortal] = useState(false);
   const [UploadedStudentAccount, setUploadedStudentAccount] = useState(false);
   const [InstructorPortal, setInstructorPortal] = useState(false);
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+  const [NotesValue, setNotesValue] = useState("Hello");
+  const [Packages, setPackages] = useState([]);
 
   // func
-  const handleSubmit = (values) => {
-    console.log({
-      ...values,
-      status: Status,
-      display_student_portal: DisplayStudentPortal,
-      disallow_student_portal: DisallowStudentPortal,
-      uploaded_student_account: UploadedStudentAccount,
-      instructor_portal: InstructorPortal,
-    });
+  const handleSubmit = async (values) => {
+    try {
+      const res = await requestPost({
+        path: `/student_account/file_category/`,
+        data: {
+          ...values,
+          status: Status,
+          has_portal: DisplayStudentPortal,
+          disallow_student_portal: DisallowStudentPortal,
+          uploaded_student_account: UploadedStudentAccount,
+          instructor_portal: InstructorPortal,
+          note: NotesValue,
+          package: ToNumber(Packages),
+        },
+      });
+      if (res.error.status >= 400) {
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
+      } else {
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
+      }
+    } catch (error) {
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
+    }
   };
   const handleStatus = (values) => setStatus(values);
   const handleDisplayStudentPortal = (e) =>
@@ -1436,217 +1470,222 @@ export const FileCategoryModalContent = () => {
   const handleInstructorPortal = (e) => setInstructorPortal(e.target.checked);
 
   return (
-    <Formik
-      initialValues={{
-        name: "",
-        signature_link: "",
-        note: "",
-      }}
-      onSubmit={handleSubmit}
-    >
-      {({ handleReset, errors, handleChange, values, handleSubmit }) => (
-        <form className="flex gap-5 flex-col px-5" onSubmit={handleSubmit}>
-          <CustomInput
-            classNames={
-              "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-            }
-            className={classNames(
-              ManagementStyle["CheckModal__form-element__shadow"],
-              "w-[40%] text-base",
-            )}
-            type={"text"}
-            spanText={"Category name"}
-            placeholder={"Category name"}
-            fontSize={"text-base"}
-            spanClassName={`flex-shrink-0 w-44 text-right font-semibold`}
-            name={"name"}
-            onChange={handleChange}
-            value={values.name}
-          >
-            {errors.name && (
-              <FormError className={"pl-48"}>{errors.name}</FormError>
-            )}
-          </CustomInput>
-
-          <label className="inline-flex items-center justify-center gap-10 w-full">
-            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
-              File status
-            </span>
-
-            <CustomSelect
-              placeholder={"Select"}
-              className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+    <Fragment>
+      <Formik
+        initialValues={{
+          name: "",
+          signature: "",
+        }}
+        onSubmit={handleSubmit}
+      >
+        {({ handleReset, errors, handleChange, values, handleSubmit }) => (
+          <form className="flex gap-5 flex-col px-5" onSubmit={handleSubmit}>
+            <CustomInput
+              classNames={
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
+              }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"text"}
+              spanText={"Category name"}
+              placeholder={"Category name"}
               fontSize={"text-base"}
-              options={[
-                {
-                  value: "active",
-                  label: "active",
-                },
-              ]}
-              onChange={handleStatus}
-              value={Status ? Status : undefined}
-            />
-          </label>
+              spanClassName={`flex-shrink-0 w-44 text-right font-semibold`}
+              name={"name"}
+              onChange={handleChange}
+              value={values.name}
+            >
+              {errors.name && (
+                <FormError className={"pl-48"}>{errors.name}</FormError>
+              )}
+            </CustomInput>
 
-          <label className="inline-flex items-center justify-center gap-10 w-full">
-            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
-              Packages:
-            </span>
-
-            <CustomTransfer
-              dataSource={mockData}
-              titles={["Source", "Target"]}
-              colorBorder={colorsObject.primary}
-              colorBgContainer={"transparent"}
-              headerHeight={30}
-              listHeight={200}
-            />
-          </label>
-
-          <label className="inline-flex items-center justify-center gap-10 w-full">
-            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
-              Signature link:
-            </span>
-
-            <div className={"w-[451px]"}>
-              <textarea
-                className={
-                  `w-full outline-0 border border-solid border-[#667085] p-5 rounded-2xl min-h-[90px] shadow-xl ${ManagementStyle["CheckModal__form-element__shadow"]}`
-                }
-                name={"signature_link"}
-                placeholder={"text"}
-                onChange={handleChange}
-                value={values.signature_link}
-              ></textarea>
-            </div>
-          </label>
-
-          <label className="inline-flex items-center justify-center gap-10 w-full">
-            <span className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}>
-              Note:
-            </span>
-
-            <div className={"w-[451px]"}>
-              <textarea
-                className={
-                  `w-full outline-0 border border-solid border-[#667085] p-5 rounded-2xl min-h-[90px] shadow-xl ${ManagementStyle["CheckModal__form-element__shadow"]}`
-                }
-                name={"note"}
-                placeholder={"text"}
-                onChange={handleChange}
-                value={values.note}
-              ></textarea>
-            </div>
-          </label>
-
-          <div className={"grid grid-cols-2 gap-5 pt-8"}>
-            <div className="space-y-5">
-              <label
-                className={"inline-flex w-full justify-end items-center gap-6"}
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span
+                className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}
               >
-                <span
-                  className={"font-semibold text-end flex-shrink-0 text-base"}
-                >
-                  Display on Student Portal:
-                </span>
-                <SwitchCustom
-                  checked={DisplayStudentPortal}
-                  onChange={handleDisplayStudentPortal}
-                />
-              </label>
+                File status
+              </span>
 
-              <label
-                className={"inline-flex w-full justify-end items-center gap-6"}
+              <CustomSelect
+                placeholder={"Select"}
+                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                fontSize={"text-base"}
+                options={StatusSelect}
+                onChange={handleStatus}
+                value={Status ? Status : undefined}
+              />
+            </label>
+
+            <div className="flex items-center justify-center gap-10 w-full">
+              <span
+                className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}
               >
-                <span
+                Packages:
+              </span>
+
+              <CustomTransfer
+                dataSource={mockData}
+                listHeight={200}
+                colorBorder={colorsObject.primary}
+                setSelectedKeys={setPackages}
+                selectedKeys={Packages}
+              />
+            </div>
+
+            <CustomInput
+              classNames={
+                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
+              }
+              className={classNames(
+                ManagementStyle["CheckModal__form-element__shadow"],
+                "w-[40%] text-base",
+              )}
+              type={"text"}
+              spanText={"Signature link:"}
+              placeholder={"Signature"}
+              fontSize={"text-base"}
+              spanClassName={`flex-shrink-0 w-44 text-right font-semibold`}
+              name={"signature"}
+              onChange={handleChange}
+              value={values.signature}
+            />
+
+            <label className="inline-flex items-center justify-center gap-10 w-full">
+              <span
+                className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}
+              >
+                Note:
+              </span>
+
+              <div className={"max-w-[600px] w-full"}>
+                <div className="w-full">
+                  <MDEditor
+                    value={NotesValue}
+                    onChange={(value) => setNotesValue(value)}
+                    previewOptions={{
+                      rehypePlugins: [[rehypeSanitize]],
+                    }}
+                  />
+                </div>
+              </div>
+            </label>
+
+            <div className={"grid grid-cols-2 gap-5 pt-8"}>
+              <div className="space-y-5">
+                <label
                   className={
-                    "font-semibold text-end w-72 flex-shrink-0 text-base"
+                    "inline-flex w-full justify-end items-center gap-6"
                   }
                 >
-                  Disallow files associated with category from displaying on
-                  Student Portal:
-                </span>
-                <SwitchCustom
-                  checked={DisallowStudentPortal}
-                  onChange={handleDisallowStudentPortal}
-                />
-              </label>
-            </div>
+                  <span
+                    className={"font-semibold text-end flex-shrink-0 text-base"}
+                  >
+                    Display on Student Portal:
+                  </span>
+                  <SwitchCustom
+                    checked={DisplayStudentPortal}
+                    onChange={handleDisplayStudentPortal}
+                  />
+                </label>
 
-            <div className="space-y-5">
-              <label
-                className={
-                  "inline-flex w-full justify-start items-center gap-6"
-                }
-              >
-                <span
-                  className={"font-semibold text-end flex-shrink-0 text-base"}
-                >
-                  Must Be Uploaded to Student Account:
-                </span>
-                <SwitchCustom
-                  checked={UploadedStudentAccount}
-                  onChange={handleUploadedStudentAccount}
-                />
-              </label>
-
-              <label
-                className={
-                  "inline-flex w-full justify-start items-center gap-6"
-                }
-              >
-                <span
+                <label
                   className={
-                    "font-semibold text-end w-80 flex-shrink-0 text-base"
+                    "inline-flex w-full justify-end items-center gap-6"
                   }
                 >
-                  Disallow files associated with this category from displaying
-                  on Instructor/Teacher Portal:
-                </span>
-                <SwitchCustom
-                  checked={InstructorPortal}
-                  onChange={handleInstructorPortal}
-                />
-              </label>
+                  <span
+                    className={
+                      "font-semibold text-end w-72 flex-shrink-0 text-base"
+                    }
+                  >
+                    Disallow files associated with category from displaying on
+                    Student Portal:
+                  </span>
+                  <SwitchCustom
+                    checked={DisallowStudentPortal}
+                    onChange={handleDisallowStudentPortal}
+                  />
+                </label>
+              </div>
+
+              <div className="space-y-5">
+                <label
+                  className={
+                    "inline-flex w-full justify-start items-center gap-6"
+                  }
+                >
+                  <span
+                    className={"font-semibold text-end flex-shrink-0 text-base"}
+                  >
+                    Must Be Uploaded to Student Account:
+                  </span>
+                  <SwitchCustom
+                    checked={UploadedStudentAccount}
+                    onChange={handleUploadedStudentAccount}
+                  />
+                </label>
+
+                <label
+                  className={
+                    "inline-flex w-full justify-start items-center gap-6"
+                  }
+                >
+                  <span
+                    className={
+                      "font-semibold text-end w-80 flex-shrink-0 text-base"
+                    }
+                  >
+                    Disallow files associated with this category from displaying
+                    on Instructor/Teacher Portal:
+                  </span>
+                  <SwitchCustom
+                    checked={InstructorPortal}
+                    onChange={handleInstructorPortal}
+                  />
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div className="text-center space-x-5">
-            <ButtonComponent
-              type={"submit"}
-              defaultBg={colorsObject.success}
-              defaultHoverBg={colorsObject.successHover}
-              defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
-              borderRadius={5}
-              paddingInline={44}
-            >
-              Save
-            </ButtonComponent>
+            <div className="text-center space-x-5">
+              <ButtonComponent
+                type={"submit"}
+                defaultBg={colorsObject.success}
+                defaultHoverBg={colorsObject.successHover}
+                defaultColor={colorsObject.main}
+                defaultHoverColor={colorsObject.main}
+                borderRadius={5}
+                paddingInline={44}
+              >
+                Save
+              </ButtonComponent>
 
-            <ButtonComponent
-              defaultBg={colorsObject.main}
-              defaultHoverBg={colorsObject.main}
-              defaultBorderColor={colorsObject.primary}
-              defaultHoverBorderColor={colorsObject.primary}
-              defaultColor={colorsObject.primary}
-              defaultHoverColor={colorsObject.primary}
-              borderRadius={5}
-              paddingInline={44}
-              onClick={() => {
-                handleReset();
-                setTimeout(() => {
-                  navigate("/management/file/");
-                }, 1000);
-              }}
-            >
-              Cancel
-            </ButtonComponent>
-          </div>
-        </form>
-      )
-      }
-    </Formik >
+              <ButtonComponent
+                defaultBg={colorsObject.main}
+                defaultHoverBg={colorsObject.main}
+                defaultBorderColor={colorsObject.primary}
+                defaultHoverBorderColor={colorsObject.primary}
+                defaultColor={colorsObject.primary}
+                defaultHoverColor={colorsObject.primary}
+                borderRadius={5}
+                paddingInline={44}
+                onClick={() => {
+                  handleReset();
+                  setTimeout(() => {
+                    navigate("/management/file/");
+                  }, 1000);
+                }}
+              >
+                Cancel
+              </ButtonComponent>
+            </div>
+          </form>
+        )}
+      </Formik>
+      {IsOpen && state?.status}
+    </Fragment>
   );
 };
 
@@ -2648,7 +2687,9 @@ export const LocationModalContent = () => {
                     />
 
                     {Selections && (
-                      <FormError className="pl-[170px]">Pickup location is not selected</FormError>
+                      <FormError className="pl-[170px]">
+                        Pickup location is not selected
+                      </FormError>
                     )}
                   </div>
                 </label>
@@ -2673,7 +2714,9 @@ export const LocationModalContent = () => {
                     />
 
                     {Selections && (
-                      <FormError className="pl-[170px]">Drop off location is not selected</FormError>
+                      <FormError className="pl-[170px]">
+                        Drop off location is not selected
+                      </FormError>
                     )}
                   </div>
                 </label>
@@ -2747,7 +2790,7 @@ export const LocationModalContent = () => {
                   value={values.fax}
                   onChange={handleChange}
                 />
-                <label className="inline-flex justify-end gap-10 items-center w-full">
+                <div className="inline-flex justify-end gap-10 items-center w-full">
                   <span className="text-right text-sm font-medium">
                     Area Coverage
                   </span>
@@ -2758,7 +2801,7 @@ export const LocationModalContent = () => {
                     setSelectedKeys={setAreaCoverage}
                     selectedKeys={AreaCoverage}
                   />
-                </label>
+                </div>
                 <label className="inline-flex justify-end gap-10 items-center w-full">
                   <span className="text-sm flex-shrink-0 font-medium w-32 text-right">
                     Location note

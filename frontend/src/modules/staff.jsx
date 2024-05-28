@@ -1,6 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
+import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import {
@@ -8,10 +9,13 @@ import {
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { Space } from "antd";
+import { Fragment, useState } from "react";
 
 export const StaffModule = () => {
   const { data } = useRequestGetQuery({ path: "/student_account/instructor/" });
+  const [IsOpen, setIsOpen] = useState(false);
+  const [ModalType, setModalType] = useState("");
+  const { AlertDeleteComponent } = AlertDelete();
 
   const columns = [
     {
@@ -101,37 +105,53 @@ export const StaffModule = () => {
       title: "Action",
       key: "action",
       render: () => (
-        <Space size={"middle"}>
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<FormOutlined />}
-          />
+        <Fragment>
+          <div className={"space-x-2.5"}>
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<FormOutlined />}
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("edit");
+              }}
+            />
 
-          <IconComponent
-            className={"text-xl text-red-600 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<DeleteOutlined />}
-          />
+            <IconComponent
+              className={"text-xl text-red-600 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<DeleteOutlined />}
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("delete");
+              }}
+            />
 
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<ExportOutlined />}
-          />
-        </Space>
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<ExportOutlined />}
+            />
+          </div>
+          {IsOpen && ModalType === "delete" && (
+            <AlertDeleteComponent setIsOpen={setIsOpen} />
+          )}
+          {IsOpen && ModalType === "edit" && (
+            <AlertEdit setIsOpen={setIsOpen} />
+          )}
+        </Fragment>
       ),
     },
   ];

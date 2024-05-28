@@ -1,7 +1,15 @@
 import classNames from "classnames";
 import { Fragment, useEffect, useRef, useState } from "react";
 import FormStyle from "./form.module.scss";
-import { ConfigProvider, Input, Select, Transfer, Checkbox, Row, Col } from "antd";
+import {
+  ConfigProvider,
+  Input,
+  Select,
+  Transfer,
+  Checkbox,
+  Row,
+  Col,
+} from "antd";
 const { Option } = Select;
 
 export const CustomCheckBox = ({
@@ -124,7 +132,7 @@ export const CustomSelect = ({
   colorText = "#000",
   ...props
 }) => {
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
@@ -234,9 +242,9 @@ export const CustomTransfer = ({
     console.log("direction:", direction);
     console.log("moveKeys:", moveKeys);
     setTargetKeysState(nextTargetKeys);
-    if (typeof onChange === "function") {
-      onChange(nextTargetKeys);
-    }
+    // if (typeof onChange === "function") {
+    //   onChange(nextTargetKeys);
+    // }
   };
 
   const onSelectChange = (sourceSelectedKeys, targetSelectedKeys) => {
@@ -334,7 +342,7 @@ export const SelectCheckbox = ({
   };
 
   const handleSelectAll = (checked) => {
-    const allValues = options.map(option => option.value);
+    const allValues = options.map((option) => option.value);
     setSelectedItems(checked ? allValues : []);
     setSelectAll(checked);
   };
@@ -358,16 +366,19 @@ export const SelectCheckbox = ({
             if (e.target.checked) {
               setSelectedItems([...selectedItems, value]);
             } else {
-              setSelectedItems(selectedItems.filter(item => item !== value));
+              setSelectedItems(selectedItems.filter((item) => item !== value));
             }
-            setSelectAll(selectedItems.length === options.length - 1 && !selectedItems.includes(value));
+            setSelectAll(
+              selectedItems.length === options.length - 1 &&
+                !selectedItems.includes(value),
+            );
           }}
           className="block px-4 py-2 flex items-center text-base font-medium"
         >
           {option.label}
         </CustomCheckBox>
       ))}
-    </div >
+    </div>
   );
 
   return (

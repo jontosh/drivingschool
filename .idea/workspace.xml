@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/packages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +112,8 @@
       <workItem from="1716702728152" duration="7077000" />
       <workItem from="1716753358331" duration="13398000" />
       <workItem from="1716767352509" duration="346000" />
-      <workItem from="1716798370501" duration="8236000" />
+      <workItem from="1716798370501" duration="9532000" />
+      <workItem from="1716877540012" duration="12157000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -146,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716767392285</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling.">
+      <option name="closed" value="true" />
+      <created>1716812799444</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716812799445</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,22 +181,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor components to include a" />
-    <MESSAGE value="- Refactor components to include a DatePicker" />
-    <MESSAGE value="- Refactor components to include a DatePicker for" />
-    <MESSAGE value="- Refactor components to include a DatePicker for improved" />
-    <MESSAGE value="- Refactor components to include a DatePicker for improved user" />
-    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction" />
-    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and" />
-    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and form" />
-    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and form handling" />
-    <MESSAGE value="- Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="- &#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="- Ref&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="- Refactor&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="- Refactor component&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="- Refactor component to&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="- Refactor component to utilize&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="- Refactor component to utilize new&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="- Refactor component to utilize new state&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="- Refactor component to utilize new state management&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
@@ -189,15 +190,32 @@
     <MESSAGE value="- Refactor component to utilize new state management and optimize form inputs&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="- Refactor component to utilize new state management and optimize form inputs.&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor components" />
+    <MESSAGE value="Refactor components to" />
+    <MESSAGE value="Refactor components to include" />
+    <MESSAGE value="Refactor components to include a" />
+    <MESSAGE value="Refactor components to include a DatePicker" />
+    <MESSAGE value="Refactor components to include a DatePicker for" />
+    <MESSAGE value="Refactor components to include a DatePicker for improved" />
+    <MESSAGE value="Refactor components to include a DatePicker for improved user" />
+    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction" />
+    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and" />
+    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form" />
+    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form handling" />
+    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/frontend/src/components/form/index.jsx</url>
-          <line>246</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
+          <line>1416</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
