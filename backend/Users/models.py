@@ -31,7 +31,8 @@ class User(models.Model):
     username = models.CharField(max_length=200, unique=True)
     password = models.CharField(max_length=200, blank=True, null=True)
     type = models.ForeignKey("UserType", on_delete=models.CASCADE, default=0)
-
+    _is_active = models.BooleanField(default=False,blank=True)
+    USERNAME_FIELD = 'username'
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4()
@@ -179,3 +180,16 @@ class Files(Extra):
     date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
+
+class CustomToken(models.Model):
+    key = models.CharField(max_length=40, primary_key=True)
+    user = models.OneToOneField("Users.User", related_name='custom_token', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = self.generate_key( )
+        return super( ).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.key
