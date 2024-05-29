@@ -33,7 +33,7 @@ export const MySchedule = ({ ...props }) => {
             paddingInline={25}
             borderRadius={5}
           >
-            CLASSES
+            IN-CAR
           </ButtonComponent>
 
           <ButtonComponent
@@ -45,7 +45,7 @@ export const MySchedule = ({ ...props }) => {
             paddingInline={25}
             borderRadius={5}
           >
-            CLASSES
+            TESTING
           </ButtonComponent>
 
           <ButtonComponent
@@ -57,7 +57,7 @@ export const MySchedule = ({ ...props }) => {
             paddingInline={25}
             borderRadius={5}
           >
-            CLASSES
+            SHOW CALENDAR
           </ButtonComponent>
         </div>
 
