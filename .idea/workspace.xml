@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="# fix #jsx Update scheduling components to include dynamic rendering based on the route params for improved user experience.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/table/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/table/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/scheduling.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/scheduling.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/book-my-lessons.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/book-my-lessons.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/big-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/big-calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/vehicle-sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/vehicle-sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/scheduling-spa.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/scheduling.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/scheduling.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/multi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/multi.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +121,8 @@
       <workItem from="1716877540012" duration="12157000" />
       <workItem from="1716913595922" duration="9597000" />
       <workItem from="1716962200799" duration="2564000" />
-      <workItem from="1716964820480" duration="4027000" />
+      <workItem from="1716964820480" duration="12621000" />
+      <workItem from="1716981738572" duration="1858000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -171,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716964942121</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience.">
+      <option name="closed" value="true" />
+      <created>1716969487159</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716969487159</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,22 +206,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction" />
-    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and" />
-    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form" />
-    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form handling" />
-    <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <MESSAGE value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update scheduling" />
-    <MESSAGE value="Update scheduling components" />
-    <MESSAGE value="Update scheduling components to" />
-    <MESSAGE value="Update scheduling components to include" />
-    <MESSAGE value="Update scheduling components to include dynamic" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on" />
     <MESSAGE value="Update scheduling components to include dynamic rendering based on the" />
     <MESSAGE value="Update scheduling components to include dynamic rendering based on the route" />
     <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params" />
@@ -214,7 +215,23 @@
     <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params for improved user experience" />
     <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params for improved user experience." />
     <MESSAGE value="# fix #jsx Update scheduling components to include dynamic rendering based on the route params for improved user experience." />
-    <option name="LAST_COMMIT_MESSAGE" value="# fix #jsx Update scheduling components to include dynamic rendering based on the route params for improved user experience." />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update components" />
+    <MESSAGE value="Update components to" />
+    <MESSAGE value="Update components to include" />
+    <MESSAGE value="Update components to include dynamic" />
+    <MESSAGE value="Update components to include dynamic rendering" />
+    <MESSAGE value="Update components to include dynamic rendering based" />
+    <MESSAGE value="Update components to include dynamic rendering based on" />
+    <MESSAGE value="Update components to include dynamic rendering based on route" />
+    <MESSAGE value="Update components to include dynamic rendering based on route params" />
+    <MESSAGE value="Update components to include dynamic rendering based on route params for" />
+    <MESSAGE value="Update components to include dynamic rendering based on route params for improved" />
+    <MESSAGE value="Update components to include dynamic rendering based on route params for improved user" />
+    <MESSAGE value="Update components to include dynamic rendering based on route params for improved user experience" />
+    <MESSAGE value="Update components to include dynamic rendering based on route params for improved user experience." />
+    <MESSAGE value="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

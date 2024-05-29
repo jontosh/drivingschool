@@ -1,8 +1,14 @@
+import InstructorAva from "@/assets/user/instructor.jpeg";
 import ButtonComponent from "@/components/button/index.jsx";
+import IconComponent from "@/components/icons/index.jsx";
+import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { useDate } from "@/hooks/useDate.jsx";
 import CalendarStyle from "@/pages/dashboard/dashboard.module.scss";
-
+import { Dropdown } from "antd";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar";
+import moment from "moment";
 import {
   Fragment,
   useCallback,
@@ -11,12 +17,12 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Calendar, momentLocalizer, Views } from "react-big-calendar";
-import moment from "moment";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import VehicleSidebarStyle from "./../scheduling.module.scss";
 
-export const MultiTable = ({ setLabel, setViews, ...props }) => {
+export const MultiSidebar = ({ ...props }) => {
   const Time = new Date();
+  const { MonthName: Month } = useDate();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
   const localizer = momentLocalizer(moment);
@@ -113,57 +119,26 @@ export const MultiTable = ({ setLabel, setViews, ...props }) => {
     setEvents(EventsList);
   }, []);
 
-  const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
+  const { defaultDate, views, toolbar, components } = useMemo(() => {
     return {
       components: {
-        resourceHeader: () => {
-          return <Fragment>ok</Fragment>;
-        },
         toolbar: (e) => {
           console.log(e);
-          setLabel(e.label);
-
           return (
-            <div className={"flex items-center justify-between p-7"}>
-              <ButtonComponent
-                borderRadius={20}
-                defaultBorderColor={"#F5F6F7"}
-                defaultHoverBorderColor={"#F5F6F7"}
-                defaultColor={"#6B7A99"}
-                defaultHoverColor={"#6B7A99"}
-                controlHeight={40}
-                paddingInline={20}
-              >
-                Today
-              </ButtonComponent>
+            <div className="flex items-center gap-8 justify-between pb-5">
+              <IconComponent
+                className={"text-indigo-600"}
+                icon={<IoIosArrowBack />}
+              />
 
-              <div className="flex items-center gap-8">
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
-                  controlHeight={40}
-                  paddingInline={12}
-                >
-                  <MdKeyboardArrowLeft />
-                </ButtonComponent>
+              <Title fontSize={"text-[#6B7A99]"}>
+                {Month(new Date(e.date).getMonth())}
+              </Title>
 
-                <Title fontSize={"text-[#6B7A99]"}>{e.label}</Title>
-
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
-                  controlHeight={40}
-                  paddingInline={12}
-                >
-                  <MdKeyboardArrowRight />
-                </ButtonComponent>
-              </div>
+              <IconComponent
+                className={"text-indigo-600"}
+                icon={<IoIosArrowForward />}
+              />
             </div>
           );
         },
@@ -173,49 +148,27 @@ export const MultiTable = ({ setLabel, setViews, ...props }) => {
         timeGutterFormat: (date, culture, localizer) =>
           localizer.format(date, "hh:mm", culture),
         dayFormat: (date, culture, localizer) =>
-          localizer.format(date, "ddd", culture),
+          localizer.format(date, "dddd DD", culture),
         eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
           localizer.format(start, "hh:mm", culture) +
           " " +
-          localizer.format(end, "hh:mm", culture),
+          localizer.format(end, "hh:mm a", culture),
       },
-      views: [Views.WEEK, Views.MONTH, Views.DAY],
+      views: [Views.MONTH],
       toolbar: true,
     };
   });
 
-  useEffect(() => {
-    setViews(views);
-  }, []);
-
-  const eventPropGetter = useCallback(
-    (event, start, end, isSelected) => ({
-      ...(event && {
-        // For event config and classNames
-        className: `text-[#2C5A41] bg-[#29CC390D] `,
+  const dayPropGetter = useCallback((date) => {
+    return {
+      ...(moment(date).day() > -1 && {
+        className: `bg-[#fff]`,
         style: {
-          border: "1px solid #29CC39",
+          border: "none",
         },
       }),
-
-      ...(isSelected && {
-        className: "text-white",
-      }),
-    }),
-    [],
-  );
-
-  const dayPropGetter = useCallback(
-    (date) => ({
-      // ...((moment(date).day() === 6 || moment(date).day() === 0) && {
-      //   className: "bg-[#F2F2F2]",
-      // }),
-      ...(moment(date).day() > -1 && {
-        className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
-      }),
-    }),
-    [],
-  );
+    };
+  }, []);
 
   const months = Array.from({ length: 12 }, (item, i) => {
     return {
@@ -242,33 +195,47 @@ export const MultiTable = ({ setLabel, setViews, ...props }) => {
   );
 
   const slotPropGetter = useCallback(
-    () => ({
+    (date) => ({
       className: "px-2.5 pt-6 text-[#ADB8CC]",
+      // ...(moment(date).hour() < 8 && {
+      //   style: {
+      //     backgroundColor: "powderblue",
+      //     color: "black",
+      //   },
+      // }),
+      // ...(moment(date).hour() > 12 && {
+      //   style: {
+      //     backgroundColor: "darkgreen",
+      //     color: "white",
+      //   },
+      // }),
     }),
     [],
   );
 
+  // const { formattedNumber } = formatPhoneNumber(data?.home_phone);
+
   return (
-    <Fragment>
+    <div className={"border border-gray-300 p-5 rounded-lg"}>
       <Calendar
         // To selection column and add events
         // selectable
         localizer={localizer}
-        events={events}
+        //events={events}
         // To scroll
         startAccessor="start"
         endAccessor="end"
         // onSelectSlot={handleSelect}
         // onSelectEvent={(event) => alert(event.title)}
-        defaultView={Views.WEEK}
+        defaultView={Views.MONTH}
         defaultDate={defaultDate}
-        //style={{ height: 564 }}
+        style={{ height: 564 }}
         views={views}
-        formats={formats}
+        //formats={formats}
         // {/*Header toolbar*/}
         toolbar={toolbar}
         //{/*Event Item*/}
-        eventPropGetter={eventPropGetter}
+        //eventPropGetter={eventPropGetter}
         //{/*Day column*/}
         dayPropGetter={dayPropGetter}
         showMultiDayTimes
@@ -278,6 +245,6 @@ export const MultiTable = ({ setLabel, setViews, ...props }) => {
         //compo
         components={components}
       />
-    </Fragment>
+    </div>
   );
 };

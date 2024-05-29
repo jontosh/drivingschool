@@ -97,7 +97,7 @@ export const MenuItems = (IsActive, getItem) => {
           "sub5-1",
         ),
         getItem(
-          <NavLink to={"/scheduling/vehicle"} children={"Multi Instructor"} />,
+          <NavLink to={"/scheduling/vehicle"} children={"Multi Vehicles"} />,
           "sub5-2",
         ),
         getItem(
@@ -105,7 +105,7 @@ export const MenuItems = (IsActive, getItem) => {
           "sub5-3",
         ),
         getItem(
-          <Link to={"/scheduling/multi"} children={"Multi Vehicles"} />,
+          <Link to={"/scheduling/multi"} children={"Multi Instructor"} />,
           "sub5-4",
         ),
         getItem(

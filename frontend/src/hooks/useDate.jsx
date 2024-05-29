@@ -6,6 +6,10 @@ export const useDate = () => {
     };
   });
 
+  const MonthName = (id = 0) => {
+    return new Date(0, id).toLocaleString("en-US", { month: "long" });
+  };
+
   const Days = Array.from({ length: 31 }, (item, i) => {
     i += 1;
     return {
@@ -24,5 +28,5 @@ export const useDate = () => {
     return years;
   };
 
-  return { Months, YearsOptions, Days };
+  return { Months, YearsOptions, Days, MonthName };
 };

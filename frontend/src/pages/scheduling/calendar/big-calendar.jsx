@@ -1,85 +1,222 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
-import IconComponent from "@/components/icons/index.jsx";
-import Title, { Text } from "@/components/title/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Badge, Button, Calendar, ConfigProvider } from "antd";
-import { Fragment, useContext, useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsPlusCircleFill } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
-const getListData = (value) => {
-  let listData;
-  switch (value.date()) {
-    case 8:
-      listData = [
-        {
-          type: "warning",
-          content: "This is warning event.",
-        },
-        {
-          type: "success",
-          content: "This is usual event.",
-        },
-      ];
-      break;
-    case 10:
-      listData = [
-        {
-          type: "warning",
-          content: "This is warning event.",
-        },
-        {
-          type: "success",
-          content: "This is usual event.",
-        },
-        {
-          type: "error",
-          content: "This is error event.",
-        },
-      ];
-      break;
-    case 15:
-      listData = [
-        {
-          type: "warning",
-          content: "This is warning event",
-        },
-        {
-          type: "success",
-          content: "This is very long usual event......",
-        },
-        {
-          type: "error",
-          content: "This is error event 1.",
-        },
-        {
-          type: "error",
-          content: "This is error event 2.",
-        },
-        {
-          type: "error",
-          content: "This is error event 3.",
-        },
-        {
-          type: "error",
-          content: "This is error event 4.",
-        },
-      ];
-      break;
-    default:
-  }
-  return listData || [];
-};
-const getMonthData = (value) => {
-  if (value.month() === 8) {
-    return 1394;
-  }
-};
-export const BigCalendar = ({ handleBurger }) => {
+import CalendarStyle from "@/pages/dashboard/dashboard.module.scss";
+
+import {
+  Fragment,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar";
+import moment from "moment";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { SlClock } from "react-icons/sl";
+
+export const BigCalendar = ({ setLabel, setViews, ...props }) => {
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
+  const localizer = momentLocalizer(moment);
+  const [events, setEvents] = useState([]);
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [month, setMonth] = useState(new Date().getMonth());
+  const [days, setDays] = useState(new Date().getDay());
+  const [date, setDate] = useState(new Date().getDate());
+  let EventsList = [
+    {
+      title: "Event Name",
+      start: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        4,
+        0,
+        0,
+      ),
+      end: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        6,
+        0,
+        0,
+      ),
+      allDay: false,
+    },
+    {
+      title: "Event Name",
+      start: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        6,
+        0,
+        0,
+      ),
+      end: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        7,
+        30,
+        0,
+      ),
+      allDay: false,
+    },
+    {
+      title: "Event Name",
+      start: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        16,
+        0,
+        0,
+      ),
+      end: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        18,
+        0,
+        0,
+      ),
+      allDay: false,
+    },
+    {
+      title: "Event Name",
+      start: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        20,
+        0,
+        0,
+      ),
+      end: new Date(
+        Time.getFullYear(),
+        Time.getMonth(),
+        Time.getDate(),
+        22,
+        30,
+        0,
+      ),
+      allDay: false,
+    },
+  ];
+
+  useEffect(() => {
+    setEvents(EventsList);
+  }, []);
+
+  const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
+    return {
+      components: {
+        resourceHeader: () => {
+          return <Fragment>ok</Fragment>;
+        },
+        toolbar: (e) => {
+          console.log(e);
+          setLabel(e.label);
+
+          return (
+            <div className={"flex items-center justify-between p-7"}>
+              <ButtonComponent
+                borderRadius={20}
+                defaultBorderColor={"#F5F6F7"}
+                defaultHoverBorderColor={"#F5F6F7"}
+                defaultColor={"#6B7A99"}
+                defaultHoverColor={"#6B7A99"}
+                controlHeight={40}
+                paddingInline={20}
+              >
+                Today
+              </ButtonComponent>
+
+              <div className="flex items-center gap-8">
+                <ButtonComponent
+                  borderRadius={20}
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={12}
+                >
+                  <MdKeyboardArrowLeft />
+                </ButtonComponent>
+
+                <Title fontSize={"text-[#6B7A99]"}>{e.label}</Title>
+
+                <ButtonComponent
+                  borderRadius={20}
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={12}
+                >
+                  <MdKeyboardArrowRight />
+                </ButtonComponent>
+              </div>
+            </div>
+          );
+        },
+      },
+      defaultDate: new Date(),
+      formats: {
+        timeGutterFormat: (date, culture, localizer) =>
+          localizer.format(date, "hh:mm", culture),
+        dayFormat: (date, culture, localizer) =>
+          localizer.format(date, "ddd", culture),
+        eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
+          localizer.format(start, "hh:mm", culture) +
+          " " +
+          localizer.format(end, "hh:mm", culture),
+      },
+      views: [Views.WEEK, Views.MONTH, Views.DAY],
+      toolbar: true,
+    };
+  });
+
+  useEffect(() => {
+    setViews(views);
+  }, []);
+
+  const eventPropGetter = useCallback(
+    (event, start, end, isSelected) => ({
+      ...(event && {
+        // For event config and classNames
+        className: `text-[#2C5A41] bg-[#29CC390D] `,
+        style: {
+          border: "1px solid #29CC39",
+        },
+      }),
+
+      ...(isSelected && {
+        className: "text-white",
+      }),
+    }),
+    [],
+  );
+
+  const dayPropGetter = useCallback(
+    (date) => ({
+      // ...((moment(date).day() === 6 || moment(date).day() === 0) && {
+      //   className: "bg-[#F2F2F2]",
+      // }),
+      ...(moment(date).day() > -1 && {
+        className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
+      }),
+    }),
+    [],
+  );
 
   const months = Array.from({ length: 12 }, (item, i) => {
     return {
@@ -95,104 +232,53 @@ export const BigCalendar = ({ handleBurger }) => {
       }
     });
   }, [MonthName]);
-  const monthCellRender = (value) => {
-    const num = getMonthData(value);
-    return num ? (
-      <div className="notes-month">
-        <section>{num}</section>
-        <span>Backlog number</span>
-      </div>
-    ) : null;
-  };
-  const dateCellRender = (value) => {
-    const listData = getListData(value);
-    return (
-      <ul className="events">
-        {listData.map((item) => (
-          <li key={item.content}>
-            <Badge status={item.type} text={item.content} />
-          </li>
-        ))}
-      </ul>
-    );
-  };
-  const cellRender = (current, info) => {
-    if (info.type === "date") return dateCellRender(current);
-    if (info.type === "month") return monthCellRender(current);
-    return info.originNode;
-  };
+
+  const slotGroupPropGetter = useCallback(
+    () => ({
+      style: {
+        minHeight: 80,
+      },
+    }),
+    [],
+  );
+
+  const slotPropGetter = useCallback(
+    () => ({
+      className: "px-2.5 pt-6 text-[#ADB8CC]",
+    }),
+    [],
+  );
+
   return (
-    <ConfigProvider>
+    <Fragment>
       <Calendar
-        className={"border-b border-b-gray-300"}
-        headerRender={() => {
-          return (
-            <Fragment>
-              <div className="p-4 flex justify-between items-center border-b border-b-gray-300">
-                <div className={"flex items-center gap-4"}>
-                  <IconComponent
-                    className={"flex-shrink-0 text-3xl pt-2"}
-                    icon={<FaBars />}
-                    onClick={handleBurger}
-                  />
-
-                  <Title level={2} fontSize={"text-3xl"}>
-                    <span>{MonthName}</span> &nbsp;
-                    <span className={"font-normal"}> {Time.getFullYear()}</span>
-                  </Title>
-
-                  <CustomSelect
-                    colorBorder={colorsObject.primary}
-                    placeholder={"Months"}
-                    colorText={colorsObject.primary}
-                    options={months}
-                    className={"h-[50px]"}
-                  />
-                </div>
-
-                <div className={"gap-x-4 inline-flex items-center"}>
-                  <ConfigProvider
-                    theme={{
-                      components: {
-                        Button: {
-                          defaultBg: "#F5F5F5",
-                          defaultHoverBg: "#F5F5F5",
-                        },
-                      },
-                    }}
-                  >
-                    <Button shape={"circle"} icon={<AiOutlineSearch />} />
-                  </ConfigProvider>
-
-                  <ButtonComponent
-                    defaultBg={"#0C41FF"}
-                    defaultHoverBg={"#0C41FF"}
-                    defaultActiveColor={"#0C41FF"}
-                    borderRadius={5}
-                    paddingInline={8}
-                    controlHeight={30}
-                  >
-                    <div
-                      className={"inline-flex gap-x-4 text-white items-center"}
-                    >
-                      <Text
-                        fontWeightStrong={500}
-                        fontSize={12}
-                        className={"text-white"}
-                      >
-                        Add event
-                      </Text>
-                      &nbsp;
-                      <BsPlusCircleFill className={"w-4"} />
-                    </div>
-                  </ButtonComponent>
-                </div>
-              </div>
-            </Fragment>
-          );
-        }}
-        cellRender={cellRender}
+        // To selection column and add events
+        // selectable
+        localizer={localizer}
+        events={events}
+        // To scroll
+        startAccessor="start"
+        endAccessor="end"
+        // onSelectSlot={handleSelect}
+        // onSelectEvent={(event) => alert(event.title)}
+        defaultView={Views.WEEK}
+        defaultDate={defaultDate}
+        //style={{ height: 564 }}
+        views={views}
+        formats={formats}
+        // {/*Header toolbar*/}
+        toolbar={toolbar}
+        //{/*Event Item*/}
+        eventPropGetter={eventPropGetter}
+        //{/*Day column*/}
+        dayPropGetter={dayPropGetter}
+        showMultiDayTimes
+        // Slot
+        slotGroupPropGetter={slotGroupPropGetter}
+        slotPropGetter={slotPropGetter}
+        //compo
+        components={components}
       />
-    </ConfigProvider>
+    </Fragment>
   );
 };
