@@ -14,11 +14,11 @@ export const SchedulingModule = () => {
           <Paragraph
             fontSize={"text-xs text-white"}
             fontWeightStrong={500}
-            className={"bg-[#24C18F] px-2.5 py-4 rounded-xl"}
+            className={"bg-[#24C18F] px-2.5 py-4 rounded-xl text-center"}
           >
             {date}
           </Paragraph>
-          <Paragraph fontSize={"text-[10px]"}>
+          <Paragraph fontSize={"text-[10px]"} className={"mt-2.5"}>
             <b>Pickup Location:</b> Mason + Weschester + Mainville
           </Paragraph>
         </Fragment>
@@ -30,7 +30,7 @@ export const SchedulingModule = () => {
       key: "name",
       align: "center",
       render: (name) => (
-        <Paragraph fontWeightStrong={400} fontSize={"text-xs"}>
+        <Paragraph fontWeightStrong={400} fontSize={"text-xs"} className={"ml-10"}>
           {name}
         </Paragraph>
       ),

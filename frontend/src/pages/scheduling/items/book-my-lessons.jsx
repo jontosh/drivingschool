@@ -36,7 +36,7 @@ export const BookMyLessons = ({ ...props }) => {
                 FILTER BY DATE
               </Title>
               <IconComponent
-                className={"cursor-text"}
+                className={"cursor-text text-gray-500"}
                 iconWidth={"w-[18px]"}
                 icon={<BsFillCalendarWeekFill />}
               />
