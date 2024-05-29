@@ -28,7 +28,7 @@ class TimeSlotSerializer_(serializers.ModelSerializer):
     date_range = DateRangeSerializer(read_only=True)
     location = LocationSerializer(read_only=True)
     vehicle = VehicleSerializer(read_only=True)
-    week_range = WeekRangeSerializer(many=True,read_only=True)
+    # week_range = WeekRangeSerializer(many=True,read_only=True)
     slots = TimeRangeSerializer(many=True,read_only=True)
     staff = InstructorFullSerializer(read_only=True)
     class Meta:
