@@ -14,6 +14,7 @@ export const DiscountsModule = () => {
   });
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
+  const [ActionIndex, setActionIndex] = useState(-1);
   const { AlertDeleteComponent } = AlertDelete();
 
   const columns = [
@@ -67,38 +68,45 @@ export const DiscountsModule = () => {
     {
       title: "Action",
       key: "action",
-      render: () => (
-        <Fragment>
-          <div className={"text-center space-x-2.5"}>
-            <IconComponent
-              className={"text-xl text-red-600 border border-indigo-600"}
-              style={{
-                borderRadius: 5,
-                paddingLeft: 4,
-                paddingRight: 4,
-              }}
-              icon={<DeleteOutlined />}
-              onClick={() => setIsOpen(true)}
-            />
+      render: (text, _, index) => {
+        return (
+          <Fragment>
+            <div className={"space-x-2.5"}>
+              <IconComponent
+                className={"text-xl text-red-600 border border-indigo-600"}
+                style={{
+                  borderRadius: 5,
+                  paddingLeft: 4,
+                  paddingRight: 4,
+                }}
+                icon={<DeleteOutlined />}
+                onClick={() => {
+                  setIsOpen(true);
+                  setModalType("delete");
+                  setActionIndex(index);
+                }}
+              />
 
-            <IconComponent
-              className={"text-xl text-indigo-500 border border-indigo-600"}
-              style={{
-                borderRadius: 5,
-                paddingLeft: 4,
-                paddingRight: 4,
-              }}
-              icon={<ExportOutlined />}
-            />
-          </div>
-          {IsOpen && ModalType === "delete" && (
-            <AlertDeleteComponent setIsOpen={setIsOpen} />
-          )}
-          {IsOpen && ModalType === "edit" && (
-            <AlertEdit setIsOpen={setIsOpen} />
-          )}
-        </Fragment>
-      ),
+              <IconComponent
+                className={"text-xl text-indigo-500 border border-indigo-600"}
+                style={{
+                  borderRadius: 5,
+                  paddingLeft: 4,
+                  paddingRight: 4,
+                }}
+                icon={<ExportOutlined />}
+              />
+            </div>
+            {ActionIndex === index && IsOpen && ModalType === "delete" && (
+              <AlertDeleteComponent setIsOpen={setIsOpen} />
+            )}
+
+            {ActionIndex === index && IsOpen && ModalType === "edit" && (
+              <AlertEdit setIsOpen={setIsOpen} />
+            )}
+          </Fragment>
+        );
+      },
     },
   ];
 

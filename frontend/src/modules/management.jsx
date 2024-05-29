@@ -17,6 +17,7 @@ export const LocationModule = () => {
   const { LocationData: data } = useContext(AccountManagementContext);
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
+  const [ActionIndex, setActionIndex] = useState(-1);
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -81,55 +82,60 @@ export const LocationModule = () => {
     {
       title: "Action",
       key: "action",
-      render: () => (
-        <Fragment>
-          <div className={"space-x-2.5"}>
-            <IconComponent
-              className={"text-xl text-indigo-500 border border-indigo-600"}
-              style={{
-                borderRadius: 5,
-                paddingLeft: 4,
-                paddingRight: 4,
-              }}
-              icon={<FormOutlined />}
-              onClick={() => {
-                setIsOpen(true);
-                setModalType("edit");
-              }}
-            />
+      render: (text, _, index) => {
+        return (
+          <Fragment>
+            <div className={"space-x-2.5"}>
+              <IconComponent
+                className={"text-xl text-indigo-500 border border-indigo-600"}
+                style={{
+                  borderRadius: 5,
+                  paddingLeft: 4,
+                  paddingRight: 4,
+                }}
+                icon={<FormOutlined />}
+                onClick={() => {
+                  setIsOpen(true);
+                  setModalType("edit");
+                  setActionIndex(index);
+                }}
+              />
 
-            <IconComponent
-              className={"text-xl text-red-600 border border-indigo-600"}
-              style={{
-                borderRadius: 5,
-                paddingLeft: 4,
-                paddingRight: 4,
-              }}
-              icon={<DeleteOutlined />}
-              onClick={() => {
-                setIsOpen(true);
-                setModalType("delete");
-              }}
-            />
+              <IconComponent
+                className={"text-xl text-red-600 border border-indigo-600"}
+                style={{
+                  borderRadius: 5,
+                  paddingLeft: 4,
+                  paddingRight: 4,
+                }}
+                icon={<DeleteOutlined />}
+                onClick={() => {
+                  setIsOpen(true);
+                  setModalType("delete");
+                  setActionIndex(index);
+                }}
+              />
 
-            <IconComponent
-              className={"text-xl text-indigo-500 border border-indigo-600"}
-              style={{
-                borderRadius: 5,
-                paddingLeft: 4,
-                paddingRight: 4,
-              }}
-              icon={<ExportOutlined />}
-            />
-          </div>
-          {IsOpen && ModalType === "delete" && (
-            <AlertDeleteComponent setIsOpen={setIsOpen} />
-          )}
-          {IsOpen && ModalType === "edit" && (
-            <AlertEdit setIsOpen={setIsOpen} />
-          )}
-        </Fragment>
-      ),
+              <IconComponent
+                className={"text-xl text-indigo-500 border border-indigo-600"}
+                style={{
+                  borderRadius: 5,
+                  paddingLeft: 4,
+                  paddingRight: 4,
+                }}
+                icon={<ExportOutlined />}
+              />
+            </div>
+            {ActionIndex === index && IsOpen && ModalType === "delete" && (
+              <AlertDeleteComponent setIsOpen={setIsOpen} />
+            )}
+
+            {ActionIndex === index && IsOpen && ModalType === "edit" && (
+              <AlertEdit setIsOpen={setIsOpen} />
+            )}
+          </Fragment>
+        );
+      },
     },
   ];
 
@@ -140,6 +146,7 @@ export const HighSchoolModule = () => {
   const { SchoolData: data } = useContext(AccountManagementContext);
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
+  const [ActionIndex, setActionIndex] = useState(-1);
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -204,7 +211,7 @@ export const HighSchoolModule = () => {
       title: "Action",
       key: "action",
       align: "center",
-      render: () => (
+      render: (text, _, index) => (
         <Fragment>
           <div className={" space-x-2.5 "}>
             <IconComponent
@@ -215,7 +222,11 @@ export const HighSchoolModule = () => {
                 paddingRight: 4,
               }}
               icon={<FormOutlined />}
-              onClick={() => setModalType("edit")}
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("edit");
+                setActionIndex(index);
+              }}
             />
 
             <IconComponent
@@ -230,7 +241,7 @@ export const HighSchoolModule = () => {
               }}
             />
           </div>
-          {IsOpen && ModalType === "edit" && (
+          {ActionIndex === index && IsOpen && ModalType === "edit" && (
             <AlertEdit setIsOpen={setIsOpen} />
           )}
         </Fragment>
@@ -245,6 +256,7 @@ export const HearModule = () => {
   const { HearData: data } = useContext(AccountManagementContext);
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
+  const [ActionIndex, setActionIndex] = useState(-1);
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -297,7 +309,7 @@ export const HearModule = () => {
       title: "Action",
       key: "action",
       align: "center",
-      render: () => (
+      render: (text, _, index) => (
         <Fragment>
           <div className={" space-x-2.5 "}>
             <IconComponent
@@ -308,7 +320,11 @@ export const HearModule = () => {
                 paddingRight: 4,
               }}
               icon={<FormOutlined />}
-              onClick={() => setModalType("edit")}
+              onClick={() => {
+                setIsOpen(true);
+                setModalType("edit");
+                setActionIndex(index);
+              }}
             />
 
             <IconComponent
@@ -323,7 +339,7 @@ export const HearModule = () => {
               }}
             />
           </div>
-          {IsOpen && ModalType === "edit" && (
+          {ActionIndex === index && IsOpen && ModalType === "edit" && (
             <AlertEdit setIsOpen={setIsOpen} />
           )}
         </Fragment>
@@ -340,6 +356,7 @@ export const VehiclesModule = () => {
   );
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
+  const [ActionIndex, setActionIndex] = useState(-1);
   const { AlertDeleteComponent } = AlertDelete(IsOpen);
 
   const columns = [
@@ -404,7 +421,7 @@ export const VehiclesModule = () => {
       title: "Action",
       key: "action",
       align: "center",
-      render: () => (
+      render: (text, _, index) => (
         <Fragment>
           <div className={" space-x-2.5 "}>
             <IconComponent
@@ -418,6 +435,7 @@ export const VehiclesModule = () => {
               onClick={() => {
                 setIsOpen(true);
                 setModalType("edit");
+                setActionIndex(index);
               }}
             />
 
@@ -446,7 +464,7 @@ export const VehiclesModule = () => {
               }}
             />
           </div>
-          {IsOpen && ModalType === "edit" && (
+          {ActionIndex === index && IsOpen && ModalType === "edit" && (
             <AlertEdit setIsOpen={setIsOpen} />
           )}
         </Fragment>

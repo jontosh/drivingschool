@@ -1,17 +1,13 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
-import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { EnrollmentsSelections } from "@/modules/enrollments.jsx";
 import { InfoForm } from "@/pages/enrollment/info-form.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { IoArrowForwardSharp } from "react-icons/io5";
-import { MdOutlineContentCopy } from "react-icons/md";
 import EnrollmentStyle from "./enrollment.module.scss";
 
 const Enrollment = () => {
@@ -75,12 +71,6 @@ const Enrollment = () => {
             <Paragraph fontSize={"text-xs"} fontWeightStrong={400}>
               {label}
             </Paragraph>
-            {/*<Paragraph*/}
-            {/*  fontSize={"text-xs text-gray-600"}*/}
-            {/*  fontWeightStrong={400}*/}
-            {/*>*/}
-            {/*  {hours}h*/}
-            {/*</Paragraph>*/}
           </div>
 
           <div className="flex items-center gap-2 5">
@@ -225,16 +215,10 @@ const Enrollment = () => {
 
               <CustomSelect
                 placeholder={"Select class"}
-                // onChange={(value) => setClasses(value)}
                 options={ClassSelectionArray}
-                // style={{ width: "100%" }}
                 className={"w-full mb-2.5 h-[50px]"}
                 colorBorder={colorsObject.primary}
               />
-
-              {/*{SelectedClass?.length > 0 ? (*/}
-              {/*  <div className={"mb-5 space-y-2.5"}>{classItem}</div>*/}
-              {/*) : null}*/}
             </div>
           </div>
         </div>
