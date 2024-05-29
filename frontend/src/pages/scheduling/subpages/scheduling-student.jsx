@@ -1,56 +1,71 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput } from "@/components/form/index.jsx";
-import IconComponent from "@/components/icons/index.jsx";
-import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { SchedulingModule } from "@/modules/scheduling.jsx";
-import { Calendar, Table } from "antd";
+import { useFilterStatus } from "@/hooks/filter.jsx";
+import { FormError } from "@/modules/errors.jsx";
+import TabItem from "@/pages/scheduling/items/tab.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { ConfigProvider, Tabs } from "antd";
 import { Formik } from "formik";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import { PiCalendarThin } from "react-icons/pi";
-import { NavLink } from "react-router-dom";
 
-const FormResult = () => {
+export const SchedulingStudent = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { columns, data } = SchedulingModule();
+  const { data } = useRequestGetQuery({ path: "/student_account/student/" });
+  const [Search, setSearch] = useState(null);
+  const { Data } = useFilterStatus({ data, search: Search });
+  const [Student, setStudent] = useState({});
+
+  const searchItem = Data?.map((item, index) => {
+    return (
+      <li
+        key={index}
+        className={"cursor-pointer"}
+        onClick={() => {
+          setStudent(item);
+        }}
+      >
+        {item.first_name} {item.last_name}, {item.birth}
+      </li>
+    );
+  });
+
   return (
-    <Fragment>
+    <div className={"space-y-8"}>
       <Formik
-        initialValues={{ search: "" }}
-        onSubmit={(values) => {
-          console.log(values);
+        initialValues={{
+          search: "",
         }}
         validate={(values) => {
           const errors = {};
+
           if (!values.search) {
-            errors.search = "Input is empty";
+            errors.search = "Search is empty";
+          } else {
+            setSearch(values.search);
           }
 
           return errors;
         }}
+        onSubmit={(values) => {}}
       >
-        {({
-          values,
-          touched,
-          errors,
-          handleSubmit,
-          handleBlur,
-          handleChange,
-        }) => {
-          return (
-            <Fragment>
-              <form onSubmit={handleSubmit}>
-                <label className={"relative w-full shadow-xl"}>
+        {({ values, errors, handleChange, handleReset }) => (
+          <form onSubmit={(e) => e.preventDefault()}>
+            <div className={"flex gap-5 items-center"}>
+              <div className={"space-y-5 flex-grow"}>
+                <label className={"relative w-full"}>
                   <CustomInput
-                    colorBorder={colorsObject.primary}
-                    placeholder={"Find student"}
-                    className={`w-full pl-12 pr-4 py-2.5 text-sm `}
-                    classNames={"w-full"}
-                    name={"search"}
+                    colorBorder={colorsObject.main}
+                    fontSize="text-base"
+                    placeholder={"Find teacher"}
+                    classNames={
+                      "inline-flex flex-row-reverse items-center gap-5 w-full"
+                    }
+                    className={`pl-12 pr-4 py-2.5  h-10 text-sm inline-flex flex-row-reverse shadow-xl`}
                     value={values.search}
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    name={"search"}
                   />
                   <span
                     className={
@@ -60,178 +75,57 @@ const FormResult = () => {
                     <AiOutlineSearch />
                   </span>
                 </label>
-
-                {!errors.search && (
-                  <div className={`p-5 bg-white `}>
-                    <ButtonComponent
-                      defaultHoverBg={"transparent"}
-                      defaultBg={colorsObject.main}
-                      defaultColor={colorsObject.black}
-                      defaultHoverColor={colorsObject.black}
-                      paddingInline={24}
-                      className={"w-full text-start"}
-                      style={{
-                        boxShadow: 'none'
-                      }}
-                    >
-                      Aminov Makhsud, 2004, BMR RX6 Teacher, Adult
-                    </ButtonComponent>
-                  </div>
+                {errors.search && (
+                  <FormError className={"pl-5"}>{errors.search}</FormError>
                 )}
-              </form>
-
-              {(errors.search || touched.search) && (
-                <div className={`text-red-600 p-5 bg-white relative z-10 `}>
-                  {errors.search}
-                </div>
-              )}
-            </Fragment>
-          );
-        }}
-      </Formik>
-      <div className="bg-white px-8 rounded-xl">
-        <div className="space-x-7 -mx-8 px-8 border-b border-b-gray-400">
-          <NavLink
-            to={""}
-            className={"hover:text-indigo-500 text-gray-500 text-xl py-8"}
-          >
-            Book my lessons
-          </NavLink>
-          <NavLink
-            to={""}
-            className={"hover:text-indigo-500 text-gray-500 text-xl py-8"}
-          >
-            My schedule
-          </NavLink>
-        </div>
-
-        <div className="space-y-7">
-          <div className="space-x-4">
-            <NavLink
-              to={""}
-              className={
-                "hover:text-indigo-500 text-gray-500 text-xl py-7 font-medium"
-              }
-            >
-              Book my lesson
-            </NavLink>
-            <NavLink
-              to={""}
-              className={
-                "hover:text-indigo-500 text-gray-500 text-xl py-7 font-medium"
-              }
-            >
-              Aminov Makhsudjon
-            </NavLink>
-          </div>
-
-          <ul className={"space-y-2.5"}>
-            <li className={"cursor-pointer"}>
-              <div className="bg-white shadow-xl py-3 px-8 hover:text-indigo-500 flex justify-between">
-                <Paragraph
-                  fontSize={"text-base text-inherit"}
-                  className={"text-inherit"}
-                >
-                  Click here to view scheduled lessons
-                </Paragraph>
-                <span>+</span>
               </div>
-            </li>
-          </ul>
 
-          <div className={"flex justify-between pb-7"}>
-            <div className={"grid grid-cols-2 gap-5"}>
-              <Calendar fullscreen={false} className={"w-[300px] shadow-xl"} />
-              <Calendar fullscreen={false} className={"w-[300px] shadow-xl"} />
+              {values.search && (
+                <ButtonComponent
+                  defaultBg={colorsObject.main}
+                  defaultHoverBg={colorsObject.main}
+                  defaultBorderColor={colorsObject.primary}
+                  defaultHoverBorderColor={colorsObject.primary}
+                  defaultColor={colorsObject.black}
+                  defaultHoverColor={colorsObject.black}
+                  borderRadius={5}
+                  paddingInline={44}
+                  onClick={handleReset}
+                >
+                  Clear
+                </ButtonComponent>
+              )}
             </div>
+            {values.search !== "" && (
+              <ul className={"p-5 space-y-2.5 bg-white rounded-b-2xl"}>
+                {searchItem}
+              </ul>
+            )}
+          </form>
+        )}
+      </Formik>
 
-            <div className={"flex flex-col gap-5 m-auto"}>
-              <ButtonComponent
-                defaultBg={colorsObject.info}
-                defaultHoverBg={colorsObject.info}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                className={"flex-shrink-0 flex-grow-0"}
-                borderRadius={5}
-                controlHeight={40}
-                style={{
-                  width: 210,
-                }}
-              >
-                Refine search
-              </ButtonComponent>
-              <ButtonComponent
-                defaultBg={colorsObject.secondary}
-                defaultHoverBg={colorsObject.secondary}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                className={"flex-shrink-0 flex-grow-0"}
-                borderRadius={5}
-                controlHeight={40}
-                style={{
-                  width: 210,
-                }}
-              >
-                Clear search
-              </ButtonComponent>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className={"bg-white p-8 rounded-xl"}>
-        <div className="flex justify-between">
-          <Title level={2} fontSize={"text-indigo-700 flex items-center gap-2"}>
-            <IconComponent
-              icon={<PiCalendarThin />}
-              className={"cursor-text"}
-            />
-            <span>AVAILABLE OPEN SLOTS</span>
-          </Title>
-
-          <div className="space-x-5">
-            <ButtonComponent
-              defaultBg={colorsObject.info}
-              defaultHoverBg={colorsObject.info}
-              defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
-              className={"flex-shrink-0 flex-grow-0"}
-              borderRadius={5}
-              controlHeight={40}
-              paddingInline={50}
+      {Search && Student?.id && (
+        <Fragment>
+          <div className="bg-white p-7 rounded-2xl shadow-2xl">
+            <ConfigProvider
+              theme={{
+                components: {
+                  Tabs: {
+                    itemColor: colorsObject.secondary,
+                    itemSelectedColor: colorsObject.primary,
+                    itemHoverColor: colorsObject.primary,
+                    titleFontSize: 16,
+                    inkBarColor: "transparent",
+                  },
+                },
+              }}
             >
-              Refine search
-            </ButtonComponent>
-            <ButtonComponent
-              defaultBg={colorsObject.secondary}
-              defaultHoverBg={colorsObject.secondary}
-              defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
-              className={"flex-shrink-0 flex-grow-0"}
-              borderRadius={5}
-              controlHeight={40}
-              paddingInline={53}
-            >
-              Clear search
-            </ButtonComponent>
+              <Tabs defaultActiveKey="1" items={TabItem()} />
+            </ConfigProvider>
           </div>
-        </div>
-
-        <Table
-          className={"pt-5"}
-          columns={columns}
-          dataSource={data}
-          pagination={false}
-        />
-      </div>
-    </Fragment>
-  );
-};
-
-export const SchedulingStudent = () => {
-  return (
-    <div className={"space-y-5"}>
-      <FormResult />
+        </Fragment>
+      )}
     </div>
   );
 };
