@@ -13,6 +13,7 @@ export const FileCategoryModule = () => {
   });
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
+  const [ActionIndex, setActionIndex] = useState(-1);
   const { AlertDeleteComponent } = AlertDelete();
 
   const columns = [
@@ -76,7 +77,7 @@ export const FileCategoryModule = () => {
       key: "delete",
       dataIndex: "delete",
       align: "center",
-      render: () => {
+      render: (text, _, index) => {
         return (
           <Fragment>
             <div className={"text-center"}>
@@ -86,10 +87,11 @@ export const FileCategoryModule = () => {
                 onClick={() => {
                   setIsOpen(true);
                   setModalType("delete");
+                  setActionIndex(index);
                 }}
               />
             </div>
-            {IsOpen && ModalType === "delete" && (
+            {ActionIndex === index && IsOpen && ModalType === "delete" && (
               <AlertDeleteComponent setIsOpen={setIsOpen} />
             )}
           </Fragment>

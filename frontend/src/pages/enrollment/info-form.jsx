@@ -80,7 +80,7 @@ export const InfoForm = () => {
   const [HighSchoolOptions, setHighSchoolOptions] = useState([]);
   const [MedConditionValue, setMedConditionValue] = useState("Hello");
   const [DrivingNotesValue, setDrivingNotesValue] = useState("Hello");
-  const [Lead, setLead] = useState("Select");
+  const [Lead, setLead] = useState("");
   const [DLIssued, setDLIssued] = useState(null);
   const [DLExpireDate, setDLExpireDate] = useState(null);
   const [ExtinctionDate, setExtinctionDate] = useState(null);
@@ -133,7 +133,7 @@ export const InfoForm = () => {
     setHighSchoolOptions(options);
   }, [SchoolData]);
 
-  const selects = [State, Staff, AssignLocation, HighSchool, Lead, Pronoun];
+  const selects = [Staff, AssignLocation, State, Pronoun, HighSchool, Lead];
 
   const stateSelects = useMemo(() => {
     let state = false;
@@ -141,6 +141,8 @@ export const InfoForm = () => {
       if (selects[i] === "") {
         state = true;
         break;
+      } else {
+        state = false;
       }
     }
 
@@ -148,7 +150,7 @@ export const InfoForm = () => {
   }, [Staff, AssignLocation, State, Pronoun, HighSchool, Lead]);
 
   const handleSubmit = async (values) => {
-    setSelectSubmit(!stateSelects);
+    setSelectSubmit(stateSelects);
 
     if (!stateSelects) {
       try {

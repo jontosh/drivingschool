@@ -109,13 +109,15 @@ export const ProductModalContent = () => {
           },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
           dispatch({ type: "SUCCESS", setIsOpen });
           setIsOpen(true);
         }
+
+        // console.log(res);
 
         // dispatch({ type: "SUCCESS" });
       } catch (error) {
@@ -354,7 +356,7 @@ export const FeesModalContent = () => {
           data: { ...values, status: Status, notes: NotesValue },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
@@ -556,7 +558,7 @@ export const DiscountModalContent = () => {
           },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
@@ -666,7 +668,7 @@ export const DiscountModalContent = () => {
                   ManagementStyle["CheckModal__form-element__shadow"],
                   "w-[40%] text-base",
                 )}
-                type={"text"}
+                type={"number"}
                 spanText={"Fee Amount:"}
                 placeholder={"Fee Amount"}
                 fontSize={"text-base"}
@@ -1006,7 +1008,7 @@ export const AddServiceModalContent = () => {
           },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
@@ -1053,6 +1055,8 @@ export const AddServiceModalContent = () => {
           if (!values.web_name) {
             errors.web_name = "Input Web name is empty";
           }
+
+          console.log(values);
 
           return errors;
         }}
@@ -1247,23 +1251,7 @@ export const AddServiceModalContent = () => {
                   >
                     Allow Web Purchase:
                   </span>
-                  <div className={"space-x-5"}>
-                    <CustomRadio
-                      classNames={"inline-flex items-center gap-x-2.5"}
-                      name={"purchase"}
-                      onChange={handleChange}
-                    >
-                      <span className={"text-sm font-medium"}>Yes</span>
-                    </CustomRadio>
-
-                    <CustomRadio
-                      classNames={"inline-flex items-center gap-x-2.5"}
-                      name={"purchase"}
-                      onChange={handleChange}
-                    >
-                      <span className={"text-sm font-medium"}>None</span>
-                    </CustomRadio>
-                  </div>
+                  <CustomCheckBox name={"purchase"} onChange={handleChange} />
                 </label>
 
                 <label className={"inline-flex items-center w-full gap-10"}>
@@ -1272,23 +1260,11 @@ export const AddServiceModalContent = () => {
                   >
                     Allow Portal Purchase:
                   </span>
-                  <div className={"space-x-5"}>
-                    <CustomRadio
-                      classNames={"inline-flex items-center gap-x-2.5"}
-                      name={"portal_purchase"}
-                      onChange={handleChange}
-                    >
-                      <span className={"text-sm font-medium"}>Yes</span>
-                    </CustomRadio>
 
-                    <CustomRadio
-                      classNames={"inline-flex items-center gap-x-2.5"}
-                      name={"portal_purchase"}
-                      onChange={handleChange}
-                    >
-                      <span className={"text-sm font-medium"}>None</span>
-                    </CustomRadio>
-                  </div>
+                  <CustomCheckBox
+                    name={"portal_purchase"}
+                    onChange={handleChange}
+                  />
                 </label>
 
                 <div className={`space-y-5`}>
@@ -1304,8 +1280,8 @@ export const AddServiceModalContent = () => {
                         dataSource={mockData}
                         listHeight={200}
                         colorBorder={colorsObject.primary}
-                        setSelectedKeys={setServiceItems}
-                        selectedKeys={ServiceItems}
+                        setSelectedKeys={setAddOnServices}
+                        selectedKeys={AddOnServices}
                       />
                     </div>
                   </div>
@@ -1343,10 +1319,10 @@ export const AddServiceModalContent = () => {
                       value={AssociateContract ? AssociateContract : undefined}
                       onChange={handleAssociateContract}
                       options={[
-                        {
-                          value: "Active",
-                          label: "Active",
-                        },
+                        { value: "TEEN", label: "TEEN" },
+                        { value: "ADULT", label: "ADULT" },
+                        { value: "KNOWLEDGE", label: "KNOWLEDGE" },
+                        { value: "ROAD TEST", label: "ROAD TEST" },
                       ]}
                     />
                     {Selections && (
@@ -1447,7 +1423,7 @@ export const FileCategoryModalContent = () => {
           package: ToNumber(Packages),
         },
       });
-      if (res.error.status >= 400) {
+      if (res?.error?.status >= 400) {
         dispatch({ type: "ERROR", setIsOpen });
         setIsOpen(true);
       } else {
@@ -1691,7 +1667,7 @@ export const FileCategoryModalContent = () => {
 
 export const AddStaffModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { FileReaderResult, Result } = useFileReader();
+  const { FileReaderResult, ResultFile } = useFileReader();
   const navigate = useNavigate();
   const [Status, setStatus] = useState("");
   const [StaffType, setStaffType] = useState("");
@@ -1717,7 +1693,6 @@ export const AddStaffModalContent = () => {
           location: Location,
           state: State,
           vehicle: Vehicle,
-          picture: Result,
           birth: DOB,
           car_permit_data: PermitIssueDate,
           car_permit_expire: PermitExpirationDate,
@@ -1725,7 +1700,7 @@ export const AddStaffModalContent = () => {
         },
       });
 
-      if (res.error.status >= 400) {
+      if (res?.error?.status >= 400) {
         dispatch({ type: "ERROR", setIsOpen });
         setIsOpen(true);
       } else {
@@ -1769,6 +1744,7 @@ export const AddStaffModalContent = () => {
           assign_color: false,
           color: "#000",
           zoom: "",
+          picture: null,
         }}
         validate={(values) => {
           const errors = {};
@@ -1791,7 +1767,14 @@ export const AddStaffModalContent = () => {
         }}
         onSubmit={handleSubmit}
       >
-        {({ handleSubmit, handleReset, handleChange, errors, values }) => (
+        {({
+          handleSubmit,
+          handleReset,
+          handleChange,
+          errors,
+          values,
+          setFieldValue,
+        }) => (
           <form className={"space-y-5"} onSubmit={handleSubmit}>
             <div className={"grid grid-cols-2 gap-5 px-5"}>
               <div className={"space-y-5"}>
@@ -2281,7 +2264,10 @@ export const AddStaffModalContent = () => {
                     Staff Profile Picture
                   </span>
 
-                  <FileReaderResult className={"overflow-hidden w-60 h-60"} />
+                  <FileReaderResult
+                    className={"overflow-hidden w-60 h-60"}
+                    onChange={() => setFieldValue("picture", ResultFile)}
+                  />
                 </label>
               </div>
             </div>
@@ -2372,7 +2358,7 @@ export const LocationModalContent = () => {
           },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
@@ -2979,7 +2965,7 @@ export const AddSchoolModalContent = () => {
           },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
@@ -3283,7 +3269,7 @@ export const HowHearModalContent = () => {
           },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
@@ -3462,7 +3448,7 @@ export const VehiclesModalContent = () => {
   const [Location, setLocation] = useState("");
   const [Type, setType] = useState("");
   const [Selections, setSelections] = useState(false);
-  const { FileReaderResult, Result } = useFileReader();
+  const { FileReaderResult, ResultFile } = useFileReader();
   const [NotesValue, setNotesValue] = useState("Hello");
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
@@ -3492,7 +3478,6 @@ export const VehiclesModalContent = () => {
           path: "/account_management/vehicle/",
           data: {
             ...values,
-            image: Result,
             status: Status,
             location: Location,
             type: Type,
@@ -3500,7 +3485,7 @@ export const VehiclesModalContent = () => {
           },
         });
 
-        if (res.error.status >= 400) {
+        if (res?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
@@ -3534,6 +3519,7 @@ export const VehiclesModalContent = () => {
           asr_esn_id: "",
           odometer: "",
           initial_mileage: "",
+          image: null,
         }}
         validate={(values) => {
           const errors = {};
@@ -3546,7 +3532,14 @@ export const VehiclesModalContent = () => {
         }}
         onSubmit={handleSubmit}
       >
-        {({ handleSubmit, handleReset, handleChange, values, errors }) => (
+        {({
+          handleSubmit,
+          setFieldValue,
+          handleReset,
+          handleChange,
+          values,
+          errors,
+        }) => (
           <form className={"space-y-5 px-5"} onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-5">
               <div className={"space-y-5"}>
@@ -3805,6 +3798,7 @@ export const VehiclesModalContent = () => {
 
                   <FileReaderResult
                     className={`overflow-hidden w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    onChange={() => setFieldValue("image", ResultFile)}
                   />
                 </label>
               </div>

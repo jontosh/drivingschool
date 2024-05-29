@@ -80,11 +80,11 @@ export const FormValidate = (values) => {
     !values.cell_phone ||
     !values.gender ||
     !values.dl_permit ||
-    !values.scheduling ||
-    !values.payment ||
+    // !values.scheduling ||
+    // !values.payment ||
     !values.parent_name ||
     !values.parent_phone ||
-    !values.home_drop_off ||
+    // !values.home_drop_off ||
     !values.read_and_agreed ||
     !values.city
   ) {
