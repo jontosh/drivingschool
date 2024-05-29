@@ -7,6 +7,7 @@ const TableComponent = ({
   data,
   columns,
   pagination = false,
+  cellPaddingInline = 16,
   ...props
 }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -17,6 +18,7 @@ const TableComponent = ({
           components: {
             Table: {
               headerBg: colorsObject.main,
+              cellPaddingInline,
             },
           },
         }}
