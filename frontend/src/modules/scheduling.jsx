@@ -1,7 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 
 export const SchedulingModule = () => {
   const columns = [
@@ -9,15 +9,19 @@ export const SchedulingModule = () => {
       title: "Date",
       dataIndex: "date",
       key: "date",
-      align: "center",
       render: (date) => (
-        <Paragraph
-          fontSize={"text-base"}
-          fontWeightStrong={500}
-          className={"border border-indigo-700 px-2.5 py-4 rounded-xl"}
-        >
-          {date}
-        </Paragraph>
+        <Fragment>
+          <Paragraph
+            fontSize={"text-xs text-white"}
+            fontWeightStrong={500}
+            className={"bg-[#24C18F] px-2.5 py-4 rounded-xl"}
+          >
+            {date}
+          </Paragraph>
+          <Paragraph fontSize={"text-[10px]"}>
+            <b>Pickup Location:</b> Mason + Weschester + Mainville
+          </Paragraph>
+        </Fragment>
       ),
     },
     {
@@ -26,38 +30,24 @@ export const SchedulingModule = () => {
       key: "name",
       align: "center",
       render: (name) => (
-        <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
+        <Paragraph fontWeightStrong={400} fontSize={"text-xs"}>
           {name}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Pickup Location",
-      dataIndex: "location",
-      key: "location",
-      align: "center",
-      render: (location) => (
-        <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-          {location}
         </Paragraph>
       ),
     },
   ];
   const data = [
     {
-      date: "Mon, Apr 15, 10:45 AM - 12:45 PM",
+      date: "FRI, JUN 7, 3:00 PM-5:00 PM",
       name: "Aminov Makhsudjon",
-      location: "Please select",
     },
     {
-      date: "Mon, Apr 15, 10:45 AM - 12:45 PM",
+      date: "FRI, JUN 7, 3:00 PM-5:00 PM",
       name: "Aminov Makhsudjon",
-      location: "Please select",
     },
     {
-      date: "Mon, Apr 15, 10:45 AM - 12:45 PM",
+      date: "FRI, JUN 7, 3:00 PM-5:00 PM",
       name: "Aminov Makhsudjon",
-      location: "Please select",
     },
   ];
   return { columns, data };
