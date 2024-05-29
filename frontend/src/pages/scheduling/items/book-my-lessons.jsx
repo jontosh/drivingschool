@@ -30,10 +30,10 @@ export const BookMyLessons = ({ ...props }) => {
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}
-                fontSize={"text-base text-gray-600 uppercase"}
+                fontSize={"text-base text-gray-500 uppercase"}
                 fontWeightStrong={500}
               >
-                filter by
+                FILTER BY DATE
               </Title>
               <IconComponent
                 className={"cursor-text"}
@@ -96,13 +96,13 @@ export const BookMyLessons = ({ ...props }) => {
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}
-                fontSize={"text-base text-gray-600 uppercase"}
+                fontSize={"text-base text-gray-500 uppercase"}
                 fontWeightStrong={500}
               >
-                filter by
+                AVAILABLE  OPEN SLOT
               </Title>
               <IconComponent
-                className={"cursor-text"}
+                className={"cursor-text text-gray-500"}
                 iconWidth={"w-[18px]"}
                 icon={<BsFillCalendarWeekFill />}
               />

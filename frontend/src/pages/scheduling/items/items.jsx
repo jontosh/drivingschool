@@ -17,7 +17,7 @@ export const DrivingItem = ({ item }) => {
 
   return (
     <Fragment>
-      <div className={"bg-gray-300 pt-8 pr-2 pl-5 pb-2 rounded-lg space-y-3"}>
+      <div className={"bg-gray-200 pt-8 pr-2 pl-5 pb-2 rounded-lg space-y-3"}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <Title level={5} fontSize={"text-sm"} fontWeightStrong={600}>
@@ -33,7 +33,7 @@ export const DrivingItem = ({ item }) => {
               borderRadius={5}
               fontSize={8}
             >
-              CLASSES
+              Change
             </ButtonComponent>
           </div>
 
@@ -67,7 +67,7 @@ export const DrivingItem = ({ item }) => {
             />
 
             <Paragraph fontSize={"text-xs"} fontWeightStrong={300}>
-              Instructor: Aminov
+              Monday & Wednesday
             </Paragraph>
           </li>
 
@@ -79,7 +79,7 @@ export const DrivingItem = ({ item }) => {
             />
 
             <Paragraph fontSize={"text-xs"} fontWeightStrong={300}>
-              Instructor: Aminov
+              9:00 AM - 10:30 AM
             </Paragraph>
           </li>
 
@@ -103,7 +103,7 @@ export const DrivingItem = ({ item }) => {
               defaultBg={colorsObject.success}
               controlHeight={20}
               paddingInline={9}
-              borderRadius={5}
+              borderRadius={10}
               fontSize={8}
             >
               Map & Direction
