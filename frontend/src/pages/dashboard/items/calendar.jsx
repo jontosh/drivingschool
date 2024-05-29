@@ -3,7 +3,6 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { formatPhoneNumber } from "@/modules/formatter.jsx";
 import { Dropdown } from "antd";
 import {
   useState,
@@ -73,7 +72,6 @@ const items = [
 ];
 
 export const DashboardCalendar = ({ data }) => {
-  console.log(data);
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
