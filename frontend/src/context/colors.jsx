@@ -8,6 +8,7 @@ export const ColorsProvider = ({ children }) => {
     black: "#000",
     bg: "#F1F5F9",
     primary: "#5F66E9",
+    primaryHover: "#5F66E9CC",
     secondary: "rgba(0,0,0, 0.25)",
     danger: "#FF333F",
     info: "#1890FF",

@@ -24,9 +24,15 @@ export const useFilterStatus = ({ data, status, search }) => {
           item?.type_component
             ?.toLowerCase()
             ?.includes(search?.toLowerCase()) ||
-          item?.type?.toLowerCase()?.includes(search?.toLowerCase()) ||
+          item?.type
+            ?.toString()
+            ?.toLowerCase()
+            ?.includes(search?.toLowerCase()) ||
           item?.subtype_btw?.toLowerCase()?.includes(search?.toLowerCase()) ||
           item?.code?.toLowerCase()?.includes(search?.toLowerCase()) ||
+          item?.email?.toLowerCase()?.includes(search?.toLowerCase()) ||
+          item?.cell_phone?.toLowerCase()?.includes(search?.toLowerCase()) ||
+          item?.birth?.toLowerCase()?.includes(search?.toLowerCase()) ||
           item?.last_name?.toLowerCase()?.includes(search?.toLowerCase())
         );
       }),

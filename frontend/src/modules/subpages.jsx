@@ -47,6 +47,16 @@ import { StudentFileReport } from "@/pages/report/subpages/student-file-report.j
 import { StudentUpdatedProfile } from "@/pages/report/subpages/student-updated-profile.jsx";
 import { TransactionSummaryReport } from "@/pages/report/subpages/transaction-summary-report.jsx";
 import { UpcomingTaskReport } from "@/pages/report/subpages/upcoming-task-report.jsx";
+import { ActivityLogs } from "@/pages/scheduling/subpages/activity-logs.jsx";
+import { AppointmentEdit } from "@/pages/scheduling/subpages/appointment-edit.jsx";
+import { Appointments } from "@/pages/scheduling/subpages/appointments.jsx";
+import { Corporate } from "@/pages/scheduling/subpages/corporate.jsx";
+import { Multi } from "@/pages/scheduling/subpages/multi.jsx";
+import { OpenTimeSlots } from "@/pages/scheduling/subpages/open-time-slots.jsx";
+import { Process } from "@/pages/scheduling/subpages/process.jsx";
+import { SchedulingStudent } from "@/pages/scheduling/subpages/scheduling-student.jsx";
+import { Single } from "@/pages/scheduling/subpages/single.jsx";
+import { Vehicle } from "@/pages/scheduling/subpages/vehicle.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useFilterStatus } from "@/hooks/filter.jsx";
@@ -275,6 +285,105 @@ export const Subpages = ({ page, status, search }) => {
     }
     case "attendance-sheet-report": {
       return <AttendanceSheetReport />;
+    }
+    case "appointment":
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Manage time slot - Appointment bulk edit</title>
+          </Helmet>
+          <AppointmentEdit />
+        </Fragment>
+      );
+    case "open": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Manage time slot - Open time slots</title>
+          </Helmet>
+          <OpenTimeSlots />
+        </Fragment>
+      );
+    }
+    case "process": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Manage time slot - Bulk process</title>
+          </Helmet>
+          <Process />
+        </Fragment>
+      );
+    }
+    case "logs": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Manage time slot - Activity logs</title>
+          </Helmet>
+          <ActivityLogs />
+        </Fragment>
+      );
+    }
+    case "corporate": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Corporate time off</title>
+          </Helmet>
+          <Corporate />
+        </Fragment>
+      );
+    }
+    case "appointments": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Staff appointment list</title>
+          </Helmet>
+          <Appointments />
+        </Fragment>
+      );
+    }
+    case "student": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Student</title>
+          </Helmet>
+          <SchedulingStudent />
+        </Fragment>
+      );
+    }
+    case "vehicle": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Vehicle</title>
+          </Helmet>
+          <Vehicle />
+        </Fragment>
+      );
+    }
+    case "multi": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Multi instructor</title>
+          </Helmet>
+          <Multi />
+        </Fragment>
+      );
+    }
+    case "signle": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Scheduling - Single instructor</title>
+          </Helmet>
+          <Single />
+        </Fragment>
+      );
     }
     default:
       throw new Error(`Unknown type ${page}`);

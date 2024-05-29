@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/book-my-lessons.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/my-schedule.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/tab.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/alert.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/packages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/colors.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/filter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/filter.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/manage-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/manage-spa.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/manage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/manage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/scheduling-student.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/scheduling-student.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +31,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -52,7 +57,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;API&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;scheduling&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -114,6 +119,8 @@
       <workItem from="1716767352509" duration="346000" />
       <workItem from="1716798370501" duration="9532000" />
       <workItem from="1716877540012" duration="12157000" />
+      <workItem from="1716913595922" duration="9597000" />
+      <workItem from="1716962200799" duration="2564000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -181,7 +188,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor component to utilize new&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="- Refactor component to utilize new state&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="- Refactor component to utilize new state management&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="- Refactor component to utilize new state management and&#10;- Refactor components to include a DatePicker for improved user interaction and form handling." />
@@ -206,7 +212,8 @@
     <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form handling" />
     <MESSAGE value="Refactor components to include a DatePicker for improved user interaction and form handling." />
     <MESSAGE value="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling." />
+    <MESSAGE value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -214,7 +221,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
           <line>1416</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
