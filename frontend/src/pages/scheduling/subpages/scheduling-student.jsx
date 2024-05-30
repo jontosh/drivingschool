@@ -48,7 +48,7 @@ export const SchedulingStudent = () => {
 
           return errors;
         }}
-        onSubmit={(values) => {}}
+        onSubmit={(values) => { }}
       >
         {({ values, errors, handleChange, handleReset }) => (
           <form onSubmit={(e) => e.preventDefault()}>
@@ -97,9 +97,11 @@ export const SchedulingStudent = () => {
               )}
             </div>
             {values.search !== "" && (
-              <ul className={"p-5 space-y-2.5 bg-white rounded-b-2xl"}>
-                {searchItem}
-              </ul>
+              <div className="pr-36">
+                <ul className={"w-full mr-[199px] p-5 space-y-2.5 bg-white rounded-b-2xl"}>
+                  {searchItem}
+                </ul>
+              </div>
             )}
           </form>
         )}
