@@ -1,5 +1,6 @@
 import Title from "@/components/title/index.jsx";
 import {
+  AddQuiz,
   AddSchoolModalContent,
   AddServiceModalContent,
   AddStaffModalContent,
@@ -119,10 +120,12 @@ export const CheckModal = () => {
             fontWeightStrong={600}
             titleMarginBottom={20}
           >
-            Quiz Report
+            Add Quiz
           </Title>
 
-          <div className="bg-white rounded-xl shadow-2xl p-5">@todo</div>
+          <div className="bg-white rounded-xl shadow-2xl p-5">
+            <AddQuiz />
+          </div>
         </Fragment>
       );
     }
