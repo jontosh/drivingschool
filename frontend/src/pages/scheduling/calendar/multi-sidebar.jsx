@@ -216,7 +216,7 @@ export const MultiSidebar = ({ ...props }) => {
   // const { formattedNumber } = formatPhoneNumber(data?.home_phone);
 
   return (
-    <div className={"border border-gray-300 p-5 rounded-lg"}>
+    <div className={"border border-gray-400 p-5 rounded-xl"}>
       <Calendar
         // To selection column and add events
         // selectable

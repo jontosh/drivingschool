@@ -79,15 +79,15 @@ export const Vehicle = () => {
           <aside className={"w-96"}>
             <VehicleSidebar />
 
-            <div className="flex flex-col gap-y-5">
+            <div className="flex flex-col gap-y-5 pt-10">
               <label className="flex flex-col gap-y-1.5">
-                <span className="text-gray-500 text-base">Select Vehicle:</span>
+                <span className="text-gray-400 text-base">Select Vehicle:</span>
 
                 <CustomSelect
                   placeholder={"SELECT"}
                   className={"w-full h-[50px]"}
-                  colorBorder="rgba(222, 226, 230, 1)"
-                  colorText="rgba(152, 162, 179, 1)"
+                  colorBorder="#9CA3AF"
+                  colorText="#9CA3AF"
                   options={[
                     {
                       label: 'UZB',
@@ -104,10 +104,10 @@ export const Vehicle = () => {
               <CustomInput
                 placeholder={"SEARCH STUDENT"}
                 classNames={"w-full"}
-                colorBorder="rgba(222, 226, 230, 1)"
+                colorBorder="#9CA3AF"
               />
 
-              <div className="flex flex-col gap-y-5 border border-gray-300 rounded p-5">
+              <div className="flex flex-col gap-y-5 border border-gray-400 rounded-xl p-5">
                 <ButtonComponent
                   defaultBg="rgba(36, 193, 143, 1)"
                   defaultHoverBg="rgba(60, 227, 174, 1)"
