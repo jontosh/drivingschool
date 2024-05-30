@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomInput,
   CustomSelect,
+  SelectCheckbox,
   SwitchCustom,
 } from "@/components/form/index.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
@@ -508,7 +509,7 @@ const Settings = ({ ...props }) => {
                   <CustomInput
                     colorBorder={"#DEE2E6"}
                     spanText={"Quiz name"}
-                    spanClassName={"font-normal text-gray-500"}
+                    spanClassName={"font-medium"}
                     fontSize="text-base"
                     placeholder={"Quiz name"}
                     className={"h-[50px]"}
@@ -527,7 +528,7 @@ const Settings = ({ ...props }) => {
                 </div>
 
                 <label className={"space-y-1.5"}>
-                  <span className={"text-base w-full"}>
+                  <span className={"text-base font-medium w-full"}>
                     Display Quiz Name to Student
                   </span>
                   <SwitchCustom
@@ -538,14 +539,14 @@ const Settings = ({ ...props }) => {
 
                 <label className="space-y-1.5 w-full">
                   <span
-                    className={`text-base w-full relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-1/2`}
+                    className={`text-base font-medium w-full relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-1/2`}
                   >
                     Assign to Location
                   </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
-                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full font-medium h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     fontSize={"text-base"}
                     options={StatusSelect}
                   />
@@ -554,13 +555,13 @@ const Settings = ({ ...props }) => {
                 <div className={"flex gap-3"}>
                   <CustomInput
                     colorBorder={"#DEE2E6"}
-                    spanText={"# Of Questions Displayed to Student *"}
-                    spanClassName={"font-normal text-gray-500"}
+                    spanText={"# Of Questions Displayed to Student"}
+                    spanClassName={"font-medium"}
                     fontSize="text-base"
                     placeholder={"Quiz name"}
                     className={"h-[50px]"}
                     classNames={
-                      "inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"
+                      `inline-flex w-full flex-col-reverse gap-1.5 h-[76px] relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-5`
                     }
                     name="student_name"
                     value={values.student_name}
@@ -574,7 +575,7 @@ const Settings = ({ ...props }) => {
                 </div>
 
                 <label className={"space-y-1.5"}>
-                  <span className={"text-base w-full"}>Final Exam</span>
+                  <span className={"text-base font-medium w-full"}>Final Exam</span>
                   <SwitchCustom
                     checked={DisplayQuizNameToStudent}
                     onChange={handleDisplayQuizNameToStudent}
@@ -585,7 +586,7 @@ const Settings = ({ ...props }) => {
                   <CustomInput
                     colorBorder={"#DEE2E6"}
                     spanText={"Associate with This Class Session"}
-                    spanClassName={"font-normal text-gray-500"}
+                    spanClassName={"font-medium"}
                     fontSize="text-base"
                     placeholder={"Quiz name"}
                     className={"h-[50px]"}
@@ -603,8 +604,126 @@ const Settings = ({ ...props }) => {
                   </span>
                 </div>
               </div>
-              <div className="space-y-5">ok</div>
-              <div className="space-y-5">ok</div>
+
+              <div className="space-y-5">
+                <label className={"space-y-1.5"}>
+                  <span className={"text-base font-medium w-full"}>Attendance Required for Associated Session only</span>
+                  <SwitchCustom
+                    checked={DisplayQuizNameToStudent}
+                    onChange={handleDisplayQuizNameToStudent}
+                  />
+                </label>
+
+                <label className={"space-y-1.5"}>
+                  <span className={"text-base font-medium w-full"}>Attendance Required for Preceding and Associated CR Sessions</span>
+                  <SwitchCustom
+                    checked={DisplayQuizNameToStudent}
+                    onChange={handleDisplayQuizNameToStudent}
+                  />
+                </label>
+
+                <label className={"space-y-1.5"}>
+                  <span className={"text-base font-medium w-full"}>Attendance Required for All Preceding CR Sessions Only</span>
+                  <SwitchCustom
+                    checked={DisplayQuizNameToStudent}
+                    onChange={handleDisplayQuizNameToStudent}
+                  />
+                </label>
+
+                <label className={"space-y-1.5"}>
+                  <span className={"text-base font-medium w-full"}>Display Progress Bar During Quiz</span>
+                  <SwitchCustom
+                    checked={DisplayQuizNameToStudent}
+                    onChange={handleDisplayQuizNameToStudent}
+                  />
+                </label>
+
+                <label className={"space-y-1.5"}>
+                  <span className={"text-base font-medium w-full"}>Randomize Questions Order</span>
+                  <SwitchCustom
+                    checked={DisplayQuizNameToStudent}
+                    onChange={handleDisplayQuizNameToStudent}
+                  />
+                </label>
+
+                <label className={"space-y-1.5"}>
+                  <span className={"text-base font-medium w-full"}>Enable Quiz Timer</span>
+                  <SwitchCustom
+                    checked={DisplayQuizNameToStudent}
+                    onChange={handleDisplayQuizNameToStudent}
+                  />
+                </label>
+
+                <label className={"space-y-1.5"}>
+                  <span className={"text-base font-medium w-full"}>Allow Students to View Completed Quizzes</span>
+                  <SwitchCustom
+                    checked={DisplayQuizNameToStudent}
+                    onChange={handleDisplayQuizNameToStudent}
+                  />
+                </label>
+              </div>
+
+              <div className="space-y-5">
+                <div className="w-full flex items-center gap-3">
+                  <label className={"w-full space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Associate with Service</span>
+                    <SelectCheckbox
+                      placeholder={"Select Service(s)"}
+                      checkboxColor={"#6C757D"}
+                      options={[
+                        {
+                          label: "Something",
+                          value: "Something",
+                        },
+                        {
+                          label: "Anything",
+                          value: "Anything",
+                        },
+                        {
+                          label: "Nothing",
+                          value: "Nothing",
+                        },
+                      ]}
+                    />
+                  </label>
+
+                  <span className="pt-7">
+                    <FiHelpCircle
+                      className={"text-xl text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
+
+                <div className="w-full flex items-center gap-3">
+                  <label className={"w-full space-y-1.5"}>
+                    <span className={`text-base font-medium w-full relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-1/3`}>Associate with CR Service</span>
+                    <SelectCheckbox
+                      placeholder={"Select Service(s)"}
+                      checkboxColor={"#6C757D"}
+                      options={[
+                        {
+                          label: "Something",
+                          value: "Something",
+                        },
+                        {
+                          label: "Anything",
+                          value: "Anything",
+                        },
+                        {
+                          label: "Nothing",
+                          value: "Nothing",
+                        },
+                      ]}
+                    />
+                  </label>
+
+                  <span className="pt-7">
+                    <FiHelpCircle
+                      className={"text-xl text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
+              </div>
             </div>
           </form>
         )}
