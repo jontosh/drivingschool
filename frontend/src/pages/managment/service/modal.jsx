@@ -13,13 +13,14 @@ import { useFileReader } from "@/hooks/file-reader.jsx";
 import { FormError } from "@/modules/errors.jsx";
 import { ToNumber } from "@/modules/number.jsx";
 import { ProductModalValidate } from "@/modules/product.jsx";
+import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import {
   useRequestGetQuery,
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import MDEditor from "@uiw/react-md-editor";
-import { ConfigProvider, DatePicker } from "antd";
+import { ConfigProvider, DatePicker, Tabs } from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
 import {
@@ -3839,6 +3840,29 @@ export const VehiclesModalContent = () => {
         )}
       </Formik>
       {IsOpen && state?.status}
+    </Fragment>
+  );
+};
+
+export const AddQuiz = ({ ...props }) => {
+  const { colorsObject } = useContext(ColorsContext);
+  return (
+    <Fragment>
+      <ConfigProvider
+        theme={{
+          components: {
+            Tabs: {
+              itemColor: colorsObject.secondary,
+              itemSelectedColor: colorsObject.primary,
+              itemHoverColor: colorsObject.primary,
+              titleFontSize: 16,
+              inkBarColor: "transparent",
+            },
+          },
+        }}
+      >
+        <Tabs defaultActiveKey="1" items={TabItem()} />
+      </ConfigProvider>
     </Fragment>
   );
 };
