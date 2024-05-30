@@ -317,7 +317,7 @@ export const SwitchCustom = ({
           name={name}
           value={value}
         />
-        <div className="peer  h-8 items-center gap-4  bg-white  after:absolute after:left-0 after:top-0 after:bottom-0 after:w-12 after:rounded after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-focus:outline-none text-sm text-white">
+        <div className="peer h-8 items-center gap-4 bg-white after:absolute after:left-0 after:top-0 after:bottom-0 after:w-12 after:rounded after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-focus:outline-none text-sm text-white">
           <span className={"px-3 py-1.5 bg-[#24C18F] rounded-lg"}>Yes</span>
           <span className={"px-3 py-1.5 bg-[#FF333F] rounded-lg"}>No</span>
         </div>

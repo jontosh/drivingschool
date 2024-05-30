@@ -11,6 +11,7 @@ import ColorsContext from "@/context/colors.jsx";
 import { AlertSuccess, AlertError } from "@/hooks/alert.jsx";
 import { useFileReader } from "@/hooks/file-reader.jsx";
 import { FormError } from "@/modules/errors.jsx";
+import { AddQuizTab } from "@/modules/management.jsx";
 import { ToNumber } from "@/modules/number.jsx";
 import { ProductModalValidate } from "@/modules/product.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
@@ -3855,13 +3856,13 @@ export const AddQuiz = ({ ...props }) => {
               itemColor: colorsObject.secondary,
               itemSelectedColor: colorsObject.primary,
               itemHoverColor: colorsObject.primary,
-              titleFontSize: 16,
+              titleFontSize: 18,
               inkBarColor: "transparent",
             },
           },
         }}
       >
-        <Tabs defaultActiveKey="1" items={TabItem()} />
+        <Tabs defaultActiveKey="1" items={AddQuizTab()} />
       </ConfigProvider>
     </Fragment>
   );
