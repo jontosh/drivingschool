@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/file-reader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/file-reader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/packages.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,23 +47,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactoring",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -124,6 +117,7 @@
       <workItem from="1716962200799" duration="2564000" />
       <workItem from="1716964820480" duration="12621000" />
       <workItem from="1716981738572" duration="1858000" />
+      <workItem from="1717051835095" duration="10074000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -189,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716969487159</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml.">
+      <option name="closed" value="true" />
+      <created>1717025250488</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717025250488</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,32 +209,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the route" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params for" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params for improved" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params for improved user" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params for improved user experience" />
-    <MESSAGE value="Update scheduling components to include dynamic rendering based on the route params for improved user experience." />
-    <MESSAGE value="# fix #jsx Update scheduling components to include dynamic rendering based on the route params for improved user experience." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update components" />
-    <MESSAGE value="Update components to" />
-    <MESSAGE value="Update components to include" />
-    <MESSAGE value="Update components to include dynamic" />
-    <MESSAGE value="Update components to include dynamic rendering" />
-    <MESSAGE value="Update components to include dynamic rendering based" />
-    <MESSAGE value="Update components to include dynamic rendering based on" />
-    <MESSAGE value="Update components to include dynamic rendering based on route" />
-    <MESSAGE value="Update components to include dynamic rendering based on route params" />
-    <MESSAGE value="Update components to include dynamic rendering based on route params for" />
-    <MESSAGE value="Update components to include dynamic rendering based on route params for improved" />
-    <MESSAGE value="Update components to include dynamic rendering based on route params for improved user" />
-    <MESSAGE value="Update components to include dynamic rendering based on route params for improved user experience" />
-    <MESSAGE value="Update components to include dynamic rendering based on route params for improved user experience." />
-    <MESSAGE value="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience." />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx," />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx," />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx," />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx," />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx," />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx," />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx," />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml" />
+    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml." />
+    <MESSAGE value="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

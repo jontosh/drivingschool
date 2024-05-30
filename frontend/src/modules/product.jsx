@@ -71,12 +71,12 @@ export const ProductModule = () => {
     },
     {
       title: "BTW HOURS",
-      dataIndex: "hours",
-      key: "hours",
+      dataIndex: "driving_hours",
+      key: "driving_hours",
       render: (text) => (
         <div className={"text-center"}>
           <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-            {text}
+            {text?.substring(0, text?.indexOf(":")).toUpperCase()}
           </Paragraph>
         </div>
       ),
@@ -88,7 +88,7 @@ export const ProductModule = () => {
       render: (text) => (
         <div className={"text-center"}>
           <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-            {text}
+            {text ?? 0}
           </Paragraph>
         </div>
       ),

@@ -30,9 +30,9 @@ export const DiscountsModule = () => {
     },
     {
       title: "Discount",
-      dataIndex: "discount",
-      key: "discount",
-      render: (discount) => <span className={"text-lg"}>${discount}</span>,
+      dataIndex: "amount",
+      key: "amount",
+      render: (discount) => <span className={"text-lg"}>$ {discount}</span>,
     },
     {
       title: "Sub type",

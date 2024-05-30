@@ -4,11 +4,7 @@ import { Paragraph } from "@/components/title/index.jsx";
 import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import {
-  DeleteOutlined,
-  ExportOutlined,
-  FormOutlined,
-} from "@ant-design/icons";
+import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import { Space } from "antd";
 import { Fragment, useState } from "react";
 
@@ -34,9 +30,9 @@ export const FeesModule = () => {
     },
     {
       title: "Price",
-      dataIndex: "price",
-      key: "price",
-      render: (price) => <span className={"text-lg"}>${price}</span>,
+      dataIndex: "amount",
+      key: "amount",
+      render: (price) => <span className={"text-lg"}>$ {price}</span>,
     },
     {
       title: "Sub type",

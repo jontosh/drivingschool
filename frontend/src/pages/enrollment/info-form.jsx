@@ -52,7 +52,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const InfoForm = () => {
+export const InfoForm = ({ packages }) => {
   const { data: LocationData } = useRequestGetQuery({
     path: "/account_management/location/",
   });
@@ -64,6 +64,7 @@ export const InfoForm = () => {
   const [requestPost] = useRequestPostMutation();
 
   const [IsOpen, setIsOpen] = useState(false);
+  const [Packages, setPackages] = useState([]);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
   const { YearsOptions, Days, Months } = useDate();
   const [SelectSubmit, setSelectSubmit] = useState(false);
@@ -106,6 +107,15 @@ export const InfoForm = () => {
     setDLExpireDate(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
   const handleExtinctionDate = (day) =>
     setExtinctionDate(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
+
+  useEffect(() => {
+    let packagesId = [];
+    for (let i = 0; i < packages?.packages?.length; i++) {
+      packagesId.push(packages?.packages[i]?.id);
+    }
+
+    setPackages(packagesId);
+  }, [packages?.packages]);
 
   useEffect(() => {
     let options = [];
@@ -154,6 +164,7 @@ export const InfoForm = () => {
 
     if (!stateSelects) {
       try {
+        // console.log(packages, Packages);
         const response = await requestPost({
           path: "/student_account/student/",
           data: {
@@ -172,15 +183,39 @@ export const InfoForm = () => {
             birth: `${BirthYear}-${BirthMonth > 9 ? BirthMonth : "0" + BirthMonth}-${BirthDay > 9 ? BirthDay : "0" + BirthDay}`,
             note: NotesValue,
             preferred_pronoun: Pronoun,
+            //   default type
+            type: 1,
           },
         });
 
-        if (response.error.status >= 400) {
+        // response?.data?.id
+        // response?.data?.staff
+
+        if (response?.error?.status >= 400) {
           dispatch({ type: "ERROR", setIsOpen });
           setIsOpen(true);
         } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
+          // dispatch({ type: "SUCCESS", setIsOpen });
+          // setIsOpen(true);
+
+          const res = await requestPost({
+            path: "/student_account/enrollment/",
+            data: {
+              // некотрые ключи поставлено по умолчание
+              code: 1,
+              cr_start: null,
+              cr_end: null,
+              student: response?.data?.id,
+              by: response?.data?.staff,
+              package: Packages,
+              price: packages?.total,
+            },
+          });
+
+          if (res?.data?.id) {
+            dispatch({ type: "SUCCESS", setIsOpen });
+            setIsOpen(true);
+          }
         }
       } catch (error) {
         console.error(error?.message);
