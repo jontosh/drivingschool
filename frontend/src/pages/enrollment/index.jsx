@@ -15,6 +15,10 @@ const Enrollment = () => {
     path: "/account_management/services/service/",
   });
 
+  const { data: ServiceClass } = useRequestGetQuery({
+    path: "/account_management/class/",
+  });
+
   const { colorsObject } = useContext(ColorsContext);
   const { ClassSelectionArray, StudentInfoTypeOptions } =
     EnrollmentsSelections();
@@ -22,6 +26,8 @@ const Enrollment = () => {
   const [PackageSelection, setPackageSelection] = useState([]);
   const [PackageTotal, setPackageTotal] = useState([]);
   const [PackageValue, setPackageValue] = useState("");
+  // Вопрос
+  const [ClassSelection, setClassSelection] = useState([]);
   const [StudentInfoType, setStudentInfoType] = useState("");
 
   useEffect(() => {
@@ -40,6 +46,23 @@ const Enrollment = () => {
 
     setPackageSelection(options);
   }, [ServicePackage]);
+
+  useEffect(() => {
+    let options = [];
+
+    for (let i = 0; i < ServiceClass?.length; i++) {
+      if (ServiceClass[i]?.status?.toLowerCase() === "active") {
+        options.push({
+          ...ServiceClass[i],
+          label: ServiceClass[i].web_name,
+          value: ServiceClass[i].id,
+          price: parseFloat(ServiceClass[i].price),
+        });
+      }
+    }
+
+    setClassSelection(options);
+  }, [ServiceClass]);
 
   const handlePackage = (value) => setPackageValue(value);
   const handleStudentInfoType = (value) => setStudentInfoType(value);
@@ -246,7 +269,11 @@ const Enrollment = () => {
             disabled={!PackageTotal?.length}
           />
 
-          {StudentInfoType !== "" && <InfoForm />}
+          {StudentInfoType !== "" && (
+            <InfoForm
+              packages={{ packages: PackageTotal, total: totalPrice }}
+            />
+          )}
         </div>
       </section>
     </Fragment>
