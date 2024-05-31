@@ -23,6 +23,7 @@ import { Fragment, useContext, useState } from "react";
 import { FiHelpCircle } from "react-icons/fi";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
+import MDEditor from "@uiw/react-md-editor";
 
 export const LocationModule = () => {
   const { LocationData: data } = useContext(AccountManagementContext);
@@ -512,7 +513,7 @@ const Settings = ({ ...props }) => {
                     spanClassName={"font-medium"}
                     fontSize="text-base"
                     placeholder={"Quiz name"}
-                    className={"h-[50px]"}
+                    className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     classNames={
                       "inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"
                     }
@@ -537,20 +538,27 @@ const Settings = ({ ...props }) => {
                   />
                 </label>
 
-                <label className="space-y-1.5 w-full">
-                  <span
-                    className={`text-base font-medium w-full relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-1/2`}
-                  >
-                    Assign to Location
-                  </span>
+                <div className={"flex items-center gap-3"}>
+                  <label className="space-y-1.5 w-full">
+                    <span
+                      className={`text-base font-medium w-full relative ${EnrollmentStyle["Enrollment__heavy"]} after:left-20`}
+                    >
+                      Status
+                    </span>
 
-                  <CustomSelect
-                    placeholder={"Select Status"}
-                    className={`w-full font-medium h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    fontSize={"text-base"}
-                    options={StatusSelect}
-                  />
-                </label>
+                    <CustomSelect
+                      placeholder={"Select Status"}
+                      className={`w-full font-medium h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                      fontSize={"text-base"}
+                      options={StatusSelect}
+                    />
+                  </label>
+                  <span className={"pb-2 pt-[41px]"}>
+                    <FiHelpCircle
+                      className={"text-xl text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
 
                 <div className={"flex gap-3"}>
                   <CustomInput
@@ -559,7 +567,7 @@ const Settings = ({ ...props }) => {
                     spanClassName={"font-medium"}
                     fontSize="text-base"
                     placeholder={"Quiz name"}
-                    className={"h-[50px]"}
+                    className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     classNames={
                       `inline-flex w-full flex-col-reverse gap-1.5 h-[76px] relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-5`
                     }
@@ -589,7 +597,7 @@ const Settings = ({ ...props }) => {
                     spanClassName={"font-medium"}
                     fontSize="text-base"
                     placeholder={"Quiz name"}
-                    className={"h-[50px]"}
+                    className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     classNames={
                       "inline-flex w-full flex-col-reverse gap-1.5 h-[76px]"
                     }
@@ -603,64 +611,148 @@ const Settings = ({ ...props }) => {
                     />
                   </span>
                 </div>
+
+                <div className="space-y-1.5">
+                  <div className="flex justify-between align-items">
+                    <span className={"text-base font-normal w-full"}>Pass Feedback</span>
+
+                    <span>
+                      <FiHelpCircle
+                        className={"w-5 text-[#98A2B3] cursor-pointer"}
+                      />
+                    </span>
+                  </div>
+
+                  <MDEditor />
+                </div>
               </div>
 
               <div className="space-y-5">
-                <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Attendance Required for Associated Session only</span>
-                  <SwitchCustom
-                    checked={DisplayQuizNameToStudent}
-                    onChange={handleDisplayQuizNameToStudent}
-                  />
-                </label>
+                <div className="flex justify-between items-center">
+                  <label className={"space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Attendance Required for Associated Session only</span>
+                    <SwitchCustom
+                      checked={DisplayQuizNameToStudent}
+                      onChange={handleDisplayQuizNameToStudent}
+                    />
+                  </label>
 
-                <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Attendance Required for Preceding and Associated CR Sessions</span>
-                  <SwitchCustom
-                    checked={DisplayQuizNameToStudent}
-                    onChange={handleDisplayQuizNameToStudent}
-                  />
-                </label>
+                  <span className="pt-6">
+                    <FiHelpCircle
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
 
-                <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Attendance Required for All Preceding CR Sessions Only</span>
-                  <SwitchCustom
-                    checked={DisplayQuizNameToStudent}
-                    onChange={handleDisplayQuizNameToStudent}
-                  />
-                </label>
+                <div className="flex justify-between items-center">
+                  <label className={"space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Attendance Required for Preceding and Associated CR Sessions</span>
+                    <SwitchCustom
+                      checked={DisplayQuizNameToStudent}
+                      onChange={handleDisplayQuizNameToStudent}
+                    />
+                  </label>
 
-                <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Display Progress Bar During Quiz</span>
-                  <SwitchCustom
-                    checked={DisplayQuizNameToStudent}
-                    onChange={handleDisplayQuizNameToStudent}
-                  />
-                </label>
+                  <span className="pt-6">
+                    <FiHelpCircle
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
 
-                <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Randomize Questions Order</span>
-                  <SwitchCustom
-                    checked={DisplayQuizNameToStudent}
-                    onChange={handleDisplayQuizNameToStudent}
-                  />
-                </label>
+                <div className="flex justify-between items-center">
+                  <label className={"space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Attendance Required for All Preceding CR Sessions Only</span>
+                    <SwitchCustom
+                      checked={DisplayQuizNameToStudent}
+                      onChange={handleDisplayQuizNameToStudent}
+                    />
+                  </label>
 
-                <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Enable Quiz Timer</span>
-                  <SwitchCustom
-                    checked={DisplayQuizNameToStudent}
-                    onChange={handleDisplayQuizNameToStudent}
-                  />
-                </label>
+                  <span className="pt-6">
+                    <FiHelpCircle
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
 
-                <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Allow Students to View Completed Quizzes</span>
-                  <SwitchCustom
-                    checked={DisplayQuizNameToStudent}
-                    onChange={handleDisplayQuizNameToStudent}
-                  />
-                </label>
+                <div className="flex justify-between items-center">
+                  <label className={"space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Display Progress Bar During Quiz</span>
+                    <SwitchCustom
+                      checked={DisplayQuizNameToStudent}
+                      onChange={handleDisplayQuizNameToStudent}
+                    />
+                  </label>
+
+                  <span className="pt-6">
+                    <FiHelpCircle
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <label className={"space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Randomize Questions Order</span>
+                    <SwitchCustom
+                      checked={DisplayQuizNameToStudent}
+                      onChange={handleDisplayQuizNameToStudent}
+                    />
+                  </label>
+
+                  <span className="pt-6">
+                    <FiHelpCircle
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <label className={"space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Enable Quiz Timer</span>
+                    <SwitchCustom
+                      checked={DisplayQuizNameToStudent}
+                      onChange={handleDisplayQuizNameToStudent}
+                    />
+                  </label>
+
+                  <span className="pt-6">
+                    <FiHelpCircle
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <label className={"space-y-1.5"}>
+                    <span className={"text-base font-medium w-full"}>Allow Students to View Completed Quizzes</span>
+                    <SwitchCustom
+                      checked={DisplayQuizNameToStudent}
+                      onChange={handleDisplayQuizNameToStudent}
+                    />
+                  </label>
+
+                  <span className="pt-6">
+                    <FiHelpCircle
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
+                    />
+                  </span>
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="flex justify-between align-items">
+                    <span className={"text-base font-normal w-full"}>Fail Feedback</span>
+
+                    <span>
+                      <FiHelpCircle
+                        className={"w-5 text-[#98A2B3] cursor-pointer"}
+                      />
+                    </span>
+                  </div>
+
+                  <MDEditor />
+                </div>
               </div>
 
               <div className="space-y-5">
@@ -689,7 +781,7 @@ const Settings = ({ ...props }) => {
 
                   <span className="pt-7">
                     <FiHelpCircle
-                      className={"text-xl text-[#98A2B3] cursor-pointer"}
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
                     />
                   </span>
                 </div>
@@ -719,9 +811,23 @@ const Settings = ({ ...props }) => {
 
                   <span className="pt-7">
                     <FiHelpCircle
-                      className={"text-xl text-[#98A2B3] cursor-pointer"}
+                      className={"w-5 text-[#98A2B3] cursor-pointer"}
                     />
                   </span>
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="flex justify-between align-items">
+                    <span className={"text-base font-normal w-full"}>Welcome Text</span>
+
+                    <span>
+                      <FiHelpCircle
+                        className={"w-5 text-[#98A2B3] cursor-pointer"}
+                      />
+                    </span>
+                  </div>
+
+                  <MDEditor />
                 </div>
               </div>
             </div>
