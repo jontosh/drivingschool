@@ -1,5 +1,6 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import {
+  CustomCheckBox,
   CustomInput,
   CustomSelect,
   SelectCheckbox,
@@ -838,6 +839,257 @@ const Settings = ({ ...props }) => {
   );
 };
 
+const MultipleChoice = ({ ...props }) => {
+  const [DisplayQuizNameToStudent, setDisplayQuizNameToStudent] =
+    useState(false);
+
+  // const handleDisplayQuizNameToStudent = () =>
+  //   setDisplayQuizNameToStudent(!DisplayQuizNameToStudent);
+
+  return (
+    <Fragment>
+      <Formik
+        initialValues={{}}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {({ values, errors, handleChange, handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-2 gap-5">
+              <div className="space-y-5">
+                <div className="space-y-1.5">
+                  <span className={"text-base font-medium w-full"}>QUESTION</span>
+
+                  <MDEditor />
+                </div>
+
+                <label className="space-y-2.5 w-full">
+                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+
+                  <CustomSelect
+                    placeholder={"Select Status"}
+                    className={`w-full font-medium h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    fontSize={"text-base"}
+                    options={[
+                      {
+                        label: "Something",
+                        value: "Something",
+                      },
+                      {
+                        label: "Anything",
+                        value: "Anything",
+                      },
+                      {
+                        label: "Nothing",
+                        value: "Nothing",
+                      },
+                    ]}
+                  />
+
+                  <CustomCheckBox>
+                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                  </CustomCheckBox>
+                </label>
+
+                <label className="space-y-2.5 w-full">
+                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+
+                  <CustomSelect
+                    placeholder={"Select Status"}
+                    className={`w-full font-medium h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    fontSize={"text-base"}
+                    options={[
+                      {
+                        label: "Something",
+                        value: "Something",
+                      },
+                      {
+                        label: "Anything",
+                        value: "Anything",
+                      },
+                      {
+                        label: "Nothing",
+                        value: "Nothing",
+                      },
+                    ]}
+                  />
+
+                  <CustomCheckBox>
+                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                  </CustomCheckBox>
+                </label>
+
+                <label className="space-y-2.5 w-full">
+                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+
+                  <CustomSelect
+                    placeholder={"Select Status"}
+                    className={`w-full font-medium h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    fontSize={"text-base"}
+                    options={[
+                      {
+                        label: "Something",
+                        value: "Something",
+                      },
+                      {
+                        label: "Anything",
+                        value: "Anything",
+                      },
+                      {
+                        label: "Nothing",
+                        value: "Nothing",
+                      },
+                    ]}
+                  />
+
+                  <CustomCheckBox>
+                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                  </CustomCheckBox>
+                </label>
+
+                <label className="space-y-2.5 w-full">
+                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+
+                  <CustomSelect
+                    placeholder={"Select Status"}
+                    className={`w-full font-medium h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    fontSize={"text-base"}
+                    options={[
+                      {
+                        label: "Something",
+                        value: "Something",
+                      },
+                      {
+                        label: "Anything",
+                        value: "Anything",
+                      },
+                      {
+                        label: "Nothing",
+                        value: "Nothing",
+                      },
+                    ]}
+                  />
+
+                  <CustomCheckBox>
+                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                  </CustomCheckBox>
+                </label>
+
+                <ButtonComponent
+                  defaultBg="#1890FF"
+                  defaultHoverBg="#4BA9FF"
+                  borderRadius={5}
+                  paddingInline={48}
+                >
+                  Add another option
+                </ButtonComponent>
+              </div>
+
+              <div className="space-y-5">
+                <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">1</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">2</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">3</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">4</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">5</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">6</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+
+                </div> <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">7</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Paragraph className={"text-base font-semibold text-gray-600"}>
+                    <span className="text-2xl">8</span> What is the problem that you’re trying to solve or goals of this design?
+                  </Paragraph>
+
+                  <div className="pr-10">
+                    <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                      The objective of this user flow is to map out...
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        )}
+      </Formik>
+    </Fragment>
+  );
+};
+
 export const AddQuizTab = () => {
   return [
     {
@@ -848,7 +1100,7 @@ export const AddQuizTab = () => {
     {
       key: "2",
       label: <span className={"uppercase"}>Add new Test</span>,
-      children: <span>Add new Test</span>,
+      children: <MultipleChoice />,
     },
     {
       key: "3",
