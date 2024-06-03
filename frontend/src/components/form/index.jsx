@@ -384,7 +384,7 @@ export const SelectCheckbox = ({
   return (
     <div className={classNames} {...props}>
       <Select
-        className={`w-full h-[50px] ${className}`}
+        className={`w-full h-[50px] rounded-lg ${className}`}
         placeholder={placeholder}
         onChange={handleChange}
         value={selectedItems}
