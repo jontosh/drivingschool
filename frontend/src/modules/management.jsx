@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
+  CustomRadio,
   CustomSelect,
   SelectCheckbox,
   SwitchCustom,
@@ -9,7 +10,7 @@ import {
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import IconComponent from "@/components/icons/index.jsx";
-import { Paragraph } from "@/components/title/index.jsx";
+import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import AccountManagementContext from "@/context/account-management.jsx";
 import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
@@ -1510,6 +1511,188 @@ const Category = ({ ...props }) => {
   );
 };
 
+const Preview = ({ ...props }) => {
+  return (
+    <Fragment>
+      <Formik
+        initialValues={{}}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {({ values, errors, handleChange, handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <div className="flex gap-10">
+              <div className="w-auto space-y-5">
+                <Title fontSize={"text-2xl"} fontWeightStrong={400}>
+                  Quiz Title
+                </Title>
+
+                <div className="flex flex-col gap-y-2.5 border border-indigo-600 p-2.5 rounded-xl">
+                  <Title fontSize={"text-xl"} fontWeightStrong={400}>
+                    Question 12
+                  </Title>
+
+                  <Text fontSize={16} fontWeightStrong={400} className={"text-gray-600"}>
+                    A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+                  </Text>
+                </div>
+
+                <div className="space-y-2">
+                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                    <CustomRadio>
+                      
+                      <span className="text-lg">120 m</span>
+                    </CustomRadio>
+                  </label>
+
+                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                    <CustomRadio>
+                      
+                      <span className="text-lg">240 m</span>
+                    </CustomRadio>
+                  </label>
+
+                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                    <CustomRadio>
+                      
+                      <span className="text-lg">300 m</span>
+                    </CustomRadio>
+                  </label>
+
+                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                    <CustomRadio>
+                      <span className="text-lg">None of these</span>
+                    </CustomRadio>
+                  </label>
+                </div>
+
+                <div className="space-x-5">
+                  <ButtonComponent
+                    defaultBg="#FFAAAF"
+                    defaultHoverBg="#FFAAAF"
+                    defaultColor="#000000"
+                    defaultHoverColor="#000000"
+                    paddingInline={20}
+                    borderRadius={12}
+                  >Prev</ButtonComponent>
+
+                  <ButtonComponent
+                    defaultBg="#5F66E9"
+                    defaultHoverBg="#5F66E9"
+                    paddingInline={20}
+                    borderRadius={12}
+                  >Prev</ButtonComponent>
+                </div>
+
+                <div className="flex flex-col gap-y-2.5 p-2.5 rounded-xl shadow-[0px_4px_14px_0px_#00000033]">
+                  <Title fontSize={"text-xl"} fontWeightStrong={400}>
+                    Explanation
+                  </Title>
+
+                  <Text fontSize={16} fontWeightStrong={400} className={"text-gray-600"}>
+                    A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+                  </Text>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-center">
+                  <span className="font-normal text-xl">Question 1/8</span>
+
+                  <span className="font-normal text-xl">Need Help ?</span>
+                </div>
+
+                <div className="grid grid-cols-5 gap-2.5 mt-5 w-[310px]">
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">1</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">2</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">3</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">4</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">5</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">6</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">7</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">8</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">9</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">10</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#FFAAAF] rounded-full text-center">
+                    <span className="text-[22px] text-white pt-1">11</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">12</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">13</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">14</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">15</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">16</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">17</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">18</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">19</span>
+                  </div>
+
+                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
+                    <span className="text-[22px] pt-1">20</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        )}
+      </Formik>
+    </Fragment>
+  );
+};
+
 export const AddQuizTab = () => {
   return [
     {
@@ -1530,7 +1713,7 @@ export const AddQuizTab = () => {
     {
       key: "4",
       label: <span className={"uppercase"}>Preview QUIZ</span>,
-      children: <span>Preview QUIZ</span>,
+      children: <Preview />,
     },
   ].map((item) => {
     return { ...item };
