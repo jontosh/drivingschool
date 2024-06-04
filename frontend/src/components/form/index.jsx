@@ -72,6 +72,7 @@ export const CustomInput = ({
   children,
   colorBorder = "#667085",
   fontSize = "text-sm",
+  disabled,
   ...props
 }) => {
   className = classNames([className]);
@@ -98,6 +99,7 @@ export const CustomInput = ({
             status={status}
             size={size}
             onChange={onChange}
+            disabled={disabled}
           />
           {spanText && (
             <Fragment>
