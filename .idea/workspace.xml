@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization and add functionality for adding quizzes.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +115,8 @@
       <workItem from="1716964820480" duration="12621000" />
       <workItem from="1716981738572" duration="1858000" />
       <workItem from="1717051835095" duration="15280000" />
-      <workItem from="1717479257189" duration="11673000" />
+      <workItem from="1717479257189" duration="12868000" />
+      <workItem from="1717508871089" duration="209000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -199,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717066097071</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction.">
+      <option name="closed" value="true" />
+      <created>1717499312883</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717499312883</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,32 +224,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml." />
-    <MESSAGE value="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml." />
-    <MESSAGE value="Ref" />
-    <MESSAGE value="Refactor" />
-    <MESSAGE value="Refactor component" />
-    <MESSAGE value="Refactor component render" />
-    <MESSAGE value="Refactor component render methods" />
-    <MESSAGE value="Refactor component render methods to" />
-    <MESSAGE value="Refactor component render methods to include" />
-    <MESSAGE value="Refactor component render methods to include setting" />
-    <MESSAGE value="Refactor component render methods to include setting Action" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in various" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in various files" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in various files for" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in various files for better" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in various files for better code" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in various files for better code organization" />
-    <MESSAGE value="Refactor component render methods to include setting ActionIndex state in various files for better code organization." />
-    <MESSAGE value="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization." />
-    <MESSAGE value="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization and add functionality for adding quizzes." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization and add functionality for adding quizzes." />
+    <MESSAGE value="- Add form validation" />
+    <MESSAGE value="- Add form validation&#10;-" />
+    <MESSAGE value="- Add form validation&#10;- Ref" />
+    <MESSAGE value="- Add form validation&#10;- Refactor" />
+    <MESSAGE value="- Add form validation&#10;- Refactor form" />
+    <MESSAGE value="- Add form validation&#10;- Refactor form inputs" />
+    <MESSAGE value="- Add form validation and&#10;- Refactor form inputs" />
+    <MESSAGE value="- Add form validation and input&#10;- Refactor form inputs" />
+    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs" />
+    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs to" />
+    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs to use" />
+    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs to use Custom" />
+    <MESSAGE value="- Add form validation and input handling for&#10;- Refactor form inputs to use Custom" />
+    <MESSAGE value="- Add form validation and input handling for student&#10;- Refactor form inputs to use Custom" />
+    <MESSAGE value="- Add form validation and input handling for student information&#10;- Refactor form inputs to use Custom" />
+    <MESSAGE value="- Add form validation and input handling for student information in&#10;- Refactor form inputs to use Custom Components" />
+    <MESSAGE value="- Add form validation and input handling for student information in&#10;- Refactor form inputs to use Custom Components for" />
+    <MESSAGE value="- Add form validation and input handling for student information in profile&#10;- Refactor form inputs to use Custom Components for" />
+    <MESSAGE value="- Add form validation and input handling for student information in profile&#10;- Refactor form inputs to use Custom Components for improved" />
+    <MESSAGE value="- Add form validation and input handling for student information in profile page&#10;- Refactor form inputs to use Custom Components for improved" />
+    <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved" />
+    <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved user" />
+    <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved user interaction" />
+    <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved user interaction." />
+    <MESSAGE value="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
