@@ -306,7 +306,7 @@ const Profile = () => {
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"first_name"}
                   onChange={handleChange}
-                  value={values.first_name || data.first_name}
+                  value={values.first_name || data?.first_name}
                 >
                   {errors.error && (
                     <FormError className={"pl-44"}>{errors.error}</FormError>
@@ -321,7 +321,7 @@ const Profile = () => {
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"last_name"}
-                  value={values.last_name || data.last_name}
+                  value={values.last_name || data?.last_name}
                 >
                   {errors.error && (
                     <FormError className={"pl-44"}>{errors.error}</FormError>
@@ -337,7 +337,7 @@ const Profile = () => {
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"mid_name"}
                   onChange={handleChange}
-                  value={values.mid_name || data.mid_name}
+                  value={values.mid_name || data?.mid_name}
                 />
 
                 <CustomInput
@@ -349,7 +349,7 @@ const Profile = () => {
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"address"}
                   onChange={handleChange}
-                  value={values.address || data.address}
+                  value={values.address || data?.address}
                 >
                   {errors.error && (
                     <FormError className={"pl-44"}>{errors.error}</FormError>
