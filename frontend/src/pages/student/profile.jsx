@@ -236,7 +236,7 @@ const Profile = () => {
           }
           return errors;
         }}
-        onSubmit={(values) => {}}
+        onSubmit={(values) => { }}
       >
         {({ handleChange, handleSubmit, errors, values }) => (
           <form onSubmit={handleSubmit}>
@@ -290,7 +290,7 @@ const Profile = () => {
                   className={`shadow-lg w-full px-4 p-2.5`}
                   spanText={"Student id"}
                   colorBorder={colorsObject.primary}
-                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   value={data?.id}
@@ -301,7 +301,7 @@ const Profile = () => {
                   placeholder={"First name"}
                   className={`shadow-lg border border-indigo-700 w-full px-4 p-2.5`}
                   spanText={"First name"}
-                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"first_name"}
@@ -317,7 +317,7 @@ const Profile = () => {
                   placeholder={"Last name"}
                   className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
                   spanText={"Last name"}
-                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"last_name"}
@@ -360,7 +360,7 @@ const Profile = () => {
                   placeholder={"City"}
                   className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
                   spanText={"City"}
-                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-24 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   onChange={handleChange}
@@ -374,7 +374,7 @@ const Profile = () => {
 
                 <label className="inline-flex items-center w-full gap-5">
                   <span
-                    className={`w-40 flex-shrink-0 text-start relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                    className={`w-40 flex-shrink-0 text-start relative after:right-20 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   >
                     State
                   </span>
@@ -397,7 +397,7 @@ const Profile = () => {
                   placeholder={"Zip/Postal code"}
                   className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
                   spanText={"Zip/Postal code"}
-                  spanClassName={`w-40 flex-shrink-0 text-start relative after:right-5 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  spanClassName={`w-40 flex-shrink-0 text-start relative after:right-0 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"zip"}
@@ -413,7 +413,7 @@ const Profile = () => {
                   placeholder={"Home Pickup"}
                   className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
                   spanText={"Home Pickup"}
-                  spanClassName={`w-40 flex-shrink-0 text-start relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                  spanClassName={`w-40 flex-shrink-0 text-start relative after:right-5 ${EnrollmentStyle["Enrollment__heavy"]}`}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                   name={"home_phone"}
@@ -555,7 +555,7 @@ const Profile = () => {
                   )}
                 </CustomInput>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-5 items-center w-full">
                   <span className={`text-base flex-shrink-0 w-40`}>
                     DL/Permit Issued
                   </span>
@@ -566,7 +566,7 @@ const Profile = () => {
                   />
                 </label>
 
-                <label className="inline-flex gap-8 items-center w-full">
+                <label className="inline-flex gap-5 items-center w-full">
                   <span className={`text-base flex-shrink-0 w-40`}>
                     DL Permit Expiration
                   </span>
@@ -685,8 +685,8 @@ const Profile = () => {
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
                 />
 
-                <label className="flex items-center gap-8">
-                  <span className={"w-36"}>Home Drop off</span>
+                <label className="flex items-center gap-5">
+                  <span className={"w-40"}>Home Drop off</span>
 
                   <div>
                     <CustomCheckBox className={"shadow-lg"} />
@@ -922,8 +922,8 @@ const Profile = () => {
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.infoHover}
                   paddingInline={43}
-                  controlHeight={40}
                   borderRadius={5}
+                  className={"w-[234px]"}
                   onClick={handleMore}
                 >
                   {IsMore ? "Hide" : "Show more"}
@@ -934,7 +934,7 @@ const Profile = () => {
                   defaultBg={colorsObject.success}
                   defaultHoverBg={colorsObject.successHover}
                   controlHeight={40}
-                  paddingInline={43}
+                  paddingInline={99}
                   borderRadius={5}
                   type={"submit"}
                 >
