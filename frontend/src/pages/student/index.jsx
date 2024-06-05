@@ -5,7 +5,7 @@ import ColorsContext from "@/context/colors.jsx";
 import { useFilterStatus } from "@/hooks/filter.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
 import { FormError } from "@/modules/errors.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { BookOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import { Formik } from "formik";
@@ -25,9 +25,17 @@ const StudentAccount = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { title, studentId } = useParams();
   const { data } = useRequestGetQuery({ path: "/student_account/student/" });
+  const { data: StudentById } = useRequestIdQuery({
+    path: "/student_account/student",
+    id: studentId,
+  });
   const [Search, setSearch] = useState("");
   const [Student, setStudent] = useState(null);
   const { Data } = useFilterStatus({ data, status: null, search: Search });
+
+  useEffect(() => {
+    setStudent(StudentById);
+  }, [studentId, title, data]);
 
   const searchItem = Data?.map((item, index) => {
     return (

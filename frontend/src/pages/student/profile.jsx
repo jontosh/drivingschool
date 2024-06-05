@@ -208,7 +208,6 @@ const Profile = () => {
     for (let i = 0; i < selects.length; i++) {
       if (selects[i] === "") {
         state = true;
-        console.log({ [selects[i]]: selects[i] });
         break;
       } else {
         state = false;
@@ -232,20 +231,6 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSelections(stateSelects);
-
-    // console.log({
-    //   ...Student,
-    //   status: Status,
-    //   type: StudentType,
-    //   staff: Instructor,
-    //   location: Location,
-    //   state: State,
-    //   preferred_pronoun: Pronoun,
-    //   birth: `${BirthYear}-${BirthMonth > 9 ? BirthMonth : "0" + BirthMonth}-${BirthDay > 9 ? BirthDay : "0" + BirthDay}`,
-    //   dl_given_date: DlIssued,
-    //   dl_expire_date: DLExpiration,
-    //   extension_date: ExtensionDate,
-    // });
 
     if (!stateSelects) {
       try {
