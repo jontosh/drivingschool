@@ -263,7 +263,7 @@ export const DashboardCalendar = ({ data }) => {
         eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
           localizer.format(start, "hh:mm", culture) +
           " " +
-          localizer.format(end, "hh:mm a", culture),
+          localizer.format(end, "hh:mm", culture),
       },
       views: [Views.MONTH, Views.WEEK, Views.DAY],
       toolbar: true,
@@ -371,8 +371,12 @@ export const DashboardCalendar = ({ data }) => {
           />
         </Dropdown>
       </div>
-      <div className={"overflow-hidden rounded-xl"}>
-        <div className="bg-white -mx-1">
+      <div
+        className={
+          "overflow-hidden rounded-xl bg-white flex justify-between gap-5"
+        }
+      >
+        <div className="-mx-1 flex-grow">
           <Calendar
             // To selection column and add events
             // selectable
@@ -385,7 +389,7 @@ export const DashboardCalendar = ({ data }) => {
             // onSelectEvent={(event) => alert(event.title)}
             defaultView={Views.WEEK}
             defaultDate={defaultDate}
-            style={{ height: 564 }}
+            style={{ height: 850 }}
             views={views}
             formats={formats}
             // {/*Header toolbar*/}
@@ -401,6 +405,146 @@ export const DashboardCalendar = ({ data }) => {
             //compo
             components={components}
           />
+        </div>
+
+        <div className="space-y-12 pr-5 pt-7 w-[230px]">
+          <div className="space-y-3">
+            <Title level={2} fontSize={"text-base"}>
+              Action
+            </Title>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Add slot 1 h
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Add slot 2h
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Turn off
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Trash
+            </ButtonComponent>
+          </div>
+
+          <div className="space-y-3">
+            <Title level={2} fontSize={"text-base"}>
+              Action
+            </Title>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Add slot 1 h
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Add slot 2h
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Turn off
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Trash
+            </ButtonComponent>
+          </div>
+
+          <div className="space-y-3">
+            <Title level={2} fontSize={"text-base"}>
+              Action
+            </Title>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Add slot 1 h
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Add slot 2h
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Turn off
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              borderRadius={5}
+              paddingInline={43}
+              className={"w-full"}
+            >
+              Trash
+            </ButtonComponent>
+          </div>
         </div>
       </div>
     </Fragment>
