@@ -27,11 +27,10 @@ import {
   useState,
 } from "react";
 import { useParams } from "react-router-dom";
-import CoverImage from "../../assets/others/cover.png";
 import ProfileStyle from "./student-account.module.scss";
 import IconComponent from "@/components/icons";
 import { TfiEmail } from "react-icons/tfi";
-import { DatePicker } from "antd";
+import { DatePicker, QRCode } from "antd";
 import ManagementStyle from "./../managment/management.module.scss";
 import dayjs from "dayjs";
 
@@ -300,7 +299,7 @@ const Profile = () => {
           <div
             className={`rounded-2xl border-2 border-indigo-700 ${ProfileStyle["Student-profile__imageholder"]}`}
           >
-            <Image src={CoverImage} srcSet={CoverImage} />
+            ok
           </div>
         </div>
         <div className={"flex-grow"}>
@@ -334,7 +333,11 @@ const Profile = () => {
                   <div
                     className={`${ProfileStyle["Student-profile__imageholder-small"]} rounded-lg border-2 border-indigo-700`}
                   >
-                    <Image src={CoverImage} srcSet={CoverImage} />
+                    <QRCode
+                      style={{ width: "auto", height: "auto" }}
+                      type="svg"
+                      value="https://ant.design/"
+                    />
                   </div>
 
                   <ButtonComponent
@@ -370,7 +373,11 @@ const Profile = () => {
                   <div
                     className={`${ProfileStyle["Student-profile__imageholder-small"]} rounded-lg border-2 border-indigo-700`}
                   >
-                    <Image src={CoverImage} srcSet={CoverImage} />
+                    <QRCode
+                      style={{ width: "auto", height: "auto" }}
+                      type="svg"
+                      value="https://ant.design/"
+                    />
                   </div>
 
                   <ButtonComponent
