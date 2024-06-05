@@ -15,7 +15,7 @@ export const APIRequest = createApi({
     }),
 
     requestId: builder.query({
-      query: ({ path, id }) => `${path}/${id}`,
+      query: ({ path, id }) => `${path}/${id}/`,
 
       providesTags: ["Device"],
     }),

@@ -1,127 +1,63 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
 import Modal from "@/components/modal/index.jsx";
+import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import {
+  StudentAccountEnrollmentModule,
+  StudentAccountModule,
+} from "@/modules/student-account.jsx";
 import { ResultModalButton } from "@/pages/student/items/modal.jsx";
-import { Table } from "antd";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import classNames from "classnames";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import BillingStyle from "./student-account.module.scss";
 
 const Enrollment = () => {
+  const { data: Packages } = useRequestGetQuery({
+    path: "/account_management/services/service/",
+  });
+  const { data: Instructor } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+  const { studentId } = useParams();
   const { colorsObject } = useContext(ColorsContext);
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalCase, setModalCase] = useState("");
   const { ResultOfModalContent } = ResultModalButton(ModalCase);
+  const { data, columns } = StudentAccountEnrollmentModule();
+  const [EnrollmentData, setEnrollmentData] = useState([]);
+
+  useEffect(() => {
+    const enrollment = [];
+    for (let i = 0; i < data?.length; i++) {
+      if (studentId === data[i]?.student) {
+        for (let j = 0; j < Packages?.length; j++) {
+          if (data[i].package[i] === Packages[j]?.id) {
+            //   Packages[j]?.name
+            enrollment.push({
+              ...data[i],
+              package: Packages[j]?.name,
+            });
+            for (let k = 0; k < Instructor?.length; k++) {
+              if (data[i].by === Instructor[k]?.id) {
+                //   code
+              }
+            }
+          }
+        }
+      }
+    }
+    setEnrollmentData(enrollment);
+  }, [data, Packages, Instructor]);
 
   const handleModal = (typeModal = "") => {
     setIsOpen((prev) => !prev);
     setModalCase(typeModal);
   };
 
-  const columns = [
-    {
-      title: "Package",
-      dataIndex: "packages",
-      key: "packages",
-      align: "center",
-      render: (text) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{text}</Paragraph>,
-    },
-    {
-      title: "Code",
-      dataIndex: "code",
-      key: "code",
-      align: "center",
-      render: (code) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{code}</Paragraph>,
-    },
-    {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
-      align: "center",
-      render: (price) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>${price}</Paragraph>
-    },
-    {
-      title: "Database Id",
-      dataIndex: "dbId",
-      key: "dbId",
-      align: "center",
-      render: (id) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{id}</Paragraph>,
-    },
-    {
-      title: "Data enrolled",
-      dataIndex: "dataEnrolled",
-      key: "dataEnrolled",
-      align: "center",
-      render: (time) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{time}</Paragraph>,
-    },
-    {
-      title: "Enrolled by",
-      dataIndex: "enrolledBy",
-      key: "enrolledBy",
-      align: "center",
-      render: (by) => <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{by}</Paragraph>,
-    },
-    {
-      title: "Notes",
-      dataIndex: "notes",
-      key: "notes",
-      align: "center",
-      render: (notes) => (
-        <Paragraph fontWeightStrong={400} fontSize={"text-base"} className={"text-center"}>{notes}</Paragraph>
-      ),
-    },
-    {
-      title: "",
-      key: "",
-      render: () => (
-        <div className={"text-center"}>
-          <CustomSelect
-            selectorBg={colorsObject.info}
-            className={`${BillingStyle["Billing__select"]}`}
-            colorBorder={colorsObject.info}
-            value={"Status"}
-            options={[
-              {
-                value: "Edit",
-                label: "Edit",
-              },
-              {
-                value: "Delete",
-                label: "Delete",
-              },
-              {
-                value: "Print",
-                label: "Print",
-              },
-              {
-                value: "Email",
-                label: "Email",
-              },
-            ]}
-          />
-        </div>
-      ),
-    },
-  ];
-
-  const data = [
-    {
-      packages: "8h in car",
-      code: "01",
-      price: 649.99,
-      dbId: 135,
-      dataEnrolled: "3/9/2024 1:37 pm",
-    },
-    {
-      packages: "8h in car",
-      code: "02",
-      price: 649.99,
-      dbId: 136,
-      dataEnrolled: "3/9/2024 1:37 pm",
-    },
-  ];
   return (
     <div>
       <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
@@ -175,7 +111,7 @@ const Enrollment = () => {
           </div>
         </div>
         <div className="pt-5 -mx-10">
-          <Table columns={columns} dataSource={data} pagination={false} />
+          <TableComponent columns={columns} data={EnrollmentData} />
         </div>
       </div>
       {IsOpen && (
@@ -196,131 +132,34 @@ const Enrollment = () => {
     </div>
   );
 };
+
 const Billings = () => {
+  const { data: Instructor } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
   const { colorsObject } = useContext(ColorsContext);
-  const [IsOpen, setIsOpen] = useState(false);
+  const { studentId } = useParams();
+  const { data, columns } = StudentAccountModule();
   const [ModalCase, setModalCase] = useState("");
+  const [IsOpen, setIsOpen] = useState(false);
+  const [BillingData, setBillingData] = useState([]);
   const { ResultOfModalContent } = ResultModalButton(ModalCase);
+
+  useEffect(() => {
+    const student = [];
+    for (let i = 0; i < data?.length; i++) {
+      if (studentId === data[i]?.student) {
+        student.push(data[i]);
+      }
+    }
+    setBillingData(student);
+  }, [data, Instructor]);
 
   const handleModal = (typeModal = "") => {
     setIsOpen((prev) => !prev);
     setModalCase(typeModal);
   };
-  const columns = [
-    {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      align: "center",
-      render: (text) => (
-        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
-          {text}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Amount",
-      dataIndex: "amount",
-      key: "amount",
-      align: "center",
-      render: (code) => (
-        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
-          {code}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
-      align: "center",
-      render: (price) => (
-        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
-          {price}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Database Id",
-      dataIndex: "dbId",
-      key: "dbId",
-      align: "center",
-      render: (id) => (
-        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
-          {id}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Accepted by staff",
-      dataIndex: "acceptedBy",
-      key: "acceptedBy",
-      align: "center",
-      render: (by) => (
-        <Paragraph fontWeightStrong={500} fontSize={"text-base"} className={"text-center"}>
-          {by}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Payment note",
-      dataIndex: "notes",
-      key: "notes",
-      align: "center",
-      render: (notes) => (
-        <Paragraph fontWeightStrong={500} className={"text-center"}>
-          {notes}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "",
-      key: "",
-      render: () => (
-        <div className={"text-center"}>
-          <CustomSelect
-            selectorBg={colorsObject.info}
-            className={`${BillingStyle["Billing__select"]}`}
-            colorBorder={colorsObject.info}
-            value={"Status"}
-            options={[
-              {
-                value: "Edit",
-                label: "Edit",
-              },
-              {
-                value: "Delete",
-                label: "Delete",
-              },
-              {
-                value: "Print",
-                label: "Print",
-              },
-              {
-                value: "Email",
-                label: "Email",
-              },
-            ]}
-          />
-        </div>
-      ),
-    },
-  ];
 
-  const data = [
-    {
-      date: "4/2/2024",
-      type: "VISA",
-      amount: 649.99,
-      dbId: 135,
-    },
-    {
-      date: "4/2/2024",
-      type: "Paypal",
-      amount: 649.99,
-      dbId: 136,
-    },
-  ];
   return (
     <Fragment>
       <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
@@ -374,7 +213,7 @@ const Billings = () => {
           </div>
         </div>
         <div className="pt-5 -mx-10">
-          <Table columns={columns} dataSource={data} pagination={false} />
+          <TableComponent columns={columns} data={BillingData} />
         </div>
         {IsOpen && (
           <Modal setIsOpen={setIsOpen}>
