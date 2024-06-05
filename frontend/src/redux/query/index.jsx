@@ -40,7 +40,7 @@ export const APIRequest = createApi({
 
     requestPatch: builder.mutation({
       query: ({ path, data, id }) => ({
-        url: `${path}/${id}`,
+        url: `${path}/${id}/`,
         method: "PATCH",
         body: data,
       }),

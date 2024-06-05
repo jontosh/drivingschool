@@ -36,7 +36,7 @@ const Layout = () => {
     if (pathname === "/") {
       navigate("/dashboard/");
     }
-  }, []);
+  }, [pathname]);
 
   const handleSideBar = () => setIsActive((prev) => !prev);
 

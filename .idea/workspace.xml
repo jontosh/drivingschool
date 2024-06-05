@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +119,8 @@
       <workItem from="1716981738572" duration="1858000" />
       <workItem from="1717051835095" duration="15280000" />
       <workItem from="1717479257189" duration="12868000" />
-      <workItem from="1717508871089" duration="209000" />
+      <workItem from="1717508871089" duration="354000" />
+      <workItem from="1717527739461" duration="17782000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -206,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717499312883</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="#fix #jsx Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
+      <option name="closed" value="true" />
+      <created>1717509127963</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717509127963</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,32 +236,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Add form validation" />
-    <MESSAGE value="- Add form validation&#10;-" />
-    <MESSAGE value="- Add form validation&#10;- Ref" />
-    <MESSAGE value="- Add form validation&#10;- Refactor" />
-    <MESSAGE value="- Add form validation&#10;- Refactor form" />
-    <MESSAGE value="- Add form validation&#10;- Refactor form inputs" />
-    <MESSAGE value="- Add form validation and&#10;- Refactor form inputs" />
-    <MESSAGE value="- Add form validation and input&#10;- Refactor form inputs" />
-    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs" />
-    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs to" />
-    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs to use" />
-    <MESSAGE value="- Add form validation and input handling&#10;- Refactor form inputs to use Custom" />
-    <MESSAGE value="- Add form validation and input handling for&#10;- Refactor form inputs to use Custom" />
-    <MESSAGE value="- Add form validation and input handling for student&#10;- Refactor form inputs to use Custom" />
-    <MESSAGE value="- Add form validation and input handling for student information&#10;- Refactor form inputs to use Custom" />
-    <MESSAGE value="- Add form validation and input handling for student information in&#10;- Refactor form inputs to use Custom Components" />
-    <MESSAGE value="- Add form validation and input handling for student information in&#10;- Refactor form inputs to use Custom Components for" />
-    <MESSAGE value="- Add form validation and input handling for student information in profile&#10;- Refactor form inputs to use Custom Components for" />
-    <MESSAGE value="- Add form validation and input handling for student information in profile&#10;- Refactor form inputs to use Custom Components for improved" />
-    <MESSAGE value="- Add form validation and input handling for student information in profile page&#10;- Refactor form inputs to use Custom Components for improved" />
-    <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved" />
     <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved user" />
     <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved user interaction" />
     <MESSAGE value="- Add form validation and input handling for student information in profile page.&#10;- Refactor form inputs to use Custom Components for improved user interaction." />
     <MESSAGE value="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction." />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update form" />
+    <MESSAGE value="Update form inputs" />
+    <MESSAGE value="Update form inputs to" />
+    <MESSAGE value="Update form inputs to handle" />
+    <MESSAGE value="Update form inputs to handle null" />
+    <MESSAGE value="Update form inputs to handle null values" />
+    <MESSAGE value="Update form inputs to handle null values gracefully" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for student" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for student information" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for student information in" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for student information in the" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for student information in the profile" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for student information in the profile page" />
+    <MESSAGE value="Update form inputs to handle null values gracefully and add form validation for student information in the profile page." />
+    <MESSAGE value="#fix #jsx Update form inputs to handle null values gracefully and add form validation for student information in the profile page." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update form inputs to handle null values gracefully and add form validation for student information in the profile page." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
