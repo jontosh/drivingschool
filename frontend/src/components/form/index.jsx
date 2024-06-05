@@ -167,7 +167,6 @@ export const CustomSelect = ({
           popupClassName={dropdownClassName}
           style={style}
           onBlur={onBlur}
-          //ref={ref}
           {...props}
         >
           {option}
