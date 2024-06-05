@@ -279,3 +279,64 @@ export const StudentAccountEnrollmentModule = () => {
 
   return { data, columns };
 };
+
+export const AccountActivitiesModule = () => {
+  const columns = [
+    {
+      title: "Date/Time",
+      dataIndex: "date",
+      key: "date",
+      render: (date) => <Paragraph fontSize={"text-base"}>{date}</Paragraph>,
+    },
+    {
+      title: "Activity",
+      dataIndex: "activity",
+      key: "activity",
+      align: "center",
+      render: (activity) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {activity}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Browser",
+      dataIndex: "browser",
+      key: "browser",
+      align: "center",
+      render: (browser) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {browser}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "From IP",
+      dataIndex: "IP",
+      key: "IP",
+      align: "center",
+      render: (IP) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {IP}
+        </Paragraph>
+      ),
+    },
+  ];
+
+  const data = [
+    {
+      date: "Mar 14, 2024 @ 1:29 pm EST",
+      activity: "Student LogOut",
+      browser: "Chrome",
+      IP: "109.207.249.165:38314",
+    },
+    {
+      date: "Mar 14, 2024 @ 1:29 pm EST",
+      activity: "Student LogOut",
+      browser: "Chrome",
+      IP: "109.207.249.165:38314",
+    },
+  ];
+
+  return { data, columns };
+};
