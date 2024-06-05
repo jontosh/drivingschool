@@ -27,6 +27,7 @@ import {
   useState,
 } from "react";
 import { useParams } from "react-router-dom";
+import CoverImage from "../../assets/others/cover.png";
 import ProfileStyle from "./student-account.module.scss";
 import IconComponent from "@/components/icons";
 import { TfiEmail } from "react-icons/tfi";
@@ -299,7 +300,7 @@ const Profile = () => {
           <div
             className={`rounded-2xl border-2 border-indigo-700 ${ProfileStyle["Student-profile__imageholder"]}`}
           >
-            ok
+            <Image src={CoverImage} srcSet={CoverImage} />
           </div>
         </div>
         <div className={"flex-grow"}>

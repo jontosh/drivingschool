@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +119,7 @@
       <workItem from="1717527739461" duration="19465000" />
       <workItem from="1717574952695" duration="8293000" />
       <workItem from="1717600118024" duration="272000" />
-      <workItem from="1717600420585" duration="3465000" />
+      <workItem from="1717600420585" duration="3845000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -244,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717582734981</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
+      <option name="closed" value="true" />
+      <created>1717612744993</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717612744993</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,32 +267,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Refactor form inputs, handle state changes, and update data fetching in profile and index components.&#10;- Update form inputs to handle null values gracefully and add form validation for student information in" />
-    <MESSAGE value="- Refactor form inputs, handle state changes, and update data fetching in profile and index components.&#10;- Update form inputs to handle null values gracefully and add form validation for student information in the" />
-    <MESSAGE value="- Refactor form inputs, handle state changes, and update data fetching in profile and index components.&#10;- Update form inputs to handle null values gracefully and add form validation for student information in the profile" />
-    <MESSAGE value="- Refactor form inputs, handle state changes, and update data fetching in profile and index components.&#10;- Update form inputs to handle null values gracefully and add form validation for student information in the profile page" />
-    <MESSAGE value="- Refactor form inputs, handle state changes, and update data fetching in profile and index components.&#10;- Update form inputs to handle null values gracefully and add form validation for student information in the profile page." />
-    <MESSAGE value="#fix #jsx Refactor form inputs, handle state changes, and update data fetching in profile and index components. Update form inputs to handle null values gracefully and add form validation for student information in the profile page." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update form" />
-    <MESSAGE value="Update form inputs" />
-    <MESSAGE value="Update form inputs," />
-    <MESSAGE value="Update form inputs, handle" />
-    <MESSAGE value="Update form inputs, handle state" />
-    <MESSAGE value="Update form inputs, handle state changes" />
-    <MESSAGE value="Update form inputs, handle state changes," />
-    <MESSAGE value="Update form inputs, handle state changes, and" />
-    <MESSAGE value="Update form inputs, handle state changes, and update" />
-    <MESSAGE value="Update form inputs, handle state changes, and update data" />
-    <MESSAGE value="Update form inputs, handle state changes, and update data fetching" />
-    <MESSAGE value="Update form inputs, handle state changes, and update data fetching in" />
-    <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile" />
     <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile and" />
     <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile and index" />
     <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile and index components" />
     <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile and index components." />
     <MESSAGE value="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components." />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update profile" />
+    <MESSAGE value="Update profile component" />
+    <MESSAGE value="Update profile component to" />
+    <MESSAGE value="Update profile component to include" />
+    <MESSAGE value="Update profile component to include QR" />
+    <MESSAGE value="Update profile component to include QR code" />
+    <MESSAGE value="Update profile component to include QR code functionality" />
+    <MESSAGE value="Update profile component to include QR code functionality and" />
+    <MESSAGE value="Update profile component to include QR code functionality and update" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies and" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies and local" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks" />
+    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks." />
+    <MESSAGE value="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
