@@ -23,7 +23,7 @@ import StudentAccountStyle from "./student-account.module.scss";
 
 const StudentAccount = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { title, studentId } = useParams();
+  const { title, studentId, subtitle } = useParams();
   const { data } = useRequestGetQuery({ path: "/student_account/student/" });
   const { data: StudentById } = useRequestIdQuery({
     path: "/student_account/student",
@@ -215,7 +215,7 @@ const StudentAccount = () => {
             </NavLink>
 
             <NavLink
-              to={`/student/account/appointments/${studentId}`}
+              to={`/student/account/appointments/${studentId}/${subtitle ?? "wheel"}`}
               className={setActiveNav}
             >
               Appointments

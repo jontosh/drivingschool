@@ -110,6 +110,7 @@ const Profile = () => {
     setDLIssued(Student?.dl_given_date);
     setDLExpiration(Student?.dl_expire_date);
     setStudentType(Student?.type);
+    setStatus(Student?.status);
   }, [
     data,
     InstructorData,

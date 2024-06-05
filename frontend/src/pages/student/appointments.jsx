@@ -1,5 +1,6 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import TableComponent from "@/components/table/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { Table } from "antd";
@@ -93,7 +94,7 @@ const AppointmentsData = () => {
       key: "vehicle",
       align: "center",
       render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
-    }
+    },
   ];
 
   const data = [
@@ -107,7 +108,7 @@ const AppointmentsData = () => {
       product: "BTW 8hrs",
       position: "Drive",
       notes: "",
-      vehicle: "Vehicle 1"
+      vehicle: "Vehicle 1",
     },
     {
       date: "12.22.2024",
@@ -119,15 +120,15 @@ const AppointmentsData = () => {
       product: "BTW 8hrs",
       position: "Drive",
       notes: "",
-      vehicle: "Vehicle 1"
+      vehicle: "Vehicle 1",
     },
   ];
 
   return { columns, data };
 };
 
-export const Appointments = ({ }) => {
-  const { subtitle } = useParams();
+export const Appointments = () => {
+  const { subtitle, studentId } = useParams();
   const { colorsObject } = useContext(ColorsContext);
   const { columns, data } = AppointmentsData();
   const setActiveLink = ({ isActive }) =>
@@ -141,13 +142,13 @@ export const Appointments = ({ }) => {
         {/*By Student IS*/}
         <NavLink
           className={setActiveLink}
-          to={"/student/account/appointments/1/wheel"}
+          to={`/student/account/appointments/${studentId}/wheel`}
         >
           Behind the wheel
         </NavLink>
         <NavLink
           className={setActiveLink}
-          to={"/student/account/appointments/1/online"}
+          to={`/student/account/appointments/${studentId}/online`}
         >
           Online course
         </NavLink>
@@ -198,11 +199,9 @@ export const Appointments = ({ }) => {
         />
       </form>
 
-      {subtitle && (
-        <div className={"pt-5 -mx-5"}>
-          <Table columns={columns} dataSource={data} pagination={false} />
-        </div>
-      )}
+      <div className={"pt-5 -mx-5"}>
+        <TableComponent columns={columns} data={data} />
+      </div>
     </div>
   );
 };

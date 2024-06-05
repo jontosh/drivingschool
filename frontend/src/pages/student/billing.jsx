@@ -1,8 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
 import Modal from "@/components/modal/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
-import Title, { Paragraph } from "@/components/title/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import {
   StudentAccountEnrollmentModule,
@@ -29,9 +28,12 @@ const Enrollment = () => {
   const { ResultOfModalContent } = ResultModalButton(ModalCase);
   const { data, columns } = StudentAccountEnrollmentModule();
   const [EnrollmentData, setEnrollmentData] = useState([]);
+  const [Price, setPrice] = useState(0);
 
   useEffect(() => {
     const enrollment = [];
+    let price = 0;
+
     for (let i = 0; i < data?.length; i++) {
       if (studentId === data[i]?.student) {
         for (let j = 0; j < Packages?.length; j++) {
@@ -50,6 +52,12 @@ const Enrollment = () => {
         }
       }
     }
+
+    for (let i = 0; i < enrollment.length; i++) {
+      price += enrollment[i].price;
+    }
+
+    setPrice(price);
     setEnrollmentData(enrollment);
   }, [data, Packages, Instructor]);
 
@@ -64,7 +72,7 @@ const Enrollment = () => {
         <div className="-mx-10 px-10 border-b pb-5 border-b-gray-400 flex justify-between">
           <Title level={2} fontSize={"text-xl space-x-2"}>
             <span className="text-indigo-700">Enrollment</span>
-            <span className={"text-[#24C18F]"}>$649,99</span>
+            <span className={"text-[#24C18F]"}>${Price}</span>
           </Title>
 
           <div className="space-x-2">
@@ -144,14 +152,20 @@ const Billings = () => {
   const [IsOpen, setIsOpen] = useState(false);
   const [BillingData, setBillingData] = useState([]);
   const { ResultOfModalContent } = ResultModalButton(ModalCase);
+  const [Price, setPrice] = useState(0);
 
   useEffect(() => {
     const student = [];
+    let price = 0;
     for (let i = 0; i < data?.length; i++) {
       if (studentId === data[i]?.student) {
         student.push(data[i]);
       }
     }
+    for (let i = 0; i < student.length; i++) {
+      price += student[i].price;
+    }
+    setPrice(price);
     setBillingData(student);
   }, [data, Instructor]);
 
@@ -166,7 +180,7 @@ const Billings = () => {
         <div className="-mx-10 px-10 border-b pb-5 border-b-gray-400 flex justify-between">
           <Title level={2} fontSize={"text-xl space-x-2"}>
             <span className="text-indigo-700">Billing</span>
-            <span className={"text-[#24C18F]"}>$0,00</span>
+            <span className={"text-[#24C18F]"}>${Price}</span>
           </Title>
 
           <div className="space-x-2">
