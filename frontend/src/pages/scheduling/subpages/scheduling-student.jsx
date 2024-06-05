@@ -15,7 +15,7 @@ export const SchedulingStudent = () => {
   const { data } = useRequestGetQuery({ path: "/student_account/student/" });
   const [Search, setSearch] = useState(null);
   const { Data } = useFilterStatus({ data, search: Search });
-  const [Student, setStudent] = useState({});
+  const [Student, setStudent] = useState(null);
 
   const searchItem = Data?.map((item, index) => {
     return (
@@ -42,13 +42,14 @@ export const SchedulingStudent = () => {
 
           if (!values.search) {
             errors.search = "Search is empty";
+            setSearch(null);
           } else {
             setSearch(values.search);
           }
 
           return errors;
         }}
-        onSubmit={(values) => { }}
+        onSubmit={(values) => {}}
       >
         {({ values, errors, handleChange, handleReset }) => (
           <form onSubmit={(e) => e.preventDefault()}>
@@ -90,15 +91,22 @@ export const SchedulingStudent = () => {
                   defaultHoverColor={colorsObject.black}
                   borderRadius={5}
                   paddingInline={44}
-                  onClick={handleReset}
+                  onClick={() => {
+                    handleReset();
+                    setStudent(null);
+                  }}
                 >
                   Clear
                 </ButtonComponent>
               )}
             </div>
-            {values.search !== "" && (
+            {values.search && (
               <div className="pr-36">
-                <ul className={"w-full mr-[199px] p-5 space-y-2.5 bg-white rounded-b-2xl"}>
+                <ul
+                  className={
+                    "w-full mr-[199px] p-5 space-y-2.5 bg-white rounded-b-2xl"
+                  }
+                >
                   {searchItem}
                 </ul>
               </div>
