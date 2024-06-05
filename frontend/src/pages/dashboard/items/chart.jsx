@@ -20,13 +20,7 @@ export const ChartDashboard = () => {
       align: "left",
     },
     legend: {
-      position: "top",
-      horizontalAlign: "right",
-      fontSize: 0,
-      markers: {
-        width: 20,
-        height: 15,
-      },
+      show: false,
     },
     chart: {
       type: "bar",
