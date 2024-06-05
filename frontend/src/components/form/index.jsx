@@ -129,7 +129,7 @@ export const CustomSelect = ({
   optionFontSize,
   optionSelectedFontWeight,
   fontSize = 14,
-  colorBorder = "gray",
+  colorBorder = "rgba(222, 226, 230, 1)",
   selectorBg = "#fff",
   colorText = "#000",
   ...props

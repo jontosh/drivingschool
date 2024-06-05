@@ -326,7 +326,6 @@ const Profile = () => {
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.info}
                   className={"w-full"}
-                  controlHeight={30}
                   borderRadius={5}
                 >
                   Send Text
@@ -342,7 +341,6 @@ const Profile = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.info}
                     className={"flex-grow"}
-                    controlHeight={30}
                     borderRadius={5}
                   >
                     Print
@@ -355,7 +353,6 @@ const Profile = () => {
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.info}
                   className={"w-full"}
-                  controlHeight={30}
                   borderRadius={5}
                 >
                   Acces Student Center
@@ -365,7 +362,6 @@ const Profile = () => {
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.info}
                   className={"w-full"}
-                  controlHeight={30}
                   borderRadius={5}
                 >
                   Username/Password
@@ -381,7 +377,6 @@ const Profile = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.info}
                     className={"flex-grow"}
-                    controlHeight={30}
                     borderRadius={5}
                   >
                     Print
@@ -598,7 +593,7 @@ const Profile = () => {
               placeholder={"Cell Phone"}
               className={`shadow-lg w-full px-4 border border-indigo-700 p-2.5`}
               spanText={"Cell Phone"}
-              spanClassName={`w-40 flex-shrink-0 text-start relative after:right-5 ${EnrollmentStyle["Enrollment__heavy"]}`}
+              spanClassName={`w-40 flex-shrink-0 text-start relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
               fontSize={"text-base"}
               classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
               name={"cell_phone"}
@@ -613,7 +608,7 @@ const Profile = () => {
 
             <label className="inline-flex items-center w-full gap-5">
               <span
-                className={`w-36 flex-shrink-0 text-start relative after:right-5 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-36 flex-shrink-0 text-start relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Email
               </span>
@@ -644,7 +639,7 @@ const Profile = () => {
 
             <label className="flex items-center gap-9">
               <span
-                className={`w-36 flex-shrink-0 text-start relative after:right-5 ${EnrollmentStyle["Enrollment__heavy"]}`}
+                className={`w-36 flex-shrink-0 text-start relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
               >
                 Gender
               </span>

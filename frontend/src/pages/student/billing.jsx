@@ -77,26 +77,24 @@ const Enrollment = () => {
 
           <div className="space-x-2">
             <ButtonComponent
-              controlHeight={26}
               defaultBg={"#24C18F"}
               defaultHoverBg={"#3CE3AE"}
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
               paddingInline={16}
-              fontSize={10}
+              fontSize={14}
               borderRadius={5}
             >
               + Add new
             </ButtonComponent>
 
             <ButtonComponent
-              controlHeight={26}
               defaultBg={colorsObject.orange}
               defaultHoverBg={colorsObject.orange}
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
               paddingInline={29}
-              fontSize={10}
+              fontSize={14}
               borderRadius={5}
               onClick={() => handleModal("email")}
             >
@@ -104,13 +102,12 @@ const Enrollment = () => {
             </ButtonComponent>
 
             <ButtonComponent
-              controlHeight={26}
               defaultBg={colorsObject.info}
               defaultHoverBg={colorsObject.info}
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
               paddingInline={29}
-              fontSize={10}
+              fontSize={14}
               borderRadius={5}
               onClick={() => handleModal("print")}
             >
@@ -185,26 +182,24 @@ const Billings = () => {
 
           <div className="space-x-2">
             <ButtonComponent
-              controlHeight={26}
               defaultBg={"#24C18F"}
               defaultHoverBg={"#3CE3AE"}
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
               paddingInline={16}
-              fontSize={10}
+              fontSize={14}
               borderRadius={5}
             >
               + Add new
             </ButtonComponent>
 
             <ButtonComponent
-              controlHeight={26}
               defaultBg={colorsObject.orange}
               defaultHoverBg={colorsObject.orange}
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
               paddingInline={29}
-              fontSize={10}
+              fontSize={14}
               borderRadius={5}
               onClick={() => handleModal("email")}
             >
@@ -212,13 +207,12 @@ const Billings = () => {
             </ButtonComponent>
 
             <ButtonComponent
-              controlHeight={26}
               defaultBg={colorsObject.info}
               defaultHoverBg={colorsObject.info}
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
               paddingInline={29}
-              fontSize={10}
+              fontSize={14}
               borderRadius={5}
               onClick={() => handleModal("print")}
             >
