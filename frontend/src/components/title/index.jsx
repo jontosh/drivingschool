@@ -2,6 +2,7 @@ import { ConfigProvider, Typography } from "antd";
 import classNames from "classnames";
 import { Fragment } from "react";
 import TypographyStyle from "./title.module.scss";
+
 const Title = ({
   children,
   className,

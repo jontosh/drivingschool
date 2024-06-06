@@ -107,10 +107,10 @@ export const SchedulingStudent = () => {
               )}
             </div>
             {values.search && IsList && (
-              <div className="pr-36">
+              <div className="pr-[146px] -pt-10">
                 <ul
                   className={
-                    "w-full mr-[199px] p-5 space-y-2.5 bg-white rounded-b-2xl"
+                    "w-full p-5 space-y-2.5 bg-white rounded-b-2xl -mt-1"
                   }
                 >
                   {searchItem}

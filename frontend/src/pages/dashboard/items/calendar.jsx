@@ -409,7 +409,7 @@ export const DashboardCalendar = ({ data }) => {
 
         <div className="space-y-12 pr-5 pt-7 w-[230px]">
           <div className="space-y-3">
-            <Title level={2} fontSize={"text-base"}>
+            <Title level={2} fontSize={"text-base"} className={"text-[#6B7A99]"}>
               Action
             </Title>
             <ButtonComponent
@@ -455,8 +455,8 @@ export const DashboardCalendar = ({ data }) => {
           </div>
 
           <div className="space-y-3">
-            <Title level={2} fontSize={"text-base"}>
-              Action
+            <Title level={2} fontSize="text-base" className="text-[#6B7A99]">
+              Menu
             </Title>
             <ButtonComponent
               defaultBg={colorsObject.info}
@@ -466,7 +466,7 @@ export const DashboardCalendar = ({ data }) => {
               paddingInline={43}
               className={"w-full"}
             >
-              Add slot 1 h
+              Print
             </ButtonComponent>
             <ButtonComponent
               defaultBg={colorsObject.info}
@@ -476,7 +476,7 @@ export const DashboardCalendar = ({ data }) => {
               paddingInline={43}
               className={"w-full"}
             >
-              Add slot 2h
+              Export
             </ButtonComponent>
             <ButtonComponent
               defaultBg={colorsObject.info}
@@ -486,23 +486,13 @@ export const DashboardCalendar = ({ data }) => {
               paddingInline={43}
               className={"w-full"}
             >
-              Turn off
-            </ButtonComponent>
-            <ButtonComponent
-              defaultBg={colorsObject.info}
-              defaultHoverBg={colorsObject.infoHover}
-              controlHeight={40}
-              borderRadius={5}
-              paddingInline={43}
-              className={"w-full"}
-            >
-              Trash
+              Create Appointment
             </ButtonComponent>
           </div>
 
           <div className="space-y-3">
-            <Title level={2} fontSize={"text-base"}>
-              Action
+            <Title level={2} fontSize={"text-base"} className={"text-[#6B7A99]"}>
+              Location
             </Title>
             <ButtonComponent
               defaultBg={colorsObject.info}
@@ -512,7 +502,7 @@ export const DashboardCalendar = ({ data }) => {
               paddingInline={43}
               className={"w-full"}
             >
-              Add slot 1 h
+              Mason
             </ButtonComponent>
             <ButtonComponent
               defaultBg={colorsObject.info}
@@ -522,7 +512,7 @@ export const DashboardCalendar = ({ data }) => {
               paddingInline={43}
               className={"w-full"}
             >
-              Add slot 2h
+              Ohio
             </ButtonComponent>
             <ButtonComponent
               defaultBg={colorsObject.info}
@@ -532,17 +522,7 @@ export const DashboardCalendar = ({ data }) => {
               paddingInline={43}
               className={"w-full"}
             >
-              Turn off
-            </ButtonComponent>
-            <ButtonComponent
-              defaultBg={colorsObject.info}
-              defaultHoverBg={colorsObject.infoHover}
-              controlHeight={40}
-              borderRadius={5}
-              paddingInline={43}
-              className={"w-full"}
-            >
-              Trash
+              New York
             </ButtonComponent>
           </div>
         </div>
