@@ -41,21 +41,6 @@ const CheckProgress = (status = "") => {
   }
 };
 
-const mockData = [
-  { key: "0", title: "Title 0", description: "Sample Description 0" },
-  { key: "1", title: "Title 1", description: "Sample Description 1" },
-  { key: "2", title: "Title 2", description: "Sample Description 2" },
-  { key: "3", title: "Title 3", description: "Sample Description 3" },
-  { key: "4", title: "Title 4", description: "Sample Description 4" },
-  { key: "5", title: "Title 5", description: "Sample Description 5" },
-  { key: "6", title: "Title 0", description: "Sample Description 0" },
-  { key: "7", title: "Title 1", description: "Sample Description 1" },
-  { key: "8", title: "Title 2", description: "Sample Description 2" },
-  { key: "9", title: "Title 3", description: "Sample Description 3" },
-  { key: "10", title: "Title 4", description: "Sample Description 4" },
-  { key: "11", title: "Title 5", description: "Sample Description 5" },
-];
-
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { columns, data } = FileCategoryModule();
@@ -188,7 +173,7 @@ const File = () => {
           <div className={"space-y-2.5"}>
             <div className="bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5">
               <div
-                className={`flex justify-between items-center -mx-1.5 gap-1 ${FileStyle["Statistic__selects"]}`}
+                className={`flex justify-between items-center -mx-1.5 gap-1`}
               >
                 <IconComponent
                   vertical={"items-center"}
@@ -201,7 +186,7 @@ const File = () => {
                 >
                   Usage: Current month
                 </IconComponent>
-                <div className={`flex gap-2.5`}>
+                <div className={`flex gap-2`}>
                   <CustomSelect
                     colorBorder={colorsObject.primary}
                     // style={{ width: 110 }}
