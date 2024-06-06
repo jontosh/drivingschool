@@ -3,6 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { useDate } from "@/hooks/useDate.jsx";
 import { SchedulingModule } from "@/modules/scheduling.jsx";
 import { Calendar } from "antd";
 import { Fragment, useContext } from "react";
@@ -10,11 +11,14 @@ import { BsFillCalendarWeekFill } from "react-icons/bs";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import dayLocaleData from "dayjs/plugin/localeData";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 dayjs.extend(dayLocaleData);
 
 export const BookMyLessons = ({ ...props }) => {
+  const Time = new Date();
   const { colorsObject } = useContext(ColorsContext);
+  const { MonthName } = useDate();
 
   const onPanelChange = (value, mode) => {
     console.log(value.format("YYYY-MM-DD"), mode);
@@ -45,8 +49,77 @@ export const BookMyLessons = ({ ...props }) => {
             <hr className={"border border-gray-400"} />
 
             <div className="flex">
-              <Calendar fullscreen={false} onPanelChange={onPanelChange} />
-              <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+              <Calendar
+                fullscreen={false}
+                headerRender={({ value, type, onChange, onTypeChange }) => {
+                  let current = value.clone();
+                  const localeData = value.localeData();
+                  const months = [];
+                  for (let i = 0; i < 12; i++) {
+                    current = current.month(i);
+                    months.push(localeData.monthsShort(current));
+                  }
+                  console.log(value.clone().month(0));
+                  return (
+                    <Fragment>
+                      <div className="flex items-center gap-8 justify-between pb-5">
+                        <IconComponent
+                          className={"text-indigo-600"}
+                          icon={<IoIosArrowBack />}
+                        />
+
+                        <Title fontSize={"text-[#6B7A99]"}>
+                          {months[value.month()]} {Time.getFullYear()}
+                        </Title>
+
+                        <IconComponent
+                          className={"text-indigo-600"}
+                          icon={<IoIosArrowForward />}
+                        />
+                      </div>
+                    </Fragment>
+                  );
+                }}
+              />
+              <Calendar
+                fullscreen={false}
+                onPanelChange={onPanelChange}
+                headerRender={({ value, type, onChange, onTypeChange }) => {
+                  let current = value.clone();
+                  const localeData = value.localeData();
+                  const months = [];
+                  for (let i = 0; i < 12; i++) {
+                    current = current.month(i);
+                    months.push(localeData.monthsShort(current));
+                  }
+                  return (
+                    <Fragment>
+                      <div className="flex items-center gap-8 justify-between pb-5">
+                        <IconComponent
+                          className={"text-indigo-600"}
+                          icon={<IoIosArrowBack />}
+                        />
+
+                        <Title fontSize={"text-[#6B7A99]"}>
+                          {
+                            months[
+                              value.month() + 1 > 11
+                                ? value.month()
+                                : value.month() + 1
+                            ]
+                          }{" "}
+                          {Time.getFullYear()}
+                        </Title>
+
+                        <IconComponent
+                          className={"text-indigo-600"}
+                          icon={<IoIosArrowForward />}
+                        />
+                      </div>
+                    </Fragment>
+                  );
+                }}
+              />
             </div>
 
             <Paragraph className={"text-gray-500"}>
@@ -99,7 +172,7 @@ export const BookMyLessons = ({ ...props }) => {
                 fontSize={"text-base text-gray-500 uppercase"}
                 fontWeightStrong={500}
               >
-                AVAILABLE  OPEN SLOT
+                AVAILABLE OPEN SLOT
               </Title>
               <IconComponent
                 className={"cursor-text text-gray-500"}
