@@ -3,7 +3,7 @@ import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AccountActivitiesModule } from "@/modules/student-account.jsx";
-import { Pagination, Table } from "antd";
+import { Pagination } from "antd";
 import { useContext, useState } from "react";
 
 export const StudentLog = () => {

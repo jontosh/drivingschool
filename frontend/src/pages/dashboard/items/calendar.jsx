@@ -409,7 +409,7 @@ export const DashboardCalendar = ({ data }) => {
 
         <div className="space-y-12 pr-5 pt-7 w-[230px]">
           <div className="space-y-3">
-            <Title level={2} fontSize={"text-base"} className={"text-[#6B7A99]"}>
+            <Title level={2} fontSize={"text-base text-[#6B7A99]"}>
               Action
             </Title>
             <ButtonComponent
@@ -455,7 +455,7 @@ export const DashboardCalendar = ({ data }) => {
           </div>
 
           <div className="space-y-3">
-            <Title level={2} fontSize="text-base" className="text-[#6B7A99]">
+            <Title level={2} fontSize={"text-base text-[#6B7A99]"}>
               Menu
             </Title>
             <ButtonComponent
@@ -491,7 +491,7 @@ export const DashboardCalendar = ({ data }) => {
           </div>
 
           <div className="space-y-3">
-            <Title level={2} fontSize={"text-base"} className={"text-[#6B7A99]"}>
+            <Title level={2} fontSize={"text-base text-[#6B7A99]"}>
               Location
             </Title>
             <ButtonComponent

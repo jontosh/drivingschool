@@ -54,7 +54,7 @@ export const SchedulingStudent = () => {
 
           return errors;
         }}
-        onSubmit={(values) => {}}
+        onSubmit={(values) => { }}
       >
         {({ values, errors, handleChange, handleReset }) => (
           <form onSubmit={(e) => e.preventDefault()}>

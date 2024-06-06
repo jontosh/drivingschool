@@ -691,7 +691,7 @@ export const InfoForm = ({ packages }) => {
                     spanText={"DL/Permit"}
                     placeholder={"DL/Permit"}
                     fontSize={"text-base"}
-                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
+                    spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
                     onChange={handleChange}
                     name={"dl_permit"}
@@ -702,8 +702,8 @@ export const InfoForm = ({ packages }) => {
                     )}
                   </CustomInput>
 
-                  <label className="inline-flex gap-8 items-center w-full">
-                    <span className={`text-base flex-shrink-0 w-40`}>
+                  <label className="inline-flex items-center w-full">
+                    <span className={`text-base flex-shrink-0 w-44`}>
                       DL/Permit Issued
                     </span>
                     <DatePicker
@@ -713,8 +713,8 @@ export const InfoForm = ({ packages }) => {
                     />
                   </label>
 
-                  <label className="inline-flex gap-8 items-center w-full">
-                    <span className={`text-base flex-shrink-0 w-40`}>
+                  <label className="inline-flex items-center w-full">
+                    <span className={`text-base flex-shrink-0 w-44`}>
                       DL Permit Expiration
                     </span>
                     <DatePicker
@@ -853,7 +853,7 @@ export const InfoForm = ({ packages }) => {
                     spanText={"Parent Email"}
                     placeholder={"Parent Email"}
                     fontSize={"text-base"}
-                    spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
+                    spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
                     colorBorder={colorsObject.primary}
                     name={"parent_email"}
                     onChange={handleChange}
