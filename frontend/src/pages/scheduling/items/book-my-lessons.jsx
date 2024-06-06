@@ -3,26 +3,32 @@ import IconComponent from "@/components/icons/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { useDate } from "@/hooks/useDate.jsx";
 import { SchedulingModule } from "@/modules/scheduling.jsx";
-import { Calendar } from "antd";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState, useCallback } from "react";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import dayLocaleData from "dayjs/plugin/localeData";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import "@natscale/react-calendar/dist/main.css";
+import { Calendar } from "@natscale/react-calendar";
 
 dayjs.extend(dayLocaleData);
 
 export const BookMyLessons = ({ ...props }) => {
   const Time = new Date();
   const { colorsObject } = useContext(ColorsContext);
-  const { MonthName } = useDate();
 
-  const onPanelChange = (value, mode) => {
-    console.log(value.format("YYYY-MM-DD"), mode);
-  };
+  const [value, setValue] = useState([
+    new Date(Time.getFullYear(), Time.getMonth(), 1),
+    new Date(Time.getFullYear(), Time.getMonth() + 1, 5),
+  ]);
+
+  const onChange = useCallback(
+    (value) => {
+      setValue(value);
+    },
+    [setValue],
+  );
 
   const { columns, data } = SchedulingModule();
 
@@ -48,77 +54,15 @@ export const BookMyLessons = ({ ...props }) => {
 
             <hr className={"border border-gray-400"} />
 
-            <div className="flex">
+            <div>
               <Calendar
-                fullscreen={false}
-                headerRender={({ value, type, onChange, onTypeChange }) => {
-                  let current = value.clone();
-                  const localeData = value.localeData();
-                  const months = [];
-                  for (let i = 0; i < 12; i++) {
-                    current = current.month(i);
-                    months.push(localeData.monthsShort(current));
-                  }
-                  console.log(value.clone().month(0));
-                  return (
-                    <Fragment>
-                      <div className="flex items-center gap-8 justify-between pb-5">
-                        <IconComponent
-                          className={"text-indigo-600"}
-                          icon={<IoIosArrowBack />}
-                        />
-
-                        <Title fontSize={"text-[#6B7A99]"}>
-                          {months[value.month()]} {Time.getFullYear()}
-                        </Title>
-
-                        <IconComponent
-                          className={"text-indigo-600"}
-                          icon={<IoIosArrowForward />}
-                        />
-                      </div>
-                    </Fragment>
-                  );
-                }}
-              />
-              <Calendar
-                fullscreen={false}
-                onPanelChange={onPanelChange}
-                headerRender={({ value, type, onChange, onTypeChange }) => {
-                  let current = value.clone();
-                  const localeData = value.localeData();
-                  const months = [];
-                  for (let i = 0; i < 12; i++) {
-                    current = current.month(i);
-                    months.push(localeData.monthsShort(current));
-                  }
-                  return (
-                    <Fragment>
-                      <div className="flex items-center gap-8 justify-between pb-5">
-                        <IconComponent
-                          className={"text-indigo-600"}
-                          icon={<IoIosArrowBack />}
-                        />
-
-                        <Title fontSize={"text-[#6B7A99]"}>
-                          {
-                            months[
-                              value.month() + 1 > 11
-                                ? value.month()
-                                : value.month() + 1
-                            ]
-                          }{" "}
-                          {Time.getFullYear()}
-                        </Title>
-
-                        <IconComponent
-                          className={"text-indigo-600"}
-                          icon={<IoIosArrowForward />}
-                        />
-                      </div>
-                    </Fragment>
-                  );
-                }}
+                showDualCalendar
+                isRangeSelector
+                value={value}
+                onChange={onChange}
+                hideAdjacentDates
+                className={"w-full"}
+                size={500}
               />
             </div>
 
