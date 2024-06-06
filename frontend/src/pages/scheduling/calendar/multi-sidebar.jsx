@@ -6,8 +6,8 @@ import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useDate } from "@/hooks/useDate.jsx";
 import CalendarStyle from "@/pages/dashboard/dashboard.module.scss";
-import { Dropdown } from "antd";
-import { Calendar, momentLocalizer, Views } from "react-big-calendar";
+import { Calendar, Dropdown } from "antd";
+import { momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import {
   Fragment,
@@ -218,32 +218,36 @@ export const MultiSidebar = ({ ...props }) => {
   return (
     <div className={"border border-gray-400 p-5 rounded-xl"}>
       <Calendar
-        // To selection column and add events
-        // selectable
-        localizer={localizer}
-        //events={events}
-        // To scroll
-        startAccessor="start"
-        endAccessor="end"
-        // onSelectSlot={handleSelect}
-        // onSelectEvent={(event) => alert(event.title)}
-        defaultView={Views.MONTH}
-        defaultDate={defaultDate}
-        style={{ height: 564 }}
-        views={views}
-        //formats={formats}
-        // {/*Header toolbar*/}
-        toolbar={toolbar}
-        //{/*Event Item*/}
-        //eventPropGetter={eventPropGetter}
-        //{/*Day column*/}
-        dayPropGetter={dayPropGetter}
-        showMultiDayTimes
-        // Slot
-        slotGroupPropGetter={slotGroupPropGetter}
-        slotPropGetter={slotPropGetter}
-        //compo
-        components={components}
+        fullscreen={false}
+        headerRender={({ value, type, onChange, onTypeChange }) => {
+          let current = value.clone();
+          const localeData = value.localeData();
+          const months = [];
+          for (let i = 0; i < 12; i++) {
+            current = current.month(i);
+            months.push(localeData.monthsShort(current));
+          }
+          console.log(value.clone().month(0));
+          return (
+            <Fragment>
+              <div className="flex items-center gap-8 justify-between pb-5">
+                <IconComponent
+                  className={"text-indigo-600"}
+                  icon={<IoIosArrowBack />}
+                />
+
+                <Title fontSize={"text-[#6B7A99]"}>
+                  {months[value.month()]} {Time.getFullYear()}
+                </Title>
+
+                <IconComponent
+                  className={"text-indigo-600"}
+                  icon={<IoIosArrowForward />}
+                />
+              </div>
+            </Fragment>
+          );
+        }}
       />
     </div>
   );
