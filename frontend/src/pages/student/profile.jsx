@@ -318,7 +318,8 @@ const Profile = () => {
                 <CustomSelect
                   placeholder={"Select Status"}
                   options={StatusSelect}
-                  className={"w-full h-[50px]"}
+                  className={"w-full h-[50px] text-white"}
+                  selectorBg={colorsObject.info}
                   onChange={handleStatus}
                 />
 
