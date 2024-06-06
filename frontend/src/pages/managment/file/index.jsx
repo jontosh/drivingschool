@@ -1,11 +1,6 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomInput,
-  CustomSelect,
-  CustomTransfer,
-} from "@/components/form/index.jsx";
-import IconComponent, { Icons } from "@/components/icons/index.jsx";
-import Modal from "@/components/modal/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
+import IconComponent from "@/components/icons/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
@@ -14,41 +9,21 @@ import { useDate } from "@/hooks/useDate.jsx";
 import { FileCategoryModule } from "@/modules/file-category.jsx";
 import { FileChart } from "@/pages/managment/file/items/chart.jsx";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
-import { Space, Switch, Table } from "antd";
-import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { FiFileText } from "react-icons/fi";
 import { LuBellRing } from "react-icons/lu";
 import { SlCloudDownload } from "react-icons/sl";
 import { VscGraph } from "react-icons/vsc";
-import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import FileStyle from "../management.module.scss";
-import { FormOutlined } from "@ant-design/icons";
-
-const CheckProgress = (status = "") => {
-  const { colorsObject } = useContext(ColorsContext);
-  switch (status.toLowerCase()) {
-    case "active":
-      return "#24C18F";
-    case "process":
-      return colorsObject.orange;
-    case "close":
-      return colorsObject.danger;
-    default:
-      return colorsObject.main;
-  }
-};
 
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { columns, data } = FileCategoryModule();
   const { Months, YearsOptions } = useDate();
   const [Filter, setFilter] = useState("");
-
   const handleFilter = (value) => setFilter(value);
-
   const { Data } = useFilterStatus({ data, status: Filter, search: "" });
 
   return (
@@ -84,7 +59,6 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    //
                     borderRadius={5}
                   >
                     Show more
@@ -101,7 +75,6 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    //
                     borderRadius={5}
                   >
                     Show more
@@ -119,7 +92,6 @@ const File = () => {
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.infoHover}
                     paddingInline={72}
-                    //
                     borderRadius={5}
                   >
                     Show more
@@ -189,19 +161,16 @@ const File = () => {
                 <div className={`flex gap-2`}>
                   <CustomSelect
                     colorBorder={colorsObject.primary}
-                    // style={{ width: 110 }}
                     placeholder={"Month"}
                     options={Months}
                   />
                   <CustomSelect
                     colorBorder={colorsObject.primary}
-                    // style={{ width: 110 }}
                     placeholder={"Year"}
                     options={YearsOptions()}
                   />
                   <CustomSelect
                     colorBorder={colorsObject.primary}
-                    // style={{ width: 110 }}
                     placeholder={"Display"}
                     options={[
                       {
@@ -221,6 +190,7 @@ const File = () => {
                 <div className="">
                   <FileChart
                     colors={[colorsObject.secondary, colorsObject.success]}
+                    labels={["Storage", "Storage"]}
                   />
 
                   <Paragraph
@@ -240,9 +210,10 @@ const File = () => {
                   Show more
                 </ButtonComponent>
 
-                <div className="">
+                <div>
                   <FileChart
                     colors={[colorsObject.secondary, colorsObject.danger]}
+                    labels={["Upload download", "Upload download"]}
                   />
 
                   <Paragraph

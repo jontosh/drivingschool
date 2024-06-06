@@ -161,7 +161,7 @@ export const AlertDelete = () => {
     );
   };
 
-  return { AlertDeleteComponent, Confirm };
+  return { AlertDeleteComponent, Confirm, setConfirm };
 };
 
 export const AlertEdit = ({ setIsOpen, id }) => {

@@ -12,9 +12,11 @@ import {
 } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 
 export const MenuItems = (IsActive, getItem) => {
+  const { studentId } = useParams();
+
   const items = [
     getItem(
       IsActive && <NavLink to={"/dashboard/"} children={"Home"} />,
@@ -47,37 +49,52 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
       IsActive && [
         getItem(
-          <NavLink to={"/student/account/profile/"} children={"Profile"} />,
+          <NavLink
+            to={`/student/account/profile/${studentId ?? ""}`}
+            children={"Profile"}
+          />,
           "sub4-1",
         ),
         getItem(
           <NavLink
-            to={"/student/account/billing"}
+            to={`/student/account/billing/${studentId ?? ""}`}
             children={"Enrollment/Billing"}
           />,
           "sub4-2",
         ),
         getItem(
           <NavLink
-            to={"/student/account/appointments"}
+            to={`/student/account/appointments/${studentId ?? ""}`}
             children={"Appointments"}
           />,
           "sub4-3",
         ),
         getItem(
-          <NavLink to={"/student/account/files"} children={"Files"} />,
+          <NavLink
+            to={`/student/account/files/${studentId ?? ""}`}
+            children={"Files"}
+          />,
           "sub4-4",
         ),
         getItem(
-          <NavLink to={"/student/account/messages"} children={"Messages"} />,
+          <NavLink
+            to={`/student/account/messages/${studentId ?? ""}`}
+            children={"Messages"}
+          />,
           "sub4-5",
         ),
         getItem(
-          <NavLink to={"/student/account/tests"} children={"Quiz/Tests"} />,
+          <NavLink
+            to={`/student/account/tests/${studentId ?? ""}`}
+            children={"Quiz/Tests"}
+          />,
           "sub4-6",
         ),
         getItem(
-          <NavLink to={"/student/account/log"} children={"Activity Log"} />,
+          <NavLink
+            to={`/student/account/log/${studentId ?? ""}`}
+            children={"Activity Log"}
+          />,
           "sub4-7",
         ),
       ],

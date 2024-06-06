@@ -30,10 +30,9 @@ export const APIRequest = createApi({
     }),
 
     requestDelete: builder.mutation({
-      query: ({ path, id }) => ({
-        url: `${path}/${id}`,
+      query: ({ path }) => ({
+        url: path,
         method: "DELETE",
-        body: id,
       }),
       invalidatesTags: ["Device"],
     }),
