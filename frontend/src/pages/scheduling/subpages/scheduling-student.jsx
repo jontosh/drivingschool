@@ -1,5 +1,6 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomInput } from "@/components/form/index.jsx";
+import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useFilterStatus } from "@/hooks/filter.jsx";
 import { FormError } from "@/modules/errors.jsx";
@@ -16,6 +17,7 @@ export const SchedulingStudent = () => {
   const [Search, setSearch] = useState(null);
   const { Data } = useFilterStatus({ data, search: Search });
   const [Student, setStudent] = useState(null);
+  const [IsList, setIsList] = useState(false);
 
   const searchItem = Data?.map((item, index) => {
     return (
@@ -24,6 +26,7 @@ export const SchedulingStudent = () => {
         className={"cursor-pointer"}
         onClick={() => {
           setStudent(item);
+          setIsList(false);
         }}
       >
         {item.first_name} {item.last_name}, {item.birth}
@@ -43,8 +46,10 @@ export const SchedulingStudent = () => {
           if (!values.search) {
             errors.search = "Search is empty";
             setSearch(null);
+            setIsList(false);
           } else {
             setSearch(values.search);
+            setIsList(true);
           }
 
           return errors;
@@ -94,13 +99,14 @@ export const SchedulingStudent = () => {
                   onClick={() => {
                     handleReset();
                     setStudent(null);
+                    setIsList(false);
                   }}
                 >
                   Clear
                 </ButtonComponent>
               )}
             </div>
-            {values.search && (
+            {values.search && IsList && (
               <div className="pr-36">
                 <ul
                   className={
@@ -118,6 +124,33 @@ export const SchedulingStudent = () => {
       {Search && Student?.id && (
         <Fragment>
           <div className="bg-white p-7 rounded-2xl shadow-2xl">
+            <div className="flex gap-5 items-center">
+              <Title
+                level={4}
+                fontSize={"text-2xl text-gray-500"}
+                fontWeightStrong={400}
+              >
+                Book My Lessons -
+                <b className={"font-medium text-black"}>
+                  {Student?.first_name} {Student?.last_name}
+                </b>
+              </Title>
+
+              <CustomSelect
+                placeholder={"SELECT"}
+                className={"w-60 h-[50px]"}
+                options={[
+                  {
+                    value: "Student List/Search",
+                    label: "Student List/Search",
+                  },
+                  {
+                    value: "Student List/Search",
+                    label: "Student List/Search",
+                  },
+                ]}
+              />
+            </div>
             <ConfigProvider
               theme={{
                 components: {

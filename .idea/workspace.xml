@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/scheduling-student.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/scheduling-student.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,23 +45,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "scheduling",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;scheduling&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -121,6 +122,7 @@
       <workItem from="1717574952695" duration="8293000" />
       <workItem from="1717600118024" duration="272000" />
       <workItem from="1717600420585" duration="4261000" />
+      <workItem from="1717658676420" duration="2223000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -258,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717612871464</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
+      <option name="closed" value="true" />
+      <created>1717626169798</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717626169799</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,23 +286,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile and index" />
-    <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile and index components" />
-    <MESSAGE value="Update form inputs, handle state changes, and update data fetching in profile and index components." />
-    <MESSAGE value="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update profile" />
-    <MESSAGE value="Update profile component" />
-    <MESSAGE value="Update profile component to" />
-    <MESSAGE value="Update profile component to include" />
-    <MESSAGE value="Update profile component to include QR" />
-    <MESSAGE value="Update profile component to include QR code" />
-    <MESSAGE value="Update profile component to include QR code functionality" />
-    <MESSAGE value="Update profile component to include QR code functionality and" />
-    <MESSAGE value="Update profile component to include QR code functionality and update" />
-    <MESSAGE value="Update profile component to include QR code functionality and update workspace" />
-    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration" />
-    <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for" />
     <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package" />
     <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies" />
     <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies and" />
@@ -301,7 +294,24 @@
     <MESSAGE value="Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks." />
     <MESSAGE value="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks." />
     <MESSAGE value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component." />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor state" />
+    <MESSAGE value="Refactor state initialization" />
+    <MESSAGE value="Refactor state initialization and" />
+    <MESSAGE value="Refactor state initialization and handling" />
+    <MESSAGE value="Refactor state initialization and handling in" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-st" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-student" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-student component" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-student component and" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-student component and update" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-student component and update workspace" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-student component and update workspace paths" />
+    <MESSAGE value="Refactor state initialization and handling in scheduling-student component and update workspace paths." />
+    <MESSAGE value="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
