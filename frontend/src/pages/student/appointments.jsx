@@ -3,7 +3,6 @@ import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Table } from "antd";
 import { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink, useParams } from "react-router-dom";
