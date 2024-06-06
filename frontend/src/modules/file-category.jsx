@@ -4,7 +4,6 @@ import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { FormOutlined } from "@ant-design/icons";
-import { Space } from "antd";
 import { Fragment, useState } from "react";
 
 export const FileCategoryModule = () => {
@@ -47,7 +46,7 @@ export const FileCategoryModule = () => {
       key: "edit",
       dataIndex: "edit",
       align: "center",
-      render: () => {
+      render: (text, _, index) => {
         return (
           <Fragment>
             <div className={"text-center"}>
@@ -65,7 +64,7 @@ export const FileCategoryModule = () => {
                 }}
               />
             </div>
-            {IsOpen && ModalType === "edit" && (
+            {ActionIndex === index && IsOpen && ModalType === "edit" && (
               <AlertEdit setIsOpen={setIsOpen} />
             )}
           </Fragment>
