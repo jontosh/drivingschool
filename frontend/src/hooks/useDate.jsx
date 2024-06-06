@@ -21,9 +21,10 @@ export const useDate = () => {
   const YearsOptions = () => {
     let currentYear = new Date().getFullYear(),
       years = [];
-    let startYear = 1999;
+    let startYear = 1970;
     while (startYear <= currentYear) {
-      years.push({ value: startYear++, label: startYear++ });
+      years.push({ value: startYear, label: startYear });
+      startYear++;
     }
     return years;
   };

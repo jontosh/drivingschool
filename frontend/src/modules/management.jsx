@@ -15,13 +15,14 @@ import AccountManagementContext from "@/context/account-management.jsx";
 import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
+import { useRequestDeleteMutation } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
 import { Formik } from "formik";
-import { Fragment, useContext, useState, useHistory } from "react";
+import { Fragment, useContext, useState, useHistory, useEffect } from "react";
 import { FiHelpCircle } from "react-icons/fi";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
@@ -33,7 +34,17 @@ export const LocationModule = () => {
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete(IsOpen);
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/account_management/location/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {
@@ -159,10 +170,21 @@ export const LocationModule = () => {
 
 export const HighSchoolModule = () => {
   const { SchoolData: data } = useContext(AccountManagementContext);
+
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete(IsOpen);
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/account_management/schools/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {
@@ -269,10 +291,21 @@ export const HighSchoolModule = () => {
 
 export const HearModule = () => {
   const { HearData: data } = useContext(AccountManagementContext);
+
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete(IsOpen);
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/account_management/how_did_you_hear_us/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {
@@ -369,10 +402,21 @@ export const VehiclesModule = () => {
   const { VehicleData: data, LocationData: LocationState } = useContext(
     AccountManagementContext,
   );
+
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete(IsOpen);
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/account_management/vehicle/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {
@@ -571,9 +615,7 @@ const Settings = ({ ...props }) => {
                     fontSize="text-base"
                     placeholder={"Quiz name"}
                     className={`h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    classNames={
-                      `inline-flex w-full flex-col-reverse gap-1.5 h-[76px] relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-5`
-                    }
+                    classNames={`inline-flex w-full flex-col-reverse gap-1.5 h-[76px] relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-5`}
                     name="student_name"
                     value={values.student_name}
                     onChange={handleChange}
@@ -586,7 +628,9 @@ const Settings = ({ ...props }) => {
                 </div>
 
                 <label className={"space-y-1.5"}>
-                  <span className={"text-base font-medium w-full"}>Final Exam</span>
+                  <span className={"text-base font-medium w-full"}>
+                    Final Exam
+                  </span>
                   <SwitchCustom
                     checked={DisplayQuizNameToStudent}
                     onChange={handleDisplayQuizNameToStudent}
@@ -617,7 +661,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="space-y-1.5">
                   <div className="flex justify-between align-items">
-                    <span className={"text-base font-normal w-full"}>Pass Feedback</span>
+                    <span className={"text-base font-normal w-full"}>
+                      Pass Feedback
+                    </span>
 
                     <span>
                       <FiHelpCircle
@@ -633,7 +679,9 @@ const Settings = ({ ...props }) => {
               <div className="space-y-5">
                 <div className="flex justify-between items-center">
                   <label className={"space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Attendance Required for Associated Session only</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Attendance Required for Associated Session only
+                    </span>
                     <SwitchCustom
                       checked={DisplayQuizNameToStudent}
                       onChange={handleDisplayQuizNameToStudent}
@@ -649,7 +697,10 @@ const Settings = ({ ...props }) => {
 
                 <div className="flex justify-between items-center">
                   <label className={"space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Attendance Required for Preceding and Associated CR Sessions</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Attendance Required for Preceding and Associated CR
+                      Sessions
+                    </span>
                     <SwitchCustom
                       checked={DisplayQuizNameToStudent}
                       onChange={handleDisplayQuizNameToStudent}
@@ -665,7 +716,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="flex justify-between items-center">
                   <label className={"space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Attendance Required for All Preceding CR Sessions Only</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Attendance Required for All Preceding CR Sessions Only
+                    </span>
                     <SwitchCustom
                       checked={DisplayQuizNameToStudent}
                       onChange={handleDisplayQuizNameToStudent}
@@ -681,7 +734,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="flex justify-between items-center">
                   <label className={"space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Display Progress Bar During Quiz</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Display Progress Bar During Quiz
+                    </span>
                     <SwitchCustom
                       checked={DisplayQuizNameToStudent}
                       onChange={handleDisplayQuizNameToStudent}
@@ -697,7 +752,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="flex justify-between items-center">
                   <label className={"space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Randomize Questions Order</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Randomize Questions Order
+                    </span>
                     <SwitchCustom
                       checked={DisplayQuizNameToStudent}
                       onChange={handleDisplayQuizNameToStudent}
@@ -713,7 +770,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="flex justify-between items-center">
                   <label className={"space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Enable Quiz Timer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Enable Quiz Timer
+                    </span>
                     <SwitchCustom
                       checked={DisplayQuizNameToStudent}
                       onChange={handleDisplayQuizNameToStudent}
@@ -729,7 +788,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="flex justify-between items-center">
                   <label className={"space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Allow Students to View Completed Quizzes</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Allow Students to View Completed Quizzes
+                    </span>
                     <SwitchCustom
                       checked={DisplayQuizNameToStudent}
                       onChange={handleDisplayQuizNameToStudent}
@@ -745,7 +806,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="space-y-1.5">
                   <div className="flex justify-between align-items">
-                    <span className={"text-base font-normal w-full"}>Fail Feedback</span>
+                    <span className={"text-base font-normal w-full"}>
+                      Fail Feedback
+                    </span>
 
                     <span>
                       <FiHelpCircle
@@ -761,7 +824,9 @@ const Settings = ({ ...props }) => {
               <div className="space-y-5">
                 <div className="w-full flex items-center gap-3">
                   <label className={"w-full space-y-1.5"}>
-                    <span className={"text-base font-medium w-full"}>Associate with Service</span>
+                    <span className={"text-base font-medium w-full"}>
+                      Associate with Service
+                    </span>
                     <SelectCheckbox
                       placeholder={"Select Service(s)"}
                       className={`${ManagementStyle["CheckModal__form-element__shadow"]}`}
@@ -791,7 +856,11 @@ const Settings = ({ ...props }) => {
 
                 <div className="w-full flex items-center gap-3">
                   <label className={"w-full space-y-1.5"}>
-                    <span className={`text-base font-medium w-full relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-1/3`}>Associate with CR Service</span>
+                    <span
+                      className={`text-base font-medium w-full relative ${EnrollmentStyle["Enrollment__heavy"]} after:right-1/3`}
+                    >
+                      Associate with CR Service
+                    </span>
                     <SelectCheckbox
                       placeholder={"Select Service(s)"}
                       className={`${ManagementStyle["CheckModal__form-element__shadow"]}`}
@@ -821,7 +890,9 @@ const Settings = ({ ...props }) => {
 
                 <div className="space-y-1.5">
                   <div className="flex justify-between align-items">
-                    <span className={"text-base font-normal w-full"}>Welcome Text</span>
+                    <span className={"text-base font-normal w-full"}>
+                      Welcome Text
+                    </span>
 
                     <span>
                       <FiHelpCircle
@@ -855,13 +926,17 @@ const MultipleChoice = ({ ...props }) => {
             <div className="grid grid-cols-2 gap-5">
               <div className="space-y-5">
                 <div className="space-y-1.5">
-                  <span className={"text-base font-medium w-full"}>QUESTION</span>
+                  <span className={"text-base font-medium w-full"}>
+                    QUESTION
+                  </span>
 
                   <MDEditor />
                 </div>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -884,12 +959,16 @@ const MultipleChoice = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -912,12 +991,16 @@ const MultipleChoice = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -940,12 +1023,16 @@ const MultipleChoice = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -968,7 +1055,9 @@ const MultipleChoice = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
@@ -984,8 +1073,11 @@ const MultipleChoice = ({ ...props }) => {
 
               <div className="space-y-5">
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">1</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">1</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -994,10 +1086,12 @@ const MultipleChoice = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">2</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">2</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1006,10 +1100,12 @@ const MultipleChoice = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">3</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">3</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1018,10 +1114,12 @@ const MultipleChoice = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">4</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">4</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1030,10 +1128,12 @@ const MultipleChoice = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">5</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">5</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1042,10 +1142,12 @@ const MultipleChoice = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">6</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">6</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1053,10 +1155,13 @@ const MultipleChoice = ({ ...props }) => {
                       The objective of this user flow is to map out...
                     </span>
                   </div>
-
-                </div> <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">7</span> What is the problem that you’re trying to solve or goals of this design?
+                </div>{" "}
+                <div className="space-y-1.5">
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">7</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1065,10 +1170,12 @@ const MultipleChoice = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">8</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">8</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1100,13 +1207,17 @@ const TrueFalse = ({ ...props }) => {
             <div className="grid grid-cols-2 gap-5">
               <div className="space-y-5">
                 <div className="space-y-1.5">
-                  <span className={"text-base font-medium w-full"}>QUESTION</span>
+                  <span className={"text-base font-medium w-full"}>
+                    QUESTION
+                  </span>
 
                   <MDEditor />
                 </div>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -1129,12 +1240,16 @@ const TrueFalse = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -1157,15 +1272,20 @@ const TrueFalse = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
               </div>
 
               <div className="space-y-5">
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">1</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">1</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1174,10 +1294,12 @@ const TrueFalse = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">2</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">2</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1186,10 +1308,12 @@ const TrueFalse = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">3</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">3</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1198,10 +1322,12 @@ const TrueFalse = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">4</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">4</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1210,10 +1336,12 @@ const TrueFalse = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">5</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">5</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1222,10 +1350,12 @@ const TrueFalse = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">6</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">6</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1233,10 +1363,13 @@ const TrueFalse = ({ ...props }) => {
                       The objective of this user flow is to map out...
                     </span>
                   </div>
-
-                </div> <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">7</span> What is the problem that you’re trying to solve or goals of this design?
+                </div>{" "}
+                <div className="space-y-1.5">
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">7</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1245,10 +1378,12 @@ const TrueFalse = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">8</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">8</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1280,13 +1415,17 @@ const Category = ({ ...props }) => {
             <div className="grid grid-cols-2 gap-5">
               <div className="space-y-5">
                 <div className="space-y-1.5">
-                  <span className={"text-base font-medium w-full"}>QUESTION</span>
+                  <span className={"text-base font-medium w-full"}>
+                    QUESTION
+                  </span>
 
                   <MDEditor />
                 </div>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -1309,12 +1448,16 @@ const Category = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -1337,12 +1480,16 @@ const Category = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -1365,12 +1512,16 @@ const Category = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
                 <label className="space-y-2.5 w-full">
-                  <span className={"text-base font-medium w-full"}>CHOICE OF ANSWERS</span>
+                  <span className={"text-base font-medium w-full"}>
+                    CHOICE OF ANSWERS
+                  </span>
 
                   <CustomSelect
                     placeholder={"Select Status"}
@@ -1393,7 +1544,9 @@ const Category = ({ ...props }) => {
                   />
 
                   <CustomCheckBox>
-                    <span className={"text-base font-medium w-full"}>correct answer</span>
+                    <span className={"text-base font-medium w-full"}>
+                      correct answer
+                    </span>
                   </CustomCheckBox>
                 </label>
 
@@ -1409,8 +1562,11 @@ const Category = ({ ...props }) => {
 
               <div className="space-y-5">
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">1</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">1</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1419,10 +1575,12 @@ const Category = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">2</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">2</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1431,10 +1589,12 @@ const Category = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">3</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">3</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1443,10 +1603,12 @@ const Category = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">4</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">4</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1455,10 +1617,12 @@ const Category = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">5</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">5</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1467,10 +1631,12 @@ const Category = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">6</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">6</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1478,10 +1644,13 @@ const Category = ({ ...props }) => {
                       The objective of this user flow is to map out...
                     </span>
                   </div>
-
-                </div> <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">7</span> What is the problem that you’re trying to solve or goals of this design?
+                </div>{" "}
+                <div className="space-y-1.5">
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">7</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1490,10 +1659,12 @@ const Category = ({ ...props }) => {
                     </span>
                   </div>
                 </div>
-
                 <div className="space-y-1.5">
-                  <Paragraph className={"text-base font-semibold text-gray-600"}>
-                    <span className="text-2xl">8</span> What is the problem that you’re trying to solve or goals of this design?
+                  <Paragraph
+                    className={"text-base font-semibold text-gray-600"}
+                  >
+                    <span className="text-2xl">8</span> What is the problem that
+                    you’re trying to solve or goals of this design?
                   </Paragraph>
 
                   <div className="pr-10">
@@ -1533,34 +1704,45 @@ const Preview = ({ ...props }) => {
                     Question 12
                   </Title>
 
-                  <Text fontSize={16} fontWeightStrong={400} className={"text-gray-600"}>
-                    A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+                  <Text
+                    fontSize={16}
+                    fontWeightStrong={400}
+                    className={"text-gray-600"}
+                  >
+                    A train passes a station platform in 36 seconds and a man
+                    standing on the platform in 20 seconds. If the speed of the
+                    train is 54 km/hr, what is the length of the platform?
                   </Text>
                 </div>
 
                 <div className="space-y-2">
-                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                  <label
+                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
+                  >
                     <CustomRadio>
-                      
                       <span className="text-lg">120 m</span>
                     </CustomRadio>
                   </label>
 
-                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                  <label
+                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
+                  >
                     <CustomRadio>
-                      
                       <span className="text-lg">240 m</span>
                     </CustomRadio>
                   </label>
 
-                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                  <label
+                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
+                  >
                     <CustomRadio>
-                      
                       <span className="text-lg">300 m</span>
                     </CustomRadio>
                   </label>
 
-                  <label className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}>
+                  <label
+                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
+                  >
                     <CustomRadio>
                       <span className="text-lg">None of these</span>
                     </CustomRadio>
@@ -1575,14 +1757,18 @@ const Preview = ({ ...props }) => {
                     defaultHoverColor="#000000"
                     paddingInline={20}
                     borderRadius={12}
-                  >Prev</ButtonComponent>
+                  >
+                    Prev
+                  </ButtonComponent>
 
                   <ButtonComponent
                     defaultBg="#5F66E9"
                     defaultHoverBg="#5F66E9"
                     paddingInline={20}
                     borderRadius={12}
-                  >Prev</ButtonComponent>
+                  >
+                    Prev
+                  </ButtonComponent>
                 </div>
 
                 <div className="flex flex-col gap-y-2.5 p-2.5 rounded-xl shadow-[0px_4px_14px_0px_#00000033]">
@@ -1590,8 +1776,14 @@ const Preview = ({ ...props }) => {
                     Explanation
                   </Title>
 
-                  <Text fontSize={16} fontWeightStrong={400} className={"text-gray-600"}>
-                    A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+                  <Text
+                    fontSize={16}
+                    fontWeightStrong={400}
+                    className={"text-gray-600"}
+                  >
+                    A train passes a station platform in 36 seconds and a man
+                    standing on the platform in 20 seconds. If the speed of the
+                    train is 54 km/hr, what is the length of the platform?
                   </Text>
                 </div>
               </div>

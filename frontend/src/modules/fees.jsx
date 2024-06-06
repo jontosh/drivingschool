@@ -1,21 +1,35 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
-import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
+import { AlertDelete } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import {
+  useRequestDeleteMutation,
+  useRequestGetQuery,
+} from "@/redux/query/index.jsx";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import { Space } from "antd";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export const FeesModule = () => {
   const { data } = useRequestGetQuery({
     path: "/account_management/services/fee/",
   });
+
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete();
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/account_management/services/fee/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {
@@ -55,7 +69,6 @@ export const FeesModule = () => {
             <ButtonComponent
               defaultBg={bg}
               defaultHoverBg={hover}
-              //
               borderRadius={5}
               style={{ width: "128px" }}
             >
@@ -82,7 +95,6 @@ export const FeesModule = () => {
                 icon={<DeleteOutlined />}
                 onClick={() => {
                   setIsOpen(true);
-                  setModalType("delete");
                   setActionIndex(index);
                 }}
               />
@@ -97,12 +109,8 @@ export const FeesModule = () => {
                 icon={<ExportOutlined />}
               />
             </div>
-            {ActionIndex === index && IsOpen && ModalType === "delete" && (
+            {ActionIndex === index && IsOpen && (
               <AlertDeleteComponent setIsOpen={setIsOpen} />
-            )}
-
-            {ActionIndex === index && IsOpen && ModalType === "edit" && (
-              <AlertEdit setIsOpen={setIsOpen} />
             )}
           </Fragment>
         );

@@ -3,14 +3,17 @@ import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import {
+  useRequestDeleteMutation,
+  useRequestGetQuery,
+} from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
 import { Space } from "antd";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export const ProductModule = () => {
   const { data: ProductData } = useRequestGetQuery({
@@ -20,7 +23,17 @@ export const ProductModule = () => {
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete();
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/account_management/services/component/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {
@@ -104,7 +117,6 @@ export const ProductModule = () => {
             <ButtonComponent
               defaultBg={bg}
               defaultHoverBg={hover}
-              //
               borderRadius={5}
               style={{ width: 128 }}
             >
@@ -118,6 +130,7 @@ export const ProductModule = () => {
       title: "Action",
       key: "action",
       render: (text, _, index) => {
+        let id = 0;
         return (
           <Fragment>
             <div className={"space-x-2.5"}>

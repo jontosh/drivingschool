@@ -2,18 +2,32 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import {
+  useRequestDeleteMutation,
+  useRequestGetQuery,
+} from "@/redux/query/index.jsx";
 import { FormOutlined } from "@ant-design/icons";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export const FileCategoryModule = () => {
   const { data } = useRequestGetQuery({
     path: "/student_account/file_category/",
   });
+
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete();
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/student_account/file_category/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {

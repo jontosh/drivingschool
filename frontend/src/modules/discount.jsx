@@ -3,19 +3,33 @@ import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import {
+  useRequestDeleteMutation,
+  useRequestGetQuery,
+} from "@/redux/query/index.jsx";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import { Space } from "antd";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 export const DiscountsModule = () => {
   const { data } = useRequestGetQuery({
     path: "/account_management/services/discount/",
   });
+
   const [IsOpen, setIsOpen] = useState(false);
   const [ModalType, setModalType] = useState("");
   const [ActionIndex, setActionIndex] = useState(-1);
-  const { AlertDeleteComponent } = AlertDelete();
+  const { AlertDeleteComponent, Confirm, setConfirm } = AlertDelete();
+  const [requestDelete] = useRequestDeleteMutation();
+
+  useEffect(() => {
+    if (Confirm) {
+      requestDelete({
+        path: `/account_management/services/discount/${data[ActionIndex]?.id}`,
+      }).reset();
+      setConfirm(false);
+    }
+  }, [Confirm, ActionIndex]);
 
   const columns = [
     {

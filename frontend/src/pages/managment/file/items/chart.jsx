@@ -1,8 +1,6 @@
-import ColorsContext from "@/context/colors.jsx";
 import ReactApexChart from "react-apexcharts";
-import { Component, useContext } from "react";
 
-export const FileChart = ({ colors }) => {
+export const FileChart = ({ colors, labels }) => {
   const series = [51, 49];
   const options = {
     chart: {
@@ -14,19 +12,31 @@ export const FileChart = ({ colors }) => {
     legend: {
       show: false,
     },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: "bottom",
+    plotOptions: {
+      pie: {
+        donut: {
+          labels: {
+            show: true,
+            name: {},
+            value: {},
           },
         },
       },
-    ],
+    },
+    labels: labels,
+    // responsive: [
+    //   {
+    //     breakpoint: 480,
+    //     options: {
+    //       chart: {
+    //         width: 200,
+    //       },
+    //       legend: {
+    //         position: "bottom",
+    //       },
+    //     },
+    //   },
+    // ],
   };
 
   return (
