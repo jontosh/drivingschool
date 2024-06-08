@@ -22,7 +22,14 @@ import MDEditor from "@uiw/react-md-editor";
 import { ConfigProvider, DatePicker, Form, Switch, Tabs } from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
-import { Fragment, useContext, useMemo, useReducer, useState } from "react";
+import {
+  Fragment,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import rehypeSanitize from "rehype-sanitize";
 import { StatusSelect } from "./index.jsx";
@@ -32,12 +39,12 @@ import dayjs from "dayjs";
 import { FiHelpCircle } from "react-icons/fi";
 
 const mockData = [
-  { key: "0", title: "Title 0", description: "Sample Description 0" },
-  { key: "1", title: "Title 1", description: "Sample Description 1" },
-  { key: "2", title: "Title 2", description: "Sample Description 2" },
-  { key: "3", title: "Title 3", description: "Sample Description 3" },
-  { key: "4", title: "Title 4", description: "Sample Description 4" },
-  { key: "5", title: "Title 5", description: "Sample Description 5" },
+  { key: 0, title: "Title 0", description: "Sample Description 0" },
+  { key: 1, title: "Title 1", description: "Sample Description 1" },
+  { key: 2, title: "Title 2", description: "Sample Description 2" },
+  { key: 3, title: "Title 3", description: "Sample Description 3" },
+  { key: 4, title: "Title 4", description: "Sample Description 4" },
+  { key: 5, title: "Title 5", description: "Sample Description 5" },
 ];
 
 const reducer = (state, action) => {
@@ -703,6 +710,7 @@ export const FeesModalContent = () => {
           rules={[
             {
               required: true,
+              message: "Status is empty",
             },
           ]}
         >
@@ -782,278 +790,216 @@ export const DiscountModalContent = () => {
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
   const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
-  const [Status, setStatus] = useState("");
-  const [Selections, setSelections] = useState(false);
   const [EligibleService, setEligibleService] = useState([]);
   const [EligibleClass, setEligibleClass] = useState([]);
   const [EligibleClassLocation, setEligibleClassLocation] = useState([]);
-  const [ExpirationDate, setExpirationDate] = useState(null);
+  const [form] = Form.useForm();
 
-  // dep
-  const selects = [Status];
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
-    }
-
-    return state;
-  }, [Status]);
+  useEffect(() => {
+    form.setFieldsValue({
+      classes: EligibleClass,
+      services: EligibleService,
+      locations: EligibleClassLocation,
+    });
+  }, [EligibleClass, EligibleService, EligibleClassLocation]);
 
   // func
-  const onChange = (date) => {
-    setExpirationDate(`${date["$y"]}-${date["$M"] + 1}-${date["$D"]}`);
+  const handleStatus = (values) => {
+    form.setFieldsValue({
+      status: values,
+    });
   };
 
-  const handleStatus = (value) => setStatus(value);
+  const handleNotesValue = (value) => {
+    form.setFieldsValue({
+      notes: value,
+    });
+  };
 
-  const handleSubmit = async (values) => {
-    setSelections(stateSelects);
+  const onFinish = async (values) => {
+    try {
+      const res = await requestPost({
+        path: "/account_management/services/discount/",
+        data: values,
+      });
 
-    if (!stateSelects) {
-      try {
-        const res = await requestPost({
-          path: "/account_management/services/discount/",
-          data: {
-            ...values,
-            status: Status,
-            expiration_data: ExpirationDate,
-            services: ToNumber(EligibleService),
-            classes: ToNumber(EligibleClass),
-            locations: ToNumber(EligibleClassLocation),
-          },
-        });
-
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error(error.message);
-        dispatch({ type: "ERROR", setIsOpen });
+      if (res?.error?.status >= 400) {
         setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
       }
+      // console.log(values);
+    } catch (error) {
+      console.error(error.message);
+      setIsOpen(true);
+      dispatch({ type: "ERROR", setIsOpen });
     }
+  };
+
+  const onReset = () => {
+    form.resetFields();
+    setEligibleService([]);
+    setEligibleClass([]);
+    setEligibleClassLocation([]);
+
+    setTimeout(() => {
+      navigate("/management/service/discounts");
+    }, 1000);
   };
 
   return (
     <Fragment>
-      <Formik
+      <Form
+        className={"space-y-5 px-5"}
+        form={form}
+        onFinish={onFinish}
+        layout={"vertical"}
         initialValues={{
-          name: "",
-          code: "",
-          amount: "",
+          notes: "",
         }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.code) {
-            errors.code = "Input Discount code is empty";
-          }
-          if (!values.amount) {
-            errors.amount = "Input Free Amount is empty";
-          }
-          return errors;
-        }}
-        onSubmit={handleSubmit}
       >
-        {({ values, errors, handleChange, handleSubmit, handleReset }) => (
-          <form
-            className={classNames("pb-5 grid gap-y-5")}
-            onSubmit={handleSubmit}
+        <Form.Item
+          name={"name"}
+          label={"Discount Name:"}
+          rules={[
+            {
+              required: true,
+              message: "Name is empty",
+            },
+          ]}
+        >
+          <CustomInput placeholder={"Discount Name"} classNames={"w-full"} />
+        </Form.Item>
+
+        <Form.Item
+          name={"status"}
+          label={"Status:"}
+          rules={[
+            {
+              required: true,
+              message: "Status is empty",
+            },
+          ]}
+        >
+          <CustomSelect
+            placeholder={"Select status"}
+            className={`w-full h-[50px]`}
+            options={StatusSelect}
+            colorBorder={colorsObject.black}
+            onChange={handleStatus}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name={"code"}
+          label={"Discount Code:"}
+          rules={[
+            {
+              required: true,
+              message: "Code is empty",
+            },
+          ]}
+        >
+          <CustomInput placeholder={"Discount Code"} classNames={"w-full"} />
+        </Form.Item>
+
+        <Form.Item
+          name={"amount"}
+          label={"Fee amount:"}
+          rules={[
+            {
+              required: true,
+              message: "Fee amount is empty",
+            },
+          ]}
+        >
+          <CustomInput
+            type={"number"}
+            placeholder={"Fee amount"}
+            classNames={"w-full"}
+          />
+        </Form.Item>
+
+        <Form.Item name={"services"} label={"Eligible Service:"}>
+          <CustomTransfer
+            dataSource={mockData}
+            listHeight={200}
+            colorBorder={colorsObject.primary}
+            setSelectedKeys={setEligibleService}
+            selectedKeys={EligibleService}
+          />
+        </Form.Item>
+
+        <Form.Item name={"notes"} label={"Notes"}>
+          <MDEditor
+            placeholder={"Text"}
+            onChange={handleNotesValue}
+            previewOptions={{
+              rehypePlugins: [[rehypeSanitize]],
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item name={"classes"} label={"Eligible Class(es):"}>
+          <CustomTransfer
+            dataSource={mockData}
+            listHeight={200}
+            colorBorder={colorsObject.primary}
+            setSelectedKeys={setEligibleClass}
+            selectedKeys={EligibleClass}
+          />
+        </Form.Item>
+
+        <Form.Item name={"locations"} label={"Eligible class Location:"}>
+          <CustomTransfer
+            dataSource={mockData}
+            listHeight={200}
+            colorBorder={colorsObject.primary}
+            setSelectedKeys={setEligibleClassLocation}
+            selectedKeys={EligibleClassLocation}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name={"expiration_data"}
+          getValueProps={(value) => ({
+            value: value && dayjs(Number(value)),
+          })}
+          normalize={(value) => value && `${dayjs(value).valueOf()}`}
+          label={"Discount Expiration:"}
+        >
+          <DatePicker placeholder={"MM/DD/YYYY"} />
+        </Form.Item>
+
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
           >
-            <div className={`flex grid gap-y-5`}>
-              <CustomInput
-                classNames={
-                  "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-                }
-                className={classNames(
-                  ManagementStyle["CheckModal__form-element__shadow"],
-                  "w-[40%] text-base",
-                )}
-                type={"text"}
-                spanText={"Discount name"}
-                placeholder={"Discount name"}
-                fontSize={"text-base"}
-                spanClassName={`flex-shrink-0 w-44 text-right relative`}
-                value={values.name}
-                onChange={handleChange}
-                name={"name"}
-              />
+            Save
+          </ButtonComponent>
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"reset"}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
 
-              <label className="inline-flex items-center justify-center gap-10 w-full">
-                <span
-                  className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
-                  Status:
-                </span>
-
-                <CustomSelect
-                  placeholder={"Select status"}
-                  className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  fontSize={"text-base"}
-                  options={StatusSelect}
-                  value={Status ? Status : undefined}
-                  onChange={handleStatus}
-                />
-
-                {Selections && (
-                  <FormError className="pl-[40%]">Select Status</FormError>
-                )}
-              </label>
-
-              <CustomInput
-                classNames={
-                  "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-                }
-                className={classNames(
-                  ManagementStyle["CheckModal__form-element__shadow"],
-                  "w-[40%] text-base",
-                )}
-                type={"text"}
-                spanText={"Discount code:"}
-                placeholder={"Discount code"}
-                fontSize={"text-base"}
-                spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                value={values.code}
-                onChange={handleChange}
-                name={"code"}
-              >
-                {errors.code && (
-                  <FormError className={"pl-[40%]"}>{errors.code}</FormError>
-                )}
-              </CustomInput>
-
-              <CustomInput
-                classNames={
-                  "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-                }
-                className={classNames(
-                  ManagementStyle["CheckModal__form-element__shadow"],
-                  "w-[40%] text-base",
-                )}
-                type={"number"}
-                spanText={"Fee Amount:"}
-                placeholder={"Fee Amount"}
-                fontSize={"text-base"}
-                spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                name={"amount"}
-                value={values.amount}
-                onChange={handleChange}
-              >
-                {errors.amount && (
-                  <FormError className={"pl-[40%]"}>{errors.amount}</FormError>
-                )}
-              </CustomInput>
-            </div>
-
-            <div className={`space-y-10`}>
-              <div className={`flex items-center justify-center space-x-12`}>
-                <span
-                  className={`text-base flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                >
-                  Eligible Service
-                </span>
-                <CustomTransfer
-                  dataSource={mockData}
-                  listHeight={200}
-                  colorBorder={colorsObject.primary}
-                  setSelectedKeys={setEligibleService}
-                  selectedKeys={EligibleService}
-                />
-              </div>
-
-              <div className={`flex items-center justify-center space-x-12`}>
-                <span className={`text-base flex-shrink-0 w-44 text-right`}>
-                  Eligible Class(es):
-                </span>
-                <CustomTransfer
-                  dataSource={mockData}
-                  listHeight={200}
-                  colorBorder={colorsObject.primary}
-                  setSelectedKeys={setEligibleClass}
-                  selectedKeys={EligibleClass}
-                />
-              </div>
-
-              <div className={`flex items-center justify-center space-x-12`}>
-                <span className={`text-base flex-shrink-0 w-44 text-right`}>
-                  Eligible class Location:
-                </span>
-                <CustomTransfer
-                  dataSource={mockData}
-                  listHeight={200}
-                  colorBorder={colorsObject.primary}
-                  setSelectedKeys={setEligibleClassLocation}
-                  selectedKeys={EligibleClassLocation}
-                />
-              </div>
-            </div>
-
-            <label className={"text-center space-x-7"}>
-              <Text
-                fontSize={"text-base"}
-                fontWeightStrong={400}
-                className={"w-44 text-right"}
-              >
-                Discount Expiration:
-              </Text>
-              <>
-                <ConfigProvider
-                  theme={{
-                    token: {
-                      colorBorder: "#667085",
-                      controlHeight: 50,
-                    },
-                  }}
-                >
-                  <DatePicker
-                    onChange={onChange}
-                    fontSize={"text-base"}
-                    className={`w-[40%] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  />
-                </ConfigProvider>
-              </>
-            </label>
-
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
-              >
-                Save
-              </ButtonComponent>
-
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  navigate("/management/service/discounts");
-                }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
       {IsOpen && state?.status}
     </Fragment>
   );

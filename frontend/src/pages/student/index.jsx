@@ -41,7 +41,7 @@ const StudentAccount = () => {
     return (
       <li key={index} className={"cursor-pointer"}>
         <NavLink
-          to={`/student/account/profile/${item.id}`}
+          to={`/student/account/profile/${item?.id}`}
           className={setActiveNav}
           onClick={() => {
             setStudent(item);
