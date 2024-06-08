@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill, User
+from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill
 
 class InstructorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,10 +10,7 @@ class StudentSerializer(serializers.ModelSerializer):
         model = Student
         fields = "__all__"
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
+
 
 
 
@@ -41,3 +38,7 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         model = Enrollment
         fields = "__all__"
 
+
+class AuthTokenSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()

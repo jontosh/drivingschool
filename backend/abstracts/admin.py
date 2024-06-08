@@ -33,7 +33,7 @@ class URLListView(admin.ModelAdmin):
         # Render the custom template with the URL patterns
         return TemplateResponse(
             request,
-            "index.html",
+            "login.html",
             {"url_patterns": url_patterns}
         )
 # admin.site.register(URLListView)

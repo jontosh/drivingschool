@@ -4,7 +4,7 @@ from location.views import LocationSerializer,VehicleSerializer,SchoolSerializer
 from servises.serializer import ServicesSerializer
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,WeekRangeSerializer,TimeRangeSerializer,\
     TimeSlot,Appointment, TimeOffSerializer
-from Users.serializer import StudentSerializer,UserSerializer,BillSerializer,FilesSerializer,Enrollment,Student,Instructor
+from Users.serializer import StudentSerializer,BillSerializer,FilesSerializer,Enrollment,Student,Instructor
 
 
 class LocationFullSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class TimeSlotSerializer_(serializers.ModelSerializer):
     date_range = DateRangeSerializer(read_only=True)
     location = LocationSerializer(read_only=True)
     vehicle = VehicleSerializer(read_only=True)
-    # week_range = WeekRangeSerializer(many=True,read_only=True)
+    week_range = WeekRangeSerializer(many=True,read_only=True)
     slots = TimeRangeSerializer(many=True,read_only=True)
     staff = InstructorFullSerializer(read_only=True)
     class Meta:
@@ -63,7 +63,6 @@ class LatestNewsSerializer(serializers.ModelSerializer):
 class EnrollmentSerializer_(serializers.ModelSerializer):
     package = ServicesSerializer(many=True)
     student = StudentSerializer()
-    by = UserSerializer()
     cr = LocationSerializer()
     appointments = AppointmentSerializer(many=True,read_only=True)
     bill = BillSerializer(many=True,read_only=True)
