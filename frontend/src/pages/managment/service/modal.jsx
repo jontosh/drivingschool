@@ -28,6 +28,7 @@ import rehypeSanitize from "rehype-sanitize";
 import { StatusSelect } from "./index.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import ButtonComponent from "@/components/button/index.jsx";
+import dayjs from "dayjs";
 
 const mockData = [
   { key: "0", title: "Title 0", description: "Sample Description 0" },
@@ -110,6 +111,16 @@ export const ProductModalContent = () => {
       session_times: values,
     });
   };
+  const handleEZDriveProduct = (values) => {
+    form.setFieldsValue({
+      ez_drive_product: values,
+    });
+  };
+  const handleSafewayAudience = (values) => {
+    form.setFieldsValue({
+      safeway_audience: values,
+    });
+  };
 
   const [form] = Form.useForm();
 
@@ -128,7 +139,7 @@ export const ProductModalContent = () => {
         dispatch({ type: "SUCCESS", setIsOpen });
       }
 
-      // console.log(res);
+      // console.log(values);
     } catch (error) {
       console.error(error.message);
       dispatch({ type: "ERROR", setIsOpen });
@@ -424,6 +435,70 @@ export const ProductModalContent = () => {
                     colorBorder={colorsObject.black}
                     onChange={handleSessionTimes}
                   />
+                </Form.Item>
+              </Fragment>
+            ) : getFieldValue("subtype_web") === "EZ DRIVE" &&
+              getFieldValue("type_component") === "WEB" ? (
+              <Fragment>
+                <Form.Item
+                  name={"ez_drive_product"}
+                  label={"EZ Drive Product:"}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <CustomSelect
+                    placeholder={"EZ Drive Product"}
+                    className={`w-full h-[50px]`}
+                    options={StatusSelect}
+                    colorBorder={colorsObject.black}
+                    onChange={handleEZDriveProduct}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name={"duration"}
+                  label={"Duration"}
+                  getValueProps={(value) => ({
+                    value: value && dayjs(Number(value)),
+                  })}
+                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                >
+                  <DatePicker />
+                </Form.Item>
+              </Fragment>
+            ) : getFieldValue("subtype_web") === "SAFEWAY LMS" &&
+              getFieldValue("type_component") === "WEB" ? (
+              <Fragment>
+                <Form.Item
+                  name={"safeway_audience"}
+                  label={"Safeway LMS Audience:"}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <CustomSelect
+                    placeholder={"EZ Drive Product"}
+                    className={`w-full h-[50px]`}
+                    options={StatusSelect}
+                    colorBorder={colorsObject.black}
+                    onChange={handleSafewayAudience}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name={"duration"}
+                  label={"Duration"}
+                  getValueProps={(value) => ({
+                    value: value && dayjs(Number(value)),
+                  })}
+                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                >
+                  <DatePicker />
                 </Form.Item>
               </Fragment>
             ) : null
