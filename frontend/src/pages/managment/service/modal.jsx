@@ -29,6 +29,7 @@ import { StatusSelect } from "./index.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import ButtonComponent from "@/components/button/index.jsx";
 import dayjs from "dayjs";
+import { FiHelpCircle } from "react-icons/fi";
 
 const mockData = [
   { key: "0", title: "Title 0", description: "Sample Description 0" },
@@ -181,7 +182,13 @@ export const ProductModalContent = () => {
               },
             ]}
           >
-            <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
+            <div className="flex items-center gap-3">
+              <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </Form.Item>
 
           <Form.Item
@@ -193,7 +200,13 @@ export const ProductModalContent = () => {
               },
             ]}
           >
-            <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} />
+            <div className="flex items-center gap-3">
+              <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </Form.Item>
 
           <Form.Item
@@ -205,13 +218,19 @@ export const ProductModalContent = () => {
               },
             ]}
           >
-            <CustomSelect
-              placeholder={"Select status"}
-              className={`w-full h-[50px]`}
-              options={StatusSelect}
-              colorBorder={colorsObject.black}
-              onChange={handleStatus}
-            />
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-full h-[50px]`}
+                options={StatusSelect}
+                colorBorder={colorsObject.black}
+                onChange={handleStatus}
+              />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </Form.Item>
 
           <Form.Item
@@ -223,7 +242,13 @@ export const ProductModalContent = () => {
               },
             ]}
           >
-            <CustomInput placeholder={"Public Name"} classNames={"w-full"} />
+            <div className="flex items-center gap-3">
+              <CustomInput placeholder={"Public Name"} classNames={"w-full"} />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </Form.Item>
 
           <Form.Item
@@ -235,31 +260,43 @@ export const ProductModalContent = () => {
               },
             ]}
           >
-            <CustomSelect
-              placeholder={"Select status"}
-              className={`w-full h-[50px]`}
-              options={[
-                { value: "BTW", label: "BTW" },
-                { value: "CR", label: "CR" },
-                { value: "WEB", label: "WEB" },
-              ]}
-              colorBorder={colorsObject.black}
-              onChange={handleType}
-            />
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-full h-[50px]`}
+                options={[
+                  { value: "BTW", label: "BTW" },
+                  { value: "CR", label: "CR" },
+                  { value: "WEB", label: "WEB" },
+                ]}
+                colorBorder={colorsObject.black}
+                onChange={handleType}
+              />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </Form.Item>
 
           <Form.Item name={"subtype_web"} label={"Sub Type:"}>
-            <CustomSelect
-              placeholder={"Please Select"}
-              className={`w-full h-[50px]`}
-              options={[
-                { value: "EZ DRIVE", label: "EZ DRIVE" },
-                { value: "OTHER ONLINE COURSE", label: "OTHER ONLINE COURSE" },
-                { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
-              ]}
-              colorBorder={colorsObject.black}
-              onChange={handleSubType}
-            />
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                placeholder={"Please Select"}
+                className={`w-full h-[50px]`}
+                options={[
+                  { value: "EZ DRIVE", label: "EZ DRIVE" },
+                  { value: "OTHER ONLINE COURSE", label: "OTHER ONLINE COURSE" },
+                  { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
+                ]}
+                colorBorder={colorsObject.black}
+                onChange={handleSubType}
+              />
+
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </Form.Item>
 
           <Form.Item
@@ -280,63 +317,92 @@ export const ProductModalContent = () => {
                       },
                     ]}
                   >
-                    <CustomSelect
-                      placeholder={"Hours"}
-                      className={`w-full h-[50px]`}
-                      options={[
-                        { value: 1, label: 1 },
-                        { value: 2, label: 2 },
-                        { value: 3, label: 3 },
-                      ]}
-                      colorBorder={colorsObject.black}
-                      onChange={handleDrivingHours}
-                    />
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"Hours"}
+                        className={`w-full h-[50px]`}
+                        options={[
+                          { value: 1, label: 1 },
+                          { value: 2, label: 2 },
+                          { value: 3, label: 3 },
+                        ]}
+                        colorBorder={colorsObject.black}
+                        onChange={handleDrivingHours}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
                   </Form.Item>
 
                   <Form.Item name={"driving_hours"} label={"Minutes"}>
-                    <CustomSelect
-                      placeholder={"Minute(s)"}
-                      className={`w-full h-[50px]`}
-                      options={[
-                        { value: 1, label: 1 },
-                        { value: 2, label: 2 },
-                        { value: 3, label: 3 },
-                      ]}
-                      colorBorder={colorsObject.black}
-                    />
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"Minute(s)"}
+                        className={`w-full h-[50px]`}
+                        options={[
+                          { value: 1, label: 1 },
+                          { value: 2, label: 2 },
+                          { value: 3, label: 3 },
+                        ]}
+                        colorBorder={colorsObject.black}
+                      />
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
                   </Form.Item>
 
                   <Form.Item name={"duration"} label={"Duration"}>
-                    <CustomSelect
-                      placeholder={"Select"}
-                      className={`w-full h-[50px]`}
-                      options={[
-                        { value: 1, label: 1 },
-                        { value: 2, label: 2 },
-                        { value: 3, label: 3 },
-                      ]}
-                      colorBorder={colorsObject.black}
-                    />
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"Select"}
+                        className={`w-full h-[50px]`}
+                        options={[
+                          { value: 1, label: 1 },
+                          { value: 2, label: 2 },
+                          { value: 3, label: 3 },
+                        ]}
+                        colorBorder={colorsObject.black}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
                   </Form.Item>
 
                   <Form.Item name={"evalution"} label={"Evalution:"}>
-                    <CustomSelect
-                      placeholder={"Evalution"}
-                      className={`w-full h-[50px]`}
-                      options={[
-                        { value: 1, label: 1 },
-                        { value: 2, label: 2 },
-                        { value: 3, label: 3 },
-                      ]}
-                      colorBorder={colorsObject.black}
-                    />
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"Evalution"}
+                        className={`w-full h-[50px]`}
+                        options={[
+                          { value: 1, label: 1 },
+                          { value: 2, label: 2 },
+                          { value: 3, label: 3 },
+                        ]}
+                        colorBorder={colorsObject.black}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
                   </Form.Item>
                 </Fragment>
               ) : getFieldValue("type_component") === "CR" ? (
                 <Fragment>
-                  <Title level={3} fontSize={"text-xl"}>
-                    Add Default Creating Settings
-                  </Title>
+                  <div className="flex items-center gap-3">
+                    <Title level={3} fontSize={"text-xl"}>
+                      Add Default Creating Settings
+                    </Title>
+
+                    <span>
+                      <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                    </span>
+                  </div>
 
                   <Form.Item name={"enrolment_size"} label={"Enrollment Size:"}>
                     <CustomInput
@@ -363,28 +429,40 @@ export const ProductModalContent = () => {
                   </Form.Item>
 
                   <Form.Item name={"location"} label={"Location:"}>
-                    <CustomSelect
-                      placeholder={"Location"}
-                      className={`w-full h-[50px]`}
-                      options={[{ value: 1, label: "USA" }]}
-                      colorBorder={colorsObject.black}
-                      onChange={handleLocation}
-                    />
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"Location"}
+                        className={`w-full h-[50px]`}
+                        options={[{ value: 1, label: "USA" }]}
+                        colorBorder={colorsObject.black}
+                        onChange={handleLocation}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
                   </Form.Item>
 
                   <Form.Item name={"days"} label={"Days:"}>
-                    <CustomSelect
-                      placeholder={"select days"}
-                      className={`w-full h-[50px]`}
-                      mode="multiple"
-                      options={[
-                        { value: 1, label: "Mon" },
-                        { value: 2, label: "Tue" },
-                        { value: 3, label: "Wen" },
-                      ]}
-                      colorBorder={colorsObject.black}
-                      onChange={handleDays}
-                    />
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"select days"}
+                        className={`w-full h-[50px]`}
+                        mode="multiple"
+                        options={[
+                          { value: 1, label: "Mon" },
+                          { value: 2, label: "Tue" },
+                          { value: 3, label: "Wen" },
+                        ]}
+                        colorBorder={colorsObject.black}
+                        onChange={handleDays}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
                   </Form.Item>
 
                   <Form.Item
@@ -410,17 +488,23 @@ export const ProductModalContent = () => {
                     name={"session_duration"}
                     label={"Sessions Duration:"}
                   >
-                    <CustomSelect
-                      placeholder={"select days"}
-                      className={`w-full h-[50px]`}
-                      options={[
-                        { value: 1, label: 1 },
-                        { value: 2, label: 2 },
-                        { value: 3, label: 3 },
-                      ]}
-                      colorBorder={colorsObject.black}
-                      onChange={handleSessionDuration}
-                    />
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"select days"}
+                        className={`w-full h-[50px]`}
+                        options={[
+                          { value: 1, label: 1 },
+                          { value: 2, label: 2 },
+                          { value: 3, label: 3 },
+                        ]}
+                        colorBorder={colorsObject.black}
+                        onChange={handleSessionDuration}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
                   </Form.Item>
 
                   <Form.Item name={"session_times"} label={"Sessions Times:"}>
@@ -519,16 +603,18 @@ export const ProductModalContent = () => {
             Save
           </ButtonComponent>
           <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
             borderRadius={5}
             paddingInline={44}
             type={"reset"}
             onClick={onReset}
           >
-            reset
+            Cancel
           </ButtonComponent>
         </div>
       </Form>
@@ -1964,7 +2050,6 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Status"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={StatusSelect}
                     onChange={handleStatus}
@@ -1979,7 +2064,6 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
@@ -1999,7 +2083,6 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
@@ -2019,7 +2102,6 @@ export const AddStaffModalContent = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
@@ -2047,7 +2129,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Staff code"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"code"}
                   onChange={handleChange}
                   value={values.code}
@@ -2064,7 +2145,6 @@ export const AddStaffModalContent = () => {
                   spanText={"First name"}
                   placeholder={"First name"}
                   spanClassName={`font-medium w-52 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  colorBorder={colorsObject.primary}
                   name={"first_name"}
                   onChange={handleChange}
                   value={values.first_name}
@@ -2087,7 +2167,6 @@ export const AddStaffModalContent = () => {
                   spanText={"Middle name"}
                   placeholder={"Middle name"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  colorBorder={colorsObject.primary}
                   value={values.mid_name}
                   name={"mid_name"}
                   onChange={handleChange}
@@ -2104,7 +2183,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Last name"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"last_name"}
                   value={values.last_name}
                   onChange={handleChange}
@@ -2121,7 +2199,6 @@ export const AddStaffModalContent = () => {
                   spanText={"Address"}
                   placeholder={"Address"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  colorBorder={colorsObject.primary}
                   name={"address"}
                   onChange={handleChange}
                   value={values.address}
@@ -2138,7 +2215,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"City"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"city"}
                   onChange={handleChange}
                   value={values.city}
@@ -2150,7 +2226,6 @@ export const AddStaffModalContent = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Select"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
@@ -2174,7 +2249,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Zip"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"zip"}
                   onChange={handleChange}
                   value={values.zip}
@@ -2192,7 +2266,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Email"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"email"}
                   onChange={handleChange}
                   value={values.email}
@@ -2213,7 +2286,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Home phone"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"home_phone"}
                   onChange={handleChange}
                   value={values.home_phone}
@@ -2230,7 +2302,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Cell phone"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"cell_phone"}
                   value={values.cell_phone}
                   onChange={handleChange}
@@ -2247,7 +2318,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Emergency Contact Name"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"emergency_name"}
                   onChange={handleChange}
                   value={values.emergency_name}
@@ -2264,7 +2334,6 @@ export const AddStaffModalContent = () => {
                   placeholder={"Emergency Contact Name"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"emergency_relation"}
                   onChange={handleChange}
                   value={values.emergency_relation}
@@ -2281,19 +2350,18 @@ export const AddStaffModalContent = () => {
                   placeholder={"Emergency Contact Phone"}
                   spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
                   fontSize="text-base"
-                  colorBorder={colorsObject.primary}
                   name={"emergency_phone"}
                   value={values.emergency_phone}
                   onChange={handleChange}
                 />
               </div>
               <div className={"space-y-5"}>
-                <label className="inline-flex gap-5 items-center w-full">
+                <label className="inline-flex gap-6 items-center w-full">
                   <span className="w-60 text-base font-medium text-end flex-shrink-0">
                     DOB
                   </span>
                   <DatePicker
-                    className={`h-[50px] flex-grow border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`h-[50px] flex-grow border border-[#667085]   ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     placeholder={"MM/DD/YYYY"}
                     onChange={(day) =>
                       setDOB(`${day["$y"]}-${day["$M"] + 1}-${day["$D"]}`)
@@ -2303,7 +2371,7 @@ export const AddStaffModalContent = () => {
 
                 <CustomInput
                   placeholder={"Instructor Permit  Number"}
-                  className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                   }
@@ -2315,12 +2383,12 @@ export const AddStaffModalContent = () => {
                   onChange={handleChange}
                 />
 
-                <label className="inline-flex gap-5 items-center w-full">
+                <label className="inline-flex gap-6 items-center w-full">
                   <span className="w-60 text-base font-medium text-end flex-shrink-0">
                     In Car Permit Issued Date
                   </span>
                   <DatePicker
-                    className={`h-[50px] flex-grow border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`h-[50px] flex-grow border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     placeholder={"MM/DD/YYYY"}
                     onChange={(day) =>
                       setPermitIssueDate(
@@ -2330,12 +2398,12 @@ export const AddStaffModalContent = () => {
                   />
                 </label>
 
-                <label className="inline-flex gap-5 items-center w-full">
+                <label className="inline-flex gap-6 items-center w-full">
                   <span className="w-60 text-base font-medium text-end flex-shrink-0">
                     Permit Expiration Date
                   </span>
                   <DatePicker
-                    className={`h-[50px] flex-grow border border-indigo-600 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`h-[50px] flex-grow border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     placeholder={"MM/DD/YYYY"}
                     onChange={(day) =>
                       setPermitExpirationDate(
@@ -2347,7 +2415,7 @@ export const AddStaffModalContent = () => {
 
                 <CustomInput
                   placeholder={"Select"}
-                  className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                   }
@@ -2361,7 +2429,7 @@ export const AddStaffModalContent = () => {
 
                 <CustomInput
                   placeholder={"Password"}
-                  className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 py-2 border ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                   }
@@ -2381,7 +2449,7 @@ export const AddStaffModalContent = () => {
 
                 <CustomInput
                   placeholder={"Re Enter Password *"}
-                  className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                   }
@@ -2412,7 +2480,7 @@ export const AddStaffModalContent = () => {
                 <CustomInput
                   type={"color"}
                   placeholder={"#FFFFFF"}
-                  className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                   }
@@ -2426,7 +2494,7 @@ export const AddStaffModalContent = () => {
 
                 <CustomInput
                   placeholder={"Zoom PMI"}
-                  className={`text-gray-500 px-5 py-2 border border-indigo-700 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                   classNames={
                     "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
                   }
