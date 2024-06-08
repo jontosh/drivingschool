@@ -1,5 +1,9 @@
 from rest_framework import serializers
-from .models import School ,Vehicle,LocationSmall,Class,Location,HowDidYouHearUs
+from .models import School ,Vehicle,Class,Location,HowDidYouHearUs
+
+
+
+
 
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,10 +13,7 @@ class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = "__all__"
-class LocationSmallSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LocationSmall
-        fields = "__all__"
+
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class

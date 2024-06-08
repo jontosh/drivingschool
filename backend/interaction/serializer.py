@@ -4,7 +4,7 @@ from location.views import LocationSerializer,VehicleSerializer,LocationSmallSer
 from servises.serializer import ServicesSerializer
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,WeekRangeSerializer,TimeRangeSerializer,\
     TimeSlot,Appointment, TimeOffSerializer
-from Users.serializer import StudentSerializer,UserSerializer,BillSerializer,FilesSerializer,Enrollment,Student,Instructor
+from Users.serializer import StudentSerializer,BillSerializer,FilesSerializer,Enrollment,Student,Instructor
 
 
 class LocationFullSerializer(serializers.ModelSerializer):
@@ -65,7 +65,6 @@ class LatestNewsSerializer(serializers.ModelSerializer):
 class EnrollmentSerializer_(serializers.ModelSerializer):
     package = ServicesSerializer(many=True)
     student = StudentSerializer()
-    by = UserSerializer()
     cr = LocationSerializer()
     appointments = AppointmentSerializer(many=True,read_only=True)
     bill = BillSerializer(many=True,read_only=True)

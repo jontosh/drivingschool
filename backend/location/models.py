@@ -31,8 +31,8 @@ class Location(models.Model):
     city = models.CharField(max_length=200)
     zip = models.CharField(max_length=50)
     location_manager = models.CharField(max_length=200,blank=True)
-    pick_up = models.CharField(max_length=200,default="LocationSmall",blank=True,null=True)
-    drop_off = models.CharField(max_length=200,default="LocationSmall",blank=True,null=True)
+    pick_up = models.TextField(null=True,blank=True)
+    drop_off = models.TextField(null=True,blank=True)
     county = models.CharField(max_length=200,blank=True)
     phone_main = models.CharField(max_length=100)
     fax = models.CharField(max_length=100,blank=True)
@@ -56,7 +56,7 @@ class School(models.Model):
     ]
     name = models.CharField(max_length=200)
     code = models.PositiveBigIntegerField(null=True,blank=True)
-    address = models.CharField(default="LocationSmall",null=True,blank=True)
+    address = models.TextField(null=True,blank=True)
     email = models.EmailField(null=True,blank=True)
     note = models.TextField(null=True,blank=True)
     zipcode = models.IntegerField(null=True,blank=True)
@@ -91,11 +91,6 @@ class Class(Extra):
 
 
 
-class LocationSmall(models.Model):
-    """There we are storing real location with name and address"""
-    name = models.CharField(max_length=200)
-    address = models.TextField()
-    note = models.TextField(blank=True)
 
 # VEHICLE
 class Vehicle(models.Model):
