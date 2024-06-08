@@ -129,12 +129,12 @@ export const CustomSelect = ({
   optionFontSize,
   optionSelectedFontWeight,
   fontSize = 14,
-  colorBorder = "rgba(222, 226, 230, 1)",
+  colorBorder = "#667085",
   selectorBg = "#fff",
   colorText = "#000",
   ...props
 }) => {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
@@ -221,7 +221,7 @@ export const CustomTransfer = ({
   className,
   onChange,
   colorBgContainer,
-  colorBorder,
+  colorBorder = "#667085",
   colorBgContainerDisabled,
   colorText,
   controlHeightLG,
@@ -371,7 +371,7 @@ export const SelectCheckbox = ({
             }
             setSelectAll(
               selectedItems.length === options.length - 1 &&
-                !selectedItems.includes(value),
+              !selectedItems.includes(value),
             );
           }}
           className="block px-4 py-2 flex items-center text-base font-medium"

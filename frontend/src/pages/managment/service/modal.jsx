@@ -161,7 +161,6 @@ export const ProductModalContent = () => {
         form={form}
         onFinish={onFinish}
         layout="vertical"
-        className={"px-5 grid grid-cols-2 gap-5"}
         initialValues={{
           enrolment_size: 0,
           make_up_size: 0,
@@ -172,338 +171,340 @@ export const ProductModalContent = () => {
           location: 0,
         }}
       >
-        <Form.Item
-          name={"name"}
-          label={"Component Name:"}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
-        </Form.Item>
-
-        <Form.Item
-          name={"code"}
-          label={"Item#/Code:"}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} />
-        </Form.Item>
-
-        <Form.Item
-          name={"status"}
-          label={"Status:"}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <CustomSelect
-            placeholder={"Select status"}
-            className={`w-full h-[50px]`}
-            options={StatusSelect}
-            colorBorder={colorsObject.black}
-            onChange={handleStatus}
-          />
-        </Form.Item>
-
-        <Form.Item
-          name={"public_name"}
-          label={"Public Name:"}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <CustomInput placeholder={"Public Name"} classNames={"w-full"} />
-        </Form.Item>
-
-        <Form.Item
-          name={"type_component"}
-          label={"Type:"}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <CustomSelect
-            placeholder={"Select status"}
-            className={`w-full h-[50px]`}
-            options={[
-              { value: "BTW", label: "BTW" },
-              { value: "CR", label: "CR" },
-              { value: "WEB", label: "WEB" },
+        <div className={"px-5 grid grid-cols-2 gap-5"}>
+          <Form.Item
+            name={"name"}
+            label={"Component Name:"}
+            rules={[
+              {
+                required: true,
+              },
             ]}
-            colorBorder={colorsObject.black}
-            onChange={handleType}
-          />
-        </Form.Item>
+          >
+            <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
+          </Form.Item>
 
-        <Form.Item name={"subtype_web"} label={"Sub Type:"}>
-          <CustomSelect
-            placeholder={"Please Select"}
-            className={`w-full h-[50px]`}
-            options={[
-              { value: "EZ DRIVE", label: "EZ DRIVE" },
-              { value: "OTHER ONLINE COURSE", label: "OTHER ONLINE COURSE" },
-              { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
+          <Form.Item
+            name={"code"}
+            label={"Item#/Code:"}
+            rules={[
+              {
+                required: true,
+              },
             ]}
-            colorBorder={colorsObject.black}
-            onChange={handleSubType}
-          />
-        </Form.Item>
+          >
+            <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} />
+          </Form.Item>
 
-        <Form.Item
-          shouldUpdate={(prev, current) =>
-            prev.type_component !== current.type_component
-          }
-          noStyle
-        >
-          {({ getFieldValue }) =>
-            getFieldValue("type_component") === "BTW" ? (
-              <Fragment>
-                <Form.Item
-                  name={"driving_hours"}
-                  label={"Driving Time:"}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <CustomSelect
-                    placeholder={"Hours"}
-                    className={`w-full h-[50px]`}
-                    options={[
-                      { value: 1, label: 1 },
-                      { value: 2, label: 2 },
-                      { value: 3, label: 3 },
+          <Form.Item
+            name={"status"}
+            label={"Status:"}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Select status"}
+              className={`w-full h-[50px]`}
+              options={StatusSelect}
+              colorBorder={colorsObject.black}
+              onChange={handleStatus}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name={"public_name"}
+            label={"Public Name:"}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <CustomInput placeholder={"Public Name"} classNames={"w-full"} />
+          </Form.Item>
+
+          <Form.Item
+            name={"type_component"}
+            label={"Type:"}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Select status"}
+              className={`w-full h-[50px]`}
+              options={[
+                { value: "BTW", label: "BTW" },
+                { value: "CR", label: "CR" },
+                { value: "WEB", label: "WEB" },
+              ]}
+              colorBorder={colorsObject.black}
+              onChange={handleType}
+            />
+          </Form.Item>
+
+          <Form.Item name={"subtype_web"} label={"Sub Type:"}>
+            <CustomSelect
+              placeholder={"Please Select"}
+              className={`w-full h-[50px]`}
+              options={[
+                { value: "EZ DRIVE", label: "EZ DRIVE" },
+                { value: "OTHER ONLINE COURSE", label: "OTHER ONLINE COURSE" },
+                { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
+              ]}
+              colorBorder={colorsObject.black}
+              onChange={handleSubType}
+            />
+          </Form.Item>
+
+          <Form.Item
+            shouldUpdate={(prev, current) =>
+              prev.type_component !== current.type_component
+            }
+            noStyle
+          >
+            {({ getFieldValue }) =>
+              getFieldValue("type_component") === "BTW" ? (
+                <Fragment>
+                  <Form.Item
+                    name={"driving_hours"}
+                    label={"Driving Time:"}
+                    rules={[
+                      {
+                        required: true,
+                      },
                     ]}
-                    colorBorder={colorsObject.black}
-                    onChange={handleDrivingHours}
-                  />
-                </Form.Item>
+                  >
+                    <CustomSelect
+                      placeholder={"Hours"}
+                      className={`w-full h-[50px]`}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
+                      colorBorder={colorsObject.black}
+                      onChange={handleDrivingHours}
+                    />
+                  </Form.Item>
 
-                <Form.Item name={"driving_hours"} label={"Minutes"}>
-                  <CustomSelect
-                    placeholder={"Minute(s)"}
-                    className={`w-full h-[50px]`}
-                    options={[
-                      { value: 1, label: 1 },
-                      { value: 2, label: 2 },
-                      { value: 3, label: 3 },
+                  <Form.Item name={"driving_hours"} label={"Minutes"}>
+                    <CustomSelect
+                      placeholder={"Minute(s)"}
+                      className={`w-full h-[50px]`}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
+                      colorBorder={colorsObject.black}
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={"duration"} label={"Duration"}>
+                    <CustomSelect
+                      placeholder={"Select"}
+                      className={`w-full h-[50px]`}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
+                      colorBorder={colorsObject.black}
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={"evalution"} label={"Evalution:"}>
+                    <CustomSelect
+                      placeholder={"Evalution"}
+                      className={`w-full h-[50px]`}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
+                      colorBorder={colorsObject.black}
+                    />
+                  </Form.Item>
+                </Fragment>
+              ) : getFieldValue("type_component") === "CR" ? (
+                <Fragment>
+                  <Title level={3} fontSize={"text-xl"}>
+                    Add Default Creating Settings
+                  </Title>
+
+                  <Form.Item name={"enrolment_size"} label={"Enrollment Size:"}>
+                    <CustomInput
+                      classNames={"w-full"}
+                      type={"number"}
+                      placeholder={"Enrollment Size:"}
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={"make_up_size"} label={"Makeup Size:"}>
+                    <CustomInput
+                      classNames={"w-full"}
+                      type={"number"}
+                      placeholder={"Makeup Size:"}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name={"web_stu_enrolment"}
+                    label={"Website/Student Portal Enrollment:"}
+                    valuePropName="checked"
+                  >
+                    <Switch />
+                  </Form.Item>
+
+                  <Form.Item name={"location"} label={"Location:"}>
+                    <CustomSelect
+                      placeholder={"Location"}
+                      className={`w-full h-[50px]`}
+                      options={[{ value: 1, label: "USA" }]}
+                      colorBorder={colorsObject.black}
+                      onChange={handleLocation}
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={"days"} label={"Days:"}>
+                    <CustomSelect
+                      placeholder={"select days"}
+                      className={`w-full h-[50px]`}
+                      mode="multiple"
+                      options={[
+                        { value: 1, label: "Mon" },
+                        { value: 2, label: "Tue" },
+                        { value: 3, label: "Wen" },
+                      ]}
+                      colorBorder={colorsObject.black}
+                      onChange={handleDays}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name={"number_sessions"}
+                    label={"Number of Sessions:"}
+                  >
+                    <CustomInput
+                      type={"number"}
+                      placeholder={"Number of Sessions:"}
+                      classNames={"w-full"}
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={"sessions_day"} label={"Sessions Per Day:"}>
+                    <CustomInput
+                      type={"number"}
+                      placeholder={"Sessions Per Day:"}
+                      classNames={"w-full"}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name={"session_duration"}
+                    label={"Sessions Duration:"}
+                  >
+                    <CustomSelect
+                      placeholder={"select days"}
+                      className={`w-full h-[50px]`}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
+                      colorBorder={colorsObject.black}
+                      onChange={handleSessionDuration}
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={"session_times"} label={"Sessions Times:"}>
+                    <CustomSelect
+                      placeholder={"select days"}
+                      className={`w-full h-[50px]`}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
+                      colorBorder={colorsObject.black}
+                      onChange={handleSessionTimes}
+                    />
+                  </Form.Item>
+                </Fragment>
+              ) : getFieldValue("subtype_web") === "EZ DRIVE" &&
+                getFieldValue("type_component") === "WEB" ? (
+                <Fragment>
+                  <Form.Item
+                    name={"ez_drive_product"}
+                    label={"EZ Drive Product:"}
+                    rules={[
+                      {
+                        required: true,
+                      },
                     ]}
-                    colorBorder={colorsObject.black}
-                  />
-                </Form.Item>
+                  >
+                    <CustomSelect
+                      placeholder={"EZ Drive Product"}
+                      className={`w-full h-[50px]`}
+                      options={StatusSelect}
+                      colorBorder={colorsObject.black}
+                      onChange={handleEZDriveProduct}
+                    />
+                  </Form.Item>
 
-                <Form.Item name={"duration"} label={"Duration"}>
-                  <CustomSelect
-                    placeholder={"Select"}
-                    className={`w-full h-[50px]`}
-                    options={[
-                      { value: 1, label: 1 },
-                      { value: 2, label: 2 },
-                      { value: 3, label: 3 },
+                  <Form.Item
+                    name={"duration"}
+                    label={"Duration"}
+                    getValueProps={(value) => ({
+                      value: value && dayjs(Number(value)),
+                    })}
+                    normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                  >
+                    <DatePicker />
+                  </Form.Item>
+                </Fragment>
+              ) : getFieldValue("subtype_web") === "SAFEWAY LMS" &&
+                getFieldValue("type_component") === "WEB" ? (
+                <Fragment>
+                  <Form.Item
+                    name={"safeway_audience"}
+                    label={"Safeway LMS Audience:"}
+                    rules={[
+                      {
+                        required: true,
+                      },
                     ]}
-                    colorBorder={colorsObject.black}
-                  />
-                </Form.Item>
+                  >
+                    <CustomSelect
+                      placeholder={"EZ Drive Product"}
+                      className={`w-full h-[50px]`}
+                      options={StatusSelect}
+                      colorBorder={colorsObject.black}
+                      onChange={handleSafewayAudience}
+                    />
+                  </Form.Item>
 
-                <Form.Item name={"evalution"} label={"Evalution:"}>
-                  <CustomSelect
-                    placeholder={"Evalution"}
-                    className={`w-full h-[50px]`}
-                    options={[
-                      { value: 1, label: 1 },
-                      { value: 2, label: 2 },
-                      { value: 3, label: 3 },
-                    ]}
-                    colorBorder={colorsObject.black}
-                  />
-                </Form.Item>
-              </Fragment>
-            ) : getFieldValue("type_component") === "CR" ? (
-              <Fragment>
-                <Title level={3} fontSize={"text-xl"}>
-                  Add Default Creating Settings
-                </Title>
-
-                <Form.Item name={"enrolment_size"} label={"Enrollment Size:"}>
-                  <CustomInput
-                    classNames={"w-full"}
-                    type={"number"}
-                    placeholder={"Enrollment Size:"}
-                  />
-                </Form.Item>
-
-                <Form.Item name={"make_up_size"} label={"Makeup Size:"}>
-                  <CustomInput
-                    classNames={"w-full"}
-                    type={"number"}
-                    placeholder={"Makeup Size:"}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"web_stu_enrolment"}
-                  label={"Website/Student Portal Enrollment:"}
-                  valuePropName="checked"
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item name={"location"} label={"Location:"}>
-                  <CustomSelect
-                    placeholder={"Location"}
-                    className={`w-full h-[50px]`}
-                    options={[{ value: 1, label: "USA" }]}
-                    colorBorder={colorsObject.black}
-                    onChange={handleLocation}
-                  />
-                </Form.Item>
-
-                <Form.Item name={"days"} label={"Days:"}>
-                  <CustomSelect
-                    placeholder={"select days"}
-                    className={`w-full h-[50px]`}
-                    mode="multiple"
-                    options={[
-                      { value: 1, label: "Mon" },
-                      { value: 2, label: "Tue" },
-                      { value: 3, label: "Wen" },
-                    ]}
-                    colorBorder={colorsObject.black}
-                    onChange={handleDays}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"number_sessions"}
-                  label={"Number of Sessions:"}
-                >
-                  <CustomInput
-                    type={"number"}
-                    placeholder={"Number of Sessions:"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item name={"sessions_day"} label={"Sessions Per Day:"}>
-                  <CustomInput
-                    type={"number"}
-                    placeholder={"Sessions Per Day:"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"session_duration"}
-                  label={"Sessions Duration:"}
-                >
-                  <CustomSelect
-                    placeholder={"select days"}
-                    className={`w-full h-[50px]`}
-                    options={[
-                      { value: 1, label: 1 },
-                      { value: 2, label: 2 },
-                      { value: 3, label: 3 },
-                    ]}
-                    colorBorder={colorsObject.black}
-                    onChange={handleSessionDuration}
-                  />
-                </Form.Item>
-
-                <Form.Item name={"session_times"} label={"Sessions Times:"}>
-                  <CustomSelect
-                    placeholder={"select days"}
-                    className={`w-full h-[50px]`}
-                    options={[
-                      { value: 1, label: 1 },
-                      { value: 2, label: 2 },
-                      { value: 3, label: 3 },
-                    ]}
-                    colorBorder={colorsObject.black}
-                    onChange={handleSessionTimes}
-                  />
-                </Form.Item>
-              </Fragment>
-            ) : getFieldValue("subtype_web") === "EZ DRIVE" &&
-              getFieldValue("type_component") === "WEB" ? (
-              <Fragment>
-                <Form.Item
-                  name={"ez_drive_product"}
-                  label={"EZ Drive Product:"}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <CustomSelect
-                    placeholder={"EZ Drive Product"}
-                    className={`w-full h-[50px]`}
-                    options={StatusSelect}
-                    colorBorder={colorsObject.black}
-                    onChange={handleEZDriveProduct}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"duration"}
-                  label={"Duration"}
-                  getValueProps={(value) => ({
-                    value: value && dayjs(Number(value)),
-                  })}
-                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
-                >
-                  <DatePicker />
-                </Form.Item>
-              </Fragment>
-            ) : getFieldValue("subtype_web") === "SAFEWAY LMS" &&
-              getFieldValue("type_component") === "WEB" ? (
-              <Fragment>
-                <Form.Item
-                  name={"safeway_audience"}
-                  label={"Safeway LMS Audience:"}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <CustomSelect
-                    placeholder={"EZ Drive Product"}
-                    className={`w-full h-[50px]`}
-                    options={StatusSelect}
-                    colorBorder={colorsObject.black}
-                    onChange={handleSafewayAudience}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"duration"}
-                  label={"Duration"}
-                  getValueProps={(value) => ({
-                    value: value && dayjs(Number(value)),
-                  })}
-                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
-                >
-                  <DatePicker />
-                </Form.Item>
-              </Fragment>
-            ) : null
-          }
-        </Form.Item>
+                  <Form.Item
+                    name={"duration"}
+                    label={"Duration"}
+                    getValueProps={(value) => ({
+                      value: value && dayjs(Number(value)),
+                    })}
+                    normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                  >
+                    <DatePicker />
+                  </Form.Item>
+                </Fragment>
+              ) : null
+            }
+          </Form.Item>
+        </div>
 
         <div className="text-center space-x-5">
           <ButtonComponent
@@ -1356,7 +1357,6 @@ export const AddServiceModalContent = () => {
                       <CustomTransfer
                         dataSource={mockData}
                         listHeight={200}
-                        colorBorder={colorsObject.primary}
                         setSelectedKeys={setAssignLocation}
                         selectedKeys={AssignLocation}
                       />
@@ -1374,7 +1374,6 @@ export const AddServiceModalContent = () => {
                       <CustomTransfer
                         dataSource={mockData}
                         listHeight={200}
-                        colorBorder={colorsObject.primary}
                         setSelectedKeys={setServiceItems}
                         selectedKeys={ServiceItems}
                       />
@@ -1494,7 +1493,6 @@ export const AddServiceModalContent = () => {
                       <CustomTransfer
                         dataSource={mockData}
                         listHeight={200}
-                        colorBorder={colorsObject.primary}
                         setSelectedKeys={setAddOnServices}
                         selectedKeys={AddOnServices}
                       />
@@ -1512,7 +1510,6 @@ export const AddServiceModalContent = () => {
                       <CustomTransfer
                         dataSource={mockData}
                         listHeight={200}
-                        colorBorder={colorsObject.primary}
                         setSelectedKeys={setDiscount}
                         selectedKeys={Discount}
                       />

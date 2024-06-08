@@ -88,7 +88,6 @@ const SearchFormik = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Select"}
-                    // colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
@@ -106,7 +105,6 @@ const SearchFormik = () => {
                   name={"account"}
                   value={values.account}
                   onChange={handleChange}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -116,7 +114,6 @@ const SearchFormik = () => {
                   placeholder={"First name"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"First name"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -126,7 +123,6 @@ const SearchFormik = () => {
                   placeholder={"Last name"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Last name"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -136,7 +132,6 @@ const SearchFormik = () => {
                   placeholder={"Zip code"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Zip code"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -146,7 +141,6 @@ const SearchFormik = () => {
                   placeholder={"Phone"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Phone"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -156,7 +150,6 @@ const SearchFormik = () => {
                   placeholder={"Student City"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Student City"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -166,7 +159,6 @@ const SearchFormik = () => {
                   placeholder={"Year opened"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Year opened"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -176,7 +168,6 @@ const SearchFormik = () => {
                   placeholder={"Student address"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Student address"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -186,7 +177,6 @@ const SearchFormik = () => {
                   placeholder={"Permit number"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Permit number"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -199,7 +189,6 @@ const SearchFormik = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Select"}
-                    // colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
@@ -214,7 +203,6 @@ const SearchFormik = () => {
                   placeholder={"MM/DD/YYYY"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Account created"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -247,7 +235,6 @@ const SearchFormik = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Select"}
-                    // colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
@@ -264,7 +251,6 @@ const SearchFormik = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Select"}
-                    // colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
@@ -279,7 +265,6 @@ const SearchFormik = () => {
                   <span className={"w-40 text-base flex-shrink-0"}>CR No</span>
                   <CustomSelect
                     placeholder={"Select"}
-                    // colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
@@ -294,7 +279,6 @@ const SearchFormik = () => {
                   placeholder={"Parent name"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Parent name"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -305,7 +289,6 @@ const SearchFormik = () => {
                     placeholder={"Email ID"}
                     className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                     spanText={"Email ID"}
-                    // colorBorder={colorsObject.primary}
                     spanClassName={"w-40 flex-shrink-0"}
                     fontSize={"text-base"}
                     name={"email"}
@@ -322,7 +305,6 @@ const SearchFormik = () => {
                   placeholder={"Phone search"}
                   className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                   spanText={"Phone search"}
-                  // colorBorder={colorsObject.primary}
                   spanClassName={"w-40 flex-shrink-0"}
                   fontSize={"text-base"}
                   classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
