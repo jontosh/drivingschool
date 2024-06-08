@@ -15,5 +15,6 @@ router.register(f'{Router["student_account"]["children"]["bill"]}', BillViewSet,
 
 urlpatterns = [
     path("",include(router.urls)),
+    # path("auth/",CustomAuthToken.as_view(),name="auth")
 
 ]

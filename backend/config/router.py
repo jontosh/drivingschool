@@ -1,4 +1,20 @@
 Router = {
+    "authentication":{
+        "base":"authentication/",
+        "methods":["GET","POST","OTHER METHODS BLOCKED"],
+        "descriptions":"Here we provide login url to obtain token for api interaction. ",
+        "note":"<li>From now on, you have to be loged in to enter API DOCUMENTATION. First you have to send request "
+               "<span>obtain_auth_token/</span> with <span>username/</span> and <span>password/</span> then access to other pages.</li><br>"
+               "<li><span>login/</span> made for searching in <span class='highlight-red'>API DOCUMENTATION</span>, "
+               "you will enter by some  username and password then you can access to other API endpoints</li>"
+               "<li>Only <span>GET</span> and <span>POST</span> methods are allowed other will end up with <span class='highlight-red'>ERROR</span></li>"
+               "<li>if you are web scrolling <span class='highlight-red'>do not forget logout</span> it will cause to interruption of signals</li>",
+        "children":{
+            "login":"login/",
+            "logout":"logout/",
+            "obtain_auth_token":"obtain_auth_token/",
+        }
+    },
     "communication":{
         "base":"communication/",
         "methods":["POST","GET","UPDATE","DELETE"],

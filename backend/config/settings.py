@@ -34,7 +34,8 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 SHARED_APPS = [
     'django_tenants',
-"whitenoise.runserver_nostatic",
+    "mainadmin",
+    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,12 +43,18 @@ SHARED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 #     APPS
-    "mainadmin",
+
     "corsheaders",
 
 
 ]
 TENANT_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     #APPS
 
     "Users",
@@ -60,6 +67,7 @@ TENANT_APPS = [
     "colorfield",
     "creditcards",
     "rest_framework",
+    # "rest_framework.authtoken",
     "phonenumber_field",
     "abstracts",
     "multiselectfield"
@@ -72,7 +80,7 @@ MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
-"whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,6 +126,12 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
         'HOST': os.getenv('POSTGRES_HOST'),
         'PORT': os.getenv('POSTGRES_DB_PORT'),
+        "TEST":{
+            'NAME': "drivingschool",
+            'USER': "postgres",
+            'PASSWORD': "sarr43210",
+            'PORT': "5432",
+        }
     }
 }
 DATABASE_ROUTERS = (
@@ -166,6 +180,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles", "static")
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = "mainadmin.CustomUser"
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+# }
+
+# AUTHENTICATION_BACKENDS = [
+#     'Users.backends.CustomUserBackend',
+#     'django.contrib.auth.backends.ModelBackend',  # Optional, for default user model support
+# ]
 TENANT_MODEL = "mainadmin.Client"
 
 TENANT_DOMAIN_MODEL = "mainadmin.Domain"
