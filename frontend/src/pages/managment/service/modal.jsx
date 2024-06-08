@@ -138,6 +138,10 @@ export const ProductModalContent = () => {
 
   const onReset = () => {
     form.resetFields();
+
+    setTimeout(() => {
+      navigate("/management/service/product");
+    }, 1000);
   };
 
   return (
