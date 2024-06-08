@@ -1,12 +1,15 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status,permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from scheduling.models import Appointment,TimeSlot
 from django.shortcuts import render
-from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill
-from .serializer import InstructorSerializer, StudentSerializer,  \
-       EnrollmentSerializer, FileCategorySerializer,  UserTypeSerializer, FilesSerializer, BillSerializer
+from django import forms
 
+from django.contrib.auth import authenticate
+from .models import Instructor, Student, Enrollment, FileCategory, UserType, Files, Bill
+from .serializer import InstructorSerializer, StudentSerializer,  \
+       EnrollmentSerializer, FileCategorySerializer,  UserTypeSerializer, FilesSerializer, BillSerializer,AuthTokenSerializer
+from django.contrib.auth.hashers import check_password
 # Create your views here.
 
 class InstructorViewSet(viewsets.ModelViewSet):
@@ -59,4 +62,22 @@ class BillViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         serializer.save()
 
-
+# class CustomAuthenticationForm(forms.Form):
+#     username = forms.CharField(max_length=150)
+#     password = forms.CharField(widget=forms.PasswordInput)
+# class CustomAuthToken(APIView):
+#     permission_classes = [permissions.AllowAny]
+#     def post(self, request, *args, **kwargs):
+#         form = CustomAuthenticationForm(request.data)
+#         print(request)
+#         if form.is_valid():
+#
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user = authenticate(request, username=username, password=password)
+#
+#             if user:
+#                 token, created = CustomToken.objects.get_or_create(user=user)
+#                 return Response({'token': token.key})
+#             return Response({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+#         return Response({'error': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
