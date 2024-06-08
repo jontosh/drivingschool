@@ -6,32 +6,23 @@ import {
   CustomTransfer,
   SwitchCustom,
 } from "@/components/form/index.jsx";
-import { Text } from "@/components/title/index.jsx";
+import Title, { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertSuccess, AlertError } from "@/hooks/alert.jsx";
 import { useFileReader } from "@/hooks/file-reader.jsx";
 import { FormError } from "@/modules/errors.jsx";
 import { AddQuizTab } from "@/modules/management.jsx";
 import { ToNumber } from "@/modules/number.jsx";
-import { ProductModalValidate } from "@/modules/product.jsx";
-import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import {
   useRequestGetQuery,
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import MDEditor from "@uiw/react-md-editor";
-import { ConfigProvider, DatePicker, Tabs } from "antd";
+import { ConfigProvider, DatePicker, Form, Switch, Tabs } from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
-import {
-  Fragment,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { Fragment, useContext, useMemo, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import rehypeSanitize from "rehype-sanitize";
 import { StatusSelect } from "./index.jsx";
@@ -72,252 +63,395 @@ export const ProductModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
-  const [Status, setStatus] = useState("");
-  const [Type, setType] = useState("");
-  const [SubType, setSubType] = useState("");
-  const [Selections, setSelections] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
-  // dep
-  const selects = [Status, Type, SubType];
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
-    }
-
-    return state;
-  }, [Status, Type, SubType]);
 
   // func
-  const handleStatus = (values) => setStatus(values);
-  const handleType = (values) => setType(values);
-  const handleSubType = (values) => setSubType(values);
-  const handleSubmit = async (values) => {
-    setSelections(stateSelects);
-    if (!stateSelects) {
-      try {
-        const res = await requestPost({
-          path: "/account_management/services/component/",
-          data: {
-            ...values,
-            status: Status,
-            type_component: Type,
-            subtype_btw: SubType,
-            location: 1,
-          },
-        });
+  const handleStatus = (values) => {
+    form.setFieldsValue({
+      status: values,
+    });
+  };
+  const handleType = (values) => {
+    form.setFieldsValue({
+      type_component: values,
+    });
+  };
+  const handleSubType = (values) => {
+    form.setFieldsValue({
+      subtype_web: values,
+    });
+  };
+  const handleDrivingHours = (values) => {
+    form.setFieldsValue({
+      driving_hours: values,
+    });
+  };
+  const handleLocation = (values) => {
+    form.setFieldsValue({
+      location: values,
+    });
+  };
 
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
+  const handleDays = (values) => {
+    form.setFieldsValue({
+      days: values,
+    });
+  };
 
-        // console.log(res);
+  const handleSessionDuration = (values) => {
+    form.setFieldsValue({
+      session_duration: values,
+    });
+  };
 
-        // dispatch({ type: "SUCCESS" });
-      } catch (error) {
-        console.error(error.message);
-        dispatch({ type: "ERROR", setIsOpen });
+  const handleSessionTimes = (values) => {
+    form.setFieldsValue({
+      session_times: values,
+    });
+  };
+
+  const [form] = Form.useForm();
+
+  const onFinish = async (values) => {
+    try {
+      const res = await requestPost({
+        path: "/account_management/services/component/",
+        data: values,
+      });
+
+      if (res?.error?.status >= 400) {
         setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
       }
+
+      // console.log(res);
+    } catch (error) {
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
     }
+  };
+
+  const onReset = () => {
+    form.resetFields();
   };
 
   return (
     <Fragment>
-      <Formik
+      <Form
+        form={form}
+        onFinish={onFinish}
+        layout="vertical"
+        className={"px-5 grid grid-cols-2 gap-5"}
         initialValues={{
-          name: "",
-          code: "",
-          public_name: "",
+          enrolment_size: 0,
+          make_up_size: 0,
+          subtype_web: null,
+          number_sessions: 0,
+          sessions_day: 0,
+          web_stu_enrolment: false,
+          location: 0,
         }}
-        validate={(values) => ProductModalValidate(values)}
-        onSubmit={handleSubmit}
       >
-        {({ values, handleSubmit, errors, handleChange, handleReset }) => (
-          <form
-            className={classNames("space-y-5 px-5")}
-            onSubmit={handleSubmit}
+        <Form.Item
+          name={"name"}
+          label={"Component Name:"}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
+        </Form.Item>
+
+        <Form.Item
+          name={"code"}
+          label={"Item#/Code:"}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} />
+        </Form.Item>
+
+        <Form.Item
+          name={"status"}
+          label={"Status:"}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <CustomSelect
+            placeholder={"Select status"}
+            className={`w-full h-[50px]`}
+            options={StatusSelect}
+            colorBorder={colorsObject.black}
+            onChange={handleStatus}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name={"public_name"}
+          label={"Public Name:"}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <CustomInput placeholder={"Public Name"} classNames={"w-full"} />
+        </Form.Item>
+
+        <Form.Item
+          name={"type_component"}
+          label={"Type:"}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <CustomSelect
+            placeholder={"Select status"}
+            className={`w-full h-[50px]`}
+            options={[
+              { value: "BTW", label: "BTW" },
+              { value: "CR", label: "CR" },
+              { value: "WEB", label: "WEB" },
+            ]}
+            colorBorder={colorsObject.black}
+            onChange={handleType}
+          />
+        </Form.Item>
+
+        <Form.Item name={"subtype_web"} label={"Sub Type:"}>
+          <CustomSelect
+            placeholder={"Please Select"}
+            className={`w-full h-[50px]`}
+            options={[
+              { value: "EZ DRIVE", label: "EZ DRIVE" },
+              { value: "OTHER ONLINE COURSE", label: "OTHER ONLINE COURSE" },
+              { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
+            ]}
+            colorBorder={colorsObject.black}
+            onChange={handleSubType}
+          />
+        </Form.Item>
+
+        <Form.Item
+          shouldUpdate={(prev, current) =>
+            prev.type_component !== current.type_component
+          }
+          noStyle
+        >
+          {({ getFieldValue }) =>
+            getFieldValue("type_component") === "BTW" ? (
+              <Fragment>
+                <Form.Item
+                  name={"driving_hours"}
+                  label={"Driving Time:"}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <CustomSelect
+                    placeholder={"Hours"}
+                    className={`w-full h-[50px]`}
+                    options={[
+                      { value: 1, label: 1 },
+                      { value: 2, label: 2 },
+                      { value: 3, label: 3 },
+                    ]}
+                    colorBorder={colorsObject.black}
+                    onChange={handleDrivingHours}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"driving_hours"} label={"Minutes"}>
+                  <CustomSelect
+                    placeholder={"Minute(s)"}
+                    className={`w-full h-[50px]`}
+                    options={[
+                      { value: 1, label: 1 },
+                      { value: 2, label: 2 },
+                      { value: 3, label: 3 },
+                    ]}
+                    colorBorder={colorsObject.black}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"duration"} label={"Duration"}>
+                  <CustomSelect
+                    placeholder={"Select"}
+                    className={`w-full h-[50px]`}
+                    options={[
+                      { value: 1, label: 1 },
+                      { value: 2, label: 2 },
+                      { value: 3, label: 3 },
+                    ]}
+                    colorBorder={colorsObject.black}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"evalution"} label={"Evalution:"}>
+                  <CustomSelect
+                    placeholder={"Evalution"}
+                    className={`w-full h-[50px]`}
+                    options={[
+                      { value: 1, label: 1 },
+                      { value: 2, label: 2 },
+                      { value: 3, label: 3 },
+                    ]}
+                    colorBorder={colorsObject.black}
+                  />
+                </Form.Item>
+              </Fragment>
+            ) : getFieldValue("type_component") === "CR" ? (
+              <Fragment>
+                <Title level={3} fontSize={"text-xl"}>
+                  Add Default Creating Settings
+                </Title>
+
+                <Form.Item name={"enrolment_size"} label={"Enrollment Size:"}>
+                  <CustomInput
+                    classNames={"w-full"}
+                    type={"number"}
+                    placeholder={"Enrollment Size:"}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"make_up_size"} label={"Makeup Size:"}>
+                  <CustomInput
+                    classNames={"w-full"}
+                    type={"number"}
+                    placeholder={"Makeup Size:"}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name={"web_stu_enrolment"}
+                  label={"Website/Student Portal Enrollment:"}
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item name={"location"} label={"Location:"}>
+                  <CustomSelect
+                    placeholder={"Location"}
+                    className={`w-full h-[50px]`}
+                    options={[{ value: 1, label: "USA" }]}
+                    colorBorder={colorsObject.black}
+                    onChange={handleLocation}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"days"} label={"Days:"}>
+                  <CustomSelect
+                    placeholder={"select days"}
+                    className={`w-full h-[50px]`}
+                    mode="multiple"
+                    options={[
+                      { value: 1, label: "Mon" },
+                      { value: 2, label: "Tue" },
+                      { value: 3, label: "Wen" },
+                    ]}
+                    colorBorder={colorsObject.black}
+                    onChange={handleDays}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name={"number_sessions"}
+                  label={"Number of Sessions:"}
+                >
+                  <CustomInput
+                    type={"number"}
+                    placeholder={"Number of Sessions:"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"sessions_day"} label={"Sessions Per Day:"}>
+                  <CustomInput
+                    type={"number"}
+                    placeholder={"Sessions Per Day:"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name={"session_duration"}
+                  label={"Sessions Duration:"}
+                >
+                  <CustomSelect
+                    placeholder={"select days"}
+                    className={`w-full h-[50px]`}
+                    options={[
+                      { value: 1, label: 1 },
+                      { value: 2, label: 2 },
+                      { value: 3, label: 3 },
+                    ]}
+                    colorBorder={colorsObject.black}
+                    onChange={handleSessionDuration}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"session_times"} label={"Sessions Times:"}>
+                  <CustomSelect
+                    placeholder={"select days"}
+                    className={`w-full h-[50px]`}
+                    options={[
+                      { value: 1, label: 1 },
+                      { value: 2, label: 2 },
+                      { value: 3, label: 3 },
+                    ]}
+                    colorBorder={colorsObject.black}
+                    onChange={handleSessionTimes}
+                  />
+                </Form.Item>
+              </Fragment>
+            ) : null
+          }
+        </Form.Item>
+
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
           >
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"text"}
-              spanText={"Component name"}
-              placeholder={"Component name"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right`}
-              name={"name"}
-              value={values.name}
-              onChange={handleChange}
-            />
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"text"}
-              spanText={"Item#/Code:"}
-              placeholder={"Item#/Code"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              name={"code"}
-              value={values.code}
-              onChange={handleChange}
-            >
-              {errors.code && (
-                <FormError className={"pl-[40%]"}>{errors.code}</FormError>
-              )}
-            </CustomInput>
-
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Assign to Location
-              </span>
-
-              <CustomSelect
-                placeholder={"Select status"}
-                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                fontSize={"text-base"}
-                options={StatusSelect}
-                onChange={handleStatus}
-                value={Status ? Status : undefined}
-              />
-
-              {Selections && (
-                <FormError className={"pl-[40%]"}>Select Status:</FormError>
-              )}
-            </label>
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"text"}
-              spanText={"Public Name:"}
-              placeholder={"Public Name"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right`}
-              value={values.paublic_name}
-              name={"public_name"}
-              onChange={handleChange}
-            />
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Type:
-              </span>
-
-              <CustomSelect
-                placeholder={"Select status"}
-                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                fontSize={"text-base"}
-                options={[
-                  {
-                    value: "BTW",
-                    label: "BTW",
-                  },
-                  {
-                    value: "CR",
-                    label: "CR",
-                  },
-                  {
-                    value: "WEB",
-                    label: "WEB",
-                  },
-                ]}
-                value={Type ? Type : undefined}
-                onChange={handleType}
-              />
-
-              {Selections && (
-                <FormError className={"pl-[40%]"}>Select Type</FormError>
-              )}
-            </label>
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Sub Type:
-              </span>
-
-              <CustomSelect
-                placeholder={"Select status"}
-                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                fontSize={"text-base"}
-                options={[
-                  { value: "ADULT BTW", label: "ADULT BTW" },
-                  { value: "CORP BTW", label: "CORP BTW" },
-                ]}
-                value={SubType ? SubType : undefined}
-                onChange={handleSubType}
-              />
-
-              {Selections && (
-                <FormError className={"pl-[40%]"}>Select Subtype</FormError>
-              )}
-            </label>
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
-              >
-                Save
-              </ButtonComponent>
-
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setSubType("");
-                  setType("");
-                  setStatus("");
-                  setTimeout(() => {
-                    navigate("/management/service/product");
-                  }, 1000);
-                }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
+            Save
+          </ButtonComponent>
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"reset"}
+            onClick={onReset}
+          >
+            reset
+          </ButtonComponent>
+        </div>
+      </Form>
       {IsOpen && state?.status}
     </Fragment>
   );
