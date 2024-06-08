@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +125,7 @@
       <workItem from="1717658676420" duration="6511000" />
       <workItem from="1717701254345" duration="1912000" />
       <workItem from="1717703265702" duration="8343000" />
-      <workItem from="1717858477051" duration="1067000" />
+      <workItem from="1717858477051" duration="7944000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -310,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717852155565</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module.">
+      <option name="closed" value="true" />
+      <created>1717859560348</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717859560348</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,39 +337,39 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours," />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location," />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days," />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions," />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration," />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times," />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in" />
     <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the" />
     <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management" />
     <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module" />
     <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module." />
     <MESSAGE value="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module." />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor form" />
+    <MESSAGE value="Refactor form fields" />
+    <MESSAGE value="Refactor form fields and" />
+    <MESSAGE value="Refactor form fields and handlers" />
+    <MESSAGE value="Refactor form fields and handlers for" />
+    <MESSAGE value="Refactor form fields and handlers for status" />
+    <MESSAGE value="Refactor form fields and handlers for status," />
+    <MESSAGE value="Refactor form fields and handlers for status, type" />
+    <MESSAGE value="Refactor form fields and handlers for status, type," />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and" />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and other" />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings" />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in" />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the" />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the management" />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the management module" />
+    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the management module." />
+    <MESSAGE value="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
-          <line>1574</line>
+          <line>1520</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
