@@ -538,186 +538,153 @@ export const ProductModalContent = () => {
 };
 
 export const FeesModalContent = () => {
+  const { colorsObject } = useContext(ColorsContext);
+  const navigate = useNavigate();
+  const [requestPost] = useRequestPostMutation();
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
-  const { colorsObject } = useContext(ColorsContext);
-  const [requestPost] = useRequestPostMutation();
-  const navigate = useNavigate();
-  const [Status, setStatus] = useState("");
-  const [Selections, setSelections] = useState(false);
-  const [NotesValue, setNotesValue] = useState("Hello");
-
-  // dep
-  const selects = [Status];
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
-    }
-
-    return state;
-  }, [Status]);
+  const [form] = Form.useForm();
 
   // func
-  const handleStatus = (values) => setStatus(values);
-  const handleSubmit = async (values) => {
-    setSelections(stateSelects);
-    if (!stateSelects) {
-      try {
-        const res = await requestPost({
-          path: `/account_management/services/fee/`,
-          data: { ...values, status: Status, notes: NotesValue },
-        });
+  const handleStatus = (values) => {
+    form.setFieldsValue({
+      status: values,
+    });
+  };
 
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error(error.message);
-        dispatch({ type: "ERROR", setIsOpen });
+  const handleNotesValue = (value) => {
+    form.setFieldsValue({
+      notes: value,
+    });
+  };
+
+  const onReset = () => {
+    form.resetFields();
+
+    setTimeout(() => {
+      navigate("/management/service/fees");
+    }, 1000);
+  };
+
+  const onFinish = async (values) => {
+    try {
+      const res = await requestPost({
+        path: `/account_management/services/fee/`,
+        data: values,
+      });
+
+      if (res?.error?.status >= 400) {
         setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
       }
+    } catch (error) {
+      console.error(error.message);
+      setIsOpen(true);
+      dispatch({ type: "ERROR", setIsOpen });
     }
   };
 
   return (
     <Fragment>
-      <Formik
+      <Form
+        className={"space-y-5 px-5"}
+        form={form}
+        onFinish={onFinish}
+        layout={"vertical"}
         initialValues={{
-          name: "",
-          amount: "",
+          notes: "",
         }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.amount) {
-            errors.amount = "Input Free amount is empty";
-          }
-
-          return errors;
-        }}
-        onSubmit={handleSubmit}
       >
-        {({ values, errors, handleChange, handleSubmit, handleReset }) => (
-          <form
-            className={classNames("pb-5 grid gap-y-5")}
-            onSubmit={handleSubmit}
+        <Form.Item
+          label="Fee Name:"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Please input Fee Name",
+            },
+          ]}
+        >
+          <CustomInput placeholder={"Fee Name"} classNames={"w-full"} />
+        </Form.Item>
+
+        <Form.Item
+          name={"status"}
+          label={"Status:"}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <CustomSelect
+            placeholder={"Select status"}
+            className={`w-full h-[50px]`}
+            options={StatusSelect}
+            colorBorder={colorsObject.black}
+            onChange={handleStatus}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name={"amount"}
+          label={"Amount:"}
+          rules={[
+            {
+              required: true,
+              message: "Please input Amount",
+            },
+          ]}
+        >
+          <CustomInput
+            type={"number"}
+            placeholder={"Fee Name"}
+            classNames={"w-full"}
+          />
+        </Form.Item>
+
+        <Form.Item name={"notes"} label={"Notes"}>
+          <MDEditor
+            placeholder={"Text"}
+            onChange={handleNotesValue}
+            previewOptions={{
+              rehypePlugins: [[rehypeSanitize]],
+            }}
+          />
+        </Form.Item>
+
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
           >
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"text"}
-              spanText={"Fee name"}
-              placeholder={"Fee name"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right`}
-              onChange={handleChange}
-              value={values.name}
-              name={"name"}
-            />
+            Save
+          </ButtonComponent>
 
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Status:
-              </span>
-
-              <CustomSelect
-                placeholder={"Select status"}
-                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                fontSize={"text-base"}
-                options={StatusSelect}
-                onChange={handleStatus}
-                value={Status ? Status : undefined}
-              />
-
-              {Selections && (
-                <FormError className="pl-[40%]">Select Status</FormError>
-              )}
-            </label>
-
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"number"}
-              spanText={"Fee Amount:"}
-              placeholder={"Fee Amount:"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              name={"amount"}
-              value={values.amount}
-              onChange={handleChange}
-            >
-              {errors.amount && (
-                <FormError className={"pl-[40%]"}>{errors.amount}</FormError>
-              )}
-            </CustomInput>
-
-            <label className="inline-flex justify-center gap-10 items-center w-full">
-              <span className="w-44 text-right">Notes</span>
-              <div className="w-[40%]">
-                <MDEditor
-                  value={NotesValue}
-                  onChange={(value) => setNotesValue(value)}
-                  previewOptions={{
-                    rehypePlugins: [[rehypeSanitize]],
-                  }}
-                />
-              </div>
-            </label>
-
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
-              >
-                Save
-              </ButtonComponent>
-
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/service/fees");
-                  }, 1000);
-                }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
+          <ButtonComponent
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+            type={"reset"}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
       {IsOpen && state?.status}
     </Fragment>
   );
