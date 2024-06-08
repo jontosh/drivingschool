@@ -9,7 +9,6 @@ import {
   AiOutlineFileUnknown,
   AiOutlineMessage,
   AiOutlineProject,
-  AiOutlineShoppingCart,
   AiOutlineSolution,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
@@ -131,10 +130,7 @@ export const Enrollments = () => {
     <Fragment>
       <div className={"pt-16 pb-12"}>
         <div className="flex items-center flex-col gap-5 text-center">
-          <IconComponent
-            className={"text-5xl"}
-            icon={<EyeOutlined />}
-          />
+          <IconComponent className={"text-5xl"} icon={<EyeOutlined />} />
           <Paragraph fontSize={"text-base"} fontWeightStrong={500}>
             There are 0 new text messages received in the last 24 hours.
           </Paragraph>
