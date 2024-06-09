@@ -36,8 +36,7 @@ export const ActivityLogs = () => {
                 Appointment type:
               </span>
               <CustomSelect
-                colorBorder={colorsObject.primary}
-                className={`h-[50px]  shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
+                className={`h-[50px] shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
                 options={[
                   {
                     value: 1,
@@ -52,7 +51,7 @@ export const ActivityLogs = () => {
               placeholder={`MM/DD/YYYY - MM/DD/YYYY`}
               spanClassName={"flex-shrink-0 w-40 text-right"}
               fontSize="text-base"
-              className={`flex-grow border border-indigo-700 shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
+              className={`flex-grow shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
               classNames={
                 "inline-flex h-[50px] flex-row-reverse items-center gap-5 m-auto"
               }

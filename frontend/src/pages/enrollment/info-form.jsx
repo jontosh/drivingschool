@@ -274,7 +274,6 @@ export const InfoForm = ({ packages }) => {
                         // ключей надо достать из INSTRUCTOR
                         options={StaffType}
                         className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        colorBorder={colorsObject.primary}
                         value={!Staff ? undefined : Staff}
                       />
 
@@ -296,7 +295,6 @@ export const InfoForm = ({ packages }) => {
                         fontSize={14}
                         options={LocationOptions}
                         className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        colorBorder={colorsObject.primary}
                       />
                       {SelectSubmit && (
                         <FormError>Select Assign to Location</FormError>
@@ -317,7 +315,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Student ID"}
                     fontSize={"text-base"}
                     spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     value={values.studentId}
                     onChange={handleChange}
                     name={"studentId"}
@@ -340,7 +337,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"First name"}
                     fontSize={"text-base"}
                     spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     value={values.first_name}
                     onChange={handleChange}
                     name={"first_name"}
@@ -363,7 +359,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Last name"}
                     fontSize={"text-base"}
                     spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     value={values.last_name}
                     onChange={handleChange}
                     name={"last_name"}
@@ -386,7 +381,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={" Middle name"}
                     fontSize={"text-base"}
                     spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-11 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     value={values.mid_name}
                     onChange={handleChange}
                     name={"mid_name"}
@@ -409,7 +403,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Address"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     value={values.address}
                     onChange={handleChange}
                     name={"address"}
@@ -432,7 +425,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"City"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-28 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     value={values.city}
                     onChange={handleChange}
                     name={"city"}
@@ -460,7 +452,6 @@ export const InfoForm = ({ packages }) => {
                         },
                       ]}
                       className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                      colorBorder={colorsObject.primary}
                     />
                   </label>
 
@@ -477,7 +468,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Zip/Postal code"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-6 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     value={values.zip}
                     onChange={handleChange}
                     name={"zip"}
@@ -526,7 +516,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Cell phone"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-6 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     value={values.cell_phone}
                     onChange={handleChange}
                     name={"cell_phone"}
@@ -549,7 +538,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Email"}
                     fontSize={"text-base"}
                     spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right relative after:right-24 ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    colorBorder={colorsObject.primary}
                     name={"email"}
                     onChange={handleChange}
                   >
@@ -617,7 +605,6 @@ export const InfoForm = ({ packages }) => {
                         fontSize={14}
                         options={PronounOptions}
                         className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        colorBorder={colorsObject.primary}
                         value={!Pronoun ? undefined : Pronoun}
                       />
 
@@ -692,7 +679,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"DL/Permit"}
                     fontSize={"text-base"}
                     spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     onChange={handleChange}
                     name={"dl_permit"}
                     value={values.dl_permit}
@@ -785,7 +771,6 @@ export const InfoForm = ({ packages }) => {
                         fontSize={14}
                         options={HighSchoolOptions}
                         className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        colorBorder={colorsObject.primary}
                         value={HighSchool ? HighSchool : undefined}
                       />
 
@@ -808,7 +793,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Parent name"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     name={"parent_name"}
                     onChange={handleChange}
                     value={values.parent_name}
@@ -831,7 +815,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Parent Phone"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     name={"parent_phone"}
                     onChange={handleChange}
                     value={values.parent_phone}
@@ -854,7 +837,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Parent Email"}
                     fontSize={"text-base"}
                     spanClassName={`flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     name={"parent_email"}
                     onChange={handleChange}
                     value={values.parent_email}
@@ -877,7 +859,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Parent name"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     onChange={handleChange}
                     name={"parent_2_name"}
                     value={values.parent_2_name}
@@ -896,7 +877,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Parent Phone"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     onChange={handleChange}
                     name={"parent_2_phone"}
                     value={values.parent_2_phone}
@@ -915,7 +895,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Parent Email"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     onChange={handleChange}
                     name={"parent_2_email"}
                     value={values.parent_2_email}
@@ -933,7 +912,6 @@ export const InfoForm = ({ packages }) => {
                     placeholder={"Parent Email"}
                     fontSize={"text-base"}
                     spanClassName={` flex-shrink-0 w-44 text-start flex-shrink-0 text-right`}
-                    colorBorder={colorsObject.primary}
                     onChange={handleChange}
                     name={"username"}
                     value={values.username}
@@ -967,21 +945,18 @@ export const InfoForm = ({ packages }) => {
 
                     <div className={`grid grid-cols-3 gap-5`}>
                       <CustomSelect
-                        colorBorder={colorsObject.primary}
                         className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                         placeholder={"Day"}
                         options={Days}
                         onChange={handleDay}
                       />
                       <CustomSelect
-                        colorBorder={colorsObject.primary}
                         className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                         placeholder={"Month"}
                         options={Months}
                         onChange={handleMonth}
                       />
                       <CustomSelect
-                        colorBorder={colorsObject.primary}
                         className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                         placeholder={"Year"}
                         options={YearsOptions()}
@@ -1009,7 +984,6 @@ export const InfoForm = ({ packages }) => {
                           },
                         ]}
                         className={`h-[50px] w-full ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        colorBorder={colorsObject.primary}
                         value={!Lead ? undefined : Lead}
                       />
 

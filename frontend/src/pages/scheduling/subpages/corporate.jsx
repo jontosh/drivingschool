@@ -121,7 +121,6 @@ export const Corporate = () => {
           defaultBg={status ? "#24C18F" : colorsObject.danger}
           defaultHoverColor={colorsObject.main}
           defaultColor={colorsObject.main}
-          controlHeight={30}
           borderRadius={5}
           style={{ width: 94 }}
         >
@@ -178,7 +177,7 @@ export const Corporate = () => {
       </Title>
 
       <div className={"flex justify-between items-center"}>
-        <form className={"flex gap-5"}>
+        <form className={"flex items-center gap-5"}>
           <label className={"relative shadow-xl"}>
             <CustomInput
               colorBorder={colorsObject.primary}

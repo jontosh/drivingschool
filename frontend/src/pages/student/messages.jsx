@@ -59,7 +59,6 @@ export const Messages = () => {
               <form className={"flex gap-5 items-center"}>
                 <label className={"relative"}>
                   <CustomInput
-                    colorBorder={colorsObject.primary}
                     placeholder={"Search"}
                     className={`w-48 pl-12 pr-4 text-sm`}
                   />
@@ -113,7 +112,7 @@ export const Messages = () => {
 
             <blockquote
               className={
-                "flex border gap-5 border-indigo-700 rounded-2xl p-1 items-center"
+                "flex border gap-5 border-[#667085] rounded-2xl p-1 items-center"
               }
             >
               <IconComponent
@@ -136,7 +135,7 @@ export const Messages = () => {
             <div className={"flex gap-4 items-end"}>
               <textarea
                 className={
-                  "w-full border border-indigo-700 rounded-2xl p-5 outline-0"
+                  "w-full border border-[#667085] rounded-2xl p-5 outline-0"
                 }
                 placeholder={"Text"}
               ></textarea>

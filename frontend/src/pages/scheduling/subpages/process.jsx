@@ -155,7 +155,6 @@ export const Process = () => {
                   Appointment type:
                 </span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
@@ -170,7 +169,7 @@ export const Process = () => {
                 spanText={"Select date"}
                 placeholder={`MM/DD/YYYY - MM/DD/YYYY`}
                 spanClassName={"flex-shrink-0 w-40 text-right"}
-                className={" flex-grow border border-indigo-700 shadow-xl"}
+                className={" flex-grow shadow-xl"}
                 classNames={
                   "inline-flex w-full h-[50px] flex-row-reverse items-center gap-5"
                 }
@@ -181,7 +180,6 @@ export const Process = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-40 text-right"}>Location</span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
@@ -194,7 +192,6 @@ export const Process = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-40 text-right"}>Instruction</span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
