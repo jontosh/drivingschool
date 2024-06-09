@@ -191,7 +191,10 @@ export const ProductModalContent = () => {
             ]}
           >
             <div className="flex items-center gap-3">
-              <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
+              <CustomInput
+                placeholder={"Component Name"}
+                classNames={"w-full"}
+              />
 
               <span>
                 <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
@@ -210,7 +213,12 @@ export const ProductModalContent = () => {
             ]}
           >
             <div className="flex items-center gap-3">
-              <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} spanClassName={"text-[#344054]"} fontSize="text-base" />
+              <CustomInput
+                placeholder={"Item#/Code"}
+                classNames={"w-full"}
+                spanClassName={"text-[#344054]"}
+                fontSize="text-base"
+              />
 
               <span>
                 <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
