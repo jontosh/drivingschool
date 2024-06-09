@@ -186,11 +186,15 @@ export const ProductModalContent = () => {
             rules={[
               {
                 required: true,
+                message: "Name is empty",
               },
             ]}
           >
             <div className="flex items-center gap-3">
-              <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
+              <CustomInput
+                placeholder={"Component Name"}
+                classNames={"w-full"}
+              />
 
               <span>
                 <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
@@ -204,6 +208,7 @@ export const ProductModalContent = () => {
             rules={[
               {
                 required: true,
+                message: "Code is empty",
               },
             ]}
           >
@@ -222,6 +227,7 @@ export const ProductModalContent = () => {
             rules={[
               {
                 required: true,
+                message: "Status is empty",
               },
             ]}
           >
@@ -246,6 +252,7 @@ export const ProductModalContent = () => {
             rules={[
               {
                 required: true,
+                message: "Public name is empty",
               },
             ]}
           >
@@ -264,6 +271,7 @@ export const ProductModalContent = () => {
             rules={[
               {
                 required: true,
+                message: "Type is empty",
               },
             ]}
           >
@@ -293,7 +301,10 @@ export const ProductModalContent = () => {
                 className={`w-full h-[50px]`}
                 options={[
                   { value: "EZ DRIVE", label: "EZ DRIVE" },
-                  { value: "OTHER ONLINE COURSE", label: "OTHER ONLINE COURSE" },
+                  {
+                    value: "OTHER ONLINE COURSE",
+                    label: "OTHER ONLINE COURSE",
+                  },
                   { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
                 ]}
                 colorBorder={colorsObject.black}
@@ -321,6 +332,7 @@ export const ProductModalContent = () => {
                     rules={[
                       {
                         required: true,
+                        message: "Driving Time is empty",
                       },
                     ]}
                   >
@@ -537,6 +549,7 @@ export const ProductModalContent = () => {
                     rules={[
                       {
                         required: true,
+                        message: "EZ Drive Product is empty",
                       },
                     ]}
                   >
@@ -569,6 +582,7 @@ export const ProductModalContent = () => {
                     rules={[
                       {
                         required: true,
+                        message: "Safeway LMS Audience is empty",
                       },
                     ]}
                   >
@@ -857,7 +871,7 @@ export const DiscountModalContent = () => {
         onFinish={onFinish}
         layout={"vertical"}
         initialValues={{
-          notes: "",
+          notes: "Hello",
         }}
       >
         <Form.Item
@@ -1008,163 +1022,131 @@ export const DiscountModalContent = () => {
 export const MiscellaneousModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const [Status, setStatus] = useState("");
-  const [SubType, setSubType] = useState("");
-  const [Selections, setSelections] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
-
-  // dep
-  const selects = [Status, SubType];
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
-    }
-
-    return state;
-  }, [Status, SubType]);
+  const [form] = Form.useForm();
 
   // func
-  const handleSubmit = (values) => {
-    setSelections(stateSelects);
-
-    if (!stateSelects) {
-      try {
-        console.log({ ...values, status: Status, subtype: SubType });
-        dispatch({ type: "SUCCESS", setIsOpen });
-        setIsOpen(true);
-      } catch (error) {
-        console.error(error?.message);
-        dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
-      }
+  const onFinish = async (values) => {
+    try {
+      console.log(values);
+      setIsOpen(true);
+      dispatch({ type: "SUCCESS", setIsOpen });
+    } catch (error) {
+      setIsOpen(true);
+      console.error(error?.message);
+      dispatch({ type: "ERROR", setIsOpen });
     }
   };
-  const handleStatus = (values) => setStatus(values);
-  const handleSubType = (values) => setSubType(values);
+
+  const onReset = () => {
+    form.resetFields();
+
+    setTimeout(() => {
+      navigate("/management/service/miscellaneous");
+    }, 1000);
+  };
+
+  const handleStatus = (values) => {
+    form.setFieldsValue({
+      status: values,
+    });
+  };
+  const handleType = (values) => {
+    form.setFieldsValue({
+      type: values,
+    });
+  };
 
   return (
     <Fragment>
-      <Formik
-        validate={(values) => {
-          const errors = {};
-          if (!values.name) {
-            errors.name = "Name is required";
-          }
-          return errors;
-        }}
-        initialValues={{
-          name: "",
-        }}
-        onSubmit={handleSubmit}
+      <Form
+        className={"space-y-5 px-5"}
+        form={form}
+        onFinish={onFinish}
+        layout={"vertical"}
       >
-        {({ handleSubmit, errors, handleChange, values, handleReset }) => (
-          <form
-            className={classNames("pb-5 grid gap-y-5")}
-            onSubmit={handleSubmit}
+        <Form.Item
+          name={"name"}
+          label={"Miscellaneous Item Name: "}
+          rules={[
+            {
+              required: true,
+              message: "Name is empty",
+            },
+          ]}
+        >
+          <CustomInput
+            placeholder={"Miscellaneous Item Name: "}
+            classNames={"w-full"}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name={"status"}
+          label={"Status:"}
+          rules={[
+            {
+              required: true,
+              message: "Status is empty",
+            },
+          ]}
+        >
+          <CustomSelect
+            placeholder={"Select status"}
+            className={`w-full h-[50px]`}
+            options={StatusSelect}
+            colorBorder={colorsObject.black}
+            onChange={handleStatus}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name={"type"}
+          label={"Status:"}
+          rules={[
+            {
+              required: true,
+              message: "Type is empty",
+            },
+          ]}
+        >
+          <CustomSelect
+            placeholder={"Select type"}
+            className={`w-full h-[50px]`}
+            options={StatusSelect}
+            colorBorder={colorsObject.black}
+            onChange={handleType}
+          />
+        </Form.Item>
+
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
           >
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"text"}
-              spanText={"Miscellaneous Item Name:"}
-              placeholder={"Miscellaneous Item Name"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-              name={"name"}
-              value={values.name}
-              onChange={handleChange}
-            >
-              {errors.name && (
-                <FormError className={"pl-[40%]"}>{errors.name}</FormError>
-              )}
-            </CustomInput>
+            Save
+          </ButtonComponent>
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"reset"}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
 
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Status:
-              </span>
-
-              <CustomSelect
-                placeholder={"Select status"}
-                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                fontSize={"text-base"}
-                options={StatusSelect}
-                value={Status ? Status : undefined}
-                onChange={handleStatus}
-              />
-
-              {Selections && (
-                <FormError className={"pl-[40%]"}>Select Status</FormError>
-              )}
-            </label>
-
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base flex-shrink-0 w-44 text-right relative text-base ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Type:
-              </span>
-
-              <CustomSelect
-                placeholder={"Select Sub type"}
-                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                fontSize={"text-base"}
-                options={StatusSelect}
-                value={SubType ? SubType : undefined}
-                onChange={handleSubType}
-              />
-              {Selections && (
-                <FormError className={"pl-[40%]"}>Select Sub Type</FormError>
-              )}
-            </label>
-
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
-              >
-                Save
-              </ButtonComponent>
-
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/service/miscellaneous");
-                  }, 1000);
-                }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
       {IsOpen && state?.status}
     </Fragment>
   );

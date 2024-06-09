@@ -126,6 +126,9 @@
       <workItem from="1717701254345" duration="1912000" />
       <workItem from="1717703265702" duration="8343000" />
       <workItem from="1717858477051" duration="7944000" />
+      <workItem from="1717867900782" duration="179000" />
+      <workItem from="1717874642207" duration="6398000" />
+      <workItem from="1717919021738" duration="1845000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -369,7 +372,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
-          <line>1520</line>
+          <line>1503</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

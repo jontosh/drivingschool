@@ -201,49 +201,49 @@ const StudentAccount = () => {
             className={"space-x-6 px-5 -mt-5 -mx-5 border-b border-b-gray-400"}
           >
             <NavLink
-              to={`/student/account/profile/${studentId}`}
+              to={`/student/account/profile/${studentId ?? ""}`}
               className={setActiveNav}
             >
               Profile
             </NavLink>
 
             <NavLink
-              to={`/student/account/billing/${studentId}`}
+              to={`/student/account/billing/${studentId ?? ""}`}
               className={setActiveNav}
             >
               Enrollment/Billing
             </NavLink>
 
             <NavLink
-              to={`/student/account/appointments/${studentId}/${subtitle ?? "wheel"}`}
+              to={`/student/account/appointments/${studentId ?? "notfound"}/${subtitle ?? "wheel"}`}
               className={setActiveNav}
             >
               Appointments
             </NavLink>
 
             <NavLink
-              to={`/student/account/files/${studentId}`}
+              to={`/student/account/files/${studentId ?? ""}`}
               className={setActiveNav}
             >
               Files
             </NavLink>
 
             <NavLink
-              to={`/student/account/messages/${studentId}`}
+              to={`/student/account/messages/${studentId ?? ""}`}
               className={setActiveNav}
             >
               Messages
             </NavLink>
 
             <NavLink
-              to={`/student/account/tests/${studentId}`}
+              to={`/student/account/tests/${studentId ?? ""}`}
               className={setActiveNav}
             >
               Quiz/Tests
             </NavLink>
 
             <NavLink
-              to={`/student/account/log/${studentId}`}
+              to={`/student/account/log/${studentId ?? ""}`}
               className={setActiveNav}
             >
               Activity Log
