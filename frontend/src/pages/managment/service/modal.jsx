@@ -743,7 +743,7 @@ export const FeesModalContent = () => {
   return (
     <Fragment>
       <Form
-        className={"space-y-5 px-5"}
+        className="grid justify-center gap-y-5 px-5"
         form={form}
         onFinish={onFinish}
         layout={"vertical"}
@@ -778,7 +778,6 @@ export const FeesModalContent = () => {
             placeholder={"Select status"}
             className={`w-full h-[50px]`}
             options={StatusSelect}
-            colorBorder={colorsObject.black}
             onChange={handleStatus}
           />
         </Form.Item>
@@ -800,7 +799,7 @@ export const FeesModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"notes"} label={"Notes"}>
+        <Form.Item name={"notes"} label={"Notes"} className="w-full">
           <MDEditor
             placeholder={"Text"}
             onChange={handleNotesValue}
