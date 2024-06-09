@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/items/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/items/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/messages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +81,13 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17011.90" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -129,6 +130,9 @@
       <workItem from="1717874642207" duration="6398000" />
       <workItem from="1717919021738" duration="1845000" />
       <workItem from="1717927280974" duration="102000" />
+      <workItem from="1717932575279" duration="2158000" />
+      <workItem from="1717936324388" duration="1127000" />
+      <workItem from="1717937753840" duration="2405000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -340,39 +344,39 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module" />
-    <MESSAGE value="Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module." />
-    <MESSAGE value="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module." />
-    <MESSAGE value="Ref" />
-    <MESSAGE value="Refactor" />
-    <MESSAGE value="Refactor form" />
-    <MESSAGE value="Refactor form fields" />
-    <MESSAGE value="Refactor form fields and" />
-    <MESSAGE value="Refactor form fields and handlers" />
-    <MESSAGE value="Refactor form fields and handlers for" />
-    <MESSAGE value="Refactor form fields and handlers for status" />
-    <MESSAGE value="Refactor form fields and handlers for status," />
-    <MESSAGE value="Refactor form fields and handlers for status, type" />
-    <MESSAGE value="Refactor form fields and handlers for status, type," />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and" />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and other" />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings" />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in" />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the" />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the management" />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the management module" />
-    <MESSAGE value="Refactor form fields and handlers for status, type, and other settings in the management module." />
-    <MESSAGE value="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module." />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing student" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values;" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form" />
+    <MESSAGE value="Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form." />
+    <MESSAGE value="#fix #jsx Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
-          <line>1816</line>
+          <line>1824</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
