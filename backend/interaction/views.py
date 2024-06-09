@@ -109,29 +109,35 @@ class BillStatisticsByType(APIView):
 #PAGE API
 class InstructorHomeAPI(APIView):
     def get(self,request,id):
+        data = {
+
+        }
+        data["all_time_slots"] = []
+        for i in TimeSlot.objects.filter(staff__id = id):
+            data["all_time_slots"].append(TimeSlotSerializer_(i).data)
         appointments  = Appointment.objects.filter(time_slot__staff_id=id)
         serializer = AppointmentSerializer_(appointments,many=True)
-
         for i in serializer.data:
             i["time_slot"] = TimeSlotSerializer_(TimeSlot.objects.get(id=i["time_slot"]["id"])).data
-        return Response(serializer.data)
+        data["appointment"] = serializer.data
+        return Response(data)
 
 class StudentHomeAPI(APIView):
     def get(self,request,id):
+        data = {}
         enrolment = Enrollment.objects.filter(student__id=id)
         enrolment = EnrollmentSerializer_(enrolment,many=True)
+        data[ "enrolments" ] = enrolment.data
         bill = Bill.objects.filter(student__id=id)
         bill = BillSerializer(bill,many=True)
+        data["bills"]=bill.data
         files = Files.objects.filter(student__id=id)
         files = FilesSerializer(files,many=True)
+        data["files"]=files.data
         appointments  = Appointment.objects.filter(student__id=id)
         appointments = AppointmentSerializer_(appointments,many=True)
-        for i in enrolment.data:
-            i["bill"] = bill.data
-            i["files"]= files.data
-            i["appointments"] = appointments.data
-
-        return Response(enrolment.data)
+        data["appointments"]=appointments.data
+        return Response(data)
 
 class StudentEmailTemplateView(APIView):
     """

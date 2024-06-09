@@ -1,13 +1,10 @@
 from rest_framework import serializers ,fields
-from .models import  TimeRange,TimeSlot,WeekRange,TimeOff,DateRange,Appointment
+from .models import  TimeRange,TimeSlot,TimeOff,DateRange,Appointment
 class TimeRangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeRange
         fields = "__all__"
-class WeekRangeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = WeekRange
-        fields = "__all__"
+
 class TimeOffSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeOff
