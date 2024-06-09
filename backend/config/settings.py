@@ -56,7 +56,7 @@ TENANT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #APPS
-
+    "mainadmin",
     "Users",
     "servises",
     "location",

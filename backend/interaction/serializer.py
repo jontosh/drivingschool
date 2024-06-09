@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Tasks,Logs,LatestNews,EmailTemplate
 from location.views import LocationSerializer,VehicleSerializer,SchoolSerializer,Vehicle,Class,Location
 from servises.serializer import ServicesSerializer
-from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,WeekRangeSerializer,TimeRangeSerializer,\
+from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,TimeRangeSerializer,\
     TimeSlot,Appointment, TimeOffSerializer
 from Users.serializer import StudentSerializer,BillSerializer,FilesSerializer,Enrollment,Student,Instructor
 
@@ -28,7 +28,6 @@ class TimeSlotSerializer_(serializers.ModelSerializer):
     date_range = DateRangeSerializer(read_only=True)
     location = LocationSerializer(read_only=True)
     vehicle = VehicleSerializer(read_only=True)
-    week_range = WeekRangeSerializer(many=True,read_only=True)
     slots = TimeRangeSerializer(many=True,read_only=True)
     staff = InstructorFullSerializer(read_only=True)
     class Meta:
@@ -64,12 +63,9 @@ class EnrollmentSerializer_(serializers.ModelSerializer):
     package = ServicesSerializer(many=True)
     student = StudentSerializer()
     cr = LocationSerializer()
-    appointments = AppointmentSerializer(many=True,read_only=True)
-    bill = BillSerializer(many=True,read_only=True)
-    files = FilesSerializer(many=True,read_only=True)
     class Meta:
         model = Enrollment
-        fields = ["student","data","code","by","price","cr","cr_start","cr_end","package","appointments","bill","files",]
+        fields = ["student","data","code","by","price","cr","cr_start","cr_end","package"]
 class AppointmentSerializer_(serializers.ModelSerializer):
     student = StudentSerializer(many=True,read_only=True)
     time_slot = TimeSlotSerializer_(read_only=True)
