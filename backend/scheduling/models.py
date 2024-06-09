@@ -3,6 +3,7 @@ from location.models import Vehicle,Location,School
 import uuid
 from multiselectfield import MultiSelectField
 from django.contrib.postgres.fields import ArrayField
+from abstracts.models import Extra,Status
 # Create your models here.
 class Weekday(models.TextChoices):
     MONDAY = 'MON', 'Monday'
@@ -12,8 +13,7 @@ class Weekday(models.TextChoices):
     FRIDAY = 'FRI', 'Friday'
     SATURDAY = 'SAT', 'Saturday'
     SUNDAY = 'SUN', 'Sunday'
-class WeekRange(models.Model):
-    week = models.CharField(choices=Weekday,unique=True,blank=False,max_length=15)
+
     def __str__(self):
         return self.week
 class TimeRange(models.Model):
@@ -57,7 +57,7 @@ class TimeOff(models.Model):
         if not self.id:
             self.id = uuid.uuid4()
         super().save(*args, **kwargs)
-class TimeSlot(models.Model):
+class TimeSlot(Extra,Status):
     """
     Here we will store available slots for staff
     """

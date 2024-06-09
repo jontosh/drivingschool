@@ -5,7 +5,6 @@ from .views import *
 
 router = DefaultRouter()
 router.register(f'{Router["scheduling"]["children"]["time_slot"]}', TimeSlotViewSet, basename='time_slot')
-router.register(f'{Router["scheduling"]["children"]["week_range"]}', WeekRangeViewSet, basename='week_range')
 router.register(f'{Router["scheduling"]["children"]["timeOff"]}', TimeOffViewSet, basename='timeOff')
 router.register(f'{Router["scheduling"]["children"]["date_range"]}', DateRangeViewSet, basename='date_range')
 router.register(f'{Router["scheduling"]["children"]["appointment"]}', AppointmentViewSet, basename='appointment')

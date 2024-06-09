@@ -17,8 +17,7 @@ class CustomUser(AbstractUser):
         ["DELETED", "DELETED"],
         ["PENDING", "PENDING"],
     ]
-    uuid = models.UUIDField(primary_key=True, null=False, default=uuid.uuid4, editable=False)
-    # id = models.IntegerField( blank=True,null=True)
+    id = models.UUIDField(primary_key=True, null=False, default=uuid.uuid4, editable=False)
     status = models.CharField(choices=STATUS, max_length=30, default="PENDING")
     address = models.TextField()
     first_name = models.CharField(max_length=200)
@@ -38,8 +37,8 @@ class CustomUser(AbstractUser):
     # _is_active = models.BooleanField(default=False,blank=True)
     USERNAME_FIELD = 'username'
     def save(self, *args, **kwargs):
-        if not self.uuid:
-            self.uuid = uuid.uuid4()
+        if not self.id:
+            self.id = uuid.uuid4()
         if self.type == None:
             field, f_g = Fields.objects.get_or_create(app_name="test")
             field.save()
