@@ -191,10 +191,7 @@ export const ProductModalContent = () => {
             ]}
           >
             <div className="flex items-center gap-3">
-              <CustomInput
-                placeholder={"Component Name"}
-                classNames={"w-full"}
-              />
+              <CustomInput placeholder={"Component Name"} classNames={"w-full"} />
 
               <span>
                 <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
@@ -213,7 +210,7 @@ export const ProductModalContent = () => {
             ]}
           >
             <div className="flex items-center gap-3">
-              <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} />
+              <CustomInput placeholder={"Item#/Code"} classNames={"w-full"} spanClassName={"text-[#344054]"} fontSize="text-base" />
 
               <span>
                 <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
@@ -236,7 +233,6 @@ export const ProductModalContent = () => {
                 placeholder={"Select status"}
                 className={`w-full h-[50px]`}
                 options={StatusSelect}
-                colorBorder={colorsObject.black}
                 onChange={handleStatus}
               />
 
@@ -284,7 +280,6 @@ export const ProductModalContent = () => {
                   { value: "CR", label: "CR" },
                   { value: "WEB", label: "WEB" },
                 ]}
-                colorBorder={colorsObject.black}
                 onChange={handleType}
               />
 
@@ -307,7 +302,6 @@ export const ProductModalContent = () => {
                   },
                   { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
                 ]}
-                colorBorder={colorsObject.black}
                 onChange={handleSubType}
               />
 
@@ -316,16 +310,18 @@ export const ProductModalContent = () => {
               </span>
             </div>
           </Form.Item>
+        </div>
 
-          <Form.Item
-            shouldUpdate={(prev, current) =>
-              prev.type_component !== current.type_component
-            }
-            noStyle
-          >
-            {({ getFieldValue }) =>
-              getFieldValue("type_component") === "BTW" ? (
-                <Fragment>
+        <Form.Item
+          shouldUpdate={(prev, current) =>
+            prev.type_component !== current.type_component
+          }
+          noStyle
+        >
+          {({ getFieldValue }) =>
+            getFieldValue("type_component") === "BTW" ? (
+              <Fragment>
+                <div className={"px-5 grid grid-cols-2 gap-5"}>
                   <Form.Item
                     name={"driving_hours"}
                     label={"Driving Time:"}
@@ -345,7 +341,6 @@ export const ProductModalContent = () => {
                           { value: 2, label: 2 },
                           { value: 3, label: 3 },
                         ]}
-                        colorBorder={colorsObject.black}
                         onChange={handleDrivingHours}
                       />
 
@@ -365,7 +360,6 @@ export const ProductModalContent = () => {
                           { value: 2, label: 2 },
                           { value: 3, label: 3 },
                         ]}
-                        colorBorder={colorsObject.black}
                       />
                       <span>
                         <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
@@ -383,7 +377,6 @@ export const ProductModalContent = () => {
                           { value: 2, label: 2 },
                           { value: 3, label: 3 },
                         ]}
-                        colorBorder={colorsObject.black}
                       />
 
                       <span>
@@ -402,7 +395,6 @@ export const ProductModalContent = () => {
                           { value: 2, label: 2 },
                           { value: 3, label: 3 },
                         ]}
-                        colorBorder={colorsObject.black}
                       />
 
                       <span>
@@ -410,19 +402,20 @@ export const ProductModalContent = () => {
                       </span>
                     </div>
                   </Form.Item>
-                </Fragment>
-              ) : getFieldValue("type_component") === "CR" ? (
-                <Fragment>
-                  <div className="flex items-center gap-3">
-                    <Title level={3} fontSize={"text-xl"}>
-                      Add Default Creating Settings
-                    </Title>
+                </div>
+              </Fragment>
+            ) : getFieldValue("type_component") === "CR" ? (
+              <Fragment>
+                <div className="flex items-center gap-3 px-5 my-5">
+                  <Title level={3} fontSize={"text-xl"}>
+                    Add Default Creating Settings
+                  </Title>
 
-                    <span>
-                      <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                    </span>
-                  </div>
-
+                  <span>
+                    <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                  </span>
+                </div>
+                <div className={"px-5 grid grid-cols-2 gap-5"}>
                   <Form.Item name={"enrolment_size"} label={"Enrollment Size:"}>
                     <CustomInput
                       classNames={"w-full"}
@@ -446,14 +439,14 @@ export const ProductModalContent = () => {
                   >
                     <Switch />
                   </Form.Item>
-
+                </div>
+                <div className={"px-5 grid grid-cols-2 gap-5"}>
                   <Form.Item name={"location"} label={"Location:"}>
                     <div className="flex items-center gap-3">
                       <CustomSelect
-                        placeholder={"Location"}
+                        placeholder={"Please Select"}
                         className={`w-full h-[50px]`}
                         options={[{ value: 1, label: "USA" }]}
-                        colorBorder={colorsObject.black}
                         onChange={handleLocation}
                       />
 
@@ -466,7 +459,7 @@ export const ProductModalContent = () => {
                   <Form.Item name={"days"} label={"Days:"}>
                     <div className="flex items-center gap-3">
                       <CustomSelect
-                        placeholder={"select days"}
+                        placeholder={"Please Select"}
                         className={`w-full h-[50px]`}
                         mode="multiple"
                         options={[
@@ -474,7 +467,41 @@ export const ProductModalContent = () => {
                           { value: 2, label: "Tue" },
                           { value: 3, label: "Wen" },
                         ]}
-                        colorBorder={colorsObject.black}
+                        onChange={handleDays}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
+                  </Form.Item>
+
+                  <Form.Item name={"location"} label={"Location:"}>
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"Please Select"}
+                        className={`w-full h-[50px]`}
+                        options={[{ value: 1, label: "USA" }]}
+                        onChange={handleLocation}
+                      />
+
+                      <span>
+                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                      </span>
+                    </div>
+                  </Form.Item>
+
+                  <Form.Item name={"days"} label={"Days:"}>
+                    <div className="flex items-center gap-3">
+                      <CustomSelect
+                        placeholder={"Please Select"}
+                        className={`w-full h-[50px]`}
+                        mode="multiple"
+                        options={[
+                          { value: 1, label: "Mon" },
+                          { value: 2, label: "Tue" },
+                          { value: 3, label: "Wen" },
+                        ]}
                         onChange={handleDays}
                       />
 
@@ -502,40 +529,40 @@ export const ProductModalContent = () => {
                       classNames={"w-full"}
                     />
                   </Form.Item>
-
-                  <Form.Item
-                    name={"session_duration"}
-                    label={"Sessions Duration:"}
-                  >
-                    <div className="flex items-center gap-3">
-                      <CustomSelect
-                        placeholder={"select days"}
-                        className={`w-full h-[50px]`}
-                        options={[
-                          { value: 1, label: 1 },
-                          { value: 2, label: 2 },
-                          { value: 3, label: 3 },
-                        ]}
-                        colorBorder={colorsObject.black}
-                        onChange={handleSessionDuration}
-                      />
-
-                      <span>
-                        <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                      </span>
-                    </div>
-                  </Form.Item>
-
-                  <Form.Item name={"session_times"} label={"Sessions Times:"}>
+                </div>
+                <Form.Item
+                  name={"session_duration"}
+                  label={"Sessions Duration:"}
+                  className="px-5"
+                >
+                  <div className="flex items-center gap-3">
                     <CustomSelect
-                      placeholder={"select days"}
+                      placeholder={"Please Select"}
                       className={`w-full h-[50px]`}
                       options={[
                         { value: 1, label: 1 },
                         { value: 2, label: 2 },
                         { value: 3, label: 3 },
                       ]}
-                      colorBorder={colorsObject.black}
+                      onChange={handleSessionDuration}
+                    />
+
+                    <span>
+                      <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                    </span>
+                  </div>
+                </Form.Item>
+
+                <div className={"px-5 grid grid-cols-2 gap-5 items-center"}>
+                  <Form.Item name={"session_times"} label={"Sessions Times:"}>
+                    <CustomSelect
+                      placeholder={"Please Select"}
+                      className={`w-full h-[50px]`}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
                       onChange={handleSessionTimes}
                     />
                   </Form.Item>
@@ -549,7 +576,6 @@ export const ProductModalContent = () => {
                     rules={[
                       {
                         required: true,
-                        message: "EZ Drive Product is empty",
                       },
                     ]}
                   >
@@ -582,7 +608,6 @@ export const ProductModalContent = () => {
                     rules={[
                       {
                         required: true,
-                        message: "Safeway LMS Audience is empty",
                       },
                     ]}
                   >
@@ -595,21 +620,20 @@ export const ProductModalContent = () => {
                     />
                   </Form.Item>
 
-                  <Form.Item
-                    name={"duration"}
-                    label={"Duration"}
-                    getValueProps={(value) => ({
-                      value: value && dayjs(Number(value)),
-                    })}
-                    normalize={(value) => value && `${dayjs(value).valueOf()}`}
-                  >
-                    <DatePicker />
-                  </Form.Item>
-                </Fragment>
-              ) : null
-            }
-          </Form.Item>
-        </div>
+                <Form.Item
+                  name={"duration"}
+                  label={"Duration"}
+                  getValueProps={(value) => ({
+                    value: value && dayjs(Number(value)),
+                  })}
+                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                >
+                  <DatePicker />
+                </Form.Item>
+              </Fragment>
+            ) : null
+          }
+        </Form.Item>
 
         <div className="text-center space-x-5">
           <ButtonComponent
@@ -1698,7 +1722,6 @@ export const FileCategoryModalContent = () => {
               <CustomTransfer
                 dataSource={mockData}
                 listHeight={200}
-                colorBorder={colorsObject.primary}
                 setSelectedKeys={setPackages}
                 selectedKeys={Packages}
               />
@@ -2669,7 +2692,7 @@ export const LocationModalContent = () => {
                         customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                         name={"type"}
                         onChange={handleChange}
-                        value={`Main office only`}
+                        value={`Main office only`}  
                       >
                         <span
                           className={"text-sm flex-shrink-0 font-medium w-32"}
@@ -2958,7 +2981,6 @@ export const LocationModalContent = () => {
                   <CustomTransfer
                     dataSource={mockData}
                     listHeight={200}
-                    colorBorder={colorsObject.primary}
                     setSelectedKeys={setAreaCoverage}
                     selectedKeys={AreaCoverage}
                   />
@@ -3004,7 +3026,7 @@ export const LocationModalContent = () => {
                     value={values.color}
                   />
                   <CustomInput
-                    classNames={`w-full h-[50px] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    classNames={`w-full h-[50px] rounded-lg ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     onChange={handleChange}
                     name={"color"}
                     value={values.color}
@@ -3198,7 +3220,6 @@ export const AddSchoolModalContent = () => {
                   spanText={"School Name"}
                   placeholder={"School Name"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right  relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  colorBorder={colorsObject.primary}
                   name={"name"}
                   onChange={handleChange}
                   value={values.name}
@@ -3217,7 +3238,6 @@ export const AddSchoolModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Select School Status"}
-                      colorBorder={colorsObject.primary}
                       className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={StatusSelect}
                       onChange={handleStatus}
@@ -3242,7 +3262,6 @@ export const AddSchoolModalContent = () => {
                   spanText={"School Code"}
                   placeholder={"School Code"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"code"}
                   onChange={handleChange}
                   value={values.code}
@@ -3257,7 +3276,6 @@ export const AddSchoolModalContent = () => {
                   spanText={"School Address"}
                   placeholder={"School Address"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"address"}
                   onChange={handleChange}
                   value={values.address}
@@ -3272,7 +3290,6 @@ export const AddSchoolModalContent = () => {
                   spanText={"School City"}
                   placeholder={"School City"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"city"}
                   onChange={handleChange}
                   value={values.city}
@@ -3286,7 +3303,6 @@ export const AddSchoolModalContent = () => {
                   </span>
                   <CustomSelect
                     placeholder={"Select State"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={[
                       {
@@ -3309,7 +3325,6 @@ export const AddSchoolModalContent = () => {
                   spanText={"Zip Code"}
                   placeholder={"Zip Code"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"zipcode"}
                   value={values.zipcode}
                   onChange={handleChange}
@@ -3327,7 +3342,6 @@ export const AddSchoolModalContent = () => {
                   spanText={"Email"}
                   placeholder={"Email"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  colorBorder={colorsObject.primary}
                   name={"email"}
                   onChange={handleChange}
                   value={values.email}
@@ -3510,7 +3524,6 @@ export const HowHearModalContent = () => {
                   <div className="w-full">
                     <CustomSelect
                       placeholder={"Lead Status"}
-                      colorBorder={colorsObject.primary}
                       className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                       options={StatusSelect}
                       onChange={handleStatus}
@@ -3534,7 +3547,6 @@ export const HowHearModalContent = () => {
                   spanText={"Lead Code"}
                   placeholder={"Lead Code"}
                   spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  colorBorder={colorsObject.primary}
                   name={"code"}
                   onChange={handleChange}
                   value={values.code}
@@ -3547,7 +3559,7 @@ export const HowHearModalContent = () => {
                     Expiration
                   </span>
                   <DatePicker
-                    className={`w-full border border-indigo-600 h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`w-full border border-[#667085] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     placeholder={"DD/MM/YYYY"}
                     onChange={handleExpiration}
                   />

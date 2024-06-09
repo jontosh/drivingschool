@@ -160,10 +160,8 @@ export const Appointments = () => {
       >
         <label className={"relative"}>
           <CustomInput
-            colorBorder={colorsObject.primary}
             placeholder={"Search"}
             className={`w-96 pl-12 pr-4 text-sm`}
-            classNames={"h-[50px]"}
           />
 
           <span className={"absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "}>
@@ -173,7 +171,6 @@ export const Appointments = () => {
         <CustomSelect
           placeholder={"Please select type"}
           className={`w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-          colorBorder={colorsObject.primary}
           options={[
             {
               value: "8h in car",
@@ -184,7 +181,6 @@ export const Appointments = () => {
         <CustomSelect
           placeholder={"Please select status"}
           className={`w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-          colorBorder={colorsObject.primary}
           options={[
             {
               value: "Confirmed",

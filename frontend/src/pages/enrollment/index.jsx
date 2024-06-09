@@ -178,7 +178,6 @@ const Enrollment = () => {
                 optionFontSize={14}
                 optionSelectedFontWeight={400}
                 fontSize={16}
-                colorBorder={colorsObject.primary}
               />
 
               {PackageTotal?.length > 0 ? (
@@ -240,7 +239,6 @@ const Enrollment = () => {
                 placeholder={"Select class"}
                 options={ClassSelectionArray}
                 className={"w-full mb-2.5 h-[50px]"}
-                colorBorder={colorsObject.primary}
               />
             </div>
           </div>
@@ -265,7 +263,6 @@ const Enrollment = () => {
             onChange={handleStudentInfoType}
             options={StudentInfoTypeOptions}
             className={"mb-2.5 h-[50px] shadow-lg max-w-[570px] w-full"}
-            colorBorder={colorsObject.primary}
             disabled={!PackageTotal?.length}
           />
 
