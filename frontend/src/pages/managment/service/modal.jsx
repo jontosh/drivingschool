@@ -566,59 +566,73 @@ export const ProductModalContent = () => {
                       onChange={handleSessionTimes}
                     />
                   </Form.Item>
-                </Fragment>
-              ) : getFieldValue("subtype_web") === "EZ DRIVE" &&
-                getFieldValue("type_component") === "WEB" ? (
-                <Fragment>
-                  <Form.Item
-                    name={"ez_drive_product"}
-                    label={"EZ Drive Product:"}
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                  >
-                    <CustomSelect
-                      placeholder={"EZ Drive Product"}
-                      className={`w-full h-[50px]`}
-                      options={StatusSelect}
-                      colorBorder={colorsObject.black}
-                      onChange={handleEZDriveProduct}
-                    />
-                  </Form.Item>
 
-                  <Form.Item
-                    name={"duration"}
-                    label={"Duration"}
-                    getValueProps={(value) => ({
-                      value: value && dayjs(Number(value)),
-                    })}
-                    normalize={(value) => value && `${dayjs(value).valueOf()}`}
-                  >
-                    <DatePicker />
-                  </Form.Item>
-                </Fragment>
-              ) : getFieldValue("subtype_web") === "SAFEWAY LMS" &&
-                getFieldValue("type_component") === "WEB" ? (
-                <Fragment>
-                  <Form.Item
-                    name={"safeway_audience"}
-                    label={"Safeway LMS Audience:"}
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                  >
+                  <Form.Item name={"session_times"} className="pt-7">
                     <CustomSelect
-                      placeholder={"EZ Drive Product"}
+                      placeholder={"Please Select"}
                       className={`w-full h-[50px]`}
-                      options={StatusSelect}
-                      colorBorder={colorsObject.black}
-                      onChange={handleSafewayAudience}
+                      options={[
+                        { value: 1, label: 1 },
+                        { value: 2, label: 2 },
+                        { value: 3, label: 3 },
+                      ]}
+                      onChange={handleSessionTimes}
                     />
                   </Form.Item>
+                </div>
+              </Fragment>
+            ) : getFieldValue("subtype_web") === "EZ DRIVE" &&
+              getFieldValue("type_component") === "WEB" ? (
+              <Fragment>
+                <Form.Item
+                  name={"ez_drive_product"}
+                  label={"EZ Drive Product:"}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <CustomSelect
+                    placeholder={"EZ Drive Product"}
+                    className={`w-full h-[50px]`}
+                    options={StatusSelect}
+                    colorBorder={colorsObject.black}
+                    onChange={handleEZDriveProduct}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name={"duration"}
+                  label={"Duration"}
+                  getValueProps={(value) => ({
+                    value: value && dayjs(Number(value)),
+                  })}
+                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                >
+                  <DatePicker />
+                </Form.Item>
+              </Fragment>
+            ) : getFieldValue("subtype_web") === "SAFEWAY LMS" &&
+              getFieldValue("type_component") === "WEB" ? (
+              <Fragment>
+                <Form.Item
+                  name={"safeway_audience"}
+                  label={"Safeway LMS Audience:"}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <CustomSelect
+                    placeholder={"EZ Drive Product"}
+                    className={`w-full h-[50px]`}
+                    options={StatusSelect}
+                    colorBorder={colorsObject.black}
+                    onChange={handleSafewayAudience}
+                  />
+                </Form.Item>
 
                 <Form.Item
                   name={"duration"}
@@ -2692,7 +2706,7 @@ export const LocationModalContent = () => {
                         customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
                         name={"type"}
                         onChange={handleChange}
-                        value={`Main office only`}  
+                        value={`Main office only`}
                       >
                         <span
                           className={"text-sm flex-shrink-0 font-medium w-32"}

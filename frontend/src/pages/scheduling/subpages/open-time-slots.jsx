@@ -208,7 +208,6 @@ export const OpenTimeSlots = () => {
                 <label className={"inline-flex flex-grow items-center gap-5"}>
                   <span className={"text-base flex-shrink-0 w-20 text-right"}>Instructor:</span>
                   <CustomSelect
-                    colorBorder={colorsObject.primary}
                     className={"w-full h-[50px] shadow-xl"}
                     options={[
                       {
@@ -224,7 +223,7 @@ export const OpenTimeSlots = () => {
                 spanText={"Select date"}
                 placeholder={`MM/DD/YYYY - MM/DD/YYYY`}
                 spanClassName={"flex-shrink-0 w-36 text-right"}
-                className={" flex-grow border border-indigo-700 shadow-xl"}
+                className={" flex-grow shadow-xl"}
                 classNames={
                   "inline-flex w-full h-[50px] flex-row-reverse items-center gap-5"
                 }
@@ -233,7 +232,6 @@ export const OpenTimeSlots = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-36 text-right"}>Time filter:</span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
@@ -247,7 +245,6 @@ export const OpenTimeSlots = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-36 text-right"}>Weekdays</span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
@@ -265,7 +262,6 @@ export const OpenTimeSlots = () => {
                   Displayed In Student Center
                 </span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
@@ -278,7 +274,6 @@ export const OpenTimeSlots = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-36 text-right"}>Vehicle</span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
@@ -291,7 +286,6 @@ export const OpenTimeSlots = () => {
               <label className={"inline-flex w-full items-center gap-5"}>
                 <span className={"text-base flex-shrink-0 w-36 text-right"}>Location</span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {
@@ -306,7 +300,6 @@ export const OpenTimeSlots = () => {
                   Appointment Type
                 </span>
                 <CustomSelect
-                  colorBorder={colorsObject.primary}
                   className={"w-full h-[50px] shadow-xl"}
                   options={[
                     {

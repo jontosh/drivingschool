@@ -240,7 +240,7 @@ export const Appointments = () => {
             <CustomInput
               spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
               spanText={"Start date"}
-              className={"w-full border border-indigo-700 shadow-xl"}
+              className={"w-full shadow-xl"}
               placeholder={"MM/DD/YYYY"}
               classNames={
                 "inline-flex w-full h-[50px] flex-row-reverse items-center gap-10"
@@ -249,7 +249,7 @@ export const Appointments = () => {
             <CustomInput
               spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
               spanText={"End date"}
-              className={"w-full border border-indigo-700 shadow-xl"}
+              className={"w-full border shadow-xl"}
               placeholder={"MM/DD/YYYY"}
               classNames={
                 "inline-flex w-full h-[50px] flex-row-reverse items-center gap-10"
@@ -263,7 +263,6 @@ export const Appointments = () => {
               </span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -280,7 +279,6 @@ export const Appointments = () => {
               <span className={`flex-shrink-0 w-20 text-right`}>Status</span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -299,7 +297,6 @@ export const Appointments = () => {
               <span className={`flex-shrink-0 w-20 text-right`}>Instructor</span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -314,7 +311,6 @@ export const Appointments = () => {
               <span className={`flex-shrink-0 w-20 text-right`}>Location</span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {

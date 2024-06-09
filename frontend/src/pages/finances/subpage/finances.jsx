@@ -34,7 +34,6 @@ export const Finances = () => {
                     label: "Today",
                   },
                 ]}
-                colorBorder={colorsObject.primary}
                 className={"w-[150px] h-[50px]"}
               />
             </div>
@@ -56,7 +55,6 @@ export const Finances = () => {
                     label: "Last year",
                   },
                 ]}
-                colorBorder={colorsObject.primary}
                 className={"w-[150px] h-[50px]"}
               />
             </div>
@@ -145,7 +143,6 @@ export const Finances = () => {
                     label: "Last year",
                   },
                 ]}
-                colorBorder={colorsObject.primary}
                 className={"w-[150px] h-[50px]"}
               />
             </div>
@@ -169,7 +166,6 @@ export const Finances = () => {
                     label: "Today",
                   },
                 ]}
-                colorBorder={colorsObject.primary}
                 className={"w-[150px] h-[50px]"}
               />
             </div>

@@ -58,7 +58,6 @@ export const CompanyFormik = () => {
                 name={"account"}
                 value={values.account}
                 onChange={handleChange}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -68,7 +67,6 @@ export const CompanyFormik = () => {
                 placeholder={"License Number"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"License Number"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -78,7 +76,6 @@ export const CompanyFormik = () => {
                 placeholder={"Owner Name"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Owner Name"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -88,7 +85,6 @@ export const CompanyFormik = () => {
                 placeholder={"Address"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Address"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -98,7 +94,6 @@ export const CompanyFormik = () => {
                 placeholder={"Mason"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Mason"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -111,7 +106,6 @@ export const CompanyFormik = () => {
                 <div className="grid flex-grow grid-cols-2 items-center gap-5">
                   <CustomSelect
                     placeholder={"Select"}
-                    colorBorder={colorsObject.primary}
                     className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
@@ -124,7 +118,6 @@ export const CompanyFormik = () => {
                   <CustomInput
                     placeholder={"Zip Number"}
                     className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                    colorBorder={colorsObject.primary}
                     classNames={`inline-flex flex-shrink-0 items-center w-full gap-5 flex-row-reverse h-[50px]`}
                   />
                 </div>
@@ -136,7 +129,6 @@ export const CompanyFormik = () => {
                 placeholder={"Email"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Email"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -146,7 +138,6 @@ export const CompanyFormik = () => {
                 placeholder={"Phone"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Phone"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -156,7 +147,6 @@ export const CompanyFormik = () => {
                 placeholder={"Fax"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Fax"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -166,7 +156,6 @@ export const CompanyFormik = () => {
                 placeholder={"Other"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Other"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -176,7 +165,6 @@ export const CompanyFormik = () => {
                 placeholder={"Web Site"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Web Site"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
@@ -186,7 +174,6 @@ export const CompanyFormik = () => {
                 placeholder={"Notes"}
                 className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
                 spanText={"Notes"}
-                colorBorder={colorsObject.primary}
                 spanClassName={"w-40 flex-shrink-0"}
                 fontSize={"text-base"}
                 classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse h-[50px]`}

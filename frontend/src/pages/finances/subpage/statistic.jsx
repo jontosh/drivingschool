@@ -199,7 +199,6 @@ export const Statistic = () => {
                   label: "Last year",
                 },
               ]}
-              colorBorder={colorsObject.primary}
               className={"w-[150px] h-[50px]"}
             />
           </div>

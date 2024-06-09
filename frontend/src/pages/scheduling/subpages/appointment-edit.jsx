@@ -213,7 +213,6 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -227,7 +226,7 @@ export const AppointmentEdit = () => {
             <CustomInput
               spanClassName={`flex-shrink-0 w-40 text-right`}
               spanText={"Select date"}
-              className={"w-full border border-indigo-700 shadow-xl"}
+              className={"w-full shadow-xl"}
               placeholder={"MM/DD/YYYY - MM/DD/YYYY"}
               classNames={
                 "inline-flex w-full h-[50px] flex-row-reverse items-center gap-5"
@@ -240,7 +239,6 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -255,7 +253,6 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Weekdays</span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -272,7 +269,6 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -295,7 +291,6 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Status</span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -313,7 +308,6 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Vehicle</span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -327,7 +321,6 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Location</span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -343,7 +336,6 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
@@ -359,7 +351,6 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                colorBorder={colorsObject.primary}
                 className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
