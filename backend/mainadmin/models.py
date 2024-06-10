@@ -36,6 +36,8 @@ class CustomUser(AbstractUser):
     type = models.ForeignKey("UserType", on_delete=models.CASCADE,blank=True,null=True)
     # _is_active = models.BooleanField(default=False,blank=True)
     USERNAME_FIELD = 'username'
+    class Meta:
+        app_label = "mainadmin"
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4()
