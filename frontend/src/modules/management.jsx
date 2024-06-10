@@ -891,11 +891,127 @@ const MultipleChoice = ({ form, ...props }) => {
 };
 
 const TrueFalse = ({ form, ...props }) => {
-  return <Fragment>True False</Fragment>;
+  const handleNotesValue = (value) => {
+    form?.setFieldsValue({
+      note: value,
+    });
+  };
+
+  return (
+    <Fragment>
+      <div className="grid grid-cols-2 gap-5">
+        <div className="space-y-5">
+          <Form.Item name={"note"} label={"Notes"} className="w-full">
+            <MDEditor
+              placeholder={"Text"}
+              onChange={handleNotesValue}
+              previewOptions={{
+                rehypePlugins: [[rehypeSanitize]],
+              }}
+            />
+          </Form.Item>
+
+          <div>
+            <Form.Item name={"text"} label={"choice of answers"}>
+              <CustomInput placeholder={"choice of answers"} />
+            </Form.Item>
+
+            <Form.Item name={"is_correct"} label={"correct answer"}>
+              <CustomRadio name={"is_correct"} />
+            </Form.Item>
+          </div>
+
+          <div>
+            <Form.Item name={"text"} label={"choice of answers"}>
+              <CustomInput placeholder={"choice of answers"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"is_correct"}
+              label={"correct answer"}
+              layout="horizontal"
+            >
+              <CustomRadio name={"is_correct"} />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div className="space-y-5">@todo</div>
+      </div>
+    </Fragment>
+  );
 };
 
 const Category = ({ form, ...props }) => {
-  return <Fragment>Category</Fragment>;
+  const { colorsObject } = useContext(ColorsContext);
+
+  const handleNotesValue = (value) => {
+    form?.setFieldsValue({
+      note: value,
+    });
+  };
+
+  return (
+    <Fragment>
+      <div className="grid grid-cols-2 gap-5">
+        <div className="space-y-5">
+          <Form.Item name={"note"} label={"Notes"} className="w-full">
+            <MDEditor
+              placeholder={"Text"}
+              onChange={handleNotesValue}
+              previewOptions={{
+                rehypePlugins: [[rehypeSanitize]],
+              }}
+            />
+          </Form.Item>
+
+          <Form.List name="users">
+            {(fields, { add, remove }) => {
+              console.log(fields);
+              return (
+                <Fragment>
+                  {fields.map(({ key, name, ...restField }) => (
+                    <div key={key}>
+                      <Form.Item
+                        {...restField}
+                        name={[name, "text"]}
+                        label={"choice of answers"}
+                      >
+                        <CustomInput placeholder={"choice of answers"} />
+                      </Form.Item>
+
+                      <Form.Item
+                        {...restField}
+                        name={[name, "is_correct"]}
+                        label={"correct answer"}
+                      >
+                        <CustomCheckBox />
+                      </Form.Item>
+                      <MinusCircleOutlined onClick={() => remove(name)} />
+                    </div>
+                  ))}
+                  <Form.Item>
+                    <ButtonComponent
+                      defaultBg={colorsObject.success}
+                      defaultHoverBg={colorsObject.successHover}
+                      type="dashed"
+                      onClick={() => add()}
+                      block
+                      icon={<PlusOutlined />}
+                    >
+                      Add answers
+                    </ButtonComponent>
+                  </Form.Item>
+                </Fragment>
+              );
+            }}
+          </Form.List>
+        </div>
+
+        <div className="space-y-5">@todo</div>
+      </div>
+    </Fragment>
+  );
 };
 
 const Preview = ({ form, ...props }) => {
