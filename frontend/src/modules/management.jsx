@@ -883,6 +883,8 @@ const MultipleChoice = ({ form, ...props }) => {
             }}
           </Form.List>
         </div>
+
+        <div className="space-y-5">@todo</div>
       </div>
     </Fragment>
   );
