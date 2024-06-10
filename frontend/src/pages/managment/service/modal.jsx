@@ -748,7 +748,7 @@ export const FeesModalContent = () => {
         onFinish={onFinish}
         layout={"vertical"}
         initialValues={{
-          notes: "",
+          notes: "Hello",
         }}
       >
         <Form.Item
