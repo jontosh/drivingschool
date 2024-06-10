@@ -911,7 +911,7 @@ export const DiscountModalContent = () => {
   return (
     <Fragment>
       <Form
-        className={"space-y-5 px-5"}
+        className="grid justify-center gap-y-5 px-5"
         form={form}
         onFinish={onFinish}
         layout={"vertical"}
@@ -946,7 +946,6 @@ export const DiscountModalContent = () => {
             placeholder={"Select status"}
             className={`w-full h-[50px]`}
             options={StatusSelect}
-            colorBorder={colorsObject.black}
             onChange={handleStatus}
           />
         </Form.Item>
@@ -981,11 +980,10 @@ export const DiscountModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"services"} label={"Eligible Service:"}>
+        <Form.Item name={"services"} label={"Eligible Service:"} className="m-auto">
           <CustomTransfer
             dataSource={mockData}
             listHeight={200}
-            colorBorder={colorsObject.primary}
             setSelectedKeys={setEligibleService}
             selectedKeys={EligibleService}
           />
@@ -1001,21 +999,19 @@ export const DiscountModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"classes"} label={"Eligible Class(es):"}>
+        <Form.Item name={"classes"} label={"Eligible Class(es):"} className="m-auto">
           <CustomTransfer
             dataSource={mockData}
             listHeight={200}
-            colorBorder={colorsObject.primary}
             setSelectedKeys={setEligibleClass}
             selectedKeys={EligibleClass}
           />
         </Form.Item>
 
-        <Form.Item name={"locations"} label={"Eligible class Location:"}>
+        <Form.Item name={"locations"} label={"Eligible class Location:"} className="m-auto">
           <CustomTransfer
             dataSource={mockData}
             listHeight={200}
-            colorBorder={colorsObject.primary}
             setSelectedKeys={setEligibleClassLocation}
             selectedKeys={EligibleClassLocation}
           />
@@ -1029,7 +1025,7 @@ export const DiscountModalContent = () => {
           normalize={(value) => value && `${dayjs(value).valueOf()}`}
           label={"Discount Expiration:"}
         >
-          <DatePicker placeholder={"MM/DD/YYYY"} />
+          <DatePicker placeholder={"MM/DD/YYYY"} className="border-[#667085] w-full h-[50px]" />
         </Form.Item>
 
         <div className="text-center space-x-5">
@@ -1045,10 +1041,12 @@ export const DiscountModalContent = () => {
             Save
           </ButtonComponent>
           <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
             borderRadius={5}
             paddingInline={44}
             type={"reset"}
@@ -1106,14 +1104,14 @@ export const MiscellaneousModalContent = () => {
   return (
     <Fragment>
       <Form
-        className={"space-y-5 px-5"}
+        className="grid justify-center gap-y-5 px-5"
         form={form}
         onFinish={onFinish}
         layout={"vertical"}
       >
         <Form.Item
           name={"name"}
-          label={"Miscellaneous Item Name: "}
+          label={"Miscellaneous Item Name:"}
           rules={[
             {
               required: true,
@@ -1122,7 +1120,7 @@ export const MiscellaneousModalContent = () => {
           ]}
         >
           <CustomInput
-            placeholder={"Miscellaneous Item Name: "}
+            placeholder={"Miscellaneous Item Name:"}
             classNames={"w-full"}
           />
         </Form.Item>
@@ -1141,7 +1139,6 @@ export const MiscellaneousModalContent = () => {
             placeholder={"Select status"}
             className={`w-full h-[50px]`}
             options={StatusSelect}
-            colorBorder={colorsObject.black}
             onChange={handleStatus}
           />
         </Form.Item>
@@ -1160,7 +1157,6 @@ export const MiscellaneousModalContent = () => {
             placeholder={"Select type"}
             className={`w-full h-[50px]`}
             options={StatusSelect}
-            colorBorder={colorsObject.black}
             onChange={handleType}
           />
         </Form.Item>
@@ -1178,10 +1174,12 @@ export const MiscellaneousModalContent = () => {
             Save
           </ButtonComponent>
           <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            defaultColor={colorsObject.main}
-            defaultHoverColor={colorsObject.main}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
             borderRadius={5}
             paddingInline={44}
             type={"reset"}
@@ -1191,7 +1189,6 @@ export const MiscellaneousModalContent = () => {
           </ButtonComponent>
         </div>
       </Form>
-
       {IsOpen && state?.status}
     </Fragment>
   );
