@@ -153,6 +153,31 @@ class Files(Extra):
     def __str__(self):
         return self.name
 
+class EmergencyContact(models.Model):
+    name = models.CharField(max_length=200,null=True,blank=True)
+    relation = models.CharField(max_length=200,null=True,blank=True)
+    phone = models.CharField(max_length=200,null=True,blank=True)
+    how_did_you_hear_us = models.ManyToManyField("location.HowDidYouHearUs",blank=True)
+    medical_condition = models.TextField(null=True,blank=True)
+    wear_glass = models.BooleanField(default=False,null=True,blank=True)
+    student = models.ForeignKey("Student",on_delete=models.CASCADE)
+    def __str__(self):
+        return f"Emergency {self.relation} {self.name}"
+
+class StudentNote(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    data_created = models.DateTimeField(auto_now_add=True,editable=False)
+    note = models.TextField()
+    to_user = models.ForeignKey("mainadmin.CustomUser",on_delete=models.CASCADE)
+    def __str__(self):
+        return f"{self.id} - {self.note}"
+class DrivingNote(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    data_created = models.DateTimeField(auto_now_add=True,editable=False)
+    note = models.TextField()
+    to_user = models.ForeignKey("mainadmin.CustomUser",on_delete=models.CASCADE)
+    def __str__(self):
+        return f"{self.id} - {self.note}"
 # class CustomToken(models.Model):
 #     key = models.CharField(max_length=40, primary_key=True)
 #     user = models.OneToOneField(User, related_name='custom_token', on_delete=models.CASCADE)

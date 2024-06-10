@@ -6,12 +6,34 @@ from django.shortcuts import render
 from django import forms
 
 from django.contrib.auth import authenticate
-from .models import Instructor, Student, Enrollment, FileCategory, UserType, Files, Bill
+from .models import Instructor, Student, Enrollment, FileCategory, UserType, Files, Bill,EmergencyContact,StudentNote,DrivingNote
 from .serializer import InstructorSerializer, StudentSerializer,  \
-       EnrollmentSerializer, FileCategorySerializer,  UserTypeSerializer, FilesSerializer, BillSerializer,AuthTokenSerializer
+       EnrollmentSerializer, FileCategorySerializer,  UserTypeSerializer, FilesSerializer, BillSerializer,\
+       AuthTokenSerializer,EmergencyContactSerializer,DrivingNoteSerializer,StudentNoteSerializer
 from django.contrib.auth.hashers import check_password
 # Create your views here.
 
+class EmergencyContactViewSet(viewsets.ModelViewSet):
+    queryset = EmergencyContact.objects.all()
+    serializer_class = EmergencyContactSerializer
+    def perform_create(self, serializer):
+        serializer.save()
+    def perform_update(self, serializer):
+        serializer.save()
+class DrivingNoteViewSet(viewsets.ModelViewSet):
+    queryset = DrivingNote.objects.all()
+    serializer_class = DrivingNoteSerializer
+    def perform_create(self, serializer):
+        serializer.save()
+    def perform_update(self, serializer):
+        serializer.save()
+class StudentNoteViewSet(viewsets.ModelViewSet):
+    queryset = StudentNote.objects.all()
+    serializer_class = StudentNoteSerializer
+    def perform_create(self, serializer):
+        serializer.save()
+    def perform_update(self, serializer):
+        serializer.save()
 class InstructorViewSet(viewsets.ModelViewSet):
     queryset = Instructor.objects.all()
     serializer_class = InstructorSerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill
+from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill,EmergencyContact,StudentNote,DrivingNote
 
 class InstructorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,11 +9,19 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
         fields = "__all__"
+class EmergencyContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmergencyContact
+        fields = "__all__"
+class StudentNoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentNote
+        fields = "__all__"
 
-
-
-
-
+class DrivingNoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DrivingNote
+        fields = "__all__"
 
 class FileCategorySerializer(serializers.ModelSerializer):
     class Meta:

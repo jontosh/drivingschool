@@ -91,6 +91,9 @@ Router = {
             "user_type":"user_type",
             "files":"files",
             "bill":"bill",
+            "emergency_contact":"emergency_contact",
+            "student_note":"student_note",
+            "driving_note":"driving_note",
         }
     },
     "main_admin":{
