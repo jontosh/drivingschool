@@ -160,18 +160,18 @@ const File = () => {
                 </IconComponent>
                 <div className={`flex gap-2`}>
                   <CustomSelect
-                    colorBorder={colorsObject.primary}
                     placeholder={"Month"}
                     options={Months}
+                    className={"h-[50px]"}
                   />
                   <CustomSelect
-                    colorBorder={colorsObject.primary}
                     placeholder={"Year"}
                     options={YearsOptions()}
+                    className={"h-[50px]"}
                   />
                   <CustomSelect
-                    colorBorder={colorsObject.primary}
                     placeholder={"Display"}
+                    className={"h-[50px]"}
                     options={[
                       {
                         value: "None",

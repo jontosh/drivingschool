@@ -857,14 +857,16 @@ const MultipleChoice = ({ form, ...props }) => {
                         <CustomInput placeholder={"choice of answers"} classNames={"w-full"} />
                       </Form.Item>
 
-                      <Form.Item
-                        {...restField}
-                        name={[name, "is_correct"]}
-                        label={"correct answer"}
-                      >
-                        <CustomCheckBox />
-                      </Form.Item>
-                      <MinusCircleOutlined onClick={() => remove(name)} />
+                      <div className="flex items-center justify-between">
+                        <Form.Item
+                          {...restField}
+                          name={[name, "is_correct"]}
+                          label={"correct answer"}
+                        >
+                          <CustomCheckBox />
+                        </Form.Item>
+                        <MinusCircleOutlined onClick={() => remove(name)} />
+                      </div>
                     </div>
                   ))}
                   <Form.Item>
@@ -1251,15 +1253,16 @@ const Category = ({ form, ...props }) => {
                       >
                         <CustomInput placeholder={"choice of answers"} classNames={"w-full"} />
                       </Form.Item>
-
-                      <Form.Item
-                        {...restField}
-                        name={[name, "is_correct"]}
-                        label={"correct answer"}
-                      >
-                        <CustomCheckBox />
-                      </Form.Item>
-                      <MinusCircleOutlined onClick={() => remove(name)} />
+                      <div className="flex items-center justify-between">
+                        <Form.Item
+                          {...restField}
+                          name={[name, "is_correct"]}
+                          label={"correct answer"}
+                        >
+                          <CustomCheckBox />
+                        </Form.Item>
+                        <MinusCircleOutlined onClick={() => remove(name)} />
+                      </div>
                     </div>
                   ))}
                   <Form.Item>

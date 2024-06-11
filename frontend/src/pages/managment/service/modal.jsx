@@ -600,34 +600,37 @@ export const ProductModalContent = () => {
             ) : getFieldValue("subtype_web") === "EZ DRIVE" &&
               getFieldValue("type_component") === "WEB" ? (
               <Fragment>
-                <Form.Item
-                  name={"ez_drive_product"}
-                  label={"EZ Drive Product:"}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <CustomSelect
-                    placeholder={"EZ Drive Product"}
-                    className={`w-full h-[50px]`}
-                    options={StatusSelect}
-                    colorBorder={colorsObject.black}
-                    onChange={handleEZDriveProduct}
-                  />
-                </Form.Item>
+                <div className="flex items-center gap-3 px-5 my-5">
+                  <Form.Item
+                    name={"ez_drive_product"}
+                    label={"EZ Drive Product:"}
+                    className="w-full"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <CustomSelect
+                      placeholder={"EZ Drive Product"}
+                      className={`w-full h-[50px]`}
+                      options={StatusSelect}
+                      onChange={handleEZDriveProduct}
+                    />
+                  </Form.Item>
 
-                <Form.Item
-                  name={"duration"}
-                  label={"Duration"}
-                  getValueProps={(value) => ({
-                    value: value && dayjs(Number(value)),
-                  })}
-                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
-                >
-                  <DatePicker />
-                </Form.Item>
+                  <Form.Item
+                    name={"duration"}
+                    label={"Duration (Days):"}
+                    getValueProps={(value) => ({
+                      value: value && dayjs(Number(value)),
+                    })}
+                    normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                    className="w-full"
+                  >
+                    <DatePicker className="border-[#667085] w-full h-[50px]" />
+                  </Form.Item>
+                </div>
               </Fragment>
             ) : getFieldValue("subtype_web") === "SAFEWAY LMS" &&
               getFieldValue("type_component") === "WEB" ? (
@@ -1744,12 +1747,13 @@ export const FileCategoryModalContent = () => {
           note: "",
           signature: "",
         }}
-        className={"space-y-5 px-5"}
+        className="grid justify-center gap-y-5 px-5"
         onFinish={onFinish}
       >
         <Form.Item
           name={"name"}
           label={"Category name"}
+          className="w-[50%]"
           rules={[
             {
               required: true,
@@ -1763,6 +1767,7 @@ export const FileCategoryModalContent = () => {
         <Form.Item
           name={"status"}
           label={"Status"}
+          className="w-[50%]"
           rules={[
             {
               required: true,
