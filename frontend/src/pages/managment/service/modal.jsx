@@ -19,7 +19,14 @@ import {
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import MDEditor from "@uiw/react-md-editor";
-import { ConfigProvider, DatePicker, Form, Switch, Tabs } from "antd";
+import {
+  ConfigProvider,
+  DatePicker,
+  Form,
+  InputNumber,
+  Switch,
+  Tabs,
+} from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
 import {
@@ -980,7 +987,11 @@ export const DiscountModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"services"} label={"Eligible Service:"} className="m-auto">
+        <Form.Item
+          name={"services"}
+          label={"Eligible Service:"}
+          className="m-auto"
+        >
           <CustomTransfer
             dataSource={mockData}
             listHeight={200}
@@ -999,7 +1010,11 @@ export const DiscountModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"classes"} label={"Eligible Class(es):"} className="m-auto">
+        <Form.Item
+          name={"classes"}
+          label={"Eligible Class(es):"}
+          className="m-auto"
+        >
           <CustomTransfer
             dataSource={mockData}
             listHeight={200}
@@ -1008,7 +1023,11 @@ export const DiscountModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"locations"} label={"Eligible class Location:"} className="m-auto">
+        <Form.Item
+          name={"locations"}
+          label={"Eligible class Location:"}
+          className="m-auto"
+        >
           <CustomTransfer
             dataSource={mockData}
             listHeight={200}
@@ -1025,7 +1044,10 @@ export const DiscountModalContent = () => {
           normalize={(value) => value && `${dayjs(value).valueOf()}`}
           label={"Discount Expiration:"}
         >
-          <DatePicker placeholder={"MM/DD/YYYY"} className="border-[#667085] w-full h-[50px]" />
+          <DatePicker
+            placeholder={"MM/DD/YYYY"}
+            className="border-[#667085] w-full h-[50px]"
+          />
         </Form.Item>
 
         <div className="text-center space-x-5">
@@ -1196,430 +1218,380 @@ export const MiscellaneousModalContent = () => {
 
 export const AddServiceModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { data: LocationData } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
+
+  const { data: AddOnData } = useRequestGetQuery({
+    path: "/account_management/services/add_on/",
+  });
+  const { data: DiscountData } = useRequestGetQuery({
+    path: "/account_management/services/discount/",
+  });
+
   const [requestPost] = useRequestPostMutation();
+  const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [Selections, setSelections] = useState(false);
-  const [Status, setStatus] = useState("");
-  const [AssociateContract, setAssociateContract] = useState("");
-  const [WebDescriptionValue, setWebDescriptionValue] = useState("Hello");
-  const [EnrollmentContent, setEnrollmentContent] = useState("Hello");
-  const [NotesValue, setNotesValue] = useState("Hello");
+  const [Location, setLocation] = useState([]);
+  const [AddOn, setAddOn] = useState([]);
+  const [DiscountMock, setDiscountMock] = useState([]);
   const [AssignLocation, setAssignLocation] = useState([]);
-  const [ServiceItems, setServiceItems] = useState([]);
   const [AddOnServices, setAddOnServices] = useState([]);
   const [Discount, setDiscount] = useState([]);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
-  // dep
-  const selects = [Status];
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
+  useEffect(() => {
+    // /account_management/location/
+    const locationMock = [];
+    const addOnMock = [];
+    const discountData = [];
+
+    for (let i = 0; i < LocationData?.length; i++) {
+      locationMock.push({
+        ...LocationData[i],
+        key: LocationData[i]?.id,
+        title: LocationData[i]?.name,
+      });
     }
 
-    return state;
-  }, [Status]);
+    for (let i = 0; i < AddOnData?.length; i++) {
+      addOnMock.push({
+        ...AddOnData[i],
+        key: AddOnData[i]?.id,
+        title: AddOnData[i]?.name,
+      });
+    }
+
+    for (let i = 0; i < DiscountData?.length; i++) {
+      discountData.push({
+        ...DiscountData[i],
+        key: DiscountData[i]?.id,
+        title: DiscountData[i]?.name,
+      });
+    }
+
+    setLocation(locationMock);
+    setAddOn(addOnMock);
+    setDiscountMock(discountData);
+  }, [LocationData, AddOnData, DiscountData]);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      locations: AssignLocation,
+      add_ons: AddOnServices,
+      discount: Discount,
+    });
+  }, [AssignLocation?.length, AddOnServices?.length, Discount?.length]);
 
   // func
-  const handleSubmit = async (values) => {
-    setSelections(stateSelects);
+  const onFinish = async (values) => {
+    try {
+      const res = await requestPost({
+        path: "/account_management/services/service/",
+        data: values,
+      });
 
-    if (!stateSelects) {
-      try {
-        const res = await requestPost({
-          path: "/account_management/services/service/",
-          data: {
-            ...values,
-            status: Status,
-            oe: AssociateContract,
-            notes: NotesValue,
-            web_description: WebDescriptionValue,
-            enrolment_email: EnrollmentContent,
-            add_ons: ToNumber(AddOnServices),
-            discount: ToNumber(Discount),
-            locations: ToNumber(AssignLocation),
-            items: ToNumber(ServiceItems),
-          },
-        });
-
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error(error.message);
-        dispatch({ type: "ERROR", setIsOpen });
+      if (res?.error?.status >= 400) {
         setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
       }
+      // console.log(res);
+    } catch (error) {
+      setIsOpen(true);
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
     }
   };
-  const handleStatus = (values) => setStatus(values);
-  const handleAssociateContract = (values) => setAssociateContract(values);
+
+  const handleStatus = (values) => {
+    form.setFieldsValue({
+      status: values,
+    });
+  };
+
+  const handleWebDesc = (value) => {
+    form.setFieldsValue({
+      web_description: value,
+    });
+  };
+
+  const handleEnrollmentEmail = (value) => {
+    form.setFieldsValue({
+      enrolment_email: value,
+    });
+  };
+
+  const handleOE = (value) => {
+    form.setFieldsValue({
+      oe: value,
+    });
+  };
+  const handleServiceNotes = (value) => {
+    form.setFieldsValue({
+      notes: value,
+    });
+  };
 
   return (
     <Fragment>
-      <Formik
+      <Form
         initialValues={{
-          name: "",
-          code: "",
           taxable: false,
-          price: "",
-          web_name: "",
-          purchase: false,
-          portal_purchase: false,
+          locations: [],
+          add_ons: [],
+          discount: [],
+          web_description: "Hello",
+          enrolment_email: "Hello",
+          notes: "Hello",
         }}
-        validate={(values) => {
-          const errors = {};
-
-          if (!values.name) {
-            errors.name = "Input Service name is empty";
-          }
-
-          if (!values.code) {
-            errors.code = "Input Service code is empty";
-          }
-
-          if (!values.price) {
-            errors.price = "Input Price is empty";
-          }
-
-          if (!values.web_name) {
-            errors.web_name = "Input Web name is empty";
-          }
-
-          console.log(values);
-
-          return errors;
-        }}
-        onSubmit={handleSubmit}
+        form={form}
+        className={"space-y-5"}
+        onFinish={onFinish}
       >
-        {({ values, errors, handleChange, handleSubmit, handleReset }) => (
-          <form className={"space-y-5"} onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-x-10 px-5">
-              <div className={"space-y-5"}>
-                <CustomInput
-                  placeholder={"Service Name"}
-                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
-                  }
-                  spanText={"Service Name:"}
-                  spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"name"}
-                  value={values.name}
-                  onChange={handleChange}
-                  fontSize="text-base"
-                >
-                  {errors.name && (
-                    <FormError className={"pl-[170px]"}>
-                      {errors.name}
-                    </FormError>
-                  )}
-                </CustomInput>
-                <CustomInput
-                  placeholder={"Service Code"}
-                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
-                  }
-                  spanText={"Service Code:"}
-                  spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"code"}
-                  value={values.code}
-                  onChange={handleChange}
-                  fontSize="text-base"
-                >
-                  {errors.code && (
-                    <FormError className={"pl-[170px]"}>
-                      {errors.code}
-                    </FormError>
-                  )}
-                </CustomInput>
-                <label
-                  className={`inline-flex justify-end gap-x-10 items-center w-full`}
-                >
-                  <span
-                    className={`w-32 text-base font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Status:
-                  </span>
+        <div className="grid grid-cols-2 gap-x-10 px-5">
+          <div className={"space-y-5"}>
+            <Form.Item
+              label={"Service Name"}
+              name={"name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Service name is empty",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Service name"} classNames={"w-full"} />
+            </Form.Item>
 
-                  <div className="w-full">
-                    <CustomSelect
-                      placeholder={"Select status"}
-                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                      options={StatusSelect}
-                      value={Status ? Status : undefined}
-                      onChange={handleStatus}
-                    />
-                    {Selections && (
-                      <FormError className={"pl-[170px]"}>
-                        Select Status
-                      </FormError>
-                    )}
-                  </div>
-                </label>
+            <Form.Item
+              label={"Service code"}
+              name={"code"}
+              rules={[
+                {
+                  required: true,
+                  message: "Service code is empty",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Service name"} classNames={"w-full"} />
+            </Form.Item>
 
-                <div className={`space-y-5`}>
-                  <div className={`flex items-center gap-10`}>
-                    <span
-                      className={`w-32 text-base font-medium  text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    >
-                      Assign Locations:
-                    </span>
-                    <div className={`flex flex-col gap-5 items-center`}>
-                      <span className="text-base">Click to select</span>
-                      <CustomTransfer
-                        dataSource={mockData}
-                        listHeight={200}
-                        setSelectedKeys={setAssignLocation}
-                        selectedKeys={AssignLocation}
-                      />
-                    </div>
-                  </div>
+            <Form.Item
+              name={"status"}
+              label={"Status"}
+              rules={[
+                {
+                  required: true,
+                  message: "Status is empty",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-full h-[50px] rounded`}
+                options={StatusSelect}
+                onChange={handleStatus}
+              />
+            </Form.Item>
 
-                  <div className={`flex items-center gap-10`}>
-                    <span
-                      className={`w-32 text-base font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    >
-                      Service Items:
-                    </span>
-                    <div className={`flex flex-col gap-5 items-center`}>
-                      <span className="text-base">Click to select</span>
-                      <CustomTransfer
-                        dataSource={mockData}
-                        listHeight={200}
-                        setSelectedKeys={setServiceItems}
-                        selectedKeys={ServiceItems}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <CustomCheckBox
-                  className={"gap-x-2.5 pl-[169px] text-base font-medium"}
-                  name={"taxable"}
-                  onChange={handleChange}
-                >
-                  Is Service Taxable
-                </CustomCheckBox>
-                <CustomInput
-                  placeholder={"Service Price:"}
-                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse "
-                  }
-                  spanText={"Service Price:"}
-                  spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"price"}
-                  value={values.price}
-                  onChange={handleChange}
-                  fontSize="text-base"
-                >
-                  {errors.price && (
-                    <FormError className={"pl-[170px]"}>
-                      {errors.price}
-                    </FormError>
-                  )}
-                </CustomInput>
+            <Form.Item name={"locations"} label={"Assign Locations"}>
+              <CustomTransfer
+                dataSource={Location}
+                listHeight={200}
+                setSelectedKeys={setAssignLocation}
+                selectedKeys={AssignLocation}
+              />
+            </Form.Item>
 
-                <CustomInput
-                  placeholder={"Web Name:"}
-                  className={`text-gray-500 px-5 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full h-[50px] justify-between gap-10 flex-row-reverse"
-                  }
-                  spanText={"Web Name:"}
-                  spanClassName={`w-32 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"web_name"}
-                  value={values.web_name}
-                  onChange={handleChange}
-                  fontSize="text-base"
-                >
-                  {errors.web_name && (
-                    <FormError className={"pl-[170px]"}>
-                      {errors.web_name}
-                    </FormError>
-                  )}
-                </CustomInput>
-
-                <label className="inline-flex justify-end gap-10 items-center w-full">
-                  <span className="text-base flex-shrink-0 font-medium w-32 text-right">
-                    Web description
-                  </span>
-                  <div className="w-full">
-                    <MDEditor
-                      value={WebDescriptionValue}
-                      onChange={(value) => setWebDescriptionValue(value)}
-                      previewOptions={{
-                        rehypePlugins: [[rehypeSanitize]],
-                      }}
-                    />
-                  </div>
-                </label>
-
-                <label className="inline-flex justify-end gap-10 items-center w-full">
-                  <span className="text-base flex-shrink-0 font-medium w-32 text-right">
-                    Enrollment Email Content
-                  </span>
-                  <div className="w-full">
-                    <MDEditor
-                      value={EnrollmentContent}
-                      onChange={(value) => setEnrollmentContent(value)}
-                      previewOptions={{
-                        rehypePlugins: [[rehypeSanitize]],
-                      }}
-                    />
-                  </div>
-                </label>
-              </div>
-              {/*------------*/}
-              <div className={`space-y-5`}>
-                <label className={"inline-flex items-center w-full gap-10"}>
-                  <span
-                    className={`w-36 text-base font-medium text-end flex-shrink-0 `}
-                  >
-                    Allow Web Purchase:
-                  </span>
-                  <CustomCheckBox name={"purchase"} onChange={handleChange} />
-                </label>
-
-                <label className={"inline-flex items-center w-full gap-10"}>
-                  <span
-                    className={`w-36 text-base font-medium text-end flex-shrink-0 `}
-                  >
-                    Allow Portal Purchase:
-                  </span>
-
-                  <CustomCheckBox
-                    name={"portal_purchase"}
-                    onChange={handleChange}
-                  />
-                </label>
-
-                <div className={`space-y-5`}>
-                  <div className={`flex items-center gap-10`}>
-                    <span
-                      className={`w-36 text-base font-medium text-end flex-shrink-0 `}
-                    >
-                      Add-On Services:
-                    </span>
-                    <div className={`flex flex-col gap-5 items-center`}>
-                      <span className="text-base">Click to select</span>
-                      <CustomTransfer
-                        dataSource={mockData}
-                        listHeight={200}
-                        setSelectedKeys={setAddOnServices}
-                        selectedKeys={AddOnServices}
-                      />
-                    </div>
-                  </div>
-
-                  <div className={`flex items-center gap-10`}>
-                    <span
-                      className={`w-36 text-base font-medium text-end flex-shrink-0`}
-                    >
-                      Eligible Discounts:
-                    </span>
-                    <div className={`flex flex-col gap-5 items-center`}>
-                      <span className="text-base">Click to select</span>
-                      <CustomTransfer
-                        dataSource={mockData}
-                        listHeight={200}
-                        setSelectedKeys={setDiscount}
-                        selectedKeys={Discount}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <label
-                  className={`inline-flex items-center w-full justify-between gap-10`}
-                >
-                  <span
-                    className={`w-36 text-base font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Associate Contract From OE:
-                  </span>
-                  <div className="w-full">
-                    <CustomSelect
-                      className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]} h-[50px]`}
-                      placeholder={"Service Status"}
-                      value={AssociateContract ? AssociateContract : undefined}
-                      onChange={handleAssociateContract}
-                      options={[
-                        { value: "TEEN", label: "TEEN" },
-                        { value: "ADULT", label: "ADULT" },
-                        { value: "KNOWLEDGE", label: "KNOWLEDGE" },
-                        { value: "ROAD TEST", label: "ROAD TEST" },
-                      ]}
-                    />
-                    {Selections && (
-                      <FormError className={"pl-[170px]"}>
-                        Select Associate Contract From OE
-                      </FormError>
-                    )}
-                  </div>
-                </label>
-
-                <label className="inline-flex justify-end gap-10 items-center w-full">
-                  <span className="text-base font-medium flex-shrink-0 font-medium w-36 text-right">
-                    Service Notes:
-                  </span>
-                  <div className="w-full">
-                    <MDEditor
-                      value={NotesValue}
-                      onChange={(value) => setNotesValue(value)}
-                      previewOptions={{
-                        rehypePlugins: [[rehypeSanitize]],
-                      }}
-                    />
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
+            <Form.Item name={"taxable"} valuePropName="checked">
+              <CustomCheckBox
+                className={"gap-x-2.5 pl-[169px] text-base font-medium"}
               >
-                Save
-              </ButtonComponent>
+                Is Service Taxable
+              </CustomCheckBox>
+            </Form.Item>
 
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/service/packages");
-                  }, 1000);
+            <Form.Item
+              name={"price"}
+              label={"Service Price:"}
+              rules={[
+                {
+                  required: true,
+                  message: "Price is empty",
+                  type: "number",
+                },
+              ]}
+            >
+              <InputNumber
+                placeholder={"Service Price"}
+                className={"w-full h-[50px] border-black"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"web_name"}
+              label={"Web Name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Web Name is empty",
+                },
+              ]}
+            >
+              <CustomInput
+                placeholder={"Web Name"}
+                classNames={"w-full"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"web_description"}
+              label={"Web description"}
+              rules={[
+                {
+                  required: true,
+                  message: "Service name is empty",
+                },
+              ]}
+            >
+              <MDEditor
+                placeholder={"Text"}
+                onChange={handleWebDesc}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
                 }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"enrolment_email"}
+              label={"Enrollment Email Content"}
+            >
+              <MDEditor
+                placeholder={"Text"}
+                onChange={handleEnrollmentEmail}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+            </Form.Item>
+          </div>
+          {/*------------*/}
+          <div className={`space-y-5`}>
+            <Form.Item
+              name={"purchase"}
+              label={"Allow Web Purchase:"}
+              valuePropName="checked"
+              rules={[
+                {
+                  required: true,
+                  message: "purchase is empty",
+                },
+              ]}
+            >
+              <CustomCheckBox />
+            </Form.Item>
+
+            <Form.Item
+              name={"portal_purchase"}
+              label={"Allow Web Purchase:"}
+              valuePropName="checked"
+              rules={[
+                {
+                  required: true,
+                  message: "Allow Portal Purchase is empty",
+                },
+              ]}
+            >
+              <CustomCheckBox />
+            </Form.Item>
+
+            <Form.Item name={"add_ons"} label={"Add-On Services"}>
+              <CustomTransfer
+                dataSource={AddOn}
+                listHeight={200}
+                setSelectedKeys={setAddOnServices}
+                selectedKeys={AddOnServices}
+              />
+            </Form.Item>
+
+            <Form.Item name={"discount"} label={"Eligible Discounts"}>
+              <CustomTransfer
+                dataSource={DiscountMock}
+                listHeight={200}
+                setSelectedKeys={setDiscount}
+                selectedKeys={Discount}
+              />
+            </Form.Item>
+
+            <Form.Item name={"oe"} label={"Associate Contract From OE"}>
+              <CustomSelect
+                className={`w-full h-[50px]`}
+                placeholder={"Associate Contract From OE"}
+                onChange={handleOE}
+                options={[
+                  { value: "TEEN", label: "TEEN" },
+                  { value: "ADULT", label: "ADULT" },
+                  { value: "KNOWLEDGE", label: "KNOWLEDGE" },
+                  { value: "ROAD TEST", label: "ROAD TEST" },
+                ]}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"notes"}
+              label={"Service Notes"}
+              rules={[
+                {
+                  required: true,
+                  message: "Service Notes is empty",
+                },
+              ]}
+            >
+              <MDEditor
+                placeholder={"Text"}
+                onChange={handleServiceNotes}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
+
+          <ButtonComponent
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
+
       {IsOpen && state?.status}
     </Fragment>
   );
