@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update modal.jsx with new service information and form inputs.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
@@ -135,7 +135,7 @@
       <workItem from="1718001567190" duration="8478000" />
       <workItem from="1718010622375" duration="5090000" />
       <workItem from="1718087028623" duration="5595000" />
-      <workItem from="1718092776741" duration="3556000" />
+      <workItem from="1718092776741" duration="7927000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -369,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718093196829</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="#fix #jsx Update modal.jsx with new service information and form inputs.">
+      <option name="closed" value="true" />
+      <created>1718100658457</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1718100658458</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,18 +395,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update workspace" />
-    <MESSAGE value="Update workspace.xml" />
-    <MESSAGE value="Update workspace.xml and" />
-    <MESSAGE value="Update workspace.xml and modal" />
-    <MESSAGE value="Update workspace.xml and modal.jsx" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and" />
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form" />
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs" />
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs," />
@@ -412,17 +408,18 @@
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx" />
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
     <MESSAGE value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
-          <line>1862</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update modal" />
+    <MESSAGE value="Update modal.jsx" />
+    <MESSAGE value="Update modal.jsx with" />
+    <MESSAGE value="Update modal.jsx with new" />
+    <MESSAGE value="Update modal.jsx with new service" />
+    <MESSAGE value="Update modal.jsx with new service information" />
+    <MESSAGE value="Update modal.jsx with new service information and" />
+    <MESSAGE value="Update modal.jsx with new service information and form" />
+    <MESSAGE value="Update modal.jsx with new service information and form inputs" />
+    <MESSAGE value="Update modal.jsx with new service information and form inputs." />
+    <MESSAGE value="#fix #jsx Update modal.jsx with new service information and form inputs." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update modal.jsx with new service information and form inputs." />
   </component>
 </project>
