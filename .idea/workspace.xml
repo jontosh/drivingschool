@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +135,7 @@
       <workItem from="1718001567190" duration="8478000" />
       <workItem from="1718010622375" duration="5090000" />
       <workItem from="1718087028623" duration="5595000" />
-      <workItem from="1718092776741" duration="369000" />
+      <workItem from="1718092776741" duration="3556000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -360,7 +361,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718092821114</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx.">
+      <option name="closed" value="true" />
+      <created>1718093196829</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1718093196829</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,16 +387,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add to-do section in management.jsx and" />
-    <MESSAGE value="Add to-do section in management.jsx and update" />
-    <MESSAGE value="Add to-do section in management.jsx and update a" />
-    <MESSAGE value="Add to-do section in management.jsx and update a work" />
-    <MESSAGE value="Add to-do section in management.jsx and update a work item" />
-    <MESSAGE value="Add to-do section in management.jsx and update a work item in" />
-    <MESSAGE value="Add to-do section in management.jsx and update a work item in workspace" />
-    <MESSAGE value="Add to-do section in management.jsx and update a work item in workspace.xml" />
-    <MESSAGE value="Add to-do section in management.jsx and update a work item in workspace.xml." />
-    <MESSAGE value="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml." />
+    <MESSAGE value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs." />
     <MESSAGE value="Update" />
     <MESSAGE value="Update workspace" />
     <MESSAGE value="Update workspace.xml" />
@@ -401,16 +401,25 @@
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and" />
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form" />
     <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs." />
-    <MESSAGE value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs." />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs," />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx" />
+    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
+    <MESSAGE value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
-          <line>1807</line>
+          <line>1862</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
