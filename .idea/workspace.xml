@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update modal.jsx with new service information and form inputs.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +136,9 @@
       <workItem from="1718010622375" duration="5090000" />
       <workItem from="1718087028623" duration="5595000" />
       <workItem from="1718092776741" duration="8960000" />
-      <workItem from="1718117698421" duration="1340000" />
+      <workItem from="1718117698421" duration="8141000" />
+      <workItem from="1718135654357" duration="1132000" />
+      <workItem from="1718136941360" duration="3889000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -387,7 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718104686677</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718119179298</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1718119179298</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,21 +414,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs," />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx" />
-    <MESSAGE value="Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
-    <MESSAGE value="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update modal" />
     <MESSAGE value="Update modal.jsx" />
     <MESSAGE value="Update modal.jsx with" />
     <MESSAGE value="Update modal.jsx with new" />
@@ -430,6 +424,21 @@
     <MESSAGE value="Update modal.jsx with new service information and form inputs" />
     <MESSAGE value="Update modal.jsx with new service information and form inputs." />
     <MESSAGE value="#fix #jsx Update modal.jsx with new service information and form inputs." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update modal.jsx with new service information and form inputs." />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor form" />
+    <MESSAGE value="Refactor form list" />
+    <MESSAGE value="Refactor form list and" />
+    <MESSAGE value="Refactor form list and custom" />
+    <MESSAGE value="Refactor form list and custom input" />
+    <MESSAGE value="Refactor form list and custom input components" />
+    <MESSAGE value="Refactor form list and custom input components for" />
+    <MESSAGE value="Refactor form list and custom input components for improved" />
+    <MESSAGE value="Refactor form list and custom input components for improved structure" />
+    <MESSAGE value="Refactor form list and custom input components for improved structure and" />
+    <MESSAGE value="Refactor form list and custom input components for improved structure and readability" />
+    <MESSAGE value="Refactor form list and custom input components for improved structure and readability." />
+    <MESSAGE value="#fix #jsx Refactor form list and custom input components for improved structure and readability." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form list and custom input components for improved structure and readability." />
   </component>
 </project>
