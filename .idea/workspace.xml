@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +133,8 @@
       <workItem from="1717936324388" duration="1127000" />
       <workItem from="1717937753840" duration="3589000" />
       <workItem from="1718001567190" duration="8478000" />
-      <workItem from="1718010622375" duration="1800000" />
+      <workItem from="1718010622375" duration="5090000" />
+      <workItem from="1718087028623" duration="5595000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -343,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718010940967</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml.">
+      <option name="closed" value="true" />
+      <created>1718012807754</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1718012807754</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +402,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx</url>
-          <line>1823</line>
+          <line>1795</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
