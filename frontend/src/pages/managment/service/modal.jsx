@@ -852,6 +852,15 @@ export const FeesModalContent = () => {
 
 export const DiscountModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { data: ServiceData } = useRequestGetQuery({
+    path: "/account_management/services/service/",
+  });
+  const { data: ClassData } = useRequestGetQuery({
+    path: "/account_management/class/",
+  });
+  const { data: LocationData } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
   const [requestPost] = useRequestPostMutation();
@@ -859,7 +868,45 @@ export const DiscountModalContent = () => {
   const [EligibleService, setEligibleService] = useState([]);
   const [EligibleClass, setEligibleClass] = useState([]);
   const [EligibleClassLocation, setEligibleClassLocation] = useState([]);
+  const [Service, setService] = useState([]);
+  const [Classes, setClasses] = useState([]);
+  const [Location, setLocation] = useState([]);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    const services = [];
+    for (let i = 0; i < ServiceData?.length; i++) {
+      const item = ServiceData[i];
+      services.push({
+        ...item,
+        key: item?.id,
+        title: item?.name,
+      });
+    }
+
+    const classes = [];
+    for (let i = 0; i < ClassData?.length; i++) {
+      const item = ClassData[i];
+      classes.push({
+        ...item,
+        key: item?.id,
+        title: item?.name,
+      });
+    }
+    const location = [];
+    for (let i = 0; i < LocationData?.length; i++) {
+      const item = LocationData[i];
+      location.push({
+        ...item,
+        key: item?.id,
+        title: item?.name,
+      });
+    }
+
+    setClasses(classes);
+    setService(services);
+    setLocation(location);
+  }, [ServiceData, ClassData, LocationData]);
 
   useEffect(() => {
     form.setFieldsValue({
@@ -879,6 +926,12 @@ export const DiscountModalContent = () => {
   const handleNotesValue = (value) => {
     form.setFieldsValue({
       notes: value,
+    });
+  };
+
+  const handleExpirationDate = (day) => {
+    form.setFieldsValue({
+      expiration_data: `${day["$y"]}-${day["$M"] + 1}-${day["$D"]}`,
     });
   };
 
@@ -924,6 +977,7 @@ export const DiscountModalContent = () => {
         layout={"vertical"}
         initialValues={{
           notes: "Hello",
+          expiration_data: null,
         }}
       >
         <Form.Item
@@ -993,7 +1047,7 @@ export const DiscountModalContent = () => {
           className="m-auto"
         >
           <CustomTransfer
-            dataSource={mockData}
+            dataSource={Service}
             listHeight={200}
             setSelectedKeys={setEligibleService}
             selectedKeys={EligibleService}
@@ -1016,7 +1070,7 @@ export const DiscountModalContent = () => {
           className="m-auto"
         >
           <CustomTransfer
-            dataSource={mockData}
+            dataSource={Classes}
             listHeight={200}
             setSelectedKeys={setEligibleClass}
             selectedKeys={EligibleClass}
@@ -1029,7 +1083,7 @@ export const DiscountModalContent = () => {
           className="m-auto"
         >
           <CustomTransfer
-            dataSource={mockData}
+            dataSource={Location}
             listHeight={200}
             setSelectedKeys={setEligibleClassLocation}
             selectedKeys={EligibleClassLocation}
@@ -1037,7 +1091,6 @@ export const DiscountModalContent = () => {
         </Form.Item>
 
         <Form.Item
-          name={"expiration_data"}
           getValueProps={(value) => ({
             value: value && dayjs(Number(value)),
           })}
@@ -1047,6 +1100,7 @@ export const DiscountModalContent = () => {
           <DatePicker
             placeholder={"MM/DD/YYYY"}
             className="border-[#667085] w-full h-[50px]"
+            onChange={handleExpirationDate}
           />
         </Form.Item>
 
