@@ -841,7 +841,7 @@ const MultipleChoice = ({ form, ...props }) => {
             />
           </Form.Item>
 
-          <Form.List name="users">
+          <Form.List>
             {(fields, { add, remove }) => {
               console.log(fields);
               return (
@@ -854,7 +854,10 @@ const MultipleChoice = ({ form, ...props }) => {
                         label={"choice of answers"}
                         className="w-full"
                       >
-                        <CustomInput placeholder={"choice of answers"} classNames={"w-full"} />
+                        <CustomInput
+                          placeholder={"choice of answers"}
+                          classNames={"w-full"}
+                        />
                       </Form.Item>
 
                       <div className="flex items-center justify-between">
@@ -890,18 +893,12 @@ const MultipleChoice = ({ form, ...props }) => {
 
         <div className="space-y-5">
           <div className="flex justify-between items-center">
-            <Paragraph className={"text-xl font-normal"}>
-              Test Name:
-            </Paragraph>
+            <Paragraph className={"text-xl font-normal"}>Test Name:</Paragraph>
 
-            <span className="text-xl font-normal">
-              Questions 8
-            </span>
+            <span className="text-xl font-normal">Questions 8</span>
           </div>
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">1</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -914,9 +911,7 @@ const MultipleChoice = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">2</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -929,9 +924,7 @@ const MultipleChoice = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">3</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -944,9 +937,7 @@ const MultipleChoice = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">4</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -959,9 +950,7 @@ const MultipleChoice = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">5</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -974,9 +963,7 @@ const MultipleChoice = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">6</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -989,9 +976,7 @@ const MultipleChoice = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">7</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1004,9 +989,7 @@ const MultipleChoice = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">8</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1046,20 +1029,26 @@ const TrueFalse = ({ form, ...props }) => {
 
           <div>
             <Form.Item name={"text"} label={"choice of answers"}>
-              <CustomInput placeholder={"choice of answers"} classNames="w-full" />
+              <CustomInput
+                placeholder={"choice of answers"}
+                classNames="w-full"
+              />
             </Form.Item>
-
 
             <ConfigProvider
               theme={{
                 components: {
                   Form: {
-                    labelFontSize: 16
-                  }
-                }
+                    labelFontSize: 16,
+                  },
+                },
               }}
             >
-              <Form.Item name={"is_correct"} label={"correct answer"} labelAlign="left">
+              <Form.Item
+                name={"is_correct"}
+                label={"correct answer"}
+                labelAlign="left"
+              >
                 <CustomRadio name={"is_correct"} />
               </Form.Item>
             </ConfigProvider>
@@ -1067,7 +1056,10 @@ const TrueFalse = ({ form, ...props }) => {
 
           <div>
             <Form.Item name={"text"} label={"choice of answers"}>
-              <CustomInput placeholder={"choice of answers"} classNames="w-full" />
+              <CustomInput
+                placeholder={"choice of answers"}
+                classNames="w-full"
+              />
             </Form.Item>
 
             <Form.Item
@@ -1082,18 +1074,12 @@ const TrueFalse = ({ form, ...props }) => {
 
         <div className="space-y-5">
           <div className="flex justify-between items-center">
-            <Paragraph className={"text-xl font-normal"}>
-              Test Name:
-            </Paragraph>
+            <Paragraph className={"text-xl font-normal"}>Test Name:</Paragraph>
 
-            <span className="text-xl font-normal">
-              Questions 8
-            </span>
+            <span className="text-xl font-normal">Questions 8</span>
           </div>
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">1</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1106,9 +1092,7 @@ const TrueFalse = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">2</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1121,9 +1105,7 @@ const TrueFalse = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">3</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1136,9 +1118,7 @@ const TrueFalse = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">4</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1151,9 +1131,7 @@ const TrueFalse = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">5</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1166,9 +1144,7 @@ const TrueFalse = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">6</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1181,9 +1157,7 @@ const TrueFalse = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">7</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1196,9 +1170,7 @@ const TrueFalse = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">8</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1251,7 +1223,10 @@ const Category = ({ form, ...props }) => {
                         label={"choice of answers"}
                         className="w-full"
                       >
-                        <CustomInput placeholder={"choice of answers"} classNames={"w-full"} />
+                        <CustomInput
+                          placeholder={"choice of answers"}
+                          classNames={"w-full"}
+                        />
                       </Form.Item>
                       <div className="flex items-center justify-between">
                         <Form.Item
@@ -1286,18 +1261,12 @@ const Category = ({ form, ...props }) => {
 
         <div className="space-y-5">
           <div className="flex justify-between items-center">
-            <Paragraph className={"text-xl font-normal"}>
-              Test Name:
-            </Paragraph>
+            <Paragraph className={"text-xl font-normal"}>Test Name:</Paragraph>
 
-            <span className="text-xl font-normal">
-              Questions 8
-            </span>
+            <span className="text-xl font-normal">Questions 8</span>
           </div>
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">1</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1310,9 +1279,7 @@ const Category = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">2</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1325,9 +1292,7 @@ const Category = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">3</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1340,9 +1305,7 @@ const Category = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">4</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1355,9 +1318,7 @@ const Category = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">5</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1370,9 +1331,7 @@ const Category = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">6</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1385,9 +1344,7 @@ const Category = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">7</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1400,9 +1357,7 @@ const Category = ({ form, ...props }) => {
           </div>
 
           <div className="space-y-1.5">
-            <Paragraph
-              className={"text-base font-semibold text-gray-600"}
-            >
+            <Paragraph className={"text-base font-semibold text-gray-600"}>
               <span className="text-2xl">8</span> What is the problem that
               you’re trying to solve or goals of this design?
             </Paragraph>
@@ -1630,8 +1585,8 @@ const AddNewTest = () => {
   const [form] = Form.useForm();
   const AddQuizArrays = [
     <MultipleChoice form={form} />,
-    <TrueFalse />,
-    <Category />,
+    <TrueFalse form={form} />,
+    <Category form={form} />,
   ];
   const [QuestionType, setQuestionType] = useState([]);
 
@@ -1655,7 +1610,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => { }, 1000);
+    setTimeout(() => {}, 1000);
   };
 
   return (
@@ -1684,7 +1639,7 @@ const AddNewTest = () => {
         >
           {({ getFieldValue }) =>
             QuestionType[getFieldValue("type") - 1]?.id ===
-              getFieldValue("type")
+            getFieldValue("type")
               ? AddQuizArrays[getFieldValue("type") - 1]
               : null
           }

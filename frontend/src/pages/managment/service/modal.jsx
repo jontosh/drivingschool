@@ -1747,7 +1747,7 @@ export const FileCategoryModalContent = () => {
           note: "",
           signature: "",
         }}
-        className="grid justify-center gap-y-5 px-5"
+        className="flex flex-col items-center px-5"
         onFinish={onFinish}
       >
         <Form.Item
