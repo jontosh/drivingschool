@@ -1336,6 +1336,17 @@ export const AddServiceModalContent = () => {
     });
   };
 
+  const onReset = () => {
+    form.resetFields();
+    setAssignLocation([]);
+    setAddOnServices([]);
+    setDiscount([]);
+
+    setTimeout(() => {
+      navigate("/management/service/packages");
+    }, 1000);
+  };
+
   return (
     <Fragment>
       <Form
@@ -1586,6 +1597,7 @@ export const AddServiceModalContent = () => {
             defaultHoverColor={colorsObject.primary}
             borderRadius={5}
             paddingInline={44}
+            onClick={onReset}
           >
             Cancel
           </ButtonComponent>
