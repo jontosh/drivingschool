@@ -23,6 +23,7 @@ import {
   ConfigProvider,
   DatePicker,
   Form,
+  Input,
   InputNumber,
   Switch,
   Tabs,
@@ -1670,268 +1671,202 @@ export const FileCategoryModalContent = () => {
     path: "/account_management/services/service/",
   });
   const navigate = useNavigate();
-  const [Status, setStatus] = useState("");
-  const [DisplayStudentPortal, setDisplayStudentPortal] = useState(true);
-  const [DisallowStudentPortal, setDisallowStudentPortal] = useState(false);
-  const [UploadedStudentAccount, setUploadedStudentAccount] = useState(false);
-  const [InstructorPortal, setInstructorPortal] = useState(false);
+  const [form] = Form.useForm();
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
-  const [NotesValue, setNotesValue] = useState("Hello");
   const [Packages, setPackages] = useState([]);
+  const [PackagesMock, setPackagesMock] = useState([]);
 
-  // func
-  const handleSubmit = async (values) => {
-    try {
-      const res = await requestPost({
-        path: `/student_account/file_category/`,
-        data: {
-          ...values,
-          status: Status,
-          has_portal: DisplayStudentPortal,
-          disallow_student_portal: DisallowStudentPortal,
-          uploaded_student_account: UploadedStudentAccount,
-          instructor_portal: InstructorPortal,
-          note: NotesValue,
-          package: ToNumber(Packages),
-        },
+  useEffect(() => {
+    const packages = [];
+    for (let i = 0; i < data?.length; i++) {
+      const item = data[i];
+      packages.push({
+        ...item,
+        key: item?.id,
+        title: item?.name,
       });
-      if (res?.error?.status >= 400) {
+    }
+
+    setPackagesMock(packages);
+  }, [data]);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      package: Packages,
+    });
+  }, [Packages]);
+
+  const onFinish = async (values) => {
+    try {
+      const response = await requestPost({
+        path: "/student_account/file_category/",
+        data: values,
+      });
+
+      if (response?.error?.status >= 400) {
+        setIsOpen(true);
         dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
       } else {
-        dispatch({ type: "SUCCESS", setIsOpen });
         setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
       }
     } catch (error) {
-      console.error(error.message);
-      dispatch({ type: "ERROR", setIsOpen });
-      setIsOpen(true);
+      console.error(error?.message);
     }
   };
-  const handleStatus = (values) => setStatus(values);
-  const handleDisplayStudentPortal = (e) =>
-    setDisplayStudentPortal(e.target.checked);
-  const handleDisallowStudentPortal = (e) =>
-    setDisallowStudentPortal(e.target.checked);
-  const handleUploadedStudentAccount = (e) =>
-    setUploadedStudentAccount(e.target.checked);
-  const handleInstructorPortal = (e) => setInstructorPortal(e.target.checked);
+
+  const handleStatus = (values) => {
+    form.setFieldsValue({
+      status: values,
+    });
+  };
+
+  const onReset = () => {
+    form.resetFields();
+    setPackages([]);
+
+    setTimeout(() => {
+      navigate("/management/file");
+    }, 1000);
+  };
 
   return (
     <Fragment>
-      <Formik
+      <Form
+        form={form}
         initialValues={{
-          name: "",
+          package: [],
+          has_portal: false,
+          has_student_account: false,
+          has_category_portal: false,
+          has_teacher_portal: false,
+          note: "",
           signature: "",
         }}
-        onSubmit={handleSubmit}
+        className={"space-y-5 px-5"}
+        onFinish={onFinish}
       >
-        {({ handleReset, errors, handleChange, values, handleSubmit }) => (
-          <form className="flex gap-5 flex-col px-5" onSubmit={handleSubmit}>
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"text"}
-              spanText={"Category name"}
-              placeholder={"Category name"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right font-semibold`}
-              name={"name"}
-              onChange={handleChange}
-              value={values.name}
-            >
-              {errors.name && (
-                <FormError className={"pl-48"}>{errors.name}</FormError>
-              )}
-            </CustomInput>
+        <Form.Item
+          name={"name"}
+          label={"Category name"}
+          rules={[
+            {
+              required: true,
+              message: "Category name is empty",
+            },
+          ]}
+        >
+          <CustomInput classNames={"w-full"} placeholder={"Category name"} />
+        </Form.Item>
 
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}
-              >
-                File status
-              </span>
+        <Form.Item
+          name={"status"}
+          label={"Status"}
+          rules={[
+            {
+              required: true,
+              message: "Status is empty",
+            },
+          ]}
+        >
+          <CustomSelect
+            placeholder={"Select status"}
+            className={`w-full h-[50px] rounded`}
+            options={StatusSelect}
+            onChange={handleStatus}
+          />
+        </Form.Item>
 
-              <CustomSelect
-                placeholder={"Select"}
-                className={`w-[40%] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                fontSize={"text-base"}
-                options={StatusSelect}
-                onChange={handleStatus}
-                value={Status ? Status : undefined}
-              />
-            </label>
+        <Form.Item name={"package"} label={"Packages:"}>
+          <CustomTransfer
+            dataSource={PackagesMock}
+            listHeight={200}
+            setSelectedKeys={setPackages}
+            selectedKeys={Packages}
+          />
+        </Form.Item>
 
-            <div className="flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}
-              >
-                Packages:
-              </span>
+        <Form.Item name={"signature"} label={"Signature link:"}>
+          <CustomInput
+            type={"url"}
+            classNames={"w-full"}
+            placeholder={"Category name"}
+          />
+        </Form.Item>
 
-              <CustomTransfer
-                dataSource={mockData}
-                listHeight={200}
-                setSelectedKeys={setPackages}
-                selectedKeys={Packages}
-              />
-            </div>
+        <Form.Item name={"note"} label={"Note"}>
+          <Input.TextArea
+            showCount
+            maxLength={100}
+            className={"border-black p-5"}
+            placeholder={"Notes"}
+          />
+        </Form.Item>
 
-            <CustomInput
-              classNames={
-                "inline-flex flex-row-reverse items-center justify-center w-full gap-10"
-              }
-              className={classNames(
-                ManagementStyle["CheckModal__form-element__shadow"],
-                "w-[40%] text-base",
-              )}
-              type={"text"}
-              spanText={"Signature link:"}
-              placeholder={"Signature"}
-              fontSize={"text-base"}
-              spanClassName={`flex-shrink-0 w-44 text-right font-semibold`}
-              name={"signature"}
-              onChange={handleChange}
-              value={values.signature}
-            />
+        <div className="grid grid-cols-2 gap-5">
+          <Form.Item
+            label={"Display on Student Portal:"}
+            valuePropName="checked"
+            name={"has_portal"}
+          >
+            <Switch />
+          </Form.Item>
+          <Form.Item
+            label={"Must Be Uploaded to Student Account:"}
+            valuePropName="checked"
+            name={"has_student_account"}
+          >
+            <Switch />
+          </Form.Item>
+          <Form.Item
+            label={
+              "Disallow files associated with category from displaying on Student Portal:"
+            }
+            valuePropName="checked"
+            name={"has_category_portal"}
+          >
+            <Switch />
+          </Form.Item>
+          <Form.Item
+            label={
+              "Disallow files associated with this category  from displaying on Instructor/Teacher Portal:"
+            }
+            valuePropName="checked"
+            name={"has_teacher_portal"}
+          >
+            <Switch />
+          </Form.Item>
+        </div>
 
-            <label className="inline-flex items-center justify-center gap-10 w-full">
-              <span
-                className={`text-base font-semibold flex-shrink-0 w-44 text-right text-base`}
-              >
-                Note:
-              </span>
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
 
-              <div className={"max-w-[600px] w-full"}>
-                <div className="w-full">
-                  <MDEditor
-                    value={NotesValue}
-                    onChange={(value) => setNotesValue(value)}
-                    previewOptions={{
-                      rehypePlugins: [[rehypeSanitize]],
-                    }}
-                  />
-                </div>
-              </div>
-            </label>
-
-            <div className={"grid grid-cols-2 gap-5 pt-8"}>
-              <div className="space-y-5">
-                <label
-                  className={
-                    "inline-flex w-full justify-end items-center gap-6"
-                  }
-                >
-                  <span
-                    className={"font-semibold text-end flex-shrink-0 text-base"}
-                  >
-                    Display on Student Portal:
-                  </span>
-                  <SwitchCustom
-                    checked={DisplayStudentPortal}
-                    onChange={handleDisplayStudentPortal}
-                  />
-                </label>
-
-                <label
-                  className={
-                    "inline-flex w-full justify-end items-center gap-6"
-                  }
-                >
-                  <span
-                    className={
-                      "font-semibold text-end w-72 flex-shrink-0 text-base"
-                    }
-                  >
-                    Disallow files associated with category from displaying on
-                    Student Portal:
-                  </span>
-                  <SwitchCustom
-                    checked={DisallowStudentPortal}
-                    onChange={handleDisallowStudentPortal}
-                  />
-                </label>
-              </div>
-
-              <div className="space-y-5">
-                <label
-                  className={
-                    "inline-flex w-full justify-start items-center gap-6"
-                  }
-                >
-                  <span
-                    className={"font-semibold text-end flex-shrink-0 text-base"}
-                  >
-                    Must Be Uploaded to Student Account:
-                  </span>
-                  <SwitchCustom
-                    checked={UploadedStudentAccount}
-                    onChange={handleUploadedStudentAccount}
-                  />
-                </label>
-
-                <label
-                  className={
-                    "inline-flex w-full justify-start items-center gap-6"
-                  }
-                >
-                  <span
-                    className={
-                      "font-semibold text-end w-80 flex-shrink-0 text-base"
-                    }
-                  >
-                    Disallow files associated with this category from displaying
-                    on Instructor/Teacher Portal:
-                  </span>
-                  <SwitchCustom
-                    checked={InstructorPortal}
-                    onChange={handleInstructorPortal}
-                  />
-                </label>
-              </div>
-            </div>
-
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                type={"submit"}
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-              >
-                Save
-              </ButtonComponent>
-
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/file/");
-                  }, 1000);
-                }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
+          <ButtonComponent
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
       {IsOpen && state?.status}
     </Fragment>
   );
