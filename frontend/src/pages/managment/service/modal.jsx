@@ -18,6 +18,7 @@ import {
   useRequestGetQuery,
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
+import { PlusOutlined } from "@ant-design/icons";
 import MDEditor from "@uiw/react-md-editor";
 import {
   ConfigProvider,
@@ -27,6 +28,7 @@ import {
   InputNumber,
   Switch,
   Tabs,
+  Upload,
 } from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
@@ -1879,19 +1881,50 @@ export const FileCategoryModalContent = () => {
 
 export const AddStaffModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { data: LocationData } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
+  const { data: VehicleData } = useRequestGetQuery({
+    path: "/account_management/vehicle/",
+  });
   const { FileReaderResult, ResultFile } = useFileReader();
   const navigate = useNavigate();
+
+  const [Location, setLocation] = useState([]);
+  const [Vehicle, setVehicle] = useState([]);
+  const [State, setState] = useState("");
   const [Status, setStatus] = useState("");
   const [StaffType, setStaffType] = useState("");
-  const [Location, setLocation] = useState("");
-  const [State, setState] = useState("");
-  const [Vehicle, setVehicle] = useState("");
   const [DOB, setDOB] = useState("");
   const [PermitIssueDate, setPermitIssueDate] = useState("");
   const [PermitExpirationDate, setPermitExpirationDate] = useState("");
   const [requestPost] = useRequestPostMutation();
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+
+  useEffect(() => {
+    const locations = [];
+    for (let i = 0; i < LocationData?.length; i++) {
+      const item = LocationData[i];
+      locations.push({
+        ...item,
+        value: item?.id,
+        label: item?.name,
+      });
+    }
+
+    const vehicles = [];
+    for (let i = 0; i < VehicleData?.length; i++) {
+      const item = VehicleData[i];
+      vehicles.push({
+        ...item,
+        value: item?.id,
+        label: item?.name,
+      });
+    }
+    setLocation(locations);
+    setVehicle(vehicles);
+  }, [LocationData, VehicleData]);
 
   // func
   const handleSubmit = async (values) => {
@@ -1926,11 +1959,60 @@ export const AddStaffModalContent = () => {
     }
   };
 
-  const handleStatus = (value) => setStatus(value);
-  const handleStaffType = (value) => setStaffType(value);
-  const handleLocation = (value) => setLocation(value);
-  const handleVehicle = (value) => setVehicle(value);
-  const handleState = (value) => setState(value);
+  const handleStatus = (value) => {
+    form.setFieldsValue({
+      status: value,
+    });
+  };
+  const handleStaffType = (value) => {
+    form.setFieldsValue({
+      staff_type: value,
+    });
+  };
+
+  const handleLocation = (value) => {
+    form.setFieldsValue({
+      location: value,
+    });
+  };
+  const handleVehicle = (value) => {
+    form.setFieldsValue({
+      vehicle: value,
+    });
+  };
+
+  const handleState = (value) => {
+    form.setFieldsValue({
+      state: value,
+    });
+  };
+
+  const handleBirth = (day) => {
+    form.setFieldsValue({
+      birth: `${day["$y"]}-${day["$M"]}-${day["$D"]}`,
+    });
+  };
+
+  const handleCarPermitDate = (day) => {
+    form.setFieldsValue({
+      car_permit_data: `${day["$y"]}-${day["$M"]}-${day["$D"]}`,
+    });
+  };
+
+  const handleCarPermitExpire = (day) => {
+    form.setFieldsValue({
+      car_permit_expire: `${day["$y"]}-${day["$M"]}-${day["$D"]}`,
+    });
+  };
+
+  const [form] = Form.useForm();
+
+  const normFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
 
   return (
     <Fragment>
@@ -1987,190 +2069,139 @@ export const AddStaffModalContent = () => {
           values,
           setFieldValue,
         }) => (
-          <form className={"space-y-5"} onSubmit={handleSubmit}>
+          <Form form={form} className={"space-y-5"}>
             <div className={"grid grid-cols-2 gap-5 px-5"}>
               <div className={"space-y-5"}>
-                <label className="inline-flex gap-5 items-center w-full">
-                  <span className="text-base flex-shrink-0 font-medium w-56 text-right">
-                    Status
-                  </span>
-
+                <Form.Item name={"status"} label={"Status"}>
                   <CustomSelect
                     placeholder={"Status"}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     options={StatusSelect}
                     onChange={handleStatus}
-                    value={Status ? Status : undefined}
                   />
-                </label>
+                </Form.Item>
 
-                <label className="inline-flex gap-5 items-center w-full">
-                  <span className="text-base flex-shrink-0 font-medium w-56 text-right">
-                    Staff type
-                  </span>
-
+                <Form.Item name={"staff_type"} label={"Staff type"}>
                   <CustomSelect
-                    placeholder={"Select"}
+                    placeholder={"Staff type"}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "Instructor",
-                        label: "Instructor",
-                      },
-                    ]}
+                    options={StatusSelect}
                     onChange={handleStaffType}
-                    value={StaffType ? StaffType : undefined}
                   />
-                </label>
+                </Form.Item>
 
-                <label className="inline-flex gap-5 items-center w-full">
-                  <span className="text-base flex-shrink-0 font-medium w-56 text-right">
-                    Location
-                  </span>
-
+                <Form.Item name={"location"} label={"Location"}>
                   <CustomSelect
                     placeholder={"Select"}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: 1,
-                        label: "USA",
-                      },
-                    ]}
+                    options={Location}
                     onChange={handleLocation}
-                    value={Location ? Location : undefined}
                   />
-                </label>
+                </Form.Item>
 
-                <label className="inline-flex gap-5 items-center w-full">
-                  <span className="text-base font-medium w-56 flex-shrink-0 text-right">
-                    Vehicle assigned
-                  </span>
-
+                <Form.Item name={"vehicle"} label={"Vehicle assigned"}>
                   <CustomSelect
                     placeholder={"Select"}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: 1,
-                        label: "Car",
-                      },
-                      {
-                        value: 2,
-                        label: "Car",
-                      },
-                    ]}
+                    options={Vehicle}
                     onChange={handleVehicle}
-                    value={Vehicle ? Vehicle : undefined}
                   />
-                </label>
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Staff code"}
-                  placeholder={"Staff code"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
-                  name={"code"}
-                  onChange={handleChange}
-                  value={values.code}
-                />
+                <Form.Item name={"code"} label={"Staff code"}>
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Staff code"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-9 items-center w-full h-[50px]"
-                  }
-                  fontSize="text-base"
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"First name"}
-                  placeholder={"First name"}
-                  spanClassName={`font-medium w-52 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
+                <Form.Item
                   name={"first_name"}
-                  onChange={handleChange}
-                  value={values.first_name}
+                  label={"First name"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "First name is empty",
+                    },
+                  ]}
                 >
-                  {errors.first_name && (
-                    <FormError className="pl-[245px]">
-                      {errors.first_name}
-                    </FormError>
-                  )}
-                </CustomInput>
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Staff code"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  fontSize="text-base"
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Middle name"}
-                  placeholder={"Middle name"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  value={values.mid_name}
-                  name={"mid_name"}
-                  onChange={handleChange}
-                />
+                <Form.Item name={"mid_name"} label={"Middle Name"}>
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Middle Name"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Last name"}
-                  placeholder={"Last name"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
+                <Form.Item
                   name={"last_name"}
-                  value={values.last_name}
-                  onChange={handleChange}
-                />
+                  label={"Last Name"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Last Name is empty",
+                    },
+                  ]}
+                >
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Last Name"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  fontSize="text-base"
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Address"}
-                  placeholder={"Address"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
+                <Form.Item
                   name={"address"}
-                  onChange={handleChange}
-                  value={values.address}
-                />
+                  label={"Address"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Address is empty",
+                    },
+                  ]}
+                >
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Address"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"City"}
-                  placeholder={"City"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
-                  name={"city"}
-                  onChange={handleChange}
-                  value={values.city}
-                />
+                <Form.Item name={"city"} label={"City"}>
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"City"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <label className="inline-flex gap-5 items-center w-full">
-                  <span className="text-base flex-shrink-0 font-medium w-56 text-right">
-                    State
-                  </span>
+                <Form.Item name={"state"} label={"State"}>
                   <CustomSelect
                     placeholder={"Select"}
                     className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
@@ -2180,289 +2211,296 @@ export const AddStaffModalContent = () => {
                         label: "USA",
                       },
                     ]}
-                    value={State ? State : undefined}
                     onChange={handleState}
                   />
-                </label>
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Zip"}
-                  placeholder={"Zip"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
-                  name={"zip"}
-                  onChange={handleChange}
-                  value={values.zip}
-                />
+                <Form.Item name={"zip"} label={"Zip"}>
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Zip"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  type={"email"}
-                  spanText={"Email"}
-                  placeholder={"Email"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
+                <Form.Item
                   name={"email"}
-                  onChange={handleChange}
-                  value={values.email}
+                  label="Email"
+                  rules={[
+                    {
+                      type: "email",
+                    },
+                  ]}
                 >
-                  {errors.email && (
-                    <FormError className="pl-[245px]">{errors.email}</FormError>
-                  )}
-                </CustomInput>
+                  <CustomInput
+                    classNames={"w-full"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Email"}
+                    fontSize="text-base"
+                    type={"email"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Home phone"}
-                  placeholder={"Home phone"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
-                  name={"home_phone"}
-                  onChange={handleChange}
-                  value={values.home_phone}
-                />
+                <Form.Item name={"home_phone"} label={"Home Phone"}>
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Home phone"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Cell phone"}
-                  placeholder={"Cell phone"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
+                <Form.Item
                   name={"cell_phone"}
-                  value={values.cell_phone}
-                  onChange={handleChange}
-                />
+                  label={"Cell Phone"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Cell phone is empty",
+                    },
+                  ]}
+                >
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Cell phone"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Emergency Contact Name"}
-                  placeholder={"Emergency Contact Name"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
+                <Form.Item
                   name={"emergency_name"}
-                  onChange={handleChange}
-                  value={values.emergency_name}
-                />
+                  label={"Emergency Contact Name"}
+                >
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Emergency Contact Name"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Emergency Contact Name"}
-                  placeholder={"Emergency Contact Name"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
+                <Form.Item
                   name={"emergency_relation"}
-                  onChange={handleChange}
-                  value={values.emergency_relation}
-                />
+                  label={"Emergency Contact Relation"}
+                >
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Emergency Contact Relation"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-5 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Emergency Contact Phone"}
-                  placeholder={"Emergency Contact Phone"}
-                  spanClassName={"font-medium w-56 flex-shrink-0 text-right"}
-                  fontSize="text-base"
+                <Form.Item
                   name={"emergency_phone"}
-                  value={values.emergency_phone}
-                  onChange={handleChange}
-                />
+                  label={"Emergency Contact Phone"}
+                >
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Emergency Contact Phone"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
               </div>
+
               <div className={"space-y-5"}>
-                <label className="inline-flex gap-6 items-center w-full">
-                  <span className="w-60 text-base font-medium text-end flex-shrink-0">
-                    DOB
-                  </span>
+                <Form.Item
+                  name={"birth"}
+                  label={"Date of birth"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Birth is empty",
+                    },
+                  ]}
+                >
                   <DatePicker
-                    className={`h-[50px] flex-grow border border-[#667085]   ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     placeholder={"MM/DD/YYYY"}
-                    onChange={(day) =>
-                      setDOB(`${day["$y"]}-${day["$M"] + 1}-${day["$D"]}`)
-                    }
+                    onChange={handleBirth}
                   />
-                </label>
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Instructor Permit  Number"}
-                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
-                  }
-                  fontSize="text-base"
-                  spanText={"Instructor Permit Number"}
-                  spanClassName={`w-56 font-medium text-end flex-shrink-0`}
+                <Form.Item
                   name={"permit_number"}
-                  value={values.permit_number}
-                  onChange={handleChange}
-                />
-
-                <label className="inline-flex gap-6 items-center w-full">
-                  <span className="w-60 text-base font-medium text-end flex-shrink-0">
-                    In Car Permit Issued Date
-                  </span>
-                  <DatePicker
-                    className={`h-[50px] flex-grow border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    placeholder={"MM/DD/YYYY"}
-                    onChange={(day) =>
-                      setPermitIssueDate(
-                        `${day["$y"]}-${day["$M"] + 1}-${day["$D"]}`,
-                      )
+                  label={"Instructor Permit Number"}
+                >
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
                     }
+                    placeholder={"Instructor Permit Number"}
+                    fontSize="text-base"
                   />
-                </label>
+                </Form.Item>
 
-                <label className="inline-flex gap-6 items-center w-full">
-                  <span className="w-60 text-base font-medium text-end flex-shrink-0">
-                    Permit Expiration Date
-                  </span>
+                <Form.Item
+                  name={"car_permit_data"}
+                  label={"In Car Permit Issued Date"}
+                >
                   <DatePicker
-                    className={`h-[50px] flex-grow border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                     placeholder={"MM/DD/YYYY"}
-                    onChange={(day) =>
-                      setPermitExpirationDate(
-                        `${day["$y"]}-${day["$M"] + 1}-${day["$D"]}`,
-                      )
-                    }
+                    onChange={handleCarPermitDate}
                   />
-                </label>
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Select"}
-                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
-                  }
-                  spanText={"User name"}
-                  spanClassName={`w-56 font-medium text-end flex-shrink-0`}
-                  fontSize="text-base"
+                <Form.Item
+                  name={"car_permit_expire"}
+                  label={"Permit Expiration Date"}
+                >
+                  <DatePicker
+                    className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    placeholder={"MM/DD/YYYY"}
+                    onChange={handleCarPermitExpire}
+                  />
+                </Form.Item>
+
+                <Form.Item
                   name={"username"}
-                  value={values.username}
-                  onChange={handleChange}
-                />
-
-                <CustomInput
-                  placeholder={"Password"}
-                  className={`text-gray-500 px-5 py-2 border ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
-                  }
-                  fontSize="text-base"
-                  spanText={"Password"}
-                  spanClassName={`w-56 font-medium text-end flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]} `}
-                  onChange={handleChange}
-                  value={values.password}
-                  name="password"
+                  label={"Username"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Username is invalid",
+                    },
+                  ]}
                 >
-                  {errors.password && (
-                    <FormError className="pl-[265px]">
-                      {errors.password}
-                    </FormError>
-                  )}
-                </CustomInput>
-
-                <CustomInput
-                  placeholder={"Re Enter Password *"}
-                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
-                  }
-                  fontSize="text-base"
-                  spanText={"Re Enter Password"}
-                  spanClassName={`w-56 text-end font-medium flex-shrink-0 relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]} `}
-                  onChange={handleChange}
-                  value={values.password}
-                  name="password"
-                >
-                  {errors.password && (
-                    <FormError className="pl-[265px]">
-                      {errors.password}
-                    </FormError>
-                  )}
-                </CustomInput>
-
-                <CustomCheckBox
-                  className={"w-full flex justify-center pl-7"}
-                  name={"assign_color"}
-                  onChange={handleChange}
-                >
-                  <span className={`font-medium text-base`}>
-                    Assign Appointment Color
-                  </span>
-                </CustomCheckBox>
-
-                <CustomInput
-                  type={"color"}
-                  placeholder={"#FFFFFF"}
-                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
-                  }
-                  fontSize="text-base"
-                  spanText={"Appointment Color"}
-                  spanClassName={`w-56 text-end font-medium flex-shrink-0`}
-                  name={"color"}
-                  onChange={handleChange}
-                  value={values.color}
-                />
-
-                <CustomInput
-                  placeholder={"Zoom PMI"}
-                  className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                  classNames={
-                    "inline-flex items-center w-full justify-between gap-10 flex-row-reverse h-[50px]"
-                  }
-                  fontSize="text-base"
-                  spanText={"Zoom PMI"}
-                  spanClassName={`w-56 text-end font-medium flex-shrink-0`}
-                  name={"zoom"}
-                  onChange={handleChange}
-                  value={values.zoom}
-                />
-
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span className="text-sm flex-shrink-0 font-medium w-56 text-right">
-                    Staff Profile Picture
-                  </span>
-
-                  <FileReaderResult
-                    className={"overflow-hidden w-60 h-60"}
-                    onChange={() => setFieldValue("picture", ResultFile)}
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Username"}
+                    fontSize="text-base"
                   />
-                </label>
+                </Form.Item>
+
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Password"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Confirm Password"
+                  name="password2"
+                  dependencies={["password"]}
+                  rules={[
+                    {
+                      required: true,
+                    },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue("password") === value) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(
+                          new Error(
+                            "The new password that you entered do not match!",
+                          ),
+                        );
+                      },
+                    }),
+                  ]}
+                >
+                  <CustomInput
+                    classNames={"w-full h-[50px]"}
+                    className={
+                      ManagementStyle["CheckModal__form-element__shadow"]
+                    }
+                    placeholder={"Password"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
+
+                <Form.Item valuePropName="checked" name={"assign_color"}>
+                  <CustomCheckBox className={"w-full flex justify-center pl-7"}>
+                    <span className={`font-medium text-base`}>
+                      Assign Appointment Color
+                    </span>
+                  </CustomCheckBox>
+                </Form.Item>
+
+                <Form.Item name={"color"} label={"Appointment Color"}>
+                  <CustomInput
+                    type={"color"}
+                    placeholder={"#FFFFFF"}
+                    className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    classNames={"w-full h-[50px]"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
+
+                <Form.Item name={"zoom"} label={"Zoom PMI"}>
+                  <CustomInput
+                    placeholder={"Zoom PMI"}
+                    className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                    classNames={"w-full h-[50px]"}
+                    fontSize="text-base"
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Upload"
+                  valuePropName="fileList"
+                  getValueFromEvent={normFile}
+                >
+                  <Upload
+                    action={
+                      import.meta.env.VITE_API + "/student_account/files/"
+                    }
+                    listType="picture-card"
+                  >
+                    <button
+                      style={{
+                        border: 0,
+                        background: "none",
+                      }}
+                      type="button"
+                    >
+                      <PlusOutlined />
+                      <div
+                        style={{
+                          marginTop: 8,
+                        }}
+                      >
+                        Upload
+                      </div>
+                    </button>
+                  </Upload>
+                </Form.Item>
               </div>
             </div>
 
@@ -2498,7 +2536,7 @@ export const AddStaffModalContent = () => {
                 Cancel
               </ButtonComponent>
             </div>
-          </form>
+          </Form>
         )}
       </Formik>
       {IsOpen && state?.status}
