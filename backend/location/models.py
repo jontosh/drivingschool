@@ -73,11 +73,11 @@ class Class(Extra):
         ["DELETED", "DELETED"],
         ["INACTIVE","INACTIVE"]
     ]
-    date = models.DateField(default="1999/01/01",blank=True,null=True)
+    date = models.DateField(default="1999-01-01",blank=True,null=True)
     location = models.ForeignKey("Location", on_delete=models.CASCADE)
     class_id = models.IntegerField(default=0,auto_created=True)
-    start_date = models.DateField(default="1999/01/01",help_text="MM/DD/YYYY",blank=True,null=True)
-    end_Data = models.DateField(default="1999/01/01",help_text="MM/DD/YYYY")
+    start_date = models.DateField(default="1999-01-01",help_text="MM/DD/YYYY",blank=True,null=True)
+    end_Data = models.DateField(default="1999-01-01",help_text="MM/DD/YYYY")
     zoom = models.TextField(blank=True,null=True),
     status = models.CharField(choices=Status, max_length=40, default="ACTIVE")
     details = models.TextField(blank=True,null=True)

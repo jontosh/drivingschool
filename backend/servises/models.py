@@ -41,9 +41,7 @@ class Services(models.Model):
     discount = models.ManyToManyField("Discount",related_name="service_discount",blank=True)
     oe = models.CharField(choices=OE,max_length=50,default="NO CONTRACT NEEDED", help_text="Associate Contract From OE")
     notes = models.TextField(blank=True,null=True)
-    key = models.TextField()
-    title = models.CharField(max_length=200,default="title 0")
-    description = models.TextField( default="Description 0")
+
     def __str__(self):
         return f"{self.name}"
 class Component(models.Model):
@@ -139,7 +137,7 @@ class Discount(models.Model):
     services = models.ManyToManyField("Services",related_name="Discount_services")
     classes = models.ManyToManyField("location.Class",related_name="Discount_classes",blank=True)
     locations = models.ManyToManyField("location.Location",related_name="Discount_locations",blank=True)
-    expiration_data = models.DateField(default="1999/01/01",)
+    expiration_data = models.DateField(default="1999-01-01",)
 
 #QUESTIONS || TESTS
 class Question(models.Model):
