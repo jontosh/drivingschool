@@ -66,7 +66,7 @@ export const StudentPassword = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>Configuration - Staff Password</title>
+        <title>Configuration - Student Password</title>
       </Helmet>
 
       <Form
