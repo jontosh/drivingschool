@@ -38,8 +38,8 @@ class Instructor(CustomUser):
     working_hours = models.ManyToManyField(TimeRange,related_name="staff_working_hours",blank=True,)
     message_items = GenericRelation(
         'configuration.MessageItems',
-        'product_object_id',
-        'product_content_type_id',
+        'from_object_id',
+        'from_content_type_id',
         related_query_name='User',
     )
     def __str__(self):

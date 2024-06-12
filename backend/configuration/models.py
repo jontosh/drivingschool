@@ -8,7 +8,7 @@ import uuid
 from abstracts.models import Extra,Status
 # Create your models here.
 class CompanyInfo(models.Model):
-    id = models.UUIDField(auto_created=True,primary_key=True)
+    id = models.UUIDField(primary_key=True,editable=False,unique=True)
     name = models.CharField(max_length=200)
     owner_name = models.CharField(max_length=200)
     address = models.TextField()
@@ -17,7 +17,7 @@ class CompanyInfo(models.Model):
     email = models.EmailField()
     cell_phone = models.CharField(blank=True,null=True)
     fax = models.TextField(blank=True)
-    extra = models.JSONField(blank=True)
+    extra = models.JSONField(blank=True,null=True)
     url = models.TextField()
     notes = models.TextField(blank=True)
     def save(self, *args, **kwargs):
