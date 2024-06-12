@@ -1489,7 +1489,7 @@ export const AddServiceModalContent = () => {
             >
               <InputNumber
                 placeholder={"Service Price"}
-                className={"w-full h-[50px] border-[#667085]"}
+                className={"w-full h-[50px] border-[#667085] py-2.5"}
               />
             </Form.Item>
 
