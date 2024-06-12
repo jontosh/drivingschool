@@ -86,6 +86,8 @@ class TimeSlot(Extra,Status):
     show_in_student_center = models.BooleanField(default=False)
     slot_duration = models.IntegerField(default=0,blank=True)
     slots_per_day = models.IntegerField(default=1,blank=False)
+    def __str__(self):
+        return f"{self.staff.username}\t{self.type}"
 class Appointment(models.Model):
     """
     Assign slot for student
@@ -94,3 +96,5 @@ class Appointment(models.Model):
     student = models.ManyToManyField("Users.Student",related_name='apt_students')
     class Meta:
         unique_together = ['time_slot', 'id']
+    def __str__(self):
+        return f"{self.time_slot.staff.username}\t{self.time_slot.type}"
