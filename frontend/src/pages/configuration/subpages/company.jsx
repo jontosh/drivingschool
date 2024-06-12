@@ -2,7 +2,6 @@ import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
-import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import { useRequestPostMutation } from "@/redux/query/index.jsx";
 import { Form, Input } from "antd";
 import { Fragment, useContext, useReducer, useState } from "react";
