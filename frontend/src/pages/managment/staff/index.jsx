@@ -1,23 +1,17 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
-import IconComponent from "@/components/icons/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
-import Title, { Paragraph } from "@/components/title/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useFilterStatus } from "@/hooks/filter.jsx";
 import { StaffModule } from "@/modules/staff.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import ServiceStyle from "@/pages/managment/management.module.scss";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
-import { Pagination, Space, Table } from "antd";
+import { Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import {
-  DeleteOutlined,
-  ExportOutlined,
-  FormOutlined,
-} from "@ant-design/icons";
 
 const Staff = () => {
   const { colorsObject } = useContext(ColorsContext);

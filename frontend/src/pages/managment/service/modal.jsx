@@ -146,7 +146,10 @@ export const ProductModalContent = () => {
     try {
       const res = await requestPost({
         path: "/account_management/services/component/",
-        data: values,
+        data: {
+          ...values,
+          duration: values["duration"].format("YYYY-MM-DD"),
+        },
       });
 
       if (res?.error?.status >= 400) {
@@ -624,10 +627,6 @@ export const ProductModalContent = () => {
                   <Form.Item
                     name={"duration"}
                     label={"Duration (Days):"}
-                    getValueProps={(value) => ({
-                      value: value && dayjs(Number(value)),
-                    })}
-                    normalize={(value) => value && `${dayjs(value).valueOf()}`}
                     className="w-full"
                   >
                     <DatePicker className="border-[#667085] w-full h-[50px]" />
@@ -935,17 +934,14 @@ export const DiscountModalContent = () => {
     });
   };
 
-  const handleExpirationDate = (day) => {
-    form.setFieldsValue({
-      expiration_data: `${day["$y"]}-${day["$M"] + 1}-${day["$D"]}`,
-    });
-  };
-
   const onFinish = async (values) => {
     try {
       const res = await requestPost({
         path: "/account_management/services/discount/",
-        data: values,
+        data: {
+          ...values,
+          expiration_data: values["expiration_data"].format("YYYY-MM-DD"),
+        },
       });
 
       if (res?.error?.status >= 400) {
@@ -1096,17 +1092,10 @@ export const DiscountModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item
-          getValueProps={(value) => ({
-            value: value && dayjs(Number(value)),
-          })}
-          normalize={(value) => value && `${dayjs(value).valueOf()}`}
-          label={"Discount Expiration:"}
-        >
+        <Form.Item name={"expiration_data"} label={"Discount Expiration:"}>
           <DatePicker
             placeholder={"MM/DD/YYYY"}
             className="border-[#667085] w-full h-[50px]"
-            onChange={handleExpirationDate}
           />
         </Form.Item>
 
@@ -1893,20 +1882,23 @@ export const AddStaffModalContent = () => {
   const { data: VehicleData } = useRequestGetQuery({
     path: "/account_management/vehicle/",
   });
-  const { FileReaderResult, ResultFile } = useFileReader();
+
   const navigate = useNavigate();
 
   const [Location, setLocation] = useState([]);
   const [Vehicle, setVehicle] = useState([]);
-  const [State, setState] = useState("");
-  const [Status, setStatus] = useState("");
-  const [StaffType, setStaffType] = useState("");
-  const [DOB, setDOB] = useState("");
-  const [PermitIssueDate, setPermitIssueDate] = useState("");
-  const [PermitExpirationDate, setPermitExpirationDate] = useState("");
   const [requestPost] = useRequestPostMutation();
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+
+  const [form] = Form.useForm();
+
+  const normFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
 
   useEffect(() => {
     const locations = [];
@@ -1931,39 +1923,6 @@ export const AddStaffModalContent = () => {
     setLocation(locations);
     setVehicle(vehicles);
   }, [LocationData, VehicleData]);
-
-  // func
-  const handleSubmit = async (values) => {
-    try {
-      const res = await requestPost({
-        path: "/student_account/instructor/",
-        data: {
-          ...values,
-          status: Status,
-          staff_type: StaffType,
-          location: Location,
-          state: State,
-          vehicle: Vehicle,
-          birth: DOB,
-          car_permit_data: PermitIssueDate,
-          car_permit_expire: PermitExpirationDate,
-          working_hours: [],
-        },
-      });
-
-      if (res?.error?.status >= 400) {
-        dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
-      } else {
-        dispatch({ type: "SUCCESS", setIsOpen });
-        setIsOpen(true);
-      }
-    } catch (error) {
-      console.error(error.message);
-      dispatch({ type: "ERROR", setIsOpen });
-      setIsOpen(true);
-    }
-  };
 
   const handleStatus = (value) => {
     form.setFieldsValue({
@@ -1993,558 +1952,507 @@ export const AddStaffModalContent = () => {
     });
   };
 
-  const handleBirth = (day) => {
-    form.setFieldsValue({
-      birth: `${day["$y"]}-${day["$M"]}-${day["$D"]}`,
-    });
-  };
+  const onFinish = async (values) => {
+    try {
+      const response = await requestPost({
+        path: "/student_account/instructor/",
+        data: {
+          ...values,
+          birth: values["birth"].format("YYYY-MM-DD"),
+          car_permit_data: values["car_permit_data"].format("YYYY-MM-DD"),
+          car_permit_expire: values["car_permit_expire"].format("YYYY-MM-DD"),
+        },
+      });
 
-  const handleCarPermitDate = (day) => {
-    form.setFieldsValue({
-      car_permit_data: `${day["$y"]}-${day["$M"]}-${day["$D"]}`,
-    });
-  };
-
-  const handleCarPermitExpire = (day) => {
-    form.setFieldsValue({
-      car_permit_expire: `${day["$y"]}-${day["$M"]}-${day["$D"]}`,
-    });
-  };
-
-  const [form] = Form.useForm();
-
-  const normFile = (e) => {
-    if (Array.isArray(e)) {
-      return e;
+      if (response?.error?.status >= 400) {
+        setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
+      }
+    } catch (error) {
+      console.error(error?.message);
     }
-    return e?.fileList;
+  };
+
+  const onReset = () => {
+    form.resetFields();
+
+    setTimeout(() => {
+      navigate("/management/staff");
+    }, 1000);
   };
 
   return (
     <Fragment>
-      <Formik
-        initialValues={{
-          code: "",
-          first_name: "",
-          mid_name: "",
-          last_name: "",
-          address: "",
-          city: "",
-          // state: "",
-          zip: "",
-          email: "",
-          home_phone: "",
-          cell_phone: "",
-          emergency_name: "",
-          emergency_relation: "",
-          emergency_phone: "",
-          permit_number: "",
-          username: "",
-          password: "",
-          assign_color: false,
-          color: "#000",
-          zoom: "",
-          picture: null,
-        }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.first_name) {
-            errors.first_name = "Input First name is empty";
-          }
-          if (!values.password) {
-            errors.password = "Input password is empty";
-          }
-
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-
-          return errors;
-        }}
-        onSubmit={handleSubmit}
+      <Form
+        form={form}
+        initialValues={{ color: "#000" }}
+        className={"space-y-5"}
+        onFinish={onFinish}
       >
-        {({
-          handleSubmit,
-          handleReset,
-          handleChange,
-          errors,
-          values,
-          setFieldValue,
-        }) => (
-          <Form form={form} className={"space-y-5"} layout={"vertical"}>
-            <div className={"grid grid-cols-2 gap-5 px-5"}>
-              <div className={"space-y-5"}>
-                <Form.Item name={"status"} label={"Status"}>
-                  <CustomSelect
-                    placeholder={"Status"}
-                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={StatusSelect}
-                    onChange={handleStatus}
-                  />
-                </Form.Item>
+        <div className={"grid grid-cols-2 gap-5 px-5"}>
+          <div className={"space-y-5"}>
+            <Form.Item name={"status"} label={"Status"}>
+              <CustomSelect
+                placeholder={"Status"}
+                className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={StatusSelect}
+                onChange={handleStatus}
+              />
+            </Form.Item>
 
-                <Form.Item name={"staff_type"} label={"Staff type"}>
-                  <CustomSelect
-                    placeholder={"Staff type"}
-                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={StatusSelect}
-                    onChange={handleStaffType}
-                  />
-                </Form.Item>
+            <Form.Item name={"staff_type"} label={"Staff type"}>
+              <CustomSelect
+                placeholder={"Staff type"}
+                className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={[
+                  {
+                    value: "Instructor",
+                    label: "Instructor",
+                  },
+                  {
+                    value: "Instructor / Teacher",
+                    label: "Instructor/Teacher",
+                  },
+                  {
+                    value: "Junior Admin",
+                    label: "Junior Admin",
+                  },
+                  {
+                    value: "Office Manager",
+                    label: "Office Manager",
+                  },
+                  {
+                    value: "Owner",
+                    label: "Owner",
+                  },
+                  {
+                    value: "Senior Admin",
+                    label: "Senior Admin",
+                  },
+                  {
+                    value: "Teacher",
+                    label: "Teacher",
+                  },
+                ]}
+                onChange={handleStaffType}
+              />
+            </Form.Item>
 
-                <Form.Item name={"location"} label={"Location"}>
-                  <CustomSelect
-                    placeholder={"Select"}
-                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={Location}
-                    onChange={handleLocation}
-                  />
-                </Form.Item>
+            <Form.Item name={"location"} label={"Location"}>
+              <CustomSelect
+                placeholder={"Select"}
+                className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={Location}
+                onChange={handleLocation}
+              />
+            </Form.Item>
 
-                <Form.Item name={"vehicle"} label={"Vehicle assigned"}>
-                  <CustomSelect
-                    placeholder={"Select"}
-                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={Vehicle}
-                    onChange={handleVehicle}
-                  />
-                </Form.Item>
+            <Form.Item name={"vehicle"} label={"Vehicle assigned"}>
+              <CustomSelect
+                placeholder={"Select"}
+                className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={Vehicle}
+                onChange={handleVehicle}
+              />
+            </Form.Item>
 
-                <Form.Item name={"code"} label={"Staff code"}>
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
+            <Form.Item name={"code"} label={"Staff code"}>
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Staff code"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"first_name"}
+              label={"First name"}
+              rules={[
+                {
+                  required: true,
+                  message: "First name is empty",
+                },
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Staff code"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item name={"mid_name"} label={"Middle Name"}>
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Middle Name"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"last_name"}
+              label={"Last Name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Last Name is empty",
+                },
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Last Name"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"address"}
+              label={"Address"}
+              rules={[
+                {
+                  required: true,
+                  message: "Address is empty",
+                },
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Address"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item name={"city"} label={"City"}>
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"City"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item name={"state"} label={"State"}>
+              <CustomSelect
+                placeholder={"Select"}
+                className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                options={[
+                  {
+                    value: "USA",
+                    label: "USA",
+                  },
+                ]}
+                onChange={handleState}
+              />
+            </Form.Item>
+
+            <Form.Item name={"zip"} label={"Zip"}>
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Zip"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"email"}
+              label="Email"
+              rules={[
+                {
+                  type: "email",
+                },
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Email"}
+                fontSize="text-base"
+                type={"email"}
+              />
+            </Form.Item>
+
+            <Form.Item name={"home_phone"} label={"Home Phone"}>
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Home phone"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"cell_phone"}
+              label={"Cell Phone"}
+              rules={[
+                {
+                  required: true,
+                  message: "Cell phone is empty",
+                },
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Cell phone"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item name={"emergency_name"} label={"Emergency Contact Name"}>
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Emergency Contact Name"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"emergency_relation"}
+              label={"Emergency Contact Relation"}
+            >
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Emergency Contact Relation"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"emergency_phone"}
+              label={"Emergency Contact Phone"}
+            >
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Emergency Contact Phone"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+          </div>
+
+          <div className={"space-y-5"}>
+            <Form.Item
+              label={"Date of birth"}
+              rules={[
+                {
+                  required: true,
+                  message: "Birth is empty",
+                  type: "object",
+                },
+              ]}
+              name={"birth"}
+            >
+              <DatePicker
+                className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                placeholder={"MM/DD/YYYY"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"permit_number"}
+              label={"Instructor Permit Number"}
+            >
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Instructor Permit Number"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"car_permit_data"}
+              label={"In Car Permit Issued Date"}
+              rules={[
+                {
+                  type: "object",
+                },
+              ]}
+            >
+              <DatePicker
+                className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                placeholder={"MM/DD/YYYY"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"car_permit_expire"}
+              label={"Permit Expiration Date"}
+              rules={[
+                {
+                  type: "object",
+                },
+              ]}
+            >
+              <DatePicker
+                className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                placeholder={"MM/DD/YYYY"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"username"}
+              label={"Username"}
+              rules={[
+                {
+                  required: true,
+                  message: "Username is invalid",
+                },
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Username"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Password"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Confirm Password"
+              name="password2"
+              dependencies={["password"]}
+              rules={[
+                {
+                  required: true,
+                },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
                     }
-                    placeholder={"Staff code"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
+                    return Promise.reject(
+                      new Error(
+                        "The new password that you entered do not match!",
+                      ),
+                    );
+                  },
+                }),
+              ]}
+            >
+              <CustomInput
+                classNames={"w-full h-[50px]"}
+                className={ManagementStyle["CheckModal__form-element__shadow"]}
+                placeholder={"Password"}
+                fontSize="text-base"
+              />
+            </Form.Item>
 
-                <Form.Item
-                  name={"first_name"}
-                  label={"First name"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "First name is empty",
-                    },
-                  ]}
+            <Form.Item valuePropName="checked" name={"assign_color"}>
+              <CustomCheckBox className={"w-full flex justify-center pl-7"}>
+                <span className={`font-medium text-base`}>
+                  Assign Appointment Color
+                </span>
+              </CustomCheckBox>
+            </Form.Item>
+
+            <Form.Item name={"color"} label={"Appointment Color"}>
+              <CustomInput
+                type={"color"}
+                placeholder={"#FFFFFF"}
+                className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                classNames={"w-full h-[50px]"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item name={"zoom"} label={"Zoom PMI"}>
+              <CustomInput
+                placeholder={"Zoom PMI"}
+                className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                classNames={"w-full h-[50px]"}
+                fontSize="text-base"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Upload"
+              valuePropName="fileList"
+              getValueFromEvent={normFile}
+              name={"picture"}
+            >
+              <Upload
+                action={import.meta.env.VITE_API_URL + "/media/files/student/"}
+                listType="picture-card"
+              >
+                <button
+                  style={{
+                    border: 0,
+                    background: "none",
+                  }}
+                  type="button"
                 >
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Staff code"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item name={"mid_name"} label={"Middle Name"}>
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Middle Name"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"last_name"}
-                  label={"Last Name"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Last Name is empty",
-                    },
-                  ]}
-                >
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Last Name"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"address"}
-                  label={"Address"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Address is empty",
-                    },
-                  ]}
-                >
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Address"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item name={"city"} label={"City"}>
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"City"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item name={"state"} label={"State"}>
-                  <CustomSelect
-                    placeholder={"Select"}
-                    className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "USA",
-                        label: "USA",
-                      },
-                    ]}
-                    onChange={handleState}
-                  />
-                </Form.Item>
-
-                <Form.Item name={"zip"} label={"Zip"}>
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Zip"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"email"}
-                  label="Email"
-                  rules={[
-                    {
-                      type: "email",
-                    },
-                  ]}
-                >
-                  <CustomInput
-                    classNames={"w-full"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Email"}
-                    fontSize="text-base"
-                    type={"email"}
-                  />
-                </Form.Item>
-
-                <Form.Item name={"home_phone"} label={"Home Phone"}>
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Home phone"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"cell_phone"}
-                  label={"Cell Phone"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Cell phone is empty",
-                    },
-                  ]}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Cell phone"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"emergency_name"}
-                  label={"Emergency Contact Name"}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Emergency Contact Name"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"emergency_relation"}
-                  label={"Emergency Contact Relation"}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Emergency Contact Relation"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"emergency_phone"}
-                  label={"Emergency Contact Phone"}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Emergency Contact Phone"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-              </div>
-
-              <div className={"space-y-5"}>
-                <Form.Item
-                  name={"birth"}
-                  label={"Date of birth"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Birth is empty",
-                    },
-                  ]}
-                >
-                  <DatePicker
-                    className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    placeholder={"MM/DD/YYYY"}
-                    onChange={handleBirth}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"permit_number"}
-                  label={"Instructor Permit Number"}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Instructor Permit Number"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"car_permit_data"}
-                  label={"In Car Permit Issued Date"}
-                >
-                  <DatePicker
-                    className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    placeholder={"MM/DD/YYYY"}
-                    onChange={handleCarPermitDate}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"car_permit_expire"}
-                  label={"Permit Expiration Date"}
-                >
-                  <DatePicker
-                    className={`h-[50px] w-full border border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    placeholder={"MM/DD/YYYY"}
-                    onChange={handleCarPermitExpire}
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={"username"}
-                  label={"Username"}
-                  rules={[
-                    {
-                      required: true,
-                      message: "Username is invalid",
-                    },
-                  ]}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Username"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  label="Password"
-                  name="password"
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Password"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  label="Confirm Password"
-                  name="password2"
-                  dependencies={["password"]}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                    ({ getFieldValue }) => ({
-                      validator(_, value) {
-                        if (!value || getFieldValue("password") === value) {
-                          return Promise.resolve();
-                        }
-                        return Promise.reject(
-                          new Error(
-                            "The new password that you entered do not match!",
-                          ),
-                        );
-                      },
-                    }),
-                  ]}
-                >
-                  <CustomInput
-                    classNames={"w-full h-[50px]"}
-                    className={
-                      ManagementStyle["CheckModal__form-element__shadow"]
-                    }
-                    placeholder={"Password"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item valuePropName="checked" name={"assign_color"}>
-                  <CustomCheckBox className={"w-full flex"}>
-                    <span className={`font-medium text-base`}>
-                      Assign Appointment Color
-                    </span>
-                  </CustomCheckBox>
-                </Form.Item>
-
-                <Form.Item name={"color"} label={"Appointment Color"}>
-                  <CustomInput
-                    type={"color"}
-                    placeholder={"#FFFFFF"}
-                    className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    classNames={"w-full h-[50px]"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item name={"zoom"} label={"Zoom PMI"}>
-                  <CustomInput
-                    placeholder={"Zoom PMI"}
-                    className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    classNames={"w-full h-[50px]"}
-                    fontSize="text-base"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  label="Upload"
-                  valuePropName="fileList"
-                  getValueFromEvent={normFile}
-                >
-                  <Upload
-                    action={
-                      import.meta.env.VITE_API + "/student_account/files/"
-                    }
-                    listType="picture-card"
+                  <PlusOutlined />
+                  <div
+                    style={{
+                      marginTop: 8,
+                    }}
                   >
-                    <button
-                      style={{
-                        border: 0,
-                        background: "none",
-                      }}
-                      type="button"
-                    >
-                      <PlusOutlined />
-                      <div
-                        style={{
-                          marginTop: 8,
-                        }}
-                      >
-                        Upload
-                      </div>
-                    </button>
-                  </Upload>
-                </Form.Item>
-              </div>
-            </div>
+                    Upload
+                  </div>
+                </button>
+              </Upload>
+            </Form.Item>
+          </div>
+        </div>
 
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
-              >
-                Save
-              </ButtonComponent>
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
 
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/staff");
-                  }, 1000);
-                }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </Form>
-        )}
-      </Formik>
+          <ButtonComponent
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
       {IsOpen && state?.status}
     </Fragment>
   );
