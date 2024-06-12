@@ -1411,6 +1411,7 @@ export const AddServiceModalContent = () => {
         form={form}
         className={"space-y-5"}
         onFinish={onFinish}
+        layout={"vertical"}
       >
         <div className="grid grid-cols-2 gap-x-10 px-5">
           <div className={"space-y-5"}>
@@ -1469,7 +1470,7 @@ export const AddServiceModalContent = () => {
 
             <Form.Item name={"taxable"} valuePropName="checked">
               <CustomCheckBox
-                className={"gap-x-2.5 pl-[169px] text-base font-medium"}
+                className={"gap-x-2.5 text-base font-normal"}
               >
                 Is Service Taxable
               </CustomCheckBox>
@@ -1488,7 +1489,7 @@ export const AddServiceModalContent = () => {
             >
               <InputNumber
                 placeholder={"Service Price"}
-                className={"w-full h-[50px] border-black"}
+                className={"w-full h-[50px] border-[#667085]"}
               />
             </Form.Item>
 
@@ -1740,11 +1741,12 @@ export const FileCategoryModalContent = () => {
         }}
         className="flex flex-col items-center px-5"
         onFinish={onFinish}
+        layout={"vertical"}
       >
         <Form.Item
           name={"name"}
           label={"Category name"}
-          className="w-[50%]"
+          className="w-[40%]"
           rules={[
             {
               required: true,
@@ -1758,7 +1760,7 @@ export const FileCategoryModalContent = () => {
         <Form.Item
           name={"status"}
           label={"Status"}
-          className="w-[50%]"
+          className="w-[40%]"
           rules={[
             {
               required: true,
@@ -1783,7 +1785,7 @@ export const FileCategoryModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"signature"} label={"Signature link:"}>
+        <Form.Item name={"signature"} label={"Signature link:"} className="w-[40%]">
           <CustomInput
             type={"url"}
             classNames={"w-full"}
@@ -1791,11 +1793,11 @@ export const FileCategoryModalContent = () => {
           />
         </Form.Item>
 
-        <Form.Item name={"note"} label={"Note"}>
+        <Form.Item name={"note"} label={"Note"} className="w-[40%]">
           <Input.TextArea
             showCount
             maxLength={100}
-            className={"border-black p-5"}
+            className={"border-[#667085] min-h-[90px] p-5"}
             placeholder={"Notes"}
           />
         </Form.Item>
@@ -1805,6 +1807,7 @@ export const FileCategoryModalContent = () => {
             label={"Display on Student Portal:"}
             valuePropName="checked"
             name={"has_portal"}
+            className="w-[215px]"
           >
             <Switch />
           </Form.Item>
@@ -1812,6 +1815,7 @@ export const FileCategoryModalContent = () => {
             label={"Must Be Uploaded to Student Account:"}
             valuePropName="checked"
             name={"has_student_account"}
+            className="w-[215px]"
           >
             <Switch />
           </Form.Item>
@@ -1821,6 +1825,7 @@ export const FileCategoryModalContent = () => {
             }
             valuePropName="checked"
             name={"has_category_portal"}
+            className="w-[215px]"
           >
             <Switch />
           </Form.Item>
@@ -1830,6 +1835,7 @@ export const FileCategoryModalContent = () => {
             }
             valuePropName="checked"
             name={"has_teacher_portal"}
+            className="w-[215px]"
           >
             <Switch />
           </Form.Item>
