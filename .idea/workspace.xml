@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update student password page title and refactor form components for improved structure and readability.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update form components and page title for student password for improved structure and readability.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +140,7 @@
       <workItem from="1718135654357" duration="1132000" />
       <workItem from="1718136941360" duration="4127000" />
       <workItem from="1718183106366" duration="19977000" />
-      <workItem from="1718275751543" duration="4538000" />
+      <workItem from="1718275751543" duration="13744000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -448,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718216422911</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="#fix #jsx Update form components and page title for student password for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718289552580</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1718289552580</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -466,22 +472,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor form" />
-    <MESSAGE value="Refactor form components" />
-    <MESSAGE value="Refactor form components for" />
-    <MESSAGE value="Refactor form components for improved" />
-    <MESSAGE value="Refactor form components for improved structure" />
-    <MESSAGE value="Refactor form components for improved structure and" />
-    <MESSAGE value="Refactor form components for improved structure and readability" />
-    <MESSAGE value="Refactor form components for improved structure and readability." />
-    <MESSAGE value="#fix #jsx Refactor form components for improved structure and readability." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update student" />
-    <MESSAGE value="Update student password" />
-    <MESSAGE value="Update student password page" />
-    <MESSAGE value="Update student password page title" />
-    <MESSAGE value="Update student password page title and" />
-    <MESSAGE value="Update student password page title and refactor" />
     <MESSAGE value="Update student password page title and refactor form" />
     <MESSAGE value="Update student password page title and refactor form components" />
     <MESSAGE value="Update student password page title and refactor form components for" />
@@ -491,6 +481,22 @@
     <MESSAGE value="Update student password page title and refactor form components for improved structure and readability" />
     <MESSAGE value="Update student password page title and refactor form components for improved structure and readability." />
     <MESSAGE value="#fix #jsx Update student password page title and refactor form components for improved structure and readability." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update student password page title and refactor form components for improved structure and readability." />
+    <MESSAGE value="#fix #jsx Update form components and page title for student password for improved structure and readability." />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update form" />
+    <MESSAGE value="Update form components" />
+    <MESSAGE value="Update form components and" />
+    <MESSAGE value="Update form components and page" />
+    <MESSAGE value="Update form components and page title" />
+    <MESSAGE value="Update form components and page title for" />
+    <MESSAGE value="Update form components and page title for student" />
+    <MESSAGE value="Update form components and page title for student password" />
+    <MESSAGE value="Update form components and page title for student password for" />
+    <MESSAGE value="Update form components and page title for student password for improved" />
+    <MESSAGE value="Update form components and page title for student password for improved structure" />
+    <MESSAGE value="Update form components and page title for student password for improved structure and" />
+    <MESSAGE value="Update form components and page title for student password for improved structure and readability" />
+    <MESSAGE value="Update form components and page title for student password for improved structure and readability." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update form components and page title for student password for improved structure and readability." />
   </component>
 </project>
