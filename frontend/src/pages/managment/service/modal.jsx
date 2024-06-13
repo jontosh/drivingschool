@@ -4,15 +4,13 @@ import {
   CustomRadio,
   CustomSelect,
   CustomTransfer,
-  SwitchCustom,
 } from "@/components/form/index.jsx";
-import Title, { Text } from "@/components/title/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertSuccess, AlertError } from "@/hooks/alert.jsx";
 import { useFileReader } from "@/hooks/file-reader.jsx";
 import { FormError } from "@/modules/errors.jsx";
 import { AddQuizTab } from "@/modules/management.jsx";
-import { ToNumber } from "@/modules/number.jsx";
 import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import {
   useRequestGetQuery,
@@ -21,6 +19,7 @@ import {
 import { PlusOutlined } from "@ant-design/icons";
 import MDEditor from "@uiw/react-md-editor";
 import {
+  ColorPicker,
   ConfigProvider,
   DatePicker,
   Form,
@@ -30,7 +29,6 @@ import {
   Tabs,
   Upload,
 } from "antd";
-import classNames from "classnames";
 import { Formik } from "formik";
 import {
   Fragment,
@@ -47,15 +45,6 @@ import ManagementStyle from "@/pages/managment/management.module.scss";
 import ButtonComponent from "@/components/button/index.jsx";
 import dayjs from "dayjs";
 import { FiHelpCircle } from "react-icons/fi";
-
-const mockData = [
-  { key: 0, title: "Title 0", description: "Sample Description 0" },
-  { key: 1, title: "Title 1", description: "Sample Description 1" },
-  { key: 2, title: "Title 2", description: "Sample Description 2" },
-  { key: 3, title: "Title 3", description: "Sample Description 3" },
-  { key: 4, title: "Title 4", description: "Sample Description 4" },
-  { key: 5, title: "Title 5", description: "Sample Description 5" },
-];
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -2506,606 +2495,430 @@ export const AddStaffModalContent = () => {
 
 export const LocationModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { data, isLoading } = useRequestGetQuery({
+    path: "/configuration/zipcode/",
+  });
   const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
-  const [Status, setStatus] = useState("");
-  const [PickupLocation, setPickupLocation] = useState("");
-  const [DropOffLocation, setDropOffLocation] = useState("");
-  const [NotesValue, setNotesValue] = useState("Hello");
-  const [Selections, setSelections] = useState(false);
   const [AreaCoverage, setAreaCoverage] = useState([]);
+  const [Coverage, setCoverage] = useState([]);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
-  // dep
-  const selects = [Status, PickupLocation, DropOffLocation];
-
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
-    }
-
-    return state;
-  }, [Status, PickupLocation, DropOffLocation]);
-
   // func
   const handleSubmit = async (values) => {
-    setSelections(stateSelects);
+    try {
+      const res = await requestPost({
+        path: `/account_management/location/`,
+        data: {
+          ...values,
+          // status: Status,
+          // pick_up: PickupLocation,
+          // drop_off: DropOffLocation,
+          // location_note: NotesValue,
+          // area_coverage: ToNumber(AreaCoverage),
+        },
+      });
 
-    if (!stateSelects) {
-      try {
-        const res = await requestPost({
-          path: `/account_management/location/`,
-          data: {
-            ...values,
-            status: Status,
-            pick_up: PickupLocation,
-            drop_off: DropOffLocation,
-            location_note: NotesValue,
-            area_coverage: ToNumber(AreaCoverage),
-          },
-        });
-
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error(error.message);
+      if (res?.error?.status >= 400) {
         dispatch({ type: "ERROR", setIsOpen });
         setIsOpen(true);
+      } else {
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
       }
+    } catch (error) {
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
     }
   };
-  const handleStatus = (value) => setStatus(value);
-  const handlePickupLocation = (value) => setPickupLocation(value);
-  const handleDropOffLocation = (value) => setDropOffLocation(value);
+
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    const zipcodeMock = [];
+    for (let i = 0; i < data?.length; i++) {
+      const item = data[i];
+      zipcodeMock.push({
+        ...item,
+        key: item?.id,
+        title: item?.zip_code,
+      });
+    }
+
+    setCoverage(zipcodeMock);
+  }, [data]);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      other: AreaCoverage,
+    });
+  }, [AreaCoverage?.length]);
+
+  // func
+  const handleStatus = (value) => {
+    form.setFieldsValue({
+      status: value,
+    });
+  };
+
+  const handleState = (value) => {
+    form.setFieldsValue({
+      state: value,
+    });
+  };
+
+  const handlePickupLocation = (value) => {
+    form.setFieldsValue({
+      pick_up: value,
+    });
+  };
+
+  const handleColor = (_, value) => {
+    form.setFieldsValue({
+      color: value,
+    });
+  };
+
+  const handleDropOffLocation = (value) => {
+    form.setFieldsValue({
+      drop_off: value,
+    });
+  };
+
+  const onFinish = async (values) => {
+    console.log(values);
+  };
+
+  const onReset = () => {
+    form.resetFields();
+
+    setTimeout(() => {
+      navigate("/management/single-page/location");
+    }, 1000);
+  };
 
   return (
     <Fragment>
-      <Formik
+      <Form
+        className={"grid grid-cols-2 gap-5 px-5"}
+        layout={"vertical"}
+        onFinish={onFinish}
+        form={form}
         initialValues={{
-          name: "",
-          code: "",
-          type: "",
-          address: "",
-          city: "",
-          state: "",
-          zip: "",
-          location_manager: "",
-          county: "",
-          road_test: false,
-          knowledge_test: false,
-          phone_main: "",
-          fax: "",
-          has_color: false,
-          color: "#333",
-          has_distance_based_scheduling: false,
-          distance_based_scheduling: "",
-          provider_location_id: "",
+          other: [],
+          location_note: "Hello",
+          color: "#1677FF",
         }}
-        validate={(values) => {
-          const errors = {};
-
-          if (!values.name) {
-            errors.name = "Input name is required";
-          }
-
-          if (!values.type) {
-            errors.type = "Type is not chosen";
-          }
-
-          if (!values.code) {
-            errors.type = "Code is empty";
-          }
-
-          return errors;
-        }}
-        onSubmit={handleSubmit}
       >
-        {({ values, errors, handleChange, handleReset, handleSubmit }) => (
-          <form className={"space-y-5 px-5"} onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-7">
-              <div className={"space-y-5"}>
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Location name"}
-                  placeholder={"Location name"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"name"}
-                  value={values.name}
-                  onChange={handleChange}
-                >
-                  {errors.name && (
-                    <FormError className="pl-[170px]">{errors.name}</FormError>
-                  )}
-                </CustomInput>
+        <div className="space-y-5">
+          <Form.Item
+            label={"Location name"}
+            name={"name"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a location name.",
+              },
+            ]}
+          >
+            <CustomInput classNames={"w-full"} placeholder={"Location name"} />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Location code"}
-                  placeholder={"Location Code"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"code"}
-                  value={values.code}
-                  onChange={handleChange}
-                >
-                  {errors.code && (
-                    <FormError className="pl-[170px]">{errors.code}</FormError>
-                  )}
-                </CustomInput>
+          <Form.Item
+            label={"Location code"}
+            name={"code"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a location code.",
+              },
+            ]}
+          >
+            <CustomInput classNames={"w-full"} placeholder={"Location code"} />
+          </Form.Item>
 
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Location Status
-                  </span>
-                  <div className="w-full">
-                    <CustomSelect
-                      placeholder={"Location Status"}
-                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                      options={StatusSelect}
-                      onChange={handleStatus}
-                      value={Status ? Status : undefined}
-                    />
-                    {Selections && (
-                      <FormError>Location Status is not selected</FormError>
-                    )}
-                  </div>
-                </label>
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Location Type
-                  </span>
+          <Form.Item
+            label={"Location status"}
+            name={"status"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a location status.",
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Location Status"}
+              className={`w-full h-[50px]`}
+              options={StatusSelect}
+              onChange={handleStatus}
+            />
+          </Form.Item>
 
-                  <div className="space-y-4">
-                    <div className="space-y-4">
-                      <CustomRadio
-                        className={"space-x-2.5 "}
-                        classNames={"inline-flex items-center gap-2.5"}
-                        customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        name={"type"}
-                        onChange={handleChange}
-                        value={`Main office only`}
-                      >
-                        <span
-                          className={"text-sm flex-shrink-0 font-medium w-32"}
-                        >
-                          Main office only
-                        </span>
-                      </CustomRadio>
-
-                      <CustomRadio
-                        className={"space-x-2.5 "}
-                        classNames={"inline-flex items-center gap-2.5"}
-                        customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        name={"type"}
-                        onChange={handleChange}
-                        value={`Main office with classroom`}
-                      >
-                        <span
-                          className={"text-sm flex-shrink-0 font-medium w-32"}
-                        >
-                          Main office with classroom
-                        </span>
-                      </CustomRadio>
-
-                      <CustomRadio
-                        className={"space-x-2.5 "}
-                        classNames={"inline-flex items-center gap-2.5"}
-                        customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        name={"type"}
-                        onChange={handleChange}
-                        value={`Class Room`}
-                      >
-                        <span
-                          className={"text-sm flex-shrink-0 font-medium w-32"}
-                        >
-                          Class Room
-                        </span>
-                      </CustomRadio>
-
-                      <CustomRadio
-                        className={"space-x-2.5 "}
-                        classNames={"inline-flex items-center gap-2.5"}
-                        customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        name={"type"}
-                        onChange={handleChange}
-                        value={`Other (Satellite Office Only)`}
-                      >
-                        <span
-                          className={"text-sm flex-shrink-0 font-medium w-32"}
-                        >
-                          Other (Satellite Office Only)
-                        </span>
-                      </CustomRadio>
-
-                      <CustomRadio
-                        className={"space-x-2.5 "}
-                        classNames={"inline-flex items-center gap-2.5"}
-                        customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        name={"type"}
-                        onChange={handleChange}
-                        value={`Other Classroom (Satellite Office with Classroom)`}
-                      >
-                        <span
-                          className={"text-sm flex-shrink-0 font-medium w-32"}
-                        >
-                          Other Classroom (Satellite Office with Classroom)
-                        </span>
-                      </CustomRadio>
-
-                      <CustomRadio
-                        className={"space-x-2.5"}
-                        classNames={"inline-flex items-center gap-2.5"}
-                        customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                        name={"type"}
-                        onChange={handleChange}
-                        value={`Range`}
-                      >
-                        <span
-                          className={"text-sm flex-shrink-0 font-medium w-32"}
-                        >
-                          Range
-                        </span>
-                      </CustomRadio>
-                    </div>
-                    {errors.type && <FormError>Location Type</FormError>}
-                  </div>
-                </label>
-
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Address"}
-                  placeholder={"Address"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"address"}
-                  onChange={handleChange}
-                  value={values.address}
-                />
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"City"}
-                  placeholder={"City"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"city"}
-                  onChange={handleChange}
-                  value={values.city}
-                />
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"State"}
-                  placeholder={"State"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"state"}
-                  onChange={handleChange}
-                  value={values.state}
-                />
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Zip"}
-                  placeholder={"Zip"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"zip"}
-                  onChange={handleChange}
-                  value={values.zip}
-                />
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Location Manager"}
-                  placeholder={"Location Manager"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"location_manager"}
-                  onChange={handleChange}
-                  value={values.location_manager}
-                />
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Pickup location
-                  </span>
-                  <div className="w-full">
-                    <CustomSelect
-                      placeholder={"Pickup location"}
-                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                      options={[
-                        {
-                          value: 1,
-                          label: "Number",
-                        },
-                      ]}
-                      value={PickupLocation ? PickupLocation : undefined}
-                      onChange={handlePickupLocation}
-                    />
-
-                    {Selections && (
-                      <FormError className="pl-[170px]">
-                        Pickup location is not selected
-                      </FormError>
-                    )}
-                  </div>
-                </label>
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-32 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Drop off location
-                  </span>
-                  <div className="w-full">
-                    <CustomSelect
-                      placeholder={"Drop off location"}
-                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                      options={[
-                        {
-                          value: 1,
-                          label: "Number",
-                        },
-                      ]}
-                      value={DropOffLocation ? DropOffLocation : undefined}
-                      onChange={handleDropOffLocation}
-                    />
-
-                    {Selections && (
-                      <FormError className="pl-[170px]">
-                        Drop off location is not selected
-                      </FormError>
-                    )}
-                  </div>
-                </label>
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"County"}
-                  placeholder={"County"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"county"}
-                  onChange={handleChange}
-                  value={values.county}
-                />
-              </div>
-              <div className={"space-y-5"}>
-                <label className="flex itmes-center gap-x-10">
-                  <span className="w-32 flex-shrink-0"></span>
-                  <CustomCheckBox
-                    className={"space-x-2.5 w-full"}
-                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"road_test"}
-                    onChange={handleChange}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium"}>
-                      Road Test
-                    </span>
-                  </CustomCheckBox>
-                </label>
-                <label className="flex itmes-center gap-x-10">
-                  <span className="w-32 flex-shrink-0"></span>
-                  <CustomCheckBox
-                    className={"space-x-2.5 w-full"}
-                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"knowledge_test"}
-                    onChange={handleChange}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium"}>
-                      Knowledge Test
-                    </span>
-                  </CustomCheckBox>
-                </label>
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Phone Main"}
-                  placeholder={"Phone Main"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"phone_main"}
-                  value={values.phone_main}
-                  onChange={handleChange}
-                />
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Fax"}
-                  placeholder={"Fax"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"fax"}
-                  value={values.fax}
-                  onChange={handleChange}
-                />
-                <div className="inline-flex justify-end gap-10 items-center w-full">
-                  <span className="text-right text-sm font-medium">
-                    Area Coverage
-                  </span>
-                  <CustomTransfer
-                    dataSource={mockData}
-                    listHeight={200}
-                    setSelectedKeys={setAreaCoverage}
-                    selectedKeys={AreaCoverage}
-                  />
-                </div>
-                <label className="inline-flex justify-end gap-10 items-center w-full">
-                  <span className="text-sm flex-shrink-0 font-medium w-32 text-right">
-                    Location note
-                  </span>
-                  <div className="w-full">
-                    <MDEditor
-                      value={NotesValue}
-                      onChange={(value) => setNotesValue(value)}
-                      previewOptions={{
-                        rehypePlugins: [[rehypeSanitize]],
-                      }}
-                    />
-                  </div>
-                </label>
-                <label className="flex itmes-center gap-x-10">
-                  <span className="w-32 flex-shrink-0"></span>
-                  <CustomCheckBox
-                    className={"space-x-2.5 w-full"}
-                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    name={"has_color"}
-                    onChange={handleChange}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium"}>
-                      Appointment Color
-                    </span>
-                  </CustomCheckBox>
-                </label>
-                <label className="flex items-center gap-6 justify-center">
-                  <span className="text-sm flex-shrink-0 font-medium w-32 text-end ml-4">
-                    Color picker
-                  </span>
-
-                  <CustomInput
-                    type={"color"}
-                    className={"w-12"}
-                    classNames={`rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    onChange={handleChange}
-                    name={"color"}
-                    value={values.color}
-                  />
-                  <CustomInput
-                    classNames={`w-full h-[50px] rounded-lg ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    onChange={handleChange}
-                    name={"color"}
-                    value={values.color}
-                  />
-                </label>
-                <label className="flex itmes-center gap-x-10">
-                  <span className="w-32 flex-shrink-0"></span>
-                  <CustomCheckBox
-                    className={"space-x-2.5 w-full"}
-                    classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                    onChange={handleChange}
-                    name={"has_distance_based_scheduling"}
-                  >
-                    <span className={"text-sm flex-shrink-0 font-medium"}>
-                      Distance based scheduling
-                    </span>
-                  </CustomCheckBox>
-                </label>
-                <CustomInput
-                  type={"number"}
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Distance Coverage in Miles"}
-                  placeholder={"Distance Coverage in Miles"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  value={values.distance_based_scheduling}
-                  onChange={handleChange}
-                  name={"distance_based_scheduling"}
-                />
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Provider Location Id"}
-                  placeholder={"Provider Location Id"}
-                  spanClassName={`text-sm font-medium w-32 flex-shrink-0 text-right`}
-                  name={"provider_location_id"}
-                  value={values.provider_location_id}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
+          <Form.Item
+            label={"Location Type"}
+            name={"type"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a location type.",
+              },
+            ]}
+          >
+            <div className="grid grid-cols-3 gap-2.5">
+              <CustomRadio
+                className={"space-x-2.5 "}
+                classNames={"inline-flex items-center gap-2.5"}
+                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                value={`Main office only`}
+                name={"type"}
               >
-                Save
-              </ButtonComponent>
+                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
+                  Main office only
+                </span>
+              </CustomRadio>
 
-              <ButtonComponent
-                type={"reset"}
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/single-page/location");
-                  }, 1000);
-                }}
+              <CustomRadio
+                className={"space-x-2.5 "}
+                classNames={"inline-flex items-center gap-2.5"}
+                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                value={`Main office with classroom`}
+                name={"type"}
               >
-                Cancel
-              </ButtonComponent>
+                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
+                  Main office with classroom
+                </span>
+              </CustomRadio>
+
+              <CustomRadio
+                className={"space-x-2.5 "}
+                classNames={"inline-flex items-center gap-2.5"}
+                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                value={`Class Room`}
+                name={"type"}
+              >
+                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
+                  Class Room
+                </span>
+              </CustomRadio>
+
+              <CustomRadio
+                className={"space-x-2.5 "}
+                classNames={"inline-flex items-center gap-2.5"}
+                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                value={`Other (Satellite Office Only)`}
+                name={"type"}
+              >
+                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
+                  Other (Satellite Office Only)
+                </span>
+              </CustomRadio>
+
+              <CustomRadio
+                className={"space-x-2.5 "}
+                classNames={"inline-flex items-center gap-2.5"}
+                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                value={`Other Classroom (Satellite Office with Classroom)`}
+                name={"type"}
+              >
+                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
+                  Other Classroom (Satellite Office with Classroom)
+                </span>
+              </CustomRadio>
+
+              <CustomRadio
+                className={"space-x-2.5 "}
+                classNames={"inline-flex items-center gap-2.5"}
+                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                value={`Range`}
+                name={"type"}
+              >
+                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
+                  Range
+                </span>
+              </CustomRadio>
             </div>
-          </form>
-        )}
-      </Formik>
+          </Form.Item>
+
+          <Form.Item label={"Address"} name={"address"}>
+            <CustomInput placeholder={"Address"} classNames={"w-full"} />
+          </Form.Item>
+
+          <Form.Item label={"City"} name={"city"}>
+            <CustomInput placeholder={"City"} classNames={"w-full"} />
+          </Form.Item>
+
+          <Form.Item label={"State"} name={"state"}>
+            <CustomSelect
+              placeholder={"Location Status"}
+              className={`w-full h-[50px]`}
+              options={[{ values: "USA", label: "USA" }]}
+              onChange={handleState}
+            />
+          </Form.Item>
+
+          <Form.Item label={"Zip"} name={"zip"}>
+            <CustomInput placeholder={"Zip"} classNames={"w-full"} />
+          </Form.Item>
+
+          <Form.Item label={"Location manager"} name={"location_manager"}>
+            <CustomInput
+              placeholder={"Location manager"}
+              classNames={"w-full"}
+            />
+          </Form.Item>
+
+          <Form.Item label={"Pickup Location"} name={"pick_up"}>
+            <CustomSelect
+              placeholder={"Pickup Location"}
+              className={`w-full h-[50px]`}
+              options={[{ values: "USA", label: "USA" }]}
+              onChange={handlePickupLocation}
+            />
+          </Form.Item>
+
+          <Form.Item label={"Drop off location"} name={"drop_off"}>
+            <CustomSelect
+              placeholder={"Drop off location"}
+              className={`w-full h-[50px]`}
+              options={[{ values: "USA", label: "USA" }]}
+              onChange={handleDropOffLocation}
+            />
+          </Form.Item>
+
+          <Form.Item label={"County"} name={"county"}>
+            <CustomInput placeholder={"County"} classNames={"w-full"} />
+          </Form.Item>
+        </div>
+
+        <div className="space-y-5">
+          <Form.Item
+            name={"road_test"}
+            label={"Road Test"}
+            valuePropName="checked"
+          >
+            <CustomCheckBox
+              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name={"knowledge_test"}
+            label={"Knowledge Test"}
+            valuePropName="checked"
+          >
+            <CustomCheckBox
+              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+            />
+          </Form.Item>
+
+          <Form.Item label={"Phone Main"} name={"phone_main"}>
+            <CustomInput placeholder={"Phone Main"} classNames={"w-full"} />
+          </Form.Item>
+
+          <Form.Item label={"Fax"} name={"fax"}>
+            <CustomInput placeholder={"Fax"} classNames={"w-full"} />
+          </Form.Item>
+
+          <Form.Item label={"Area Coverage"} name={"other"}>
+            <CustomTransfer
+              dataSource={Coverage}
+              listHeight={200}
+              setSelectedKeys={setAreaCoverage}
+              selectedKeys={AreaCoverage}
+              disabled={isLoading}
+            />
+          </Form.Item>
+
+          <Form.Item label={"Location note"} name={"location_note"}>
+            <MDEditor
+              previewOptions={{
+                rehypePlugins: [[rehypeSanitize]],
+              }}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name={"has_color"}
+            valuePropName="checked"
+            label={"Appointment Color"}
+          >
+            <CustomCheckBox
+              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+            />
+          </Form.Item>
+
+          <Form.Item name={"color"} label={"Color picker"}>
+            <ColorPicker
+              defaultValue="#1677ff"
+              size="large"
+              showText
+              onChange={handleColor}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name={"has_distance_based_scheduling"}
+            label={"Distance based scheduling"}
+            valuePropName="checked"
+          >
+            <CustomCheckBox
+              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name={"distance_based_scheduling"}
+            label={"Distance Coverage in Miles"}
+          >
+            <InputNumber
+              className={"h-[50px] border-black w-full"}
+              placeholder={"Distance Coverage in Miles"}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name={"provider_location_id"}
+            label={"Provider Location Id"}
+          >
+            <CustomInput
+              classNames={"h-[50px] w-full"}
+              placeholder={"Provider Location Id"}
+            />
+          </Form.Item>
+        </div>
+        <div className="text-center space-x-5">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
+
+          <ButtonComponent
+            type={"reset"}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
+
       {IsOpen && state?.status}
     </Fragment>
   );
