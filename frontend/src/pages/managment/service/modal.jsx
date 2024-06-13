@@ -1274,17 +1274,24 @@ export const AddServiceModalContent = () => {
   const { data: AddOnData } = useRequestGetQuery({
     path: "/account_management/services/add_on/",
   });
+
   const { data: DiscountData } = useRequestGetQuery({
     path: "/account_management/services/discount/",
+  });
+
+  const { data: ItemsData } = useRequestGetQuery({
+    path: "/account_management/services/component/",
   });
 
   const [requestPost] = useRequestPostMutation();
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [Location, setLocation] = useState([]);
+  const [Items, setItems] = useState([]);
   const [AddOn, setAddOn] = useState([]);
   const [DiscountMock, setDiscountMock] = useState([]);
   const [AssignLocation, setAssignLocation] = useState([]);
+  const [ServiceItems, setServiceItems] = useState([]);
   const [AddOnServices, setAddOnServices] = useState([]);
   const [Discount, setDiscount] = useState([]);
   const [IsOpen, setIsOpen] = useState(false);
@@ -1295,6 +1302,7 @@ export const AddServiceModalContent = () => {
     const locationMock = [];
     const addOnMock = [];
     const discountData = [];
+    const items = [];
 
     for (let i = 0; i < LocationData?.length; i++) {
       locationMock.push({
@@ -1320,18 +1328,33 @@ export const AddServiceModalContent = () => {
       });
     }
 
+    for (let i = 0; i < ItemsData?.length; i++) {
+      items.push({
+        ...ItemsData[i],
+        key: ItemsData[i]?.id,
+        title: ItemsData[i]?.name,
+      });
+    }
+
     setLocation(locationMock);
     setAddOn(addOnMock);
     setDiscountMock(discountData);
-  }, [LocationData, AddOnData, DiscountData]);
+    setItems(items);
+  }, [LocationData, AddOnData, DiscountData, ItemsData]);
 
   useEffect(() => {
     form.setFieldsValue({
       locations: AssignLocation,
       add_ons: AddOnServices,
       discount: Discount,
+      items: ServiceItems,
     });
-  }, [AssignLocation?.length, AddOnServices?.length, Discount?.length]);
+  }, [
+    AssignLocation?.length,
+    AddOnServices?.length,
+    Discount?.length,
+    ServiceItems?.length,
+  ]);
 
   // func
   const onFinish = async (values) => {
@@ -1404,6 +1427,7 @@ export const AddServiceModalContent = () => {
           locations: [],
           add_ons: [],
           discount: [],
+          items: [],
           web_description: "Hello",
           enrolment_email: "Hello",
           notes: "Hello",
@@ -1468,10 +1492,21 @@ export const AddServiceModalContent = () => {
               />
             </Form.Item>
 
+            <Form.Item
+              name={"items"}
+              label={"Service Items:"}
+              rules={[{ required: true }]}
+            >
+              <CustomTransfer
+                dataSource={Items}
+                listHeight={200}
+                setSelectedKeys={setServiceItems}
+                selectedKeys={ServiceItems}
+              />
+            </Form.Item>
+
             <Form.Item name={"taxable"} valuePropName="checked">
-              <CustomCheckBox
-                className={"gap-x-2.5 text-base font-normal"}
-              >
+              <CustomCheckBox className={"gap-x-2.5 text-base font-normal"}>
                 Is Service Taxable
               </CustomCheckBox>
             </Form.Item>
@@ -1598,8 +1633,9 @@ export const AddServiceModalContent = () => {
                 options={[
                   { value: "TEEN", label: "TEEN" },
                   { value: "ADULT", label: "ADULT" },
-                  { value: "KNOWLEDGE", label: "KNOWLEDGE" },
-                  { value: "ROAD TEST", label: "ROAD TEST" },
+                  { value: "KNOWLEDGE TEST(KT)", label: "KNOWLEDGE TEST(KT)" },
+                  { value: "ROAD TEST(RT)", label: "ROAD TEST(RT)" },
+                  { value: "UPLOAD DOCUMENTS", label: "UPLOAD DOCUMENTS" },
                 ]}
               />
             </Form.Item>
@@ -1662,7 +1698,7 @@ export const AddServiceModalContent = () => {
 export const FileCategoryModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [requestPost] = useRequestPostMutation();
-  const { data } = useRequestGetQuery({
+  const { data, isLoading } = useRequestGetQuery({
     path: "/account_management/services/service/",
   });
   const navigate = useNavigate();
@@ -1739,106 +1775,116 @@ export const FileCategoryModalContent = () => {
           note: "",
           signature: "",
         }}
-        className="flex flex-col items-center px-5"
+        className="px-5 grid grid-cols-2 gap-5"
         onFinish={onFinish}
         layout={"vertical"}
       >
-        <Form.Item
-          name={"name"}
-          label={"Category name"}
-          className="w-[40%]"
-          rules={[
-            {
-              required: true,
-              message: "Category name is empty",
-            },
-          ]}
-        >
-          <CustomInput classNames={"w-full"} placeholder={"Category name"} />
-        </Form.Item>
-
-        <Form.Item
-          name={"status"}
-          label={"Status"}
-          className="w-[40%]"
-          rules={[
-            {
-              required: true,
-              message: "Status is empty",
-            },
-          ]}
-        >
-          <CustomSelect
-            placeholder={"Select status"}
-            className={`w-full h-[50px] rounded`}
-            options={StatusSelect}
-            onChange={handleStatus}
-          />
-        </Form.Item>
-
-        <Form.Item name={"package"} label={"Packages:"}>
-          <CustomTransfer
-            dataSource={PackagesMock}
-            listHeight={200}
-            setSelectedKeys={setPackages}
-            selectedKeys={Packages}
-          />
-        </Form.Item>
-
-        <Form.Item name={"signature"} label={"Signature link:"} className="w-[40%]">
-          <CustomInput
-            type={"url"}
-            classNames={"w-full"}
-            placeholder={"Category name"}
-          />
-        </Form.Item>
-
-        <Form.Item name={"note"} label={"Note"} className="w-[40%]">
-          <Input.TextArea
-            showCount
-            maxLength={100}
-            className={"border-[#667085] min-h-[90px] p-5"}
-            placeholder={"Notes"}
-          />
-        </Form.Item>
-
-        <div className="grid grid-cols-2 gap-5">
+        <div className="space-y-5">
           <Form.Item
-            label={"Display on Student Portal:"}
-            valuePropName="checked"
-            name={"has_portal"}
-            className="w-[215px]"
+            name={"name"}
+            label={"Category name"}
+            rules={[
+              {
+                required: true,
+                message: "Category name is empty",
+              },
+            ]}
           >
-            <Switch />
+            <CustomInput
+              disabled={isLoading}
+              classNames={"w-full"}
+              placeholder={"Category name"}
+            />
           </Form.Item>
+
           <Form.Item
-            label={"Must Be Uploaded to Student Account:"}
-            valuePropName="checked"
-            name={"has_student_account"}
-            className="w-[215px]"
+            name={"status"}
+            label={"Status"}
+            rules={[
+              {
+                required: true,
+                message: "Status is empty",
+              },
+            ]}
           >
-            <Switch />
+            <CustomSelect
+              placeholder={"Select status"}
+              className={`w-full h-[50px] rounded`}
+              options={StatusSelect}
+              onChange={handleStatus}
+              disabled={isLoading}
+            />
           </Form.Item>
-          <Form.Item
-            label={
-              "Disallow files associated with category from displaying on Student Portal:"
-            }
-            valuePropName="checked"
-            name={"has_category_portal"}
-            className="w-[215px]"
-          >
-            <Switch />
+
+          <Form.Item name={"signature"} label={"Signature link:"}>
+            <CustomInput
+              type={"url"}
+              classNames={"w-full"}
+              placeholder={"Link"}
+              disabled={isLoading}
+            />
           </Form.Item>
-          <Form.Item
-            label={
-              "Disallow files associated with this category  from displaying on Instructor/Teacher Portal:"
-            }
-            valuePropName="checked"
-            name={"has_teacher_portal"}
-            className="w-[215px]"
-          >
-            <Switch />
+
+          <Form.Item name={"note"} label={"Note"}>
+            <Input.TextArea
+              showCount
+              maxLength={100}
+              className={"border-[#667085] min-h-[90px] p-5"}
+              placeholder={"Notes"}
+              disabled={isLoading}
+            />
           </Form.Item>
+        </div>
+
+        <div className="space-y-5">
+          <Form.Item name={"package"} label={"Packages:"}>
+            <CustomTransfer
+              dataSource={PackagesMock}
+              listHeight={200}
+              setSelectedKeys={setPackages}
+              selectedKeys={Packages}
+              disabled={isLoading}
+            />
+          </Form.Item>
+
+          <div className="grid grid-cols-2 gap-5">
+            <Form.Item
+              label={"Display on Student Portal:"}
+              valuePropName="checked"
+              name={"has_portal"}
+              className="min-w-[215px]"
+            >
+              <Switch />
+            </Form.Item>
+            <Form.Item
+              label={"Must Be Uploaded to Student Account:"}
+              valuePropName="checked"
+              name={"has_student_account"}
+              className="min-w-[215px]"
+            >
+              <Switch />
+            </Form.Item>
+            <Form.Item
+              label={
+                "Disallow files associated with category from displaying on Student Portal:"
+              }
+              valuePropName="checked"
+              name={"has_category_portal"}
+              className="min-w-[215px]"
+            >
+              <Switch />
+            </Form.Item>
+            <Form.Item
+              label={
+                "Disallow files associated with this category  from displaying on Instructor/Teacher Portal:"
+              }
+              valuePropName="checked"
+              name={"has_teacher_portal"}
+              className="min-w-[215px]"
+            >
+              <Switch />
+            </Form.Item>
+          </div>
         </div>
 
         <div className="text-center space-x-5">

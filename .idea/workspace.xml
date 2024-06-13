@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form components for improved structure and readability.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update student password page title and refactor form components for improved structure and readability.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/student-password.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/student-password.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/zip-code.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/zip-code.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +141,8 @@
       <workItem from="1718117698421" duration="8141000" />
       <workItem from="1718135654357" duration="1132000" />
       <workItem from="1718136941360" duration="4127000" />
-      <workItem from="1718183106366" duration="19862000" />
+      <workItem from="1718183106366" duration="19977000" />
+      <workItem from="1718275751543" duration="4538000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -438,7 +440,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718207063656</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="#fix #jsx Update student password page title and refactor form components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718216422911</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1718216422911</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactor" />
     <MESSAGE value="Refactor form" />
     <MESSAGE value="Refactor form components" />
     <MESSAGE value="Refactor form components for" />
@@ -481,6 +490,7 @@
     <MESSAGE value="Update student password page title and refactor form components for improved structure and" />
     <MESSAGE value="Update student password page title and refactor form components for improved structure and readability" />
     <MESSAGE value="Update student password page title and refactor form components for improved structure and readability." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update student password page title and refactor form components for improved structure and readability." />
+    <MESSAGE value="#fix #jsx Update student password page title and refactor form components for improved structure and readability." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update student password page title and refactor form components for improved structure and readability." />
   </component>
 </project>

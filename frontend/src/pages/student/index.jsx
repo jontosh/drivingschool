@@ -139,7 +139,7 @@ const StudentAccount = () => {
             )}
           </Formik>
 
-          {Student && studentId && (
+          {studentId && (
             <div>
               <div className={"gap-x-5 flex items-center flex-grow-0"}>
                 <div>
@@ -250,7 +250,7 @@ const StudentAccount = () => {
             </NavLink>
           </div>
 
-          {Student && studentId && (
+          {studentId && (
             <div className="pt-6">
               <Outlet />
             </div>
