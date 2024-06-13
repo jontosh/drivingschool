@@ -841,7 +841,7 @@ const MultipleChoice = ({ form, ...props }) => {
             />
           </Form.Item>
 
-          <Form.List>
+          <Form.List name="answers">
             {(fields, { add, remove }) => {
               console.log(fields);
               return (
@@ -859,7 +859,6 @@ const MultipleChoice = ({ form, ...props }) => {
                           classNames={"w-full"}
                         />
                       </Form.Item>
-
                       <div className="flex items-center justify-between">
                         <Form.Item
                           {...restField}
@@ -1210,7 +1209,7 @@ const Category = ({ form, ...props }) => {
             />
           </Form.Item>
 
-          <Form.List name="users">
+          <Form.List name="answers">
             {(fields, { add, remove }) => {
               console.log(fields);
               return (
