@@ -70,7 +70,6 @@ export const StudentPassword = () => {
       </Helmet>
 
       <Form
-        className={"grid grid-cols-3 gap-5"}
         form={form}
         onFinish={onFinish}
         layout={"vertical"}
@@ -85,121 +84,125 @@ export const StudentPassword = () => {
           admin_2AF: false,
         }}
       >
-        <div className="space-y-5">
-          <Form.Item
-            label={"StudentPassword History Policy"}
-            name={"remember_password"}
-          >
-            <InputNumber
-              className={"border-black w-full h-[50px]"}
-              placeholder={"StudentPassword History Policy"}
-            />
-          </Form.Item>
+        <div className={"grid grid-cols-3 gap-5"}>
+          <div className="space-y-5">
+            <Form.Item
+              label={"StudentPassword History Policy"}
+              name={"remember_password"}
+            >
+              <InputNumber
+                className={"border-[#667085] w-full h-[50px] py-2.5"}
+                placeholder={"StudentPassword History Policy"}
+              />
+            </Form.Item>
 
-          <Form.Item label={"Max Password Age Policy"} name={"age"}>
-            <CustomSelect
-              placeholder={"Select Max Password Age Policy"}
-              className={`w-full h-[50px]`}
-              options={[
-                { value: 1, label: "1 Month" },
-                { value: 2, label: "2 Month" },
-                { value: 3, label: "3 Month" },
-                { value: 4, label: "4 Month" },
-                { value: 5, label: "5 Month" },
-                { value: 6, label: "6 Month" },
-              ]}
-              onChange={handleAge}
-            />
-          </Form.Item>
+            <Form.Item label={"Max Password Age Policy"} name={"age"}>
+              <CustomSelect
+                placeholder={"Select Max Password Age Policy"}
+                className={`w-full h-[50px]`}
+                options={[
+                  { value: 1, label: "1 Month" },
+                  { value: 2, label: "2 Month" },
+                  { value: 3, label: "3 Month" },
+                  { value: 4, label: "4 Month" },
+                  { value: 5, label: "5 Month" },
+                  { value: 6, label: "6 Month" },
+                ]}
+                onChange={handleAge}
+              />
+            </Form.Item>
 
-          <Form.Item label={"Min Password Length Policy"} name={"min_length"}>
-            <InputNumber
-              className={"border-black w-full h-[50px]"}
-              placeholder={"Min Password Length Policy"}
-            />
-          </Form.Item>
+            <Form.Item label={"Min Password Length Policy"} name={"min_length"}>
+              <InputNumber
+                className={"border-[#667085] w-full h-[50px] py-2.5"}
+                placeholder={"Min Password Length Policy"}
+              />
+            </Form.Item>
 
-          <Form.Item
-            label={"Reset Password Link Age (Hours) Policy"}
-            name={"reset_password_link"}
-          >
-            <InputNumber
-              className={"border-black w-full h-[50px]"}
-              placeholder={"Reset Password Link Age (Hours) Policy"}
-            />
-          </Form.Item>
+            <Form.Item
+              label={"Reset Password Link Age (Hours) Policy"}
+              name={"reset_password_link"}
+            >
+              <InputNumber
+                className={"border-[#667085] w-full h-[50px] py-2.5"}
+                placeholder={"Reset Password Link Age (Hours) Policy"}
+              />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item
+              name={"upper"}
+              valuePropName={"checked"}
+              label={"Uppercase Letters"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"number"}
+              valuePropName={"checked"}
+              label={"Numbers"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"symbol"}
+              valuePropName={"checked"}
+              label={"Symbols"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"re_capcha"}
+              valuePropName={"checked"}
+              label={"Enable reCaptcha"}
+            >
+              <Switch />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            {/* <Form.Item
+              label={"Enable Two Factor Authentication (2FA) for Staff"}
+              name={"has_2AF"}
+              valuePropName={"checked"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              label={"Enable Two Factor Authentication (2FA) for Admin"}
+              name={"admin_2AF"}
+              valuePropName={"checked"}
+            >
+              <Switch />
+            </Form.Item> */}
+
+            <Form.Item
+              label={"Lowercase Letters"}
+              name={"lower"}
+              valuePropName={"checked"}
+            >
+              <Switch />
+            </Form.Item>
+          </div>
         </div>
 
-        <div className="space-y-5">
-          <Form.Item
-            name={"upper"}
-            valuePropName={"checked"}
-            label={"Uppercase Letters"}
+        <div className="text-center pt-10">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            borderRadius={5}
+            paddingInline={43}
+            controlHeight={40}
+            type={"submit"}
           >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"number"}
-            valuePropName={"checked"}
-            label={"Numbers"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"symbol"}
-            valuePropName={"checked"}
-            label={"Symbols"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"re_capcha"}
-            valuePropName={"checked"}
-            label={"Enable reCaptcha"}
-          >
-            <Switch />
-          </Form.Item>
+            Save
+          </ButtonComponent>
         </div>
-
-        <div className="space-y-5">
-          <Form.Item
-            label={"Enable Two Factor Authentication (2FA) for Staff"}
-            name={"has_2AF"}
-            valuePropName={"checked"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            label={"Enable Two Factor Authentication (2FA) for Admin"}
-            name={"admin_2AF"}
-            valuePropName={"checked"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            label={"Lowercase Letters"}
-            name={"lower"}
-            valuePropName={"checked"}
-          >
-            <Switch />
-          </Form.Item>
-        </div>
-
-        <ButtonComponent
-          defaultBg={colorsObject.success}
-          defaultHoverBg={colorsObject.successHover}
-          borderRadius={5}
-          paddingInline={43}
-          controlHeight={40}
-          type={"submit"}
-        >
-          Save
-        </ButtonComponent>
       </Form>
 
       {IsOpen && state?.status}
