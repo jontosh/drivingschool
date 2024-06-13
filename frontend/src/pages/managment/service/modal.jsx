@@ -2505,35 +2505,6 @@ export const LocationModalContent = () => {
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
-  // func
-  const handleSubmit = async (values) => {
-    try {
-      const res = await requestPost({
-        path: `/account_management/location/`,
-        data: {
-          ...values,
-          // status: Status,
-          // pick_up: PickupLocation,
-          // drop_off: DropOffLocation,
-          // location_note: NotesValue,
-          // area_coverage: ToNumber(AreaCoverage),
-        },
-      });
-
-      if (res?.error?.status >= 400) {
-        dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
-      } else {
-        dispatch({ type: "SUCCESS", setIsOpen });
-        setIsOpen(true);
-      }
-    } catch (error) {
-      console.error(error.message);
-      dispatch({ type: "ERROR", setIsOpen });
-      setIsOpen(true);
-    }
-  };
-
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -2588,7 +2559,24 @@ export const LocationModalContent = () => {
   };
 
   const onFinish = async (values) => {
-    console.log(values);
+    try {
+      const res = await requestPost({
+        path: `/account_management/location/`,
+        data: values,
+      });
+
+      if (res?.error?.status >= 400) {
+        setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
+      }
+    } catch (error) {
+      setIsOpen(true);
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+    }
   };
 
   const onReset = () => {
@@ -2742,11 +2730,29 @@ export const LocationModalContent = () => {
             </div>
           </Form.Item>
 
-          <Form.Item label={"Address"} name={"address"}>
+          <Form.Item
+            label={"Address"}
+            name={"address"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a address.",
+              },
+            ]}
+          >
             <CustomInput placeholder={"Address"} classNames={"w-full"} />
           </Form.Item>
 
-          <Form.Item label={"City"} name={"city"}>
+          <Form.Item
+            label={"City"}
+            name={"city"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a city.",
+              },
+            ]}
+          >
             <CustomInput placeholder={"City"} classNames={"w-full"} />
           </Form.Item>
 
@@ -2759,7 +2765,16 @@ export const LocationModalContent = () => {
             />
           </Form.Item>
 
-          <Form.Item label={"Zip"} name={"zip"}>
+          <Form.Item
+            label={"Zip"}
+            name={"zip"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a zip.",
+              },
+            ]}
+          >
             <CustomInput placeholder={"Zip"} classNames={"w-full"} />
           </Form.Item>
 
@@ -2814,7 +2829,16 @@ export const LocationModalContent = () => {
             />
           </Form.Item>
 
-          <Form.Item label={"Phone Main"} name={"phone_main"}>
+          <Form.Item
+            label={"Phone Main"}
+            name={"phone_main"}
+            rules={[
+              {
+                required: true,
+                message: "Please enter a phone main.",
+              },
+            ]}
+          >
             <CustomInput placeholder={"Phone Main"} classNames={"w-full"} />
           </Form.Item>
 
@@ -2889,6 +2913,7 @@ export const LocationModalContent = () => {
             />
           </Form.Item>
         </div>
+
         <div className="text-center space-x-5">
           <ButtonComponent
             defaultBg={colorsObject.success}
