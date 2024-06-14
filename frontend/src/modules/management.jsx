@@ -1034,23 +1034,13 @@ const TrueFalse = ({ form, ...props }) => {
               />
             </Form.Item>
 
-            <ConfigProvider
-              theme={{
-                components: {
-                  Form: {
-                    labelFontSize: 16,
-                  },
-                },
-              }}
+            <Form.Item
+              name={"is_correct"}
+              label={"correct answer"}
+              labelAlign="left"
             >
-              <Form.Item
-                name={"is_correct"}
-                label={"correct answer"}
-                labelAlign="left"
-              >
-                <CustomRadio name={"is_correct"} />
-              </Form.Item>
-            </ConfigProvider>
+              <CustomRadio name={"is_correct"} />
+            </Form.Item>
           </div>
 
           <div>
@@ -1609,7 +1599,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => {}, 1000);
+    setTimeout(() => { }, 1000);
   };
 
   return (
@@ -1638,7 +1628,7 @@ const AddNewTest = () => {
         >
           {({ getFieldValue }) =>
             QuestionType[getFieldValue("type") - 1]?.id ===
-            getFieldValue("type")
+              getFieldValue("type")
               ? AddQuizArrays[getFieldValue("type") - 1]
               : null
           }

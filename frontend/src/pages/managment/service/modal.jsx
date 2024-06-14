@@ -1495,7 +1495,7 @@ export const AddServiceModalContent = () => {
             </Form.Item>
 
             <Form.Item name={"taxable"} valuePropName="checked">
-              <CustomCheckBox className={"gap-x-2.5 text-base font-normal"}>
+              <CustomCheckBox className={"gap-x-2.5 text-sm"}>
                 Is Service Taxable
               </CustomCheckBox>
             </Form.Item>
@@ -2590,7 +2590,6 @@ export const LocationModalContent = () => {
   return (
     <Fragment>
       <Form
-        className={"grid grid-cols-2 gap-5 px-5"}
         layout={"vertical"}
         onFinish={onFinish}
         form={form}
@@ -2600,321 +2599,323 @@ export const LocationModalContent = () => {
           color: "#1677FF",
         }}
       >
-        <div className="space-y-5">
-          <Form.Item
-            label={"Location name"}
-            name={"name"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a location name.",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Location name"} />
-          </Form.Item>
+        <div className={"grid grid-cols-2 gap-5 px-5"}>
+          <div className="space-y-5">
+            <Form.Item
+              label={"Location name"}
+              name={"name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a location name.",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Location name"} />
+            </Form.Item>
 
-          <Form.Item
-            label={"Location code"}
-            name={"code"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a location code.",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Location code"} />
-          </Form.Item>
+            <Form.Item
+              label={"Location code"}
+              name={"code"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a location code.",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Location code"} />
+            </Form.Item>
 
-          <Form.Item
-            label={"Location status"}
-            name={"status"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a location status.",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Location Status"}
-              className={`w-full h-[50px]`}
-              options={StatusSelect}
-              onChange={handleStatus}
-            />
-          </Form.Item>
+            <Form.Item
+              label={"Location status"}
+              name={"status"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a location status.",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Location Status"}
+                className={`w-full h-[50px]`}
+                options={StatusSelect}
+                onChange={handleStatus}
+              />
+            </Form.Item>
 
-          <Form.Item
-            label={"Location Type"}
-            name={"type"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a location type.",
-              },
-            ]}
-          >
-            <div className="grid grid-cols-3 gap-2.5">
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Main office only`}
-                name={"type"}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                  Main office only
-                </span>
-              </CustomRadio>
+            <Form.Item
+              label={"Location Type"}
+              name={"type"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a location type.",
+                },
+              ]}
+            >
+              <div className="grid grid-cols-3 gap-2.5">
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Main office only`}
+                  name={"type"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>
+                    Main office only
+                  </span>
+                </CustomRadio>
 
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Main office with classroom`}
-                name={"type"}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                  Main office with classroom
-                </span>
-              </CustomRadio>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Main office with classroom`}
+                  name={"type"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>
+                    Main office with classroom
+                  </span>
+                </CustomRadio>
 
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Class Room`}
-                name={"type"}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                  Class Room
-                </span>
-              </CustomRadio>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Class Room`}
+                  name={"type"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>
+                    Class Room
+                  </span>
+                </CustomRadio>
 
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Other (Satellite Office Only)`}
-                name={"type"}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                  Other (Satellite Office Only)
-                </span>
-              </CustomRadio>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Other (Satellite Office Only)`}
+                  name={"type"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>
+                    Other (Satellite Office Only)
+                  </span>
+                </CustomRadio>
 
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Other Classroom (Satellite Office with Classroom)`}
-                name={"type"}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                  Other Classroom (Satellite Office with Classroom)
-                </span>
-              </CustomRadio>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Other Classroom (Satellite Office with Classroom)`}
+                  name={"type"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>
+                    Other Classroom (Satellite Office with Classroom)
+                  </span>
+                </CustomRadio>
 
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Range`}
-                name={"type"}
-              >
-                <span className={"text-sm flex-shrink-0 font-medium w-32"}>
-                  Range
-                </span>
-              </CustomRadio>
-            </div>
-          </Form.Item>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Range`}
+                  name={"type"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>
+                    Range
+                  </span>
+                </CustomRadio>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"Address"}
-            name={"address"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a address.",
-              },
-            ]}
-          >
-            <CustomInput placeholder={"Address"} classNames={"w-full"} />
-          </Form.Item>
+            <Form.Item
+              label={"Address"}
+              name={"address"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a address.",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Address"} classNames={"w-full"} />
+            </Form.Item>
 
-          <Form.Item
-            label={"City"}
-            name={"city"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a city.",
-              },
-            ]}
-          >
-            <CustomInput placeholder={"City"} classNames={"w-full"} />
-          </Form.Item>
+            <Form.Item
+              label={"City"}
+              name={"city"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a city.",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"City"} classNames={"w-full"} />
+            </Form.Item>
 
-          <Form.Item label={"State"} name={"state"}>
-            <CustomSelect
-              placeholder={"Location Status"}
-              className={`w-full h-[50px]`}
-              options={[{ values: "USA", label: "USA" }]}
-              onChange={handleState}
-            />
-          </Form.Item>
+            <Form.Item label={"State"} name={"state"}>
+              <CustomSelect
+                placeholder={"Location Status"}
+                className={`w-full h-[50px]`}
+                options={[{ values: "USA", label: "USA" }]}
+                onChange={handleState}
+              />
+            </Form.Item>
 
-          <Form.Item
-            label={"Zip"}
-            name={"zip"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a zip.",
-              },
-            ]}
-          >
-            <CustomInput placeholder={"Zip"} classNames={"w-full"} />
-          </Form.Item>
+            <Form.Item
+              label={"Zip"}
+              name={"zip"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a zip.",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Zip"} classNames={"w-full"} />
+            </Form.Item>
 
-          <Form.Item label={"Location manager"} name={"location_manager"}>
-            <CustomInput
-              placeholder={"Location manager"}
-              classNames={"w-full"}
-            />
-          </Form.Item>
+            <Form.Item label={"Location manager"} name={"location_manager"}>
+              <CustomInput
+                placeholder={"Location manager"}
+                classNames={"w-full"}
+              />
+            </Form.Item>
 
-          <Form.Item label={"Pickup Location"} name={"pick_up"}>
-            <CustomSelect
-              placeholder={"Pickup Location"}
-              className={`w-full h-[50px]`}
-              options={[{ values: "USA", label: "USA" }]}
-              onChange={handlePickupLocation}
-            />
-          </Form.Item>
+            <Form.Item label={"Pickup Location"} name={"pick_up"}>
+              <CustomSelect
+                placeholder={"Pickup Location"}
+                className={`w-full h-[50px]`}
+                options={[{ values: "USA", label: "USA" }]}
+                onChange={handlePickupLocation}
+              />
+            </Form.Item>
 
-          <Form.Item label={"Drop off location"} name={"drop_off"}>
-            <CustomSelect
-              placeholder={"Drop off location"}
-              className={`w-full h-[50px]`}
-              options={[{ values: "USA", label: "USA" }]}
-              onChange={handleDropOffLocation}
-            />
-          </Form.Item>
+            <Form.Item label={"Drop off location"} name={"drop_off"}>
+              <CustomSelect
+                placeholder={"Drop off location"}
+                className={`w-full h-[50px]`}
+                options={[{ values: "USA", label: "USA" }]}
+                onChange={handleDropOffLocation}
+              />
+            </Form.Item>
 
-          <Form.Item label={"County"} name={"county"}>
-            <CustomInput placeholder={"County"} classNames={"w-full"} />
-          </Form.Item>
+            <Form.Item label={"County"} name={"county"}>
+              <CustomInput placeholder={"County"} classNames={"w-full"} />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item
+              name={"road_test"}
+              label={"Road Test"}
+              valuePropName="checked"
+            >
+              <CustomCheckBox
+                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"knowledge_test"}
+              label={"Knowledge Test"}
+              valuePropName="checked"
+            >
+              <CustomCheckBox
+                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={"Phone Main"}
+              name={"phone_main"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter a phone main.",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Phone Main"} classNames={"w-full"} />
+            </Form.Item>
+
+            <Form.Item label={"Fax"} name={"fax"}>
+              <CustomInput placeholder={"Fax"} classNames={"w-full"} />
+            </Form.Item>
+
+            <Form.Item label={"Area Coverage"} name={"other"}>
+              <CustomTransfer
+                dataSource={Coverage}
+                listHeight={200}
+                setSelectedKeys={setAreaCoverage}
+                selectedKeys={AreaCoverage}
+                disabled={isLoading}
+              />
+            </Form.Item>
+
+            <Form.Item label={"Location note"} name={"location_note"}>
+              <MDEditor
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"has_color"}
+              valuePropName="checked"
+              label={"Appointment Color"}
+            >
+              <CustomCheckBox
+                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+              />
+            </Form.Item>
+
+            <Form.Item name={"color"} label={"Color picker"}>
+              <ColorPicker
+                defaultValue="#1677ff"
+                size="large"
+                showText
+                onChange={handleColor}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"has_distance_based_scheduling"}
+              label={"Distance based scheduling"}
+              valuePropName="checked"
+            >
+              <CustomCheckBox
+                classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"distance_based_scheduling"}
+              label={"Distance Coverage in Miles"}
+            >
+              <InputNumber
+                className={"h-[50px] border-[#667085] w-full py-2.5"}
+                placeholder={"Distance Coverage in Miles"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"provider_location_id"}
+              label={"Provider Location Id"}
+            >
+              <CustomInput
+                classNames={"h-[50px] w-full"}
+                placeholder={"Provider Location Id"}
+              />
+            </Form.Item>
+          </div>
         </div>
 
-        <div className="space-y-5">
-          <Form.Item
-            name={"road_test"}
-            label={"Road Test"}
-            valuePropName="checked"
-          >
-            <CustomCheckBox
-              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"knowledge_test"}
-            label={"Knowledge Test"}
-            valuePropName="checked"
-          >
-            <CustomCheckBox
-              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-            />
-          </Form.Item>
-
-          <Form.Item
-            label={"Phone Main"}
-            name={"phone_main"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a phone main.",
-              },
-            ]}
-          >
-            <CustomInput placeholder={"Phone Main"} classNames={"w-full"} />
-          </Form.Item>
-
-          <Form.Item label={"Fax"} name={"fax"}>
-            <CustomInput placeholder={"Fax"} classNames={"w-full"} />
-          </Form.Item>
-
-          <Form.Item label={"Area Coverage"} name={"other"}>
-            <CustomTransfer
-              dataSource={Coverage}
-              listHeight={200}
-              setSelectedKeys={setAreaCoverage}
-              selectedKeys={AreaCoverage}
-              disabled={isLoading}
-            />
-          </Form.Item>
-
-          <Form.Item label={"Location note"} name={"location_note"}>
-            <MDEditor
-              previewOptions={{
-                rehypePlugins: [[rehypeSanitize]],
-              }}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"has_color"}
-            valuePropName="checked"
-            label={"Appointment Color"}
-          >
-            <CustomCheckBox
-              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-            />
-          </Form.Item>
-
-          <Form.Item name={"color"} label={"Color picker"}>
-            <ColorPicker
-              defaultValue="#1677ff"
-              size="large"
-              showText
-              onChange={handleColor}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"has_distance_based_scheduling"}
-            label={"Distance based scheduling"}
-            valuePropName="checked"
-          >
-            <CustomCheckBox
-              classNames={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"distance_based_scheduling"}
-            label={"Distance Coverage in Miles"}
-          >
-            <InputNumber
-              className={"h-[50px] border-black w-full"}
-              placeholder={"Distance Coverage in Miles"}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"provider_location_id"}
-            label={"Provider Location Id"}
-          >
-            <CustomInput
-              classNames={"h-[50px] w-full"}
-              placeholder={"Provider Location Id"}
-            />
-          </Form.Item>
-        </div>
-
-        <div className="text-center space-x-5">
+        <div className="text-center space-x-5 pt-10">
           <ButtonComponent
             defaultBg={colorsObject.success}
             defaultHoverBg={colorsObject.successHover}
