@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form submission handling and form field validation messages.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/modules.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/subpages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/subpages/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +144,7 @@
       <workItem from="1718183106366" duration="19977000" />
       <workItem from="1718275751543" duration="15458000" />
       <workItem from="1718392369280" duration="625000" />
-      <workItem from="1718470727079" duration="4662000" />
+      <workItem from="1718470727079" duration="11037000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -486,7 +482,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718472372711</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718475445056</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1718475445056</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

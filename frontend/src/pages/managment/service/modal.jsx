@@ -8,10 +8,7 @@ import {
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertSuccess, AlertError } from "@/hooks/alert.jsx";
-import { useFileReader } from "@/hooks/file-reader.jsx";
-import { FormError } from "@/modules/errors.jsx";
 import { AddQuizTab } from "@/modules/management.jsx";
-import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
 import {
   useRequestGetQuery,
   useRequestPostMutation,
@@ -29,15 +26,7 @@ import {
   Tabs,
   Upload,
 } from "antd";
-import { Formik } from "formik";
-import {
-  Fragment,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import rehypeSanitize from "rehype-sanitize";
 import { StatusSelect } from "./index.jsx";
@@ -2026,6 +2015,7 @@ export const AddStaffModalContent = () => {
         initialValues={{ color: "#000" }}
         className={"space-y-5"}
         onFinish={onFinish}
+        layout={"vertical"}
       >
         <div className={"grid grid-cols-2 gap-5 px-5"}>
           <div className={"space-y-5"}>
@@ -3282,402 +3272,379 @@ export const HowHearModalContent = () => {
 
 export const VehiclesModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { data: LocationData } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
   const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
-  const [Status, setStatus] = useState("");
-  const [Location, setLocation] = useState("");
-  const [Type, setType] = useState("");
-  const [Selections, setSelections] = useState(false);
-  const { FileReaderResult, ResultFile } = useFileReader();
-  const [NotesValue, setNotesValue] = useState("Hello");
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+  const [form] = Form.useForm();
+  const [Location, setLocation] = useState([]);
 
-  // dep
-  const selects = [Status];
+  useEffect(() => {
+    const location = [];
 
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
+    for (let i = 0; i < LocationData?.length; i++) {
+      const item = LocationData[i];
+
+      location.push({
+        ...item,
+        value: item?.id,
+        label: item?.name,
+      });
     }
 
-    return state;
-  }, [Status]);
+    setLocation(location);
+  }, [LocationData]);
 
-  //func
-  const handleSubmit = async (values) => {
-    setSelections(stateSelects);
+  // func
+  const onFinish = async (values) => {
+    try {
+      console.log(values);
 
-    if (!stateSelects) {
-      try {
-        const res = await requestPost({
-          path: "/account_management/vehicle/",
-          data: {
-            ...values,
-            status: Status,
-            location: Location,
-            type: Type,
-            note: NotesValue,
-          },
-        });
+      const response = await requestPost({
+        path: "/account_management/vehicle/",
+        data: values,
+      });
 
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error(error.message);
-        dispatch({ type: "ERROR", setIsOpen });
+      if (response?.error?.status >= 400) {
         setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
       }
+    } catch (error) {
+      setIsOpen(true);
+      console.error(error?.message);
+      dispatch({ type: "ERROR", setIsOpen });
     }
   };
 
-  const handleStatus = (value) => setStatus(value);
-  const handleLocation = (value) => setLocation(value);
-  const handleType = (value) => setType(value);
-  const handleNotes = (value) => setNotesValue(value);
+  const onReset = () => {
+    form.resetFields();
+
+    setTimeout(() => {
+      navigate("/management/single-page/vehicles");
+    }, 1000);
+  };
+
+  const handleStatus = (value) => {
+    form.setFieldsValue({
+      status: value,
+    });
+  };
+
+  const handleLocation = (value) => {
+    form.setFieldsValue({
+      location: value,
+    });
+  };
+
+  const handleType = (value) => {
+    form.setFieldsValue({
+      type: value,
+    });
+  };
+
+  const handleColor = (_, value) => {
+    form.setFieldsValue({
+      color: value,
+    });
+  };
+
+  const handleAsrEsnId = (_, value) => {
+    form.setFieldsValue({
+      asr_esn_id: value,
+    });
+  };
+
+  const normFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+
+    return e?.fileList;
+  };
 
   return (
     <Fragment>
-      <Formik
+      <Form
+        form={form}
+        onFinish={onFinish}
+        className={"grid grid-cols-2 gap-5 px-5"}
+        layout={"vertical"}
         initialValues={{
-          name: "",
-          number: "",
-          make: "",
-          plate: "",
-          vin: "",
-          color: "#000",
-          has_color: false,
-          asr_esn_id: "",
-          odometer: "",
-          initial_mileage: "",
-          image: null,
+          color: "#1677ff",
         }}
-        validate={(values) => {
-          const errors = {};
-
-          if (!values.name) {
-            errors.name = "Name is empty";
-          }
-
-          return errors;
-        }}
-        onSubmit={handleSubmit}
       >
-        {({
-          handleSubmit,
-          setFieldValue,
-          handleReset,
-          handleChange,
-          values,
-          errors,
-        }) => (
-          <form className={"space-y-5 px-5"} onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-5">
-              <div className={"space-y-5"}>
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Vehicle Name"}
-                  placeholder={"Vehicle Name"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"name"}
-                  value={values.name}
-                  onChange={handleChange}
-                >
-                  {errors.name && (
-                    <FormError className="pl-[154px]">{errors.name}</FormError>
-                  )}
-                </CustomInput>
+        <div className="space-y-5">
+          <Form.Item
+            name={"name"}
+            label={"Vehicle Name"}
+            rules={[
+              {
+                required: true,
+                message: "Vehicle Name is empty",
+              },
+            ]}
+          >
+            <CustomInput classNames={"w-full"} placeholder={"Vehicle Name"} />
+          </Form.Item>
 
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-28 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Vehicle Status
-                  </span>
-                  <div className="w-full">
-                    <CustomSelect
-                      placeholder={"Vehicle Status"}
-                      className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                      options={StatusSelect}
-                      value={Status ? Status : undefined}
-                      onChange={handleStatus}
-                    />
-                    {Selections && (
-                      <FormError className="pl-[154px]">
-                        Vehicle Status is not selected
-                      </FormError>
-                    )}
-                  </div>
-                </label>
+          <Form.Item
+            name={"status"}
+            label={"Vehicle Status"}
+            rules={[
+              {
+                required: true,
+                message: "Status is empty",
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Select status"}
+              className={`w-full h-[50px]`}
+              options={StatusSelect}
+              onChange={handleStatus}
+            />
+          </Form.Item>
 
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-28 text-right`}
-                  >
-                    At Location
-                  </span>
-                  <CustomSelect
-                    placeholder={"At Location"}
-                    className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: 1,
-                        label: "Mason",
-                      },
-                    ]}
-                    value={Location ? Location : undefined}
-                    onChange={handleLocation}
-                  />
-                </label>
+          <Form.Item
+            name={"location"}
+            label={"At Location"}
+            rules={[
+              {
+                required: true,
+                message: "Please select Location",
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Select location"}
+              className={`w-full h-[50px]`}
+              options={Location}
+              onChange={handleLocation}
+            />
+          </Form.Item>
 
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-28 text-right`}
-                  >
-                    Vehicle Type
-                  </span>
-                  <CustomSelect
-                    placeholder={"Vehicle Type"}
-                    className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    options={[
-                      {
-                        value: "BUS",
-                        label: "BUS",
-                      },
-                      {
-                        value: "CAR",
-                        label: "CAR",
-                      },
-                    ]}
-                    value={Type ? Type : undefined}
-                    onChange={handleType}
-                  />
-                </label>
+          <Form.Item
+            name={"type"}
+            label={"Vehicle Type"}
+            rules={[
+              {
+                required: true,
+                message: "Please select Vehicle Type",
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Select Vehicle Type"}
+              className={`w-full h-[50px]`}
+              options={[
+                { value: "BUS", label: "BUS" },
+                { value: "CAR", label: "CAR" },
+                { value: "MOTORCYCLE", label: "MOTORCYCLE" },
+                { value: "SCHOOL BUS", label: "SCHOOL BUS" },
+                { value: "TANKER", label: "TANKER" },
+                { value: "TRUCK", label: "TRUCK" },
+                { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
+              ]}
+              onChange={handleType}
+            />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Vehicle No"}
-                  placeholder={"Vehicle No"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"number"}
-                  value={values.number}
-                  onChange={handleChange}
-                />
+          <Form.Item
+            name={"number"}
+            label={"Vehicle No"}
+            rules={[
+              {
+                required: true,
+                message: "Please select Vehicle No",
+              },
+            ]}
+          >
+            <InputNumber
+              className={"w-full border-black h-[50px]"}
+              placeholder={"Vehicle No"}
+            />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Vehicle Make"}
-                  placeholder={"Vehicle Make"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"make"}
-                  value={values.make}
-                  onChange={handleChange}
-                />
+          <Form.Item
+            name={"make"}
+            label={"Vehicle Make"}
+            rules={[
+              {
+                required: true,
+                message: "Please select Vehicle Make",
+              },
+            ]}
+          >
+            <CustomInput placeholder={"Vehicle Make"} classNames={"w-full"} />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"License Plate"}
-                  placeholder={"License Plate"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"plate"}
-                  value={values.plate}
-                  onChange={handleChange}
-                />
+          <Form.Item
+            name={"plate"}
+            label={"License Plate"}
+            rules={[
+              {
+                required: true,
+                message: "Please select License Plate",
+              },
+            ]}
+          >
+            <CustomInput placeholder={"License Plate"} classNames={"w-full"} />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"VIN#"}
-                  placeholder={"VIN#"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"vin"}
-                  value={values.vin}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={"space-y-5"}>
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span className={"flex-shrink-0 w-28 text-right"}>
-                    Appointment Color
-                  </span>
+          <Form.Item name={"vin"} label={"VIN#"}>
+            <CustomInput placeholder={"VIN#"} classNames={"w-full"} />
+          </Form.Item>
+        </div>
 
-                  <div className="flex flex-grow items-center gap-6">
-                    <CustomInput
-                      type={"color"}
-                      name={"color"}
-                      onChange={handleChange}
-                      value={values.color}
-                      className={`w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                      classNames={"w-14"}
-                    />
-                    <CustomInput
-                      value={values.color}
-                      classNames="w-full h-[50px]"
-                      className={
-                        ManagementStyle["CheckModal__form-element__shadow"]
-                      }
-                    />
-                  </div>
-                </label>
+        <div className="space-y-5">
+          <Form.Item name={"color"} label={"Appointment Color"}>
+            <ColorPicker
+              onChange={handleColor}
+              defaultValue="#1677ff"
+              size="large"
+              showText
+            />
+          </Form.Item>
 
-                <label className="flex itmes-center gap-x-10">
-                  <span className="w-28 flex-shrink-0"></span>
-                  <CustomCheckBox name={"has_color"} onChange={handleChange}>
-                    <span>Enable Appointment Color</span>
-                  </CustomCheckBox>
-                </label>
+          <Form.Item
+            name="has_color"
+            valuePropName="checked"
+            label={"Enable Appointment Color"}
+            rules={[
+              {
+                required: true,
+                message: "Enable Appointment Color is not selected",
+              },
+            ]}
+          >
+            <CustomCheckBox />
+          </Form.Item>
 
-                <label className="inline-flex justify-end gap-10 items-center w-full">
-                  <span
-                    className={
-                      "text-sm font-medium w-28 flex-shrink-0 text-right"
-                    }
-                  >
-                    Vehicle Note
-                  </span>
+          <Form.Item name="note" label={"Vehicle Note"}>
+            <Input.TextArea
+              showCount
+              maxLength={500}
+              className={"border-black"}
+              placeholder={"Notes"}
+            />
+          </Form.Item>
 
-                  <div className={"w-full"}>
-                    <MDEditor
-                      value={NotesValue}
-                      onChange={handleNotes}
-                      previewOptions={{
-                        rehypePlugins: [[rehypeSanitize]],
-                      }}
-                    />
-                  </div>
-                </label>
+          <Form.Item
+            name={"asr_esn_id"}
+            label={"Vehicle ESN Or AIR ID"}
+            rules={[
+              {
+                required: true,
+                message: "Select ESN Or AIR ID",
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Select Vehicle ESN Or AIR ID"}
+              showSearch
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label ?? "").includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              className={`w-full h-[50px]`}
+              options={[
+                { value: "BUS", label: "BUS" },
+                { value: "CAR", label: "CAR" },
+                { value: "MOTORCYCLE", label: "MOTORCYCLE" },
+                { value: "SCHOOL BUS", label: "SCHOOL BUS" },
+                { value: "TANKER", label: "TANKER" },
+                { value: "TRUCK", label: "TRUCK" },
+                { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
+              ]}
+              onChange={handleAsrEsnId}
+            />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Vehicle ESN Or AIR ID"}
-                  placeholder={"Vehicle ESN Or AIR ID"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"asr_esn_id"}
-                  value={values.asr_esn_id}
-                  onChange={handleChange}
-                />
+          <Form.Item label={"Odometer Value"} name={"odometer"}>
+            <InputNumber
+              placeholder={"Odometer Value"}
+              className={"h-[50px] w-full border-black"}
+            />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Odometer Value"}
-                  placeholder={"Odometer Value"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"odometer"}
-                  onChange={handleChange}
-                  value={values.odometer}
-                  type={"number"}
-                />
+          <Form.Item label={"Vehicle Initial Mileage"} name={"initial_mileage"}>
+            <InputNumber
+              placeholder={"Vehicle Initial Mileage"}
+              className={"h-[50px] w-full border-black"}
+            />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Vehicle Initial Mileage"}
-                  placeholder={"Vehicle Initial Mileage"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"initial_mileage"}
-                  value={values.initial_mileage}
-                  onChange={handleChange}
-                  type={"number"}
-                />
-
-                <label className="inline-flex justify-end gap-10 items-center w-full">
-                  <span
-                    className={
-                      "text-sm font-medium w-28 flex-shrink-0 text-right"
-                    }
-                  >
-                    Vehicle Image
-                  </span>
-
-                  <FileReaderResult
-                    className={`overflow-hidden w-full ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    onChange={() => setFieldValue("image", ResultFile)}
-                  />
-                </label>
-              </div>
-            </div>
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
-              >
-                Save
-              </ButtonComponent>
-
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/single-page/vehicles");
-                  }, 1000);
+          <Form.Item
+            label="Upload"
+            valuePropName="fileList"
+            getValueFromEvent={normFile}
+            name={"image"}
+          >
+            <Upload
+              action={import.meta.env.VITE_API_URL + "/media/files/student/"}
+              listType="picture-card"
+            >
+              <button
+                style={{
+                  border: 0,
+                  background: "none",
                 }}
+                type="button"
               >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
+                <PlusOutlined />
+                <div
+                  style={{
+                    marginTop: 8,
+                  }}
+                >
+                  Upload
+                </div>
+              </button>
+            </Upload>
+          </Form.Item>
+        </div>
+
+        <div className="text-center space-x-5 pt-10">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
+
+          <ButtonComponent
+            type={"reset"}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
+
       {IsOpen && state?.status}
     </Fragment>
   );
