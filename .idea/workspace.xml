@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update form components and page title for student password for improved structure and readability.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form submission handling and form field validation messages.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
     </list>
@@ -140,7 +140,9 @@
       <workItem from="1718135654357" duration="1132000" />
       <workItem from="1718136941360" duration="4127000" />
       <workItem from="1718183106366" duration="19977000" />
-      <workItem from="1718275751543" duration="14418000" />
+      <workItem from="1718275751543" duration="15458000" />
+      <workItem from="1718392369280" duration="625000" />
+      <workItem from="1718470727079" duration="1577000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -462,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718304035730</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718304876776</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1718304876777</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,18 +490,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update student password page title and refactor form" />
-    <MESSAGE value="Update student password page title and refactor form components" />
-    <MESSAGE value="Update student password page title and refactor form components for" />
-    <MESSAGE value="Update student password page title and refactor form components for improved" />
-    <MESSAGE value="Update student password page title and refactor form components for improved structure" />
-    <MESSAGE value="Update student password page title and refactor form components for improved structure and" />
-    <MESSAGE value="Update student password page title and refactor form components for improved structure and readability" />
-    <MESSAGE value="Update student password page title and refactor form components for improved structure and readability." />
-    <MESSAGE value="#fix #jsx Update student password page title and refactor form components for improved structure and readability." />
-    <MESSAGE value="Update" />
-    <MESSAGE value="Update form" />
-    <MESSAGE value="Update form components" />
     <MESSAGE value="Update form components and" />
     <MESSAGE value="Update form components and page" />
     <MESSAGE value="Update form components and page title" />
@@ -505,6 +503,18 @@
     <MESSAGE value="Update form components and page title for student password for improved structure and readability" />
     <MESSAGE value="Update form components and page title for student password for improved structure and readability." />
     <MESSAGE value="#fix #jsx Update form components and page title for student password for improved structure and readability." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Update form components and page title for student password for improved structure and readability." />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refactor" />
+    <MESSAGE value="Refactor form" />
+    <MESSAGE value="Refactor form submission" />
+    <MESSAGE value="Refactor form submission handling" />
+    <MESSAGE value="Refactor form submission handling and" />
+    <MESSAGE value="Refactor form submission handling and form" />
+    <MESSAGE value="Refactor form submission handling and form field" />
+    <MESSAGE value="Refactor form submission handling and form field validation" />
+    <MESSAGE value="Refactor form submission handling and form field validation messages" />
+    <MESSAGE value="Refactor form submission handling and form field validation messages." />
+    <MESSAGE value="#fix #jsx Refactor form submission handling and form field validation messages." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form submission handling and form field validation messages." />
   </component>
 </project>
