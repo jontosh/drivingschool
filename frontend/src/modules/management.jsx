@@ -22,9 +22,8 @@ import {
   ExportOutlined,
   FormOutlined,
   MinusCircleOutlined,
-  PlusOutlined,
 } from "@ant-design/icons";
-import { ConfigProvider, Form, Switch } from "antd";
+import { Form, Switch } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState, useEffect } from "react";
 import { FiHelpCircle } from "react-icons/fi";
@@ -32,6 +31,7 @@ import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
+import ModuleManagementStyle from "./modules.module.scss";
 
 export const LocationModule = () => {
   const { LocationData: data } = useContext(AccountManagementContext);
@@ -319,7 +319,10 @@ export const HearModule = () => {
       align: "center",
       render: (text) => {
         return (
-          <Paragraph className={"text-start pl-[285px]"} fontSize={"text-lg"}>
+          <Paragraph
+            className={`text-start ${ModuleManagementStyle["HowDidYouHear__name"]}`}
+            fontSize={"text-lg"}
+          >
             {text}
           </Paragraph>
         );
@@ -374,7 +377,6 @@ export const HearModule = () => {
               icon={<FormOutlined />}
               onClick={() => {
                 setIsOpen(true);
-                setModalType("edit");
                 setActionIndex(index);
               }}
             />
@@ -391,7 +393,7 @@ export const HearModule = () => {
               }}
             />
           </div>
-          {ActionIndex === index && IsOpen && ModalType === "edit" && (
+          {ActionIndex === index && IsOpen && (
             <AlertEdit setIsOpen={setIsOpen} />
           )}
         </Fragment>
@@ -1599,7 +1601,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => { }, 1000);
+    setTimeout(() => {}, 1000);
   };
 
   return (
@@ -1628,7 +1630,7 @@ const AddNewTest = () => {
         >
           {({ getFieldValue }) =>
             QuestionType[getFieldValue("type") - 1]?.id ===
-              getFieldValue("type")
+            getFieldValue("type")
               ? AddQuizArrays[getFieldValue("type") - 1]
               : null
           }

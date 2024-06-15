@@ -1,18 +1,15 @@
 import File from "@/pages/managment/file/index.jsx";
 import Service from "@/pages/managment/service/index.jsx";
 import Staff from "@/pages/managment/staff/index.jsx";
-import { default as Managment } from "./../management-spa.jsx";
+import { default as Management } from "./../management-spa.jsx";
 import { Fragment } from "react";
-import { useNavigate } from "react-router-dom";
 
 const ManagmentSpa = ({ className, children, page, ...props }) => {
-  const navigate = useNavigate();
-
   switch (page?.title) {
     case "service": {
       return (
         <Fragment>
-          <Service subpage={page.subpage} />
+          <Service subpage={page?.subpage} />
         </Fragment>
       );
     }
@@ -33,7 +30,7 @@ const ManagmentSpa = ({ className, children, page, ...props }) => {
     case "single-page": {
       return (
         <Fragment>
-          <Managment page={page} />
+          <Management page={page} />
         </Fragment>
       );
     }

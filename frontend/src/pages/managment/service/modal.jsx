@@ -3141,211 +3141,140 @@ export const HowHearModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
   const [requestPost] = useRequestPostMutation();
-  const [NotesValue, setNotesValue] = useState("Hello");
-  const [Status, setStatus] = useState("");
-  const [Expiration, setExpiration] = useState("");
-  const [Selections, setSelections] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
-
-  // dep
-  const selects = [Status];
-
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      }
-    }
-
-    return state;
-  }, [Status]);
+  const [form] = Form.useForm();
 
   // func
-  const handleNotes = (value) => setNotesValue(value);
-  const handleStatus = (value) => setStatus(value);
-  const handleExpiration = (day) => setExpiration(day["$d"]);
-  const handleSubmit = async (values) => {
-    setSelections(stateSelects);
+  const onFinish = async (values) => {
+    try {
+      const response = await requestPost({
+        path: "/account_management/how_did_you_hear_us/",
+        data: {
+          ...values,
+          expiration: values["expiration"].format("YYYY-MM-DD"),
+        },
+      });
 
-    if (!stateSelects) {
-      try {
-        const res = await requestPost({
-          path: "/account_management/how_did_you_hear_us/",
-          data: {
-            ...values,
-            notes: NotesValue,
-            status: Status,
-            expiration: Expiration,
-          },
-        });
-
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error(error.message);
-        dispatch({ type: "ERROR", setIsOpen });
+      if (response?.error?.status >= 400) {
         setIsOpen(true);
+        dispatch({ type: "ERROR", setIsOpen });
+      } else {
+        setIsOpen(true);
+        dispatch({ type: "SUCCESS", setIsOpen });
       }
+    } catch (error) {
+      setIsOpen(true);
+      console.error(error?.message);
+      dispatch({ type: "ERROR", setIsOpen });
     }
+  };
+
+  const onReset = () => {
+    form.resetFields();
+
+    setTimeout(() => {
+      navigate("/management/single-page/how did you hear");
+    }, 1000);
+  };
+
+  const handleStatus = (value) => {
+    form.setFieldsValue({
+      status: value,
+    });
   };
 
   return (
     <Fragment>
-      <Formik
-        initialValues={{
-          name: "",
-          code: "",
-        }}
-        validate={(values) => {
-          const errors = {};
-
-          if (!values.name) {
-            errors.name = "Lead Name is empty";
-          }
-
-          return errors;
-        }}
-        onSubmit={handleSubmit}
+      <Form
+        onFinish={onFinish}
+        form={form}
+        className={"grid grid-cols-2 gap-5 px-5"}
+        layout={"vertical"}
       >
-        {({ handleSubmit, values, errors, handleReset, handleChange }) => (
-          <form className={"space-y-5"} onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-5 px-5">
-              <div className={"space-y-5"}>
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Lead Name"}
-                  placeholder={"Lead Name"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right  relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  name={"name"}
-                  onChange={handleChange}
-                  value={values.name}
-                >
-                  {errors.name && (
-                    <FormError className="pl-[154px]">{errors.name}</FormError>
-                  )}
-                </CustomInput>
+        <div className="space-y-5">
+          <Form.Item
+            name={"name"}
+            label={"Lead Name"}
+            rules={[
+              {
+                required: true,
+                message: "Lead name is empty",
+              },
+            ]}
+          >
+            <CustomInput classNames={"w-full"} placeholder={"Lead Name"} />
+          </Form.Item>
 
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-28 text-right relative ${ManagementStyle["CheckModal__heavy"]} ${EnrollmentStyle["Enrollment__heavy"]}`}
-                  >
-                    Lead Status
-                  </span>
+          <Form.Item
+            name={"status"}
+            label={"Lead Status"}
+            rules={[
+              {
+                required: true,
+                message: "Status is empty",
+              },
+            ]}
+          >
+            <CustomSelect
+              placeholder={"Select status"}
+              className={`w-full h-[50px]`}
+              options={StatusSelect}
+              onChange={handleStatus}
+            />
+          </Form.Item>
 
-                  <div className="w-full">
-                    <CustomSelect
-                      placeholder={"Lead Status"}
-                      className={`w-full rounded h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                      options={StatusSelect}
-                      onChange={handleStatus}
-                      value={Status ? Status : undefined}
-                    />
-                    {Selections && (
-                      <FormError className="pl-[154px]">
-                        Lead Status is not selected
-                      </FormError>
-                    )}
-                  </div>
-                </label>
+          <Form.Item name={"code"} label={"Lead Code"}>
+            <InputNumber
+              placeholder={"Code"}
+              className={"border-black w-full h-[50px]"}
+            />
+          </Form.Item>
 
-                <CustomInput
-                  classNames={
-                    "inline-flex flex-row-reverse gap-10 items-center w-full h-[50px]"
-                  }
-                  className={
-                    ManagementStyle["CheckModal__form-element__shadow"]
-                  }
-                  spanText={"Lead Code"}
-                  placeholder={"Lead Code"}
-                  spanClassName={`text-sm font-medium w-28 flex-shrink-0 text-right`}
-                  name={"code"}
-                  onChange={handleChange}
-                  value={values.code}
-                />
+          <Form.Item name={"expiration"} label={"Expiration"}>
+            <DatePicker className={"w-full h-[50px] border-black"} />
+          </Form.Item>
+        </div>
 
-                <label className="inline-flex gap-10 items-center w-full">
-                  <span
-                    className={`text-sm flex-shrink-0 font-medium w-28 text-right`}
-                  >
-                    Expiration
-                  </span>
-                  <DatePicker
-                    className={`w-full border border-[#667085] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                    placeholder={"DD/MM/YYYY"}
-                    onChange={handleExpiration}
-                  />
-                </label>
-              </div>
-              <div>
-                <label className="inline-flex justify-end gap-10 items-center w-full">
-                  <span
-                    className={
-                      "text-sm flex-shrink-0 font-medium w-32 text-right"
-                    }
-                  >
-                    Lead notes
-                  </span>
+        <Form.Item name={"notes"} label={"Notes"}>
+          <Input.TextArea
+            showCount
+            maxLength={500}
+            className={"border-black"}
+            placeholder={"Notes"}
+          />
+        </Form.Item>
 
-                  <div className={"w-full"}>
-                    <MDEditor
-                      value={NotesValue}
-                      onChange={handleNotes}
-                      previewOptions={{
-                        rehypePlugins: [[rehypeSanitize]],
-                      }}
-                    />
-                  </div>
-                </label>
-              </div>
-            </div>
-            <div className="text-center space-x-5">
-              <ButtonComponent
-                defaultBg={colorsObject.success}
-                defaultHoverBg={colorsObject.successHover}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={44}
-                type={"submit"}
-              >
-                Save
-              </ButtonComponent>
+        <div className="text-center space-x-5 pt-10">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
 
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={44}
-                onClick={() => {
-                  handleReset();
-                  setTimeout(() => {
-                    navigate("/management/single-page/how did you hear");
-                  }, 1000);
-                }}
-              >
-                Cancel
-              </ButtonComponent>
-            </div>
-          </form>
-        )}
-      </Formik>
+          <ButtonComponent
+            type={"reset"}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
+
       {IsOpen && state?.status}
     </Fragment>
   );
