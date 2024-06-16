@@ -169,14 +169,6 @@ export const DashboardCalendar = ({ data }) => {
     setEvents(EventsList);
   }, []);
 
-  const handleSelect = (eventItem) => {
-    const title = window.prompt("New Event name");
-    if (title) {
-      let data = { title: title, start: eventItem.start, end: eventItem.end };
-      setEvents((events) => [...events, data]);
-    }
-  };
-
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
       components: {
@@ -189,7 +181,12 @@ export const DashboardCalendar = ({ data }) => {
         },
 
         toolbar: (e) => {
-          console.log(e);
+          const GoTo = (value) => e.onNavigate(value);
+
+          const handleMode = (value) => {
+            e.onView(value);
+          };
+
           return (
             <div className={"flex items-center justify-between p-7"}>
               <ButtonComponent
@@ -200,6 +197,7 @@ export const DashboardCalendar = ({ data }) => {
                 defaultHoverColor={"#6B7A99"}
                 controlHeight={40}
                 paddingInline={20}
+                onClick={() => GoTo("TODAY")}
               >
                 Today
               </ButtonComponent>
@@ -213,6 +211,7 @@ export const DashboardCalendar = ({ data }) => {
                   defaultHoverColor={"#6B7A99"}
                   controlHeight={40}
                   paddingInline={12}
+                  onClick={() => GoTo("PREV")}
                 >
                   <MdKeyboardArrowLeft />
                 </ButtonComponent>
@@ -227,28 +226,51 @@ export const DashboardCalendar = ({ data }) => {
                   defaultHoverColor={"#6B7A99"}
                   controlHeight={40}
                   paddingInline={12}
+                  onClick={() => GoTo("NEXT")}
                 >
                   <MdKeyboardArrowRight />
                 </ButtonComponent>
               </div>
 
               <div className="flex border border-[#26334D08]">
-                {e.views.map((item, key) => (
-                  <Fragment key={key}>
-                    <ButtonComponent
-                      defaultBorderColor={"#F5F6F7"}
-                      defaultHoverBorderColor={"#F5F6F7"}
-                      defaultColor={"#6B7A99"}
-                      defaultHoverColor={"#6B7A99"}
-                      controlHeight={40}
-                      paddingInline={20}
-                      className={"uppercase"}
-                      onClick={e.onView}
-                    >
-                      {item}
-                    </ButtonComponent>
-                  </Fragment>
-                ))}
+                <ButtonComponent
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={20}
+                  className={"uppercase"}
+                  onClick={() => handleMode("month")}
+                >
+                  MONTH
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={20}
+                  className={"uppercase"}
+                  onClick={() => handleMode("week")}
+                >
+                  WEEK
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={20}
+                  className={"uppercase"}
+                  onClick={() => handleMode("day")}
+                >
+                  DAY
+                </ButtonComponent>
               </div>
             </div>
           );
@@ -289,9 +311,6 @@ export const DashboardCalendar = ({ data }) => {
 
   const dayPropGetter = useCallback(
     (date) => ({
-      // ...((moment(date).day() === 6 || moment(date).day() === 0) && {
-      //   className: "bg-[#F2F2F2]",
-      // }),
       ...(moment(date).day() > -1 && {
         className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
       }),
@@ -324,25 +343,11 @@ export const DashboardCalendar = ({ data }) => {
   );
 
   const slotPropGetter = useCallback(
-    (date) => ({
+    () => ({
       className: "px-2.5 pt-6 text-[#ADB8CC]",
-      // ...(moment(date).hour() < 8 && {
-      //   style: {
-      //     backgroundColor: "powderblue",
-      //     color: "black",
-      //   },
-      // }),
-      // ...(moment(date).hour() > 12 && {
-      //   style: {
-      //     backgroundColor: "darkgreen",
-      //     color: "white",
-      //   },
-      // }),
     }),
     [],
   );
-
-  // const { formattedNumber } = formatPhoneNumber(data?.home_phone);
 
   return (
     <Fragment>

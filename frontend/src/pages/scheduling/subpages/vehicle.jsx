@@ -90,12 +90,12 @@ export const Vehicle = () => {
                   colorText="#9CA3AF"
                   options={[
                     {
-                      label: 'UZB',
-                      value: 'UZB'
+                      label: "UZB",
+                      value: "UZB",
                     },
                     {
-                      label: 'USA',
-                      value: 'USA'
+                      label: "USA",
+                      value: "USA",
                     },
                   ]}
                 />
