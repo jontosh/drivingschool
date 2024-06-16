@@ -1,6 +1,6 @@
 from django.db import models
 from colorfield.fields import ColorField
-from abstracts.models import Extra
+from abstracts.models import Extra,Status
 # LOCATION
 class Location(models.Model):
     """
@@ -119,19 +119,16 @@ class Vehicle(models.Model):
     has_color = models.BooleanField(default=False)
     color = ColorField(default='#FF0000',blank=True)
     note = models.TextField(blank=True,null=True)
-    asr_esn_id = models.TextField()
+    asr_esn_id = models.TextField(blank=True,null=True)
     odometer = models.PositiveIntegerField(blank=True,null=True)
     initial_mileage = models.IntegerField(blank=True,null=True)
     image = models.ImageField(upload_to="image/vehicles",blank=True,null=True)
+    vin = models.TextField(blank=True,null=True)
     def __str__(self):
         return f"{self.name} {self.plate}"
-class HowDidYouHearUs(models.Model):
+class HowDidYouHearUs(Extra,Status):
     name = models.CharField(max_length=200)
-    STATUS = [
-        ["ACTIVE", "ACTIVE"],
-        ["DELETED", "DELETED"],
-        ["PENDING", "PENDING"],
-    ]
-    status = models.CharField(choices=STATUS, max_length=30, default="PENDING")
+    code = models.IntegerField(default=1)
+    expiration = models.DateField(default="2024-12-02")
     def __str__(self):
         return f"{self.name} \t {self.status}"
