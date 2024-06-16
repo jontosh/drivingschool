@@ -1,20 +1,11 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import Title from "@/components/title/index.jsx";
-import ColorsContext from "@/context/colors.jsx";
 import CalendarStyle from "@/pages/dashboard/dashboard.module.scss";
 
-import {
-  Fragment,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import { SlClock } from "react-icons/sl";
 
 export const BigCalendar = ({ setLabel, setViews, ...props }) => {
   const Time = new Date();
@@ -112,13 +103,7 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
       components: {
-        resourceHeader: () => {
-          return <Fragment>ok</Fragment>;
-        },
-
         toolbar: (e) => {
-          console.log(e);
-
           const GoTo = (value) => e.onNavigate(value);
 
           setLabel(e.label);
