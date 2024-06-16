@@ -149,20 +149,14 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: "*",
-        element: <Notfound />,
-      },
     ],
   },
   {
-    path: "/register",
+    path: "*",
+    element: <Notfound />,
+  },
+  {
+    path: "/register/sign-in",
     element: <Register />,
-    children: [
-      {
-        path: "sign-in",
-        element: <SignIn />,
-      },
-    ],
   },
 ]);
