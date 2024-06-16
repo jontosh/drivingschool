@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form submission handling and field validation messages.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored the logic for dynamic data changes in React-Big-Calendar.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/big-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/big-calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/vehicle-sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/vehicle-sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/scheduling-student.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/scheduling-student.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +152,7 @@
       <workItem from="1718470727079" duration="12249000" />
       <workItem from="1718536146622" duration="250000" />
       <workItem from="1718536413188" duration="4768000" />
-      <workItem from="1718541797375" duration="11151000" />
+      <workItem from="1718541797375" duration="12766000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -513,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718541844895</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="#fix #jsx Refactored the logic for dynamic data changes in React-Big-Calendar.">
+      <option name="closed" value="true" />
+      <created>1718573641969</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1718573641969</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,15 +541,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor form" />
-    <MESSAGE value="Refactor form submission" />
-    <MESSAGE value="Refactor form submission handling" />
-    <MESSAGE value="Refactor form submission handling and" />
-    <MESSAGE value="Refactor form submission handling and field" />
-    <MESSAGE value="Refactor form submission handling and field validation" />
-    <MESSAGE value="Refactor form submission handling and field validation messages" />
-    <MESSAGE value="Refactor form submission handling and field validation messages." />
-    <MESSAGE value="#fix #jsx Refactor form submission handling and field validation messages." />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to Big" />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to BigCalendar" />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to BigCalendar and" />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to BigCalendar and multi" />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to BigCalendar and multi-table" />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar" />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components" />
+    <MESSAGE value="&quot;Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components.&quot;" />
     <MESSAGE value="Add" />
     <MESSAGE value="Add set" />
     <MESSAGE value="Add setEvent" />
@@ -557,6 +565,7 @@
     <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar" />
     <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components" />
     <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components." />
+    <MESSAGE value="#fix #jsx Refactored the logic for dynamic data changes in React-Big-Calendar." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored the logic for dynamic data changes in React-Big-Calendar." />
   </component>
 </project>
