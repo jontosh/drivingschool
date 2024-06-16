@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form submission handling and form field validation messages.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form submission handling and field validation messages.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/others/404-image.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/others/sign-in.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/sign-in.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/sign-in.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +53,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "refactoring",
@@ -85,7 +92,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17011.90" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17890.13" />
       </set>
     </attachedChunks>
   </component>
@@ -144,7 +151,9 @@
       <workItem from="1718183106366" duration="19977000" />
       <workItem from="1718275751543" duration="15458000" />
       <workItem from="1718392369280" duration="625000" />
-      <workItem from="1718470727079" duration="11037000" />
+      <workItem from="1718470727079" duration="12249000" />
+      <workItem from="1718536146622" duration="250000" />
+      <workItem from="1718536413188" duration="4768000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -490,7 +499,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718475445056</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="#fix #jsx Refactor form submission handling and field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718482278865</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1718482278865</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,31 +525,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update form components and" />
-    <MESSAGE value="Update form components and page" />
-    <MESSAGE value="Update form components and page title" />
-    <MESSAGE value="Update form components and page title for" />
-    <MESSAGE value="Update form components and page title for student" />
-    <MESSAGE value="Update form components and page title for student password" />
-    <MESSAGE value="Update form components and page title for student password for" />
-    <MESSAGE value="Update form components and page title for student password for improved" />
-    <MESSAGE value="Update form components and page title for student password for improved structure" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Update form components and page title for student password for improved structure and" />
     <MESSAGE value="Update form components and page title for student password for improved structure and readability" />
     <MESSAGE value="Update form components and page title for student password for improved structure and readability." />
     <MESSAGE value="#fix #jsx Update form components and page title for student password for improved structure and readability." />
+    <MESSAGE value="#fix #jsx Refactor form submission handling and form field validation messages." />
+    <MESSAGE value="Refactor form submission handling and form field validation messages in" />
+    <MESSAGE value="Refactor form submission handling and form field validation messages in present" />
+    <MESSAGE value="Refactor form submission handling and form field validation messages in present form" />
+    <MESSAGE value="Refactor form submission handling and form field validation messages in present form." />
+    <MESSAGE value="Refactor form submission handling and form" />
+    <MESSAGE value="Refactor form submission handling and form field" />
+    <MESSAGE value="Refactor form submission handling and form field validation" />
+    <MESSAGE value="Refactor form submission handling and form field validation messages" />
+    <MESSAGE value="Refactor form submission handling and form field validation messages." />
     <MESSAGE value="Ref" />
     <MESSAGE value="Refactor" />
     <MESSAGE value="Refactor form" />
     <MESSAGE value="Refactor form submission" />
     <MESSAGE value="Refactor form submission handling" />
     <MESSAGE value="Refactor form submission handling and" />
-    <MESSAGE value="Refactor form submission handling and form" />
-    <MESSAGE value="Refactor form submission handling and form field" />
-    <MESSAGE value="Refactor form submission handling and form field validation" />
-    <MESSAGE value="Refactor form submission handling and form field validation messages" />
-    <MESSAGE value="Refactor form submission handling and form field validation messages." />
-    <MESSAGE value="#fix #jsx Refactor form submission handling and form field validation messages." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form submission handling and form field validation messages." />
+    <MESSAGE value="Refactor form submission handling and field" />
+    <MESSAGE value="Refactor form submission handling and field validation" />
+    <MESSAGE value="Refactor form submission handling and field validation messages" />
+    <MESSAGE value="Refactor form submission handling and field validation messages." />
+    <MESSAGE value="#fix #jsx Refactor form submission handling and field validation messages." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form submission handling and field validation messages." />
   </component>
 </project>
