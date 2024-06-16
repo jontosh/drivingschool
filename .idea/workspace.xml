@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactor form submission handling and field validation messages.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/others/404-image.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/others/sign-in.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/sign-in.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/sign-in.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/big-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/big-calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,25 +48,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactoring",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -154,6 +151,7 @@
       <workItem from="1718470727079" duration="12249000" />
       <workItem from="1718536146622" duration="250000" />
       <workItem from="1718536413188" duration="4768000" />
+      <workItem from="1718541797375" duration="11151000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -507,7 +505,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718482278865</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="#fix #jsx Refactor form submission handling and field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718541844895</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1718541844895</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -526,22 +532,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update form components and page title for student password for improved structure and" />
-    <MESSAGE value="Update form components and page title for student password for improved structure and readability" />
-    <MESSAGE value="Update form components and page title for student password for improved structure and readability." />
-    <MESSAGE value="#fix #jsx Update form components and page title for student password for improved structure and readability." />
-    <MESSAGE value="#fix #jsx Refactor form submission handling and form field validation messages." />
-    <MESSAGE value="Refactor form submission handling and form field validation messages in" />
-    <MESSAGE value="Refactor form submission handling and form field validation messages in present" />
-    <MESSAGE value="Refactor form submission handling and form field validation messages in present form" />
-    <MESSAGE value="Refactor form submission handling and form field validation messages in present form." />
-    <MESSAGE value="Refactor form submission handling and form" />
-    <MESSAGE value="Refactor form submission handling and form field" />
-    <MESSAGE value="Refactor form submission handling and form field validation" />
-    <MESSAGE value="Refactor form submission handling and form field validation messages" />
-    <MESSAGE value="Refactor form submission handling and form field validation messages." />
-    <MESSAGE value="Ref" />
-    <MESSAGE value="Refactor" />
     <MESSAGE value="Refactor form" />
     <MESSAGE value="Refactor form submission" />
     <MESSAGE value="Refactor form submission handling" />
@@ -551,6 +541,22 @@
     <MESSAGE value="Refactor form submission handling and field validation messages" />
     <MESSAGE value="Refactor form submission handling and field validation messages." />
     <MESSAGE value="#fix #jsx Refactor form submission handling and field validation messages." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactor form submission handling and field validation messages." />
+    <MESSAGE value="Add" />
+    <MESSAGE value="Add set" />
+    <MESSAGE value="Add setEvent" />
+    <MESSAGE value="Add setEvent function" />
+    <MESSAGE value="Add setEvent function and" />
+    <MESSAGE value="Add setEvent function and navigation" />
+    <MESSAGE value="Add setEvent function and navigation buttons" />
+    <MESSAGE value="Add setEvent function and navigation buttons to" />
+    <MESSAGE value="Add setEvent function and navigation buttons to Big" />
+    <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar" />
+    <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and" />
+    <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi" />
+    <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi-table" />
+    <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar" />
+    <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components" />
+    <MESSAGE value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add setEvent function and navigation buttons to BigCalendar and multi-table-calendar components." />
   </component>
 </project>

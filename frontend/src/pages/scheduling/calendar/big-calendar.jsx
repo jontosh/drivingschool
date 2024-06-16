@@ -19,14 +19,9 @@ import { SlClock } from "react-icons/sl";
 export const BigCalendar = ({ setLabel, setViews, ...props }) => {
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
-  const { colorsObject } = useContext(ColorsContext);
   const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState([]);
-  const [selectedDay, setSelectedDay] = useState(new Date());
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth());
-  const [days, setDays] = useState(new Date().getDay());
-  const [date, setDate] = useState(new Date().getDate());
+
   let EventsList = [
     {
       title: "Event Name",
@@ -120,8 +115,12 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
         resourceHeader: () => {
           return <Fragment>ok</Fragment>;
         },
+
         toolbar: (e) => {
           console.log(e);
+
+          const GoTo = (value) => e.onNavigate(value);
+
           setLabel(e.label);
 
           return (
@@ -134,6 +133,7 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
                 defaultHoverColor={"#6B7A99"}
                 controlHeight={40}
                 paddingInline={20}
+                onClick={() => GoTo("TODAY")}
               >
                 Today
               </ButtonComponent>
@@ -147,6 +147,7 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
                   defaultHoverColor={"#6B7A99"}
                   controlHeight={40}
                   paddingInline={12}
+                  onClick={() => GoTo("PREV")}
                 >
                   <MdKeyboardArrowLeft />
                 </ButtonComponent>
@@ -161,6 +162,7 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
                   defaultHoverColor={"#6B7A99"}
                   controlHeight={40}
                   paddingInline={12}
+                  onClick={() => GoTo("NEXT")}
                 >
                   <MdKeyboardArrowRight />
                 </ButtonComponent>
