@@ -3084,12 +3084,23 @@ export const AddSchoolModalContent = () => {
           </div>
 
           <Form.Item name={"note"} label={"School Note"}>
-            <Input.TextArea
-              placeholder={"Notes"}
-              className={"border-[#667085] min-h-[145px]"}
-              showCount
-              maxLength={3900}
-            />
+            <ConfigProvider
+              theme={{
+                components: {
+                  Input: {
+                    paddingInline: 10,
+                    paddingBlock: 10
+                  },
+                },
+              }}
+            >
+              <Input.TextArea
+                placeholder={"Notes"}
+                className={"border-[#667085]"}
+                showCount
+                maxLength={3900}
+              />
+            </ConfigProvider>
           </Form.Item>
         </div>
 
@@ -3528,12 +3539,23 @@ export const VehiclesModalContent = () => {
             </Form.Item>
 
             <Form.Item name="note" label={"Vehicle Note"}>
-              <Input.TextArea
-                showCount
-                maxLength={500}
-                className={"border-[#667085] py-2.5 min-h-[145px]"}
-                placeholder={"Notes"}
-              />
+              <ConfigProvider
+                theme={{
+                  components: {
+                    Input: {
+                      paddingInline: 10,
+                      paddingBlock: 10
+                    },
+                  },
+                }}
+              >
+                <Input.TextArea
+                  showCount
+                  maxLength={500}
+                  className={"border-[#667085] py-2.5"}
+                  placeholder={"Notes"}
+                />
+              </ConfigProvider>
             </Form.Item>
 
             <Form.Item
