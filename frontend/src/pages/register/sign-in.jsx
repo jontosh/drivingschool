@@ -6,6 +6,8 @@ import { Form, Input } from "antd";
 import { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import LoginImage from "../../assets/others/sign-in.png";
+import ButtonComponent from "@/components/button";
+import { TfiArrowTopRight } from "react-icons/tfi";
 
 const SignIn = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -56,12 +58,12 @@ const SignIn = () => {
               ]}
             >
               <Input.Password
-                className={"h-[50px] border-black"}
+                className={"h-[50px] border-[#667085]"}
                 placeholder={"Enter your password"}
               />
             </Form.Item>
 
-            <Link to={"/"} className={"w-full text-right"}>
+            <Link to={"/"} className={"w-full text-right text-[#4C4C4C] text-lg"}>
               Forgot Password?
             </Link>
 
@@ -70,19 +72,28 @@ const SignIn = () => {
             <div className="flex items-center justify-between">
               <Form.Item name="remember" valuePropName="checked">
                 <CustomCheckBox>
-                  <span>Remember Me</span>
+                  <span className="text-lg text-[#4C4C4C]">Remember Me</span>
                 </CustomCheckBox>
               </Form.Item>
 
-              <button type={"submit"}>Login</button>
+              <ButtonComponent
+                defaultBg="linear-gradient(90deg, #93B4F6 0%, #5ACDFF 100%)"
+                defaultHoverBg="linear-gradient(90deg, #93B4F6 0%, #5ACDFF 100%)"
+                paddingInline={44}
+                controlHeight={63}
+                borderRadius={10}
+                type={"submit"}
+              >Login</ButtonComponent>
             </div>
 
-            <Paragraph>
-              Don’t have an account?{" "}
-              <Link to={"/register/sign-up/"} className={"underline"}>
-                Sign Up
+            <div className="flex items-center justify-center gap-2 pt-10">
+              <Paragraph colorText="#4C4C4C" fontWeightStrong={"font-normal"}>Don’t have an account?</Paragraph>
+
+              <Link to={"/register/sign-up/"} className={"flex items-center gap-1 underline font-medium text-[#4C4C4C]"}>
+                <span>Sign Up</span>
+                <TfiArrowTopRight className="w-4 mt-1" />
               </Link>
-            </Paragraph>
+            </div>
           </Form>
         </div>
         <div className={"p-20 bg-[#FAFCFF] border border-[#E5EFFF] rounded-xl"}>
@@ -94,7 +105,7 @@ const SignIn = () => {
           >
             Login
           </Title>
-          <Paragraph fontSize={"text-lg mb-12"} className={"font-light"}>
+          <Paragraph fontSize={"text-lg mb-12"} className={"font-light"} colorText="#4C4C4C">
             Welcome back! Please log in to access your account. If you don't
             have an account yet, you can create one by clicking on the 'Sign Up'
             button below.

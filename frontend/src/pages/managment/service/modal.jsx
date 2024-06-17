@@ -2393,8 +2393,8 @@ export const AddStaffModalContent = () => {
             </Form.Item>
 
             <Form.Item valuePropName="checked" name={"assign_color"}>
-              <CustomCheckBox className={"w-full flex justify-center pl-7"}>
-                <span className={`font-medium text-base`}>
+              <CustomCheckBox className={"w-full"}>
+                <span className={`text-sm`}>
                   Assign Appointment Color
                 </span>
               </CustomCheckBox>
@@ -2998,99 +2998,100 @@ export const AddSchoolModalContent = () => {
       <Form
         form={form}
         onFinish={onFinish}
-        className={"px-5 grid grid-cols-2 gap-5"}
         layout={"vertical"}
       >
-        <div className="space-y-5">
-          <Form.Item
-            name={"name"}
-            label={"School Name"}
-            rules={[
-              {
-                required: true,
-                message: "Please enter a School name.",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"School name"} />
-          </Form.Item>
-
-          <Form.Item
-            name={"status"}
-            label={"Status:"}
-            rules={[
-              {
-                required: true,
-                message: "Status is empty",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Select status"}
-              className={`w-full h-[50px]`}
-              options={StatusSelect}
-              onChange={handleStatus}
-            />
-          </Form.Item>
-
-          <Form.Item name={"code"} label={"School code"}>
-            <InputNumber
-              placeholder={"Code"}
-              className={"border-black h-[50px] w-full"}
-            />
-          </Form.Item>
-
-          <Form.Item name={"address"} label={"Address"}>
-            <CustomInput placeholder={"Address"} classNames={"w-full"} />
-          </Form.Item>
-
-          <Form.Item name={"state"} label={"State:"}>
-            <CustomSelect
-              placeholder={"Select state"}
-              className={`w-full h-[50px]`}
-              options={[
+        <div className={"px-5 grid grid-cols-2 gap-5"}>
+          <div className="space-y-5">
+            <Form.Item
+              name={"name"}
+              label={"School Name"}
+              rules={[
                 {
-                  value: "USA",
-                  label: "USA",
+                  required: true,
+                  message: "Please enter a School name.",
                 },
               ]}
-              onChange={handleState}
-            />
-          </Form.Item>
+            >
+              <CustomInput classNames={"w-full"} placeholder={"School name"} />
+            </Form.Item>
 
-          <Form.Item name={"zipcode"} label={"Zip code"}>
-            <InputNumber
-              placeholder={"Zip code"}
-              className={"border-black h-[50px] w-full"}
-            />
-          </Form.Item>
+            <Form.Item
+              name={"status"}
+              label={"Status:"}
+              rules={[
+                {
+                  required: true,
+                  message: "Status is empty",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-full h-[50px]`}
+                options={StatusSelect}
+                onChange={handleStatus}
+              />
+            </Form.Item>
 
-          <Form.Item
-            name={"email"}
-            label={"Email"}
-            rules={[
-              {
-                type: "email",
-                message: "Email is not a valid email",
-              },
-            ]}
-          >
-            <CustomInput
-              type={"email"}
-              placeholder={"Email"}
-              classNames={"w-full"}
+            <Form.Item name={"code"} label={"School code"}>
+              <InputNumber
+                placeholder={"Code"}
+                className={"border-[#667085] h-[50px] w-full py-2.5"}
+              />
+            </Form.Item>
+
+            <Form.Item name={"address"} label={"Address"}>
+              <CustomInput placeholder={"Address"} classNames={"w-full"} />
+            </Form.Item>
+
+            <Form.Item name={"state"} label={"State:"}>
+              <CustomSelect
+                placeholder={"Select state"}
+                className={`w-full h-[50px]`}
+                options={[
+                  {
+                    value: "USA",
+                    label: "USA",
+                  },
+                ]}
+                onChange={handleState}
+              />
+            </Form.Item>
+
+            <Form.Item name={"zipcode"} label={"Zip code"}>
+              <InputNumber
+                placeholder={"Zip code"}
+                className={"border-[#667085] h-[50px] w-full py-2.5"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"email"}
+              label={"Email"}
+              rules={[
+                {
+                  type: "email",
+                  message: "Email is not a valid email",
+                },
+              ]}
+            >
+              <CustomInput
+                type={"email"}
+                placeholder={"Email"}
+                classNames={"w-full"}
+              />
+            </Form.Item>
+          </div>
+
+          <Form.Item name={"note"} label={"School Note"}>
+            <Input.TextArea
+              placeholder={"Notes"}
+              className={"border-[#667085] min-h-[145px]"}
+              showCount
+              maxLength={3900}
             />
           </Form.Item>
         </div>
-
-        <Form.Item name={"note"} label={"School Note"}>
-          <Input.TextArea
-            placeholder={"Notes"}
-            className={"border-black "}
-            showCount
-            maxLength={3900}
-          />
-        </Form.Item>
 
         <div className="text-center space-x-5 pt-10">
           <ButtonComponent
@@ -3373,246 +3374,247 @@ export const VehiclesModalContent = () => {
       <Form
         form={form}
         onFinish={onFinish}
-        className={"grid grid-cols-2 gap-5 px-5"}
         layout={"vertical"}
         initialValues={{
           color: "#1677ff",
         }}
       >
-        <div className="space-y-5">
-          <Form.Item
-            name={"name"}
-            label={"Vehicle Name"}
-            rules={[
-              {
-                required: true,
-                message: "Vehicle Name is empty",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Vehicle Name"} />
-          </Form.Item>
-
-          <Form.Item
-            name={"status"}
-            label={"Vehicle Status"}
-            rules={[
-              {
-                required: true,
-                message: "Status is empty",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Select status"}
-              className={`w-full h-[50px]`}
-              options={StatusSelect}
-              onChange={handleStatus}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"location"}
-            label={"At Location"}
-            rules={[
-              {
-                required: true,
-                message: "Please select Location",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Select location"}
-              className={`w-full h-[50px]`}
-              options={Location}
-              onChange={handleLocation}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"type"}
-            label={"Vehicle Type"}
-            rules={[
-              {
-                required: true,
-                message: "Please select Vehicle Type",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Select Vehicle Type"}
-              className={`w-full h-[50px]`}
-              options={[
-                { value: "BUS", label: "BUS" },
-                { value: "CAR", label: "CAR" },
-                { value: "MOTORCYCLE", label: "MOTORCYCLE" },
-                { value: "SCHOOL BUS", label: "SCHOOL BUS" },
-                { value: "TANKER", label: "TANKER" },
-                { value: "TRUCK", label: "TRUCK" },
-                { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
+        <div className={"grid grid-cols-2 gap-5 px-5"}>
+          <div className="space-y-5">
+            <Form.Item
+              name={"name"}
+              label={"Vehicle Name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Vehicle Name is empty",
+                },
               ]}
-              onChange={handleType}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"number"}
-            label={"Vehicle No"}
-            rules={[
-              {
-                required: true,
-                message: "Please select Vehicle No",
-              },
-            ]}
-          >
-            <InputNumber
-              className={"w-full border-black h-[50px]"}
-              placeholder={"Vehicle No"}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"make"}
-            label={"Vehicle Make"}
-            rules={[
-              {
-                required: true,
-                message: "Please select Vehicle Make",
-              },
-            ]}
-          >
-            <CustomInput placeholder={"Vehicle Make"} classNames={"w-full"} />
-          </Form.Item>
-
-          <Form.Item
-            name={"plate"}
-            label={"License Plate"}
-            rules={[
-              {
-                required: true,
-                message: "Please select License Plate",
-              },
-            ]}
-          >
-            <CustomInput placeholder={"License Plate"} classNames={"w-full"} />
-          </Form.Item>
-
-          <Form.Item name={"vin"} label={"VIN#"}>
-            <CustomInput placeholder={"VIN#"} classNames={"w-full"} />
-          </Form.Item>
-        </div>
-
-        <div className="space-y-5">
-          <Form.Item name={"color"} label={"Appointment Color"}>
-            <ColorPicker
-              onChange={handleColor}
-              defaultValue="#1677ff"
-              size="large"
-              showText
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="has_color"
-            valuePropName="checked"
-            label={"Enable Appointment Color"}
-            rules={[
-              {
-                required: true,
-                message: "Enable Appointment Color is not selected",
-              },
-            ]}
-          >
-            <CustomCheckBox />
-          </Form.Item>
-
-          <Form.Item name="note" label={"Vehicle Note"}>
-            <Input.TextArea
-              showCount
-              maxLength={500}
-              className={"border-black"}
-              placeholder={"Notes"}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"asr_esn_id"}
-            label={"Vehicle ESN Or AIR ID"}
-            rules={[
-              {
-                required: true,
-                message: "Select ESN Or AIR ID",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Select Vehicle ESN Or AIR ID"}
-              showSearch
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option?.label ?? "").includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              className={`w-full h-[50px]`}
-              options={[
-                { value: "BUS", label: "BUS" },
-                { value: "CAR", label: "CAR" },
-                { value: "MOTORCYCLE", label: "MOTORCYCLE" },
-                { value: "SCHOOL BUS", label: "SCHOOL BUS" },
-                { value: "TANKER", label: "TANKER" },
-                { value: "TRUCK", label: "TRUCK" },
-                { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
-              ]}
-              onChange={handleAsrEsnId}
-            />
-          </Form.Item>
-
-          <Form.Item label={"Odometer Value"} name={"odometer"}>
-            <InputNumber
-              placeholder={"Odometer Value"}
-              className={"h-[50px] w-full border-black"}
-            />
-          </Form.Item>
-
-          <Form.Item label={"Vehicle Initial Mileage"} name={"initial_mileage"}>
-            <InputNumber
-              placeholder={"Vehicle Initial Mileage"}
-              className={"h-[50px] w-full border-black"}
-            />
-          </Form.Item>
-
-          <Form.Item
-            label="Upload"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
-            name={"image"}
-          >
-            <Upload
-              action={import.meta.env.VITE_API_URL + "/media/files/student/"}
-              listType="picture-card"
             >
-              <button
-                style={{
-                  border: 0,
-                  background: "none",
-                }}
-                type="button"
+              <CustomInput classNames={"w-full"} placeholder={"Vehicle Name"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"status"}
+              label={"Vehicle Status"}
+              rules={[
+                {
+                  required: true,
+                  message: "Status is empty",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-full h-[50px]`}
+                options={StatusSelect}
+                onChange={handleStatus}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"location"}
+              label={"At Location"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select Location",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Select location"}
+                className={`w-full h-[50px]`}
+                options={Location}
+                onChange={handleLocation}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"type"}
+              label={"Vehicle Type"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select Vehicle Type",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Select Vehicle Type"}
+                className={`w-full h-[50px]`}
+                options={[
+                  { value: "BUS", label: "BUS" },
+                  { value: "CAR", label: "CAR" },
+                  { value: "MOTORCYCLE", label: "MOTORCYCLE" },
+                  { value: "SCHOOL BUS", label: "SCHOOL BUS" },
+                  { value: "TANKER", label: "TANKER" },
+                  { value: "TRUCK", label: "TRUCK" },
+                  { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
+                ]}
+                onChange={handleType}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"number"}
+              label={"Vehicle No"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select Vehicle No",
+                },
+              ]}
+            >
+              <InputNumber
+                className={"w-full border-[#667085] h-[50px] py-2.5"}
+                placeholder={"Vehicle No"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"make"}
+              label={"Vehicle Make"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select Vehicle Make",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Vehicle Make"} classNames={"w-full"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"plate"}
+              label={"License Plate"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select License Plate",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"License Plate"} classNames={"w-full"} />
+            </Form.Item>
+
+            <Form.Item name={"vin"} label={"VIN#"}>
+              <CustomInput placeholder={"VIN#"} classNames={"w-full"} />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item name={"color"} label={"Appointment Color"}>
+              <ColorPicker
+                onChange={handleColor}
+                defaultValue="#1677ff"
+                size="large"
+                showText
+              />
+            </Form.Item>
+
+            <Form.Item
+              name="has_color"
+              valuePropName="checked"
+              label={"Enable Appointment Color"}
+              rules={[
+                {
+                  required: true,
+                  message: "Enable Appointment Color is not selected",
+                },
+              ]}
+            >
+              <CustomCheckBox />
+            </Form.Item>
+
+            <Form.Item name="note" label={"Vehicle Note"}>
+              <Input.TextArea
+                showCount
+                maxLength={500}
+                className={"border-[#667085] py-2.5 min-h-[145px]"}
+                placeholder={"Notes"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"asr_esn_id"}
+              label={"Vehicle ESN Or AIR ID"}
+              rules={[
+                {
+                  required: true,
+                  message: "Select ESN Or AIR ID",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Select Vehicle ESN Or AIR ID"}
+                showSearch
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  (option?.label ?? "").includes(input)
+                }
+                filterSort={(optionA, optionB) =>
+                  (optionA?.label ?? "")
+                    .toLowerCase()
+                    .localeCompare((optionB?.label ?? "").toLowerCase())
+                }
+                className={`w-full h-[50px]`}
+                options={[
+                  { value: "BUS", label: "BUS" },
+                  { value: "CAR", label: "CAR" },
+                  { value: "MOTORCYCLE", label: "MOTORCYCLE" },
+                  { value: "SCHOOL BUS", label: "SCHOOL BUS" },
+                  { value: "TANKER", label: "TANKER" },
+                  { value: "TRUCK", label: "TRUCK" },
+                  { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
+                ]}
+                onChange={handleAsrEsnId}
+              />
+            </Form.Item>
+
+            <Form.Item label={"Odometer Value"} name={"odometer"}>
+              <InputNumber
+                placeholder={"Odometer Value"}
+                className={"h-[50px] w-full border-[#667085] py-2.5"}
+              />
+            </Form.Item>
+
+            <Form.Item label={"Vehicle Initial Mileage"} name={"initial_mileage"}>
+              <InputNumber
+                placeholder={"Vehicle Initial Mileage"}
+                className={"h-[50px] w-full border-[#667085] py-2.5"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Upload"
+              valuePropName="fileList"
+              getValueFromEvent={normFile}
+              name={"image"}
+            >
+              <Upload
+                action={import.meta.env.VITE_API_URL + "/media/files/student/"}
+                listType="picture-card"
               >
-                <PlusOutlined />
-                <div
+                <button
                   style={{
-                    marginTop: 8,
+                    border: 0,
+                    background: "none",
                   }}
+                  type="button"
                 >
-                  Upload
-                </div>
-              </button>
-            </Upload>
-          </Form.Item>
+                  <PlusOutlined />
+                  <div
+                    style={{
+                      marginTop: 8,
+                    }}
+                  >
+                    Upload
+                  </div>
+                </button>
+              </Upload>
+            </Form.Item>
+          </div>
         </div>
 
         <div className="text-center space-x-5 pt-10">
