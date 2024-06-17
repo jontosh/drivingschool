@@ -6,6 +6,8 @@ import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import NotFoundImage from "../../assets/others/404-image.svg";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import './notfound.module.scss'
 
 const Notfound = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -25,7 +27,7 @@ const Notfound = () => {
         />
 
         <div className="w-[500px] mx-auto text-center space-y-5">
-          <span className="border border-[#8C94A0] px-3.5 py-1.5 rounded-lg">
+          <span className="border border-[#8C94A0] text-[#8C94A0] px-3.5 py-1.5 rounded-lg">
             404 error
           </span>
 
@@ -38,7 +40,7 @@ const Notfound = () => {
             helpful links:
           </Paragraph>
 
-          <div className="space-x-5">
+          <div className="flex items-center gap-x-5 justify-center pb-10">
             <ButtonComponent
               defaultColor={colorsObject.black}
               defaultHoverColor={colorsObject.black}
@@ -46,21 +48,26 @@ const Notfound = () => {
               defaultHoverBorderColor={"#E7EAEE"}
               borderRadius={10}
               paddingInline={43}
-              controlHeight={40}
+              controlHeight={60}
               onClick={() => navigate(-1)}
+              className={"flex items-center gap-2"}
             >
+              <FaArrowLeftLong />
               Go Back
             </ButtonComponent>
 
             <ButtonComponent
-              defaultColor={colorsObject.black}
-              defaultHoverColor={colorsObject.black}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
               defaultBorderColor={"#E7EAEE"}
               defaultHoverBorderColor={"#E7EAEE"}
+              defaultBg="linear-gradient(90deg, #93B4F6 0%, #5ACDFF 100%)"
+              defaultHoverBg="linear-gradient(90deg, #93B4F6 0%, #5ACDFF 100%)"
               borderRadius={10}
               paddingInline={43}
-              controlHeight={40}
+              controlHeight={60}
               onClick={() => navigate("/")}
+              className={"Notfound__button"}
             >
               Go Home
             </ButtonComponent>
