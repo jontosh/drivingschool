@@ -16,7 +16,7 @@ export const ChartDashboard = () => {
   ];
   const options = {
     title: {
-      text: "Sign ups per day",
+      text: "Lessons",
       align: "left",
     },
     legend: {
