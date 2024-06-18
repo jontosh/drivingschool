@@ -275,7 +275,7 @@ const Enrollment = () => {
             disabled={!PackageTotal?.length}
           />
 
-          {StudentInfoType !== "" && (
+          {StudentInfoType !== "" && PackageIndexes?.length > 0 && (
             <InfoForm
               packages={{
                 packages: PackageIndexes,

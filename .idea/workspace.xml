@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="Refactor BigCalendar components to implement dynamic data changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="Refactor enrollment form to improve dynamic data handling">
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +150,7 @@
       <workItem from="1718541797375" duration="15047000" />
       <workItem from="1718617244917" duration="5501000" />
       <workItem from="1718640759955" duration="3391000" />
-      <workItem from="1718696349698" duration="24795000" />
+      <workItem from="1718696349698" duration="25285000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
@@ -538,7 +536,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718733433872</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Refactor enrollment form to improve dynamic data handling">
+      <option name="closed" value="true" />
+      <created>1718748699036</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718748699036</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored the logic for" />
     <MESSAGE value="Refactored the logic for dynamic" />
     <MESSAGE value="Refactored the logic for dynamic data" />
     <MESSAGE value="Refactored the logic for dynamic data changes" />
@@ -582,6 +587,7 @@
     <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes." />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes" />
     <MESSAGE value="Refactor BigCalendar components to implement dynamic data changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor BigCalendar components to implement dynamic data changes" />
+    <MESSAGE value="Refactor enrollment form to improve dynamic data handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor enrollment form to improve dynamic data handling" />
   </component>
 </project>
