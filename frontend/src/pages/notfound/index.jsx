@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import NotFoundImage from "../../assets/others/404-image.svg";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import './notfound.module.scss'
+import NotfoundStyle from './notfound.module.scss'
 
 const Notfound = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -40,7 +40,7 @@ const Notfound = () => {
             helpful links:
           </Paragraph>
 
-          <div className="flex items-center gap-x-5 justify-center pb-10">
+          <div className="flex items-center space-x-5 justify-center pb-10">
             <ButtonComponent
               defaultColor={colorsObject.black}
               defaultHoverColor={colorsObject.black}
@@ -58,16 +58,14 @@ const Notfound = () => {
 
             <ButtonComponent
               defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
+              defaultHoverColor={colorsObject.black}
               defaultBorderColor={"#E7EAEE"}
               defaultHoverBorderColor={"#E7EAEE"}
-              defaultBg="linear-gradient(90deg, #93B4F6 0%, #5ACDFF 100%)"
-              defaultHoverBg="linear-gradient(90deg, #93B4F6 0%, #5ACDFF 100%)"
               borderRadius={10}
               paddingInline={43}
               controlHeight={60}
               onClick={() => navigate("/")}
-              className={"Notfound__button"}
+              className={NotfoundStyle["Notfound__button"]}
             >
               Go Home
             </ButtonComponent>
