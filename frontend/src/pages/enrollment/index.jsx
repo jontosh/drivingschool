@@ -20,18 +20,27 @@ const Enrollment = () => {
   });
 
   const { colorsObject } = useContext(ColorsContext);
-  const { ClassSelectionArray, StudentInfoTypeOptions } =
-    EnrollmentsSelections();
-
+  const { StudentInfoTypeOptions } = EnrollmentsSelections();
   const [PackageSelection, setPackageSelection] = useState([]);
   const [PackageTotal, setPackageTotal] = useState([]);
+  const [PackageIndexes, setPackageIndexes] = useState([]);
   const [PackageValue, setPackageValue] = useState("");
-  // Вопрос
   const [ClassSelection, setClassSelection] = useState([]);
   const [StudentInfoType, setStudentInfoType] = useState("");
+  const [ClassValue, setClassValue] = useState(null);
+  const [ClassItem, setClassItem] = useState(null);
+
+  useEffect(() => {
+    const array = [];
+    for (let i = 0; i < PackageTotal?.length; i++) {
+      array.push(PackageTotal[i]?.id);
+    }
+    setPackageIndexes(array);
+  }, [PackageTotal?.length]);
 
   useEffect(() => {
     let options = [];
+    let classesOptions = [];
 
     for (let i = 0; i < ServicePackage?.length; i++) {
       if (ServicePackage[i]?.status?.toLowerCase() === "active") {
@@ -45,24 +54,19 @@ const Enrollment = () => {
     }
 
     setPackageSelection(options);
-  }, [ServicePackage]);
-
-  useEffect(() => {
-    let options = [];
 
     for (let i = 0; i < ServiceClass?.length; i++) {
       if (ServiceClass[i]?.status?.toLowerCase() === "active") {
-        options.push({
+        classesOptions.push({
           ...ServiceClass[i],
-          label: ServiceClass[i].web_name,
+          label: ServiceClass[i].details,
           value: ServiceClass[i].id,
-          price: parseFloat(ServiceClass[i].price),
         });
       }
     }
 
-    setClassSelection(options);
-  }, [ServiceClass]);
+    setClassSelection(classesOptions);
+  }, [ServicePackage, ServiceClass]);
 
   const handlePackage = (value) => setPackageValue(value);
   const handleStudentInfoType = (value) => setStudentInfoType(value);
@@ -72,15 +76,20 @@ const Enrollment = () => {
     setPackageValue("");
   };
 
+  const handleClass = (value) => setClassValue(value);
+
   useEffect(() => {
     setPackageTotal(() =>
       PackageSelection?.filter((item) => item.value === PackageValue),
     );
-  }, [PackageValue]);
+    const classItem = ClassSelection?.filter((item) => item?.id === ClassValue);
+
+    setClassItem(() => classItem[0]);
+  }, [PackageValue, ClassValue]);
 
   let totalPrice = 0;
 
-  const packageItem = PackageTotal.map(({ price, label, id }, index) => {
+  const packageItem = PackageTotal?.map(({ price, label, id }, index) => {
     totalPrice += price;
     index += 1;
     return (
@@ -113,11 +122,9 @@ const Enrollment = () => {
     );
   });
 
-  let totalClassPrice = 0;
-  const classItem = [].map(({ label, price }, index) => {
+  const classItem = ServiceClass?.map(({ details, note, id }, index) => {
     index += 1;
-    totalClassPrice += price;
-    return (
+    return ClassValue === id ? (
       <div
         className="border-2 rounded-3xl border-indigo-500 flex items-center"
         key={index}
@@ -130,10 +137,10 @@ const Enrollment = () => {
           {index}
         </Paragraph>
         <Paragraph fontSize={"text-base p-4"} fontWeightStrong={400}>
-          {label}
+          {details} | {note}
         </Paragraph>
       </div>
-    );
+    ) : null;
   });
 
   return (
@@ -234,12 +241,14 @@ const Enrollment = () => {
               <Paragraph fontSize={"text-xs text-zinc-500 mb-2.5"}>
                 Select the package to enroll students
               </Paragraph>
-
               <CustomSelect
                 placeholder={"Select class"}
-                options={ClassSelectionArray}
+                options={ClassSelection}
                 className={"w-full mb-2.5 h-[50px]"}
+                onChange={handleClass}
               />
+
+              {classItem}
             </div>
           </div>
         </div>
@@ -268,7 +277,11 @@ const Enrollment = () => {
 
           {StudentInfoType !== "" && (
             <InfoForm
-              packages={{ packages: PackageTotal, total: totalPrice }}
+              packages={{
+                packages: PackageIndexes,
+                total: totalPrice,
+                class: ClassItem,
+              }}
             />
           )}
         </div>
