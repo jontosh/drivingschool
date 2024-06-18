@@ -3,6 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Dropdown } from "antd";
 import {
   useState,
@@ -72,102 +73,47 @@ const items = [
 ];
 
 export const DashboardCalendar = ({ data }) => {
-  const Time = new Date();
-  const [MonthName, setMonthName] = useState("");
   const { colorsObject } = useContext(ColorsContext);
   const localizer = momentLocalizer(moment);
-  const [events, setEvents] = useState([]);
-  const [selectedDay, setSelectedDay] = useState(new Date());
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth());
-  const [days, setDays] = useState(new Date().getDay());
-  const [date, setDate] = useState(new Date().getDate());
-  let EventsList = [
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        4,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        6,
-        0,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        6,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        7,
-        30,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        16,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        18,
-        0,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        20,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        22,
-        30,
-        0,
-      ),
-      allDay: false,
-    },
-  ];
+  const [EventsList, setEventsList] = useState([]);
+  const { data: TimeSlot } = useRequestGetQuery({
+    path: "/scheduling/time_slot/",
+  });
+  const { data: TimeRange } = useRequestGetQuery({
+    path: "/scheduling/time_range/",
+  });
 
   useEffect(() => {
-    setEvents(EventsList);
-  }, []);
+    const rangeTimes = [];
+    const rangeTime = [];
+
+    for (let i = 0; i < TimeSlot?.length; i++) {
+      const item = TimeSlot[i];
+      if (data?.id === item.staff) {
+        for (let j = 0; j < TimeRange?.length; j++) {
+          const item2 = TimeRange[j];
+
+          if (item?.slots[j] === item2.id) {
+            rangeTimes.push(item2);
+          }
+        }
+        break;
+      }
+    }
+
+    for (let i = 0; i < rangeTimes.length; i++) {
+      const item = rangeTimes[i];
+      console.log(item);
+      rangeTime.push({
+        title: item?.name,
+        start: new Date(item?.start),
+        end: new Date(item?.end),
+        allDay: false,
+      });
+    }
+
+    setEventsList(rangeTime);
+  }, [TimeSlot, TimeRange, data?.id]);
 
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
@@ -318,21 +264,6 @@ export const DashboardCalendar = ({ data }) => {
     [],
   );
 
-  const months = Array.from({ length: 12 }, (item, i) => {
-    return {
-      value: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-      label: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-    };
-  });
-
-  useEffect(() => {
-    months.map((month, index) => {
-      if (index === Time.getMonth()) {
-        setMonthName(month.value);
-      }
-    });
-  }, [MonthName]);
-
   const slotGroupPropGetter = useCallback(
     () => ({
       style: {
@@ -381,12 +312,12 @@ export const DashboardCalendar = ({ data }) => {
           "overflow-hidden rounded-xl bg-white flex justify-between gap-5"
         }
       >
-        <div className="-mx-1 flex-grow">
+        <div className="-mx-1 flex-grow pl-1">
           <Calendar
             // To selection column and add events
             // selectable
             localizer={localizer}
-            events={events}
+            events={EventsList}
             // To scroll
             startAccessor="start"
             endAccessor="end"
