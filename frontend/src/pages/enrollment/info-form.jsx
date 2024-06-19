@@ -12,7 +12,8 @@ import {
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import { DatePicker, Form, Input } from "antd";
-import { Fragment, useEffect, useReducer, useState } from "react";
+import { Fragment, useContext, useEffect, useReducer, useState } from "react";
+import ColorsContext from "@/context/colors.jsx";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -36,6 +37,7 @@ const reducer = (state, action) => {
 };
 
 export const InfoForm = ({ packages }) => {
+  const { colorsObject } = useContext(ColorsContext);
   const [requestPost] = useRequestPostMutation();
 
   const [IsOpen, setIsOpen] = useState(false);
@@ -167,6 +169,7 @@ export const InfoForm = ({ packages }) => {
                 options={StaffSelect}
                 placeholder={"Account #"}
                 disabled={isInstructor}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
@@ -175,6 +178,7 @@ export const InfoForm = ({ packages }) => {
                 options={LocationSelect}
                 placeholder={"Select Location"}
                 disabled={isLocation}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
@@ -252,6 +256,7 @@ export const InfoForm = ({ packages }) => {
                   },
                 ]}
                 placeholder={"Select state"}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
@@ -265,7 +270,7 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput placeholder={"Zip"} />
+              <CustomInput placeholder={"Zip"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -278,7 +283,7 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput placeholder={"Home Phone"} />
+              <CustomInput placeholder={"Home Phone"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -291,7 +296,7 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput placeholder={"Cell Phone"} />
+              <CustomInput placeholder={"Cell Phone"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -304,7 +309,7 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput type={"email"} placeholder={"Email"} />
+              <CustomInput type={"email"} placeholder={"Email"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -367,20 +372,21 @@ export const InfoForm = ({ packages }) => {
                   { value: "Other", label: "Other" },
                 ]}
                 placeholder={"Select perferred pronoun!"}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
             <Form.Item name={"medical_condition"} label={"Medical condition"}>
               <Input.TextArea
                 placeholder={"Medical condition"}
-                className={"border-black"}
+                className={"border-[#667085]"}
               />
             </Form.Item>
 
             <Form.Item name={"driving_notes"} label={"Student driving notes"}>
               <Input.TextArea
                 placeholder={"Student driving notes"}
-                className={"border-black"}
+                className={"border-[#667085]"}
               />
             </Form.Item>
 
@@ -395,15 +401,15 @@ export const InfoForm = ({ packages }) => {
 
           <div className="space-y-5">
             <Form.Item name={"dl_permit"} label={"DL/Permit"}>
-              <CustomInput placeholder={"DL/Permit #"} />
+              <CustomInput placeholder={"DL/Permit #"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item name={"dl_given_date"} label={"DL/Permit Issued"}>
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item name={"dl_expire_date"} label={"DL Permit Expiration"}>
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item
@@ -423,7 +429,7 @@ export const InfoForm = ({ packages }) => {
             </Form.Item>
 
             <Form.Item name={"extantion_date"} label={"Extantion Date"}>
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item name={"high_school"} label={"High School"}>
@@ -431,15 +437,16 @@ export const InfoForm = ({ packages }) => {
                 options={SchoolsSelect}
                 placeholder={"High School"}
                 disabled={isSchools}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
             <Form.Item name={"parent_name"} label={"Parent name"}>
-              <CustomInput placeholder={"Parent name"} />
+              <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item name={"parent_phone"} label={"Parent phone"}>
-              <CustomInput placeholder={"Parent phone"} />
+              <CustomInput placeholder={"Parent phone"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -451,15 +458,15 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput placeholder={"Parent email"} />
+              <CustomInput placeholder={"Parent email"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item name={"parent_2_name"} label={"Parent name 2"}>
-              <CustomInput placeholder={"Parent name"} />
+              <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item name={"parent_2_phone"} label={"Parent phone 2"}>
-              <CustomInput placeholder={"Parent phone"} />
+              <CustomInput placeholder={"Parent phone"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -471,7 +478,7 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput placeholder={"Parent email"} />
+              <CustomInput placeholder={"Parent email"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -484,7 +491,7 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item name={"lead"} label={"Lead"}>
@@ -492,11 +499,12 @@ export const InfoForm = ({ packages }) => {
                 disabled={isLead}
                 options={LeadSelect}
                 placeholder={"Select Lead"}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
             <Form.Item name={"note"} label={"Student notes"}>
-              <Input.TextArea placeholder={"Student notes"} />
+              <Input.TextArea placeholder={"Student notes"} className="border-[#667085]" />
             </Form.Item>
 
             <Form.Item
@@ -509,18 +517,49 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput placeholder={"username"} />
+              <CustomInput placeholder={"username"} classNames={"w-full"} />
             </Form.Item>
           </div>
         </div>
 
-        <ButtonComponent
-          type={"submit"}
-          defaultColor={"black"}
-          defaultHoverColor={"black"}
-        >
-          Save
-        </ButtonComponent>
+        <div className="space-x-5 text-center pt-5">
+          <ButtonComponent
+            type={"submit"}
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            paddingInline={44}
+            borderRadius={5}
+          >
+            Save
+          </ButtonComponent>
+
+          <CustomSelect
+            placeholder={"Apply Payment & Save"}
+            options={[
+              {
+                value: "Process Credit card",
+                label: "Process Credit card",
+              },
+              {
+                value: "Enter Swiped Transaction",
+                label: "Enter Swiped Transaction",
+              },
+              {
+                value: "Enter Cash Payment",
+                label: "Enter Cash Payment",
+              },
+              {
+                value: "Enter Check Payment",
+                label: "Enter Check Payment",
+              },
+            ]}
+            className={"h-10"}
+            selectorBg={colorsObject.info}
+            colorTextPlaceholder={colorsObject.main}
+            colorBorder={colorsObject.info}
+          />
+        </div>
       </Form>
 
       {IsOpen && state?.status}
