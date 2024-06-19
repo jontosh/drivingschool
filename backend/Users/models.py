@@ -58,6 +58,13 @@ class Student(CustomUser):
         ["Female", "Female"],
         ["Other", "Other"],
     ]
+    TYPE = [
+        ["Teen","Teen"],
+        ["Adult","Adult"],
+        ["Knowledge Test","Knowledge Test"],
+        ["Road Test","Road Test"],
+    ]
+    information_type = models.CharField(choices=TYPE,default="Road Test",)
     staff = models.ForeignKey(Instructor,on_delete=models.CASCADE,related_name="student_staff",null=True)
     location = models.ForeignKey(Location,on_delete=models.CASCADE,null=True)
     home_pickup = models.TextField(blank=True,null=True)
@@ -75,6 +82,10 @@ class Student(CustomUser):
     parent_2_name = models.CharField(max_length=200)
     parent_2_email = models.EmailField(blank=True,null=True)
     parent_2_phone = models.CharField(max_length=30,blank=True,null=True,db_column="sd")
+    extension_data = models.DateField(blank=True,null=True)
+    how_did_you_hear_us = models.ForeignKey("location.HowDidYouHearUs",on_delete=models.CASCADE,null=True,blank=True)
+    _disable_self_scheduling = models.BooleanField(default=False)
+    _payment_plan = models.BooleanField(default=False)
     def __str__(self):
         return  f"{self.first_name} {self.last_name}"
 class Enrollment(Extra):
@@ -123,6 +134,7 @@ class Bill(Extra):
     receipt_number = models.PositiveSmallIntegerField(blank=True,null=True)
     transaction_number = models.PositiveSmallIntegerField(blank=True,null=True)
     check_number = models.TextField(blank=True)
+    discount = models.ManyToManyField("servises.Discount",related_name="coupon",blank=True)
     is_deposited = models.BooleanField(default=False)
     adjust_type = models.CharField(choices=ADJUST_TYPE,max_length=40,default="Discount (Subtract from balance)",blank=True,null=True)
     def __str__(self):

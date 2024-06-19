@@ -41,16 +41,6 @@ class CustomUser(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4()
-        if self.type == None:
-            field, f_g = Fields.objects.get_or_create(app_name="test")
-            field.save()
-            rights, r_g = Rights.objects.get_or_create(field=field)
-            rights.save()
-            typ,t_g = UserType.objects.get_or_create(name="test")
-            typ.rights.add(rights)
-            typ.save()
-            self.type = typ
-
         super().save(*args, **kwargs)
 
     def __str__(self):
