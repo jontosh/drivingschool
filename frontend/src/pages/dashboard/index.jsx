@@ -24,7 +24,7 @@ import StudentsRegistration from "../../assets/icons/student-registration.svg";
 import Expenses from "../../assets/icons/expenses.svg";
 import DiagramUpBold from "../../assets/icons/overview.svg";
 import LinksIcon from "../../assets/icons/links.svg";
-import InstructorAva from "../../assets/user/instructor.jpeg";
+import InstructorAva from "@/assets/user/instructor.jpeg";
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -125,7 +125,7 @@ const Dashboard = () => {
               suffix="k"
               prefix={"$"}
               formatter={formatter}
-              valueStyle={{fontWeight: 600}}
+              valueStyle={{ fontWeight: 600 }}
             />
           </div>
 
@@ -143,7 +143,7 @@ const Dashboard = () => {
               value={24}
               formatter={formatter}
               suffix="k"
-              valueStyle={{fontWeight: 600}}
+              valueStyle={{ fontWeight: 600 }}
             />
           </div>
 
@@ -160,7 +160,7 @@ const Dashboard = () => {
               title="Students registration"
               value={200}
               formatter={formatter}
-              valueStyle={{fontWeight: 600}}
+              valueStyle={{ fontWeight: 600 }}
             />
           </div>
 
@@ -174,7 +174,7 @@ const Dashboard = () => {
               value={7920}
               formatter={formatter}
               prefix={"$"}
-              valueStyle={{fontWeight: 600}}
+              valueStyle={{ fontWeight: 600 }}
             />
           </div>
         </div>
