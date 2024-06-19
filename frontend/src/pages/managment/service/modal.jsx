@@ -1807,7 +1807,7 @@ export const FileCategoryModalContent = () => {
             <Input.TextArea
               showCount
               maxLength={100}
-              className={"border-[#667085] min-h-[90px] p-5"}
+              className={"border-[#667085] p-5"}
               placeholder={"Notes"}
               disabled={isLoading}
             />

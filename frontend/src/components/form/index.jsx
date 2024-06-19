@@ -132,6 +132,7 @@ export const CustomSelect = ({
   colorBorder = "#667085",
   selectorBg = "#fff",
   colorText = "#000",
+  colorTextPlaceholder,
   ...props
 }) => {
   useEffect(() => { }, []);
@@ -155,6 +156,7 @@ export const CustomSelect = ({
               colorBorder,
               selectorBg,
               colorText,
+              colorTextPlaceholder
             },
           },
         }}
