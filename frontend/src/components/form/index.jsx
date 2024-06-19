@@ -1,7 +1,15 @@
 import classNames from "classnames";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import FormStyle from "./form.module.scss";
-import { ConfigProvider, Input, Select, Transfer } from "antd";
+import {
+  ConfigProvider,
+  Input,
+  Select,
+  Transfer,
+  Checkbox,
+  Row,
+  Col,
+} from "antd";
 const { Option } = Select;
 
 export const CustomCheckBox = ({
@@ -11,6 +19,7 @@ export const CustomCheckBox = ({
   children,
   onChange,
   checked,
+  customWrapClassName,
   ...props
 }) => {
   className = classNames([
@@ -35,7 +44,12 @@ export const CustomCheckBox = ({
             checked={checked}
             className={`${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`}
           />
-          <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
+          <span
+            className={classNames(
+              `relative ${FormStyle["Custom-checkbox"]}`,
+              customWrapClassName,
+            )}
+          ></span>
         </div>
         {children}
       </label>
@@ -56,8 +70,9 @@ export const CustomInput = ({
   spanClassName,
   type = "text",
   children,
-  colorBorder = "#000",
+  colorBorder = "#667085",
   fontSize = "text-sm",
+  disabled,
   ...props
 }) => {
   className = classNames([className]);
@@ -76,7 +91,7 @@ export const CustomInput = ({
       >
         <label className={props.classNames} {...props}>
           <Input
-            className={`h-full ${className}`}
+            className={`h-[50px] focus:border-[1px] focus:border-solid focus:border-[#5f66e9] ${className}`}
             type={type}
             value={value}
             name={name}
@@ -84,6 +99,7 @@ export const CustomInput = ({
             status={status}
             size={size}
             onChange={onChange}
+            disabled={disabled}
           />
           {spanText && (
             <Fragment>
@@ -113,11 +129,14 @@ export const CustomSelect = ({
   optionFontSize,
   optionSelectedFontWeight,
   fontSize = 14,
-  colorBorder = "gray",
+  colorBorder = "#667085",
   selectorBg = "#fff",
   colorText = "#000",
+  colorTextPlaceholder,
   ...props
 }) => {
+  useEffect(() => { }, []);
+
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
       {option.label}
@@ -137,12 +156,13 @@ export const CustomSelect = ({
               colorBorder,
               selectorBg,
               colorText,
+              colorTextPlaceholder
             },
           },
         }}
       >
         <Select
-          className={classNames(className)}
+          className={`${classNames(className)} rounded-lg`}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
@@ -165,11 +185,12 @@ export const CustomRadio = ({
   className,
   name,
   checked,
+  customWrapClassName,
   ...props
 }) => {
   return (
     <label
-      className={classNames(props.classNames, FormStyle["Radio"])}
+      className={`flex gap-1 items-center ${classNames(props.classNames, FormStyle["Radio"])}`}
       {...props}
     >
       <div
@@ -186,7 +207,12 @@ export const CustomRadio = ({
             className,
           )}
         />
-        <span className={`relative ${FormStyle["Custom-checkbox"]}`}></span>
+        <span
+          className={classNames(
+            `relative ${FormStyle["Custom-checkbox"]}`,
+            customWrapClassName,
+          )}
+        ></span>
       </div>
       {children}
     </label>
@@ -197,7 +223,7 @@ export const CustomTransfer = ({
   className,
   onChange,
   colorBgContainer,
-  colorBorder,
+  colorBorder = "#667085",
   colorBgContainerDisabled,
   colorText,
   controlHeightLG,
@@ -207,18 +233,21 @@ export const CustomTransfer = ({
   initialTargetKeys,
   listHeight,
   headerHeight,
+  selectedKeys,
+  setSelectedKeys,
+  ...props
 }) => {
   const [targetKeysState, setTargetKeysState] = useState(initialTargetKeys);
-  const [selectedKeys, setSelectedKeys] = useState([]);
+  // const [selectedKeys, setSelectedKeys] = useState([]);
 
   const handleChange = (nextTargetKeys, direction, moveKeys) => {
     console.log("targetKeys:", nextTargetKeys);
     console.log("direction:", direction);
     console.log("moveKeys:", moveKeys);
     setTargetKeysState(nextTargetKeys);
-    if (typeof onChange === "function") {
-      onChange(nextTargetKeys);
-    }
+    // if (typeof onChange === "function") {
+    //   onChange(nextTargetKeys);
+    // }
   };
 
   const onSelectChange = (sourceSelectedKeys, targetSelectedKeys) => {
@@ -250,7 +279,7 @@ export const CustomTransfer = ({
       }}
     >
       <Transfer
-        className={className}
+        className={classNames(className, "overflow-hidden")}
         onChange={handleChange}
         dataSource={dataSource}
         titles={titles}
@@ -261,5 +290,115 @@ export const CustomTransfer = ({
         render={(item) => item.title}
       />
     </ConfigProvider>
+  );
+};
+
+export const CustomDate = () => {
+  return <ConfigProvider></ConfigProvider>;
+};
+
+export const SwitchCustom = ({
+  name,
+  value,
+  children,
+  className,
+  checked = false,
+  onChange,
+  ...props
+}) => {
+  return (
+    <Fragment>
+      <label
+        className="relative bg-white shadow-xl inline-flex cursor-pointer items-center overflow-hidden"
+        {...props}
+      >
+        <input
+          type="checkbox"
+          checked={checked}
+          className="peer sr-only"
+          onChange={onChange}
+          name={name}
+          value={value}
+        />
+        <div className="peer h-8 items-center gap-4 bg-white after:absolute after:left-0 after:top-0 after:bottom-0 after:w-12 after:rounded after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-focus:outline-none text-sm text-white">
+          <span className={"px-3 py-1.5 bg-[#24C18F] rounded-lg"}>Yes</span>
+          <span className={"px-3 py-1.5 bg-[#FF333F] rounded-lg"}>No</span>
+        </div>
+      </label>
+      {children}
+    </Fragment>
+  );
+};
+
+export const SelectCheckbox = ({
+  options,
+  className,
+  placeholder,
+  ...props
+}) => {
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+
+  const handleChange = (values) => {
+    setSelectedItems(values);
+    setSelectAll(values.length === options.length);
+  };
+
+  const handleSelectAll = (checked) => {
+    const allValues = options.map((option) => option.value);
+    setSelectedItems(checked ? allValues : []);
+    setSelectAll(checked);
+  };
+
+  const dropdownRender = (menu) => (
+    <div className="flex flex-col">
+      <CustomCheckBox
+        checked={selectAll}
+        onChange={(e) => handleSelectAll(e.target.checked)}
+        className="inline-flex items-center px-4 py-2 font-bold"
+      >
+        Select All
+      </CustomCheckBox>
+      {options.map((option) => (
+        <CustomCheckBox
+          key={option.value}
+          value={option.value}
+          checked={selectedItems.includes(option.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (e.target.checked) {
+              setSelectedItems([...selectedItems, value]);
+            } else {
+              setSelectedItems(selectedItems.filter((item) => item !== value));
+            }
+            setSelectAll(
+              selectedItems.length === options.length - 1 &&
+              !selectedItems.includes(value),
+            );
+          }}
+          className="block px-4 py-2 flex items-center text-base font-medium"
+        >
+          {option.label}
+        </CustomCheckBox>
+      ))}
+    </div>
+  );
+
+  return (
+    <div className={classNames} {...props}>
+      <Select
+        className={`w-full h-[50px] rounded-lg ${className}`}
+        placeholder={placeholder}
+        onChange={handleChange}
+        value={selectedItems}
+        dropdownRender={dropdownRender}
+      >
+        {options.map((option) => (
+          <Option key={option.value} value={option.value}>
+            {option.label}
+          </Option>
+        ))}
+      </Select>
+    </div>
   );
 };

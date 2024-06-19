@@ -1,7 +1,6 @@
 import Layout from "@/layout";
 import Communication from "@/pages/communication/index.jsx";
 import Configuration from "@/pages/configuration/index.jsx";
-import { ConfigBase } from "@/pages/configuration/subpages/config-base.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
 import Design from "@/pages/design/index.jsx";
@@ -12,17 +11,12 @@ import HelpMain from "@/pages/help/main";
 import { NewTicket } from "@/pages/help/new-ticket";
 import { News } from "@/pages/help/news";
 import { TicketSpa } from "@/pages/help/ticket/ticket-spa.jsx";
-import File from "@/pages/managment/file/index.jsx";
 import Management from "@/pages/managment/index.jsx";
-import ManagementSpa from "@/pages/managment/management-spa.jsx";
-import ManagementSpaIndex from "@/pages/managment/management-spa/index.jsx";
-import ModalPage from "@/pages/managment/modal-page.jsx";
-import Service from "@/pages/managment/service/index.jsx";
-import ServiceSpa from "@/pages/managment/service/service-spa.jsx";
-import Staff from "@/pages/managment/staff/index.jsx";
+import Modal from "@/pages/modal/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
 import SignIn from "@/pages/register/sign-in.jsx";
+import Report from "@/pages/report/index.jsx";
 import Scheduling from "@/pages/scheduling/index.jsx";
 import Manage from "@/pages/scheduling/subpages/manage.jsx";
 import Search from "@/pages/search/index.jsx";
@@ -50,6 +44,15 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "/report/:title",
+        element: <Report />,
+        children: [
+          {
+            path: ":subpage",
+          },
+        ],
+      },
+      {
         path: "/enrollment",
         element: <Enrollment />,
       },
@@ -58,27 +61,26 @@ export const router = createBrowserRouter([
         element: <HelpMain />,
         children: [
           {
-            path: "ticket/:title",
+            path: "news/ticket/:title/:id",
             element: <TicketSpa />,
-            children: [
-              {
-                path: ":id",
-              },
-            ],
+          },
+          {
+            path: "help/ticket/:title/:id",
+            element: <TicketSpa />,
           },
           {
             path: "help",
-            element: <Help />
+            element: <Help />,
           },
           {
             path: "news",
-            element: <News />
+            element: <News />,
           },
           {
             path: "new-ticket",
-            element: <NewTicket />
+            element: <NewTicket />,
           },
-        ]
+        ],
       },
       {
         path: "/configuration/:title",
@@ -115,42 +117,17 @@ export const router = createBrowserRouter([
         element: <Manage />,
       },
       {
-        path: "/management",
+        path: "/management/:title",
         element: <Management />,
         children: [
           {
-            path: "service",
-            element: <Service />,
-            children: [
-              {
-                path: ":title",
-                element: <ServiceSpa />,
-              },
-            ],
-          },
-          {
-            path: "file",
-            element: <File />,
-          },
-          {
-            path: "staff",
-            element: <Staff />,
-          },
-          {
-            path: "single-page",
-            element: <ManagementSpa />,
-            children: [
-              {
-                path: ":title",
-                element: <ManagementSpaIndex />,
-              },
-            ],
-          },
-          {
-            path: "modal/:modal",
-            element: <ModalPage />,
+            path: ":subpage",
           },
         ],
+      },
+      {
+        path: "/modals/:title/:page_modal",
+        element: <Modal />,
       },
       {
         path: "/student/account",
@@ -172,20 +149,14 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: "*",
-        element: <Notfound />,
-      },
     ],
   },
   {
-    path: "/register",
+    path: "*",
+    element: <Notfound />,
+  },
+  {
+    path: "/register/sign-in",
     element: <Register />,
-    children: [
-      {
-        path: "sign-in",
-        element: <SignIn />,
-      },
-    ],
   },
 ]);

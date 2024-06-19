@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/items/statistics-online.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/finances/items/top-selling-chart.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="Refactor enrollment form to improve dynamic data handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/finances.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/finances.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/finances/subpage/statistic.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/finances/subpage/statistic.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,15 +16,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JSX File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="development" />
+        <entry key="$PROJECT_DIR$" value="managment" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,8 +36,9 @@
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2fZ2yBFCuM1gWfGXKvpCEIJecl9" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectId" id="2gm4VvP7ql4JCuXYALAsIvzJpQl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -49,11 +47,11 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;finances&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/a/Development/driving_school/drivingschool&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -61,6 +59,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;app.aicomit.ApplicationSettingsConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -72,29 +71,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="npm.start">
-    <configuration name="m" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="drivingschool" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backend" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backend/m.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
@@ -105,72 +82,470 @@
       <envs />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="npm.start" />
-    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-2e7d6887c066-JavaScript-WS-241.15989.47" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17890.13" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f1372a37-ca65-43fc-beab-b9f9762b530f" name="Changes" comment="" />
-      <created>1713995915111</created>
+      <changelist id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="" />
+      <created>1716289449472</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713995915111</updated>
-      <workItem from="1713995918480" duration="8778000" />
-      <workItem from="1714011415435" duration="240000" />
-      <workItem from="1714143886651" duration="282000" />
-      <workItem from="1714216961912" duration="2140000" />
-      <workItem from="1714219166416" duration="174000" />
-      <workItem from="1714226266068" duration="56000" />
-      <workItem from="1714228513381" duration="20512000" />
+      <updated>1716289449472</updated>
+      <workItem from="1716289451828" duration="172000" />
+      <workItem from="1716306256256" duration="35000" />
+      <workItem from="1716306298806" duration="15455000" />
+      <workItem from="1716378691446" duration="49000" />
+      <workItem from="1716382866659" duration="6319000" />
+      <workItem from="1716402466055" duration="11894000" />
+      <workItem from="1716616731195" duration="585000" />
+      <workItem from="1716617336228" duration="150000" />
+      <workItem from="1716618668373" duration="7977000" />
+      <workItem from="1716661832131" duration="9170000" />
+      <workItem from="1716702728152" duration="7077000" />
+      <workItem from="1716753358331" duration="13398000" />
+      <workItem from="1716767352509" duration="346000" />
+      <workItem from="1716798370501" duration="9532000" />
+      <workItem from="1716877540012" duration="12157000" />
+      <workItem from="1716913595922" duration="9597000" />
+      <workItem from="1716962200799" duration="2564000" />
+      <workItem from="1716964820480" duration="12621000" />
+      <workItem from="1716981738572" duration="1858000" />
+      <workItem from="1717051835095" duration="15280000" />
+      <workItem from="1717479257189" duration="12868000" />
+      <workItem from="1717508871089" duration="354000" />
+      <workItem from="1717527739461" duration="19465000" />
+      <workItem from="1717574952695" duration="8293000" />
+      <workItem from="1717600118024" duration="272000" />
+      <workItem from="1717600420585" duration="4261000" />
+      <workItem from="1717658676420" duration="6511000" />
+      <workItem from="1717701254345" duration="1912000" />
+      <workItem from="1717703265702" duration="8343000" />
+      <workItem from="1717858477051" duration="7944000" />
+      <workItem from="1717867900782" duration="179000" />
+      <workItem from="1717874642207" duration="6398000" />
+      <workItem from="1717919021738" duration="1845000" />
+      <workItem from="1717927280974" duration="102000" />
+      <workItem from="1717932575279" duration="2158000" />
+      <workItem from="1717936324388" duration="1127000" />
+      <workItem from="1717937753840" duration="3589000" />
+      <workItem from="1718001567190" duration="8478000" />
+      <workItem from="1718010622375" duration="5090000" />
+      <workItem from="1718087028623" duration="5595000" />
+      <workItem from="1718092776741" duration="8960000" />
+      <workItem from="1718117698421" duration="8141000" />
+      <workItem from="1718135654357" duration="1132000" />
+      <workItem from="1718136941360" duration="4127000" />
+      <workItem from="1718183106366" duration="19977000" />
+      <workItem from="1718275751543" duration="15458000" />
+      <workItem from="1718392369280" duration="625000" />
+      <workItem from="1718470727079" duration="12249000" />
+      <workItem from="1718536146622" duration="250000" />
+      <workItem from="1718536413188" duration="4768000" />
+      <workItem from="1718541797375" duration="15047000" />
+      <workItem from="1718617244917" duration="5501000" />
+      <workItem from="1718640759955" duration="3391000" />
+      <workItem from="1718696349698" duration="25285000" />
     </task>
-    <task id="LOCAL-00001" summary="#fix #jsx Add new configuration routes and menu items for company information, payment integration, security policies, and zip code, update workspace XML file and project settings.">
+    <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
-      <created>1714000414208</created>
+      <created>1716289491899</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1714000414208</updated>
+      <updated>1716289491899</updated>
     </task>
-    <task id="LOCAL-00002" summary="backend">
-      <created>1714011796980</created>
+    <task id="LOCAL-00002" summary="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
+      <option name="closed" value="true" />
+      <created>1716331688025</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1714011796980</updated>
+      <updated>1716331688025</updated>
     </task>
-    <task id="LOCAL-00003" summary="backend added services">
-      <created>1714142831334</created>
+    <task id="LOCAL-00003" summary="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks.">
+      <option name="closed" value="true" />
+      <created>1716459969047</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1714142831334</updated>
+      <updated>1716459969047</updated>
     </task>
-    <task id="LOCAL-00005" summary="#fix #jsx A refactoring component that includes a new email template module and pagination functionality, updates to communications, ticket routing and menu items, and customization of project settings in the workspace XML.">
+    <task id="LOCAL-00004" summary="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery.">
       <option name="closed" value="true" />
-      <created>1714068759380</created>
+      <created>1716674769197</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716674769197</updated>
+    </task>
+    <task id="LOCAL-00005" summary="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling.">
+      <option name="closed" value="true" />
+      <created>1716767392285</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1714068759380</updated>
+      <updated>1716767392285</updated>
     </task>
-    <task id="LOCAL-00006" summary="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code.">
+    <task id="LOCAL-00006" summary="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling.">
       <option name="closed" value="true" />
-      <created>1714247466251</created>
+      <created>1716812799444</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1714247466251</updated>
+      <updated>1716812799445</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="# fix #jsx Update scheduling components to include dynamic rendering based on the route params for improved user experience.">
+      <option name="closed" value="true" />
+      <created>1716964942121</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716964942121</updated>
+    </task>
+    <task id="LOCAL-00008" summary="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience.">
+      <option name="closed" value="true" />
+      <created>1716969487159</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716969487159</updated>
+    </task>
+    <task id="LOCAL-00009" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml.">
+      <option name="closed" value="true" />
+      <created>1717025250488</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717025250488</updated>
+    </task>
+    <task id="LOCAL-00010" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization.">
+      <option name="closed" value="true" />
+      <created>1717066097071</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717066097071</updated>
+    </task>
+    <task id="LOCAL-00011" summary="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction.">
+      <option name="closed" value="true" />
+      <created>1717499312883</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717499312883</updated>
+    </task>
+    <task id="LOCAL-00012" summary="#fix #jsx Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
+      <option name="closed" value="true" />
+      <created>1717509127963</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717509127963</updated>
+    </task>
+    <task id="LOCAL-00013" summary="#fix #jsx Refactor form inputs, handle state changes, and update data fetching in profile and index components. Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
+      <option name="closed" value="true" />
+      <created>1717547650041</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717547650041</updated>
+    </task>
+    <task id="LOCAL-00014" summary="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components.">
+      <option name="closed" value="true" />
+      <created>1717579859497</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1717579859497</updated>
+    </task>
+    <task id="LOCAL-00015" summary="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components.">
+      <option name="closed" value="true" />
+      <created>1717582734981</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717582734981</updated>
+    </task>
+    <task id="LOCAL-00016" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
+      <option name="closed" value="true" />
+      <created>1717612744993</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717612744993</updated>
+    </task>
+    <task id="LOCAL-00017" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
+      <option name="closed" value="true" />
+      <created>1717612871464</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717612871464</updated>
+    </task>
+    <task id="LOCAL-00018" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
+      <option name="closed" value="true" />
+      <created>1717626169798</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717626169799</updated>
+    </task>
+    <task id="LOCAL-00019" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
+      <option name="closed" value="true" />
+      <created>1717661008010</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717661008010</updated>
+    </task>
+    <task id="LOCAL-00020" summary="#fix #jsx Refactor render method to include index parameter and update conditional rendering logic based on ActionIndex.">
+      <option name="closed" value="true" />
+      <created>1717683927280</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717683927281</updated>
+    </task>
+    <task id="LOCAL-00021" summary="#fix #jsx #style Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
+      <option name="closed" value="true" />
+      <created>1717848423665</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717848423665</updated>
+    </task>
+    <task id="LOCAL-00022" summary="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
+      <option name="closed" value="true" />
+      <created>1717848811933</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1717848811933</updated>
+    </task>
+    <task id="LOCAL-00023" summary="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
+      <option name="closed" value="true" />
+      <created>1717852155565</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1717852155565</updated>
+    </task>
+    <task id="LOCAL-00024" summary="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module.">
+      <option name="closed" value="true" />
+      <created>1717859560348</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717859560348</updated>
+    </task>
+    <task id="LOCAL-00025" summary="#fix #jsx Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form.">
+      <option name="closed" value="true" />
+      <created>1717940194548</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1717940194548</updated>
+    </task>
+    <task id="LOCAL-00026" summary="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml.">
+      <option name="closed" value="true" />
+      <created>1718010940967</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1718010940967</updated>
+    </task>
+    <task id="LOCAL-00027" summary="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml.">
+      <option name="closed" value="true" />
+      <created>1718012807754</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1718012807754</updated>
+    </task>
+    <task id="LOCAL-00028" summary="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs.">
+      <option name="closed" value="true" />
+      <created>1718092821114</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1718092821114</updated>
+    </task>
+    <task id="LOCAL-00029" summary="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx.">
+      <option name="closed" value="true" />
+      <created>1718093196829</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1718093196829</updated>
+    </task>
+    <task id="LOCAL-00030" summary="#fix #jsx Update modal.jsx with new service information and form inputs.">
+      <option name="closed" value="true" />
+      <created>1718100658457</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1718100658458</updated>
+    </task>
+    <task id="LOCAL-00031" summary="#fix #jsx Update modal.jsx with new service information and form inputs.">
+      <option name="closed" value="true" />
+      <created>1718104686677</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1718104686677</updated>
+    </task>
+    <task id="LOCAL-00032" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718119179298</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1718119179298</updated>
+    </task>
+    <task id="LOCAL-00033" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718140880746</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1718140880746</updated>
+    </task>
+    <task id="LOCAL-00034" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718194280992</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1718194280992</updated>
+    </task>
+    <task id="LOCAL-00035" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718199026653</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1718199026653</updated>
+    </task>
+    <task id="LOCAL-00036" summary="#fix #jsx Refactor form components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718205373873</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1718205373873</updated>
+    </task>
+    <task id="LOCAL-00037" summary="#fix #jsx Refactor form components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718207063656</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1718207063656</updated>
+    </task>
+    <task id="LOCAL-00038" summary="#fix #jsx Update student password page title and refactor form components for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718216422911</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1718216422911</updated>
+    </task>
+    <task id="LOCAL-00039" summary="#fix #jsx Update form components and page title for student password for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718289552580</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1718289552580</updated>
+    </task>
+    <task id="LOCAL-00040" summary="#fix #jsx Update form components and page title for student password for improved structure and readability.">
+      <option name="closed" value="true" />
+      <created>1718304035730</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1718304035730</updated>
+    </task>
+    <task id="LOCAL-00041" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718304876776</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1718304876777</updated>
+    </task>
+    <task id="LOCAL-00042" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718472372711</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1718472372711</updated>
+    </task>
+    <task id="LOCAL-00043" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718475445056</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1718475445056</updated>
+    </task>
+    <task id="LOCAL-00044" summary="#fix #jsx Refactor form submission handling and field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718482278865</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1718482278865</updated>
+    </task>
+    <task id="LOCAL-00045" summary="#fix #jsx Refactor form submission handling and field validation messages.">
+      <option name="closed" value="true" />
+      <created>1718541844895</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1718541844895</updated>
+    </task>
+    <task id="LOCAL-00046" summary="#fix #jsx Refactored the logic for dynamic data changes in React-Big-Calendar.">
+      <option name="closed" value="true" />
+      <created>1718573641969</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1718573641969</updated>
+    </task>
+    <task id="LOCAL-00047" summary="#fix #jsx Refactored BigCalendar components to implement dynamic data changes">
+      <option name="closed" value="true" />
+      <created>1718576721016</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1718576721016</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Refactor BigCalendar components to implement dynamic data changes">
+      <option name="closed" value="true" />
+      <created>1718733433872</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718733433872</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Refactor enrollment form to improve dynamic data handling">
+      <option name="closed" value="true" />
+      <created>1718748699036</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718748699036</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,50 +556,39 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/development" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies," />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies," />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-ap&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code" />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apex&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts,&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG functionality&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="- Add new expenses and finances components, update imports in index.jsx, modify text for better clarity, and include new paths and elements in the menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, as well as new modules for SVG functionality.&#10;- Update workspace XML file and project settings with new configuration routes and menu items for company information, payment integration, security policies, and zip code." />
-    <MESSAGE value="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #npm Added new expense and finance components, updated imports in index.jsx, changed text for clarity, and added new paths and elements to menu items and package files, adding dependencies and peer dependencies for react-apexcharts and apexcharts, and new modules for functionality SVG. Updated workspace and project settings XML file, added new configuration routes and menu items for company information, payment integration, security policies and zip code." />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Refactored the logic for dynamic" />
+    <MESSAGE value="Refactored the logic for dynamic data" />
+    <MESSAGE value="Refactored the logic for dynamic data changes" />
+    <MESSAGE value="Refactored the logic for dynamic data changes in" />
+    <MESSAGE value="Refactored the logic for dynamic data changes in React" />
+    <MESSAGE value="Refactored the logic for dynamic data changes in React-B" />
+    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big" />
+    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-C" />
+    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-Calendar" />
+    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-Calendar." />
+    <MESSAGE value="#fix #jsx Refactored BigCalendar components to implement dynamic data changes" />
+    <MESSAGE value="Ref" />
+    <MESSAGE value="Refact" />
+    <MESSAGE value="Refactored" />
+    <MESSAGE value="Refactored Big" />
+    <MESSAGE value="Refactored BigCalendar" />
+    <MESSAGE value="Refactored BigCalendar components" />
+    <MESSAGE value="Refactored BigCalendar components to" />
+    <MESSAGE value="Refactored BigCalendar components to implement" />
+    <MESSAGE value="Refactored BigCalendar components to implement dynamic" />
+    <MESSAGE value="Refactored BigCalendar components to implement dynamic data" />
+    <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes." />
+    <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes" />
+    <MESSAGE value="Refactor BigCalendar components to implement dynamic data changes" />
+    <MESSAGE value="Refactor enrollment form to improve dynamic data handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor enrollment form to improve dynamic data handling" />
   </component>
 </project>

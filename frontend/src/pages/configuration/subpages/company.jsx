@@ -1,229 +1,168 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomInput,
-  CustomRadio,
-  CustomSelect,
-} from "@/components/form/index.jsx";
-import Title from "@/components/title/index.jsx";
+import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import ServiceStyle from "@/pages/managment/management.module.scss";
-import ProfileStyle from "@/pages/student/student-account.module.scss";
-import { Formik } from "formik";
-import { Fragment, useContext } from "react";
+import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
+import { useRequestPostMutation } from "@/redux/query/index.jsx";
+import { Form, Input } from "antd";
+import { Fragment, useContext, useReducer, useState } from "react";
 import { Helmet } from "react-helmet";
-import { NavLink } from "react-router-dom";
 
-const setActiveNav = ({ isActive }) =>
-  isActive
-    ? `${ServiceStyle["Tab__link-active"]} text-lg py-5`
-    : "hover:text-indigo-500 text-lg text-gray-700 py-5";
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SUCCESS": {
+      return {
+        ...state,
+        status: <AlertSuccess setIsOpen={action.setIsOpen} />,
+      };
+    }
+    case "ERROR": {
+      return {
+        ...state,
+        status: <AlertError setIsOpen={action.setIsOpen} />,
+      };
+    }
 
-export const CompanyFormik = () => {
-  const { colorsObject } = useContext(ColorsContext);
-  return (
-    <Formik
-      initialValues={{ account: "", status: "", email: "" }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.account) {
-          errors.account = "Required";
-        }
-        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-          errors.email = "Invalid email address";
-        }
-
-        return errors;
-      }}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-        /* and other goodies */
-      }) => (
-        <form onSubmit={handleSubmit} className="bg-white p-5 rounded-xl">
-          <div className="grid grid-cols-2 gap-5 mb-7">
-            <div className={"space-y-5"}>
-              <CustomInput
-                placeholder={"Company name"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Company name"}
-                name={"account"}
-                value={values.account}
-                onChange={handleChange}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"License Number"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"License Number"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Owner Name"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Owner Name"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Address"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Address"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Mason"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Mason"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <div className="flex items-center gap-5">
-                <span className={"w-40 text-base flex-shrink-0 text-end"}>
-                  Associated staff
-                </span>
-                <div className="grid flex-grow grid-cols-2 items-center gap-5">
-                  <CustomSelect
-                    style={{ width: "100%", height: 40 }}
-                    placeholder={"Select"}
-                    colorBorder={colorsObject.primary}
-                    className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
-                    options={[
-                      {
-                        value: "OH",
-                        label: "OH",
-                      },
-                    ]}
-                  />
-
-                  <CustomInput
-                    placeholder={"Zip Number"}
-                    className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                    colorBorder={colorsObject.primary}
-                    classNames={`inline-flex flex-shrink-0 items-center w-full gap-5 flex-row-reverse`}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className={"space-y-5"}>
-              <CustomInput
-                type={"email"}
-                placeholder={"Email"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Email"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Phone"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Phone"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Fax"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Fax"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Other"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Other"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Web Site"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Web Site"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                placeholder={"Notes"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Notes"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 text-end items-center w-full gap-5 flex-row-reverse`}
-              />
-            </div>
-          </div>
-
-          <div className="text-center">
-            <ButtonComponent
-              defaultBg={"#24C18F"}
-              defaultHoverBg={"#24C18F"}
-              defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
-              borderRadius={5}
-              paddingInline={62}
-              controlHeight={40}
-              fontSize={16}
-              className={"font-medium"}
-              type={"submit"}
-            >
-              Save
-            </ButtonComponent>
-          </div>
-        </form>
-      )}
-    </Formik>
-  );
+    default: {
+      console.error(`Unknown action: ${action.type}`);
+    }
+  }
 };
 
 export const Company = () => {
+  const { colorsObject } = useContext(ColorsContext);
+  const [form] = Form.useForm();
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+  const [requestPost] = useRequestPostMutation();
+
+  const onFinish = async (values) => {
+    try {
+      const res = await requestPost({
+        path: "/configuration/company/",
+        data: values,
+      });
+
+      if (res?.error?.status >= 400) {
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
+      } else {
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
+      }
+    } catch (error) {
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
+    }
+  };
+
+  const handleState = (values) => {
+    form.setFieldsValue({
+      state: values,
+    });
+  };
+
   return (
     <Fragment>
       <Helmet>
         <title>Configuration - Company info</title>
       </Helmet>
-      <CompanyFormik />
+
+      <Form
+        form={form}
+        onFinish={onFinish}
+        layout={"vertical"}
+      >
+        <div className={"grid grid-cols-2 gap-5"}>
+          <div className="space-y-5">
+            <Form.Item name={"name"} label={"Company name"}>
+              <CustomInput classNames={"w-full"} placeholder={"Company name"} />
+            </Form.Item>
+
+            <Form.Item name={"license"} label={"License Number"}>
+              <CustomInput classNames={"w-full"} placeholder={"License Number"} />
+            </Form.Item>
+
+            <Form.Item name={"owner_name"} label={"Owner Name"}>
+              <CustomInput classNames={"w-full"} placeholder={"Owner Name"} />
+            </Form.Item>
+
+            <Form.Item name={"address"} label={"Address"}>
+              <CustomInput classNames={"w-full"} placeholder={"Address"} />
+            </Form.Item>
+
+            <Form.Item name={"city"} label={"City"}>
+              <CustomInput classNames={"w-full"} placeholder={"City"} />
+            </Form.Item>
+
+            <Form.Item label={"State/Zip Code"}>
+              <div className={"grid grid-cols-2 gap-2.5"}>
+                <Form.Item name={"status"}>
+                  <CustomSelect
+                    placeholder={"Select status"}
+                    className={`w-full h-[50px]`}
+                    options={[{ value: "USA", label: "USA" }]}
+                    onChange={handleState}
+                  />
+                </Form.Item>
+
+                <Form.Item name={"zip"}>
+                  <CustomInput classNames={"w-full"} placeholder={"City"} />
+                </Form.Item>
+              </div>
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item name={"email"} label={"Email"} rules={[{ type: "email" }]}>
+              <CustomInput classNames={"w-full"} placeholder={"Email"} />
+            </Form.Item>
+
+            <Form.Item name={"cell_phone"} label={"Phone"}>
+              <CustomInput classNames={"w-full"} placeholder={"Phone"} />
+            </Form.Item>
+
+            <Form.Item name={"fax"} label={"Fax"}>
+              <CustomInput classNames={"w-full"} placeholder={"Fax"} />
+            </Form.Item>
+
+            <Form.Item name={"other"} label={"Other"}>
+              <CustomInput classNames={"w-full"} placeholder={"Other"} />
+            </Form.Item>
+
+            <Form.Item name={"url"} label={"Web Site"} rules={[{ type: "url" }]}>
+              <CustomInput
+                type={"url"}
+                classNames={"w-full"}
+                placeholder={"Web Site"}
+              />
+            </Form.Item>
+
+            <Form.Item name={"notes"} label={"Notes"}>
+              <Input.TextArea
+                className={"border-black"}
+                placeholder={"Notes"}
+                allowClear
+              />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            borderRadius={5}
+            paddingInline={43}
+            controlHeight={40}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
+        </div>
+      </Form>
+
+      {IsOpen && state?.status}
     </Fragment>
   );
 };

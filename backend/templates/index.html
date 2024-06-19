@@ -1,0 +1,33 @@
+<!-- url_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .url-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .url-list li {
+            margin-bottom: 10px;
+        }
+        .url-pattern {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL List</h1>
+    <ul class="url-list">
+
+            {{ url_pattern }}
+
+    </ul>
+</body>
+</html>

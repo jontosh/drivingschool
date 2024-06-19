@@ -1,8 +1,8 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import TableComponent from "@/components/table/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Table } from "antd";
 import { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink, useParams } from "react-router-dom";
@@ -93,7 +93,7 @@ const AppointmentsData = () => {
       key: "vehicle",
       align: "center",
       render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
-    }
+    },
   ];
 
   const data = [
@@ -107,7 +107,7 @@ const AppointmentsData = () => {
       product: "BTW 8hrs",
       position: "Drive",
       notes: "",
-      vehicle: "Vehicle 1"
+      vehicle: "Vehicle 1",
     },
     {
       date: "12.22.2024",
@@ -119,15 +119,15 @@ const AppointmentsData = () => {
       product: "BTW 8hrs",
       position: "Drive",
       notes: "",
-      vehicle: "Vehicle 1"
+      vehicle: "Vehicle 1",
     },
   ];
 
   return { columns, data };
 };
 
-export const Appointments = ({ }) => {
-  const { subtitle } = useParams();
+export const Appointments = () => {
+  const { subtitle, studentId } = useParams();
   const { colorsObject } = useContext(ColorsContext);
   const { columns, data } = AppointmentsData();
   const setActiveLink = ({ isActive }) =>
@@ -141,13 +141,13 @@ export const Appointments = ({ }) => {
         {/*By Student IS*/}
         <NavLink
           className={setActiveLink}
-          to={"/student/account/appointments/1/wheel"}
+          to={`/student/account/appointments/${studentId}/wheel`}
         >
           Behind the wheel
         </NavLink>
         <NavLink
           className={setActiveLink}
-          to={"/student/account/appointments/1/online"}
+          to={`/student/account/appointments/${studentId}/online`}
         >
           Online course
         </NavLink>
@@ -160,9 +160,8 @@ export const Appointments = ({ }) => {
       >
         <label className={"relative"}>
           <CustomInput
-            colorBorder={colorsObject.primary}
             placeholder={"Search"}
-            className={`w-96 pl-12 pr-4 text-sm  `}
+            className={`w-96 pl-12 pr-4 text-sm`}
           />
 
           <span className={"absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "}>
@@ -171,9 +170,7 @@ export const Appointments = ({ }) => {
         </label>
         <CustomSelect
           placeholder={"Please select type"}
-          className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-          style={{ width: 207 }}
-          colorBorder={colorsObject.primary}
+          className={`w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
           options={[
             {
               value: "8h in car",
@@ -183,9 +180,7 @@ export const Appointments = ({ }) => {
         />
         <CustomSelect
           placeholder={"Please select status"}
-          className={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-          style={{ width: 207 }}
-          colorBorder={colorsObject.primary}
+          className={`w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
           options={[
             {
               value: "Confirmed",
@@ -199,11 +194,9 @@ export const Appointments = ({ }) => {
         />
       </form>
 
-      {subtitle && (
-        <div className={"pt-5 -mx-5"}>
-          <Table columns={columns} dataSource={data} pagination={false} />
-        </div>
-      )}
+      <div className={"pt-5 -mx-5"}>
+        <TableComponent columns={columns} data={data} />
+      </div>
     </div>
   );
 };

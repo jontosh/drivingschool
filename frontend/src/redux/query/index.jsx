@@ -4,7 +4,7 @@ export const APIRequest = createApi({
   reducerPath: "APIRequest",
   tagTypes: ["Device"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:9000",
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
 
   endpoints: (builder) => ({
@@ -14,7 +14,7 @@ export const APIRequest = createApi({
     }),
 
     requestId: builder.query({
-      query: ({ path, id }) => `${path}/${id}`,
+      query: ({ path, id }) => `${path}/${id}/`,
 
       providesTags: ["Device"],
     }),
@@ -29,17 +29,16 @@ export const APIRequest = createApi({
     }),
 
     requestDelete: builder.mutation({
-      query: ({ path, id }) => ({
-        url: `${path}/${id}`,
+      query: ({ path }) => ({
+        url: path,
         method: "DELETE",
-        body: id,
       }),
       invalidatesTags: ["Device"],
     }),
 
     requestPatch: builder.mutation({
       query: ({ path, data, id }) => ({
-        url: `${path}/${id}`,
+        url: `${path}/${id}/`,
         method: "PATCH",
         body: data,
       }),

@@ -182,8 +182,7 @@ export const ResultModalButton = () => {
 
                   <CustomSelect
                     placeholder={"Select"}
-                    style={{ width: "100%" }}
-                    colorBorder={colorsObject.primary}
+                    className={"w-full h-[50px]"}
                     options={[
                       {
                         value: 1,
@@ -194,10 +193,10 @@ export const ResultModalButton = () => {
                 </label>
 
                 <CustomInput
-                  className={"py-2.5 px-5 border border-indigo-700"}
+                  className={"py-2.5 px-5"}
                   placeholder={"Account #"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Email Subject"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -205,10 +204,10 @@ export const ResultModalButton = () => {
                 />
 
                 <CustomInput
-                  className={"py-2.5 px-5 border border-indigo-700"}
+                  className={"py-2.5 px-5"}
                   placeholder={"Student Email"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Student Email"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -216,10 +215,10 @@ export const ResultModalButton = () => {
                 />
 
                 <CustomInput
-                  className={"py-2.5 px-5 border border-indigo-700"}
+                  className={"py-2.5 px-5"}
                   placeholder={"Parent Email 1"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Parent Email 1"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -227,10 +226,10 @@ export const ResultModalButton = () => {
                 />
 
                 <CustomInput
-                  className={"py-2.5 px-5 border border-indigo-700"}
+                  className={"py-2.5 px-5"}
                   placeholder={"Parent Email 2"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Parent Email 2"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -238,10 +237,10 @@ export const ResultModalButton = () => {
                 />
 
                 <CustomInput
-                  className={"py-2.5 px-5 border border-indigo-700"}
+                  className={"py-2.5 px-5"}
                   placeholder={"Additional Email"}
                   classNames={
-                    "w-full inline-flex items-center flex-row-reverse"
+                    "w-full inline-flex items-center flex-row-reverse h-[50px]"
                   }
                   spanText={"Additional Email"}
                   spanClassName={"w-32 font-medium flex-shrink-0"}
@@ -287,7 +286,7 @@ export const ResultModalButton = () => {
                 <div>
                   <textarea
                     className={
-                      "w-full border border-indigo-700 rounded-2xl p-5"
+                      "w-full border border-[#667085] rounded-2xl p-5 outline-0"
                     }
                     placeholder={"Text"}
                   ></textarea>

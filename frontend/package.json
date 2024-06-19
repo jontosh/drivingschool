@@ -3,14 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "https://drivingschool-zeta.vercel.app",
   "scripts": {
-    "start": "concurrently \"npx json-server --watch db/db.json --port=9000\" \"vite --open\"",
+    "start": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
+    "@natscale/react-calendar": "^0.0.0-beta.26",
     "@reduxjs/toolkit": "^2.2.2",
     "@uiw/react-md-editor": "^4.0.4",
     "antd": "^5.15.4",
@@ -26,6 +28,7 @@
     "react-big-calendar": "^1.11.2",
     "react-chartjs-2": "^5.2.0",
     "react-circular-progressbar": "^2.1.0",
+    "react-countup": "^6.5.3",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",

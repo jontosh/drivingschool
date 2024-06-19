@@ -1,10 +1,118 @@
 {
-  "admins": [
+  "instructor": [
     {
       "id": 1,
-      "name": "Khaetbek",
-      "login": "khaetbek@dev.com",
-      "password": 12345
+      "status": "Active",
+      "staff_type": "active",
+      "location": "Tashkent",
+      "vehicle-assigned": "BYD",
+      "staff_code": "1",
+      "first_name": "Akhmadzhonov",
+      "middle_name": "Komilzhon ugli",
+      "last_name": "Khaetbek",
+      "address": "Yunusabad",
+      "city": "Tashkent",
+      "state": "Tashkent",
+      "zip_code": "100000",
+      "email": "khaetbek@internet.ru",
+      "home_phone": "998500796477",
+      "emergency_name": "998500796477"
+    },
+    {
+      "id": 2,
+      "status": "INACTIVE",
+      "staff_type": "active",
+      "location": "Tashkent",
+      "vehicle-assigned": "BYD",
+      "staff_code": "1",
+      "first_name": "Ortiqov",
+      "middle_name": "",
+      "last_name": "Anvar",
+      "address": "Yunusabad",
+      "city": "Tashkent",
+      "state": "Tashkent",
+      "zip_code": "100000",
+      "email": "khaetbek@internet.ru",
+      "home_phone": "998500796477",
+      "emergency_name": "998500796477"
+    }
+  ],
+  "location": [
+    {
+      "id": 1,
+      "name": "Tashkent",
+      "code": "10000000",
+      "status": "Active",
+      "type": "Asia",
+      "address": "Yunusabad",
+      "city": "Tashkent",
+      "state": "Tashkent",
+      "zip": "10000000",
+      "location_manager": "admin"
+    }
+  ],
+  "student": [
+    {
+      "id": 1,
+      "student_type": "17-03-2003",
+      "assign_to_staff": "1",
+      "assign_to_location": "1",
+      "student_id": "1",
+      "first_name": "Akhmadzhonov",
+      "last_name": "Khaetbek",
+      "middle-name": "Komilzhon ugli",
+      "address": "Yunusabad",
+      "city": "Tashkent",
+      "state": "Tashkent",
+      "zip_code": "100000",
+      "home_pickup": "1",
+      "cell_phone": "998500796477",
+      "home_phone": "998500796477",
+      "email": "khaetbek",
+      "gender": "male",
+      "preferred_pronoun": "he/his"
+    }
+  ],
+  "classes": [
+    {
+      "id": 1,
+      "date": "29-04-2024",
+      "location": "Tashkent",
+      "class-id": "A",
+      "start-time": "29-04-2024",
+      "product": "driving",
+      "zoom": "1",
+      "teacher": "Khaetbek",
+      "enrollment": "admin",
+      "status": "active",
+      "details": "1"
+    }
+  ],
+  "schools": [
+    {
+      "id": 1,
+      "school_name": "64",
+      "school_status": "active",
+      "school_code": "10101",
+      "school_address": "Yunusabad",
+      "school_city": "Tashkent",
+      "state": "Tashkent",
+      "zip_code": "100000",
+      "email": "test@mail.com",
+      "school-note": "1"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": 1,
+      "vehicle_name": "BYD",
+      "vehicle_status": "activ",
+      "location": "Tashkent",
+      "vehicle_type": "1",
+      "vehicle_no": "1",
+      "vehicle_make": "1",
+      "license": "120-9",
+      "vin": "1"
     }
   ]
 }

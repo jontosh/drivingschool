@@ -2,936 +2,567 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
+  CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
-import { Paragraph, Text } from "@/components/title/index.jsx";
+import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
+import ManagementStyle from "@/pages/managment/management.module.scss";
+import {
+  useRequestGetQuery,
+  useRequestPostMutation,
+} from "@/redux/query/index.jsx";
+import { DatePicker, Form, Input } from "antd";
+import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import ColorsContext from "@/context/colors.jsx";
-import { useError } from "@/hooks/error.jsx";
-import { Checkbox } from "antd";
-import { Formik } from "formik";
-import { Fragment, useContext, useState } from "react";
-import EnrollmentStyle from "./enrollment.module.scss";
 
-const InfoTypeOptions = [
-  {
-    value: "Teen",
-    label: "Teen",
-  },
-  {
-    value: "Adult",
-    label: "Adult",
-  },
-  {
-    value: "Knowledge test",
-    label: "Knowledge test",
-  },
-  {
-    value: "Road test",
-    label: "Road test",
-  },
-];
-const LeadOptions = [
-  {
-    value: 1,
-  },
-  {
-    value: 2,
-  },
-];
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SUCCESS": {
+      return {
+        ...state,
+        status: <AlertSuccess setIsOpen={action.setIsOpen} />,
+      };
+    }
+    case "ERROR": {
+      return {
+        ...state,
+        status: <AlertError setIsOpen={action.setIsOpen} />,
+      };
+    }
 
-export const InfoForm = ({}) => {
-  const [Staff, setStaff] = useState("");
-  const [State, setState] = useState("");
-  const [Lead, setLead] = useState("Select");
+    default: {
+      console.error(`Unknown action: ${action.type}`);
+    }
+  }
+};
+
+export const InfoForm = ({ packages }) => {
   const { colorsObject } = useContext(ColorsContext);
-  const { errors, Validation } = useError();
-  const ErrorValid = errors;
-  return (
-    <Formik
-      initialValues={{
-        Staff: Staff,
-        Location: "",
-        studentId: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-        city: "",
-        state: State,
-        postalCode: "",
-        phone: "",
-        email: "",
-        gender: "",
-        Perferred: "",
-        MedicalCondition: "",
-        StudentDrivingNotes: "",
-        Permit: "",
-        PermitIssued: "",
-        PermitExpiration: "",
-        ExtantionDate: "",
-        HighSchool: "",
-        ParentName: "",
-        ParentPhone: "",
-        ParentEmail: "",
-        ParentName2: "",
-        ParentPhone2: "",
-        ParentEmail2: "",
-        Lead: "",
-        StudentNotes: "",
-      }}
-      validate={(values) => {
-        if (
-          !values.Staff
-          // !values.Location ||
-          // !values.studentId ||
-          // !values.email ||
-          // !values.firstName ||
-          // !values.lastName ||
-          // !values.address ||
-          // !values.city ||
-          // !values.state ||
-          // !values.postalCode ||
-          // !values.phone ||
-          // // !values.email ||
-          // !values.gender ||
-          // !values.Perferred ||
-          // !values.MedicalCondition ||
-          // !values.StudentDrivingNotes ||
-          // !values.Permit ||
-          // !values.PermitIssued ||
-          // !values.PermitExpiration ||
-          // !values.ExtantionDate ||
-          // !values.HighSchool ||
-          // !values.ParentName ||
-          // !values.ParentPhone ||
-          // !values.ParentEmail ||
-          // !values.ParentName2 ||
-          // !values.ParentPhone2 ||
-          // !values.ParentEmail2 ||
-          // !values.Lead ||
-          // !values.StudentNotes
-        ) {
-          errors.Staff = "Selector cannot be unselected";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          // Validation("EMAIL_VALID");
+  const [requestPost] = useRequestPostMutation();
+
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+
+  // Data
+  const { data: InstructorData, isLoading: isInstructor } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+  const { data: LocationData, isLoading: isLocation } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
+  const { data: SchoolData, isLoading: isSchools } = useRequestGetQuery({
+    path: "/account_management/schools/",
+  });
+  const { data: LeadData, isLoading: isLead } = useRequestGetQuery({
+    path: "/account_management/how_did_you_hear_us/",
+  });
+
+  // hooks
+  const [form] = Form.useForm();
+  const [StaffSelect, setStaffSelect] = useState([]);
+  const [LocationSelect, setLocationSelect] = useState([]);
+  const [SchoolsSelect, setSchoolsSelect] = useState([]);
+  const [LeadSelect, setLeadSelect] = useState([]);
+
+  // dep
+  useEffect(() => {
+    const staffOptions = [];
+    const locationOptions = [];
+    const schoolsOptions = [];
+    const leadOptions = [];
+
+    for (let i = 0; i < InstructorData?.length; i++) {
+      const instructor = InstructorData[i];
+
+      if (instructor.status.toLowerCase() === "active") {
+        staffOptions.push({
+          label: instructor.first_name + " " + instructor?.last_name,
+          value: instructor.id,
+        });
+      }
+    }
+
+    for (let i = 0; i < LocationData?.length; i++) {
+      const location = LocationData[i];
+
+      if (location.status.toLowerCase() === "active") {
+        locationOptions.push({ label: location?.name, value: location.id });
+      }
+    }
+
+    for (let i = 0; i < SchoolData?.length; i++) {
+      const school = SchoolData[i];
+
+      if (school.status.toLowerCase() === "active") {
+        schoolsOptions.push({ label: school?.name, value: school.id });
+      }
+    }
+
+    for (let i = 0; i < LeadData?.length; i++) {
+      const lead = LeadData[i];
+
+      if (lead.status.toLowerCase() === "active") {
+        leadOptions.push({ label: lead?.name, value: lead.id });
+      }
+    }
+
+    setStaffSelect(staffOptions);
+    setLocationSelect(locationOptions);
+    setSchoolsSelect(schoolsOptions);
+    setLeadSelect(leadOptions);
+  }, [InstructorData, LocationData, SchoolData, LeadData]);
+
+  // func
+  const onFinish = async (values) => {
+    try {
+      const response = await requestPost({
+        path: "/student_account/student/",
+        data: {
+          ...values,
+          dl_given_date: values["dl_given_date"]?.format("YYYY-MM-DD"),
+          dl_expire_date: values["dl_expire_date"]?.format("YYYY-MM-DD"),
+          extantion_date: values["extantion_date"]?.format("YYYY-MM-DD"),
+          birth: values["birth"]?.format("YYYY-MM-DD"),
+        },
+      });
+
+      if (response?.error?.status >= 400) {
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
+      } else {
+        const res = await requestPost({
+          path: "/student_account/enrollment/",
+          data: {
+            code: 1,
+            cr: packages?.class?.id,
+            cr_start: packages?.class?.start_date,
+            cr_end: packages?.class?.end_Data,
+            student: response?.data?.id,
+            by: response?.data?.staff,
+            package: packages?.packages,
+            price: packages?.total,
+          },
+        });
+
+        if (res?.data?.id) {
+          dispatch({ type: "SUCCESS", setIsOpen });
+          setIsOpen(true);
+        } else {
+          dispatch({ type: "ERROR", setIsOpen });
+          setIsOpen(true);
         }
+      }
+    } catch (error) {
+      console.error(error?.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
+    }
+  };
 
-        return errors;
-      }}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-      }) => {
-        return (
-          <form>
-            <div className={`grid ${EnrollmentStyle["Enrollment__info-type"]}`}>
-              <div className={"space-y-5"}>
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Assign to staff
-                  </Paragraph>
+  return (
+    <Fragment>
+      <Form form={form} onFinish={onFinish} layout={"vertical"}>
+        <div className="grid grid-cols-2 gap-5">
+          <div className="space-y-5">
+            <Form.Item name={"staff"} label={"Assign to staff"}>
+              <CustomSelect
+                options={StaffSelect}
+                placeholder={"Account #"}
+                disabled={isInstructor}
+                className={"h-[50px]"}
+              />
+            </Form.Item>
 
-                  <CustomSelect
-                    value={Staff}
-                    onBlur={handleBlur}
-                    options={[
-                      {
-                        value: "Admin",
-                        label: "Admin",
-                      },
-                      {
-                        value: "Admin 2",
-                        label: "Admin 2",
-                      },
-                    ]}
-                    onChange={(value) => setStaff(value)}
-                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
-                    colorBorder={colorsObject.primary}
-                    name={"Staff"}
-                  />
-                </label>
+            <Form.Item name={"location"} label={"Assign to Location"}>
+              <CustomSelect
+                options={LocationSelect}
+                placeholder={"Select Location"}
+                disabled={isLocation}
+                className={"h-[50px]"}
+              />
+            </Form.Item>
 
-                {(errors.AssignToLocation || touched.AssignToLocation) && (
-                  <Fragment>
-                    <div>{ErrorValid.input}</div>
-                  </Fragment>
-                )}
+            <Form.Item
+              name={"first_name"}
+              label={"First name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input First name!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"First name"} />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Assign to Location
-                  </Paragraph>
+            <Form.Item name={"mid_name"} label={"Middle name"}>
+              <CustomInput classNames={"w-full"} placeholder={"Middle name"} />
+            </Form.Item>
 
-                  <CustomSelect
-                    value={Location !== "" ? Location : "Select  Location"}
-                    // onChange={(value) => setInfoType(value)}
-                    options={InfoTypeOptions}
-                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
-                    colorBorder={colorsObject.primary}
-                    name={"Location"}
-                    onChange={handleChange}
-                  />
-                </label>
+            <Form.Item
+              name={"last_name"}
+              label={"Last name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input Last name!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Last name"} />
+            </Form.Item>
 
-                {(errors.Location || touched.Location) && (
-                  <Fragment>
-                    <div>{errors.Location}</div>
-                  </Fragment>
-                )}
+            <Form.Item
+              name={"address"}
+              label={"address"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input address!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"address"} />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Studetn id
-                  </Paragraph>
+            <Form.Item
+              name={"city"}
+              label={"City"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input city!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"City"} />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Student id"}
-                      name={"studentId"}
-                      value={values.studentId}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
+            <Form.Item
+              name={"state"}
+              label={"State"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select state!",
+                },
+              ]}
+            >
+              <CustomSelect
+                options={[
+                  {
+                    value: "USA",
+                    label: "USA",
+                  },
+                ]}
+                placeholder={"Select state"}
+                className={"h-[50px]"}
+              />
+            </Form.Item>
 
-                {(errors.studentId || touched.studentId) && (
-                  <Fragment>
-                    <div>{errors.studentId}</div>
-                  </Fragment>
-                )}
+            <Form.Item
+              name={"zip"}
+              label={"Zip/Postal code"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input zip!",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Zip"} classNames={"w-full"} />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    First name
-                  </Paragraph>
+            <Form.Item
+              name={"home_phone"}
+              label={"Home Phone"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input Home Phone!",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Home Phone"} classNames={"w-full"} />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"First name"}
-                      name={"firstName"}
-                      value={values.firstName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
+            <Form.Item
+              name={"cell_phone"}
+              label={"Cell Phone"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input Cell Phone!",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Cell Phone"} classNames={"w-full"} />
+            </Form.Item>
 
-                {(errors.input || touched.input) && (
-                  <Fragment>
-                    <div>{errors.input}</div>
-                  </Fragment>
-                )}
+            <Form.Item
+              name={"email"}
+              label={"Email"}
+              rules={[
+                {
+                  required: true,
+                  type: "email",
+                },
+              ]}
+            >
+              <CustomInput type={"email"} placeholder={"Email"} classNames={"w-full"} />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Last name
-                  </Paragraph>
+            <Form.Item
+              label={"Gender"}
+              name={"gender"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select gender!",
+                },
+              ]}
+            >
+              <div className="grid grid-cols-3 gap-2.5">
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Male`}
+                  name={"gender"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>Male</span>
+                </CustomRadio>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Last name"}
-                      name={"lastName"}
-                      value={values.lastName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Female`}
+                  name={"gender"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>Female</span>
+                </CustomRadio>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Middle name
-                  </Paragraph>
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Middle name"}
-                      name={"middleName"}
-                      value={values.middleName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.middleName && touched.middleName && (
-                  <div>{errors.middleName}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Address
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Address"}
-                      name={"address"}
-                      value={values.address}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.address && touched.address && (
-                  <div>{errors.address}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    City
-                  </Paragraph>
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"City"}
-                      name={"city"}
-                      value={values.city}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.city && touched.city && <div>{errors.city}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    State
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomSelect
-                      value={State !== "" ? State : "State"}
-                      onChange={(value) => setState(value)}
-                      options={InfoTypeOptions}
-                      // style={{ width: "408px" }}
-                      className={"mb-2.5 h-full w-full"}
-                      colorBorder={colorsObject.primary}
-                      name={"state"}
-                    />
-                  </div>
-                </label>
-
-                {errors.state && touched.state && <div>{errors.state}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Zip/Postal code
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={`h-full w-full`}
-                      placeholder={"Zip/Postal code"}
-                      name={"postalCode"}
-                      value={values.postalCode}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.postalCode && touched.postalCode && (
-                  <div>{errors.postalCode}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Home Phone
-                  </Paragraph>
-
-                  <div
-                    className={`flex items-center rounded-lg ${EnrollmentStyle["Enrollment__input-wrap"]}`}
-                  >
-                    <input
-                      placeholder={"Home Phone"}
-                      className={`h-10 ${EnrollmentStyle["Enrollment__input"]} flex-grow px-5 py-2 w-44`}
-                      name={"phone"}
-                      value={values.phone}
-                      onChange={handleChange}
-                    />
-
-                    <CustomCheckBox
-                      className={`flex-row-reverse px-3 items-center  ${EnrollmentStyle["Enrollment__checkbox"]}`}
-                    >
-                      Send text
-                    </CustomCheckBox>
-                  </div>
-                </label>
-
-                {errors.phone && touched.phone && <div>{errors.phone}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Home Phone
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomCheckBox />
-                  </div>
-                </label>
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Email
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"email"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Email"}
-                      name={"email"}
-                      value={values.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.email && touched.email && <div>{errors.email}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph
-                    className={`relative ${EnrollmentStyle["Enrollment__heavy"]}`}
-                    fontWeightStrong={400}
-                    fontSize={"text-base"}
-                  >
-                    Gender
-                  </Paragraph>
-
-                  <Checkbox.Group
-                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
-                  >
-                    <CustomCheckBox name={"gender"} onChange={handleChange}>
-                      <Text fontSize={"text-base"}>Male</Text>
-                    </CustomCheckBox>
-
-                    <CustomCheckBox name={"gender"} onChange={handleChange}>
-                      <Text fontSize={"text-base"}>Female</Text>
-                    </CustomCheckBox>
-
-                    <CustomCheckBox name={"gender"} onChange={handleChange}>
-                      <Text fontSize={"text-base"}>Other</Text>
-                    </CustomCheckBox>
-                  </Checkbox.Group>
-                </label>
-
-                {errors.gender && touched.gender && <div>{errors.gender}</div>}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Perferred Pronoun
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Perferred Pronoun"}
-                      name={"Perferred"}
-                      value={values.Perferred}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.Perferred && touched.Perferred && (
-                  <div>{errors.Perferred}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Medical condition
-                  </Paragraph>
-
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <textarea
-                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
-                      name={"MedicalCondition"}
-                      value={values.MedicalCondition}
-                      onClick={handleChange}
-                    ></textarea>
-                  </div>
-                </label>
-
-                {errors.MedicalCondition && touched.MedicalCondition && (
-                  <div>{errors.MedicalCondition}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Student driving notes
-                  </Paragraph>
-
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <textarea
-                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
-                      name={"StudentDrivingNotes"}
-                      value={values.StudentDrivingNotes}
-                      onClick={handleChange}
-                    ></textarea>
-                  </div>
-                </label>
-
-                {errors.StudentDrivingNotes && touched.StudentDrivingNotes && (
-                  <div>{errors.StudentDrivingNotes}</div>
-                )}
-
-                <label className="flex items-center justify-end w-full">
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomCheckBox className={"text-base font-normal"}>
-                      I have read and agreed to Terms and Conditions
-                    </CustomCheckBox>
-                  </div>
-                </label>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Other`}
+                  name={"gender"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>Other</span>
+                </CustomRadio>
               </div>
+            </Form.Item>
 
-              <div className={"space-y-5"}>
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    DL/Permit
-                  </Paragraph>
+            <Form.Item
+              name={"preferred_pronoun"}
+              label={"Perferred Pronoun"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select perferred pronoun!",
+                },
+              ]}
+            >
+              <CustomSelect
+                options={[
+                  { value: "He", label: "He" },
+                  { value: "She", label: "She" },
+                  { value: "Other", label: "Other" },
+                ]}
+                placeholder={"Select perferred pronoun!"}
+                className={"h-[50px]"}
+              />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"DL/Permit"}
-                      name={"Permit"}
-                      value={values.Permit}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
+            <Form.Item name={"medical_condition"} label={"Medical condition"}>
+              <Input.TextArea
+                placeholder={"Medical condition"}
+                className={"border-[#667085]"}
+              />
+            </Form.Item>
 
-                {errors.Permit && touched.Permit && <div>{errors.Permit}</div>}
+            <Form.Item name={"driving_notes"} label={"Student driving notes"}>
+              <Input.TextArea
+                placeholder={"Student driving notes"}
+                className={"border-[#667085]"}
+              />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    DL/Permit Issued
-                  </Paragraph>
+            <Form.Item
+              name="agree"
+              valuePropName="checked"
+              label={"I have read and agreed to Terms and Conditions"}
+            >
+              <CustomCheckBox />
+            </Form.Item>
+          </div>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"DL/Permit Issued"}
-                      name={"PermitIssued"}
-                      value={values.PermitIssued}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
+          <div className="space-y-5">
+            <Form.Item name={"dl_permit"} label={"DL/Permit"}>
+              <CustomInput placeholder={"DL/Permit #"} classNames={"w-full"} />
+            </Form.Item>
 
-                {errors.PermitIssued && touched.PermitIssued && (
-                  <div>{errors.PermitIssued}</div>
-                )}
+            <Form.Item name={"dl_given_date"} label={"DL/Permit Issued"}>
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    DL Permit Expiration
-                  </Paragraph>
+            <Form.Item name={"dl_expire_date"} label={"DL Permit Expiration"}>
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"DL Permit Expiration"}
-                      name={"PermitExpiration"}
-                      value={values.PermitExpiration}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
+            <Form.Item
+              name="scheduling"
+              valuePropName="checked"
+              label={"Disable Self Scheduling"}
+            >
+              <CustomCheckBox />
+            </Form.Item>
 
-                {errors.PermitExpiration && touched.PermitExpiration && (
-                  <div>{errors.PermitExpiration}</div>
-                )}
+            <Form.Item
+              name="payment"
+              valuePropName="checked"
+              label={"Payment Plan"}
+            >
+              <CustomCheckBox />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Self Scheduling
-                  </Paragraph>
+            <Form.Item name={"extantion_date"} label={"Extantion Date"}>
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomCheckBox />
-                  </div>
-                </label>
+            <Form.Item name={"high_school"} label={"High School"}>
+              <CustomSelect
+                options={SchoolsSelect}
+                placeholder={"High School"}
+                disabled={isSchools}
+                className={"h-[50px]"}
+              />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Payment Plan
-                  </Paragraph>
+            <Form.Item name={"parent_name"} label={"Parent name"}>
+              <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomCheckBox />
-                  </div>
-                </label>
+            <Form.Item name={"parent_phone"} label={"Parent phone"}>
+              <CustomInput placeholder={"Parent phone"} classNames={"w-full"} />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Extantion Date
-                  </Paragraph>
+            <Form.Item
+              name={"parent_email"}
+              label={"Parent email"}
+              rules={[
+                {
+                  type: "email",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Parent email"} classNames={"w-full"} />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Extantion Date"}
-                      name={"ExtantionDate"}
-                      value={values.ExtantionDate}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
+            <Form.Item name={"parent_2_name"} label={"Parent name 2"}>
+              <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
+            </Form.Item>
 
-                {errors.ExtantionDate && touched.ExtantionDate && (
-                  <div>{errors.ExtantionDate}</div>
-                )}
+            <Form.Item name={"parent_2_phone"} label={"Parent phone 2"}>
+              <CustomInput placeholder={"Parent phone"} classNames={"w-full"} />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    High School
-                  </Paragraph>
+            <Form.Item
+              name={"parent_2_email"}
+              label={"Parent email 2"}
+              rules={[
+                {
+                  type: "email",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"Parent email"} classNames={"w-full"} />
+            </Form.Item>
 
-                  <CustomSelect
-                    value={values.Lead}
-                    onChange={(value) => setLead(value)}
-                    options={LeadOptions}
-                    className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}
-                    optionFontSize={14}
-                    optionSelectedFontWeight={400}
-                    fontSize={16}
-                    colorBorder={colorsObject.primary}
-                    name={"HighSchool"}
-                    onClick={handleChange}
-                  />
-                </label>
+            <Form.Item
+              name={"birth"}
+              label={"Birth"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select birth!",
+                },
+              ]}
+            >
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            </Form.Item>
 
-                {errors.HighSchool && touched.HighSchool && (
-                  <div>{errors.PermitIssued}</div>
-                )}
+            <Form.Item name={"lead"} label={"Lead"}>
+              <CustomSelect
+                disabled={isLead}
+                options={LeadSelect}
+                placeholder={"Select Lead"}
+                className={"h-[50px]"}
+              />
+            </Form.Item>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Parent name
-                  </Paragraph>
+            <Form.Item name={"note"} label={"Student notes"}>
+              <Input.TextArea placeholder={"Student notes"} className="border-[#667085]" />
+            </Form.Item>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Parent name"}
-                      name={"ParentName"}
-                      value={values.ParentName}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
+            <Form.Item
+              name={"username"}
+              label={"Username"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input username",
+                },
+              ]}
+            >
+              <CustomInput placeholder={"username"} classNames={"w-full"} />
+            </Form.Item>
+          </div>
+        </div>
 
-                {errors.ParentName && touched.ParentName && (
-                  <div>{errors.ParentName}</div>
-                )}
+        <div className="space-x-5 text-center pt-5">
+          <ButtonComponent
+            type={"submit"}
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            paddingInline={44}
+            borderRadius={5}
+          >
+            Save
+          </ButtonComponent>
 
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Parent Phone
-                  </Paragraph>
+          <CustomSelect
+            placeholder={"Apply Payment & Save"}
+            options={[
+              {
+                value: "Process Credit card",
+                label: "Process Credit card",
+              },
+              {
+                value: "Enter Swiped Transaction",
+                label: "Enter Swiped Transaction",
+              },
+              {
+                value: "Enter Cash Payment",
+                label: "Enter Cash Payment",
+              },
+              {
+                value: "Enter Check Payment",
+                label: "Enter Check Payment",
+              },
+            ]}
+            className={"h-10"}
+            selectorBg={colorsObject.info}
+            colorTextPlaceholder={colorsObject.main}
+            colorBorder={colorsObject.info}
+          />
+        </div>
+      </Form>
 
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Parent Phone"}
-                      name={"ParentPhone"}
-                      value={values.ParentPhone}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.ParentPhone && touched.ParentPhone && (
-                  <div>{errors.ParentPhone}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Parent Email
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Parent Email"}
-                      name={"ParentEmail"}
-                      value={values.ParentEmail}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.ParentEmail && touched.ParentEmail && (
-                  <div>{errors.ParentEmail}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Parent Name 2
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Parent Name 2"}
-                      name={"ParentName2"}
-                      value={values.ParentName2}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.ParentName2 && touched.ParentName2 && (
-                  <div>{errors.ParentName2}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Parent Phone 2
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Parent Phone 2"}
-                      name={"ParentPhone2"}
-                      value={values.ParentPhone2}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.ParentPhone2 && touched.ParentPhone2 && (
-                  <div>{errors.ParentPhone2}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Parent Email 2
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      classNames={"h-full w-full"}
-                      placeholder={"Parent Email 2"}
-                      name={"ParentEmail2"}
-                      value={values.ParentEmail2}
-                      onClick={handleChange}
-                    />
-                  </div>
-                </label>
-
-                {errors.ParentEmail2 && touched.ParentEmail2 && (
-                  <div>{errors.ParentEmail2}</div>
-                )}
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Home Dropoff
-                  </Paragraph>
-
-                  <div className={`h-10 ${EnrollmentStyle["Enrollment__div"]}`}>
-                    <CustomCheckBox />
-                  </div>
-                </label>
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Date of birth
-                  </Paragraph>
-
-                  <div
-                    style={{ gap: "20px" }}
-                    className={`flex h-10 ${EnrollmentStyle["Enrollment__div"]}`}
-                  >
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      className={"w-full"}
-                      placeholder={"Day"}
-                    />
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      className={"w-full"}
-                      placeholder={"Month"}
-                    />
-                    <CustomInput
-                      type={"text"}
-                      colorBorder={colorsObject.primary}
-                      className={"w-full"}
-                      placeholder={"Year"}
-                    />
-                  </div>
-                </label>
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Lead
-                  </Paragraph>
-
-                  <CustomSelect
-                    value={values.Lead}
-                    onChange={(value) => setLead(value)}
-                    options={LeadOptions}
-                    className={`mb-2.5 h-10 ${EnrollmentStyle["Enrollment__div"]}`}
-                    optionFontSize={14}
-                    optionSelectedFontWeight={400}
-                    fontSize={16}
-                    colorBorder={colorsObject.primary}
-                    name={"Lead"}
-                    onClick={handleChange}
-                  />
-                </label>
-
-                <label className="flex items-center justify-between w-full">
-                  <Paragraph fontWeightStrong={400} fontSize={"text-base"}>
-                    Student notes
-                  </Paragraph>
-
-                  <div className={`${EnrollmentStyle["Enrollment__div"]}`}>
-                    <textarea
-                      className={`block p-5 rounded-lg w-full shadow-lg ${EnrollmentStyle["Enrollment__textarea"]}`}
-                      name={"StudentNotes"}
-                      value={values.StudentNotes}
-                      onClick={handleChange}
-                    ></textarea>
-                  </div>
-                </label>
-
-                {errors.StudentNotes && touched.StudentNotes && (
-                  <div>{errors.StudentNotes}</div>
-                )}
-              </div>
-            </div>
-
-            <div className={"py-6 text-center space-x-7"}>
-              <ButtonComponent
-                defaultBg={"#24C18F"}
-                defaultHoverBg={"#24C18F"}
-                paddingInline={97}
-                controlHeight={40}
-                onClick={handleSubmit}
-                borderRadius={5}
-              >
-                Save
-              </ButtonComponent>
-
-              <ButtonComponent>
-                <CustomSelect
-                  value={"Apply Payment & Save"}
-                  selectorBg="#1890FF"
-                  colorBorder="#1890FF"
-                  style={{ width: "234px", height: "40px" }}
-                  className={`${EnrollmentStyle["Enrollment__select"]}`}
-                  options={[
-                    {
-                      value: "Process Credit card",
-                      label: "Process Credit card",
-                    },
-                    {
-                      value: "Enter Swiped Transaction",
-                      label: "Enter Swiped Transaction",
-                    },
-                    {
-                      value: "Enter Cash Payment",
-                      label: "Enter Cash Payment",
-                    },
-                    {
-                      value: "Enter Check Payment",
-                      label: "Enter Check Payment",
-                    },
-                  ]}
-                />
-              </ButtonComponent>
-            </div>
-          </form>
-        );
-      }}
-    </Formik>
+      {IsOpen && state?.status}
+    </Fragment>
   );
 };

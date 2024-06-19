@@ -1,9 +1,11 @@
 import Title from "@/components/title/index.jsx";
-import { SchedulingSpa } from "@/pages/scheduling/scheduling-spa.jsx";
+import { Subpages } from "@/modules/subpages.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
 const Scheduling = () => {
+  const { title } = useParams();
   return (
     <Fragment>
       <Helmet>
@@ -18,9 +20,8 @@ const Scheduling = () => {
         >
           Scheduling
         </Title>
-        <div>
-          <SchedulingSpa />
-        </div>
+
+        <Subpages page={title} />
       </section>
     </Fragment>
   );

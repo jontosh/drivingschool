@@ -1,20 +1,21 @@
 @import "@/styles/vars";
 
 .Custom-checkbox {
-  border: 1px solid $primary;
+  border: 1px solid #ced4da;
   width: 25px;
   height: 25px;
   border-radius: 5px;
   background: $main;
   transition: all 0.2s linear;
+  box-shadow: 0px 4px 4px 0px #00000040;
 
   &:after {
     content: "";
     background-image: url("../../assets/icons/check.svg");
     background-size: cover;
     display: block;
-    width: 15px;
-    height: 8px;
+    width: 12px;
+    height: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,11 +25,14 @@
 }
 
 .Origin-checkbox {
-  &:checked ~ .Custom-checkbox {
+  &:checked~.Custom-checkbox {
     background: $primary;
+    border: 1px solid $primary;
+
     &:after {
-      scale: 1.2;
+      scale: 1;
     }
+
     transition: all 0.2s linear;
   }
 }

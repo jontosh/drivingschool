@@ -45,17 +45,16 @@ export const NewTicket = () => {
                                     spanText={"Email"}
                                     spanClassName={"font-medium"}
                                     placeholder={"Type Email"}
-                                    classNames={"flex flex-col-reverse gap-y-2"}
+                                    classNames={"flex flex-col-reverse gap-y-2 h-[78px]"}
                                     className={"w-full py-2.5 shadow-xl"}
                                     colorBorder={colorsObject.primary}
                                 />
 
-                                <label className="flex flex-col gap-y-2">
+                                <label className="flex flex-col gap-y-1">
                                     <span className="font-medium">Priority Status</span>
                                     <CustomSelect
                                         colorBorder={colorsObject.primary}
-                                        style={{ width: "100%", }}
-                                        className={"h-10 shadow-xl"}
+                                        className={"w-full h-[50px] shadow-xl"}
                                         options={[
                                             {
                                                 value: 1,
@@ -69,7 +68,7 @@ export const NewTicket = () => {
                                     spanText={"Priority Status"}
                                     spanClassName={"font-medium"}
                                     placeholder={"Select Status"}
-                                    classNames={"flex flex-col-reverse gap-y-2"}
+                                    classNames={"flex flex-col-reverse gap-y-2 h-[78px]"}
                                     className={"w-full py-2.5 shadow-xl"}
                                     colorBorder={colorsObject.primary}
                                 />
@@ -80,7 +79,7 @@ export const NewTicket = () => {
 
                                 <textarea
                                     placeholder="Type ticket issue here.."
-                                    className="p-2.5 border border-blue-600 outline-none rounded-lg h-60 shadow-xl"
+                                    className="p-2.5 border border-blue-600 outline-none rounded-lg min-h-60 shadow-xl"
                                 ></textarea>
                             </label>
 

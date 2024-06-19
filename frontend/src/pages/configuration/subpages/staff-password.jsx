@@ -1,175 +1,209 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import ProfileStyle from "@/pages/student/student-account.module.scss";
-import { Switch } from "antd";
-import { Formik } from "formik";
-import { Fragment, useContext } from "react";
+import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
+import { useRequestPostMutation } from "@/redux/query/index.jsx";
+import { Form, InputNumber, Switch } from "antd";
+import { Fragment, useContext, useReducer, useState } from "react";
 import { Helmet } from "react-helmet";
 
-const StaffPasswordFormik = () => {
-  const { colorsObject } = useContext(ColorsContext);
-  return (
-    <Formik
-      initialValues={{ account: "", status: "", email: "" }}
-      validate={(values) => {
-        const errors = {};
-        if (!values.account) {
-          errors.account = "Required";
-        }
-        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-          errors.email = "Invalid email address";
-        }
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SUCCESS": {
+      return {
+        ...state,
+        status: <AlertSuccess setIsOpen={action.setIsOpen} />,
+      };
+    }
+    case "ERROR": {
+      return {
+        ...state,
+        status: <AlertError setIsOpen={action.setIsOpen} />,
+      };
+    }
 
-        return errors;
-      }}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-    >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-        /* and other goodies */
-      }) => (
-        <form onSubmit={handleSubmit} className="bg-white p-5 rounded-xl">
-          <div className="grid grid-cols-3 gap-5 mb-7">
-            <div className={"space-y-5"}>
-              <CustomInput
-                type={"number"}
-                placeholder={"Password History Policy"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Password History Policy"}
-                name={"maxPassword"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>
-                  Max Password Age Policy
-                </span>
-                <CustomSelect
-                  style={{ width: "100%", height: 40 }}
-                  placeholder={"Select"}
-                  colorBorder={colorsObject.primary}
-                  className={`shadow-lg ${ProfileStyle["Student-profile__div"]}`}
-                  options={[
-                    {
-                      value: "Action",
-                      label: "Action",
-                    },
-                  ]}
-                />
-              </label>
-
-              <CustomInput
-                type={"number"}
-                placeholder={"Min Password Length Policy"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Min Password Length Policy"}
-                name={"minPassword"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
-              />
-
-              <CustomInput
-                type={"number"}
-                placeholder={"Reset Password Link Age (Hours) Policy"}
-                className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                spanText={"Min Password Length Policy"}
-                name={"resetPassword"}
-                colorBorder={colorsObject.primary}
-                spanClassName={"w-40 flex-shrink-0"}
-                fontSize={"text-base"}
-                classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse`}
-              />
-            </div>
-
-            <div className={"space-y-5"}>
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>
-                  Uppercase Letters
-                </span>
-                <Switch defaultChecked />
-              </label>
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>Numbers</span>
-                <Switch />
-              </label>
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>Symbols</span>
-                <Switch />
-              </label>
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>
-                  Enable reCaptcha
-                </span>
-                <Switch />
-              </label>
-            </div>
-
-            <div className={"space-y-5"}>
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>
-                  Enable Two Factor Authentication (2FA) for Staff
-                </span>
-                <Switch defaultChecked />
-              </label>
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>
-                  Enable Two Factor Authentication (2FA) for Admin
-                </span>
-                <Switch />
-              </label>
-              <label className="inline-flex items-center w-full gap-5">
-                <span className={"w-40 text-base flex-shrink-0"}>
-                  Lowercase Letters
-                </span>
-                <Switch />
-              </label>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <ButtonComponent
-              defaultBg={"#24C18F"}
-              defaultHoverBg={"#24C18F"}
-              defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
-              borderRadius={5}
-              paddingInline={62}
-              controlHeight={40}
-              fontSize={16}
-              className={"font-medium"}
-              type={"submit"}
-            >
-              Update
-            </ButtonComponent>
-          </div>
-        </form>
-      )}
-    </Formik>
-  );
+    default: {
+      console.error(`Unknown action: ${action.type}`);
+    }
+  }
 };
 
 export const StaffPassword = () => {
+  const { colorsObject } = useContext(ColorsContext);
+  const [form] = Form.useForm();
+  const [requestPost] = useRequestPostMutation();
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+
+  const onFinish = async (values) => {
+    try {
+      const res = await requestPost({
+        path: "/configuration/password_management/",
+        data: values,
+      });
+      if (res?.error?.status >= 400) {
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
+      } else {
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
+      }
+    } catch (error) {
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
+    }
+  };
+
+  const handleAge = (values) => {
+    form.setFieldsValue({
+      age: values,
+    });
+  };
+
   return (
     <Fragment>
       <Helmet>
         <title>Configuration - Staff Password</title>
       </Helmet>
 
-      <StaffPasswordFormik />
+      <Form
+        form={form}
+        onFinish={onFinish}
+        layout={"vertical"}
+        initialValues={{
+          checked: false,
+          lower: false,
+          upper: false,
+          number: false,
+          symbol: false,
+          re_capcha: false,
+          has_2AF: false,
+          admin_2AF: false,
+        }}
+      >
+        <div className={"grid grid-cols-3 gap-5"}>
+          <div className="space-y-5">
+            <Form.Item
+              label={"Password History Policy"}
+              name={"remember_password"}
+            >
+              <InputNumber
+                className={"border-[#667085] w-full h-[50px] py-2.5"}
+                placeholder={"History Policy"}
+              />
+            </Form.Item>
+
+            <Form.Item label={"Max Password Age Policy"} name={"age"}>
+              <CustomSelect
+                placeholder={"Select Max Password Age Policy"}
+                className={`w-full h-[50px]`}
+                options={[
+                  { value: 1, label: "1 Month" },
+                  { value: 2, label: "2 Month" },
+                  { value: 3, label: "3 Month" },
+                  { value: 4, label: "4 Month" },
+                  { value: 5, label: "5 Month" },
+                  { value: 6, label: "6 Month" },
+                ]}
+                onChange={handleAge}
+              />
+            </Form.Item>
+
+            <Form.Item label={"Min Password Length Policy"} name={"min_length"}>
+              <InputNumber
+                className={"border-[#667085] w-full h-[50px] py-2.5"}
+                placeholder={"Min Password Length Policy"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={"Reset Password Link Age (Hours) Policy"}
+              name={"reset_password_link"}
+            >
+              <InputNumber
+                className={"border-[#667085] w-full h-[50px] py-2.5"}
+                placeholder={"Reset Password Link Age (Hours) Policy"}
+              />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item
+              name={"upper"}
+              valuePropName={"checked"}
+              label={"Uppercase Letters"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"number"}
+              valuePropName={"checked"}
+              label={"Numbers"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"symbol"}
+              valuePropName={"checked"}
+              label={"Symbols"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"re_capcha"}
+              valuePropName={"checked"}
+              label={"Enable reCaptcha"}
+            >
+              <Switch />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item
+              label={"Enable Two Factor Authentication (2FA) for Staff"}
+              name={"has_2AF"}
+              valuePropName={"checked"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              label={"Enable Two Factor Authentication (2FA) for Admin"}
+              name={"admin_2AF"}
+              valuePropName={"checked"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              label={"Lowercase Letters"}
+              name={"lower"}
+              valuePropName={"checked"}
+            >
+              <Switch />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div className="text-center pt-10">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            borderRadius={5}
+            paddingInline={43}
+            controlHeight={40}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
+        </div>
+      </Form>
+
+      {IsOpen && state?.status}
     </Fragment>
   );
 };

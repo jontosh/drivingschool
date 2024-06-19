@@ -1,7 +1,8 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Table } from "antd";
+// import { Table } from "antd";
+import TableComponent from "@/components/table/index.jsx";
 import { useContext } from "react";
 
 export const Tests = () => {
@@ -61,9 +62,9 @@ export const Tests = () => {
           defaultBg={results ? "#24C18F" : colorsObject.danger}
           defaultHoverBg={results ? "#24C18F" : colorsObject.danger}
           defaultColor={colorsObject.main}
-          controlHeight={30}
-          paddingInline={42}
+          // controlHeight={30}
           borderRadius={5}
+          className={"w-[144px]"}
         >
           {results ? "Passed" : "Failed"}
         </ButtonComponent>
@@ -98,7 +99,7 @@ export const Tests = () => {
       </Title>
 
       <div className={"-mx-5"}>
-        <Table columns={columns} dataSource={data} pagination={false} />
+        <TableComponent columns={columns} dataSource={data} pagination={false} />
       </div>
     </div>
   );

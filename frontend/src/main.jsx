@@ -1,3 +1,4 @@
+import { AccountManagementProvider } from "@/context/account-management.jsx";
 import { ColorsProvider } from "@/context/colors.jsx";
 import { store } from "@/redux/store.jsx";
 import { router } from "@/router/index.jsx";
@@ -11,7 +12,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ColorsProvider>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <AccountManagementProvider>
+          <RouterProvider router={router} />
+        </AccountManagementProvider>
       </Provider>
     </ColorsProvider>
   </React.StrictMode>,

@@ -46,11 +46,11 @@ const Finance = () => {
 
         <div className={"p-5 bg-white rounded-3xl space-x-6"}>
           <NavLink to={"/finance/finances"} className={setActiveNav}>
-            Profile
+            Finances
           </NavLink>
 
           <NavLink to={"/finance/statistic"} className={setActiveNav}>
-            Enrollment/Billing
+            Statistic
           </NavLink>
         </div>
 

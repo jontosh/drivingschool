@@ -240,19 +240,19 @@ export const Appointments = () => {
             <CustomInput
               spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
               spanText={"Start date"}
-              className={"w-full border border-indigo-700 shadow-xl"}
+              className={"w-full shadow-xl"}
               placeholder={"MM/DD/YYYY"}
               classNames={
-                "inline-flex w-full h-10 flex-row-reverse items-center gap-10"
+                "inline-flex w-full h-[50px] flex-row-reverse items-center gap-10"
               }
             />
             <CustomInput
               spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
               spanText={"End date"}
-              className={"w-full border border-indigo-700 shadow-xl"}
+              className={"w-full border shadow-xl"}
               placeholder={"MM/DD/YYYY"}
               classNames={
-                "inline-flex w-full h-10 flex-row-reverse items-center gap-10"
+                "inline-flex w-full h-[50px] flex-row-reverse items-center gap-10"
               }
             />
             <label className={"inline-flex w-full items-center gap-10"}>
@@ -263,9 +263,7 @@ export const Appointments = () => {
               </span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -281,9 +279,7 @@ export const Appointments = () => {
               <span className={`flex-shrink-0 w-20 text-right`}>Status</span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: "Active",
@@ -301,9 +297,7 @@ export const Appointments = () => {
               <span className={`flex-shrink-0 w-20 text-right`}>Instructor</span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -317,9 +311,7 @@ export const Appointments = () => {
               <span className={`flex-shrink-0 w-20 text-right`}>Location</span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -355,6 +347,7 @@ export const Appointments = () => {
                   colorBorder={colorsObject.primary}
                   placeholder={"Find student"}
                   className={`w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
+                  classNames={"h-[50px]"}
                 />
                 <span
                   className={

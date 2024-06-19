@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,14 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3!!83upi!g+n8km1r%2g$%g=%e1+55m*b#u-ptm^+9=7gf-@xh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
 
-INSTALLED_APPS = [
+SHARED_APPS = [
+    'django_tenants',
+    "mainadmin",
+    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,24 +43,51 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 #     APPS
+
+    "corsheaders",
+
+
+]
+TENANT_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    #APPS
+    # "mainadmin",
     "Users",
     "servises",
     "location",
-
-#     INSTALLED LIBRARIES
+    "configuration",
+    "interaction",
+    "scheduling",
+     #INSTALLED LIBRARIES
     "colorfield",
+    "creditcards",
     "rest_framework",
-    "phonenumber_field"
+    # "rest_framework.authtoken",
+    "phonenumber_field",
+    "abstracts",
+    "multiselectfield"
+
 ]
 
+INSTALLED_APPS = SHARED_APPS + [ apps for apps in TENANT_APPS if apps not in SHARED_APPS]
+
 MIDDLEWARE = [
+    'django_tenants.middleware.main.TenantMainMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'Users.middleware.DRFLoggingMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -63,7 +95,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR.joinpath(str("templates"))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,12 +103,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #CUSTOM CONTEXT
+                'abstracts.custom_context.url_patterns_context',
+                'abstracts.custom_context.url_from_json',
+
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.app'
 
 
 # Database
@@ -84,11 +120,23 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django_tenants.postgresql_backend',
+        'NAME': os.getenv('POSTGRES_DATABASE'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_DB_PORT'),
+        "TEST":{
+            'NAME': "drivingschool",
+            'USER': "postgres",
+            'PASSWORD': "sarr43210",
+            'PORT': "5432",
+        }
     }
 }
-
+DATABASE_ROUTERS = (
+    'django_tenants.routers.TenantSyncRouter',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -120,14 +168,46 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = "staticfiles/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles", "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "mainadmin.CustomUser"
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+# }
+
+# AUTHENTICATION_BACKENDS = [
+#     'Users.backends.CustomUserBackend',
+#     'django.contrib.auth.backends.ModelBackend',  # Optional, for default user model support
+# ]
+TENANT_MODEL = "mainadmin.Client"
+
+TENANT_DOMAIN_MODEL = "mainadmin.Domain"
+
+PUBLIC_SCHEMA_URLCONF = "mainadmin.urls"
+DJANGO_SETTINGS_MODULE = "config.settings"
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True

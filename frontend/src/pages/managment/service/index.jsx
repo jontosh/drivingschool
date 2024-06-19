@@ -4,73 +4,58 @@ import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import ModalStyle from "@/components/modal/modal.module.scss";
+import { Subpages } from "@/modules/subpages.jsx";
+import ManagementStyle from "@/pages/managment/management.module.scss";
 import {
   DiscountModalContent,
   FeesModalContent,
   MiscellaneousModalContent,
   ProductModalContent,
 } from "@/pages/managment/service/modal.jsx";
+import { setActiveNav } from "@/modules/active-nav.jsx";
 import { Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import ServiceStyle from "../management.module.scss";
 
 export const StatusSelect = [
   {
     id: 1,
-    label: "Active",
-    value: "Active",
+    label: "ACTIVE",
+    value: "ACTIVE",
   },
   {
     id: 2,
-    label: "Close",
-    value: "Close",
+    label: "DELETED",
+    value: "DELETED",
   },
   {
     id: 3,
-    label: "Process",
-    value: "Process",
+    label: "INACTIVE",
+    value: "INACTIVE",
+  },
+  {
+    id: 4,
+    label: "PENDING",
+    value: "PENDING",
   },
 ];
 
-const Service = () => {
-  // use
+const Service = ({ subpage }) => {
   const { colorsObject } = useContext(ColorsContext);
-  const { title } = useParams();
+  const [Status, setStatus] = useState("");
+  const [Search, setSearch] = useState("");
   const [CurrentPagination, setCurrentPagination] = useState(1);
-  const [IsOpen, setIsOpen] = useState(false);
 
-  // functions
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
 
-  const handleCloseModal = () => setIsOpen(false);
+  const handleStatus = (value) => setStatus(value);
+  const handleSearch = (e) => setSearch(e?.target?.value?.toLowerCase());
 
-  const handleAdd = () => setIsOpen(true);
-
-  const CheckPageForModal = (page = "") => {
-    switch (page.toLowerCase()) {
-      case "product":
-        return <ProductModalContent />;
-      case "fees":
-        return <FeesModalContent />;
-      case "discounts":
-        return <DiscountModalContent />;
-      case "miscellaneous":
-        return <MiscellaneousModalContent />;
-      default:
-        console.log(`not found content for ${title} page`);
-    }
-  };
-
-  // Custom
-  const setActiveNav = ({ isActive }) =>
-    isActive
-      ? `${ServiceStyle["Tab__link-active"]} text-lg`
-      : "hover:text-indigo-500 text-lg text-gray-700";
   return (
     <Fragment>
       <Helmet>
@@ -95,10 +80,8 @@ const Service = () => {
           Service
         </Title>
 
-        <div className={"p-5 bg-white rounded-3xl"}>
-          <div
-            className={"space-x-6 px-5 -mx-5 pb-5 border-b-2 border-b-gray-400"}
-          >
+        <div className={"px-5 bg-white rounded-3xl"}>
+          <div className={"space-x-6 px-5 -mx-5  border-b border-b-gray-400"}>
             <NavLink
               to={"/management/service/product"}
               className={setActiveNav}
@@ -145,14 +128,22 @@ const Service = () => {
               Services (Packages)
             </NavLink>
           </div>
-          <div className={"pt-4 pb-7"} hidden={!title}>
+          <div className={"pt-4 pb-7"} hidden={!subpage}>
             <div className={"flex justify-between"}>
-              <form className={"flex gap-x-5 items-center"}>
-                <label className={"relative"}>
+              <form
+                className={"flex gap-x-5 items-center"}
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <label
+                  className={`relative h-[50px] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
+                >
                   <CustomInput
                     colorBorder={colorsObject.primary}
                     placeholder={"Search"}
-                    className={`w-96 pl-12 pr-4 text-sm ${title === "quiz-report" && `inline-flex flex-row-reverse`} `}
+                    classNames={"h-[50px]"}
+                    className={`w-96 pl-12 pr-4 text-sm ${subpage === "quiz-report" && `inline-flex flex-row-reverse`} `}
+                    onChange={handleSearch}
+                    value={Search}
                   />
 
                   <span
@@ -163,42 +154,35 @@ const Service = () => {
                     <AiOutlineSearch />
                   </span>
                 </label>
-                {title !== "quiz-report" && (
+                {subpage !== "quiz-report" && (
                   <Fragment>
                     <ButtonComponent
-                      defaultBg={"#24C18F"}
-                      defaultHoverBg={"#24C18F"}
+                      defaultBg={colorsObject.success}
+                      defaultHoverBg={colorsObject.successHover}
+                      defaultBorderColor={colorsObject.success}
+                      defaultHoverBorderColor={colorsObject.successHover}
                       paddingInline={26}
-                      controlHeight={40}
                       borderRadius={5}
-                      onClick={title !== "packages" && handleAdd}
                       className={"inline-flex items-center"}
-                      href={
-                        title === "packages"
-                          ? "/management/modal/add-service"
-                          : null
-                      }
+                      href={`/modals/management-service/${subpage}`}
                     >
                       Add new
                     </ButtonComponent>
 
                     <CustomSelect
-                      value={"Status"}
+                      placeholder={"Status"}
                       options={StatusSelect}
-                      style={{
-                        width: 122,
-                        height: 40,
-                      }}
-                      className={`${ServiceStyle["Service__select"]}`}
+                      className={`w-[122px] h-[40px] ${ServiceStyle["Service__select"]}`}
                       colorBorder={"#1890FF"}
                       selectorBg={"#1890FF"}
+                      onChange={handleStatus}
                     />
                   </Fragment>
                 )}
               </form>
 
               <div>
-                {title !== "quiz-report" && (
+                {subpage !== "quiz-report" && (
                   <Pagination
                     total={10}
                     pageSize={1}
@@ -208,47 +192,12 @@ const Service = () => {
                 )}
               </div>
             </div>
-            <div className={"pt-5"}>
-              <div className={"-mx-5"}>
-                <Outlet />
-              </div>
+            <div className={"pt-5 -mx-5"}>
+              <Subpages page={subpage} status={Status} search={Search} />
             </div>
           </div>
         </div>
       </section>
-
-      {IsOpen && (
-        <Modal setIsOpen={setIsOpen}>
-          <div
-            className={`${ModalStyle["Modal__content"]} py-5 bg-white rounded-3xl ${title === "discounts" && "overflow-y-auto overflow-hidden"}`}
-          >
-            {CheckPageForModal(title)}
-
-            <div className={`text-center space-x-4`}>
-              <ButtonComponent
-                defaultBg={"#24C18F"}
-                defaultHoverBg={"#24C18F"}
-                paddingInline={64}
-                controlHeight={40}
-                onClick={handleCloseModal}
-                borderRadius={5}
-              >
-                Save
-              </ButtonComponent>
-              <ButtonComponent
-                controlHeight={39}
-                defaultBg={"#00000040"}
-                defaultHoverBg={"#00000040"}
-                paddingInline={60}
-                onClick={handleCloseModal}
-                borderRadius={5}
-              >
-                Close
-              </ButtonComponent>
-            </div>
-          </div>
-        </Modal>
-      )}
     </Fragment>
   );
 };

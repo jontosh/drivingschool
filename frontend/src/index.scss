@@ -104,3 +104,17 @@ svg {
 .ant-tabs-nav::before {
   border-bottom: none !important;
 }
+
+.Menu__icons {
+  .ant-menu-item {
+    width: 100% !important;
+  }
+}
+
+.ant-menu {
+  background: #fbfbfb;
+}
+
+.ant-transfer-list {
+  padding: 8px 12px;
+}

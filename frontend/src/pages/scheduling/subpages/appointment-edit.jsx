@@ -213,9 +213,7 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -228,10 +226,10 @@ export const AppointmentEdit = () => {
             <CustomInput
               spanClassName={`flex-shrink-0 w-40 text-right`}
               spanText={"Select date"}
-              className={"w-full border border-indigo-700 shadow-xl"}
+              className={"w-full shadow-xl"}
               placeholder={"MM/DD/YYYY - MM/DD/YYYY"}
               classNames={
-                "inline-flex w-full h-10 flex-row-reverse items-center gap-5"
+                "inline-flex w-full h-[50px] flex-row-reverse items-center gap-5"
               }
             />
 
@@ -241,9 +239,7 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -257,9 +253,7 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Weekdays</span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -275,9 +269,7 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -299,9 +291,7 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Status</span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: "Confirmed",
@@ -318,9 +308,7 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Vehicle</span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -333,9 +321,7 @@ export const AppointmentEdit = () => {
               <span className={`flex-shrink-0 w-40 text-right`}>Location</span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: "USA",
@@ -350,9 +336,7 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -367,9 +351,7 @@ export const AppointmentEdit = () => {
               </span>
 
               <CustomSelect
-                style={{ width: "100%" }}
-                colorBorder={colorsObject.primary}
-                className={"h-10 shadow-xl"}
+                className={"w-full h-[50px] shadow-xl"}
                 options={[
                   {
                     value: 1,
@@ -417,6 +399,7 @@ export const AppointmentEdit = () => {
                   colorBorder={colorsObject.primary}
                   placeholder={"Find student"}
                   className={`w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
+                  classNames={"h-[50px]"}
                 />
                 <span
                   className={

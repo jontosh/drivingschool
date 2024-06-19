@@ -1,13 +1,8 @@
+import { setActiveNav } from "@/modules/active-nav.jsx";
 import { Company } from "@/pages/configuration/subpages/company.jsx";
 import { Payment } from "@/pages/configuration/subpages/payment.jsx";
-import ServiceStyle from "@/pages/managment/management.module.scss";
 import { Fragment } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-
-const setActiveNav = ({ isActive }) =>
-  isActive
-    ? `${ServiceStyle["Tab__link-active"]} text-lg py-5`
-    : "hover:text-indigo-500 text-lg text-gray-700 py-5";
 
 const CheckPage = ({ page }) => {
   const navigation = useNavigate();

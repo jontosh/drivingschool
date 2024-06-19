@@ -2,14 +2,13 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { CommentOutlined } from "@ant-design/icons";
+import { CommentOutlined, EyeOutlined } from "@ant-design/icons";
 import { Fragment, useContext } from "react";
 import {
   AiOutlineCloudUpload,
   AiOutlineFileUnknown,
   AiOutlineMessage,
   AiOutlineProject,
-  AiOutlineShoppingCart,
   AiOutlineSolution,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
@@ -33,7 +32,7 @@ export const UploadFiles = () => {
           </Paragraph>
           <div>
             <ButtonComponent
-              defaultHoverBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
               defaultBg={colorsObject.info}
               defaultHoverColor={colorsObject.main}
               defaultColor={colorsObject.main}
@@ -41,7 +40,7 @@ export const UploadFiles = () => {
               controlHeight={32}
               paddingBlock={4}
               paddingInline={15}
-              borderRadius={3}
+              borderRadius={5}
               href={"#!"}
             >
               Show all files
@@ -131,10 +130,7 @@ export const Enrollments = () => {
     <Fragment>
       <div className={"pt-16 pb-12"}>
         <div className="flex items-center flex-col gap-5 text-center">
-          <IconComponent
-            className={"text-5xl"}
-            icon={<AiOutlineShoppingCart />}
-          />
+          <IconComponent className={"text-5xl"} icon={<EyeOutlined />} />
           <Paragraph fontSize={"text-base"} fontWeightStrong={500}>
             There are 0 new text messages received in the last 24 hours.
           </Paragraph>
@@ -194,7 +190,11 @@ const TabItem = () => {
     },
     {
       key: "4",
-      label: <span>Website enrollments 0</span>,
+      label: (
+        <span>
+          Website enrollments <span className="text-red-600">0</span>
+        </span>
+      ),
       children: <Enrollments />,
       icon: <AiOutlineSolution />,
     },
