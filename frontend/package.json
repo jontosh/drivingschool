@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://drivingschool-zeta.vercel.app",
   "scripts": {
     "start": "vite --open",
     "build": "vite build",

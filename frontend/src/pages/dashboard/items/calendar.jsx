@@ -103,7 +103,7 @@ export const DashboardCalendar = ({ data }) => {
 
     for (let i = 0; i < rangeTimes.length; i++) {
       const item = rangeTimes[i];
-      console.log(item);
+
       rangeTime.push({
         title: item?.name,
         start: new Date(item?.start),
