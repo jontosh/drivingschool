@@ -293,7 +293,7 @@ export const SingleTableCalendar = ({data}) => {
           { data?.first_name } { data?.last_name }
         </Title>
         
-        <a href={"tel:+" + (data?.home_phone ?? data?.cell_phone)} target={"_blank"}>+{ formattedNumber }</a>
+        <a className='text-[#6B7A99] text-base font-medium' href={"tel:+" + (data?.home_phone ?? data?.cell_phone)} target={"_blank"}>+{ formattedNumber }</a>
       </div>) }
       
       <Calendar

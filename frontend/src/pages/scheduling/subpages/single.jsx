@@ -5,27 +5,27 @@ import Image from '@/components/image/index.jsx'
 import Title from '@/components/title/index.jsx'
 import { SingleTableCalendar } from "@/pages/scheduling/calendar/single-table-calendar.jsx";
 import { useRequestGetQuery } from '@/redux/query/index.jsx'
-import { Form } from 'antd'
-import { Fragment , useEffect , useState } from 'react'
+import { ConfigProvider, Form } from 'antd'
+import { Fragment, useEffect, useState } from 'react'
 import { PiCheckSquare } from 'react-icons/pi'
 
 export const Single = () => {
-  
-  const {data: Teachers} = useRequestGetQuery({path: "/student_account/instructor/"})
-  
+
+  const { data: Teachers } = useRequestGetQuery({ path: "/student_account/instructor/" })
+
   const [form] = Form.useForm();
   const [Index, setIndex] = useState(null);
   const [TeacherId, setTeacherId] = useState(null);
   const [Teacher, setTeacher] = useState(null);
-  
-  useEffect(() =>{
-    for ( let i = 0; i < Teachers?.length; i++ ) {
-      if(Teachers[i].id === TeacherId){
+
+  useEffect(() => {
+    for (let i = 0; i < Teachers?.length; i++) {
+      if (Teachers[i].id === TeacherId) {
         setTeacher(Teachers[i]);
       }
     }
   }, [TeacherId, Index])
-  
+
   const teacher = Teachers?.map((teacher, index) => {
     return (
       <Fragment key={index}>
@@ -41,7 +41,7 @@ export const Single = () => {
             src={teacher?.picture ?? InstructorAva}
             srcSet={teacher?.picture ?? InstructorAva}
           />
-          
+
           <Title
             level={4}
             fontSize={"text-xs"}
@@ -49,7 +49,7 @@ export const Single = () => {
           >
             {teacher.first_name} {teacher.last_name}
           </Title>
-          
+
           <IconComponent
             icon={<PiCheckSquare />}
             iconWidth={"w-6"}
@@ -65,24 +65,34 @@ export const Single = () => {
       </Fragment>
     );
   });
-  
+
   return (
-   <Fragment>
-     
-     <div className='bg-white p-5 space-y-5'>
-       <Form form={form}>
-         <Form.Item name={"search"} label={"Teacher"}>
-           <CustomInput placeholder={"Search"} />
-         </Form.Item>
-       </Form>
-       
-       <div className='flex gap-2.5'>
-         {teacher}
-       </div>
-       
-       <SingleTableCalendar data={Teacher} />
-     </div>
-     
-   </Fragment>
+    <Fragment>
+
+      <div className='bg-white p-5 space-y-5'>
+        <Form form={form} layout='vertical'>
+          <ConfigProvider
+            theme={{
+              components: {
+                Form: {
+                  fontSize: 20
+                },
+              },
+            }}
+          >
+            <Form.Item name={"search"} label={"Teacher"} labelAlign='left' className='font-semibold'>
+              <CustomInput placeholder={"Search"} classNames={"w-full"} />
+            </Form.Item>
+          </ConfigProvider>
+        </Form>
+
+        <div className='flex gap-2.5'>
+          {teacher}
+        </div>
+
+        <SingleTableCalendar data={Teacher} />
+      </div>
+
+    </Fragment>
   );
 };
