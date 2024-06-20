@@ -1,7 +1,7 @@
 export const formatPhoneNumber = (value) => {
   let formattedNumber;
   // const { name, value } = e.target;
-  const { length } = value;
+  // const { length } = value;
   // Filter non numbers
   const regex = () => value.replace(/[^0-9\.]+/g, "");
   // Set area code with parenthesis around it
@@ -12,19 +12,19 @@ export const formatPhoneNumber = (value) => {
 
   // Dynamic trail as user types
   const trailer = (start) => `${regex().slice(start, regex().length)}`;
-  if (length < 3) {
+  if (value?.length < 3) {
     // First 3 digits
     formattedNumber = regex();
-  } else if (length === 4) {
+  } else if (value?.length === 4) {
     // After area code
     formattedNumber = `${areaCode()} ${trailer(3)}`;
-  } else if (length === 5) {
+  } else if (value?.length === 5) {
     // When deleting digits inside parenthesis
     formattedNumber = `${areaCode().replace(")", "")}`;
-  } else if (length > 5 && length < 9) {
+  } else if (value?.length > 5 && value?.length < 9) {
     // Before dash
     formattedNumber = `${areaCode()} ${trailer(3)}`;
-  } else if (length >= 10) {
+  } else if (value?.length >= 10) {
     // After dash
     formattedNumber = `${firstSix()}-${trailer(6)}`;
   }

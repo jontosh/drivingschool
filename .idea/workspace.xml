@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="Refactor enrollment form to improve dynamic data handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/single-table-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/single-table-calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/formatter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/formatter.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +50,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactoring",
+    "git-widget-placeholder": "development",
     "last_opened_file_path": "/home/khaetbek/D/works/drivingschool/frontend/package.json",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
@@ -76,7 +73,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" editBeforeRun="true" focusToolWindowBeforeRun="true" nameIsGenerated="true">
+    <configuration name="start" type="js.build_tools.npm" editBeforeRun="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
       <scripts>
@@ -158,6 +155,7 @@
       <workItem from="1718696349698" duration="25285000" />
       <workItem from="1718837465981" duration="367000" />
       <workItem from="1718837942426" duration="463000" />
+      <workItem from="1718842762425" duration="190000" />
     </task>
     <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
