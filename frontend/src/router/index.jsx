@@ -15,36 +15,26 @@ import Management from "@/pages/managment/index.jsx";
 import Modal from "@/pages/modal/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
-import SignIn from "@/pages/register/sign-in.jsx";
 import Report from "@/pages/report/index.jsx";
 import Scheduling from "@/pages/scheduling/index.jsx";
 import Manage from "@/pages/scheduling/subpages/manage.jsx";
 import Search from "@/pages/search/index.jsx";
 import Student from "@/pages/student/index.jsx";
 import StudentSpa from "@/pages/student/student-spa.jsx";
+import {default as InstructorDashboard} from "@/pages/instructor/dashboard/dashboard.jsx"
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/admin",
     element: <Layout />,
     children: [
       {
-        path: "/design",
-        element: <Design />,
-        children: [
-          {
-            path: "components",
-            element: <Components />,
-          },
-        ],
-      },
-      {
-        path: "/dashboard",
+        path: "dashboard",
         element: <Dashboard />,
       },
       {
-        path: "/report/:title",
+        path: "report/:title",
         element: <Report />,
         children: [
           {
@@ -53,11 +43,11 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "/enrollment",
+        path: "enrollment",
         element: <Enrollment />,
       },
       {
-        path: "/support",
+        path: "support",
         element: <HelpMain />,
         children: [
           {
@@ -83,7 +73,7 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "/configuration/:title",
+        path: "configuration/:title",
         element: <Configuration />,
         children: [
           {
@@ -92,11 +82,11 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "/search",
+        path: "search",
         element: <Search />,
       },
       {
-        path: "/communication/:title",
+        path: "communication/:title",
         element: <Communication />,
         children: [
           {
@@ -105,19 +95,19 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "/scheduling/:title",
+        path: "scheduling/:title",
         element: <Scheduling />,
       },
       {
-        path: "/finance/:title",
+        path: "finance/:title",
         element: <Finance />,
       },
       {
-        path: "/scheduling/manage/:title",
+        path: "scheduling/manage/:title",
         element: <Manage />,
       },
       {
-        path: "/management/:title",
+        path: "management/:title",
         element: <Management />,
         children: [
           {
@@ -126,11 +116,11 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: "/modals/:title/:page_modal",
+        path: "modals/:title/:page_modal",
         element: <Modal />,
       },
       {
-        path: "/student/account",
+        path: "student/account",
         element: <Student />,
         children: [
           {
@@ -152,11 +142,31 @@ export const router = createBrowserRouter([
     ],
   },
   {
+    path: "design",
+    element: <Design />,
+    children: [
+      {
+        path: "components",
+        element: <Components />,
+      },
+    ],
+  },
+  {
     path: "*",
     element: <Notfound />,
   },
   {
-    path: "/register/sign-in",
+    path: "register/sign-in",
     element: <Register />,
   },
+  {
+    path: "instructor",
+    element: <Layout />,
+    children:[
+      {
+        path: "dashboard",
+        element: <InstructorDashboard />,
+      }
+    ]
+  }
 ]);

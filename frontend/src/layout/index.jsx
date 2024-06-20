@@ -31,10 +31,18 @@ const Layout = () => {
   const [stateOpenKeys, setStateOpenKeys] = useState([""]);
 
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname, origin } = useLocation();
   useEffect(() => {
     if (pathname === "/") {
-      navigate("/dashboard/");
+      navigate("/register/sign-in");
+    }
+    
+    if(pathname === "/instructor") {
+      navigate("/instructor/dashboard");
+    }
+    
+    if(pathname === "/admin") {
+      navigate("/admin/dashboard");
     }
   }, [pathname]);
 
@@ -104,7 +112,7 @@ const Layout = () => {
         className={`${LayoutStyle["Header"]} px-5 py-4 bg-white flex items-center justify-between`}
       >
         <Link
-          to={"/dashboard"}
+          to={origin}
           className={`${LayoutStyle["logo"]} inline-flex items-center gap-4`}
         >
           <div
