@@ -1,35 +1,29 @@
+import InstructorAva from '@/assets/user/instructor.jpeg'
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
-import Title, { Text } from "@/components/title/index.jsx";
-import ColorsContext from "@/context/colors.jsx";
-import { Button, ConfigProvider } from "antd";
+import Image from '@/components/image/index.jsx'
+import Title  from '@/components/title/index.jsx'
+import { formatPhoneNumber } from '@/modules/formatter.jsx'
+import CalendarStyle from '@/pages/dashboard/dashboard.module.scss'
 import {
   useState,
   useEffect,
   Fragment,
   useMemo,
   useCallback,
-  useContext,
 } from "react";
 import "./single-table-calendar.scss";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsPlusCircleFill } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
-// import DayPicker from "react-day-picker";
-// import { formatDate } from "react-day-picker/moment";
-export const SingleTableCalendar = () => {
+import { MdKeyboardArrowLeft , MdKeyboardArrowRight } from 'react-icons/md'
+import { SlClock } from 'react-icons/sl';
+
+export const SingleTableCalendar = ({data}) => {
   const Time = new Date();
-  const [MonthName, setMonthName] = useState("");
-  const { colorsObject } = useContext(ColorsContext);
   const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState([]);
-  const [selectedDay, setSelectedDay] = useState(new Date());
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth());
-  const [days, setDays] = useState(new Date().getDay());
+  
   let EventsList = [
     {
       title: "Event Name",
@@ -124,19 +118,127 @@ export const SingleTableCalendar = () => {
       setEvents((events) => [...events, data]);
     }
   };
-
-  const { formats, views, toolbar } = useMemo(() => {
+  
+  const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
-      formats: {
-        dayFormat: (date, culture, localizer) =>
-          localizer.format(date, "ddd", culture),
-        eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
-          localizer.format(start, "hh:mm a", culture),
-        // " - " +
-        // localizer.format(end, "hh:mm a", culture),
+      components: {
+        timeGutterHeader: () => {
+          return (
+            <div className={"flex justify-center min-h-[62px]"}>
+              <SlClock className={"w-7 text-[#C3CAD9]"} />
+            </div>
+          );
+        },
+        
+        toolbar: (e) => {
+          const GoTo = (value) => e.onNavigate(value);
+          
+          const handleMode = (value) => {
+            e.onView(value);
+          };
+          
+          return (
+            <div className={"flex items-center justify-between p-7"}>
+              <ButtonComponent
+                borderRadius={20}
+                defaultBorderColor={"#F5F6F7"}
+                defaultHoverBorderColor={"#F5F6F7"}
+                defaultColor={"#6B7A99"}
+                defaultHoverColor={"#6B7A99"}
+                controlHeight={40}
+                paddingInline={20}
+                onClick={() => GoTo("TODAY")}
+              >
+                Today
+              </ButtonComponent>
+              
+              <div className="flex items-center gap-8">
+                <ButtonComponent
+                  borderRadius={20}
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={12}
+                  onClick={() => GoTo("PREV")}
+                >
+                  <MdKeyboardArrowLeft />
+                </ButtonComponent>
+                
+                <Title fontSize={"text-[#6B7A99]"}>{e.label}</Title>
+                
+                <ButtonComponent
+                  borderRadius={20}
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={12}
+                  onClick={() => GoTo("NEXT")}
+                >
+                  <MdKeyboardArrowRight />
+                </ButtonComponent>
+              </div>
+              
+              <div className="flex border border-[#26334D08]">
+                <ButtonComponent
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={20}
+                  className={"uppercase"}
+                  onClick={() => handleMode("month")}
+                >
+                  MONTH
+                </ButtonComponent>
+                
+                <ButtonComponent
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={20}
+                  className={"uppercase"}
+                  onClick={() => handleMode("week")}
+                >
+                  WEEK
+                </ButtonComponent>
+                
+                <ButtonComponent
+                  defaultBorderColor={"#F5F6F7"}
+                  defaultHoverBorderColor={"#F5F6F7"}
+                  defaultColor={"#6B7A99"}
+                  defaultHoverColor={"#6B7A99"}
+                  controlHeight={40}
+                  paddingInline={20}
+                  className={"uppercase"}
+                  onClick={() => handleMode("day")}
+                >
+                  DAY
+                </ButtonComponent>
+              </div>
+            </div>
+          );
+        },
       },
-      views: [Views.WEEK],
-      toolbar: false,
+      defaultDate: new Date(),
+      formats: {
+        timeGutterFormat: (date, culture, localizer) =>
+          localizer.format(date, "hh:mm", culture),
+        dayFormat: (date, culture, localizer) =>
+          localizer.format(date, "ddd DD", culture),
+        eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
+          localizer.format(start, "hh:mm", culture) +
+          " " +
+          localizer.format(end, "hh:mm", culture),
+      },
+      views: [Views.MONTH, Views.WEEK, Views.DAY],
+      toolbar: true,
     };
   });
 
@@ -149,118 +251,78 @@ export const SingleTableCalendar = () => {
     }),
     [],
   );
-
+  
   const dayPropGetter = useCallback(
     (date) => ({
-      ...((moment(date).day() === 6 || moment(date).day() === 0) && {
-        className: "bg-[#F2F2F2]",
+      ...(moment(date).day() > -1 && {
+        className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
       }),
-      ...(moment(date).day() > 0 &&
-        moment(date).day() < 5 && {
-          className: "bg-[#fff]",
-        }),
     }),
     [],
   );
-
-  const months = Array.from({ length: 12 }, (item, i) => {
-    return {
-      value: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-      label: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-    };
-  });
-
-  useEffect(() => {
-    months.map((month, index) => {
-      if (index === Time.getMonth()) {
-        setMonthName(month.value);
-      }
-    });
-  }, [MonthName]);
+  
+  const slotGroupPropGetter = useCallback(
+    () => ({
+      style: {
+        minHeight: 80,
+      },
+    }),
+    [],
+  );
+  
+  const slotPropGetter = useCallback(
+    () => ({
+      className: "px-2.5 pt-6 text-[#ADB8CC]",
+    }),
+    [],
+  );
+  
+  const {formattedNumber} = formatPhoneNumber(data?.home_phone ?? data?.cell_phone)
 
   return (
     <Fragment>
-      <Fragment>
-        <div className="p-4 flex justify-between items-center border-b border-b-gray-300">
-          <div className={"flex items-center gap-4"}>
-            <IconComponent
-              className={"flex-shrink-0 text-3xl pt-2"}
-              icon={<FaBars />}
-              // onClick={handleBurger}
-            />
-
-            <Title level={2} fontSize={"text-3xl"}>
-              <span>{MonthName}</span> &nbsp;
-              <span className={"font-normal"}> {Time.getFullYear()}</span>
-            </Title>
-
-            <CustomSelect
-              colorBorder={colorsObject.primary}
-              placeholder={"Months"}
-              colorText={colorsObject.primary}
-              options={months}
-              className={"h-[50px]"}
-            />
-          </div>
-
-          <div className={"gap-x-4 inline-flex items-center"}>
-            <ConfigProvider
-              theme={{
-                components: {
-                  Button: {
-                    defaultBg: "#F5F5F5",
-                    defaultHoverBg: "#F5F5F5",
-                  },
-                },
-              }}
-            >
-              <Button shape={"circle"} icon={<AiOutlineSearch />} />
-            </ConfigProvider>
-
-            <ButtonComponent
-              defaultBg={"#0C41FF"}
-              defaultHoverBg={"#0C41FF"}
-              borderRadius={5}
-              paddingInline={8}
-              controlHeight={30}
-            >
-              <div className={"inline-flex gap-x-4 text-white items-center"}>
-                <Text
-                  fontWeightStrong={500}
-                  fontSize={12}
-                  className={"text-white"}
-                >
-                  Add event
-                </Text>
-                &nbsp;
-                <BsPlusCircleFill className={"w-4"} />
-              </div>
-            </ButtonComponent>
-          </div>
-        </div>
-      </Fragment>
+      
+      {data && (<div className='flex items-center gap-5'>
+        <Image
+          className={ 'w-16 h-16 overflow-hidden rounded-full' }
+          src={ data?.picture ?? InstructorAva }
+          srcSet={ data?.picture ?? InstructorAva }
+        />
+        
+        <Title level={ 2 } fontSize={ 'text-2xl' }>
+          { data?.first_name } { data?.last_name }
+        </Title>
+        
+        <a href={"tel:+" + (data?.home_phone ?? data?.cell_phone)} target={"_blank"}>+{ formattedNumber }</a>
+      </div>) }
+      
       <Calendar
         // To selection column and add events
         selectable
-        localizer={localizer}
-        events={events}
+        localizer={ localizer }
+        events={ events }
         // To scroll
-        startAccessor="start"
-        endAccessor="end"
-        onSelectSlot={handleSelect}
+        startAccessor='start'
+        endAccessor='end'
+        onSelectSlot={ handleSelect }
         // onSelectEvent={(event) => alert(event.title)}
-        defaultView={Views.WEEK}
-        defaultDate={new Date()}
-        style={{ height: 810 }}
-        views={views}
-        formats={formats}
+        defaultView={ Views.WEEK }
+        defaultDate={ defaultDate }
+        style={ { height: 810 } }
+        views={ views }
+        formats={ formats }
         // {/*Header toolbar*/}
-        toolbar={toolbar}
+        toolbar={ toolbar }
         //{/*Event Item*/}
-        eventPropGetter={eventPropGetter}
+        eventPropGetter={ eventPropGetter }
         //{/*Day column*/}
-        dayPropGetter={dayPropGetter}
+        dayPropGetter={ dayPropGetter }
         showMultiDayTimes
+        // Slot
+        slotGroupPropGetter={ slotGroupPropGetter }
+        slotPropGetter={ slotPropGetter }
+        //compo
+        components={ components }
       />
     </Fragment>
   );
