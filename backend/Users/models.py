@@ -11,7 +11,8 @@ import uuid
 from mainadmin.models import CustomUser
 from django.conf import  settings
 
-
+class User(models.Model):
+    pass
 #INSTRACTOR
 class Instructor(CustomUser):
     STAFF_TYPE = [

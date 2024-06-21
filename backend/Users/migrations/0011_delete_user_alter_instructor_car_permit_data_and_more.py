@@ -10,9 +10,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name='User',
-        ),
+
         migrations.AlterField(
             model_name='instructor',
             name='car_permit_data',

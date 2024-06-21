@@ -13,10 +13,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='user',
-            name='type',
-        ),
+        # migrations.RemoveField(
+        #     model_name='user',
+        #     name='type',
+        # ),
         migrations.AlterField(
             model_name='enrollment',
             name='by',
@@ -27,10 +27,7 @@ class Migration(migrations.Migration):
             name='by',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='file_by', to=settings.AUTH_USER_MODEL),
         ),
-        migrations.DeleteModel(
-            name='CustomToken',
-        ),
         # migrations.DeleteModel(
-        #     name='User',
+        #     name='CustomToken',
         # ),
     ]
