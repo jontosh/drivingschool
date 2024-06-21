@@ -191,10 +191,10 @@ class DrivingNote(models.Model):
     to_user = models.ForeignKey("mainadmin.CustomUser",on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.id} - {self.note}"
-# class CustomToken(models.Model):
-#     key = models.CharField(max_length=40, primary_key=True)
-#     user = models.OneToOneField(User, related_name='custom_token', on_delete=models.CASCADE)
-#     created = models.DateTimeField(auto_now_add=True)
-#
-#     def __str__(self):
-#         return self.key
+class CustomToken(models.Model):
+    key = models.CharField(max_length=40, primary_key=True)
+    user = models.OneToOneField(User, related_name='custom_token', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.key
