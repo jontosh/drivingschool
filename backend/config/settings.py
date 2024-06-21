@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+from datetime import  timedelta
 from dotenv import load_dotenv
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -56,7 +56,7 @@ TENANT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #APPS
-    # "mainadmin",
+    "mainadmin",
     "Users",
     "servises",
     "location",
@@ -67,8 +67,8 @@ TENANT_APPS = [
     "colorfield",
     "creditcards",
     "rest_framework",
-    # "rest_framework.authtoken",
     "phonenumber_field",
+    'rest_framework_simplejwt.token_blacklist',
     "abstracts",
     "multiselectfield"
 
@@ -182,17 +182,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "mainadmin.CustomUser"
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-# }
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 # AUTHENTICATION_BACKENDS = [
-#     'Users.backends.CustomUserBackend',
+#     # 'Users.backends.CustomUserBackend',
 #     'django.contrib.auth.backends.ModelBackend',  # Optional, for default user model support
 # ]
 TENANT_MODEL = "mainadmin.Client"

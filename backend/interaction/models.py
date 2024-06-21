@@ -61,8 +61,8 @@ class EmailTemplate(models.Model):
     if you choose 2 of them or nether of them data will not be saved
     """
     email = models.TextField()
-    student = models.ForeignKey("Users.Student",on_delete=models.CASCADE,blank=True,null=True)
-    instructor = models.ForeignKey("Users.Instructor",on_delete=models.CASCADE,blank=True,null=True)
+    student = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,blank=True,null=True,related_name="student_email")
+    instructor = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,blank=True,null=True,related_name="staff_email")
 
     def __str__(self):
         return str(self.id)
