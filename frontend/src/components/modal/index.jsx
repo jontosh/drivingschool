@@ -11,7 +11,7 @@ const Modal = ({ className, setIsOpen, children }) => {
 
   return (
     <div
-      data-modal
+      data-modal={true}
       onClick={handleClick}
       className={`fixed flex items-center justify-center flex-col top-0 left-0 z-20 w-full h-full ${className}`}
     >
