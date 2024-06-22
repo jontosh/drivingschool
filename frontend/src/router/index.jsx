@@ -11,6 +11,7 @@ import HelpMain from "@/pages/help/main";
 import { NewTicket } from "@/pages/help/new-ticket";
 import { News } from "@/pages/help/news";
 import { TicketSpa } from "@/pages/help/ticket/ticket-spa.jsx";
+import InstructorProfile from "@/pages/instructor/profile/index.jsx";
 import Management from "@/pages/managment/index.jsx";
 import Modal from "@/pages/modal/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
@@ -171,6 +172,10 @@ export const router = createBrowserRouter([
       {
         path: "schedule-lessons",
         element: <InstructorScheduling />,
+      },
+      {
+        path: "profile",
+        element: <InstructorProfile />,
       },
     ],
   },
