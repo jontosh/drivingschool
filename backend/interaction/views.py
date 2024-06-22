@@ -1,9 +1,12 @@
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from django.apps import apps
 from rest_framework.response import Response
 from markdown import markdown
 from rest_framework import viewsets
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from .models import Tasks ,Logs, LatestNews
 from configuration.models import Expanses
 from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer,Student,Instructor
@@ -69,7 +72,7 @@ class CategorizedDataAPIView(APIView):
     """
     API endpoint to retrieve data categorized by name and status with summed amounts.
     """
-
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # Group the model instances by 'name' and 'status' and calculate the sum of 'amount'
         grouped_data = Expanses.objects.values('name', 'status').annotate(total_amount=Sum('amount'))
