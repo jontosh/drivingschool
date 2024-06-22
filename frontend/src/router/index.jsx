@@ -21,7 +21,8 @@ import Manage from "@/pages/scheduling/subpages/manage.jsx";
 import Search from "@/pages/search/index.jsx";
 import Student from "@/pages/student/index.jsx";
 import StudentSpa from "@/pages/student/student-spa.jsx";
-import {default as InstructorDashboard} from "@/pages/instructor/dashboard/dashboard.jsx"
+import { default as InstructorDashboard } from "@/pages/instructor/dashboard/dashboard.jsx";
+import { default as InstructorScheduling } from "@/pages/instructor/scheduling";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -162,11 +163,15 @@ export const router = createBrowserRouter([
   {
     path: "instructor",
     element: <Layout />,
-    children:[
+    children: [
       {
         path: "dashboard",
         element: <InstructorDashboard />,
-      }
-    ]
-  }
+      },
+      {
+        path: "schedule-lessons",
+        element: <InstructorScheduling />,
+      },
+    ],
+  },
 ]);

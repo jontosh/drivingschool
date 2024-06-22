@@ -36,15 +36,16 @@ const Layout = () => {
     if (pathname === "/") {
       navigate("/register/sign-in");
     }
-    
-    if(pathname === "/instructor") {
+
+    if (pathname === "/instructor") {
       navigate("/instructor/dashboard");
     }
-    
-    if(pathname === "/admin") {
+
+    if (pathname === "/admin") {
       navigate("/admin/dashboard");
     }
   }, [pathname]);
+  
 
   const handleSideBar = () => setIsActive((prev) => !prev);
 
