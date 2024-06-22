@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fix(frontend): Update git widget placeholder and cleanup workspace XML">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/instructor/dashboard/dashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/instructor/dashboard/items/upload.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Update menu links to admin routes, and routes for instructor portal">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/instructor/scheduling/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/instructor/scheduling/itesm/calendar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useDate.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +65,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;app.aicomit.ApplicationSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -166,6 +167,9 @@
       <workItem from="1718837942426" duration="463000" />
       <workItem from="1718842762425" duration="4438000" />
       <workItem from="1718847284567" duration="124000" />
+      <workItem from="1718981148519" duration="164000" />
+      <workItem from="1719041873329" duration="1128000" />
+      <workItem from="1719044657801" duration="5733000" />
     </task>
     <task id="LOCAL-00002" summary="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
       <option name="closed" value="true" />
