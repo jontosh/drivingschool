@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet";
 import { PiCameraLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import ProfileStyle from "./profile.module.scss";
+import { MdLockReset } from "react-icons/md";
 
 const InstructorProfile = () => {
   const { data: LocationData } = useRequestGetQuery({
@@ -113,15 +114,15 @@ const InstructorProfile = () => {
               >
                 {fileList.length === 0 && ( // Отображаем кнопку загрузки, если список пуст
                   <IconComponent
-                    className={"absolute bottom-0 right-0 "}
+                    className={"absolute bottom-1 right-1"}
                     icon={<PiCameraLight />}
                   />
                 )}
               </Upload>
 
               <div className="space-y-2.5">
-                <Title>Hasanboy Nurmuhammadov</Title>
-                <Paragraph>
+                <Title fontSize={"text-2xl text-[#083A50]"}>Hasanboy Nurmuhammadov</Title>
+                <Paragraph fontSize={"text-xl text-[#083A50]"}>
                   Your account is ready, you can now apply for advice.
                 </Paragraph>
               </div>
@@ -274,6 +275,18 @@ const InstructorProfile = () => {
                   placeholder={"email"}
                 />
               </Form.Item>
+
+              <div className={"text-end"}>
+                <ButtonComponent
+                  type={"submit"}
+                  defaultBg={colorsObject.secondary}
+                  defaultHoverBg={colorsObject.secondaryHover}
+                  borderRadius={5}
+                  paddingInline={44}
+                >
+                  UPDATE
+                </ButtonComponent>
+              </div>
             </div>
             <div className="space-y-5">
               <Form.Item
@@ -286,7 +299,7 @@ const InstructorProfile = () => {
                   },
                 ]}
               >
-                <DatePicker className="w-full" />
+                <DatePicker className="w-full h-[50px] border-[#667085]" />
               </Form.Item>
 
               <Form.Item
@@ -320,14 +333,14 @@ const InstructorProfile = () => {
               </Form.Item>
 
               <Form.Item label={"Permit Issued Date"} name={"car_permit_data"}>
-                <DatePicker className="w-full" />
+                <DatePicker className="w-full h-[50px] border-[#667085]" />
               </Form.Item>
 
               <Form.Item
                 label={"Permit Expiration Date"}
                 name={"car_permit_expire"}
               >
-                <DatePicker className="w-full" />
+                <DatePicker className="w-full h-[50px] border-[#667085]" />
               </Form.Item>
 
               <Form.Item label={"Instructor/Staff License#"} name={"license"}>
@@ -359,30 +372,32 @@ const InstructorProfile = () => {
 
               <ButtonComponent
                 type={"button"}
-                defaultColor={colorsObject.black}
-                defaultHoverColor={colorsObject.black}
-                defaultBorderColor={colorsObject.black}
+                defaultBg={colorsObject.success}
+                defaultHoverBg={colorsObject.successHover}
+                borderRadius={5}
+                paddingInline={44}
                 onClick={handleOpen}
               >
-                Password
+                RESET PASSWORD
               </ButtonComponent>
             </div>
           </div>
-
-          <ButtonComponent
-            type={"submit"}
-            defaultColor={colorsObject.black}
-            defaultHoverColor={colorsObject.black}
-            defaultBorderColor={colorsObject.black}
-          >
-            UPDATE
-          </ButtonComponent>
         </Form>
 
         {IsOpen && (
           <Form form={form} onFinish={onFinishPassword} layout={"vertical"}>
             <Modal setIsOpen={setIsOpen}>
-              <div className="bg-white max-w-[630px] w-full px-24 py-14">
+              <div className="bg-white max-w-[630px] w-full px-24 py-14 text-center">
+                <div className="flex items-center justify-center space-x-1.5">
+                  <MdLockReset className="w-10 text-[#364152]" />
+                  <Title fontSize={"text-[31px] font-bold text-[#364152]"}>
+                    Reset Your Password
+                  </Title>
+                </div>
+                <Paragraph colorText="#B7B6B6" fontSize={"text-[17px]"} className={"py-2.5"}>
+                  Please enter your current passowrd and new
+                  password to reset your password
+                </Paragraph>
                 <Form.Item
                   name="current_password"
                   label="Current password"
@@ -407,7 +422,7 @@ const InstructorProfile = () => {
                     }),
                   ]}
                 >
-                  <Input.Password />
+                  <Input.Password className="h-[50px] border-[#667085]" />
                 </Form.Item>
 
                 <Form.Item
@@ -421,7 +436,7 @@ const InstructorProfile = () => {
                   ]}
                   hasFeedback
                 >
-                  <Input.Password />
+                  <Input.Password className="h-[50px] border-[#667085]" />
                 </Form.Item>
 
                 <Form.Item
@@ -448,19 +463,23 @@ const InstructorProfile = () => {
                     }),
                   ]}
                 >
-                  <Input.Password />
+                  <Input.Password className="h-[50px] border-[#667085]" />
                 </Form.Item>
 
                 <ButtonComponent
                   type={"submit"}
-                  defaultColor={colorsObject.black}
-                  defaultHoverColor={colorsObject.black}
-                  defaultBorderColor={colorsObject.black}
+                  defaultBg={colorsObject.primary}
+                  defaultHoverBg={colorsObject.primaryHover}
+                  borderRadius={10}
+                  className={"w-full mt-2.5"}
                 >
                   Upgrade
                 </ButtonComponent>
 
-                <Link to={"/"}>Forgot Current Password?</Link>
+                <Link
+                  to={"/"}
+                  className="pt-2.5 text-[#5F66E9]"
+                >Forgot Current Password?</Link>
               </div>
             </Modal>
           </Form>
