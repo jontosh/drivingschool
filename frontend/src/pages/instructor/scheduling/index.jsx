@@ -14,6 +14,7 @@ import "@natscale/react-calendar/dist/main.css";
 import { Helmet } from "react-helmet";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { PlusOutlined } from "@ant-design/icons";
 
 const Scheduling = () => {
   const { Months, MonthName } = useDate();
@@ -52,19 +53,22 @@ const Scheduling = () => {
             SCHEDULE LESSONS
           </Title>
 
-          <IconComponent icon={<IoSettingsOutline />} />
+          <IconComponent
+            icon={<IoSettingsOutline />}
+            className={"border border-[#5F66E9] rounded-xl px-2.5 pt-2 pb-1"}
+          />
         </div>
 
         <div className="bg-white rounded-xl px-7 py-5 space-y-5">
           <div className="flex justify-between items-center">
-            <Paragraph>
+            <Paragraph fontWeightStrong={600}>
               Month :{" "}
               {typeof SelectMonth === "string"
                 ? SelectMonth
                 : MonthName(SelectMonth)}
             </Paragraph>
 
-            <div className="space-x-5">
+            <div className="flex space-x-5">
               <CustomSelect
                 onChange={handleSelectMonth}
                 options={Months}
@@ -73,10 +77,17 @@ const Scheduling = () => {
               />
 
               <ButtonComponent
-                defaultColor={colorsObject.black}
-                defaultHoverColor={colorsObject.black}
-                defaultBorderColor={colorsObject.black}
+                defaultBg={colorsObject.primary}
+                defaultHoverBg={colorsObject.primary}
+                defaultColor={colorsObject.main}
+                defaultHoverColor={colorsObject.main}
+                defaultBorderColor={colorsObject.primary}
+                borderRadius={5}
+                paddingInline={26}
+                controlHeight={47}
+                className={"flex items-center"}
               >
+                <PlusOutlined />
                 Add event
               </ButtonComponent>
             </div>
@@ -91,14 +102,60 @@ const Scheduling = () => {
                   Quick links
                 </Title>
 
-                <div className={"space-y-5"}>
-                  <Link
-                    to={"/#"}
-                    className={
-                      "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
-                    }
-                  >
-                    Take attendance
+                <div className={"grid grid-cols-2 items-center gap-2.5"}>
+                  <Link to={"/#"}>
+                    <ButtonComponent
+                      defaultBg={colorsObject.primary}
+                      defaultHoverBg={colorsObject.primary}
+                      defaultColor={colorsObject.main}
+                      defaultHoverColor={colorsObject.main}
+                      borderRadius={10}
+                      className={"w-full"}
+                    >Learn about this page</ButtonComponent>
+                  </Link>
+                  <Link to={"/#"}>
+                    <ButtonComponent
+                      defaultBg={colorsObject.primary}
+                      defaultHoverBg={colorsObject.primary}
+                      defaultColor={colorsObject.main}
+                      defaultHoverColor={colorsObject.main}
+                      borderRadius={10}
+                      paddingInline={10}
+                      className={"w-full"}
+                    >Give feedback</ButtonComponent>
+                  </Link>
+                  <Link to={"/#"}>
+                    <ButtonComponent
+                      defaultBg={colorsObject.primary}
+                      defaultHoverBg={colorsObject.primary}
+                      defaultColor={colorsObject.main}
+                      defaultHoverColor={colorsObject.main}
+                      borderRadius={10}
+                      paddingInline={10}
+                      className={"w-full"}
+                    >Set Unavailability</ButtonComponent>
+                  </Link>
+                  <Link to={"/#"}>
+                    <ButtonComponent
+                      defaultBg={colorsObject.primary}
+                      defaultHoverBg={colorsObject.primary}
+                      defaultColor={colorsObject.main}
+                      defaultHoverColor={colorsObject.main}
+                      borderRadius={10}
+                      paddingInline={10}
+                      className={"w-full"}
+                    >Settings</ButtonComponent>
+                  </Link>
+                  <Link to={"/#"}>
+                    <ButtonComponent
+                      defaultBg={colorsObject.primary}
+                      defaultHoverBg={colorsObject.primary}
+                      defaultColor={colorsObject.main}
+                      defaultHoverColor={colorsObject.main}
+                      borderRadius={10}
+                      paddingInline={10}
+                      className={"w-full"}
+                    >Print</ButtonComponent>
                   </Link>
                 </div>
               </div>
