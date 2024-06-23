@@ -1,20 +1,24 @@
+import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
+import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
 import { MenuItems } from "@/layout/menu-items.jsx";
 import { GetLevelKeys } from "@/modules/navbar.jsx";
-import { Badge, ConfigProvider, Dropdown, Menu } from "antd";
-import { Fragment, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { BiMoon } from "react-icons/bi";
-import { FaListUl } from "react-icons/fa6";
-import { HiOutlineSun } from "react-icons/hi2";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
 import Tenant from "../assets/user/tenant.jpeg";
 import { BellFilled } from "@ant-design/icons";
+import { useReducer as PortalReducer } from "@/hooks/portal.jsx";
+import { Badge, ConfigProvider, Dropdown, Menu } from "antd";
+import { Fragment, useEffect, useReducer, useState } from "react";
+import { Helmet } from "react-helmet";
+import { BiMoon } from "react-icons/bi";
+import { FaListUl } from "react-icons/fa6";
+import { HiOutlineSun } from "react-icons/hi2";
+import { PiCurrencyCircleDollar, PiNoteDuotone } from "react-icons/pi";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const getItem = (label, key, icon, children, type) => {
   return {
@@ -29,9 +33,13 @@ const getItem = (label, key, icon, children, type) => {
 const Layout = () => {
   const [IsActive, setIsActive] = useState(true);
   const [stateOpenKeys, setStateOpenKeys] = useState([""]);
-
+  const [state, dispatch] = useReducer(PortalReducer, { portal: false });
   const navigate = useNavigate();
   const { pathname, origin } = useLocation();
+  const { items } = MenuItems(IsActive, getItem);
+  const { items: InstructorItems } = InstructorMenu(IsActive, getItem);
+  const levelKeys = GetLevelKeys(items);
+
   useEffect(() => {
     if (pathname === "/") {
       navigate("/register/sign-in");
@@ -45,13 +53,12 @@ const Layout = () => {
       navigate("/admin/dashboard");
     }
   }, [pathname]);
-  
+
+  useEffect(() => {
+    dispatch({ type: pathname.split("/")[1], pathname });
+  }, []);
 
   const handleSideBar = () => setIsActive((prev) => !prev);
-
-  const { items } = MenuItems(IsActive, getItem);
-
-  const levelKeys = GetLevelKeys(items);
 
   const onOpenChange = (openKeys) => {
     const currentOpenKey = openKeys.find(
@@ -127,9 +134,19 @@ const Layout = () => {
         <div
           className={`${LayoutStyle["Header__right"]} flex justify-end gap-2.5 items-center`}
         >
-          <Badge count={2} className="mr-5 cursor-pointer">
-            <BellFilled className="w-5 h-5" />
-          </Badge>
+          {state?.portalText === "admin" && (
+            <Badge count={2} className="mr-5 cursor-pointer">
+              <BellFilled className="w-5 h-5" />
+            </Badge>
+          )}
+
+          {state?.portalText === "instructor" && (
+            <Fragment>
+              <IconComponent icon={<PiNoteDuotone />} />
+              <IconComponent icon={<PiCurrencyCircleDollar />} />
+            </Fragment>
+          )}
+
           <div
             className={`${LayoutStyle["Header__mode"]} inline-flex items-center gap-2.5 border-2 border-solid border-indigo-700 rounded-lg py-1 px-2.5`}
           >
@@ -233,7 +250,13 @@ const Layout = () => {
                 openKeys={stateOpenKeys}
                 onOpenChange={onOpenChange}
                 mode="inline"
-                items={items}
+                items={
+                  state?.portalText === "admin"
+                    ? items
+                    : state?.portalText === "instructor"
+                      ? InstructorItems
+                      : null
+                }
               />
             </ConfigProvider>
           </nav>
