@@ -2,30 +2,29 @@ import ButtonComponent from "@/components/button/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Fragment , useContext , useEffect } from 'react'
+import { Fragment, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useLocation , useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from "react-router-dom";
 import NotFoundImage from "../../assets/others/404-image.svg";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import NotfoundStyle from './notfound.module.scss'
+import NotfoundStyle from "./notfound.module.scss";
 
 const Notfound = () => {
   const { colorsObject } = useContext(ColorsContext);
   const navigate = useNavigate();
-  const {pathname} = useLocation()
-  
+  const { pathname } = useLocation();
+
   useEffect(() => {
-    
     if (pathname === "/") {
-      navigate("/register/sign-in");
+      navigate("/register/sign-in", { replace: true });
     }
-    
+
     if (pathname === "/instructor") {
-      navigate("/instructor/dashboard");
+      navigate("/instructor/dashboard", { replace: true });
     }
-    
+
     if (pathname === "/admin") {
-      navigate("/admin/dashboard");
+      navigate("/admin/dashboard", { replace: true });
     }
   }, [pathname]);
 

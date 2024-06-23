@@ -42,15 +42,15 @@ const Layout = () => {
 
   useEffect(() => {
     if (pathname === "/") {
-      navigate("/register/sign-in");
+      navigate("/register/sign-in", { replace: true });
     }
 
     if (pathname === "/instructor") {
-      navigate("/instructor/dashboard");
+      navigate("/instructor/dashboard", { replace: true });
     }
 
     if (pathname === "/admin") {
-      navigate("/admin/dashboard");
+      navigate("/admin/dashboard", { replace: true });
     }
   }, [pathname]);
 
