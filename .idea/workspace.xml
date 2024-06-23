@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bug and remote imports">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed useNavigate">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/hear.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/hear.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/high-school.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/high-school.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/location.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/location.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/vehicles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/vehicles.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/discount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/discount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/exam.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/exam.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/fees.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/miscellaneous.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/miscellaneous.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/packages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/product.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,15 +181,7 @@
       <workItem from="1719055343216" duration="1133000" />
       <workItem from="1719056544791" duration="7443000" />
       <workItem from="1719100901134" duration="5279000" />
-      <workItem from="1719106614736" duration="1274000" />
-    </task>
-    <task id="LOCAL-00005" summary="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling.">
-      <option name="closed" value="true" />
-      <created>1716767392285</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1716767392285</updated>
+      <workItem from="1719106614736" duration="2963000" />
     </task>
     <task id="LOCAL-00006" summary="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling.">
       <option name="closed" value="true" />
@@ -564,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719107285771</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="#fix #jsx Fixed useNavigate">
+      <option name="closed" value="true" />
+      <created>1719108104297</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1719108104297</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,7 +594,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Refactored BigCalendar components to implement dynamic data changes" />
     <MESSAGE value="Ref" />
     <MESSAGE value="Refact" />
     <MESSAGE value="Refactored" />
@@ -608,6 +618,7 @@
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for schedule, and improve UI" />
     <MESSAGE value="#fix #jsx Updated version menu on admin portal and instructor portal." />
     <MESSAGE value="#fix #jsx Fixed bug and remote imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bug and remote imports" />
+    <MESSAGE value="#fix #jsx Fixed useNavigate" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed useNavigate" />
   </component>
 </project>

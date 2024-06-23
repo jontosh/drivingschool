@@ -1,7 +1,12 @@
 import TableComponent from "@/components/table/index.jsx";
+import { useFilterStatus } from "@/hooks/filter.jsx";
+import { ExamModule } from "@/modules/quiz-exam.jsx";
 
-export const Exam = ({ columns, data }) => {
+export const Exam = ({ status, search }) => {
+  const { columns, data } = ExamModule();
+  const { Data } = useFilterStatus({ data, status, search });
+
   return (
-    <TableComponent columns={columns} dataSource={data} pagination={false} />
+    <TableComponent columns={columns} dataSource={Data} pagination={false} />
   );
 };
