@@ -103,7 +103,7 @@ const InstructorProfile = () => {
             valuePropName="fileList"
             getValueFromEvent={normFile}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 max-[950px]:block">
               <Upload
                 listType={"picture-circle"}
                 fileList={fileList}
@@ -129,7 +129,7 @@ const InstructorProfile = () => {
             </div>
           </Form.Item>
 
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-5">
             <div className="space-y-5">
               <Form.Item label={"Staff Type"} name={"staff_type"}>
                 <CustomSelect
