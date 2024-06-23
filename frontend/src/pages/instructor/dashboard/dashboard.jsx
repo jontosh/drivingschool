@@ -47,14 +47,14 @@ const Dashboard = ({ className, children, ...props }) => {
         </Title>
 
         <div className="bg-white rounded-xl px-7 py-5 space-y-5">
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid grid-cols-4 gap-5 max-[1400px]:grid-cols-3 max-[1200px]:grid-cols-2 max-[960px]:grid-cols-1">
             <DrivingItem />
             <DrivingItem />
             <DrivingItem />
             <DrivingItem />
           </div>
 
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-3 gap-5 max-[1400px]:grid-cols-2 max-[900px]:grid-cols-1">
             <div className={"space-y-8"}>
               <div className='space-y-5 border border-[#CED8E5] p-5 rounded-xl'>
                 <div className="flex justify-between items-center gap-4">

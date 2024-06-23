@@ -60,7 +60,7 @@ const Scheduling = () => {
         </div>
 
         <div className="bg-white rounded-xl px-7 py-5 space-y-5">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center max-[900px]:flex-col max-[900px]:space-y-5">
             <Paragraph fontWeightStrong={600}>
               Month :{" "}
               {typeof SelectMonth === "string"
@@ -93,7 +93,7 @@ const Scheduling = () => {
             </div>
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 max-[1350px]:flex-col">
             <aside className={"space-y-5"}>
               <Calendar value={value} onChange={onChange} size={370} />
 
