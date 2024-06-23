@@ -1,21 +1,6 @@
-import { setActiveMenu } from "@/modules/active-nav.jsx";
-import { DollarOutlined } from "@ant-design/icons";
-import { Menu } from "antd";
-import { Fragment } from "react";
-import {
-  AiOutlineApartment,
-  AiOutlineAppstore,
-  AiOutlineMail,
-  AiOutlineReconciliation,
-  AiOutlineSearch,
-  AiOutlineSetting,
-  AiOutlineSolution,
-  AiOutlineTeam,
-  AiOutlineTool,
-} from "react-icons/ai";
+import { AiOutlineAppstore, AiOutlineSolution } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const InstructorMenu = (IsActive, getItem) => {
   const items = [

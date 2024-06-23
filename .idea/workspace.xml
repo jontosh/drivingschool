@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="..">
-      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/portal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/layout/items/instructor-menu.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated version menu on admin portal and instructor portal.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/instructor-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/instructor-menu.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/active-nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/active-nav.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,15 +170,7 @@
       <workItem from="1719055343216" duration="1133000" />
       <workItem from="1719056544791" duration="7443000" />
       <workItem from="1719100901134" duration="5279000" />
-      <workItem from="1719106614736" duration="195000" />
-    </task>
-    <task id="LOCAL-00003" summary="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks.">
-      <option name="closed" value="true" />
-      <created>1716459969047</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1716459969047</updated>
+      <workItem from="1719106614736" duration="620000" />
     </task>
     <task id="LOCAL-00004" summary="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery.">
       <option name="closed" value="true" />
@@ -566,7 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719054766482</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="#fix #jsx Updated version menu on admin portal and instructor portal.">
+      <option name="closed" value="true" />
+      <created>1719106915223</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1719106915223</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +583,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-Calendar" />
     <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-Calendar." />
     <MESSAGE value="#fix #jsx Refactored BigCalendar components to implement dynamic data changes" />
     <MESSAGE value="Ref" />
@@ -610,6 +607,7 @@
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other pages for schedule" />
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for" />
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for schedule, and improve UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update menu links to admin routes and routes for instructor portal, create other pages for schedule, and improve UI" />
+    <MESSAGE value="#fix #jsx Updated version menu on admin portal and instructor portal." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated version menu on admin portal and instructor portal." />
   </component>
 </project>
