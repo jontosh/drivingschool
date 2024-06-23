@@ -83,46 +83,49 @@ const Service = ({ subpage }) => {
         <div className={"px-5 bg-white rounded-3xl"}>
           <div className={"space-x-6 px-5 -mx-5  border-b border-b-gray-400"}>
             <NavLink
-              to={"/management/service/product"}
+              to={"/admin/management/service/product"}
               className={setActiveNav}
             >
               Components (Product)
             </NavLink>
 
-            <NavLink to={"/management/service/fees"} className={setActiveNav}>
+            <NavLink
+              to={"/admin/management/service/fees"}
+              className={setActiveNav}
+            >
               Fees
             </NavLink>
 
             <NavLink
-              to={"/management/service/discounts"}
+              to={"/admin/management/service/discounts"}
               className={setActiveNav}
             >
               Discounts
             </NavLink>
 
             <NavLink
-              to={"/management/service/miscellaneous"}
+              to={"/admin/management/service/miscellaneous"}
               className={setActiveNav}
             >
               Miscellaneous
             </NavLink>
 
             <NavLink
-              to={"/management/service/quiz-exam"}
+              to={"/admin/management/service/quiz-exam"}
               className={setActiveNav}
             >
               Quiz Exam
             </NavLink>
 
             <NavLink
-              to={"/management/service/quiz-report"}
+              to={"/admin/management/service/quiz-report"}
               className={setActiveNav}
             >
               Quiz Report
             </NavLink>
 
             <NavLink
-              to={"/management/service/packages"}
+              to={"/admin/management/service/packages"}
               className={setActiveNav}
             >
               Services (Packages)

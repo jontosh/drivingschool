@@ -51,25 +51,25 @@ const ManagementSpa = ({ page: { subpage } }) => {
           <div className="-mx-5">
             <div className="space-x-7 px-5 border-b border-b-gray-400">
               <NavLink
-                to={"/management/single-page/location"}
+                to={"/admin/management/single-page/location"}
                 className={setActiveNav}
               >
                 Location
               </NavLink>
               <NavLink
-                to={"/management/single-page/high school"}
+                to={"/admin/management/single-page/high school"}
                 className={setActiveNav}
               >
                 High school
               </NavLink>
               <NavLink
-                to={"/management/single-page/how did you hear"}
+                to={"/admin/management/single-page/how did you hear"}
                 className={setActiveNav}
               >
                 How did you hear
               </NavLink>
               <NavLink
-                to={"/management/single-page/vehicles"}
+                to={"/admin/management/single-page/vehicles"}
                 className={setActiveNav}
               >
                 Vehicles
