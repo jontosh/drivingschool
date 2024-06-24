@@ -19,12 +19,16 @@ const Notfound = () => {
       navigate("/register/sign-in", { replace: true });
     }
 
-    if (pathname === "/instructor") {
+    if (pathname === "/instructor" || pathname === "/instructor/") {
       navigate("/instructor/dashboard", { replace: true });
     }
 
-    if (pathname === "/admin") {
+    if (pathname === "/admin" || pathname === "/admin/") {
       navigate("/admin/dashboard", { replace: true });
+    }
+
+    if (pathname === "/student" || pathname === "/student/") {
+      navigate("/student/dashboard", { replace: true });
     }
   }, [pathname]);
 
