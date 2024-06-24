@@ -269,7 +269,6 @@ const Layout = () => {
           <Outlet />
         </article>
       </main>
-      {/* <footer>Footer</footer> */}
     </Fragment>
   );
 };

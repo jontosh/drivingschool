@@ -1,17 +1,26 @@
 import LinksIcon from "@/assets/icons/links.svg";
+import IconComponent from "@/components/icons";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import { DrivingItem } from "@/pages/scheduling/items/items.jsx";
 import { Upload } from "@/pages/students/dashboard/items/upload.jsx";
-import { Statistic } from "antd";
-import { Fragment } from "react";
+import { ConfigProvider, Statistic } from "antd";
+import { Fragment, useContext } from "react";
 import CountUp from "react-countup";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { GiWallet } from "react-icons/gi";
+import ButtonComponent from "@/components/button";
+import ColorsContext from "@/context/colors.jsx";
+import { BiDollar } from "react-icons/bi";
+import { FaDownload, FaFilePdf } from "react-icons/fa6";
+import { IoPrint } from "react-icons/io5";
+import { IoMdEye } from "react-icons/io";
 
 const Dashboard = () => {
-  const formatter = (value) => <CountUp end={value} separator="," />;
+  const { colorsObject } = useContext(ColorsContext);
 
+  const formatter = (value) => <CountUp end={value} separator="," />;
   return (
     <Fragment>
       <Helmet>
@@ -36,7 +45,7 @@ const Dashboard = () => {
 
           <div className="flex items-center justify-between">
             <Title>Upcoming schedule</Title>
-            <Link to={"/"}>View all &#62;</Link>
+            <Link to={"/"} className="text-[#1890FF]">View all &#62;</Link>
           </div>
 
           <div className="grid grid-cols-4 gap-5 max-[1400px]:grid-cols-3 max-[1200px]:grid-cols-2 max-[960px]:grid-cols-1">
@@ -47,31 +56,86 @@ const Dashboard = () => {
           </div>
 
           <div className="grid grid-cols-3 gap-2.5">
-            <div className="border p-5 rounded">
-              <Statistic
-                title="Earning"
-                value={8453.0}
-                prefix={"$"}
-                formatter={formatter}
-                valueStyle={{ fontWeight: 600 }}
-              />
+            <div className="flex flex-col justify-between border p-5 rounded-xl">
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorTextDescription: "#000",
+                    fontSize: 18,
+                  },
+                }}
+              >
+                <Statistic
+                  title="Account Balance"
+                  value={8453.0}
+                  prefix={"$"}
+                  formatter={formatter}
+                  valueStyle={{ fontWeight: 600, fontSize: 35 }}
+                />
+              </ConfigProvider>
 
-              <div>@todo</div>
+              <div className="flex items-center justify-between">
+                <IconComponent
+                  icon={<GiWallet />}
+                  iconWidth={"text-[66px]"}
+                />
+
+                <div className="flex items-center space-x-2">
+                  <Link
+                    className="py-2 px-4 border rounded-[10px]"
+                  >PAY NOW</Link>
+
+                  <IconComponent
+                    icon={<BiDollar />}
+                    iconWidth={"text-xl"}
+                    className={"bg-black text-white rounded-[10px] w-[35px] h-[35px] mb-1"}
+                    iconClass={"pt-2"}
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="border p-5 rounded ">
-              <Title>EZ DRIVE ONLINE COURSE</Title>
-              <Paragraph>
+            <div className="border p-5 rounded-xl space-y-5">
+              <Title fontSize={"text-lg"}>EZ DRIVE ONLINE COURSE</Title>
+              <Paragraph fontSize={"text-base"}>
                 Please contact our customer service if you want to purchase an
                 online course.
               </Paragraph>
-              <Link to={"/"}>LEARN MORE</Link>
+              <Link
+                to={"/"}
+                className="py-2 px-4 border rounded-[10px]"
+              >LEARN MORE</Link>
             </div>
 
-            <div className="border p-5 rounded">
-              <Title>EZ DRIVE ONLINE COURSE</Title>
-              <Paragraph>Student Contract</Paragraph>
-              <div className="">@todo</div>
+            <div className="flex flex-col justify-between border p-5 rounded">
+              <Title fontSize={"text-lg"}>MY FILES</Title>
+              <div className="flex items-center justify-between">
+                <IconComponent
+                  icon={<FaFilePdf />}
+                  className={"bg-black text-white w-10 h-10 rounded-[10px]"}
+                  iconClass={"pt-1.5"}
+                  iconWidth={"text-xl"}
+                />
+
+                <Paragraph fontSize={"text-xs font-semibold"}>Student Contract</Paragraph>
+              </div>
+              <div className="flex justify-between items-center">
+                <IconComponent
+                  icon={<IoPrint />}
+                  className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                  iconWidth={"text-2xl"}
+                />
+                <IconComponent
+                  icon={<IoMdEye />}
+                  className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                  iconWidth={"text-2xl"}
+                />
+                <IconComponent
+                  icon={<FaDownload />}
+                  className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                  iconWidth={"text-2xl"}
+                />
+              </div>
             </div>
 
             <div className="space-y-5 border border-[#CED8E5] p-5 rounded-xl">
@@ -83,26 +147,147 @@ const Dashboard = () => {
                 <Image className={"w-6"} src={LinksIcon} srcSet={LinksIcon} />
               </div>
 
-              <div className={"space-y-5"}>
+              <div className={"grid grid-cols-2 gap-5"}>
                 <Link
                   to={"/"}
                   className={
-                    "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
+                    "w-full rounded-lg text-center bg-[#5459EA] py-2 text-white hover:bg-[#5F66E9CC]"
                   }
                 >
-                  Take attendance
+                  My Profile
                 </Link>
+                <Link
+                  to={"/"}
+                  className={
+                    "w-full rounded-lg text-center bg-[#5459EA] py-2 text-white hover:bg-[#5F66E9CC]"
+                  }
+                >
+                  Contact us
+                </Link>
+                <Link
+                  to={"/"}
+                  className={
+                    "w-full rounded-lg text-center bg-[#5459EA] py-2 text-white hover:bg-[#5F66E9CC]"
+                  }
+                >
+                  Appointments
+                </Link>
+                <Link
+                  to={"/"}
+                  className={
+                    "w-full rounded-lg text-center bg-[#5459EA] py-2 text-white hover:bg-[#5F66E9CC]"
+                  }
+                >
+                  Book lessons
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl">
+              <Title fontSize={"text-base font-semibold"}>SIGN DOCUMENTS</Title>
+              <Paragraph fontSize={"text-sm font-semibold"}>Teens 8hr in car instruction</Paragraph>
+
+              <div className="flex justify-between items-center">
+                <div className="space-x-3">
+                  <IconComponent
+                    icon={<IoPrint />}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                    iconWidth={"text-2xl"}
+                  />
+                  <IconComponent
+                    icon={<IoMdEye />}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                    iconWidth={"text-2xl"}
+                  />
+                </div>
+
+                <Link
+                  to={"/"}
+                  className="bg-[#24C18F] py-2.5 px-5 rounded-[10px]"
+                >SIGN</Link>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-2.5">
             <div className="space-y-5 border rounded-xl p-5">
-              <Title>UPLOAD FILES</Title>
+              <Title fontSize={"text-xl font-semibold"} className={"border-b border-[#CED8E5] pb-5"}>UPLOAD FILES</Title>
+
+              <Paragraph colorText="#9D9D9D" className={"border-b boder-[#9D9D9D] pb-5"}>
+                Click “CHOOSE FILE” below to select an image or to take a picture from your mobile device to upload to the school (jpg, png, or pdf ONLY).
+              </Paragraph>
+
+              <Paragraph colorText="#9D9D9D">
+                After selecting the file, choose the correct category for your image or form from the dropdown menu.
+                <br /><br />
+                Click Upload.
+                <br /><br />
+                (Only jpg, png, and pdf file formats are allowed)
+              </Paragraph>
+
               <Upload />
+
+              <div className="space-x-2.5 text-end border-t border-[#CED8E5] pt-5">
+                <ButtonComponent
+                  defaultBg={colorsObject.main}
+                  defaultColor={colorsObject.black}
+                  defaultHoverColor={colorsObject.black}
+                  defaultBorderColor="#CBCBCB"
+                  borderRadius={8}
+                  paddingInline={20}
+                >
+                  Cancel
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultBg={colorsObject.info}
+                  defaultHoverBg={colorsObject.infoHover}
+                  defaultColor={colorsObject.main}
+                  defaultBorderColor="#CBCBCB"
+                  borderRadius={8}
+                  paddingInline={20}
+                >
+                  Continue
+                </ButtonComponent>
+              </div>
             </div>
+
             <div className="space-y-5 border rounded-xl p-5">
-              <Title>REQUIRED PAPERWORK</Title>
+              <Title fontSize={"text-xl font-semibold"} className={"border-b border-[#E3E3E3] pb-5"}>REQUIRED PAPERWORK</Title>
+
+              <Paragraph colorText="#9D9D9D" className={"border-b border-[#E3E3E3] pb-5"}>
+                Click “CHOOSE FILE” below to select an image or to take a picture from your mobile device to upload to the school (jpg, png, or pdf ONLY).
+              </Paragraph>
+
+              <Paragraph colorText="#9D9D9D" className={"border-b border-[#E3E3E3] pb-5"}>
+                After selecting the file, choose the correct category for your image or form from the dropdown menu.
+                <br /><br />
+                Click Upload.
+                <br /><br />
+                (Only jpg, png, and pdf file formats are allowed)
+              </Paragraph>
+
+              <div className="flex justify-between items-center border-b border-[#E3E3E3] pb-5">
+                <Paragraph>Copy of Permit</Paragraph>
+
+                <ButtonComponent
+                  defaultBg={colorsObject.info}
+                  defaultHoverBg={colorsObject.infoHover}
+                  paddingInline={20}
+                  borderRadius={10}
+                >UPLOAD</ButtonComponent>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <Paragraph>Copy of Permit</Paragraph>
+
+                <ButtonComponent
+                  defaultBg={colorsObject.info}
+                  defaultHoverBg={colorsObject.infoHover}
+                  paddingInline={20}
+                  borderRadius={10}
+                >UPLOAD</ButtonComponent>
+              </div>
             </div>
           </div>
         </div>
