@@ -595,7 +595,6 @@ const Settings = ({ ...props }) => {
       <Form
         form={form}
         onFinish={onFinish}
-        className={"grid grid-cols-3 gap-5"}
         layout={"vertical"}
         initialValues={{
           pass_text: "Hello",
@@ -615,195 +614,197 @@ const Settings = ({ ...props }) => {
           is_timer: false,
         }}
       >
-        <div className="space-y-5">
-          <Form.Item
-            name={"name"}
-            label={"Quiz name"}
-            rules={[
-              {
-                required: true,
-                message: "Quiz name is empty",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Quiz name"} />
-          </Form.Item>
+        <div className={"grid grid-cols-3 gap-5 max-[1300px]:grid-cols-2 max-[1000px]:grid-cols-1"}>
+          <div className="space-y-5">
+            <Form.Item
+              name={"name"}
+              label={"Quiz name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Quiz name is empty",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Quiz name"} />
+            </Form.Item>
 
-          <Form.Item
-            name={"_is_display_name"}
-            label={"Display Quiz Name to Student"}
-          >
-            <Switch />
-          </Form.Item>
+            <Form.Item
+              name={"_is_display_name"}
+              label={"Display Quiz Name to Student"}
+            >
+              <Switch />
+            </Form.Item>
 
-          <Form.Item
-            name={"status"}
-            label={"Status:"}
-            rules={[
-              {
-                required: true,
-                message: "Status is empty",
-              },
-            ]}
-          >
-            <div className="flex items-center gap-3">
-              <CustomSelect
-                placeholder={"Select status"}
-                className={`w-full h-[50px]`}
-                options={StatusSelect}
-                onChange={handleStatus}
+            <Form.Item
+              name={"status"}
+              label={"Status:"}
+              rules={[
+                {
+                  required: true,
+                  message: "Status is empty",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomSelect
+                  placeholder={"Select status"}
+                  className={`w-full h-[50px]`}
+                  options={StatusSelect}
+                  onChange={handleStatus}
+                />
+
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
+
+            <Form.Item
+              name={"questions_displayed_student"}
+              label={"# of Questions Displayed to Student"}
+              rules={[
+                {
+                  required: true,
+                  message: "of Questions Displayed to Student is empty",
+                },
+              ]}
+            >
+              <CustomInput
+                type={"number"}
+                classNames={"w-full"}
+                placeholder={"Of Questions Displayed to Student"}
               />
+            </Form.Item>
 
-              <span>
-                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-              </span>
-            </div>
-          </Form.Item>
+            <Form.Item name={"is_final"} label={"Final Exam"}>
+              <Switch />
+            </Form.Item>
 
-          <Form.Item
-            name={"questions_displayed_student"}
-            label={"# of Questions Displayed to Student"}
-            rules={[
-              {
-                required: true,
-                message: "of Questions Displayed to Student is empty",
-              },
-            ]}
-          >
-            <CustomInput
-              type={"number"}
-              classNames={"w-full"}
-              placeholder={"Of Questions Displayed to Student"}
-            />
-          </Form.Item>
+            <Form.Item
+              name={"is_class_session"}
+              label={"Associate with This Class Session"}
+            >
+              <CustomInput
+                type={"number"}
+                classNames={"w-full"}
+                placeholder={"Associate with This Class Session"}
+              />
+            </Form.Item>
 
-          <Form.Item name={"is_final"} label={"Final Exam"}>
-            <Switch />
-          </Form.Item>
+            <Form.Item name={"pass_text"} label={"Pass Feedback"}>
+              <MDEditor
+                placeholder={"Text"}
+                onChange={handleNotesValue}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+            </Form.Item>
+          </div>
 
-          <Form.Item
-            name={"is_class_session"}
-            label={"Associate with This Class Session"}
-          >
-            <CustomInput
-              type={"number"}
-              classNames={"w-full"}
-              placeholder={"Associate with This Class Session"}
-            />
-          </Form.Item>
+          <div className={"space-y-5"}>
+            <Form.Item
+              name={"is_attendance_required"}
+              label={"Attendance Required for Associated Session only"}
+            >
+              <Switch />
+            </Form.Item>
 
-          <Form.Item name={"pass_text"} label={"Pass Feedback"}>
-            <MDEditor
-              placeholder={"Text"}
-              onChange={handleNotesValue}
-              previewOptions={{
-                rehypePlugins: [[rehypeSanitize]],
-              }}
-            />
-          </Form.Item>
+            <Form.Item
+              name={"is_attendance_Preceding_Associated_required"}
+              label={
+                "Attendance Required for Preceding and Associated CR Sessions"
+              }
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"is_attendance_all_required"}
+              label={"Attendance Required for All Preceding CR Sessions Only"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"is_progress_bar_required"}
+              label={"Display Progress Bar During Quiz"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"is_randomize_required"}
+              label={"Randomize Questions Order"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item name={"is_timer"} label={"Enable Quiz Timer"}>
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              name={"allow_view_complete"}
+              label={"Allow Students to View Completed Quizzes"}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item name={"fall_text"} label={"Fail Feedback"}>
+              <MDEditor
+                placeholder={"Text"}
+                onChange={handleFallText}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item
+              name={"service"}
+              label={"Associate with Service"}
+              rules={[
+                {
+                  required: true,
+                  message: "Associate with Service is empty",
+                },
+              ]}
+            >
+              <CustomSelect
+                mode="multiple"
+                placeholder="Please select"
+                onChange={handleService}
+                options={StatusSelect}
+                className={"w-full h-[50px]"}
+              />
+            </Form.Item>
+            <Form.Item name={"cr"} label={"Associate with CR Service"}>
+              <CustomSelect
+                mode="multiple"
+                placeholder="Please select"
+                onChange={handleCR}
+                options={StatusSelect}
+                className={"w-full h-[50px]"}
+              />
+            </Form.Item>
+
+            <Form.Item name={"welcome_text"} label={"Welcome Text"}>
+              <MDEditor
+                placeholder={"Text"}
+                onChange={handleWelcomeText}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+              />
+            </Form.Item>
+          </div>
         </div>
 
-        <div className={"space-y-5"}>
-          <Form.Item
-            name={"is_attendance_required"}
-            label={"Attendance Required for Associated Session only"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"is_attendance_Preceding_Associated_required"}
-            label={
-              "Attendance Required for Preceding and Associated CR Sessions"
-            }
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"is_attendance_all_required"}
-            label={"Attendance Required for All Preceding CR Sessions Only"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"is_progress_bar_required"}
-            label={"Display Progress Bar During Quiz"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"is_randomize_required"}
-            label={"Randomize Questions Order"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item name={"is_timer"} label={"Enable Quiz Timer"}>
-            <Switch />
-          </Form.Item>
-
-          <Form.Item
-            name={"allow_view_complete"}
-            label={"Allow Students to View Completed Quizzes"}
-          >
-            <Switch />
-          </Form.Item>
-
-          <Form.Item name={"fall_text"} label={"Fail Feedback"}>
-            <MDEditor
-              placeholder={"Text"}
-              onChange={handleFallText}
-              previewOptions={{
-                rehypePlugins: [[rehypeSanitize]],
-              }}
-            />
-          </Form.Item>
-        </div>
-
-        <div className="space-y-5">
-          <Form.Item
-            name={"service"}
-            label={"Associate with Service"}
-            rules={[
-              {
-                required: true,
-                message: "Associate with Service is empty",
-              },
-            ]}
-          >
-            <CustomSelect
-              mode="multiple"
-              placeholder="Please select"
-              onChange={handleService}
-              options={StatusSelect}
-              className={"w-full h-[50px]"}
-            />
-          </Form.Item>
-          <Form.Item name={"cr"} label={"Associate with CR Service"}>
-            <CustomSelect
-              mode="multiple"
-              placeholder="Please select"
-              onChange={handleCR}
-              options={StatusSelect}
-              className={"w-full h-[50px]"}
-            />
-          </Form.Item>
-
-          <Form.Item name={"welcome_text"} label={"Welcome Text"}>
-            <MDEditor
-              placeholder={"Text"}
-              onChange={handleWelcomeText}
-              previewOptions={{
-                rehypePlugins: [[rehypeSanitize]],
-              }}
-            />
-          </Form.Item>
-        </div>
-
-        <Form.Item>
+        <Form.Item className="text-center pt-7">
           <ButtonComponent
             defaultBg={colorsObject.success}
             defaultHoverBg={colorsObject.successHover}
@@ -831,7 +832,7 @@ const MultipleChoice = ({ form, ...props }) => {
 
   return (
     <Fragment>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 max-[1150px]:grid-cols-1">
         <div className="space-y-5">
           <Form.Item name={"note"} label={"Notes"} className="w-full">
             <MDEditor
@@ -1016,7 +1017,7 @@ const TrueFalse = ({ form, ...props }) => {
 
   return (
     <Fragment>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 max-[1150px]:grid-cols-1">
         <div className="space-y-5">
           <Form.Item name={"note"} label={"Notes"} className="w-full">
             <MDEditor
@@ -1189,7 +1190,7 @@ const Category = ({ form, ...props }) => {
 
   return (
     <Fragment>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 max-[1150px]:grid-cols-1">
         <div className="space-y-5">
           <Form.Item name={"note"} label={"Notes"} className="w-full">
             <MDEditor
@@ -1376,7 +1377,7 @@ const Preview = ({ form, ...props }) => {
       >
         {({ values, errors, handleChange, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <div className="flex gap-10">
+            <div className="flex gap-10 max-[1100px]:flex-col">
               <div className="w-auto space-y-5">
                 <Title fontSize={"text-2xl"} fontWeightStrong={400}>
                   Quiz Title
@@ -1601,7 +1602,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => {}, 1000);
+    setTimeout(() => { }, 1000);
   };
 
   return (
@@ -1630,7 +1631,7 @@ const AddNewTest = () => {
         >
           {({ getFieldValue }) =>
             QuestionType[getFieldValue("type") - 1]?.id ===
-            getFieldValue("type")
+              getFieldValue("type")
               ? AddQuizArrays[getFieldValue("type") - 1]
               : null
           }

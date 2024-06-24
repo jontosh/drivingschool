@@ -170,7 +170,7 @@ export const ProductModalContent = () => {
           location: 0,
         }}
       >
-        <div className={"px-5 grid grid-cols-2 gap-5"}>
+        <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
           <Form.Item
             name={"name"}
             label={"Component Name:"}
@@ -320,7 +320,7 @@ export const ProductModalContent = () => {
           {({ getFieldValue }) =>
             getFieldValue("type_component") === "BTW" ? (
               <Fragment>
-                <div className={"px-5 grid grid-cols-2 gap-5"}>
+                <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
                   <Form.Item
                     name={"driving_hours"}
                     label={"Driving Time:"}
@@ -414,7 +414,7 @@ export const ProductModalContent = () => {
                     <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
                   </span>
                 </div>
-                <div className={"px-5 grid grid-cols-2 gap-5"}>
+                <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
                   <Form.Item name={"enrolment_size"} label={"Enrollment Size:"}>
                     <CustomInput
                       classNames={"w-full"}
@@ -439,7 +439,7 @@ export const ProductModalContent = () => {
                     <Switch />
                   </Form.Item>
                 </div>
-                <div className={"px-5 grid grid-cols-2 gap-5"}>
+                <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
                   <Form.Item name={"location"} label={"Location:"}>
                     <div className="flex items-center gap-3">
                       <CustomSelect
@@ -583,7 +583,7 @@ export const ProductModalContent = () => {
             ) : getFieldValue("subtype_web") === "EZ DRIVE" &&
               getFieldValue("type_component") === "WEB" ? (
               <Fragment>
-                <div className="flex items-center gap-3 px-5 my-5">
+                <div className="flex items-center gap-3 px-5 my-5 max-[1000px]:grid-cols-1">
                   <Form.Item
                     name={"ez_drive_product"}
                     label={"EZ Drive Product:"}
@@ -614,34 +614,35 @@ export const ProductModalContent = () => {
             ) : getFieldValue("subtype_web") === "SAFEWAY LMS" &&
               getFieldValue("type_component") === "WEB" ? (
               <Fragment>
-                <Form.Item
-                  name={"safeway_audience"}
-                  label={"Safeway LMS Audience:"}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <CustomSelect
-                    placeholder={"EZ Drive Product"}
-                    className={`w-full h-[50px]`}
-                    options={StatusSelect}
-                    colorBorder={colorsObject.black}
-                    onChange={handleSafewayAudience}
-                  />
-                </Form.Item>
+                <div className="px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
+                  <Form.Item
+                    name={"safeway_audience"}
+                    label={"Safeway LMS Audience:"}
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <CustomSelect
+                      placeholder={"EZ Drive Product"}
+                      className={`w-full h-[50px]`}
+                      options={StatusSelect}
+                      onChange={handleSafewayAudience}
+                    />
+                  </Form.Item>
 
-                <Form.Item
-                  name={"duration"}
-                  label={"Duration"}
-                  getValueProps={(value) => ({
-                    value: value && dayjs(Number(value)),
-                  })}
-                  normalize={(value) => value && `${dayjs(value).valueOf()}`}
-                >
-                  <DatePicker />
-                </Form.Item>
+                  <Form.Item
+                    name={"duration"}
+                    label={"Duration"}
+                    getValueProps={(value) => ({
+                      value: value && dayjs(Number(value)),
+                    })}
+                    normalize={(value) => value && `${dayjs(value).valueOf()}`}
+                  >
+                    <DatePicker className="w-full h-[50px] border-[#667085]" />
+                  </Form.Item>
+                </div>
               </Fragment>
             ) : null
           }
@@ -1415,7 +1416,7 @@ export const AddServiceModalContent = () => {
         onFinish={onFinish}
         layout={"vertical"}
       >
-        <div className="grid grid-cols-2 gap-x-10 px-5">
+        <div className="grid grid-cols-2 gap-x-10 px-5 max-[1200px]:grid-cols-1">
           <div className={"space-y-5"}>
             <Form.Item
               label={"Service Name"}
@@ -1753,115 +1754,116 @@ export const FileCategoryModalContent = () => {
           note: "",
           signature: "",
         }}
-        className="px-5 grid grid-cols-2 gap-5"
         onFinish={onFinish}
         layout={"vertical"}
       >
-        <div className="space-y-5">
-          <Form.Item
-            name={"name"}
-            label={"Category name"}
-            rules={[
-              {
-                required: true,
-                message: "Category name is empty",
-              },
-            ]}
-          >
-            <CustomInput
-              disabled={isLoading}
-              classNames={"w-full"}
-              placeholder={"Category name"}
-            />
-          </Form.Item>
-
-          <Form.Item
-            name={"status"}
-            label={"Status"}
-            rules={[
-              {
-                required: true,
-                message: "Status is empty",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Select status"}
-              className={`w-full h-[50px] rounded`}
-              options={StatusSelect}
-              onChange={handleStatus}
-              disabled={isLoading}
-            />
-          </Form.Item>
-
-          <Form.Item name={"signature"} label={"Signature link:"}>
-            <CustomInput
-              type={"url"}
-              classNames={"w-full"}
-              placeholder={"Link"}
-              disabled={isLoading}
-            />
-          </Form.Item>
-
-          <Form.Item name={"note"} label={"Note"}>
-            <Input.TextArea
-              showCount
-              maxLength={100}
-              className={"border-[#667085] p-5"}
-              placeholder={"Notes"}
-              disabled={isLoading}
-            />
-          </Form.Item>
-        </div>
-
-        <div className="space-y-5">
-          <Form.Item name={"package"} label={"Packages:"}>
-            <CustomTransfer
-              dataSource={PackagesMock}
-              listHeight={200}
-              setSelectedKeys={setPackages}
-              selectedKeys={Packages}
-              disabled={isLoading}
-            />
-          </Form.Item>
-
-          <div className="grid grid-cols-2 gap-5">
+        <div className="px-5 grid grid-cols-2 gap-5 max-[1150px]:grid-cols-1">
+          <div className="space-y-5">
             <Form.Item
-              label={"Display on Student Portal:"}
-              valuePropName="checked"
-              name={"has_portal"}
-              className="min-w-[215px]"
+              name={"name"}
+              label={"Category name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Category name is empty",
+                },
+              ]}
             >
-              <Switch />
+              <CustomInput
+                disabled={isLoading}
+                classNames={"w-full"}
+                placeholder={"Category name"}
+              />
             </Form.Item>
+
             <Form.Item
-              label={"Must Be Uploaded to Student Account:"}
-              valuePropName="checked"
-              name={"has_student_account"}
-              className="min-w-[215px]"
+              name={"status"}
+              label={"Status"}
+              rules={[
+                {
+                  required: true,
+                  message: "Status is empty",
+                },
+              ]}
             >
-              <Switch />
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-full h-[50px] rounded`}
+                options={StatusSelect}
+                onChange={handleStatus}
+                disabled={isLoading}
+              />
             </Form.Item>
-            <Form.Item
-              label={
-                "Disallow files associated with category from displaying on Student Portal:"
-              }
-              valuePropName="checked"
-              name={"has_category_portal"}
-              className="min-w-[215px]"
-            >
-              <Switch />
+
+            <Form.Item name={"signature"} label={"Signature link:"}>
+              <CustomInput
+                type={"url"}
+                classNames={"w-full"}
+                placeholder={"Link"}
+                disabled={isLoading}
+              />
             </Form.Item>
-            <Form.Item
-              label={
-                "Disallow files associated with this category  from displaying on Instructor/Teacher Portal:"
-              }
-              valuePropName="checked"
-              name={"has_teacher_portal"}
-              className="min-w-[215px]"
-            >
-              <Switch />
+
+            <Form.Item name={"note"} label={"Note"}>
+              <Input.TextArea
+                showCount
+                maxLength={100}
+                className={"border-[#667085] p-5"}
+                placeholder={"Notes"}
+                disabled={isLoading}
+              />
             </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item name={"package"} label={"Packages:"}>
+              <CustomTransfer
+                dataSource={PackagesMock}
+                listHeight={200}
+                setSelectedKeys={setPackages}
+                selectedKeys={Packages}
+                disabled={isLoading}
+              />
+            </Form.Item>
+
+            <div className="grid grid-cols-2 gap-5">
+              <Form.Item
+                label={"Display on Student Portal:"}
+                valuePropName="checked"
+                name={"has_portal"}
+                className="max-w-[250px]"
+              >
+                <Switch />
+              </Form.Item>
+              <Form.Item
+                label={"Must Be Uploaded to Student Account:"}
+                valuePropName="checked"
+                name={"has_student_account"}
+                className="max-w-[250px]"
+              >
+                <Switch />
+              </Form.Item>
+              <Form.Item
+                label={
+                  "Disallow files associated with category from displaying on Student Portal:"
+                }
+                valuePropName="checked"
+                name={"has_category_portal"}
+                className="max-w-[250px]"
+              >
+                <Switch />
+              </Form.Item>
+              <Form.Item
+                label={
+                  "Disallow files associated with this category  from displaying on Instructor/Teacher Portal:"
+                }
+                valuePropName="checked"
+                name={"has_teacher_portal"}
+                className="max-w-[250px]"
+              >
+                <Switch />
+              </Form.Item>
+            </div>
           </div>
         </div>
 
@@ -2017,7 +2019,7 @@ export const AddStaffModalContent = () => {
         onFinish={onFinish}
         layout={"vertical"}
       >
-        <div className={"grid grid-cols-2 gap-5 px-5"}>
+        <div className={"grid grid-cols-2 gap-5 px-5 max-[1000px]:grid-cols-1"}>
           <div className={"space-y-5"}>
             <Form.Item name={"status"} label={"Status"}>
               <CustomSelect
@@ -2589,7 +2591,7 @@ export const LocationModalContent = () => {
           color: "#1677FF",
         }}
       >
-        <div className={"grid grid-cols-2 gap-5 px-5"}>
+        <div className={"grid grid-cols-2 gap-5 px-5 max-[1000px]:grid-cols-1"}>
           <div className="space-y-5">
             <Form.Item
               label={"Location name"}
@@ -2651,7 +2653,7 @@ export const LocationModalContent = () => {
                 },
               ]}
             >
-              <div className="grid grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-3 gap-2.5 max-[1410px]:grid-cols-2">
                 <CustomRadio
                   className={"space-x-2.5 "}
                   classNames={"inline-flex items-center gap-2.5"}
@@ -3000,7 +3002,7 @@ export const AddSchoolModalContent = () => {
         onFinish={onFinish}
         layout={"vertical"}
       >
-        <div className={"px-5 grid grid-cols-2 gap-5"}>
+        <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
           <div className="space-y-5">
             <Form.Item
               name={"name"}
@@ -3191,61 +3193,62 @@ export const HowHearModalContent = () => {
       <Form
         onFinish={onFinish}
         form={form}
-        className={"grid grid-cols-2 gap-5 px-5"}
         layout={"vertical"}
       >
-        <div className="space-y-5">
-          <Form.Item
-            name={"name"}
-            label={"Lead Name"}
-            rules={[
-              {
-                required: true,
-                message: "Lead name is empty",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Lead Name"} />
-          </Form.Item>
+        <div className={"grid grid-cols-2 gap-5 px-5 max-[1000px]:grid-cols-1"}>
+          <div className="space-y-5">
+            <Form.Item
+              name={"name"}
+              label={"Lead Name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Lead name is empty",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Lead Name"} />
+            </Form.Item>
 
-          <Form.Item
-            name={"status"}
-            label={"Lead Status"}
-            rules={[
-              {
-                required: true,
-                message: "Status is empty",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"Select status"}
-              className={`w-full h-[50px]`}
-              options={StatusSelect}
-              onChange={handleStatus}
+            <Form.Item
+              name={"status"}
+              label={"Lead Status"}
+              rules={[
+                {
+                  required: true,
+                  message: "Status is empty",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"Select status"}
+                className={`w-full h-[50px]`}
+                options={StatusSelect}
+                onChange={handleStatus}
+              />
+            </Form.Item>
+
+            <Form.Item name={"code"} label={"Lead Code"}>
+              <InputNumber
+                placeholder={"Code"}
+                className={"border-[#667085] w-full h-[50px] py-2.5"}
+              />
+            </Form.Item>
+
+            <Form.Item name={"expiration"} label={"Expiration"}>
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            </Form.Item>
+          </div>
+
+          <Form.Item name={"notes"} label={"Notes"}>
+            <Input.TextArea
+              showCount
+              maxLength={500}
+              className={"border-[#667085]"}
+              placeholder={"Notes"}
             />
-          </Form.Item>
-
-          <Form.Item name={"code"} label={"Lead Code"}>
-            <InputNumber
-              placeholder={"Code"}
-              className={"border-black w-full h-[50px]"}
-            />
-          </Form.Item>
-
-          <Form.Item name={"expiration"} label={"Expiration"}>
-            <DatePicker className={"w-full h-[50px] border-black"} />
           </Form.Item>
         </div>
-
-        <Form.Item name={"notes"} label={"Notes"}>
-          <Input.TextArea
-            showCount
-            maxLength={500}
-            className={"border-black"}
-            placeholder={"Notes"}
-          />
-        </Form.Item>
 
         <div className="text-center space-x-5 pt-10">
           <ButtonComponent
@@ -3390,7 +3393,7 @@ export const VehiclesModalContent = () => {
           color: "#1677ff",
         }}
       >
-        <div className={"grid grid-cols-2 gap-5 px-5"}>
+        <div className={"grid grid-cols-2 gap-5 px-5 max-[1000px]:grid-cols-1"}>
           <div className="space-y-5">
             <Form.Item
               name={"name"}

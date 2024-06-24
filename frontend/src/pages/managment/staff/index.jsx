@@ -79,7 +79,7 @@ const Staff = () => {
                 paddingInline={26}
                 borderRadius={5}
                 className={"inline-flex items-center"}
-                href={"/modals/staff/add-staff"}
+                href={"/admin/modals/staff/add-staff"}
               >
                 Add new
               </ButtonComponent>

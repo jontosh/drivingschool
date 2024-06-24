@@ -167,7 +167,7 @@ const Service = ({ subpage }) => {
                       paddingInline={26}
                       borderRadius={5}
                       className={"inline-flex items-center"}
-                      href={`/modals/management-service/${subpage}`}
+                      href={`/admin/modals/management-service/${subpage}`}
                     >
                       Add new
                     </ButtonComponent>
