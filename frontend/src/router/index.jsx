@@ -24,6 +24,7 @@ import Student from "@/pages/student/index.jsx";
 import StudentSpa from "@/pages/student/student-spa.jsx";
 import { default as InstructorDashboard } from "@/pages/instructor/dashboard/dashboard.jsx";
 import { default as InstructorScheduling } from "@/pages/instructor/scheduling";
+import { default as StudentDashboard } from "@/pages/students/dashboard";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -176,6 +177,16 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <InstructorProfile />,
+      },
+    ],
+  },
+  {
+    path: "student",
+    element: <Layout />,
+    children: [
+      {
+        path: "dashboard",
+        element: <StudentDashboard />,
       },
     ],
   },

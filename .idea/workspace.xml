@@ -5,20 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed useNavigate">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/dashboard/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/dashboard/items/upload.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/hear.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/hear.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/high-school.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/high-school.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/location.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/location.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/vehicles.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/management-spa/vehicles.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/discount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/discount.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/exam.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/exam.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/fees.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/miscellaneous.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/miscellaneous.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/packages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/packages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/instructor/dashboard/items/upload.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/instructor/dashboard/items/upload.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,26 +51,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;teacher__portal&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/package.json&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "student__portal",
+    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool/frontend/package.json",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/pages/instructor/dashboard" />
