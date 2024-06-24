@@ -109,7 +109,7 @@ const ManagementSpa = ({ page: { subpage } }) => {
                   paddingInline={26}
                   borderRadius={5}
                   className={"inline-flex items-center"}
-                  href={`/modals/management/${subpage}`}
+                  href={`/admin/modals/management/${subpage}`}
                 >
                   Add new
                 </ButtonComponent>
