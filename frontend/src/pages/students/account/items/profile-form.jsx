@@ -13,6 +13,7 @@ import { Form, DatePicker, Input } from "antd";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MdLockReset } from "react-icons/md";
+import { FiHelpCircle } from "react-icons/fi";
 
 export const ProfileForm = () => {
   const { data: LocationData } = useRequestGetQuery({
@@ -72,269 +73,357 @@ export const ProfileForm = () => {
       <Form
         form={form}
         onFinish={onFinish}
-        className="grid grid-cols-2 max-lg:grid-cols-1 gap-5"
         layout={"vertical"}
       >
-        <div className="space-y-5">
-          <Form.Item label={"Assign to Staff"} name={"staff"}>
-            <CustomSelect
-              placeholder={"Assign to Staff"}
-              className={"h-[50px]"}
-              options={Instructor}
-            />
-          </Form.Item>
+        <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-5">
+          <div className="space-y-5">
+            <Form.Item label={"Assign to Staff"} name={"staff"}>
+              <div className="flex items-center gap-3">
+                <CustomSelect
+                  placeholder={"Assign to Staff"}
+                  className={"h-[50px]"}
+                  options={Instructor}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item label={"Location"} name={"location"}>
-            <CustomSelect
-              placeholder={"Location"}
-              className={"h-[50px]"}
-              options={Location}
-            />
-          </Form.Item>
+            <Form.Item label={"Location"} name={"location"}>
+              <div className="flex items-center gap-3">
+                <CustomSelect
+                  placeholder={"Location"}
+                  className={"h-[50px]"}
+                  options={Location}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"First name"}
-            name={"first_name"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your first name!",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"First name"} />
-          </Form.Item>
+            <Form.Item
+              label={"First name"}
+              name={"first_name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your first name!",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"First name"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item label={"Middle name"} name={"mid_name"}>
-            <CustomInput classNames={"w-full"} placeholder={"Middle name"} />
-          </Form.Item>
+            <Form.Item label={"Middle name"} name={"mid_name"}>
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"Middle name"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"Last name"}
-            name={"last_name"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your first name!",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Last name"} />
-          </Form.Item>
+            <Form.Item
+              label={"Last name"}
+              name={"last_name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your first name!",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"Last name"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"Address"}
-            name={"address"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your address!",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Address"} />
-          </Form.Item>
+            <Form.Item
+              label={"Address"}
+              name={"address"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your address!",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"Address"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"City"}
-            name={"city"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your city!",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"City"} />
-          </Form.Item>
+            <Form.Item
+              label={"City"}
+              name={"city"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your city!",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"City"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"State"}
-            name={"state"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your state!",
-              },
-            ]}
-          >
-            <CustomSelect
-              placeholder={"State"}
-              className={"h-[50px]"}
-              options={[{ value: "USA", label: "USA" }]}
-            />
-          </Form.Item>
+            <Form.Item
+              label={"State"}
+              name={"state"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your state!",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomSelect
+                  placeholder={"State"}
+                  className={"h-[50px]"}
+                  options={[{ value: "USA", label: "USA" }]}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item label={"Zip Code"} name={"zip"}>
-            <CustomInput classNames={"w-full"} placeholder={"Zip"} />
-          </Form.Item>
+            <Form.Item label={"Zip Code"} name={"zip"}>
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"Zip"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item label={"Home phone"} name={"home_phone"}>
-            <CustomInput classNames={"w-full"} placeholder={"phone number"} />
-          </Form.Item>
+            <Form.Item label={"Home phone"} name={"home_phone"}>
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"phone number"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"Cell Phone"}
-            name={"cell_phone"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your cell phone!",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"phone"} />
-          </Form.Item>
+            <Form.Item
+              label={"Cell Phone"}
+              name={"cell_phone"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your cell phone!",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"phone"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
 
-          <Form.Item
-            label={"Email"}
-            name={"email"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your email!",
-                type: "email",
-              },
-            ]}
-          >
-            <CustomInput
-              type={"email"}
-              classNames={"w-full"}
-              placeholder={"email"}
-            />
-          </Form.Item>
+            <Form.Item
+              label={"Email"}
+              name={"email"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your email!",
+                  type: "email",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput
+                  type={"email"}
+                  classNames={"w-full"}
+                  placeholder={"email"}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item
+              label={"Birth"}
+              name={"birth"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your birth!",
+                },
+              ]}
+            >
+              <DatePicker className="w-full h-[50px] border-[#667085]" />
+            </Form.Item>
+
+            <Form.Item
+              label={"Gender"}
+              name={"gender"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select gender!",
+                },
+              ]}
+            >
+              <div>
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Male`}
+                  name={"gender"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>Male</span>
+                </CustomRadio>
+
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Female`}
+                  name={"gender"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>Female</span>
+                </CustomRadio>
+
+                <CustomRadio
+                  className={"space-x-2.5 "}
+                  classNames={"inline-flex items-center gap-2.5"}
+                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+                  value={`Other`}
+                  name={"gender"}
+                >
+                  <span className={"text-sm flex-shrink-0 w-32"}>Other</span>
+                </CustomRadio>
+              </div>
+            </Form.Item>
+
+            <Form.Item label={"Emergency Contact Name"} name={"emergency_name"}>
+              <div className="flex items-center gap-3">
+                <CustomInput
+                  classNames={"w-full"}
+                  placeholder={"Emergency Contact Name"}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
+
+            <Form.Item label={"Emergency Contact Phone"} name={"emergency_phone"}>
+              <div className="flex items-center gap-3">
+                <CustomInput
+                  classNames={"w-full"}
+                  placeholder={"Emergency Contact Phone"}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
+
+            <Form.Item
+              label={"Emergency Contact Relation"}
+              name={"emergency_relation"}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput
+                  classNames={"w-full"}
+                  placeholder={"Emergency Contact Relation"}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
+
+            <Form.Item label={"Permit#"} name={"dl_permit"}>
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"Permit"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
+
+            <Form.Item label={"Permit Issued Date"} name={"car_permit_data"}>
+              <DatePicker className="w-full h-[50px] border-[#667085]" />
+            </Form.Item>
+
+            <Form.Item
+              label={"Permit Expiration Date"}
+              name={"car_permit_expire"}
+            >
+              <DatePicker className="w-full h-[50px] border-[#667085]" />
+            </Form.Item>
+
+            <Form.Item
+              label={"User Name"}
+              name={"username"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your username!",
+                },
+              ]}
+            >
+              <div className="flex items-center gap-3">
+                <CustomInput classNames={"w-full"} placeholder={"Username"} />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
+            </Form.Item>
+
+            <ButtonComponent
+              type={"button"}
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              borderRadius={5}
+              paddingInline={44}
+              onClick={handleOpen}
+            >
+              FILTER STUDENTS
+            </ButtonComponent>
+          </div>
         </div>
 
-        <div className="space-y-5">
-          <Form.Item
-            label={"Birth"}
-            name={"birth"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your birth!",
-              },
-            ]}
-          >
-            <DatePicker className="w-full h-[50px] border-[#667085]" />
-          </Form.Item>
-
-          <Form.Item
-            label={"Gender"}
-            name={"gender"}
-            rules={[
-              {
-                required: true,
-                message: "Please select gender!",
-              },
-            ]}
-          >
-            <div>
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Male`}
-                name={"gender"}
-              >
-                <span className={"text-sm flex-shrink-0 w-32"}>Male</span>
-              </CustomRadio>
-
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Female`}
-                name={"gender"}
-              >
-                <span className={"text-sm flex-shrink-0 w-32"}>Female</span>
-              </CustomRadio>
-
-              <CustomRadio
-                className={"space-x-2.5 "}
-                classNames={"inline-flex items-center gap-2.5"}
-                customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                value={`Other`}
-                name={"gender"}
-              >
-                <span className={"text-sm flex-shrink-0 w-32"}>Other</span>
-              </CustomRadio>
-            </div>
-          </Form.Item>
-
-          <Form.Item label={"Emergency Contact Name"} name={"emergency_name"}>
-            <CustomInput
-              classNames={"w-full"}
-              placeholder={"Emergency Contact Name"}
-            />
-          </Form.Item>
-
-          <Form.Item label={"Emergency Contact Phone"} name={"emergency_phone"}>
-            <CustomInput
-              classNames={"w-full"}
-              placeholder={"Emergency Contact Phone"}
-            />
-          </Form.Item>
-
-          <Form.Item
-            label={"Emergency Contact Relation"}
-            name={"emergency_relation"}
-          >
-            <CustomInput
-              classNames={"w-full"}
-              placeholder={"Emergency Contact Relation"}
-            />
-          </Form.Item>
-
-          <Form.Item label={"Permit#"} name={"dl_permit"}>
-            <CustomInput classNames={"w-full"} placeholder={"Permit"} />
-          </Form.Item>
-
-          <Form.Item label={"Permit Issued Date"} name={"car_permit_data"}>
-            <DatePicker className="w-full h-[50px] border-[#667085]" />
-          </Form.Item>
-
-          <Form.Item
-            label={"Permit Expiration Date"}
-            name={"car_permit_expire"}
-          >
-            <DatePicker className="w-full h-[50px] border-[#667085]" />
-          </Form.Item>
-
-          <Form.Item
-            label={"User Name"}
-            name={"username"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your username!",
-              },
-            ]}
-          >
-            <CustomInput classNames={"w-full"} placeholder={"Username"} />
-          </Form.Item>
-
+        <div className="text-center pt-10">
           <ButtonComponent
-            type={"button"}
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
+            type={"submit"}
+            defaultBg={colorsObject.secondary}
+            defaultHoverBg={colorsObject.secondaryHover}
             borderRadius={5}
             paddingInline={44}
-            onClick={handleOpen}
           >
-            RESET PASSWORD
+            UPDATE
           </ButtonComponent>
         </div>
-
-        <ButtonComponent
-          type={"submit"}
-          defaultBg={colorsObject.secondary}
-          defaultHoverBg={colorsObject.secondaryHover}
-          borderRadius={5}
-          paddingInline={44}
-        >
-          UPDATE
-        </ButtonComponent>
       </Form>
 
       {IsOpen && (

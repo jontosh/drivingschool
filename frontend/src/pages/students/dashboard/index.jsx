@@ -55,7 +55,7 @@ const Dashboard = () => {
             <DrivingItem />
           </div>
 
-          <div className="grid grid-cols-3 gap-2.5">
+          <div className="grid grid-cols-3 gap-2.5 max-[1250px]:grid-cols-2 max-[1000px]:grid-cols-1">
             <div className="flex flex-col justify-between border p-5 rounded-xl">
               <ConfigProvider
                 theme={{
@@ -82,14 +82,14 @@ const Dashboard = () => {
 
                 <div className="flex items-center space-x-2">
                   <Link
-                    className="py-2 px-4 border rounded-[10px]"
+                    className="py-2 px-4 border rounded-xl"
                   >PAY NOW</Link>
 
                   <IconComponent
                     icon={<BiDollar />}
                     iconWidth={"text-xl"}
-                    className={"bg-black text-white rounded-[10px] w-[35px] h-[35px] mb-1"}
-                    iconClass={"pt-2"}
+                    className={"bg-black text-white rounded-xl w-[35px] h-[35px] mb-1"}
+                    iconClass={"pt-1.5"}
                   />
                 </div>
               </div>
@@ -103,16 +103,16 @@ const Dashboard = () => {
               </Paragraph>
               <Link
                 to={"/"}
-                className="py-2 px-4 border rounded-[10px]"
+                className="py-2 px-4 border rounded-xl"
               >LEARN MORE</Link>
             </div>
 
-            <div className="flex flex-col justify-between border p-5 rounded">
+            <div className="max-w-60 flex flex-col justify-between border p-5 rounded-xl max-xl:gap-5">
               <Title fontSize={"text-lg"}>MY FILES</Title>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between ">
                 <IconComponent
                   icon={<FaFilePdf />}
-                  className={"bg-black text-white w-10 h-10 rounded-[10px]"}
+                  className={"bg-black text-white w-10 h-10 rounded-xl"}
                   iconClass={"pt-1.5"}
                   iconWidth={"text-xl"}
                 />
@@ -122,18 +122,21 @@ const Dashboard = () => {
               <div className="flex justify-between items-center">
                 <IconComponent
                   icon={<IoPrint />}
-                  className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                  className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
                   iconWidth={"text-2xl"}
+                  iconClass={"pt-1.5"}
                 />
                 <IconComponent
                   icon={<IoMdEye />}
-                  className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                  className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
                   iconWidth={"text-2xl"}
+                  iconClass={"pt-1.5"}
                 />
                 <IconComponent
                   icon={<FaDownload />}
-                  className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
-                  iconWidth={"text-2xl"}
+                  className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
+                  iconWidth={"text-xl"}
+                  iconClass={"pt-1.5"}
                 />
               </div>
             </div>
@@ -191,25 +194,27 @@ const Dashboard = () => {
                 <div className="space-x-3">
                   <IconComponent
                     icon={<IoPrint />}
-                    className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
                     iconWidth={"text-2xl"}
+                    iconClass={"pt-1.5"}
                   />
                   <IconComponent
                     icon={<IoMdEye />}
-                    className={"bg-[#ECECEC] w-10 h-10 rounded-[10px]"}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
                     iconWidth={"text-2xl"}
+                    iconClass={"pt-1.5"}
                   />
                 </div>
 
                 <Link
                   to={"/"}
-                  className="bg-[#24C18F] py-2.5 px-5 rounded-[10px]"
+                  className="bg-[#24C18F] py-2.5 px-5 rounded-xl"
                 >SIGN</Link>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2.5">
+          <div className="grid grid-cols-2 gap-2.5 max-[1000px]:grid-cols-1">
             <div className="space-y-5 border rounded-xl p-5">
               <Title fontSize={"text-xl font-semibold"} className={"border-b border-[#CED8E5] pb-5"}>UPLOAD FILES</Title>
 
