@@ -135,7 +135,7 @@ export const CustomSelect = ({
   colorTextPlaceholder,
   ...props
 }) => {
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
@@ -156,7 +156,7 @@ export const CustomSelect = ({
               colorBorder,
               selectorBg,
               colorText,
-              colorTextPlaceholder
+              colorTextPlaceholder,
             },
           },
         }}
@@ -373,7 +373,7 @@ export const SelectCheckbox = ({
             }
             setSelectAll(
               selectedItems.length === options.length - 1 &&
-              !selectedItems.includes(value),
+                !selectedItems.includes(value),
             );
           }}
           className="block px-4 py-2 flex items-center text-base font-medium"
