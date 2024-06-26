@@ -26,7 +26,7 @@ export const Files = ({ ...props }) => {
           spaceIconX={2.5}
           icon={<BiSolidFileBlank />}
         >
-          APPOINTMENTS
+          FILES
         </IconComponent>
       </Title>
 
@@ -35,11 +35,12 @@ export const Files = ({ ...props }) => {
           <FileItem />
           <FileItem />
           <FileItem />
+          <FileItem />
         </div>
 
         <div className={"border p-5 rounded-xl space-y-5"}>
-          <Title>Upload File</Title>
-          <Paragraph>
+          <Title fontSize={"text-xl font-semibold"} className={"border-b border-b-[#E3E3E3] pb-3"}>Upload File</Title>
+          <Paragraph colorText="#9D9D9D">
             (Only jpg, png, and pdf file formats are allowed)
           </Paragraph>
 
@@ -53,10 +54,11 @@ export const Files = ({ ...props }) => {
                 type={"reset"}
                 paddingInline={43}
                 controlHeight={40}
+                borderRadius={8}
+                defaultBg={colorsObject.main}
                 defaultColor={colorsObject.black}
                 defaultHoverColor={colorsObject.black}
-                defaultBorderColor={colorsObject.black}
-                defaultHoverBorderColor={colorsObject.black}
+                defaultBorderColor="#CBCBCB"
               >
                 Cancel
               </ButtonComponent>
@@ -65,10 +67,9 @@ export const Files = ({ ...props }) => {
                 type={"submit"}
                 paddingInline={43}
                 controlHeight={40}
-                defaultColor={colorsObject.black}
-                defaultHoverColor={colorsObject.black}
-                defaultBorderColor={colorsObject.black}
-                defaultHoverBorderColor={colorsObject.black}
+                borderRadius={8}
+                defaultBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
               >
                 Continue
               </ButtonComponent>

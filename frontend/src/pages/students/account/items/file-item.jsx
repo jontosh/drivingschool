@@ -20,28 +20,28 @@ export const FileItem = ({ ...props }) => {
             Student Contract
           </IconComponent>
 
-          <Paragraph>Mar 09, 2024 @ 01:37 PM</Paragraph>
+          <Paragraph fontSize={"text-xs font-semibold"}>Mar 09, 2024 @ 01:37 PM</Paragraph>
         </div>
 
         <div className={"space-x-2.5"}>
           <IconComponent
-            iconClass={"text-3xl"}
-            icon={<AiFillPrinter className={"bg-gray-400 p-1.5 rounded"} />}
+            iconClass={"text-2xl"}
+            icon={<AiFillPrinter className={"bg-[#ECECEC] p-2.5 rounded-xl"} />}
           />
 
           <IconComponent
-            iconClass={"text-3xl"}
-            icon={<MdRemoveRedEye className={"bg-gray-400 p-1.5 rounded"} />}
+            iconClass={"text-2xl"}
+            icon={<MdRemoveRedEye className={"bg-[#ECECEC] p-2.5 rounded-xl"} />}
           />
 
           <IconComponent
-            iconClass={"text-3xl"}
-            icon={<BiSolidTrash className={"bg-gray-400 p-1.5 rounded"} />}
+            iconClass={"text-2xl"}
+            icon={<BiSolidTrash className={"bg-[#ECECEC] p-2.5 rounded-xl"} />}
           />
 
           <IconComponent
-            iconClass={"text-3xl"}
-            icon={<FaDownload className={"bg-gray-400 p-1.5 rounded"} />}
+            iconClass={"text-2xl"}
+            icon={<FaDownload className={"bg-[#ECECEC] p-2.5 rounded-xl"} />}
           />
         </div>
       </div>
