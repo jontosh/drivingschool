@@ -16,25 +16,26 @@ export const EnrollmentAndBilling = ({ ...props }) => {
   return (
     <div className={"space-y-5"}>
       <div className="flex gap-5 items-center">
-        <Paragraph>Balance: $649.99</Paragraph>
+        <Paragraph fontSize={"text-lg"}>Balance: $649.99</Paragraph>
         <ButtonComponent
           defaultColor={colorsObject.black}
           defaultHoverColor={colorsObject.black}
-          defaultBorderColor={colorsObject.black}
-          defaultHoverBorderColor={colorsObject.black}
+          defaultBorderColor={'#CED8E5'}
+          defaultHoverBorderColor={'#CED8E5'}
           borderRadius={5}
           paddingInline={20}
-          controlHeight={40}
+          className={"font-semibold"}
+          fontSize={"text-xs"}
         >
           $Pay Balance
         </ButtonComponent>
       </div>
 
-      <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
-        <div className="-mx-10 px-10 border-b pb-5 border-b-gray-400 flex justify-between">
+      <div className="border border-[#CED8E5] px-10 pb-5 overflow-hidden rounded-2xl">
+        <div className="-mx-10 px-10 border-b py-2.5 border-b-[#CED8E5] flex justify-between bg-[#FFB82F80]">
           <Title level={2} fontSize={"text-xl space-x-2"}>
-            <span className="text-indigo-700">Enrollment</span>
-            <span className={"text-[#24C18F]"}>$649.99</span>
+            <span className="font-normal">Enrollment</span>
+            <span className={"text-[#5459EA]"}>$649.99</span>
           </Title>
         </div>
         <div className="pt-5 -mx-10">
@@ -42,11 +43,11 @@ export const EnrollmentAndBilling = ({ ...props }) => {
         </div>
       </div>
 
-      <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
-        <div className="-mx-10 px-10 border-b pb-5 border-b-gray-400 flex justify-between">
+      <div className="border border-[#CED8E5] px-10 pb-5 overflow-hidden rounded-2xl">
+        <div className="-mx-10 px-10 border-b py-2.5 border-b-[#CED8E5] flex justify-between bg-[#FFB82F80]">
           <Title level={2} fontSize={"text-xl space-x-2"}>
-            <span className="text-indigo-700">BILLING</span>
-            <span className={"text-[#24C18F]"}>$0.00</span>
+            <span className="font-normal">Enrollment</span>
+            <span className={"text-[#5459EA]"}>$649.99</span>
           </Title>
         </div>
         <div className="pt-5 -mx-10">
