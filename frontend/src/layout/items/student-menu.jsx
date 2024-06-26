@@ -56,7 +56,7 @@ export const StudentMenu = (IsActive, getItem) => {
       IsActive && [getItem("Process", "sub4-1")],
     ),
     getItem(
-      IsActive && "Enroll",
+      IsActive && <NavLink to={"/student/enroll"} children={"Enroll"} />,
       5,
       <span className={"w-5"}>
         <SlBasket />
