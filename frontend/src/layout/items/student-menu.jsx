@@ -63,7 +63,7 @@ export const StudentMenu = (IsActive, getItem) => {
       </span>,
     ),
     getItem(
-      IsActive && "Contact",
+      IsActive && <NavLink to={"/student/contact"} children={"Contact"} />,
       6,
       <span className={"w-5"}>
         <FiPhone />
