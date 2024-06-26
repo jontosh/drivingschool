@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created Table with sort data and added select to filter">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/file-item.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/upload.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/account/items/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/appointments.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/account/items/files.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/files.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,15 +174,7 @@
       <workItem from="1719100901134" duration="5279000" />
       <workItem from="1719106614736" duration="2963000" />
       <workItem from="1719230594295" duration="8558000" />
-      <workItem from="1719385566939" duration="9376000" />
-    </task>
-    <task id="LOCAL-00009" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml.">
-      <option name="closed" value="true" />
-      <created>1717025250488</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1717025250488</updated>
+      <workItem from="1719385566939" duration="13349000" />
     </task>
     <task id="LOCAL-00010" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization.">
       <option name="closed" value="true" />
@@ -567,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719395953262</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="#fix #jsx Created Table with sort data and added select to filter">
+      <option name="closed" value="true" />
+      <created>1719399950239</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1719399950239</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,7 +587,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored Big" />
     <MESSAGE value="Refactored BigCalendar" />
     <MESSAGE value="Refactored BigCalendar components" />
     <MESSAGE value="Refactored BigCalendar components to" />
@@ -611,7 +611,8 @@
     <MESSAGE value="#fix #jsx Created dashboard Student portal." />
     <MESSAGE value="#fix #jsx Created tabs for information user" />
     <MESSAGE value="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files." />
+    <MESSAGE value="#fix #jsx Created Table with sort data and added select to filter" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created Table with sort data and added select to filter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
