@@ -7,6 +7,7 @@ import ColorsContext from "@/context/colors.jsx";
 import { Form } from "antd";
 import { Fragment, useContext } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
+import { FiHelpCircle } from "react-icons/fi";
 
 export const Appointments = ({ ...props }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -118,20 +119,26 @@ export const Appointments = ({ ...props }) => {
           vertical={"items-center"}
           spaceIconX={2.5}
           icon={<FaCalendarAlt />}
+          iconClass={"text-gray-400"}
         >
           APPOINTMENTS
         </IconComponent>
       </Title>
 
       <Form>
-        <div className="grid grid-cols-2 gap-20">
+        <div className="grid grid-cols-2 gap-20 max-[1200px]:grid-cols-1 max-[1200px]:gap-5">
           <div className="gap-2.5 flex items-center">
             <Form.Item className={"flex-grow mb-0"}>
-              <CustomSelect
-                className={"h-[50px] mb-0"}
-                options={[{ value: 1, label: 1 }]}
-                placeholder={"Select"}
-              />
+              <div className="flex items-center gap-3">
+                <CustomSelect
+                  className={"h-[50px] mb-0"}
+                  options={[{ value: 1, label: 1 }]}
+                  placeholder={"Select"}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
             </Form.Item>
 
             <ButtonComponent
@@ -139,6 +146,7 @@ export const Appointments = ({ ...props }) => {
               paddingInline={43}
               defaultBg={colorsObject.success}
               defaultHoverBg={colorsObject.successHover}
+              borderRadius={5}
             >
               FILTER
             </ButtonComponent>
@@ -146,11 +154,16 @@ export const Appointments = ({ ...props }) => {
 
           <div className="gap-2.5 flex items-center">
             <Form.Item className={"flex-grow mb-0"}>
-              <CustomSelect
-                className={"h-[50px] mb-0"}
-                options={[{ value: 1, label: 1 }]}
-                placeholder={"Select"}
-              />
+              <div className="flex items-center gap-3">
+                <CustomSelect
+                  className={"h-[50px] mb-0"}
+                  options={[{ value: 1, label: 1 }]}
+                  placeholder={"Select"}
+                />
+                <span>
+                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+                </span>
+              </div>
             </Form.Item>
 
             <ButtonComponent
@@ -158,6 +171,7 @@ export const Appointments = ({ ...props }) => {
               paddingInline={43}
               defaultBg={colorsObject.success}
               defaultHoverBg={colorsObject.successHover}
+              borderRadius={5}
             >
               FILTER
             </ButtonComponent>
