@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created tabs for information user">
-      <change afterPath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/enrollments.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/billing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/account/items/enrollment-and-billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/enrollment-and-billing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/account/items/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/appointments.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,15 +173,7 @@
       <workItem from="1719100901134" duration="5279000" />
       <workItem from="1719106614736" duration="2963000" />
       <workItem from="1719230594295" duration="8558000" />
-      <workItem from="1719385566939" duration="7059000" />
-    </task>
-    <task id="LOCAL-00008" summary="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience.">
-      <option name="closed" value="true" />
-      <created>1716969487159</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1716969487159</updated>
+      <workItem from="1719385566939" duration="9376000" />
     </task>
     <task id="LOCAL-00009" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml.">
       <option name="closed" value="true" />
@@ -571,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719238485921</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files.">
+      <option name="closed" value="true" />
+      <created>1719395953261</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1719395953262</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +586,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored" />
     <MESSAGE value="Refactored Big" />
     <MESSAGE value="Refactored BigCalendar" />
     <MESSAGE value="Refactored BigCalendar components" />
@@ -615,7 +610,8 @@
     <MESSAGE value="#fix #jsx Fixed useNavigate" />
     <MESSAGE value="#fix #jsx Created dashboard Student portal." />
     <MESSAGE value="#fix #jsx Created tabs for information user" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created tabs for information user" />
+    <MESSAGE value="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
