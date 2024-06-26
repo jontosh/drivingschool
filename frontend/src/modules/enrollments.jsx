@@ -1,3 +1,5 @@
+import { Paragraph } from "@/components/title/index.jsx";
+
 export const EnrollmentsSelections = () => {
   const PackageSelectionArray = [
     {
@@ -92,4 +94,127 @@ export const FormValidate = (values) => {
   }
 
   return errors;
+};
+
+export const StudentAccountEnrollment = () => {
+  const column = [
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Amount",
+      dataIndex: "amount",
+      key: "amount",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          ${text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Database Id",
+      dataIndex: "id",
+      key: "id",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+  ];
+  const data = [
+    {
+      date: "4/2/2024",
+      amount: 649.99,
+      type: "Visa",
+      id: 162,
+    },
+  ];
+
+  return { column, data };
+};
+
+export const StudentAccountBilling = () => {
+  const column = [
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Amount",
+      dataIndex: "amount",
+      key: "amount",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          ${text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Assept by stuff",
+      dataIndex: "stuff",
+      key: "stuff",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Payment Note",
+      dataIndex: "note",
+      key: "note",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Card Type",
+      dataIndex: "type",
+      key: "type",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Credit card Number",
+      dataIndex: "card_number",
+      key: "card_number",
+      render: (text) => (
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+          {text}
+        </Paragraph>
+      ),
+    },
+  ];
+  const data = [];
+
+  return { column, data };
 };

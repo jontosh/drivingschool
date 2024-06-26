@@ -3,6 +3,7 @@ import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
 import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
+import { StudentMenu } from "@/layout/items/student-menu.jsx";
 import { MenuItems } from "@/layout/menu-items.jsx";
 import { GetLevelKeys } from "@/modules/navbar.jsx";
 import LayoutStyle from "./layout.module.scss";
@@ -38,6 +39,7 @@ const Layout = () => {
   const { pathname, origin } = useLocation();
   const { items } = MenuItems(IsActive, getItem);
   const { items: InstructorItems } = InstructorMenu(IsActive, getItem);
+  const { items: StudentItems } = StudentMenu(IsActive, getItem);
   const levelKeys = GetLevelKeys(items);
 
   useEffect(() => {
@@ -259,7 +261,7 @@ const Layout = () => {
                     ? items
                     : state?.portalText === "instructor"
                       ? InstructorItems
-                      : null
+                      : StudentItems
                 }
               />
             </ConfigProvider>

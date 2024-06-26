@@ -67,7 +67,7 @@ const Enrollment = () => {
   };
 
   return (
-    <div>
+    <Fragment>
       <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
         <div className="-mx-10 px-10 border-b pb-5 border-b-gray-400 flex justify-between">
           <Title level={2} fontSize={"text-xl space-x-2"}>
@@ -134,7 +134,7 @@ const Enrollment = () => {
           </div>
         </Modal>
       )}
-    </div>
+    </Fragment>
   );
 };
 
