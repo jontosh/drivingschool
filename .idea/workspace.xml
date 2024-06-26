@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created Table with sort data and added select to filter">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/file-item.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/upload.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/enroll/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/account/items/files.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/account/items/files.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +175,7 @@
       <workItem from="1719106614736" duration="2963000" />
       <workItem from="1719230594295" duration="8558000" />
       <workItem from="1719385566939" duration="13349000" />
+      <workItem from="1719403326960" duration="2990000" />
     </task>
     <task id="LOCAL-00010" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization.">
       <option name="closed" value="true" />
