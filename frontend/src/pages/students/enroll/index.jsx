@@ -10,7 +10,7 @@ const StudentEnroll = ({ className, children, ...props }) => {
       dataIndex: "name",
       key: "name",
       render: (text) => (
-        <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
+        <Paragraph fontSize={"text-lg"} fontWeightStrong={600}>
           {text}
         </Paragraph>
       ),
@@ -22,7 +22,7 @@ const StudentEnroll = ({ className, children, ...props }) => {
       render: (text) => (
         <Paragraph
           className={"border rounded-full"}
-          fontSize={"text-lg"}
+          fontSize={"text-sm"}
           fontWeightStrong={400}
         >
           {text}
@@ -36,7 +36,7 @@ const StudentEnroll = ({ className, children, ...props }) => {
       render: (text) => (
         <Paragraph
           className={"border rounded-full"}
-          fontSize={"text-lg"}
+          fontSize={"text-sm"}
           fontWeightStrong={400}
         >
           {text}
@@ -63,12 +63,13 @@ const StudentEnroll = ({ className, children, ...props }) => {
         </Title>
 
         <div className="bg-white p-5 rounded-xl gap-5 grid grid-cols-2">
-          <div>
-            <div className=" border-b py-2.5 border-b-[#CED8E5] flex justify-between bg-[#FFB82F80]">
+          <div className="border border-[#CED8E5] rounded-xl overflow-hidden">
+            <div className="py-2.5 flex justify-between bg-[#FFB82F80]">
               <Title
                 className={"px-5"}
                 level={2}
-                fontSize={"text-xl space-x-2"}
+                fontSize={"text-lg space-x-2"}
+                fontWeightStrong={400}
               >
                 Selection
               </Title>
@@ -77,12 +78,13 @@ const StudentEnroll = ({ className, children, ...props }) => {
             <TableComponent columns={columns} pagination={true} />
           </div>
 
-          <div>
-            <div className=" border-b py-2.5 border-b-[#CED8E5] flex justify-between bg-[#FFB82F80]">
+          <div className="border border-[#CED8E5] rounded-xl overflow-hidden">
+            <div className="py-2.5 flex justify-between bg-[#FFB82F80]">
               <Title
                 className={"px-5"}
                 level={2}
-                fontSize={"text-xl space-x-2"}
+                fontSize={"text-lg space-x-2"}
+                fontWeightStrong={400}
               >
                 Purchase Recap
               </Title>
