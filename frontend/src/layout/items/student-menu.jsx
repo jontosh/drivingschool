@@ -60,7 +60,29 @@ export const StudentMenu = (IsActive, getItem) => {
       <span className={"w-5"}>
         <IoDiamondOutline />
       </span>,
-      IsActive && [getItem("Process", "sub4-1")],
+      IsActive && [
+        getItem(
+          IsActive && (
+            <NavLink to={"/student/resource/in-car"} children={"In-car"} />
+          ),
+          "sub4-1",
+        ),
+        getItem(
+          IsActive && (
+            <NavLink
+              to={"/student/resource/road-test"}
+              children={"Road test"}
+            />
+          ),
+          "sub4-2",
+        ),
+        getItem(
+          IsActive && (
+            <NavLink to={"/student/resource/parents"} children={"Parents"} />
+          ),
+          "sub4-3",
+        ),
+      ],
     ),
     getItem(
       IsActive && <NavLink to={"/student/enroll"} children={"Enroll"} />,

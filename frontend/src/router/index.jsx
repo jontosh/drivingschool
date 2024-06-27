@@ -28,6 +28,7 @@ import StudentAccount from "@/pages/students/account/index.jsx";
 import StudentContact from "@/pages/students/contact/index.jsx";
 import { default as StudentDashboard } from "@/pages/students/dashboard";
 import StudentEnroll from "@/pages/students/enroll/index.jsx";
+import StudentResource from "@/pages/students/resources/index.jsx";
 import StudentSchedule from "@/pages/students/schedule/index.jsx";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -207,6 +208,10 @@ export const router = createBrowserRouter([
       {
         path: "schedule/:title",
         element: <StudentSchedule />,
+      },
+      {
+        path: "resource/:title",
+        element: <StudentResource />,
       },
     ],
   },
