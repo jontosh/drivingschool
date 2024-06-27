@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created enroll and connected data">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/contact/index.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created Contact and refactor router">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/schedule/book-lessons.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/schedule/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/schedule/my-schedule.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/contact/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/contact/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,15 +179,8 @@
       <workItem from="1719106614736" duration="2963000" />
       <workItem from="1719230594295" duration="8558000" />
       <workItem from="1719385566939" duration="13349000" />
-      <workItem from="1719403326960" duration="3890000" />
-    </task>
-    <task id="LOCAL-00011" summary="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction.">
-      <option name="closed" value="true" />
-      <created>1717499312883</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1717499312883</updated>
+      <workItem from="1719403326960" duration="4046000" />
+      <workItem from="1719418763681" duration="9609000" />
     </task>
     <task id="LOCAL-00012" summary="#fix #jsx Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
       <option name="closed" value="true" />
@@ -569,7 +566,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719408860708</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="#fix #jsx Created Contact and refactor router">
+      <option name="closed" value="true" />
+      <created>1719409757703</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1719409757703</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +593,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored BigCalendar components" />
     <MESSAGE value="Refactored BigCalendar components to" />
     <MESSAGE value="Refactored BigCalendar components to implement" />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic" />
@@ -613,7 +617,8 @@
     <MESSAGE value="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files." />
     <MESSAGE value="#fix #jsx Created Table with sort data and added select to filter" />
     <MESSAGE value="#fix #jsx Created enroll and connected data" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created enroll and connected data" />
+    <MESSAGE value="#fix #jsx Created Contact and refactor router" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created Contact and refactor router" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
