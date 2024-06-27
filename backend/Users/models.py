@@ -11,8 +11,7 @@ import uuid
 from mainadmin.models import CustomUser
 from django.conf import  settings
 
-class User(models.Model):
-    pass
+
 #INSTRACTOR
 class Instructor(CustomUser):
     STAFF_TYPE = [
@@ -30,9 +29,11 @@ class Instructor(CustomUser):
     emergency_name= models.CharField(max_length=200,blank=True,null=True,help_text="Emergency contact name")
     emergency_relation= models.CharField(max_length=200,blank=True,null=True,help_text="Emergency  relation")
     emergency_phone= models.CharField(blank=True,null=True,help_text="Emergency contact phone",max_length=30)
-    permit_number = models.CharField(max_length=200, blank=True,null=True)
+    licenses = models.CharField(max_length=200, blank=True,null=True)
     car_permit_data = models.DateField(default="1999-01-01",blank=True,null=True,help_text="MM/DD/YYYY")
     car_permit_expire = models.DateField(default="1999-01-01",blank=True,null=True,help_text="MM/DD/YYYY")
+    instructor_expire = models.DateField(default="1999-01-01",blank=True,null=True,help_text="MM/DD/YYYY")
+
     color = ColorField(default = "#FFFFFF")
     zoom = models.TextField(blank=True,null=True, help_text="Link that appear in student or instructor portal to attend zoom class")
     picture = models.ImageField(upload_to="image/staff",blank=True,null=True)
@@ -191,10 +192,4 @@ class DrivingNote(models.Model):
     to_user = models.ForeignKey("mainadmin.CustomUser",on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.id} - {self.note}"
-class CustomToken(models.Model):
-    key = models.CharField(max_length=40, primary_key=True)
-    user = models.OneToOneField(User, related_name='custom_token', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.key
