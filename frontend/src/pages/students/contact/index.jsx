@@ -1,4 +1,4 @@
-import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import { Form } from "antd";
 import { Fragment } from "react";

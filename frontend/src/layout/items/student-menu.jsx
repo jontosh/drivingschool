@@ -24,12 +24,19 @@ export const StudentMenu = (IsActive, getItem) => {
       IsActive && [
         getItem(
           <NavLink
-            to={"/student/schedule-lessons"}
-            children={"SCHEDULE LESSONS"}
+            to={"/student/schedule/my-schedule"}
+            children={"My Schedule"}
           />,
           "sub2-1",
         ),
-        getItem("Process", "sub2-2"),
+
+        getItem(
+          <NavLink
+            to={"/student/schedule/book-lessons"}
+            children={"Book my lessons"}
+          />,
+          "sub2-2",
+        ),
       ],
     ),
     getItem(

@@ -47,12 +47,15 @@ import { Process } from "@/pages/scheduling/subpages/process.jsx";
 import { SchedulingStudent } from "@/pages/scheduling/subpages/scheduling-student.jsx";
 import { Single } from "@/pages/scheduling/subpages/single.jsx";
 import { Vehicle } from "@/pages/scheduling/subpages/vehicle.jsx";
+import { StudentBookLessons } from "@/pages/students/schedule/book-lessons.jsx";
+import { StudentMySchedule } from "@/pages/students/schedule/my-schedule.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Subpages = ({ page, status, search }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   switch (page) {
     case "product": {
@@ -358,7 +361,27 @@ export const Subpages = ({ page, status, search }) => {
         </Fragment>
       );
     }
+    case "my-schedule": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Student - My Schedule</title>
+          </Helmet>
+          <StudentMySchedule />
+        </Fragment>
+      );
+    }
+    case "book-lessons": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Student - Book Lessons</title>
+          </Helmet>
+          <StudentBookLessons />
+        </Fragment>
+      );
+    }
     default:
-      navigate("/page/notfound", { replace: true });
+      navigate(pathname + "/page/notfound", { replace: true });
   }
 };
