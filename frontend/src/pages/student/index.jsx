@@ -4,11 +4,10 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useFilterStatus } from "@/hooks/filter.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
-import { FormError } from "@/modules/errors.jsx";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { BookOutlined } from "@ant-design/icons";
+import { Form } from "antd";
 import classNames from "classnames";
-import { Formik } from "formik";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
@@ -27,12 +26,12 @@ const StudentAccount = () => {
   const { data } = useRequestGetQuery({ path: "/student_account/student/" });
   const { data: StudentById } = useRequestIdQuery({
     path: "/student_account/student",
-    id: studentId,
+    id: studentId ?? 0,
   });
-  const [Search, setSearch] = useState("");
+  const [Search, setSearch] = useState(null);
   const [Student, setStudent] = useState(null);
   const { Data } = useFilterStatus({ data, status: null, search: Search });
-
+  console.log(Data);
   useEffect(() => {
     setStudent(StudentById);
   }, [studentId, title, data]);
@@ -52,6 +51,8 @@ const StudentAccount = () => {
       </li>
     );
   });
+
+  const [form] = Form.useForm();
 
   return (
     <Fragment>
@@ -80,64 +81,40 @@ const StudentAccount = () => {
         )}
 
         <div className="mb-5 flex gap-5 flex-wrap">
-          <Formik
-            initialValues={{
-              search: "",
-            }}
-            validate={(values) => {
-              const errors = {};
+          <Form form={form}>
+            <Form.Item
+              name={"search"}
+              className={"relative w-full mb-0"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input student data",
+                },
+              ]}
+            >
+              <CustomInput
+                colorBorder={colorsObject.main}
+                fontSize="text-base"
+                placeholder={"Search"}
+                classNames={
+                  "inline-flex flex-row-reverse items-center gap-5 w-full"
+                }
+                className={`pl-12 pr-4 py-2.5  h-10 text-sm inline-flex flex-row-reverse shadow-xl`}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <span
+                className={"absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "}
+              >
+                <AiOutlineSearch />
+              </span>
+            </Form.Item>
 
-              if (!values.search) {
-                errors.search = "Search is empty";
-                setStudent(null);
-              } else {
-                setSearch(values.search);
-              }
-
-              return errors;
-            }}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
-          >
-            {({ handleChange, handleSubmit, values, errors }) => (
-              <form onSubmit={handleSubmit}>
-                <div className={"flex-grow"}>
-                  <label className={"relative w-full"}>
-                    <CustomInput
-                      colorBorder={colorsObject.main}
-                      fontSize="text-base"
-                      placeholder={"Find teacher"}
-                      classNames={
-                        "inline-flex flex-row-reverse items-center gap-5 w-full"
-                      }
-                      className={`pl-12 pr-4 py-2.5  h-10 text-sm inline-flex flex-row-reverse shadow-xl`}
-                      value={values.search}
-                      onChange={handleChange}
-                      name={"search"}
-                    />
-                    <span
-                      className={
-                        "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                      }
-                    >
-                      <AiOutlineSearch />
-                    </span>
-                  </label>
-                  {errors.search && (
-                    <FormError className={"pl-5 mt-5"}>
-                      {errors.search}
-                    </FormError>
-                  )}
-                  {values.search && !Student && (
-                    <ul className={"w-full p-5 bg-white rounded-b-2xl"}>
-                      {searchItem}
-                    </ul>
-                  )}
-                </div>
-              </form>
+            {Search && (
+              <ul className={"w-full p-5 bg-white rounded-b-2xl"}>
+                {searchItem}
+              </ul>
             )}
-          </Formik>
+          </Form>
 
           {studentId && (
             <div>
