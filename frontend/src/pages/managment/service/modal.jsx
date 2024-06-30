@@ -25,8 +25,19 @@ import {
   Switch,
   Tabs,
   Upload,
+  Select,
+  Divider,
+  Space,
+  Button,
 } from "antd";
-import { Fragment, useContext, useEffect, useReducer, useState } from "react";
+import {
+  Fragment,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import rehypeSanitize from "rehype-sanitize";
 import { StatusSelect } from "./index.jsx";
@@ -150,7 +161,7 @@ export const ProductModalContent = () => {
     form.resetFields();
 
     setTimeout(() => {
-      navigate("/management/service/product");
+      navigate("/admin/management/service/product");
     }, 1000);
   };
 
@@ -320,7 +331,11 @@ export const ProductModalContent = () => {
           {({ getFieldValue }) =>
             getFieldValue("type_component") === "BTW" ? (
               <Fragment>
-                <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
+                <div
+                  className={
+                    "px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"
+                  }
+                >
                   <Form.Item
                     name={"driving_hours"}
                     label={"Driving Time:"}
@@ -414,7 +429,11 @@ export const ProductModalContent = () => {
                     <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
                   </span>
                 </div>
-                <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
+                <div
+                  className={
+                    "px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"
+                  }
+                >
                   <Form.Item name={"enrolment_size"} label={"Enrollment Size:"}>
                     <CustomInput
                       classNames={"w-full"}
@@ -439,7 +458,11 @@ export const ProductModalContent = () => {
                     <Switch />
                   </Form.Item>
                 </div>
-                <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
+                <div
+                  className={
+                    "px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"
+                  }
+                >
                   <Form.Item name={"location"} label={"Location:"}>
                     <div className="flex items-center gap-3">
                       <CustomSelect
@@ -706,7 +729,7 @@ export const FeesModalContent = () => {
     form.resetFields();
 
     setTimeout(() => {
-      navigate("/management/service/fees");
+      navigate("/admin/management/service/fees");
     }, 1000);
   };
 
@@ -945,7 +968,7 @@ export const DiscountModalContent = () => {
     setEligibleClassLocation([]);
 
     setTimeout(() => {
-      navigate("/management/service/discounts");
+      navigate("/admin/management/service/discounts");
     }, 1000);
   };
 
@@ -1136,7 +1159,7 @@ export const MiscellaneousModalContent = () => {
     form.resetFields();
 
     setTimeout(() => {
-      navigate("/management/service/miscellaneous");
+      navigate("/admin/management/service/miscellaneous");
     }, 1000);
   };
 
@@ -1394,7 +1417,7 @@ export const AddServiceModalContent = () => {
     setDiscount([]);
 
     setTimeout(() => {
-      navigate("/management/service/packages");
+      navigate("/admin/management/service/packages");
     }, 1000);
   };
 
@@ -1737,7 +1760,7 @@ export const FileCategoryModalContent = () => {
     setPackages([]);
 
     setTimeout(() => {
-      navigate("/management/file");
+      navigate("/admin/management/file");
     }, 1000);
   };
 
@@ -1950,43 +1973,29 @@ export const AddStaffModalContent = () => {
     setVehicle(vehicles);
   }, [LocationData, VehicleData]);
 
-  const handleStatus = (value) => {
+  const handleColor = (_, value) => {
     form.setFieldsValue({
-      status: value,
-    });
-  };
-  const handleStaffType = (value) => {
-    form.setFieldsValue({
-      staff_type: value,
-    });
-  };
-
-  const handleLocation = (value) => {
-    form.setFieldsValue({
-      location: value,
-    });
-  };
-  const handleVehicle = (value) => {
-    form.setFieldsValue({
-      vehicle: value,
-    });
-  };
-
-  const handleState = (value) => {
-    form.setFieldsValue({
-      state: value,
+      color: value,
     });
   };
 
   const onFinish = async (values) => {
     try {
+      const { picture } = values;
+      const formData = new FormData();
+      formData.append("picture", picture[0].originFileObj);
+
       const response = await requestPost({
         path: "/student_account/instructor/",
         data: {
           ...values,
-          birth: values["birth"].format("YYYY-MM-DD"),
-          car_permit_data: values["car_permit_data"].format("YYYY-MM-DD"),
-          car_permit_expire: values["car_permit_expire"].format("YYYY-MM-DD"),
+          picture: formData,
+          birth: values["birth"]?.format("YYYY-MM-DD"),
+          car_permit_data: values["car_permit_data"]?.format("YYYY-MM-DD"),
+          car_permit_expire: values["car_permit_expire"]?.format("YYYY-MM-DD"),
+        },
+        headers: {
+          "Content-Type": "application/json,multipart/form-data",
         },
       });
 
@@ -2006,7 +2015,7 @@ export const AddStaffModalContent = () => {
     form.resetFields();
 
     setTimeout(() => {
-      navigate("/management/staff");
+      navigate("/admin/management/staff");
     }, 1000);
   };
 
@@ -2014,7 +2023,6 @@ export const AddStaffModalContent = () => {
     <Fragment>
       <Form
         form={form}
-        initialValues={{ color: "#000" }}
         className={"space-y-5"}
         onFinish={onFinish}
         layout={"vertical"}
@@ -2026,7 +2034,6 @@ export const AddStaffModalContent = () => {
                 placeholder={"Status"}
                 className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 options={StatusSelect}
-                onChange={handleStatus}
               />
             </Form.Item>
 
@@ -2064,7 +2071,6 @@ export const AddStaffModalContent = () => {
                     label: "Teacher",
                   },
                 ]}
-                onChange={handleStaffType}
               />
             </Form.Item>
 
@@ -2073,7 +2079,6 @@ export const AddStaffModalContent = () => {
                 placeholder={"Select"}
                 className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 options={Location}
-                onChange={handleLocation}
               />
             </Form.Item>
 
@@ -2082,7 +2087,6 @@ export const AddStaffModalContent = () => {
                 placeholder={"Select"}
                 className={`w-full h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
                 options={Vehicle}
-                onChange={handleVehicle}
               />
             </Form.Item>
 
@@ -2177,7 +2181,6 @@ export const AddStaffModalContent = () => {
                     label: "USA",
                   },
                 ]}
-                onChange={handleState}
               />
             </Form.Item>
 
@@ -2396,19 +2399,16 @@ export const AddStaffModalContent = () => {
 
             <Form.Item valuePropName="checked" name={"assign_color"}>
               <CustomCheckBox className={"w-full"}>
-                <span className={`text-sm`}>
-                  Assign Appointment Color
-                </span>
+                <span className={`text-sm`}>Assign Appointment Color</span>
               </CustomCheckBox>
             </Form.Item>
 
             <Form.Item name={"color"} label={"Appointment Color"}>
-              <CustomInput
-                type={"color"}
-                placeholder={"#FFFFFF"}
-                className={`text-gray-500 px-5 py-2 ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                classNames={"w-full h-[50px]"}
-                fontSize="text-base"
+              <ColorPicker
+                onChange={handleColor}
+                defaultValue="#1677FF"
+                size="large"
+                showText
               />
             </Form.Item>
 
@@ -2430,6 +2430,7 @@ export const AddStaffModalContent = () => {
               <Upload
                 action={import.meta.env.VITE_API_URL + "/media/files/student/"}
                 listType="picture-card"
+                maxCount={1}
               >
                 <button
                   style={{
@@ -2485,6 +2486,8 @@ export const AddStaffModalContent = () => {
   );
 };
 
+let index = 0;
+
 export const LocationModalContent = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { data, isLoading } = useRequestGetQuery({
@@ -2496,8 +2499,13 @@ export const LocationModalContent = () => {
   const [Coverage, setCoverage] = useState([]);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
-
   const [form] = Form.useForm();
+  const [PickUps, setPickUps] = useState([]);
+  const [PickUpName, setPickUpName] = useState("");
+  const [Dropoffs, setDropoffs] = useState([]);
+  const [DropoffName, setDropoffName] = useState("");
+  const pickupInputRef = useRef(null);
+  const dropoffInputRef = useRef(null);
 
   useEffect(() => {
     const zipcodeMock = [];
@@ -2520,33 +2528,35 @@ export const LocationModalContent = () => {
   }, [AreaCoverage?.length]);
 
   // func
-  const handleStatus = (value) => {
-    form.setFieldsValue({
-      status: value,
-    });
+  const onPickUpChange = (event) => {
+    setPickUpName(event.target.value);
   };
 
-  const handleState = (value) => {
-    form.setFieldsValue({
-      state: value,
-    });
+  const AddPickUp = (e) => {
+    e.preventDefault();
+    setPickUps([...PickUps, PickUpName || `New item ${index++}`]);
+    setPickUpName("");
+    setTimeout(() => {
+      pickupInputRef.current?.focus();
+    }, 0);
   };
 
-  const handlePickupLocation = (value) => {
-    form.setFieldsValue({
-      pick_up: value,
-    });
+  const onDropoffChange = (event) => {
+    setDropoffName(event.target.value);
+  };
+
+  const AddDropoff = (e) => {
+    e.preventDefault();
+    setDropoffs([...Dropoffs, DropoffName || `New item ${index++}`]);
+    setDropoffName("");
+    setTimeout(() => {
+      dropoffInputRef.current?.focus();
+    }, 0);
   };
 
   const handleColor = (_, value) => {
     form.setFieldsValue({
       color: value,
-    });
-  };
-
-  const handleDropOffLocation = (value) => {
-    form.setFieldsValue({
-      drop_off: value,
     });
   };
 
@@ -2575,7 +2585,7 @@ export const LocationModalContent = () => {
     form.resetFields();
 
     setTimeout(() => {
-      navigate("/management/single-page/location");
+      navigate("/admin/management/single-page/location");
     }, 1000);
   };
 
@@ -2639,7 +2649,6 @@ export const LocationModalContent = () => {
                 placeholder={"Location Status"}
                 className={`w-full h-[50px]`}
                 options={StatusSelect}
-                onChange={handleStatus}
               />
             </Form.Item>
 
@@ -2757,7 +2766,6 @@ export const LocationModalContent = () => {
                 placeholder={"Location Status"}
                 className={`w-full h-[50px]`}
                 options={[{ values: "USA", label: "USA" }]}
-                onChange={handleState}
               />
             </Form.Item>
 
@@ -2782,20 +2790,88 @@ export const LocationModalContent = () => {
             </Form.Item>
 
             <Form.Item label={"Pickup Location"} name={"pick_up"}>
-              <CustomSelect
-                placeholder={"Pickup Location"}
-                className={`w-full h-[50px]`}
-                options={[{ values: "USA", label: "USA" }]}
-                onChange={handlePickupLocation}
+              <Select
+                style={{
+                  width: "100%",
+                }}
+                placeholder="custom dropdown render"
+                dropdownRender={(menu) => (
+                  <>
+                    {menu}
+                    <Divider
+                      style={{
+                        margin: "8px 0",
+                      }}
+                    />
+                    <Space
+                      style={{
+                        padding: "0 8px 4px",
+                      }}
+                    >
+                      <Input
+                        placeholder="Please enter item"
+                        ref={pickupInputRef}
+                        value={PickUpName}
+                        onChange={onPickUpChange}
+                        onKeyDown={(e) => e.stopPropagation()}
+                      />
+                      <Button
+                        type="text"
+                        icon={<PlusOutlined />}
+                        onClick={AddPickUp}
+                      >
+                        Add pickup
+                      </Button>
+                    </Space>
+                  </>
+                )}
+                options={PickUps.map((item) => ({
+                  label: item,
+                  value: item,
+                }))}
               />
             </Form.Item>
 
             <Form.Item label={"Drop off location"} name={"drop_off"}>
-              <CustomSelect
-                placeholder={"Drop off location"}
-                className={`w-full h-[50px]`}
-                options={[{ values: "USA", label: "USA" }]}
-                onChange={handleDropOffLocation}
+              <Select
+                style={{
+                  width: "100%",
+                }}
+                placeholder="custom dropdown render"
+                dropdownRender={(menu) => (
+                  <>
+                    {menu}
+                    <Divider
+                      style={{
+                        margin: "8px 0",
+                      }}
+                    />
+                    <Space
+                      style={{
+                        padding: "0 8px 4px",
+                      }}
+                    >
+                      <Input
+                        placeholder="Please enter item"
+                        ref={dropoffInputRef}
+                        value={DropoffName}
+                        onChange={onDropoffChange}
+                        onKeyDown={(e) => e.stopPropagation()}
+                      />
+                      <Button
+                        type="text"
+                        icon={<PlusOutlined />}
+                        onClick={AddDropoff}
+                      >
+                        Add Dropoff
+                      </Button>
+                    </Space>
+                  </>
+                )}
+                options={Dropoffs.map((item) => ({
+                  label: item,
+                  value: item,
+                }))}
               />
             </Form.Item>
 
@@ -2840,6 +2916,10 @@ export const LocationModalContent = () => {
 
             <Form.Item label={"Fax"} name={"fax"}>
               <CustomInput placeholder={"Fax"} classNames={"w-full"} />
+            </Form.Item>
+
+            <Form.Item label={"Other"} name={"other"}>
+              <CustomInput placeholder={"Other"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item label={"Area Coverage"} name={"other"}>
@@ -2979,7 +3059,7 @@ export const AddSchoolModalContent = () => {
   const onReset = () => {
     form.resetFields();
     setTimeout(() => {
-      navigate("/management/single-page/high school");
+      navigate("/admin/management/single-page/high school");
     }, 1000);
   };
 
@@ -2997,11 +3077,7 @@ export const AddSchoolModalContent = () => {
 
   return (
     <Fragment>
-      <Form
-        form={form}
-        onFinish={onFinish}
-        layout={"vertical"}
-      >
+      <Form form={form} onFinish={onFinish} layout={"vertical"}>
         <div className={"px-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
           <div className="space-y-5">
             <Form.Item
@@ -3091,7 +3167,7 @@ export const AddSchoolModalContent = () => {
                 components: {
                   Input: {
                     paddingInline: 10,
-                    paddingBlock: 10
+                    paddingBlock: 10,
                   },
                 },
               }}
@@ -3156,7 +3232,7 @@ export const HowHearModalContent = () => {
         path: "/account_management/how_did_you_hear_us/",
         data: {
           ...values,
-          expiration: values["expiration"].format("YYYY-MM-DD"),
+          expiration: values["expiration"]?.format("YYYY-MM-DD"),
         },
       });
 
@@ -3178,7 +3254,7 @@ export const HowHearModalContent = () => {
     form.resetFields();
 
     setTimeout(() => {
-      navigate("/management/single-page/how did you hear");
+      navigate("/admin/management/single-page/how did you hear");
     }, 1000);
   };
 
@@ -3194,6 +3270,7 @@ export const HowHearModalContent = () => {
         onFinish={onFinish}
         form={form}
         layout={"vertical"}
+        initialValues={{ code: 0 }}
       >
         <div className={"grid grid-cols-2 gap-5 px-5 max-[1000px]:grid-cols-1"}>
           <div className="space-y-5">
@@ -3229,10 +3306,7 @@ export const HowHearModalContent = () => {
             </Form.Item>
 
             <Form.Item name={"code"} label={"Lead Code"}>
-              <InputNumber
-                placeholder={"Code"}
-                className={"border-[#667085] w-full h-[50px] py-2.5"}
-              />
+              <InputNumber placeholder={"Lead Code"} />
             </Form.Item>
 
             <Form.Item name={"expiration"} label={"Expiration"}>
@@ -3341,37 +3415,13 @@ export const VehiclesModalContent = () => {
     form.resetFields();
 
     setTimeout(() => {
-      navigate("/management/single-page/vehicles");
+      navigate("/admin/management/single-page/vehicles");
     }, 1000);
-  };
-
-  const handleStatus = (value) => {
-    form.setFieldsValue({
-      status: value,
-    });
-  };
-
-  const handleLocation = (value) => {
-    form.setFieldsValue({
-      location: value,
-    });
-  };
-
-  const handleType = (value) => {
-    form.setFieldsValue({
-      type: value,
-    });
   };
 
   const handleColor = (_, value) => {
     form.setFieldsValue({
       color: value,
-    });
-  };
-
-  const handleAsrEsnId = (_, value) => {
-    form.setFieldsValue({
-      asr_esn_id: value,
     });
   };
 
@@ -3385,14 +3435,7 @@ export const VehiclesModalContent = () => {
 
   return (
     <Fragment>
-      <Form
-        form={form}
-        onFinish={onFinish}
-        layout={"vertical"}
-        initialValues={{
-          color: "#1677ff",
-        }}
-      >
+      <Form form={form} onFinish={onFinish} layout={"vertical"}>
         <div className={"grid grid-cols-2 gap-5 px-5 max-[1000px]:grid-cols-1"}>
           <div className="space-y-5">
             <Form.Item
@@ -3422,7 +3465,6 @@ export const VehiclesModalContent = () => {
                 placeholder={"Select status"}
                 className={`w-full h-[50px]`}
                 options={StatusSelect}
-                onChange={handleStatus}
               />
             </Form.Item>
 
@@ -3440,7 +3482,6 @@ export const VehiclesModalContent = () => {
                 placeholder={"Select location"}
                 className={`w-full h-[50px]`}
                 options={Location}
-                onChange={handleLocation}
               />
             </Form.Item>
 
@@ -3466,7 +3507,6 @@ export const VehiclesModalContent = () => {
                   { value: "TRUCK", label: "TRUCK" },
                   { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
                 ]}
-                onChange={handleType}
               />
             </Form.Item>
 
@@ -3509,7 +3549,10 @@ export const VehiclesModalContent = () => {
                 },
               ]}
             >
-              <CustomInput placeholder={"License Plate"} classNames={"w-full"} />
+              <CustomInput
+                placeholder={"License Plate"}
+                classNames={"w-full"}
+              />
             </Form.Item>
 
             <Form.Item name={"vin"} label={"VIN#"}>
@@ -3521,7 +3564,7 @@ export const VehiclesModalContent = () => {
             <Form.Item name={"color"} label={"Appointment Color"}>
               <ColorPicker
                 onChange={handleColor}
-                defaultValue="#1677ff"
+                defaultValue="#1677FF"
                 size="large"
                 showText
               />
@@ -3547,7 +3590,7 @@ export const VehiclesModalContent = () => {
                   components: {
                     Input: {
                       paddingInline: 10,
-                      paddingBlock: 10
+                      paddingBlock: 10,
                     },
                   },
                 }}
@@ -3593,7 +3636,6 @@ export const VehiclesModalContent = () => {
                   { value: "TRUCK", label: "TRUCK" },
                   { value: "TRACTOR TRAILER", label: "TRACTOR TRAILER" },
                 ]}
-                onChange={handleAsrEsnId}
               />
             </Form.Item>
 
@@ -3604,7 +3646,10 @@ export const VehiclesModalContent = () => {
               />
             </Form.Item>
 
-            <Form.Item label={"Vehicle Initial Mileage"} name={"initial_mileage"}>
+            <Form.Item
+              label={"Vehicle Initial Mileage"}
+              name={"initial_mileage"}
+            >
               <InputNumber
                 placeholder={"Vehicle Initial Mileage"}
                 className={"h-[50px] w-full border-[#667085] py-2.5"}
@@ -3620,6 +3665,7 @@ export const VehiclesModalContent = () => {
               <Upload
                 action={import.meta.env.VITE_API_URL + "/media/files/student/"}
                 listType="picture-card"
+                maxCount={1}
               >
                 <button
                   style={{

@@ -309,7 +309,11 @@ export const InfoForm = ({ packages }) => {
                 },
               ]}
             >
-              <CustomInput type={"email"} placeholder={"Email"} classNames={"w-full"} />
+              <CustomInput
+                type={"email"}
+                placeholder={"Email"}
+                classNames={"w-full"}
+              />
             </Form.Item>
 
             <Form.Item
@@ -441,7 +445,16 @@ export const InfoForm = ({ packages }) => {
               />
             </Form.Item>
 
-            <Form.Item name={"parent_name"} label={"Parent name"}>
+            <Form.Item
+              name={"parent_name"}
+              label={"Parent name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input parent name",
+                },
+              ]}
+            >
               <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
             </Form.Item>
 
@@ -461,7 +474,16 @@ export const InfoForm = ({ packages }) => {
               <CustomInput placeholder={"Parent email"} classNames={"w-full"} />
             </Form.Item>
 
-            <Form.Item name={"parent_2_name"} label={"Parent name 2"}>
+            <Form.Item
+              name={"parent_2_name"}
+              label={"Parent name 2"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input parent name 2",
+                },
+              ]}
+            >
               <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
             </Form.Item>
 
@@ -504,7 +526,10 @@ export const InfoForm = ({ packages }) => {
             </Form.Item>
 
             <Form.Item name={"note"} label={"Student notes"}>
-              <Input.TextArea placeholder={"Student notes"} className="border-[#667085]" />
+              <Input.TextArea
+                placeholder={"Student notes"}
+                className="border-[#667085]"
+              />
             </Form.Item>
 
             <Form.Item

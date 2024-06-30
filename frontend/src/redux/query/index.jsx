@@ -20,10 +20,11 @@ export const APIRequest = createApi({
     }),
 
     requestPost: builder.mutation({
-      query: ({ path, data }) => ({
+      query: ({ path, data, headers }) => ({
         url: path,
         method: "POST",
         body: data,
+        headers,
       }),
       invalidatesTags: ["Device"],
     }),
