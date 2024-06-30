@@ -2790,89 +2790,107 @@ export const LocationModalContent = () => {
             </Form.Item>
 
             <Form.Item label={"Pickup Location"} name={"pick_up"}>
-              <Select
-                style={{
-                  width: "100%",
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBorder: "#667085"
+                  },
                 }}
-                placeholder="custom dropdown render"
-                dropdownRender={(menu) => (
-                  <>
-                    {menu}
-                    <Divider
-                      style={{
-                        margin: "8px 0",
-                      }}
-                    />
-                    <Space
-                      style={{
-                        padding: "0 8px 4px",
-                      }}
-                    >
-                      <Input
-                        placeholder="Please enter item"
-                        ref={pickupInputRef}
-                        value={PickUpName}
-                        onChange={onPickUpChange}
-                        onKeyDown={(e) => e.stopPropagation()}
+              >
+                <Select
+                  style={{
+                    width: "100%",
+                  }}
+                  className="h-[50px]"
+                  placeholder="custom dropdown render"
+                  dropdownRender={(menu) => (
+                    <>
+                      {menu}
+                      <Divider
+                        style={{
+                          margin: "8px 0",
+                        }}
                       />
-                      <Button
-                        type="text"
-                        icon={<PlusOutlined />}
-                        onClick={AddPickUp}
+                      <Space
+                        style={{
+                          padding: "0 8px 4px",
+                        }}
                       >
-                        Add pickup
-                      </Button>
-                    </Space>
-                  </>
-                )}
-                options={PickUps.map((item) => ({
-                  label: item,
-                  value: item,
-                }))}
-              />
+                        <Input
+                          placeholder="Please enter item"
+                          ref={pickupInputRef}
+                          value={PickUpName}
+                          onChange={onPickUpChange}
+                          onKeyDown={(e) => e.stopPropagation()}
+                        />
+                        <Button
+                          type="text"
+                          icon={<PlusOutlined />}
+                          onClick={AddPickUp}
+                        >
+                          Add pickup
+                        </Button>
+                      </Space>
+                    </>
+                  )}
+                  options={PickUps.map((item) => ({
+                    label: item,
+                    value: item,
+                  }))}
+                />
+              </ConfigProvider>
             </Form.Item>
 
             <Form.Item label={"Drop off location"} name={"drop_off"}>
-              <Select
-                style={{
-                  width: "100%",
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBorder: "#667085"
+                  },
                 }}
-                placeholder="custom dropdown render"
-                dropdownRender={(menu) => (
-                  <>
-                    {menu}
-                    <Divider
-                      style={{
-                        margin: "8px 0",
-                      }}
-                    />
-                    <Space
-                      style={{
-                        padding: "0 8px 4px",
-                      }}
-                    >
-                      <Input
-                        placeholder="Please enter item"
-                        ref={dropoffInputRef}
-                        value={DropoffName}
-                        onChange={onDropoffChange}
-                        onKeyDown={(e) => e.stopPropagation()}
+              >
+                <Select
+                  style={{
+                    width: "100%",
+                  }}
+                  className="h-[50px]"
+                  placeholder="custom dropdown render"
+                  dropdownRender={(menu) => (
+                    <>
+                      {menu}
+                      <Divider
+                        style={{
+                          margin: "8px 0",
+                        }}
                       />
-                      <Button
-                        type="text"
-                        icon={<PlusOutlined />}
-                        onClick={AddDropoff}
+                      <Space
+                        style={{
+                          padding: "0 8px 4px",
+                        }}
                       >
-                        Add Dropoff
-                      </Button>
-                    </Space>
-                  </>
-                )}
-                options={Dropoffs.map((item) => ({
-                  label: item,
-                  value: item,
-                }))}
-              />
+                        <Input
+                          placeholder="Please enter item"
+                          ref={dropoffInputRef}
+                          value={DropoffName}
+                          onChange={onDropoffChange}
+                          onKeyDown={(e) => e.stopPropagation()}
+                        />
+                        <Button
+                          type="text"
+                          icon={<PlusOutlined />}
+                          onClick={AddDropoff}
+                        >
+                          Add Dropoff
+                        </Button>
+                      </Space>
+                    </>
+                  )}
+                  options={Dropoffs.map((item) => ({
+                    label: item,
+                    value: item,
+                  }))}
+                />
+              </ConfigProvider>
             </Form.Item>
 
             <Form.Item label={"County"} name={"county"}>
@@ -3306,7 +3324,7 @@ export const HowHearModalContent = () => {
             </Form.Item>
 
             <Form.Item name={"code"} label={"Lead Code"}>
-              <InputNumber placeholder={"Lead Code"} />
+              <InputNumber placeholder={"Lead Code"} className="w-full h-[50px] border-[#667085] py-2.5" />
             </Form.Item>
 
             <Form.Item name={"expiration"} label={"Expiration"}>

@@ -56,7 +56,7 @@ export const StudentBookLessons = ({ ...props }) => {
                 onChange={onChange}
                 hideAdjacentDates
                 className={"w-full"}
-                size={500}
+                size={300}
               />
             </div>
 
