@@ -1,6 +1,6 @@
 from django.db import models
 from django_tenants.models import TenantMixin, DomainMixin
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,Group
 import uuid
 class Client(TenantMixin):
     name = models.CharField(max_length=100)
@@ -42,7 +42,9 @@ class CustomUser(AbstractUser):
         if not self.id:
             self.id = uuid.uuid4()
         super().save(*args, **kwargs)
-
+        default_group, created = Group.objects.get_or_create(name='DefaultGroup')
+        if not self.groups.exists():
+            self.groups.add(default_group)
     def __str__(self):
         return  self.username
 
