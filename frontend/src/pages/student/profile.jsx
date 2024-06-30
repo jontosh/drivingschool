@@ -2,17 +2,12 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
-  CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
-import Title, { Text } from "@/components/title/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
 import { useDate } from "@/hooks/useDate.jsx";
-import { FormError } from "@/modules/errors.jsx";
-import { PronounOptions } from "@/modules/select-options.jsx";
-import EnrollmentStyle from "@/pages/enrollment/enrollment.module.scss";
-import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import {
   useRequestGetQuery,
   useRequestPatchMutation,
@@ -27,11 +22,7 @@ import {
 } from "react";
 import { useParams } from "react-router-dom";
 import ProfileStyle from "./student-account.module.scss";
-import IconComponent from "@/components/icons";
-import { TfiEmail } from "react-icons/tfi";
-import { DatePicker, QRCode } from "antd";
-import ManagementStyle from "./../managment/management.module.scss";
-import dayjs from "dayjs";
+import { Form, QRCode } from "antd";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
 const reducer = (state, action) => {
@@ -292,612 +283,123 @@ const Profile = () => {
   const handleDLExpireDate = (day) =>
     setDLExpiration(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
 
+  const [form] = Form.useForm();
+
+  const onFinish = async (values) => {
+    console.log(values);
+  };
+
   return (
     <Fragment>
-      <div className=" flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
-        <div
-          className={`rounded-2xl border-2 border-indigo-700 w-[460px] overflow-hidden`}
-        >
-          <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-            <Map
-              defaultCenter={{ lat: 22.54992, lng: 0 }}
-              style={{ height: "100%" }}
-              defaultZoom={3}
-              gestureHandling={"greedy"}
-              disableDefaultUI={true}
-            />
-          </APIProvider>
-        </div>
-        <div className={"flex-grow"}>
-          <div className={`rounded-2xl border-2 border-indigo-700 py-5 px-7`}>
-            <Title
-              className={"text-center"}
-              fontSize={"text-base text-green-600"}
-              fontWeightStrong={600}
-              titleMarginBottom={10}
-            >
-              Activated
-            </Title>
-            <div className={`grid grid-cols-2 gap-7`}>
-              <div className={"space-y-5"}>
-                <CustomSelect
-                  placeholder={"Select Status"}
-                  options={StatusSelect}
-                  className={"w-full h-[50px] text-white"}
-                  selectorBg={colorsObject.info}
-                  onChange={handleStatus}
-                />
-
-                <ButtonComponent
-                  defaultBg={colorsObject.info}
-                  defaultHoverBg={colorsObject.info}
-                  className={"w-full"}
-                  borderRadius={5}
-                >
-                  Send Text
-                </ButtonComponent>
-                <div className="flex gap-5 items-center">
-                  <div
-                    className={`${ProfileStyle["Student-profile__imageholder-small"]} rounded-lg border-2 border-indigo-700`}
-                  >
-                    <QRCode
-                      style={{ width: "auto", height: "auto" }}
-                      type="svg"
-                      value="https://ant.design/"
+      <Form form={form} onFinish={onFinish} initialValues={{}}>
+        <div className=" flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
+          <div
+            className={`rounded-2xl border-2 border-indigo-700 w-[460px] overflow-hidden`}
+          >
+            <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+              <Map
+                defaultCenter={{ lat: 22.54992, lng: 32 }}
+                style={{ height: "100%" }}
+                defaultZoom={3}
+                gestureHandling={"greedy"}
+                disableDefaultUI={true}
+              />
+            </APIProvider>
+          </div>
+          <div className={"flex-grow"}>
+            <div className={`rounded-2xl border-2 border-indigo-700 py-5 px-7`}>
+              <Title
+                className={"text-center"}
+                fontSize={"text-base text-green-600"}
+                fontWeightStrong={600}
+                titleMarginBottom={10}
+              >
+                Activated
+              </Title>
+              <div className={`grid grid-cols-2 gap-7`}>
+                <div className={"space-y-5"}>
+                  <Form.Item name={"status"} className={"mb-0"}>
+                    <CustomSelect
+                      placeholder={"Select Status"}
+                      options={[
+                        { value: "ACTIVE", label: "ACTIVE" },
+                        { value: "DELETED", label: "DELETED" },
+                        { value: "PENDING", label: "PENDING" },
+                      ]}
+                      className={`w-full h-[40px] text-white ${ProfileStyle["Status"]}`}
+                      selectorBg={colorsObject.info}
+                      onChange={handleStatus}
+                      colorBorder={colorsObject.info}
                     />
-                  </div>
+                  </Form.Item>
 
                   <ButtonComponent
                     defaultBg={colorsObject.info}
                     defaultHoverBg={colorsObject.info}
-                    className={"flex-grow"}
+                    className={"w-full pt-1.5"}
+                    borderRadius={5}
+                    href={"/admin/student/account/messages/" + studentId}
+                  >
+                    Send Text
+                  </ButtonComponent>
+                  <div className="flex gap-5 items-center">
+                    <div
+                      className={`${ProfileStyle["Student-profile__imageholder-small"]} rounded-lg border-2 border-indigo-700`}
+                    >
+                      <QRCode
+                        style={{ width: "100%", height: "100%" }}
+                        type="svg"
+                        value="https://ant.design/"
+                      />
+                    </div>
+
+                    <ButtonComponent
+                      defaultBg={colorsObject.info}
+                      defaultHoverBg={colorsObject.info}
+                      className={"flex-grow"}
+                      borderRadius={5}
+                    >
+                      Print
+                    </ButtonComponent>
+                  </div>
+                </div>
+                {/*-------------*/}
+                <div className={"space-y-5"}>
+                  <ButtonComponent
+                    defaultBg={colorsObject.info}
+                    defaultHoverBg={colorsObject.info}
+                    className={"w-full pt-1.5"}
+                    borderRadius={5}
+                    href={"/student/dashboard/"}
+                    target={"_blank"}
+                  >
+                    Access Student Center
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    defaultBg={colorsObject.info}
+                    defaultHoverBg={colorsObject.info}
+                    className={"w-full"}
                     borderRadius={5}
                   >
-                    Print
+                    Username/Password
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    defaultBg={colorsObject.info}
+                    defaultHoverBg={colorsObject.info}
+                    className={"w-full"}
+                    borderRadius={5}
+                  >
+                    Other
                   </ButtonComponent>
                 </div>
               </div>
-              {/*-------------*/}
-              <div className={"space-y-5"}>
-                <ButtonComponent
-                  defaultBg={colorsObject.info}
-                  defaultHoverBg={colorsObject.info}
-                  className={"w-full"}
-                  borderRadius={5}
-                >
-                  Access Student Center
-                </ButtonComponent>
-
-                <ButtonComponent
-                  defaultBg={colorsObject.info}
-                  defaultHoverBg={colorsObject.info}
-                  className={"w-full"}
-                  borderRadius={5}
-                >
-                  Username/Password
-                </ButtonComponent>
-
-                <ButtonComponent
-                  defaultBg={colorsObject.info}
-                  defaultHoverBg={colorsObject.info}
-                  className={"w-full"}
-                  borderRadius={5}
-                >
-                  Other
-                </ButtonComponent>
-              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <form>
-        <div
-          className={`grid grid-cols-2 gap-6 pt-5 pb-5 mb-5 -mx-5 px-5 bg-white rounded-2xl `}
-        >
-          <div className="flex flex-col gap-5">
-            <label className="inline-flex items-center w-full gap-5">
-              <span className={"w-40 text-base flex-shrink-0"}>
-                Student type
-              </span>
-              <CustomSelect
-                placeholder={"Select"}
-                className={`shadow-lg w-full h-[50px]`}
-                options={StudentTypeOptions}
-                onChange={handleStudentType}
-                value={StudentType}
-                disabled={isLoading}
-              />
-            </label>
-
-            <label className="inline-flex items-center w-full gap-5">
-              <span className={"w-40 text-base flex-shrink-0"}>
-                Assign to staff
-              </span>
-              <CustomSelect
-                placeholder={"Select"}
-                value={Instructor}
-                className={`shadow-lg w-full h-[50px]`}
-                onChange={handleStaff}
-                options={InstructorOptions}
-                disabled={isLoading}
-              />
-            </label>
-
-            <label className="inline-flex items-center w-full gap-5">
-              <span className={"w-40 text-base flex-shrink-0"}>
-                Assign to Location
-              </span>
-              <CustomSelect
-                placeholder={"Select"}
-                className={`shadow-lg w-full h-[50px]`}
-                options={AssignLocationOptions}
-                onChange={handleLocation}
-                disabled={isLoading}
-              />
-            </label>
-
-            <CustomInput
-              placeholder={"Student id"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Student id"}
-              spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              value={data?.id}
-              disabled
-            />
-
-            <CustomInput
-              placeholder={"First name"}
-              className={`shadow-lg border w-full px-4 p-2.5`}
-              spanText={"First name"}
-              spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"first_name"}
-              value={Student?.first_name}
-              disabled={isLoading}
-              onChange={handleChange}
-            >
-              {Selections && (
-                <FormError className={"pl-44"}>Is Empty</FormError>
-              )}
-            </CustomInput>
-
-            <CustomInput
-              placeholder={"Last name"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Last name"}
-              spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"last_name"}
-              value={Student?.last_name}
-              disabled={isLoading}
-              onChange={handleChange}
-            >
-              {Selections && (
-                <FormError className={"pl-44"}>Is Empty</FormError>
-              )}
-            </CustomInput>
-
-            <CustomInput
-              placeholder={"Middle name"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Middle name"}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"mid_name"}
-              value={Student?.mid_name}
-              onChange={handleChange}
-              disabled={isLoading}
-            />
-
-            <CustomInput
-              placeholder={"Address"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Address"}
-              spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"address"}
-              value={Student?.address}
-              disabled={isLoading}
-              onChange={handleChange}
-            >
-              {Selections && (
-                <FormError className={"pl-44"}>Is Empty</FormError>
-              )}
-            </CustomInput>
-
-            <CustomInput
-              placeholder={"City"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"City"}
-              spanClassName={`w-40 flex-shrink-0 text-start flex-shrink-0 text-right relative after:right-24 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"city"}
-              value={Student?.city}
-              disabled={isLoading}
-              onChange={handleChange}
-            >
-              {Selections && (
-                <FormError className={"pl-44"}>Is Empty</FormError>
-              )}
-            </CustomInput>
-
-            <label className="inline-flex items-center w-full gap-5">
-              <span
-                className={`w-40 flex-shrink-0 text-start relative after:right-20 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                State
-              </span>
-              <div className={"space-y-5 flex-grow"}>
-                <CustomSelect
-                  placeholder={"State"}
-                  className={`shadow-lg w-full h-[50px]`}
-                  onChange={handleState}
-                  value={State || Student?.state}
-                  disabled={isLoading}
-                  options={[
-                    {
-                      value: 1,
-                      label: "USA",
-                    },
-                  ]}
-                />
-                {Selections && <FormError>Is Empty</FormError>}
-              </div>
-            </label>
-
-            <CustomInput
-              placeholder={"Zip/Postal code"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Zip/Postal code"}
-              spanClassName={`w-40 flex-shrink-0 text-start relative after:right-0 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"zip"}
-              value={Student?.zip}
-              disabled={isLoading}
-              onChange={handleChange}
-            >
-              {Selections && (
-                <FormError className={"pl-44"}>Is Empty</FormError>
-              )}
-            </CustomInput>
-
-            <CustomInput
-              placeholder={"Home Phone"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Home Phone"}
-              spanClassName={`w-40 flex-shrink-0 text-start relative after:right-5 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"home_phone"}
-              value={Student?.home_phone}
-              disabled={isLoading}
-              onChange={handleChange}
-            >
-              {Selections && (
-                <FormError className={"pl-44"}>Is Empty</FormError>
-              )}
-            </CustomInput>
-
-            <CustomInput
-              placeholder={"Cell Phone"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Cell Phone"}
-              spanClassName={`w-40 flex-shrink-0 text-start relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"cell_phone"}
-              value={Student?.cell_phone}
-              disabled={isLoading}
-              onChange={handleChange}
-            >
-              {Selections && (
-                <FormError className={"pl-44"}>Is Empty</FormError>
-              )}
-            </CustomInput>
-
-            <label className="inline-flex items-center w-full gap-5">
-              <span
-                className={`w-36 flex-shrink-0 text-start relative after:right-16 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Email
-              </span>
-              <div className="flex items-center gap-2 flex-grow">
-                <div className={"flex-grow"}>
-                  <CustomInput
-                    placeholder={"Email"}
-                    classNames={"w-full h-[50px] px-4"}
-                    className={`shadow-lg  w-full px-4 p-2.5`}
-                    type="email"
-                    value={Student?.email}
-                    name={"email"}
-                    disabled={isLoading}
-                    onChange={handleChange}
-                  >
-                    {Selections && (
-                      <FormError className={"pl-44"}>Is Empty</FormError>
-                    )}
-                  </CustomInput>
-                </div>
-                <IconComponent>
-                  <TfiEmail
-                    className={`w-[25.5px] h-[23.57px] text-[#00000073]`}
-                  />
-                </IconComponent>
-              </div>
-            </label>
-
-            <label className="flex items-center gap-9">
-              <span
-                className={`w-36 flex-shrink-0 text-start relative after:right-10 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Gender
-              </span>
-
-              <div className={"space-y-5"}>
-                <div className={"space-x-2.5"}>
-                  <CustomRadio
-                    classNames={"inline-flex gap-2.5 items-center"}
-                    name={"gender"}
-                    value={"Male"}
-                    checked={"Male" === Student?.gender}
-                    onChange={handleChange}
-                  >
-                    <Text fontSize={"text-base"}>Male</Text>
-                  </CustomRadio>
-                  <CustomRadio
-                    classNames={"inline-flex gap-2.5 items-center"}
-                    name={"gender"}
-                    value={"Female"}
-                    checked={"Female" === Student?.gender}
-                    onChange={handleChange}
-                  >
-                    <Text fontSize={"text-base"}>Female</Text>
-                  </CustomRadio>
-                  <CustomRadio
-                    classNames={"inline-flex gap-2.5 items-center"}
-                    name={"gender"}
-                    value={"Other"}
-                    checked={"Other" === Student?.gender}
-                    onChange={handleChange}
-                  >
-                    <Text fontSize={"text-base"}>Other</Text>
-                  </CustomRadio>
-                </div>
-
-                {Selections && (
-                  <FormError className={"pl-44"}>Is Empty</FormError>
-                )}
-              </div>
-            </label>
-
-            <label className="inline-flex items-center w-full gap-5">
-              <span className={"w-40 text-base flex-shrink-0"}>
-                Preferred Pronoun
-              </span>
-              <CustomSelect
-                placeholder={"State"}
-                className={`shadow-lg w-full h-[50px]`}
-                options={PronounOptions}
-                disabled={isLoading}
-                value={Pronoun}
-                onChange={handlePronoun}
-              />
-            </label>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center w-full gap-5">
-              <span
-                className={`w-40 flex-shrink-0 text-start relative after:right-5 ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Date of birth
-              </span>
-
-              <div className={"space-x-5"}>
-                <CustomSelect
-                  placeholder={"Month"}
-                  options={Months}
-                  className={"w-[90px] h-[50px]"}
-                  onChange={handleBirthMonth}
-                  value={BirthMonth}
-                  disabled={isLoading}
-                />
-                <CustomSelect
-                  placeholder={"Day"}
-                  colorBorder={colorsObject.primary}
-                  options={Days}
-                  className={"w-[90px] h-[50px]"}
-                  onChange={handleBirthDay}
-                  value={BirthDay}
-                  disabled={isLoading}
-                />
-                <CustomSelect
-                  placeholder={"Year"}
-                  options={YearsOptions()}
-                  className={"w-[90px] h-[50px]"}
-                  onChange={handleBirthYear}
-                  value={BirthYear}
-                  disabled={isLoading}
-                />
-              </div>
-            </div>
-
-            <CustomInput
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              type={"text"}
-              spanText={"DL/Permit"}
-              placeholder={"DL/Permit"}
-              name={"dl_permit"}
-              value={Student?.dl_permit}
-              disabled={isLoading}
-              onChange={handleChange}
-            />
-
-            <label className="inline-flex gap-5 items-center w-full">
-              <span className={`text-base flex-shrink-0 w-40`}>
-                DL/Permit Issued
-              </span>
-              <DatePicker
-                className={`w-full h-[50px] border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                placeholder={"DD/MM/YYYY"}
-                onChange={handleDLIssued}
-                defaultValue={DlIssued || dayjs(Student?.dl_given_date)}
-                disabled={isLoading}
-              />
-            </label>
-
-            <label className="inline-flex gap-5 items-center w-full">
-              <span className={`text-base flex-shrink-0 w-40`}>
-                DL Permit Expiration
-              </span>
-              <DatePicker
-                className={`w-full h-[50px] border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                placeholder={"DD/MM/YYYY"}
-                onChange={handleDLExpireDate}
-                defaultValue={DLExpiration || dayjs(Student?.dl_expire_date)}
-                disabled={isLoading}
-              />
-            </label>
-
-            <CustomCheckBox
-              className={`inline-flex justify-end items-center w-full flex-row-reverse`}
-              name={"scheduling"}
-              onChange={handleChange}
-            >
-              <span className={"w-44 text-base flex-shrink-0"}>
-                Self Scheduling
-              </span>
-            </CustomCheckBox>
-
-            <CustomCheckBox
-              className={`inline-flex justify-end items-center w-full flex-row-reverse`}
-              name={"payment"}
-              onChange={handleChange}
-            >
-              <span className={"w-44 text-base flex-shrink-0"}>
-                Payment Plan
-              </span>
-            </CustomCheckBox>
-
-            <label className="inline-flex gap-5 items-center w-full">
-              <span className={`text-base flex-shrink-0 w-40`}>
-                Extension Date
-              </span>
-              <DatePicker
-                className={`w-full h-[50px] border-[#667085] ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                placeholder={"DD/MM/YYYY"}
-                onChange={handleExtensionDate}
-                defaultValue={ExtensionDate}
-                disabled={isLoading}
-              />
-            </label>
-
-            <label className="inline-flex items-center w-full gap-5">
-              <span className={"w-40 text-base flex-shrink-0"}>
-                High School
-              </span>
-              <CustomSelect
-                placeholder={"High School"}
-                className={`shadow-lg w-full h-[50px]`}
-                options={SchoolsOptions}
-                onChange={handleSchool}
-                value={School}
-              />
-            </label>
-
-            <CustomInput
-              placeholder={"Parent name"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Parent name"}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"parent_name"}
-              value={Student?.parent_name}
-            />
-
-            <CustomInput
-              placeholder={"Parent Phone"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Parent Phone"}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"parent_phone"}
-              value={Student?.parent_phone}
-            />
-
-            <CustomInput
-              placeholder={"Parent Email"}
-              className={`shadow-lg w-full px-4 border p-2.5`}
-              spanText={"Parent Email"}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              type={"email"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"parent_email"}
-              value={Student?.parent_email}
-            />
-
-            <CustomInput
-              placeholder={"Parent name 2"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Parent name 2"}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"parent_2_name"}
-              value={Student?.parent_2_name}
-            />
-
-            <CustomInput
-              placeholder={"Parent Phone 2"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Parent Phone 2"}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"parent_2_phone"}
-              value={Student?.parent_2_phone}
-            />
-
-            <CustomInput
-              placeholder={"Parent Email 2"}
-              className={`shadow-lg w-full px-4 p-2.5`}
-              spanText={"Parent Email 2"}
-              spanClassName={"w-40 flex-shrink-0"}
-              fontSize={"text-base"}
-              type={"email"}
-              classNames={`inline-flex flex-shrink-0 justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-              name={"parent_2_email"}
-              value={Student?.parent_2_email}
-            />
-
-            <CustomCheckBox
-              className={
-                "inline-flex flex-row-reverse items-center justify-end w-full h-[50px]"
-              }
-              name={"home_drop_off"}
-              onChange={handleChange}
-            >
-              <span className={`text-base flex-shrink-0 w-44`}>
-                Home Drop off
-              </span>
-            </CustomCheckBox>
-          </div>
-        </div>
+        <div className="p-5">@todo</div>
 
         {IsMore && (
           <Fragment>
@@ -1107,7 +609,6 @@ const Profile = () => {
             </div>
           </Fragment>
         )}
-
         <div
           className={`text-center space-y-6 pt-6 ${!IsMore ? "bg-white" : null}`}
         >
@@ -1137,7 +638,7 @@ const Profile = () => {
             </ButtonComponent>
           </div>
         </div>
-      </form>
+      </Form>
 
       {IsOpen && state?.status}
     </Fragment>
