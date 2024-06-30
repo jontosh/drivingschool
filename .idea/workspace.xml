@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created schedule for student and connected URL path">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed files and remove handle functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/config-base.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/configuration/subpages/config-base.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +48,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactoring",
-    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool/frontend/package.json",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/package.json&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/pages/students/account" />
@@ -178,14 +178,7 @@
       <workItem from="1719385566939" duration="13349000" />
       <workItem from="1719403326960" duration="4046000" />
       <workItem from="1719418763681" duration="14453000" />
-    </task>
-    <task id="LOCAL-00013" summary="#fix #jsx Refactor form inputs, handle state changes, and update data fetching in profile and index components. Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
-      <option name="closed" value="true" />
-      <created>1717547650041</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1717547650041</updated>
+      <workItem from="1719743326992" duration="5060000" />
     </task>
     <task id="LOCAL-00014" summary="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components.">
       <option name="closed" value="true" />
@@ -571,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719492763905</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="#fix #jsx Fixed files and remove handle functions">
+      <option name="closed" value="true" />
+      <created>1719706683587</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1719706683588</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +591,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored BigCalendar components to implement" />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic" />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic data" />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes." />
@@ -615,7 +615,8 @@
     <MESSAGE value="#fix #jsx Created enroll and connected data" />
     <MESSAGE value="#fix #jsx Created Contact and refactor router" />
     <MESSAGE value="#fix #jsx Created schedule for student and connected URL path" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created schedule for student and connected URL path" />
+    <MESSAGE value="#fix #jsx Fixed files and remove handle functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed files and remove handle functions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

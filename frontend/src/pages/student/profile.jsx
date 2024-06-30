@@ -5,7 +5,6 @@ import {
   CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
-import Image from "@/components/image/index.jsx";
 import Title, { Text } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
@@ -27,13 +26,13 @@ import {
   useState,
 } from "react";
 import { useParams } from "react-router-dom";
-import CoverImage from "../../assets/others/cover.png";
 import ProfileStyle from "./student-account.module.scss";
 import IconComponent from "@/components/icons";
 import { TfiEmail } from "react-icons/tfi";
 import { DatePicker, QRCode } from "antd";
 import ManagementStyle from "./../managment/management.module.scss";
 import dayjs from "dayjs";
+import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -296,12 +295,18 @@ const Profile = () => {
   return (
     <Fragment>
       <div className=" flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
-        <div>
-          <div
-            className={`rounded-2xl border-2 border-indigo-700 ${ProfileStyle["Student-profile__imageholder"]}`}
-          >
-            <Image src={CoverImage} srcSet={CoverImage} />
-          </div>
+        <div
+          className={`rounded-2xl border-2 border-indigo-700 w-[460px] overflow-hidden`}
+        >
+          <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+            <Map
+              defaultCenter={{ lat: 22.54992, lng: 0 }}
+              style={{ height: "100%" }}
+              defaultZoom={3}
+              gestureHandling={"greedy"}
+              disableDefaultUI={true}
+            />
+          </APIProvider>
         </div>
         <div className={"flex-grow"}>
           <div className={`rounded-2xl border-2 border-indigo-700 py-5 px-7`}>
@@ -360,7 +365,7 @@ const Profile = () => {
                   className={"w-full"}
                   borderRadius={5}
                 >
-                  Acces Student Center
+                  Access Student Center
                 </ButtonComponent>
 
                 <ButtonComponent
@@ -371,26 +376,15 @@ const Profile = () => {
                 >
                   Username/Password
                 </ButtonComponent>
-                <div className="flex gap-5 items-center">
-                  <div
-                    className={`${ProfileStyle["Student-profile__imageholder-small"]} rounded-lg border-2 border-indigo-700`}
-                  >
-                    <QRCode
-                      style={{ width: "auto", height: "auto" }}
-                      type="svg"
-                      value="https://ant.design/"
-                    />
-                  </div>
 
-                  <ButtonComponent
-                    defaultBg={colorsObject.info}
-                    defaultHoverBg={colorsObject.info}
-                    className={"flex-grow"}
-                    borderRadius={5}
-                  >
-                    Print
-                  </ButtonComponent>
-                </div>
+                <ButtonComponent
+                  defaultBg={colorsObject.info}
+                  defaultHoverBg={colorsObject.info}
+                  className={"w-full"}
+                  borderRadius={5}
+                >
+                  Other
+                </ButtonComponent>
               </div>
             </div>
           </div>
