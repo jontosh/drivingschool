@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated Form content remove and refactored.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/student-account.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/student-account.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,15 +176,8 @@
       <workItem from="1719385566939" duration="13349000" />
       <workItem from="1719403326960" duration="4046000" />
       <workItem from="1719418763681" duration="14453000" />
-      <workItem from="1719743326992" duration="9016000" />
-    </task>
-    <task id="LOCAL-00015" summary="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components.">
-      <option name="closed" value="true" />
-      <created>1717582734981</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1717582734981</updated>
+      <workItem from="1719743326992" duration="10825000" />
+      <workItem from="1719830924597" duration="2774000" />
     </task>
     <task id="LOCAL-00016" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
       <option name="closed" value="true" />
@@ -570,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719749755744</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="#fix #jsx Updated Form content remove and refactored.">
+      <option name="closed" value="true" />
+      <created>1719755633076</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1719755633076</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +590,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored BigCalendar components to implement dynamic data" />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes." />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes" />
     <MESSAGE value="Refactor BigCalendar components to implement dynamic data changes" />
@@ -614,7 +614,8 @@
     <MESSAGE value="#fix #jsx Created schedule for student and connected URL path" />
     <MESSAGE value="#fix #jsx Fixed files and remove handle functions" />
     <MESSAGE value="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements" />
+    <MESSAGE value="#fix #jsx Updated Form content remove and refactored." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated Form content remove and refactored." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

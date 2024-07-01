@@ -1,12 +1,14 @@
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
+import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useFilterStatus } from "@/hooks/filter.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
+import { MoneyModule, ShoppingCartModule } from "@/modules/student-account.jsx";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { BookOutlined } from "@ant-design/icons";
-import { Form } from "antd";
+import { Form, Tooltip } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -23,6 +25,9 @@ import StudentAccountStyle from "./student-account.module.scss";
 const StudentAccount = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { title, studentId, subtitle } = useParams();
+  const { columns: ShoppingCartColumns, data: ShoppingCartData } =
+    ShoppingCartModule();
+  const { columns: MoneyColumns, data: MoneyData } = MoneyModule();
   const { data } = useRequestGetQuery({ path: "/student_account/student/" });
   const { data: StudentById } = useRequestIdQuery({
     path: "/student_account/student",
@@ -31,7 +36,7 @@ const StudentAccount = () => {
   const [Search, setSearch] = useState(null);
   const [Student, setStudent] = useState(null);
   const { Data } = useFilterStatus({ data, status: null, search: Search });
-  console.log(Data);
+
   useEffect(() => {
     setStudent(StudentById);
   }, [studentId, title, data]);
@@ -109,7 +114,7 @@ const StudentAccount = () => {
               </span>
             </Form.Item>
 
-            {Search && (
+            {Search && !Student && (
               <ul className={"w-full p-5 bg-white rounded-b-2xl"}>
                 {searchItem}
               </ul>
@@ -135,27 +140,96 @@ const StudentAccount = () => {
                     Balance <span className={"text-green-500"}>$699</span>
                   </Paragraph>
                 </div>
-                <IconComponent
-                  icon={<AiOutlineInfoCircle />}
-                  className={"text-3xl text-indigo-600"}
-                />
-                <IconComponent
-                  icon={<AiOutlineShoppingCart />}
-                  className={"text-3xl text-indigo-600"}
-                />
-                <IconComponent
-                  icon={<PiMoney />}
-                  className={"text-3xl text-indigo-600"}
-                />
 
-                <IconComponent
-                  icon={<BookOutlined />}
-                  className={"text-3xl text-indigo-600"}
-                />
-                <IconComponent
-                  icon={<IoCarOutline />}
-                  className={"text-3xl text-indigo-600"}
-                />
+                <Tooltip
+                  title={
+                    <div className={"p-4 space-y-4"}>
+                      <Paragraph fontSize={"text-black"}>
+                        <b>BTW Balance:</b> 8:00 Hours
+                      </Paragraph>
+
+                      <Paragraph fontSize={"text-black"}>
+                        <b>BTW Balance:</b> 8:00 Hours
+                      </Paragraph>
+                    </div>
+                  }
+                  color={colorsObject.main}
+                >
+                  <IconComponent
+                    icon={<AiOutlineInfoCircle />}
+                    className={"text-3xl text-indigo-600"}
+                  />
+                </Tooltip>
+
+                <Tooltip
+                  title={
+                    <Fragment>
+                      <TableComponent
+                        columns={ShoppingCartColumns}
+                        data={ShoppingCartData}
+                      />
+                    </Fragment>
+                  }
+                  color={colorsObject.main}
+                >
+                  <IconComponent
+                    icon={<AiOutlineShoppingCart />}
+                    className={"text-3xl text-indigo-600"}
+                  />
+                </Tooltip>
+
+                <Tooltip
+                  title={
+                    <Fragment>
+                      <TableComponent columns={MoneyColumns} data={MoneyData} />
+                    </Fragment>
+                  }
+                  color={colorsObject.main}
+                >
+                  <IconComponent
+                    icon={<PiMoney />}
+                    className={"text-3xl text-indigo-600"}
+                  />
+                </Tooltip>
+
+                <Tooltip
+                  title={<Paragraph fontSize={"text-black"}>Empty</Paragraph>}
+                  color={colorsObject.main}
+                >
+                  <IconComponent
+                    icon={<BookOutlined />}
+                    className={"text-3xl text-indigo-600"}
+                  />
+                </Tooltip>
+
+                <Tooltip
+                  title={
+                    <div className={"p-4 space-y-4"}>
+                      <Paragraph fontSize={"text-black"}>
+                        <b>BTW Balance:</b> 8:00 Hours
+                      </Paragraph>
+
+                      <Paragraph fontSize={"text-black"}>
+                        <b>BTW Balance:</b> 8:00 Hours
+                      </Paragraph>
+
+                      <Paragraph fontSize={"text-black"}>
+                        <b>BTW Balance:</b> 8:00 Hours
+                      </Paragraph>
+
+                      <Paragraph fontSize={"text-black"}>
+                        <b>BTW Balance:</b> 8:00 Hours
+                      </Paragraph>
+                    </div>
+                  }
+                  color={colorsObject.main}
+                >
+                  <IconComponent
+                    icon={<IoCarOutline />}
+                    className={"text-3xl text-indigo-600"}
+                  />
+                </Tooltip>
+
                 <CustomSelect
                   placeholder={"Select"}
                   options={[{ value: 1, label: 1 }]}
