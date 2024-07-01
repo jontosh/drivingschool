@@ -7,23 +7,17 @@ import {
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
-import { useDate } from "@/hooks/useDate.jsx";
 import {
   useRequestGetQuery,
+  useRequestIdQuery,
   useRequestPatchMutation,
 } from "@/redux/query/index.jsx";
-import {
-  Fragment,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProfileStyle from "./student-account.module.scss";
-import { Form, QRCode } from "antd";
+import { DatePicker, Form, QRCode, Radio } from "antd";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import moment from "moment";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -49,10 +43,10 @@ const reducer = (state, action) => {
 const Profile = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { studentId } = useParams();
-  const { Months, Days, YearsOptions } = useDate();
   const [requestPatch] = useRequestPatchMutation();
-  const { data, isLoading } = useRequestGetQuery({
-    path: "/student_account/student/" + studentId,
+  const { data, isLoading } = useRequestIdQuery({
+    path: "/student_account/student",
+    id: studentId,
   });
   const { data: InstructorData } = useRequestGetQuery({
     path: "/student_account/instructor/",
@@ -72,43 +66,10 @@ const Profile = () => {
   const [StudentTypeOptions, setStudentTypeOptions] = useState([]);
   const [AssignLocationOptions, setAssignLocationOptions] = useState([]);
   const [IsMore, setIsMore] = useState(false);
-  const [Selections, setSelections] = useState(false);
-  const [Student, setStudent] = useState(null);
-  const [DlIssued, setDLIssued] = useState(null);
-  const [DLExpiration, setDLExpiration] = useState(null);
-  const [ExtensionDate, setExtensionDate] = useState(null);
-  const [StudentType, setStudentType] = useState(undefined);
-  const [School, setSchool] = useState(undefined);
-  const [Instructor, setInstructor] = useState("");
-  const [Location, setLocation] = useState("");
-  const [State, setState] = useState("");
-  const [Pronoun, setPronoun] = useState("");
-  const [BirthDay, setBirthDay] = useState("");
-  const [BirthMonth, setBirthMonth] = useState("");
-  const [BirthYear, setBirthYear] = useState("");
-  const [Status, setStatus] = useState("");
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
 
-  // ALL
-  useEffect(() => {
-    setBirthYear(data?.birth?.split("-")[0]);
-    setBirthMonth(data?.birth?.split("-")[1]);
-    setBirthDay(data?.birth?.split("-")[2]);
-    setStudent(data);
-    setPronoun(data?.preferred_pronoun);
-    setDLIssued(Student?.dl_given_date);
-    setDLExpiration(Student?.dl_expire_date);
-    setStudentType(Student?.type);
-    setStatus(Student?.status);
-  }, [
-    data,
-    InstructorData,
-    LocationData,
-    SchoolsData,
-    UserTypeData,
-    StudentTypeOptions,
-  ]);
+  console.log(data);
 
   // INSTRUCTOR
   useEffect(() => {
@@ -116,14 +77,12 @@ const Profile = () => {
 
     for (let i = 0; i < InstructorData?.length; i++) {
       const instructor = InstructorData[i];
-      options.push({
-        ...instructor,
-        value: instructor?.id,
-        label: instructor?.first_name + " " + instructor?.last_name,
-      });
-
-      if (instructor.id === data?.staff) {
-        setInstructor(instructor?.first_name + " " + instructor?.last_name);
+      if (instructor.status === "ACTIVE") {
+        options.push({
+          ...instructor,
+          value: instructor?.id,
+          label: instructor?.first_name + " " + instructor?.last_name,
+        });
       }
     }
 
@@ -136,11 +95,14 @@ const Profile = () => {
 
     for (let i = 0; i < UserTypeData?.length; i++) {
       const type = UserTypeData[i];
-      options.push({
-        ...type,
-        value: type?.id,
-        label: type?.name,
-      });
+
+      if (type.status === "ACTIVE") {
+        options.push({
+          ...type,
+          value: type?.id,
+          label: type?.name,
+        });
+      }
     }
 
     setStudentTypeOptions(options);
@@ -152,11 +114,13 @@ const Profile = () => {
 
     for (let i = 0; i < LocationData?.length; i++) {
       const location = LocationData[i];
-      options.push({
-        ...location,
-        value: location?.id,
-        label: location?.name,
-      });
+      if (location.status === "ACTIVE") {
+        options.push({
+          ...location,
+          value: location?.id,
+          label: location?.name,
+        });
+      }
     }
 
     setAssignLocationOptions(options);
@@ -181,107 +145,46 @@ const Profile = () => {
     setSchoolsOptions(options);
   }, [SchoolsData, isLoading]);
 
-  const selects = [
-    Student?.first_name,
-    Student?.last_name,
-    Student?.id,
-    Student?.address,
-    Student?.city,
-    Student?.state,
-    Student?.zip,
-    Student?.home_phone,
-    Student?.cell_phone,
-    Student?.gender,
-  ];
-
-  const stateSelects = useMemo(() => {
-    let state = false;
-    for (let i = 0; i < selects.length; i++) {
-      if (selects[i] === "") {
-        state = true;
-        break;
-      } else {
-        state = false;
-      }
-    }
-
-    return state;
-  }, [
-    Student?.first_name,
-    Student?.last_name,
-    Student?.id,
-    Student?.address,
-    Student?.city,
-    Student?.state,
-    Student?.zip,
-    Student?.home_phone,
-    Student?.cell_phone,
-    Student?.gender,
-  ]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSelections(stateSelects);
-
-    if (!stateSelects) {
-      try {
-        const res = await requestPatch({
-          path: "/student_account/student",
-          data: {
-            ...Student,
-            status: Status,
-            type: StudentType,
-            staff: Instructor,
-            location: Location,
-            state: State,
-            preferred_pronoun: Pronoun,
-            birth: `${BirthYear}-${BirthMonth > 9 ? BirthMonth : "0" + BirthMonth}-${BirthDay > 9 ? BirthDay : "0" + BirthDay}`,
-            dl_given_date: DlIssued,
-            dl_expire_date: DLExpiration,
-            extension_date: ExtensionDate,
-          },
-          id: studentId,
-        });
-
-        if (res?.error?.status >= 400) {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
-        } else {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error(error.message);
-        dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
-      }
-    }
-  };
-  const handleChange = (e) => {
-    if (e.target.type === "checkbox") {
-      setStudent({ ...Student, [e.target?.name]: e.target.checked });
-    } else {
-      setStudent({ ...Student, [e.target?.name]: e.target.value });
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setSelections(stateSelects);
+  //
+  //   if (!stateSelects) {
+  //     try {
+  //       const res = await requestPatch({
+  //         path: "/student_account/student",
+  //         data: {
+  //           ...Student,
+  //           status: Status,
+  //           type: StudentType,
+  //           staff: Instructor,
+  //           location: Location,
+  //           state: State,
+  //           preferred_pronoun: Pronoun,
+  //           birth: `${BirthYear}-${BirthMonth > 9 ? BirthMonth : "0" + BirthMonth}-${BirthDay > 9 ? BirthDay : "0" + BirthDay}`,
+  //           dl_given_date: DlIssued,
+  //           dl_expire_date: DLExpiration,
+  //           extension_date: ExtensionDate,
+  //         },
+  //         id: studentId,
+  //       });
+  //
+  //       if (res?.error?.status >= 400) {
+  //         dispatch({ type: "ERROR", setIsOpen });
+  //         setIsOpen(true);
+  //       } else {
+  //         dispatch({ type: "SUCCESS", setIsOpen });
+  //         setIsOpen(true);
+  //       }
+  //     } catch (error) {
+  //       console.error(error.message);
+  //       dispatch({ type: "ERROR", setIsOpen });
+  //       setIsOpen(true);
+  //     }
+  //   }
+  // };
 
   const handleMore = () => setIsMore((prev) => !prev);
-  const handleStudentType = (value) => setStudentType(value);
-  const handleStaff = (value) => setInstructor(value);
-  const handleLocation = (value) => setLocation(value);
-  const handleState = (value) => setState(value);
-  const handlePronoun = (value) => setPronoun(value);
-  const handleBirthDay = (value) => setBirthDay(value);
-  const handleBirthMonth = (value) => setBirthMonth(value);
-  const handleBirthYear = (value) => setBirthYear(value);
-  const handleSchool = (value) => setSchool(value);
-  const handleStatus = (value) => setStatus(value);
-  const handleExtensionDate = (day) =>
-    setExtensionDate(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
-  const handleDLIssued = (day) =>
-    setDLIssued(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
-  const handleDLExpireDate = (day) =>
-    setDLExpiration(`${day["$y"]}-${day["$M"]}-${day["$D"]}`);
 
   const [form] = Form.useForm();
 
@@ -291,8 +194,21 @@ const Profile = () => {
 
   return (
     <Fragment>
-      <Form form={form} onFinish={onFinish} initialValues={{}}>
-        <div className=" flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
+      <Form
+        layout={"vertical"}
+        form={form}
+        onFinish={onFinish}
+        initialValues={{
+          ...data,
+          birth: moment(data?.birth),
+          dl_given_date: moment(data?.dl_given_date),
+          dl_expire_date: moment(data?.dl_expire_date),
+          extension_data: moment(data?.extension_data),
+          _disable_self_scheduling: true,
+          _payment_plan: true,
+        }}
+      >
+        <div className="flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
           <div
             className={`rounded-2xl border-2 border-indigo-700 w-[460px] overflow-hidden`}
           >
@@ -328,8 +244,8 @@ const Profile = () => {
                       ]}
                       className={`w-full h-[40px] text-white ${ProfileStyle["Status"]}`}
                       selectorBg={colorsObject.info}
-                      onChange={handleStatus}
                       colorBorder={colorsObject.info}
+                      disabled={isLoading}
                     />
                   </Form.Item>
 
@@ -399,7 +315,299 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="p-5">@todo</div>
+        <div className="p-5 grid grid-cols-2 gap-5">
+          <div className="space-y-5">
+            <Form.Item name={"type"} label={"Student Type"}>
+              <CustomSelect
+                placeholder={"Type"}
+                options={[
+                  { value: "TEEN", label: "TEEN" },
+                  { value: "ADULT", label: "ADULT" },
+                ]}
+              />
+            </Form.Item>
+
+            <Form.Item name={"staff"} label={"Assign to Staff"}>
+              <CustomSelect placeholder={"Staff"} options={InstructorOptions} />
+            </Form.Item>
+
+            <Form.Item name={"location"} label={"Assign To Location"}>
+              <CustomSelect
+                placeholder={"location"}
+                options={AssignLocationOptions}
+              />
+            </Form.Item>
+
+            <Form.Item name={"id"} label={"Student ID"}>
+              <CustomInput
+                disabled={true}
+                classNames={"w-full"}
+                placeholder={"Id"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"first_name"}
+              label={"First Name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input First Name!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"First Name"} />
+            </Form.Item>
+
+            <Form.Item name={"mid_name"} label={"Middle Name"}>
+              <CustomInput classNames={"w-full"} placeholder={"Middle Name"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"last_name"}
+              label={"Last Name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input last Name!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"last Name"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"address"}
+              label={"Address"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input address!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Address"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"city"}
+              label={"City"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input city!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"City"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"state"}
+              label={"State"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select state!",
+                },
+              ]}
+            >
+              <CustomSelect
+                placeholder={"State"}
+                options={[{ value: "USA", label: "USA" }]}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"zip"}
+              label={"Zip"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input zip!",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Zip"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"cell_phone"}
+              label={"Cell Phone "}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input Cell Phone !",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Cell Phone "} />
+            </Form.Item>
+
+            <Form.Item name={"home_phone"} label={"Home Phone"}>
+              <CustomInput classNames={"w-full"} placeholder={"Home Phone"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"email"}
+              label={"Email"}
+              rules={[
+                {
+                  required: true,
+                  type: "email",
+                },
+              ]}
+            >
+              <CustomInput
+                type={"email"}
+                classNames={"w-full"}
+                placeholder={"Email"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"gender"}
+              label={"Gender"}
+              rules={[
+                {
+                  required: true,
+                  message: "Choose one of gender!",
+                },
+              ]}
+            >
+              <Radio.Group>
+                <Radio value="Male">Male</Radio>
+                <Radio value="Female">Female</Radio>
+                <Radio value="Other">Other</Radio>
+              </Radio.Group>
+            </Form.Item>
+
+            <Form.Item
+              name={"preferred_pronoun"}
+              label={"Preferred Pronoun"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select preferred pronoun!",
+                },
+              ]}
+            >
+              <CustomSelect
+                options={[
+                  {
+                    value: "He",
+                    label: "He",
+                  },
+                  {
+                    value: "She",
+                    label: "She",
+                  },
+                  {
+                    value: "Other",
+                    label: "Other",
+                  },
+                ]}
+              />
+            </Form.Item>
+          </div>
+          <div className="space-y-5">
+            <Form.Item
+              name={"birth"}
+              label={"Birthday"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input Birthday!",
+                },
+              ]}
+            >
+              <DatePicker />
+            </Form.Item>
+
+            <Form.Item name={"dl_permit"} label={"DL/Permit #"}>
+              <CustomInput placeholder={"DL/Permit"} />
+            </Form.Item>
+
+            <Form.Item name={"dl_given_date"} label={"DL/Permit Issued"}>
+              <DatePicker />
+            </Form.Item>
+
+            <Form.Item name={"dl_expire_date"} label={"DL Permit Expiration"}>
+              <DatePicker />
+            </Form.Item>
+
+            <Form.Item
+              name={"_disable_self_scheduling"}
+              label={"Disable Self Scheduling"}
+              valuePropName="checked"
+            >
+              <CustomCheckBox />
+            </Form.Item>
+
+            <Form.Item
+              name={"_payment_plan"}
+              label={"Payment Plan"}
+              valuePropName="checked"
+            >
+              <CustomCheckBox />
+            </Form.Item>
+
+            <Form.Item
+              name={"extension_data"}
+              label={"Extension Date (New Deadline)"}
+            >
+              <DatePicker />
+            </Form.Item>
+
+            <Form.Item name={"high_school"} label={"High School"}>
+              <CustomSelect
+                placeholder={"High School"}
+                options={SchoolsOptions}
+              />
+            </Form.Item>
+
+            <Form.Item name={"parent_name"} label={"Parent Name"}>
+              <CustomInput placeholder={"Parent Name"} />
+            </Form.Item>
+
+            <Form.Item name={"parent_phone"} label={"Parent Phone"}>
+              <CustomInput placeholder={"Parent Phone"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"parent_email"}
+              label={"Parent email"}
+              rules={[
+                {
+                  type: "email",
+                },
+              ]}
+            >
+              <CustomInput type={"email"} placeholder={"Parent email"} />
+            </Form.Item>
+
+            {/*  ---------------- */}
+            <Form.Item name={"parent_2_name"} label={"Parent Name 2"}>
+              <CustomInput placeholder={"Parent Name"} />
+            </Form.Item>
+
+            <Form.Item name={"parent_2_phone"} label={"Parent Phone 2"}>
+              <CustomInput placeholder={"Parent Phone"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"parent_2_email"}
+              label={"Parent email 2"}
+              rules={[
+                {
+                  type: "email",
+                },
+              ]}
+            >
+              <CustomInput type={"email"} placeholder={"Parent email"} />
+            </Form.Item>
+          </div>
+        </div>
 
         {IsMore && (
           <Fragment>
@@ -632,7 +840,6 @@ const Profile = () => {
               paddingInline={99}
               borderRadius={5}
               type={"submit"}
-              onClick={handleSubmit}
             >
               Save
             </ButtonComponent>

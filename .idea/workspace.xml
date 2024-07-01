@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated Form content remove and refactored.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated Icons wrapper and Tooltip components on hover information">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/student-account.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/student-account.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,15 +176,7 @@
       <workItem from="1719403326960" duration="4046000" />
       <workItem from="1719418763681" duration="14453000" />
       <workItem from="1719743326992" duration="10825000" />
-      <workItem from="1719830924597" duration="2774000" />
-    </task>
-    <task id="LOCAL-00016" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
-      <option name="closed" value="true" />
-      <created>1717612744993</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1717612744993</updated>
+      <workItem from="1719830924597" duration="8328000" />
     </task>
     <task id="LOCAL-00017" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
       <option name="closed" value="true" />
@@ -571,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719755633076</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="#fix #jsx Updated Icons wrapper and Tooltip components on hover information">
+      <option name="closed" value="true" />
+      <created>1719833948391</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1719833948393</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +589,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes." />
     <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes" />
     <MESSAGE value="Refactor BigCalendar components to implement dynamic data changes" />
     <MESSAGE value="Refactor enrollment form to improve dynamic data handling" />
@@ -615,7 +613,8 @@
     <MESSAGE value="#fix #jsx Fixed files and remove handle functions" />
     <MESSAGE value="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements" />
     <MESSAGE value="#fix #jsx Updated Form content remove and refactored." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated Form content remove and refactored." />
+    <MESSAGE value="#fix #jsx Updated Icons wrapper and Tooltip components on hover information" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated Icons wrapper and Tooltip components on hover information" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
