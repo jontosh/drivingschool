@@ -189,7 +189,31 @@ const Profile = () => {
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    console.log(values);
+    try {
+      const res = await requestPatch({
+        path: "/student_account/student",
+        data: {
+          ...values,
+          birth: values["birth"]?.format("YYYY-MM-DD"),
+          dl_given_date: values["dl_given_date"]?.format("YYYY-MM-DD"),
+          dl_expire_date: values["dl_expire_date"]?.format("YYYY-MM-DD"),
+          extension_data: values["extension_data"]?.format("YYYY-MM-DD"),
+        },
+        id: studentId,
+      });
+
+      if (res?.error?.status >= 400) {
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
+      } else {
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
+      }
+    } catch (error) {
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -203,9 +227,9 @@ const Profile = () => {
           birth: moment(data?.birth),
           dl_given_date: moment(data?.dl_given_date),
           dl_expire_date: moment(data?.dl_expire_date),
-          extension_data: moment(data?.extension_data),
-          _disable_self_scheduling: true,
-          _payment_plan: true,
+          extension_data: moment(data?.extension_data ?? moment()),
+          _disable_self_scheduling: false,
+          _payment_plan: false,
         }}
       >
         <div className="flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
