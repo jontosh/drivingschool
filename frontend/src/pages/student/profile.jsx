@@ -15,7 +15,7 @@ import {
 import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProfileStyle from "./student-account.module.scss";
-import { DatePicker, Form, QRCode, Radio } from "antd";
+import { DatePicker, Form, Input, QRCode, Radio } from "antd";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import moment from "moment";
 
@@ -57,19 +57,21 @@ const Profile = () => {
   const { data: SchoolsData } = useRequestGetQuery({
     path: "/account_management/schools/",
   });
-  const { data: UserTypeData } = useRequestGetQuery({
-    path: "/student_account/user_type/",
+  const { data: LeadData } = useRequestGetQuery({
+    path: "/account_management/how_did_you_hear_us/",
+  });
+  const { data: EmergencyData } = useRequestGetQuery({
+    path: "/student_account/emergency_contact/",
   });
 
   const [InstructorOptions, setInstructorOptions] = useState([]);
   const [SchoolsOptions, setSchoolsOptions] = useState([]);
-  const [StudentTypeOptions, setStudentTypeOptions] = useState([]);
+  const [LeadOptions, setLeadOptions] = useState([]);
+  const [Emergency, setEmergency] = useState({});
   const [AssignLocationOptions, setAssignLocationOptions] = useState([]);
   const [IsMore, setIsMore] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
-
-  console.log(data);
 
   // INSTRUCTOR
   useEffect(() => {
@@ -89,24 +91,28 @@ const Profile = () => {
     setInstructorOptions(options);
   }, [InstructorData, isLoading]);
 
-  // TYPES
+  // Emergency
   useEffect(() => {
-    const options = [];
+    let emergency = {};
+    for (let i = 0; i < EmergencyData?.length; i++) {
+      const item = EmergencyData[i];
 
-    for (let i = 0; i < UserTypeData?.length; i++) {
-      const type = UserTypeData[i];
-
-      if (type.status === "ACTIVE") {
-        options.push({
-          ...type,
-          value: type?.id,
-          label: type?.name,
-        });
+      if (item.student === studentId) {
+        emergency = {
+          emergencyId: item.id,
+          name: item.name,
+          phone: item.phone,
+          relation: item.relation,
+          how_did_you_hear_us: item.how_did_you_hear_us[0],
+          wear_glass: item.wear_glass,
+          emergency_medical_condition: item.medical_condition,
+        };
+        break;
       }
     }
 
-    setStudentTypeOptions(options);
-  }, [UserTypeData, isLoading]);
+    setEmergency(emergency);
+  }, [EmergencyData]);
 
   // LOCATION
   useEffect(() => {
@@ -145,44 +151,24 @@ const Profile = () => {
     setSchoolsOptions(options);
   }, [SchoolsData, isLoading]);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setSelections(stateSelects);
-  //
-  //   if (!stateSelects) {
-  //     try {
-  //       const res = await requestPatch({
-  //         path: "/student_account/student",
-  //         data: {
-  //           ...Student,
-  //           status: Status,
-  //           type: StudentType,
-  //           staff: Instructor,
-  //           location: Location,
-  //           state: State,
-  //           preferred_pronoun: Pronoun,
-  //           birth: `${BirthYear}-${BirthMonth > 9 ? BirthMonth : "0" + BirthMonth}-${BirthDay > 9 ? BirthDay : "0" + BirthDay}`,
-  //           dl_given_date: DlIssued,
-  //           dl_expire_date: DLExpiration,
-  //           extension_date: ExtensionDate,
-  //         },
-  //         id: studentId,
-  //       });
-  //
-  //       if (res?.error?.status >= 400) {
-  //         dispatch({ type: "ERROR", setIsOpen });
-  //         setIsOpen(true);
-  //       } else {
-  //         dispatch({ type: "SUCCESS", setIsOpen });
-  //         setIsOpen(true);
-  //       }
-  //     } catch (error) {
-  //       console.error(error.message);
-  //       dispatch({ type: "ERROR", setIsOpen });
-  //       setIsOpen(true);
-  //     }
-  //   }
-  // };
+  // LeadData
+  useEffect(() => {
+    const options = [];
+
+    for (let i = 0; i < LeadData?.length; i++) {
+      const lead = SchoolsData[i];
+
+      if (lead?.status?.toLowerCase() === "active") {
+        options.push({
+          ...lead,
+          value: lead?.id,
+          label: lead?.name,
+        });
+      }
+    }
+
+    setLeadOptions(options);
+  }, [LeadData, isLoading]);
 
   const handleMore = () => setIsMore((prev) => !prev);
 
@@ -200,7 +186,7 @@ const Profile = () => {
           extension_data: values["extension_data"]?.format("YYYY-MM-DD"),
         },
         id: studentId,
-      });
+      }).reset();
 
       if (res?.error?.status >= 400) {
         dispatch({ type: "ERROR", setIsOpen });
@@ -224,12 +210,15 @@ const Profile = () => {
         onFinish={onFinish}
         initialValues={{
           ...data,
+          ...Emergency,
           birth: moment(data?.birth),
           dl_given_date: moment(data?.dl_given_date),
           dl_expire_date: moment(data?.dl_expire_date),
           extension_data: moment(data?.extension_data ?? moment()),
           _disable_self_scheduling: false,
           _payment_plan: false,
+          note: "",
+          terms_conditions: true,
         }}
       >
         <div className="flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
@@ -663,10 +652,12 @@ const Profile = () => {
                   </div>
 
                   <div className="flex gap-6 justify-between items-center">
-                    <CustomInput
-                      classNames={"w-full h-[50px]"}
-                      className={"px-4"}
-                    />
+                    <Form.Item className={"flex-grow mb-0"} name={"note"}>
+                      <Input.TextArea
+                        className={"border-black"}
+                        placeholder={"Notes"}
+                      />
+                    </Form.Item>
                     <ButtonComponent
                       defaultBg={"#24C18F"}
                       defaultHoverBg={"#3CE3AE"}
@@ -674,10 +665,13 @@ const Profile = () => {
                       paddingInline={97}
                       controlHeight={40}
                       borderRadius={5}
+                      type={"submit"}
                     >
                       Save
                     </ButtonComponent>
                   </div>
+
+                  {data?.note !== "" && <article>{data?.note}</article>}
                 </div>
 
                 <div
@@ -718,79 +712,64 @@ const Profile = () => {
                   </Title>
 
                   <div className="space-y-5">
-                    <CustomInput
-                      placeholder={"Emergency name"}
-                      className={`shadow-lg px-4 py-2.5 w-full`}
-                      spanText={"Emergency name"}
-                      spanClassName={"w-48 flex-shrink-0"}
-                      fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-                    />
-                    <CustomInput
-                      placeholder={"Emergency relationship"}
-                      className={`shadow-lg px-4 py-2.5 w-full`}
-                      spanText={"Emergency relationship"}
-                      spanClassName={"w-48 flex-shrink-0"}
-                      fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-                    />
-                    <CustomInput
-                      placeholder={"Emergency phone"}
-                      className={`shadow-lg px-4 py-2.5 w-full`}
-                      spanText={"Emergency phone"}
-                      spanClassName={"w-48 flex-shrink-0"}
-                      fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full h-[50px] gap-5 flex-row-reverse`}
-                    />
+                    <Form.Item name={"name"} label={"Emergency name"}>
+                      <CustomInput
+                        placeholder={"Emergency name"}
+                        classNames={`w-full`}
+                      />
+                    </Form.Item>
 
-                    <label className="inline-flex items-center w-full gap-5">
-                      <span className={"w-48 text-base flex-shrink-0"}>
-                        Lead
-                      </span>
+                    <Form.Item
+                      name={"relation"}
+                      label={"Emergency relationship"}
+                    >
+                      <CustomInput
+                        placeholder={"Emergency relationship"}
+                        classNames={`w-full`}
+                      />
+                    </Form.Item>
+
+                    <Form.Item name={"phone"} label={"Emergency phone"}>
+                      <CustomInput
+                        placeholder={"Emergency phone"}
+                        classNames={`w-full`}
+                      />
+                    </Form.Item>
+
+                    <Form.Item name={"how_did_you_hear_us"} label={"Lead"}>
                       <CustomSelect
                         placeholder={"Lead"}
                         className={`shadow-lg w-full h-[50px]`}
-                        options={[
-                          {
-                            value: "Facebook",
-                            label: "Facebook",
-                          },
-                        ]}
+                        options={LeadOptions}
+                        disabled={isLoading}
                       />
-                    </label>
+                    </Form.Item>
 
-                    <CustomInput
-                      placeholder={"Medial condition"}
-                      className={`shadow-lg px-4 py-2.5 w-full`}
-                      spanText={"Medial condition"}
-                      spanClassName={"w-48 flex-shrink-0"}
-                      fontSize={"text-base"}
-                      classNames={`inline-flex justify-end items-center w-full gap-5 flex-row-reverse`}
-                    />
-
-                    <label className="inline-flex items-center w-full gap-5">
-                      <span className={"w-48 text-base flex-shrink-0"}>
-                        Wear glasses contact
-                      </span>
-                      <CustomSelect
-                        placeholder={"No"}
-                        className={`shadow-lg w-full h-[50px]`}
-                        options={[
-                          {
-                            value: 1,
-                            label: 1,
-                          },
-                        ]}
+                    <Form.Item
+                      name={"emergency_medical_condition"}
+                      label={"Medial condition"}
+                    >
+                      <Input.TextArea
+                        className={"border-black"}
+                        placeholder={"Medial condition"}
                       />
-                    </label>
+                    </Form.Item>
 
-                    <label className="flex items-center gap-5">
-                      <span className={"w-48 flex-shrink-0"}>
-                        Terms & condition
-                      </span>
+                    <Form.Item
+                      label={"Wear glasses contact"}
+                      name={"wear_glass"}
+                      valuePropName="checked"
+                    >
+                      <CustomCheckBox />
+                    </Form.Item>
 
-                      <CustomCheckBox className={"shadow-lg"} />
-                    </label>
+                    <Form.Item
+                      label={"Terms & Conditions"}
+                      name={"terms_conditions"}
+                      valuePropName="checked"
+                    >
+                      <CustomCheckBox />
+                    </Form.Item>
                   </div>
                 </div>
 

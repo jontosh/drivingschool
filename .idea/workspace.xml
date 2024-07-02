@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated form and initial values for elements">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated form request to patch data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/package.json&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -177,14 +178,9 @@
       <workItem from="1719418763681" duration="14453000" />
       <workItem from="1719743326992" duration="10825000" />
       <workItem from="1719830924597" duration="10575000" />
-    </task>
-    <task id="LOCAL-00018" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
-      <option name="closed" value="true" />
-      <created>1717626169798</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1717626169799</updated>
+      <workItem from="1719899215970" duration="3689000" />
+      <workItem from="1719906951305" duration="41000" />
+      <workItem from="1719906999684" duration="3776000" />
     </task>
     <task id="LOCAL-00019" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
       <option name="closed" value="true" />
@@ -570,7 +566,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719839852552</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="#fix #jsx Updated form request to patch data">
+      <option name="closed" value="true" />
+      <created>1719899269852</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1719899269852</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +593,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor BigCalendar components to implement dynamic data changes" />
     <MESSAGE value="Refactor enrollment form to improve dynamic data handling" />
     <MESSAGE value="Refactor dependencies, UI, components, and view logic" />
     <MESSAGE value="Fix(frontend): Update git widget placeholder and cleanup workspace XML" />
@@ -614,7 +617,8 @@
     <MESSAGE value="#fix #jsx Updated Form content remove and refactored." />
     <MESSAGE value="#fix #jsx Updated Icons wrapper and Tooltip components on hover information" />
     <MESSAGE value="#fix #jsx Updated form and initial values for elements" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated form and initial values for elements" />
+    <MESSAGE value="#fix #jsx Updated form request to patch data" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated form request to patch data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
