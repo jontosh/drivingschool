@@ -221,17 +221,17 @@ const Profile = () => {
           terms_conditions: true,
         }}
       >
-        <div className="flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
+        <div className="flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5 max-[1300px]:flex-col">
           <div
-            className={`rounded-2xl border-2 border-indigo-700 w-[460px] overflow-hidden`}
+            className={`rounded-2xl border-2 border-indigo-700 w-[460px] overflow-hidden max-[1300px]:w-full max-[1300px]:m-auto`}
           >
             <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
               <Map
                 defaultCenter={{ lat: 22.54992, lng: 32 }}
-                style={{ height: "100%" }}
                 defaultZoom={3}
                 gestureHandling={"greedy"}
                 disableDefaultUI={true}
+                className="h-full max-[1300px]:h-[267px]"
               />
             </APIProvider>
           </div>
@@ -328,7 +328,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="p-5 grid grid-cols-2 gap-5">
+        <div className="p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
           <div className="space-y-5">
             <Form.Item name={"type"} label={"Student Type"}>
               <CustomSelect
@@ -337,17 +337,19 @@ const Profile = () => {
                   { value: "TEEN", label: "TEEN" },
                   { value: "ADULT", label: "ADULT" },
                 ]}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
             <Form.Item name={"staff"} label={"Assign to Staff"}>
-              <CustomSelect placeholder={"Staff"} options={InstructorOptions} />
+              <CustomSelect placeholder={"Staff"} options={InstructorOptions} className={"h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"location"} label={"Assign To Location"}>
               <CustomSelect
                 placeholder={"location"}
                 options={AssignLocationOptions}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
@@ -428,6 +430,7 @@ const Profile = () => {
               <CustomSelect
                 placeholder={"State"}
                 options={[{ value: "USA", label: "USA" }]}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
@@ -520,6 +523,7 @@ const Profile = () => {
                     label: "Other",
                   },
                 ]}
+                className={"h-[50px]"}
               />
             </Form.Item>
           </div>
@@ -534,19 +538,19 @@ const Profile = () => {
                 },
               ]}
             >
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item name={"dl_permit"} label={"DL/Permit #"}>
-              <CustomInput placeholder={"DL/Permit"} />
+              <CustomInput placeholder={"DL/Permit"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item name={"dl_given_date"} label={"DL/Permit Issued"}>
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item name={"dl_expire_date"} label={"DL Permit Expiration"}>
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item
@@ -569,22 +573,23 @@ const Profile = () => {
               name={"extension_data"}
               label={"Extension Date (New Deadline)"}
             >
-              <DatePicker />
+              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
             </Form.Item>
 
             <Form.Item name={"high_school"} label={"High School"}>
               <CustomSelect
                 placeholder={"High School"}
                 options={SchoolsOptions}
+                className={"h-[50px]"}
               />
             </Form.Item>
 
             <Form.Item name={"parent_name"} label={"Parent Name"}>
-              <CustomInput placeholder={"Parent Name"} />
+              <CustomInput placeholder={"Parent Name"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item name={"parent_phone"} label={"Parent Phone"}>
-              <CustomInput placeholder={"Parent Phone"} />
+              <CustomInput placeholder={"Parent Phone"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -596,16 +601,16 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput type={"email"} placeholder={"Parent email"} />
+              <CustomInput type={"email"} placeholder={"Parent email"} classNames={"w-full"} />
             </Form.Item>
 
             {/*  ---------------- */}
             <Form.Item name={"parent_2_name"} label={"Parent Name 2"}>
-              <CustomInput placeholder={"Parent Name"} />
+              <CustomInput placeholder={"Parent Name"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item name={"parent_2_phone"} label={"Parent Phone 2"}>
-              <CustomInput placeholder={"Parent Phone"} />
+              <CustomInput placeholder={"Parent Phone"} classNames={"w-full"} />
             </Form.Item>
 
             <Form.Item
@@ -617,7 +622,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput type={"email"} placeholder={"Parent email"} />
+              <CustomInput type={"email"} placeholder={"Parent email"} classNames={"w-full"} />
             </Form.Item>
           </div>
         </div>
@@ -625,7 +630,7 @@ const Profile = () => {
         {IsMore && (
           <Fragment>
             <div className="space-y-5">
-              <div className="grid grid-cols-2 gap-7">
+              <div className="grid grid-cols-2 gap-7 max-[1400px]:grid-cols-1">
                 <div
                   className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
                 >
@@ -654,7 +659,7 @@ const Profile = () => {
                   <div className="flex gap-6 justify-between items-center">
                     <Form.Item className={"flex-grow mb-0"} name={"note"}>
                       <Input.TextArea
-                        className={"border-black"}
+                        className={"border-[#667085]"}
                         placeholder={"Notes"}
                       />
                     </Form.Item>
@@ -700,7 +705,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-7">
+              <div className="grid grid-cols-2 gap-7 max-[1400px]:grid-cols-1">
                 <div
                   className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
                 >
@@ -739,7 +744,7 @@ const Profile = () => {
                     <Form.Item name={"how_did_you_hear_us"} label={"Lead"}>
                       <CustomSelect
                         placeholder={"Lead"}
-                        className={`shadow-lg w-full h-[50px]`}
+                        className={`w-full h-[50px]`}
                         options={LeadOptions}
                         disabled={isLoading}
                       />
@@ -750,7 +755,7 @@ const Profile = () => {
                       label={"Medial condition"}
                     >
                       <Input.TextArea
-                        className={"border-black"}
+                        className={"border-[#667085]"}
                         placeholder={"Medial condition"}
                       />
                     </Form.Item>
