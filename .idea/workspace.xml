@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated form request to patch data">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx #style Updated form validation, connected notes and emergency">
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/emergency.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/student-account.module.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +63,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -180,15 +183,11 @@
       <workItem from="1719830924597" duration="10575000" />
       <workItem from="1719899215970" duration="3689000" />
       <workItem from="1719906951305" duration="41000" />
-      <workItem from="1719906999684" duration="3776000" />
-    </task>
-    <task id="LOCAL-00019" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
-      <option name="closed" value="true" />
-      <created>1717661008010</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1717661008010</updated>
+      <workItem from="1719906999684" duration="5576000" />
+      <workItem from="1719929965137" duration="5651000" />
+      <workItem from="1720002700606" duration="2116000" />
+      <workItem from="1720024876161" duration="392000" />
+      <workItem from="1720077186714" duration="4670000" />
     </task>
     <task id="LOCAL-00020" summary="#fix #jsx Refactor render method to include index parameter and update conditional rendering logic based on ActionIndex.">
       <option name="closed" value="true" />
@@ -574,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719899269852</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="#fix #jsx #style Updated form validation, connected notes and emergency">
+      <option name="closed" value="true" />
+      <created>1719911251930</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1719911251930</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +600,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor enrollment form to improve dynamic data handling" />
     <MESSAGE value="Refactor dependencies, UI, components, and view logic" />
     <MESSAGE value="Fix(frontend): Update git widget placeholder and cleanup workspace XML" />
     <MESSAGE value="#fix #jsx Fix(frontend): Update git widget placeholder and cleanup workspace XML" />
@@ -618,7 +624,8 @@
     <MESSAGE value="#fix #jsx Updated Icons wrapper and Tooltip components on hover information" />
     <MESSAGE value="#fix #jsx Updated form and initial values for elements" />
     <MESSAGE value="#fix #jsx Updated form request to patch data" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated form request to patch data" />
+    <MESSAGE value="#fix #jsx #style Updated form validation, connected notes and emergency" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #style Updated form validation, connected notes and emergency" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
