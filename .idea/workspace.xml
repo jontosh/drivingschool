@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx #style Updated form validation, connected notes and emergency">
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/emergency.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created get default values for forms and refactored appointments">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/student/items/file-item.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/files.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/files.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/upload.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/upload.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,15 +186,9 @@
       <workItem from="1719929965137" duration="5651000" />
       <workItem from="1720002700606" duration="2116000" />
       <workItem from="1720024876161" duration="392000" />
-      <workItem from="1720077186714" duration="4670000" />
-    </task>
-    <task id="LOCAL-00020" summary="#fix #jsx Refactor render method to include index parameter and update conditional rendering logic based on ActionIndex.">
-      <option name="closed" value="true" />
-      <created>1717683927280</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1717683927281</updated>
+      <workItem from="1720077186714" duration="9558000" />
+      <workItem from="1720087242727" duration="6254000" />
+      <workItem from="1720093605418" duration="86000" />
     </task>
     <task id="LOCAL-00021" summary="#fix #jsx #style Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
       <option name="closed" value="true" />
@@ -581,7 +574,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719911251930</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="#fix #jsx Created get default values for forms and refactored appointments">
+      <option name="closed" value="true" />
+      <created>1720081992668</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1720081992669</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +601,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactor dependencies, UI, components, and view logic" />
     <MESSAGE value="Fix(frontend): Update git widget placeholder and cleanup workspace XML" />
     <MESSAGE value="#fix #jsx Fix(frontend): Update git widget placeholder and cleanup workspace XML" />
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal" />
@@ -625,7 +625,8 @@
     <MESSAGE value="#fix #jsx Updated form and initial values for elements" />
     <MESSAGE value="#fix #jsx Updated form request to patch data" />
     <MESSAGE value="#fix #jsx #style Updated form validation, connected notes and emergency" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx #style Updated form validation, connected notes and emergency" />
+    <MESSAGE value="#fix #jsx Created get default values for forms and refactored appointments" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created get default values for forms and refactored appointments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
