@@ -7,6 +7,7 @@ import {
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
+import { Emergency } from "@/pages/student/emergency.jsx";
 import {
   useRequestGetQuery,
   useRequestIdQuery,
@@ -57,17 +58,10 @@ const Profile = () => {
   const { data: SchoolsData } = useRequestGetQuery({
     path: "/account_management/schools/",
   });
-  const { data: LeadData } = useRequestGetQuery({
-    path: "/account_management/how_did_you_hear_us/",
-  });
-  const { data: EmergencyData } = useRequestGetQuery({
-    path: "/student_account/emergency_contact/",
-  });
 
   const [InstructorOptions, setInstructorOptions] = useState([]);
   const [SchoolsOptions, setSchoolsOptions] = useState([]);
-  const [LeadOptions, setLeadOptions] = useState([]);
-  const [Emergency, setEmergency] = useState({});
+
   const [AssignLocationOptions, setAssignLocationOptions] = useState([]);
   const [IsMore, setIsMore] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
@@ -90,29 +84,6 @@ const Profile = () => {
 
     setInstructorOptions(options);
   }, [InstructorData, isLoading]);
-
-  // Emergency
-  useEffect(() => {
-    let emergency = {};
-    for (let i = 0; i < EmergencyData?.length; i++) {
-      const item = EmergencyData[i];
-
-      if (item.student === studentId) {
-        emergency = {
-          emergencyId: item.id,
-          name: item.name,
-          phone: item.phone,
-          relation: item.relation,
-          how_did_you_hear_us: item.how_did_you_hear_us[0],
-          wear_glass: item.wear_glass,
-          emergency_medical_condition: item.medical_condition,
-        };
-        break;
-      }
-    }
-
-    setEmergency(emergency);
-  }, [EmergencyData]);
 
   // LOCATION
   useEffect(() => {
@@ -151,50 +122,32 @@ const Profile = () => {
     setSchoolsOptions(options);
   }, [SchoolsData, isLoading]);
 
-  // LeadData
-  useEffect(() => {
-    const options = [];
-
-    for (let i = 0; i < LeadData?.length; i++) {
-      const lead = SchoolsData[i];
-
-      if (lead?.status?.toLowerCase() === "active") {
-        options.push({
-          ...lead,
-          value: lead?.id,
-          label: lead?.name,
-        });
-      }
-    }
-
-    setLeadOptions(options);
-  }, [LeadData, isLoading]);
-
   const handleMore = () => setIsMore((prev) => !prev);
 
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
     try {
-      const res = await requestPatch({
-        path: "/student_account/student",
-        data: {
-          ...values,
-          birth: values["birth"]?.format("YYYY-MM-DD"),
-          dl_given_date: values["dl_given_date"]?.format("YYYY-MM-DD"),
-          dl_expire_date: values["dl_expire_date"]?.format("YYYY-MM-DD"),
-          extension_data: values["extension_data"]?.format("YYYY-MM-DD"),
-        },
-        id: studentId,
-      }).reset();
-
-      if (res?.error?.status >= 400) {
-        dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
-      } else {
-        dispatch({ type: "SUCCESS", setIsOpen });
-        setIsOpen(true);
-      }
+      console.log(values);
+      // const res = await requestPatch({
+      //   path: "/student_account/student",
+      //   data: {
+      //     ...values,
+      //     birth: values["birth"]?.format("YYYY-MM-DD"),
+      //     dl_given_date: values["dl_given_date"]?.format("YYYY-MM-DD"),
+      //     dl_expire_date: values["dl_expire_date"]?.format("YYYY-MM-DD"),
+      //     extension_data: values["extension_data"]?.format("YYYY-MM-DD"),
+      //   },
+      //   id: studentId,
+      // }).reset();
+      //
+      // if (res?.error?.status >= 400) {
+      //   dispatch({ type: "ERROR", setIsOpen });
+      //   setIsOpen(true);
+      // } else {
+      //   dispatch({ type: "SUCCESS", setIsOpen });
+      //   setIsOpen(true);
+      // }
     } catch (error) {
       console.error(error.message);
       dispatch({ type: "ERROR", setIsOpen });
@@ -210,15 +163,12 @@ const Profile = () => {
         onFinish={onFinish}
         initialValues={{
           ...data,
-          ...Emergency,
           birth: moment(data?.birth),
           dl_given_date: moment(data?.dl_given_date),
           dl_expire_date: moment(data?.dl_expire_date),
           extension_data: moment(data?.extension_data ?? moment()),
           _disable_self_scheduling: false,
           _payment_plan: false,
-          note: "",
-          terms_conditions: true,
         }}
       >
         <div className="flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5 max-[1300px]:flex-col">
@@ -342,7 +292,11 @@ const Profile = () => {
             </Form.Item>
 
             <Form.Item name={"staff"} label={"Assign to Staff"}>
-              <CustomSelect placeholder={"Staff"} options={InstructorOptions} className={"h-[50px]"} />
+              <CustomSelect
+                placeholder={"Staff"}
+                options={InstructorOptions}
+                className={"h-[50px]"}
+              />
             </Form.Item>
 
             <Form.Item name={"location"} label={"Assign To Location"}>
@@ -601,7 +555,11 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput type={"email"} placeholder={"Parent email"} classNames={"w-full"} />
+              <CustomInput
+                type={"email"}
+                placeholder={"Parent email"}
+                classNames={"w-full"}
+              />
             </Form.Item>
 
             {/*  ---------------- */}
@@ -622,7 +580,11 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput type={"email"} placeholder={"Parent email"} classNames={"w-full"} />
+              <CustomInput
+                type={"email"}
+                placeholder={"Parent email"}
+                classNames={"w-full"}
+              />
             </Form.Item>
           </div>
         </div>
@@ -706,77 +668,7 @@ const Profile = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-7 max-[1400px]:grid-cols-1">
-                <div
-                  className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
-                >
-                  <Title
-                    fontSize={"text-2xl text-indigo-700"}
-                    fontWeightStrong={600}
-                  >
-                    Emergency
-                  </Title>
-
-                  <div className="space-y-5">
-                    <Form.Item name={"name"} label={"Emergency name"}>
-                      <CustomInput
-                        placeholder={"Emergency name"}
-                        classNames={`w-full`}
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={"relation"}
-                      label={"Emergency relationship"}
-                    >
-                      <CustomInput
-                        placeholder={"Emergency relationship"}
-                        classNames={`w-full`}
-                      />
-                    </Form.Item>
-
-                    <Form.Item name={"phone"} label={"Emergency phone"}>
-                      <CustomInput
-                        placeholder={"Emergency phone"}
-                        classNames={`w-full`}
-                      />
-                    </Form.Item>
-
-                    <Form.Item name={"how_did_you_hear_us"} label={"Lead"}>
-                      <CustomSelect
-                        placeholder={"Lead"}
-                        className={`w-full h-[50px]`}
-                        options={LeadOptions}
-                        disabled={isLoading}
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={"emergency_medical_condition"}
-                      label={"Medial condition"}
-                    >
-                      <Input.TextArea
-                        className={"border-[#667085]"}
-                        placeholder={"Medial condition"}
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      label={"Wear glasses contact"}
-                      name={"wear_glass"}
-                      valuePropName="checked"
-                    >
-                      <CustomCheckBox />
-                    </Form.Item>
-
-                    <Form.Item
-                      label={"Terms & Conditions"}
-                      name={"terms_conditions"}
-                      valuePropName="checked"
-                    >
-                      <CustomCheckBox />
-                    </Form.Item>
-                  </div>
-                </div>
+                <Emergency id={studentId} />
 
                 <div
                   className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
