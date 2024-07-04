@@ -77,7 +77,12 @@ const Upload = ({ id }) => {
   return (
     <Form form={form} onFinish={onFinish} layout={"vertical"}>
       <Form.Item className={"w-full"}>
-        <Form.Item name={"file"}>
+        <Form.Item
+          name="file"
+          valuePropName="fileList"
+          getValueFromEvent={normFile}
+          noStyle
+        >
           <UPLOAD.Dragger {...props}>
             <IconComponent
               className={"text-indigo-700 text-6xl mb-2.5"}
