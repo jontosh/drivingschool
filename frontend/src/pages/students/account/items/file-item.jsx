@@ -23,7 +23,7 @@ export const FileItem = ({ ...props }) => {
           <Paragraph fontSize={"text-xs font-semibold"}>Mar 09, 2024 @ 01:37 PM</Paragraph>
         </div>
 
-        <div className={"space-x-2.5"}>
+        <div className={"grid grid-cols-4 gap-2.5 max-[1340px]:grid-cols-2"}>
           <IconComponent
             iconClass={"text-2xl"}
             icon={<AiFillPrinter className={"bg-[#ECECEC] p-2.5 rounded-xl"} />}
