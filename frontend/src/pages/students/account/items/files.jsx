@@ -30,7 +30,7 @@ export const Files = ({ ...props }) => {
         </IconComponent>
       </Title>
 
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 max-[1160px]:grid-cols-1">
         <div className="space-y-5">
           <FileItem />
           <FileItem />

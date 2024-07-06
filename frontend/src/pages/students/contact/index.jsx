@@ -42,24 +42,28 @@ const StudentContact = ({ className, children, ...props }) => {
               <CustomSelect
                 placeholder={"Select"}
                 options={[{ value: "USA", label: "USA" }]}
+                className={"h-[50px]"}
               />
             </Form.Item>
-            <Form.Item label={"Location"}>
+            <Form.Item label={"Direction"}>
               <CustomSelect
-                placeholder={"Select"}
+                placeholder={"GET DRIVING DIRECTION"}
                 options={[{ value: "USA", label: "USA" }]}
+                className={"h-[50px]"}
               />
             </Form.Item>
-            <Form.Item label={"Location"}>
+            <Form.Item label={"Phone Number"}>
               <CustomSelect
-                placeholder={"Select"}
+                placeholder={"DIAL (513) 800-5881"}
                 options={[{ value: "USA", label: "USA" }]}
+                className={"h-[50px]"}
               />
             </Form.Item>
-            <Form.Item label={"Location"}>
+            <Form.Item label={"Email"}>
               <CustomSelect
-                placeholder={"Select"}
+                placeholder={"support@raydriving.com"}
                 options={[{ value: "USA", label: "USA" }]}
+                className={"h-[50px]"}
               />
             </Form.Item>
           </Form>
