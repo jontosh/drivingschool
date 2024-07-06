@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored Add test with Setting form validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,15 +193,7 @@
       <workItem from="1720093605418" duration="9191000" />
       <workItem from="1720240716440" duration="541000" />
       <workItem from="1720241480634" duration="3383000" />
-      <workItem from="1720253450177" duration="520000" />
-    </task>
-    <task id="LOCAL-00023" summary="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
-      <option name="closed" value="true" />
-      <created>1717852155565</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1717852155565</updated>
+      <workItem from="1720253450177" duration="3286000" />
     </task>
     <task id="LOCAL-00024" summary="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module.">
       <option name="closed" value="true" />
@@ -584,7 +579,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720094024881</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="#fix #jsx Refactored Add test with Setting form validation">
+      <option name="closed" value="true" />
+      <created>1720254066886</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1720254066887</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +606,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update menu links to admin routes, and routes for instructor portal" />
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other" />
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other pages for schedule" />
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for" />
@@ -628,7 +630,8 @@
     <MESSAGE value="#fix #jsx Created get default values for forms and refactored appointments" />
     <MESSAGE value="#fix #jsx Refactored Files and content" />
     <MESSAGE value="#fix #jsx Refactored Files and form elements with attr" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored Files and form elements with attr" />
+    <MESSAGE value="#fix #jsx Refactored Add test with Setting form validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored Add test with Setting form validation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

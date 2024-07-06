@@ -1685,16 +1685,10 @@ export const AddQuizTab = () => {
     {
       key: "2",
       label: <span className={"uppercase"}>Add new Test</span>,
-      // children: <MultipleChoice /> && <TrueFalse /> && <Category />,
       children: <AddNewTest />,
     },
     {
       key: "3",
-      label: <span className={"uppercase"}>REARRANGE ORDER</span>,
-      children: <span>REARRANGE</span>,
-    },
-    {
-      key: "4",
       label: <span className={"uppercase"}>Preview QUIZ</span>,
       children: <Preview />,
     },

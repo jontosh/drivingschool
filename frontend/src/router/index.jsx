@@ -164,8 +164,16 @@ export const router = createBrowserRouter([
     element: <Notfound />,
   },
   {
-    path: "register/sign-in",
-    element: <Register />,
+    path: "admin/register/sign-in",
+    element: <Register title={"Admin"} />,
+  },
+  {
+    path: "instructor/register/sign-in",
+    element: <Register title={"instructor"} />,
+  },
+  {
+    path: "student/register/sign-in",
+    element: <Register title={"student"} />,
   },
   {
     path: "instructor",
