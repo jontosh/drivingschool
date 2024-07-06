@@ -1,4 +1,3 @@
-import Button from "@/components/button/index.jsx";
 import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
@@ -10,12 +9,17 @@ import ColorsContext from "@/context/colors.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph, Text } from "@/components/title/index.jsx";
 import AccountManagementContext from "@/context/account-management.jsx";
-import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
+import {
+  AlertDelete,
+  AlertEdit,
+  AlertError,
+  AlertSuccess,
+} from "@/hooks/alert.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import {
   useRequestDeleteMutation,
   useRequestGetQuery,
+  useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
@@ -23,15 +27,35 @@ import {
   FormOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { Form, Switch } from "antd";
+import { Form, InputNumber, Switch } from "antd";
 import { Formik } from "formik";
-import { Fragment, useContext, useState, useEffect } from "react";
-import { FiHelpCircle } from "react-icons/fi";
+import { Fragment, useContext, useState, useEffect, useReducer } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 import ModuleManagementStyle from "./modules.module.scss";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "SUCCESS": {
+      return {
+        ...state,
+        status: <AlertSuccess setIsOpen={action.setIsOpen} />,
+      };
+    }
+    case "ERROR": {
+      return {
+        ...state,
+        status: <AlertError setIsOpen={action.setIsOpen} />,
+      };
+    }
+
+    default: {
+      console.error(`Unknown action: ${action.type}`);
+    }
+  }
+};
 
 export const LocationModule = () => {
   const { LocationData: data } = useContext(AccountManagementContext);
@@ -543,51 +567,69 @@ export const VehiclesModule = () => {
 const Settings = ({ ...props }) => {
   const [form] = Form.useForm();
   const { colorsObject } = useContext(ColorsContext);
+  const [requestPost] = useRequestPostMutation();
+  const { data: ServiceData } = useRequestGetQuery({
+    path: "/account_management/services/service/",
+  });
+  const { data: ClassData } = useRequestGetQuery({
+    path: "/account_management/class/",
+  });
+
+  const [ServiceOption, setServiceOption] = useState([]);
+  const [ClassOption, setClassOption] = useState([]);
+  const [IsOpen, setIsOpen] = useState(false);
+  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+
+  useEffect(() => {
+    const classes = [];
+    const services = [];
+
+    for (let i = 0; i < ServiceData?.length; i++) {
+      const item = ServiceData[i];
+      if (item?.status.toLowerCase() === "active") {
+        services.push({
+          ...item,
+          value: item?.id,
+          label: item?.name,
+        });
+      }
+    }
+
+    for (let i = 0; i < ClassData?.length; i++) {
+      const item = ClassData[i];
+      if (item?.status.toLowerCase() === "active") {
+        classes.push({
+          ...item,
+          value: item?.id,
+          label: item?.details,
+        });
+      }
+    }
+
+    setClassOption(classes);
+    setServiceOption(services);
+  }, [ClassData, ServiceData]);
 
   // func
   const onFinish = async (values) => {
     try {
-      // /account_management/services/test/
-      console.log(values);
+      const res = await requestPost({
+        path: "/account_management/services/test/",
+        data: values,
+      });
+
+      if (res?.error?.status >= 400) {
+        dispatch({ type: "ERROR", setIsOpen });
+        setIsOpen(true);
+      } else {
+        dispatch({ type: "SUCCESS", setIsOpen });
+        setIsOpen(true);
+      }
     } catch (error) {
-      console.error(error?.message);
+      console.error(error.message);
+      dispatch({ type: "ERROR", setIsOpen });
+      setIsOpen(true);
     }
-  };
-
-  const handleStatus = (values) => {
-    form.setFieldsValue({
-      status: values,
-    });
-  };
-
-  const handleNotesValue = (value) => {
-    form.setFieldsValue({
-      pass_text: value,
-    });
-  };
-
-  const handleFallText = (value) => {
-    form.setFieldsValue({
-      fall_text: value,
-    });
-  };
-
-  const handleService = (value) => {
-    form.setFieldsValue({
-      service: value,
-    });
-  };
-
-  const handleCR = (value) => {
-    form.setFieldsValue({
-      cr: value,
-    });
-  };
-
-  const handleWelcomeText = (value) => {
-    form.setFieldsValue({
-      welcome_text: value,
-    });
   };
 
   return (
@@ -602,19 +644,14 @@ const Settings = ({ ...props }) => {
           welcome_text: "Hello",
           cr: [],
           service: [],
-          allow_view_complete: false,
-          is_attendance_Preceding_Associated_required: false,
-          is_attendance_all_required: false,
-          is_attendance_required: false,
-          is_class_session: 0,
-          questions_displayed_student: 0,
-          is_final: false,
-          is_progress_bar_required: false,
-          is_randomize_required: false,
-          is_timer: false,
+          status: "ACTIVE",
         }}
       >
-        <div className={"grid grid-cols-3 gap-5 max-[1300px]:grid-cols-2 max-[1000px]:grid-cols-1"}>
+        <div
+          className={
+            "grid grid-cols-3 gap-5 max-[1300px]:grid-cols-2 max-[1000px]:grid-cols-1"
+          }
+        >
           <div className="space-y-5">
             <Form.Item
               name={"name"}
@@ -638,7 +675,7 @@ const Settings = ({ ...props }) => {
 
             <Form.Item
               name={"status"}
-              label={"Status:"}
+              label={"Status"}
               rules={[
                 {
                   required: true,
@@ -646,22 +683,18 @@ const Settings = ({ ...props }) => {
                 },
               ]}
             >
-              <div className="flex items-center gap-3">
-                <CustomSelect
-                  placeholder={"Select status"}
-                  className={`w-full h-[50px]`}
-                  options={StatusSelect}
-                  onChange={handleStatus}
-                />
-
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
+              <CustomSelect
+                placeholder={"Please select"}
+                options={[
+                  { value: "ACTIVE", label: "ACTIVE" },
+                  { value: "PENDING", label: "PENDING" },
+                ]}
+                className={"w-full h-[50px]"}
+              />
             </Form.Item>
 
             <Form.Item
-              name={"questions_displayed_student"}
+              name={"count"}
               label={"# of Questions Displayed to Student"}
               rules={[
                 {
@@ -670,32 +703,36 @@ const Settings = ({ ...props }) => {
                 },
               ]}
             >
-              <CustomInput
-                type={"number"}
-                classNames={"w-full"}
-                placeholder={"Of Questions Displayed to Student"}
-              />
+              <InputNumber className={"w-full h-[50px]"} />
             </Form.Item>
 
-            <Form.Item name={"is_final"} label={"Final Exam"}>
+            <Form.Item
+              name={"passing_grade"}
+              label={"Passing Grade"}
+              rules={[
+                {
+                  required: true,
+                  message: "Passing Grade is empty",
+                },
+              ]}
+            >
+              <InputNumber className={"w-full h-[50px]"} />
+            </Form.Item>
+
+            <Form.Item name={"_is_final"} label={"Final Exam"}>
               <Switch />
             </Form.Item>
 
             <Form.Item
-              name={"is_class_session"}
+              name={"_is_class_session"}
               label={"Associate with This Class Session"}
             >
-              <CustomInput
-                type={"number"}
-                classNames={"w-full"}
-                placeholder={"Associate with This Class Session"}
-              />
+              <InputNumber className={"w-full h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"pass_text"} label={"Pass Feedback"}>
               <MDEditor
                 placeholder={"Text"}
-                onChange={handleNotesValue}
                 previewOptions={{
                   rehypePlugins: [[rehypeSanitize]],
                 }}
@@ -705,14 +742,14 @@ const Settings = ({ ...props }) => {
 
           <div className={"space-y-5"}>
             <Form.Item
-              name={"is_attendance_required"}
+              name={"_is_attendance_required"}
               label={"Attendance Required for Associated Session only"}
             >
               <Switch />
             </Form.Item>
 
             <Form.Item
-              name={"is_attendance_Preceding_Associated_required"}
+              name={"_is_attendance_required_cr"}
               label={
                 "Attendance Required for Preceding and Associated CR Sessions"
               }
@@ -721,32 +758,32 @@ const Settings = ({ ...props }) => {
             </Form.Item>
 
             <Form.Item
-              name={"is_attendance_all_required"}
+              name={"_is_attendance_required_cr_only"}
               label={"Attendance Required for All Preceding CR Sessions Only"}
             >
               <Switch />
             </Form.Item>
 
             <Form.Item
-              name={"is_progress_bar_required"}
+              name={"_display_progress_bar"}
               label={"Display Progress Bar During Quiz"}
             >
               <Switch />
             </Form.Item>
 
             <Form.Item
-              name={"is_randomize_required"}
+              name={"_random_order"}
               label={"Randomize Questions Order"}
             >
               <Switch />
             </Form.Item>
 
-            <Form.Item name={"is_timer"} label={"Enable Quiz Timer"}>
+            <Form.Item name={"_is_timer"} label={"Enable Quiz Timer"}>
               <Switch />
             </Form.Item>
 
             <Form.Item
-              name={"allow_view_complete"}
+              name={"_allow_view_complete"}
               label={"Allow Students to View Completed Quizzes"}
             >
               <Switch />
@@ -755,7 +792,6 @@ const Settings = ({ ...props }) => {
             <Form.Item name={"fall_text"} label={"Fail Feedback"}>
               <MDEditor
                 placeholder={"Text"}
-                onChange={handleFallText}
                 previewOptions={{
                   rehypePlugins: [[rehypeSanitize]],
                 }}
@@ -777,8 +813,7 @@ const Settings = ({ ...props }) => {
               <CustomSelect
                 mode="multiple"
                 placeholder="Please select"
-                onChange={handleService}
-                options={StatusSelect}
+                options={ServiceOption}
                 className={"w-full h-[50px]"}
               />
             </Form.Item>
@@ -786,8 +821,7 @@ const Settings = ({ ...props }) => {
               <CustomSelect
                 mode="multiple"
                 placeholder="Please select"
-                onChange={handleCR}
-                options={StatusSelect}
+                options={ClassOption}
                 className={"w-full h-[50px]"}
               />
             </Form.Item>
@@ -795,7 +829,6 @@ const Settings = ({ ...props }) => {
             <Form.Item name={"welcome_text"} label={"Welcome Text"}>
               <MDEditor
                 placeholder={"Text"}
-                onChange={handleWelcomeText}
                 previewOptions={{
                   rehypePlugins: [[rehypeSanitize]],
                 }}
@@ -817,6 +850,7 @@ const Settings = ({ ...props }) => {
           </ButtonComponent>
         </Form.Item>
       </Form>
+      {IsOpen && state?.status}
     </Fragment>
   );
 };
@@ -1602,7 +1636,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => { }, 1000);
+    setTimeout(() => {}, 1000);
   };
 
   return (
@@ -1631,7 +1665,7 @@ const AddNewTest = () => {
         >
           {({ getFieldValue }) =>
             QuestionType[getFieldValue("type") - 1]?.id ===
-              getFieldValue("type")
+            getFieldValue("type")
               ? AddQuizArrays[getFieldValue("type") - 1]
               : null
           }

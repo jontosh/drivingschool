@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored Files and content">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/upload.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/upload.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,15 +187,10 @@
       <workItem from="1720024876161" duration="392000" />
       <workItem from="1720077186714" duration="9558000" />
       <workItem from="1720087242727" duration="6254000" />
-      <workItem from="1720093605418" duration="403000" />
-    </task>
-    <task id="LOCAL-00022" summary="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
-      <option name="closed" value="true" />
-      <created>1717848811933</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1717848811933</updated>
+      <workItem from="1720093605418" duration="9191000" />
+      <workItem from="1720240716440" duration="541000" />
+      <workItem from="1720241480634" duration="3383000" />
+      <workItem from="1720253450177" duration="520000" />
     </task>
     <task id="LOCAL-00023" summary="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
       <option name="closed" value="true" />
@@ -580,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720093780675</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="#fix #jsx Refactored Files and form elements with attr">
+      <option name="closed" value="true" />
+      <created>1720094024881</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1720094024881</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +603,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fix(frontend): Update git widget placeholder and cleanup workspace XML" />
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal" />
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other" />
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other pages for schedule" />
@@ -624,7 +627,8 @@
     <MESSAGE value="#fix #jsx #style Updated form validation, connected notes and emergency" />
     <MESSAGE value="#fix #jsx Created get default values for forms and refactored appointments" />
     <MESSAGE value="#fix #jsx Refactored Files and content" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored Files and content" />
+    <MESSAGE value="#fix #jsx Refactored Files and form elements with attr" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored Files and form elements with attr" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

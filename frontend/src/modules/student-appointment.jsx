@@ -3,6 +3,7 @@ import { Paragraph } from "@/components/title/index.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { useEffect, useState } from "react";
+import moment from "moment";
 
 export const AppointmentsModule = (id) => {
   const { data } = useRequestIdQuery({
@@ -32,6 +33,12 @@ export const AppointmentsModule = (id) => {
             type: appointment?.type,
             note: appointment?.note,
             vehicle: data?.appointments[0]?.time_slot?.vehicle?.name,
+            date: moment(data?.appointments[0]?.time_slot?.date)?.format(
+              "ddd, MMM D YYYY",
+            ),
+            location: data?.appointments[0]?.time_slot?.location?.name,
+            pu_location: data?.appointments[0]?.time_slot?.pu_location,
+            product: data?.appointments[0]?.time_slot?.type,
           });
         }
       }
@@ -89,8 +96,8 @@ export const AppointmentsModule = (id) => {
     },
     {
       title: "Pickup Location",
-      dataIndex: "pickupLocation",
-      key: "pickupLocation",
+      dataIndex: "pu_location",
+      key: "pu_location",
       align: "center",
       render: (text) => <Paragraph fontSize={"text-lg"}>{text}</Paragraph>,
     },
