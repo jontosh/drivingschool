@@ -28,6 +28,7 @@ import {
   MinusCircleOutlined,
 } from "@ant-design/icons";
 import { Form, InputNumber, message, Switch } from "antd";
+import { Form, InputNumber, Radio, Switch, Tooltip } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState, useEffect, useReducer } from "react";
 import { GoClock, GoEye } from "react-icons/go";
@@ -1265,7 +1266,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => {}, 1000);
+    setTimeout(() => { }, 1000);
   };
 
   const AddQuizArrays = [
@@ -1273,6 +1274,35 @@ const AddNewTest = () => {
     <TrueFalse form={form} key={2} />,
     <Category form={form} key={3} />,
   ];
+
+  const text = (
+    <div className="flex flex-col space-y-2 w-[120px]">
+      <ButtonComponent
+        defaultBg="#FFEA79"
+        defaultHoverBg="#FFEA79"
+        defaultColor={colorsObject.black}
+        defaultHoverColor={colorsObject.black}
+        borderRadius={5}
+        className={"flex justify-between items-center w-full px-1.5"}
+        fontSize={12}
+      >
+        <FiEdit className="w-5" />
+        Edit Test
+      </ButtonComponent>
+      <ButtonComponent
+        defaultBg="#E37B7B"
+        defaultHoverBg="#E37B7B"
+        defaultColor={colorsObject.black}
+        defaultHoverColor={colorsObject.black}
+        borderRadius={5}
+        className={"flex justify-between items-center w-full px-1.5"}
+        fontSize={12}
+      >
+        <RiDeleteBin6Line className="w-5" />
+        Delete Test
+      </ButtonComponent>
+    </div>
+  )
 
   return (
     <Fragment>
@@ -1321,7 +1351,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1405,6 +1435,12 @@ const AddNewTest = () => {
                     </ButtonComponent>
                   </div>
                 )}
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1425,10 +1461,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1449,10 +1487,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1473,10 +1513,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1497,10 +1539,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1521,10 +1565,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1545,10 +1591,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1569,10 +1617,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={text}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
           </div>
