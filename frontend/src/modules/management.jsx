@@ -27,7 +27,7 @@ import {
   FormOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { Form, InputNumber, Radio, Switch } from "antd";
+import { Form, InputNumber, message, Switch } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState, useEffect, useReducer } from "react";
 import { GoClock, GoEye } from "react-icons/go";
@@ -873,13 +873,19 @@ const MultipleChoice = ({ form, ...props }) => {
           // console.log(fields);
           return (
             <Fragment>
-              {fields.map(({ key, name, ...restField }) => (
+              {fields.map(({ key, name, fieldKey, ...restField }) => (
                 <div key={key}>
                   <Form.Item
                     {...restField}
                     name={[name, "text"]}
                     label={"choice of answers"}
                     className="w-full"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input title answer!",
+                      },
+                    ]}
                   >
                     <CustomInput
                       placeholder={"choice of answers"}
@@ -890,6 +896,7 @@ const MultipleChoice = ({ form, ...props }) => {
                     <Form.Item
                       {...restField}
                       name={[name, "is_correct"]}
+                      fieldKey={[fieldKey, "is_correct"]}
                       label={"correct answer"}
                     >
                       <CustomCheckBox />
@@ -920,44 +927,39 @@ const MultipleChoice = ({ form, ...props }) => {
 };
 
 const TrueFalse = ({ form, ...props }) => {
-  const [isCorrectFirst, setIsCorrectFirst] = useState(false);
-  const [isCorrectSecond, setIsCorrectSecond] = useState(false);
-
-  const onChangeFirst = ({ target: { checked } }) => {
-    setIsCorrectFirst(checked);
-    setIsCorrectSecond(!checked);
-  };
-
-  const onChangeSecond = ({ target: { checked } }) => {
-    setIsCorrectFirst(!checked);
-    setIsCorrectSecond(checked);
-  };
-
-  const handleNotesValue = (value) => {
-    form?.setFieldsValue({
-      note: value,
-    });
-  };
-
   return (
     <div className="space-y-5">
-      <Form.Item label="choice of answers">
-        <div className="space-y-5">
-          <CustomInput placeholder={"True"} />
-          <CustomRadio name={"is_correct"}>
-            <span>correct answer</span>
-          </CustomRadio>
-        </div>
+      <Form.Item
+        rules={[
+          {
+            required: true,
+            message: "Please input title answer!",
+          },
+        ]}
+        name={"text"}
+        label={"choice of answers"}
+        className="w-full"
+      >
+        <CustomInput placeholder={"True"} classNames={"w-full"} />
       </Form.Item>
 
-      <Form.Item label="choice of answers">
-        <div className="space-y-5">
-          <CustomInput placeholder={"False"} />
-          <CustomRadio name={"is_correct"}>
-            <span>correct answer</span>
-          </CustomRadio>
-        </div>
+      <CustomRadio name="answers" />
+
+      <Form.Item
+        rules={[
+          {
+            required: true,
+            message: "Please input title answer!",
+          },
+        ]}
+        name={"text"}
+        label={"choice of answers"}
+        className="w-full"
+      >
+        <CustomInput placeholder={"False"} classNames={"w-full"} />
       </Form.Item>
+
+      <CustomRadio name="answers" />
     </div>
   );
 };
@@ -969,15 +971,22 @@ const Category = ({ form, ...props }) => {
     <div className="space-y-5">
       <Form.List name="answers">
         {(fields, { add, remove }) => {
+          // console.log(fields);
           return (
             <Fragment>
-              {fields.map(({ key, name, ...restField }) => (
+              {fields.map(({ key, name, fieldKey, ...restField }) => (
                 <div key={key}>
                   <Form.Item
                     {...restField}
                     name={[name, "text"]}
                     label={"choice of answers"}
                     className="w-full"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input title answer!",
+                      },
+                    ]}
                   >
                     <CustomInput
                       placeholder={"choice of answers"}
@@ -988,6 +997,7 @@ const Category = ({ form, ...props }) => {
                     <Form.Item
                       {...restField}
                       name={[name, "is_correct"]}
+                      fieldKey={[fieldKey, "is_correct"]}
                       label={"correct answer"}
                     >
                       <CustomCheckBox />
@@ -1225,14 +1235,18 @@ const AddNewTest = () => {
     path: "/account_management/services/question_type/",
   });
   const { colorsObject } = useContext(ColorsContext);
+  const [TestSettings, setTestSettings] = useLocalStorage(
+    "test-setting",
+    "null",
+  );
+  const [Questions, setQuestions] = useLocalStorage(
+    "test-questions",
+    JSON.stringify([]),
+  );
 
   const [form] = Form.useForm();
-  const AddQuizArrays = [
-    <MultipleChoice form={form} />,
-    <TrueFalse form={form} />,
-    <Category form={form} />,
-  ];
   const [QuestionType, setQuestionType] = useState([]);
+  const [Settings, setSettings] = useState(null);
 
   useEffect(() => {
     const options = [];
@@ -1242,10 +1256,19 @@ const AddNewTest = () => {
     setQuestionType(options);
   }, [data, isLoading]);
 
+  useEffect(() => {
+    setSettings(() => JSON.parse(TestSettings));
+  }, []);
+
   // func
   const onFinish = async (values) => {
     try {
       console.log(values);
+      if (values?.answers?.length === 0) {
+        message.error("Not selected variants to answers!");
+      } else {
+        //   code
+      }
     } catch (error) {
       console.error(error?.message);
     }
@@ -1257,6 +1280,12 @@ const AddNewTest = () => {
     setTimeout(() => {}, 1000);
   };
 
+  const AddQuizArrays = [
+    <MultipleChoice form={form} />,
+    <TrueFalse form={form} />,
+    <Category form={form} />,
+  ];
+
   return (
     <Fragment>
       <Form
@@ -1266,6 +1295,11 @@ const AddNewTest = () => {
         layout={"vertical"}
         initialValues={{
           question: "Hello",
+          answers: [
+            {
+              is_correct: false,
+            },
+          ],
         }}
       >
         <Form.Item name={"type"} className="w-[180px]">
@@ -1322,10 +1356,12 @@ const AddNewTest = () => {
           <div className="space-y-5">
             <div className="flex justify-between items-center">
               <Paragraph className={"text-xl font-normal"}>
-                Test Name:
+                Test Name: {Settings?.name}
               </Paragraph>
 
-              <span className="text-xl font-normal">Questions 8</span>
+              <span className="text-xl font-normal">
+                Questions {Settings?.questions?.length}
+              </span>
             </div>
             <div className="space-y-1.5">
               <Paragraph className={"text-base font-semibold text-gray-600"}>
