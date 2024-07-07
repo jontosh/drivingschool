@@ -27,7 +27,7 @@ import {
   FormOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { Form, InputNumber, message, Switch } from "antd";
+import { Form, InputNumber, message, Switch, Tooltip } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState, useEffect, useReducer } from "react";
 import { GoClock, GoEye } from "react-icons/go";
@@ -850,10 +850,9 @@ const Settings = ({ ...props }) => {
 
         <Form.Item className="text-center pt-7">
           <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            paddingInline={43}
-            controlHeight={40}
+            defaultBg={colorsObject.info}
+            defaultHoverBg={colorsObject.info}
+            paddingInline={44}
             borderRadius={5}
             type={"submit"}
           >
@@ -881,7 +880,7 @@ const MultipleChoice = ({ form, ...props }) => {
                   <Form.Item
                     {...restField}
                     name={[name, "text"]}
-                    label={"choice of answers"}
+                    label={"CHOISE OF ANSWER"}
                     className="w-full"
                     rules={[
                       {
@@ -891,7 +890,7 @@ const MultipleChoice = ({ form, ...props }) => {
                     ]}
                   >
                     <CustomInput
-                      placeholder={"choice of answers"}
+                      placeholder={"CHOISE OF ANSWER"}
                       classNames={"w-full"}
                     />
                   </Form.Item>
@@ -899,7 +898,7 @@ const MultipleChoice = ({ form, ...props }) => {
                     <Form.Item
                       {...restField}
                       name={[name, "is_correct"]}
-                      label={"correct answer"}
+                      label={"CORRECT ANSWER"}
                     >
                       <CustomCheckBox />
                     </Form.Item>
@@ -931,20 +930,20 @@ const MultipleChoice = ({ form, ...props }) => {
 const TrueFalse = ({ form, ...props }) => {
   return (
     <div className="space-y-5">
-      <Form.Item label="choice of answers">
+      <Form.Item label="CHOISE OF ANSWER">
         <div className="space-y-5">
           <CustomInput placeholder={"True"} />
           <CustomRadio name={"is_correct"}>
-            <span>correct answer</span>
+            <span>CORRECT ANSWER</span>
           </CustomRadio>
         </div>
       </Form.Item>
 
-      <Form.Item label="choice of answers">
+      <Form.Item label="CHOISE OF ANSWER">
         <div className="space-y-5">
           <CustomInput placeholder={"False"} />
           <CustomRadio name={"is_correct"}>
-            <span>correct answer</span>
+            <span>CORRECT ANSWER</span>
           </CustomRadio>
         </div>
       </Form.Item>
@@ -967,7 +966,7 @@ const Category = ({ form, ...props }) => {
                   <Form.Item
                     {...restField}
                     name={[name, "text"]}
-                    label={"choice of answers"}
+                    label={"CHOISE OF ANSWER"}
                     className="w-full"
                     rules={[
                       {
@@ -977,7 +976,7 @@ const Category = ({ form, ...props }) => {
                     ]}
                   >
                     <CustomInput
-                      placeholder={"choice of answers"}
+                      placeholder={"CHOISE OF ANSWER"}
                       classNames={"w-full"}
                     />
                   </Form.Item>
@@ -985,7 +984,7 @@ const Category = ({ form, ...props }) => {
                     <Form.Item
                       {...restField}
                       name={[name, "is_correct"]}
-                      label={"correct answer"}
+                      label={"CORRECT ANSWER"}
                     >
                       <CustomCheckBox />
                     </Form.Item>
@@ -1222,7 +1221,6 @@ const AddNewTest = () => {
     path: "/account_management/services/question_type/",
   });
   const { colorsObject } = useContext(ColorsContext);
-  const [showDetails, setShowDetails] = useState(false);
   const [TestSettings, setTestSettings] = useLocalStorage(
     "test-setting",
     "null",
@@ -1265,7 +1263,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => {}, 1000);
+    setTimeout(() => { }, 1000);
   };
 
   const AddQuizArrays = [
@@ -1273,6 +1271,37 @@ const AddNewTest = () => {
     <TrueFalse form={form} key={2} />,
     <Category form={form} key={3} />,
   ];
+
+  const editButtons = (
+    <div className="flex flex-col space-y-2 w-[120px]">
+      <ButtonComponent
+        defaultBg="#FFEA79"
+        defaultHoverBg="#FFEA79"
+        defaultColor={colorsObject.black}
+        defaultHoverColor={colorsObject.black}
+        defaultActiveColor={colorsObject.black}
+        borderRadius={5}
+        className={"flex justify-between items-center w-full px-1.5"}
+        fontSize={12}
+      >
+        <FiEdit className="w-5" />
+        Edit Test
+      </ButtonComponent>
+      <ButtonComponent
+        defaultBg="#E37B7B"
+        defaultHoverBg="#E37B7B"
+        defaultColor={colorsObject.black}
+        defaultHoverColor={colorsObject.black}
+        defaultActiveColor={colorsObject.black}
+        borderRadius={5}
+        className={"flex justify-between items-center w-full px-1.5"}
+        fontSize={12}
+      >
+        <RiDeleteBin6Line className="w-5" />
+        Delete Test
+      </ButtonComponent>
+    </div>
+  )
 
   return (
     <Fragment>
@@ -1321,7 +1350,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1330,8 +1359,7 @@ const AddNewTest = () => {
             <ButtonComponent
               defaultBg={colorsObject.info}
               defaultHoverBg={colorsObject.infoHover}
-              controlHeight={40}
-              paddingInline={43}
+              paddingInline={44}
               borderRadius={5}
               type={"submit"}
               disabled={isLoading}
@@ -1368,43 +1396,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                  onClick={() => setShowDetails(!showDetails)}
-                />
-                {showDetails && (
-                  <div className="flex flex-col space-y-2 w-[125px] h-[86px] bg-white absolute shadow-xl right-6 p-2">
-                    <ButtonComponent
-                      defaultBg="#FFEA79"
-                      defaultHoverBg="#FFEA79"
-                      defaultColor={colorsObject.black}
-                      defaultHoverColor={colorsObject.black}
-                      borderRadius={5}
-                      className={
-                        "flex justify-between items-center w-full px-1.5"
-                      }
-                      fontSize={12}
-                    >
-                      <FiEdit className="w-5" />
-                      Edit Test
-                    </ButtonComponent>
-                    <ButtonComponent
-                      defaultBg="#E37B7B"
-                      defaultHoverBg="#E37B7B"
-                      defaultColor={colorsObject.black}
-                      defaultHoverColor={colorsObject.black}
-                      borderRadius={5}
-                      className={
-                        "flex justify-between items-center w-full px-1.5"
-                      }
-                      fontSize={12}
-                    >
-                      <RiDeleteBin6Line className="w-5" />
-                      Delete Test
-                    </ButtonComponent>
-                  </div>
-                )}
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1425,10 +1422,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1449,10 +1448,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1473,10 +1474,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1497,10 +1500,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1521,10 +1526,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1545,10 +1552,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
 
@@ -1569,10 +1578,12 @@ const AddNewTest = () => {
                   The objective of this user flow is to map out...
                 </span>
 
-                <IconComponent
-                  icon={<HiDotsVertical />}
-                  iconWidth={"text-xl"}
-                />
+                <Tooltip placement="left" color="white" title={editButtons}>
+                  <IconComponent
+                    icon={<HiDotsVertical />}
+                    iconWidth={"text-xl"}
+                  />
+                </Tooltip>
               </div>
             </div>
           </div>
