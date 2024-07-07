@@ -36,6 +36,9 @@ import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 import useLocalStorage from "use-local-storage";
 import ModuleManagementStyle from "./modules.module.scss";
+import { HiDotsVertical } from "react-icons/hi";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -1002,7 +1005,6 @@ const Category = ({ form, ...props }) => {
                   defaultHoverBg={colorsObject.info}
                   type="dashed"
                   onClick={() => add()}
-                  // block
                   paddingInline={44}
                   borderRadius={5}
                 >
@@ -1102,7 +1104,7 @@ const Preview = ({ form, ...props }) => {
                     paddingInline={20}
                     borderRadius={12}
                   >
-                    Prev
+                    Next
                   </ButtonComponent>
                 </div>
 
@@ -1225,6 +1227,7 @@ const AddNewTest = () => {
     path: "/account_management/services/question_type/",
   });
   const { colorsObject } = useContext(ColorsContext);
+  const [showDetails, setShowDetails] = useState(false);
 
   const [form] = Form.useForm();
   const AddQuizArrays = [
@@ -1254,7 +1257,7 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => {}, 1000);
+    setTimeout(() => { }, 1000);
   };
 
   return (
@@ -1299,7 +1302,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1328,106 +1331,175 @@ const AddNewTest = () => {
               <span className="text-xl font-normal">Questions 8</span>
             </div>
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">1</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">1</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                  onClick={() => setShowDetails(!showDetails)}
+                />
+                {showDetails && (
+                  <div className="flex flex-col space-y-2 w-[125px] h-[86px] bg-white absolute shadow-xl right-6 p-2">
+                    <ButtonComponent
+                      defaultBg="#FFEA79"
+                      defaultHoverBg="#FFEA79"
+                      defaultColor={colorsObject.black}
+                      defaultHoverColor={colorsObject.black}
+                      borderRadius={5}
+                      className={"flex justify-between items-center w-full px-1.5"}
+                      fontSize={12}
+                    >
+                      <FiEdit className="w-5" />
+                      Edit Test
+                    </ButtonComponent>
+                    <ButtonComponent
+                      defaultBg="#E37B7B"
+                      defaultHoverBg="#E37B7B"
+                      defaultColor={colorsObject.black}
+                      defaultHoverColor={colorsObject.black}
+                      borderRadius={5}
+                      className={"flex justify-between items-center w-full px-1.5"}
+                      fontSize={12}
+                    >
+                      <RiDeleteBin6Line className="w-5" />
+                      Delete Test
+                    </ButtonComponent>
+                  </div>
+                )}
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">2</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">2</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">3</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">3</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">4</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">4</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">5</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">5</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">6</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">6</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">7</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">7</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"}>
-                <span className="text-2xl">8</span> What is the problem that
-                you’re trying to solve or goals of this design?
+              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+                <span className="text-2xl">8</span>
+                <span>What is the problem that you’re trying to solve or goals of this design?</span>
               </Paragraph>
 
-              <div className="pr-10">
+              <div className="flex items-center space-x-1.5">
                 <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
                   The objective of this user flow is to map out...
                 </span>
+
+                <IconComponent
+                  icon={<HiDotsVertical />}
+                  iconWidth={"text-xl"}
+                />
               </div>
             </div>
           </div>
