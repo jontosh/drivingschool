@@ -8,7 +8,6 @@ import { Fees } from "@/pages/managment/service/fees.jsx";
 import { Miscellaneous } from "@/pages/managment/service/miscellaneous.jsx";
 import { Packages } from "@/pages/managment/service/packages.jsx";
 import { Product } from "@/pages/managment/service/product.jsx";
-import SignIn from "@/pages/register/sign-in.jsx";
 import { AllBtwHoursCompleted } from "@/pages/report/subpages/all-btw-hours-completed.jsx";
 import { AttendanceSheetReport } from "@/pages/report/subpages/attendance-sheet-report.jsx";
 import { AttendanceSignatures } from "@/pages/report/subpages/attendance-signatures.jsx";
@@ -348,16 +347,6 @@ export const Subpages = ({ page, status, search }) => {
             <title>Scheduling - Single instructor</title>
           </Helmet>
           <Single />
-        </Fragment>
-      );
-    }
-    case "sign-in": {
-      return (
-        <Fragment>
-          <Helmet>
-            <title>Sign in - Register page</title>
-          </Helmet>
-          <SignIn />
         </Fragment>
       );
     }

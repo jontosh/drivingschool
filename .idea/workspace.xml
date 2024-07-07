@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored Add test with Setting form validation">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored register page with routing data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/sign-in.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,15 +191,7 @@
       <workItem from="1720093605418" duration="9191000" />
       <workItem from="1720240716440" duration="541000" />
       <workItem from="1720241480634" duration="3383000" />
-      <workItem from="1720253450177" duration="3286000" />
-    </task>
-    <task id="LOCAL-00024" summary="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module.">
-      <option name="closed" value="true" />
-      <created>1717859560348</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1717859560348</updated>
+      <workItem from="1720253450177" duration="9469000" />
     </task>
     <task id="LOCAL-00025" summary="#fix #jsx Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form.">
       <option name="closed" value="true" />
@@ -587,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720254066887</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="#fix #jsx Refactored register page with routing data">
+      <option name="closed" value="true" />
+      <created>1720257129001</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1720257129001</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +604,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other" />
     <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other pages for schedule" />
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for" />
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for schedule, and improve UI" />
@@ -631,7 +628,8 @@
     <MESSAGE value="#fix #jsx Refactored Files and content" />
     <MESSAGE value="#fix #jsx Refactored Files and form elements with attr" />
     <MESSAGE value="#fix #jsx Refactored Add test with Setting form validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored Add test with Setting form validation" />
+    <MESSAGE value="#fix #jsx Refactored register page with routing data" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored register page with routing data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
