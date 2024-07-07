@@ -27,13 +27,14 @@ import {
   FormOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { Form, InputNumber, Switch } from "antd";
+import { Form, InputNumber, Radio, Switch } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState, useEffect, useReducer } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
+import useLocalStorage from "use-local-storage";
 import ModuleManagementStyle from "./modules.module.scss";
 
 const reducer = (state, action) => {
@@ -574,6 +575,10 @@ const Settings = ({ ...props }) => {
   const { data: ClassData } = useRequestGetQuery({
     path: "/account_management/class/",
   });
+  const [TestSettings, setTestSettings] = useLocalStorage(
+    "test-setting",
+    "null",
+  );
 
   const [ServiceOption, setServiceOption] = useState([]);
   const [ClassOption, setClassOption] = useState([]);
@@ -618,12 +623,15 @@ const Settings = ({ ...props }) => {
         data: values,
       });
 
+      console.log(res);
+
       if (res?.error?.status >= 400) {
         dispatch({ type: "ERROR", setIsOpen });
         setIsOpen(true);
       } else {
         dispatch({ type: "SUCCESS", setIsOpen });
         setIsOpen(true);
+        setTestSettings(JSON.stringify(res?.data));
       }
     } catch (error) {
       console.error(error.message);
@@ -856,145 +864,75 @@ const Settings = ({ ...props }) => {
 };
 
 const MultipleChoice = ({ form, ...props }) => {
-  const { data: QuestionData } = useRequestGetQuery({
-    path: "/account_management/services/question/", // form?.getFieldValue("type")
-  });
-
   const { colorsObject } = useContext(ColorsContext);
-  const [Questions, setQuestions] = useState([]);
-
-  useEffect(() => {
-    const questionsSorted = [];
-
-    for (let i = 0; i < QuestionData?.length; i++) {
-      const item = QuestionData[i];
-      if (item?.type === form?.getFieldValue("type")) {
-        questionsSorted.push(item);
-      }
-    }
-
-    setQuestions(questionsSorted);
-  }, [QuestionData]);
-
-  const questionItem = Questions?.map((item, index) => {
-    index += 1;
-    return (
-      <Fragment key={index}>
-        <div className="space-y-1.5">
-          <Paragraph className={"text-base font-semibold text-gray-600"}>
-            <span className="text-2xl" children={index} /> {item?.question}
-          </Paragraph>
-
-          <div className="pr-10">
-            <Paragraph
-              className="py-2.5 px-5 rounded-2xl bg-gray-300"
-              fontSize={"text-gray-600 font-normal text-sm"}
-            >
-              The objective of this user flow is to map out...
-            </Paragraph>
-          </div>
-        </div>
-      </Fragment>
-    );
-  });
-
-  const handleNotesValue = (value) => {
-    form?.setFieldsValue({
-      note: value,
-    });
-  };
 
   return (
-    <Fragment>
-      <div className="grid grid-cols-2 gap-5 max-[1150px]:grid-cols-1">
-        <div className="space-y-5">
-          <Form.Item name={"note"} label={"Notes"} className="w-full">
-            <MDEditor
-              placeholder={"Text"}
-              onChange={handleNotesValue}
-              previewOptions={{
-                rehypePlugins: [[rehypeSanitize]],
-              }}
-            />
-          </Form.Item>
-
-          <Form.List name="answers">
-            {(fields, { add, remove }) => {
-              // console.log(fields);
-              return (
-                <Fragment>
-                  {fields.map(({ key, name, ...restField }) => (
-                    <div key={key}>
-                      <Form.Item
-                        {...restField}
-                        name={[name, "text"]}
-                        label={"choice of answers"}
-                        className="w-full"
-                      >
-                        <CustomInput
-                          placeholder={"choice of answers"}
-                          classNames={"w-full"}
-                        />
-                      </Form.Item>
-                      <div className="flex items-center justify-between">
-                        <Form.Item
-                          {...restField}
-                          name={[name, "is_correct"]}
-                          label={"correct answer"}
-                        >
-                          <CustomCheckBox />
-                        </Form.Item>
-                        <MinusCircleOutlined onClick={() => remove(name)} />
-                      </div>
-                    </div>
-                  ))}
-                  <Form.Item>
-                    <ButtonComponent
-                      defaultBg={colorsObject.info}
-                      defaultHoverBg={colorsObject.info}
-                      type="dashed"
-                      onClick={() => add()}
-                      // block
-                      paddingInline={44}
-                      borderRadius={5}
-                    >
-                      Add another option
-                    </ButtonComponent>
+    <div className="space-y-5">
+      <Form.List name="answers">
+        {(fields, { add, remove }) => {
+          // console.log(fields);
+          return (
+            <Fragment>
+              {fields.map(({ key, name, ...restField }) => (
+                <div key={key}>
+                  <Form.Item
+                    {...restField}
+                    name={[name, "text"]}
+                    label={"choice of answers"}
+                    className="w-full"
+                  >
+                    <CustomInput
+                      placeholder={"choice of answers"}
+                      classNames={"w-full"}
+                    />
                   </Form.Item>
-                </Fragment>
-              );
-            }}
-          </Form.List>
-
-          <ButtonComponent
-            defaultBg={colorsObject.info}
-            defaultHoverBg={colorsObject.infoHover}
-            controlHeight={40}
-            paddingInline={43}
-            borderRadius={5}
-            type={"submit"}
-          >
-            Save
-          </ButtonComponent>
-        </div>
-
-        <div className="space-y-5">
-          <div className="flex justify-between items-center">
-            <Paragraph className={"text-xl font-normal"}>Test Name:</Paragraph>
-
-            <span className="text-xl font-normal">
-              Questions {Questions?.length}
-            </span>
-          </div>
-
-          {questionItem}
-        </div>
-      </div>
-    </Fragment>
+                  <div className="flex items-center justify-between">
+                    <Form.Item
+                      {...restField}
+                      name={[name, "is_correct"]}
+                      label={"correct answer"}
+                    >
+                      <CustomCheckBox />
+                    </Form.Item>
+                    <MinusCircleOutlined onClick={() => remove(name)} />
+                  </div>
+                </div>
+              ))}
+              <Form.Item>
+                <ButtonComponent
+                  defaultBg={colorsObject.info}
+                  defaultHoverBg={colorsObject.info}
+                  type="dashed"
+                  onClick={() => add()}
+                  // block
+                  paddingInline={44}
+                  borderRadius={5}
+                >
+                  Add another option
+                </ButtonComponent>
+              </Form.Item>
+            </Fragment>
+          );
+        }}
+      </Form.List>
+    </div>
   );
 };
 
 const TrueFalse = ({ form, ...props }) => {
+  const [isCorrectFirst, setIsCorrectFirst] = useState(false);
+  const [isCorrectSecond, setIsCorrectSecond] = useState(false);
+
+  const onChangeFirst = ({ target: { checked } }) => {
+    setIsCorrectFirst(checked);
+    setIsCorrectSecond(!checked);
+  };
+
+  const onChangeSecond = ({ target: { checked } }) => {
+    setIsCorrectFirst(!checked);
+    setIsCorrectSecond(checked);
+  };
+
   const handleNotesValue = (value) => {
     form?.setFieldsValue({
       note: value,
@@ -1002,353 +940,80 @@ const TrueFalse = ({ form, ...props }) => {
   };
 
   return (
-    <Fragment>
-      <div className="grid grid-cols-2 gap-5 max-[1150px]:grid-cols-1">
+    <div className="space-y-5">
+      <Form.Item label="choice of answers">
         <div className="space-y-5">
-          <Form.Item name={"note"} label={"Notes"} className="w-full">
-            <MDEditor
-              placeholder={"Text"}
-              onChange={handleNotesValue}
-              previewOptions={{
-                rehypePlugins: [[rehypeSanitize]],
-              }}
-            />
-          </Form.Item>
-
-          <div>
-            <Form.Item name={"text"} label={"choice of answers"}>
-              <CustomInput
-                placeholder={"choice of answers"}
-                classNames="w-full"
-              />
-            </Form.Item>
-
-            <Form.Item
-              name={"is_correct"}
-              label={"correct answer"}
-              labelAlign="left"
-            >
-              <CustomRadio name={"is_correct"} />
-            </Form.Item>
-          </div>
-
-          <div>
-            <Form.Item name={"text"} label={"choice of answers"}>
-              <CustomInput
-                placeholder={"choice of answers"}
-                classNames="w-full"
-              />
-            </Form.Item>
-
-            <Form.Item
-              name={"is_correct"}
-              label={"correct answer"}
-              layout="horizontal"
-            >
-              <CustomRadio name={"is_correct"} />
-            </Form.Item>
-          </div>
+          <CustomInput placeholder={"True"} />
+          <CustomRadio name={"is_correct"}>
+            <span>correct answer</span>
+          </CustomRadio>
         </div>
+      </Form.Item>
 
+      <Form.Item label="choice of answers">
         <div className="space-y-5">
-          <div className="flex justify-between items-center">
-            <Paragraph className={"text-xl font-normal"}>Test Name:</Paragraph>
-
-            <span className="text-xl font-normal">Questions 8</span>
-          </div>
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">1</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">2</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">3</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">4</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">5</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">6</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">7</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">8</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
+          <CustomInput placeholder={"False"} />
+          <CustomRadio name={"is_correct"}>
+            <span>correct answer</span>
+          </CustomRadio>
         </div>
-      </div>
-    </Fragment>
+      </Form.Item>
+    </div>
   );
 };
 
 const Category = ({ form, ...props }) => {
   const { colorsObject } = useContext(ColorsContext);
 
-  const handleNotesValue = (value) => {
-    form?.setFieldsValue({
-      note: value,
-    });
-  };
-
   return (
-    <Fragment>
-      <div className="grid grid-cols-2 gap-5 max-[1150px]:grid-cols-1">
-        <div className="space-y-5">
-          <Form.Item name={"note"} label={"Notes"} className="w-full">
-            <MDEditor
-              placeholder={"Text"}
-              onChange={handleNotesValue}
-              previewOptions={{
-                rehypePlugins: [[rehypeSanitize]],
-              }}
-            />
-          </Form.Item>
-
-          <Form.List name="answers">
-            {(fields, { add, remove }) => {
-              console.log(fields);
-              return (
-                <Fragment>
-                  {fields.map(({ key, name, ...restField }) => (
-                    <div key={key}>
-                      <Form.Item
-                        {...restField}
-                        name={[name, "text"]}
-                        label={"choice of answers"}
-                        className="w-full"
-                      >
-                        <CustomInput
-                          placeholder={"choice of answers"}
-                          classNames={"w-full"}
-                        />
-                      </Form.Item>
-                      <div className="flex items-center justify-between">
-                        <Form.Item
-                          {...restField}
-                          name={[name, "is_correct"]}
-                          label={"correct answer"}
-                        >
-                          <CustomCheckBox />
-                        </Form.Item>
-                        <MinusCircleOutlined onClick={() => remove(name)} />
-                      </div>
-                    </div>
-                  ))}
-                  <Form.Item>
-                    <ButtonComponent
-                      defaultBg={colorsObject.info}
-                      defaultHoverBg={colorsObject.info}
-                      type="dashed"
-                      onClick={() => add()}
-                      // block
-                      paddingInline={44}
-                      borderRadius={5}
-                    >
-                      Add another option
-                    </ButtonComponent>
+    <div className="space-y-5">
+      <Form.List name="answers">
+        {(fields, { add, remove }) => {
+          return (
+            <Fragment>
+              {fields.map(({ key, name, ...restField }) => (
+                <div key={key}>
+                  <Form.Item
+                    {...restField}
+                    name={[name, "text"]}
+                    label={"choice of answers"}
+                    className="w-full"
+                  >
+                    <CustomInput
+                      placeholder={"choice of answers"}
+                      classNames={"w-full"}
+                    />
                   </Form.Item>
-                </Fragment>
-              );
-            }}
-          </Form.List>
-        </div>
-
-        <div className="space-y-5">
-          <div className="flex justify-between items-center">
-            <Paragraph className={"text-xl font-normal"}>Test Name:</Paragraph>
-
-            <span className="text-xl font-normal">Questions 8</span>
-          </div>
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">1</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">2</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">3</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">4</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">5</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">6</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">7</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-
-          <div className="space-y-1.5">
-            <Paragraph className={"text-base font-semibold text-gray-600"}>
-              <span className="text-2xl">8</span> What is the problem that
-              you’re trying to solve or goals of this design?
-            </Paragraph>
-
-            <div className="pr-10">
-              <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                The objective of this user flow is to map out...
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Fragment>
+                  <div className="flex items-center justify-between">
+                    <Form.Item
+                      {...restField}
+                      name={[name, "is_correct"]}
+                      label={"correct answer"}
+                    >
+                      <CustomCheckBox />
+                    </Form.Item>
+                    <MinusCircleOutlined onClick={() => remove(name)} />
+                  </div>
+                </div>
+              ))}
+              <Form.Item>
+                <ButtonComponent
+                  defaultBg={colorsObject.info}
+                  defaultHoverBg={colorsObject.info}
+                  type="dashed"
+                  onClick={() => add()}
+                  // block
+                  paddingInline={44}
+                  borderRadius={5}
+                >
+                  Add another option
+                </ButtonComponent>
+              </Form.Item>
+            </Fragment>
+          );
+        }}
+      </Form.List>
+    </div>
   );
 };
 
@@ -1559,6 +1224,7 @@ const AddNewTest = () => {
   const { data, isLoading } = useRequestGetQuery({
     path: "/account_management/services/question_type/",
   });
+  const { colorsObject } = useContext(ColorsContext);
 
   const [form] = Form.useForm();
   const AddQuizArrays = [
@@ -1599,7 +1265,7 @@ const AddNewTest = () => {
         onFinish={onFinish}
         layout={"vertical"}
         initialValues={{
-          note: "Hello",
+          question: "Hello",
         }}
       >
         <Form.Item name={"type"} className="w-[180px]">
@@ -1611,17 +1277,161 @@ const AddNewTest = () => {
           />
         </Form.Item>
 
-        <Form.Item
-          shouldUpdate={(prev, current) => prev.type !== current.type}
-          noStyle
-        >
-          {({ getFieldValue }) =>
-            QuestionType[getFieldValue("type") - 1]?.id ===
-            getFieldValue("type")
-              ? AddQuizArrays[getFieldValue("type") - 1]
-              : null
-          }
-        </Form.Item>
+        <div className="grid grid-cols-2 gap-5">
+          <div className={"space-y-5"}>
+            <Form.Item
+              name={"question"}
+              label={"Question title"}
+              className="w-full"
+            >
+              <MDEditor
+                placeholder={"Text"}
+                previewOptions={{
+                  rehypePlugins: [[rehypeSanitize]],
+                }}
+                disabled={isLoading}
+              />
+            </Form.Item>
+
+            <Form.Item
+              shouldUpdate={(prev, current) => prev.type !== current.type}
+              noStyle
+            >
+              {({ getFieldValue }) =>
+                QuestionType[getFieldValue("type") - 1]?.id ===
+                getFieldValue("type")
+                  ? AddQuizArrays[getFieldValue("type") - 1]
+                  : null
+              }
+            </Form.Item>
+
+            <ButtonComponent
+              defaultBg={colorsObject.info}
+              defaultHoverBg={colorsObject.infoHover}
+              controlHeight={40}
+              paddingInline={43}
+              borderRadius={5}
+              type={"submit"}
+              disabled={isLoading}
+            >
+              Save
+            </ButtonComponent>
+          </div>
+
+          {/*{isLoading}*/}
+          <div className="space-y-5">
+            <div className="flex justify-between items-center">
+              <Paragraph className={"text-xl font-normal"}>
+                Test Name:
+              </Paragraph>
+
+              <span className="text-xl font-normal">Questions 8</span>
+            </div>
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">1</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">2</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">3</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">4</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">5</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">6</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">7</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Paragraph className={"text-base font-semibold text-gray-600"}>
+                <span className="text-2xl">8</span> What is the problem that
+                you’re trying to solve or goals of this design?
+              </Paragraph>
+
+              <div className="pr-10">
+                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
+                  The objective of this user flow is to map out...
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </Form>
     </Fragment>
   );

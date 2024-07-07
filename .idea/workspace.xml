@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored register page with routing data">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Deleted sign-in&#10; and refactored management.jsx&#10; file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/subpages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/sign-in.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,14 +192,7 @@
       <workItem from="1720240716440" duration="541000" />
       <workItem from="1720241480634" duration="3383000" />
       <workItem from="1720253450177" duration="9469000" />
-    </task>
-    <task id="LOCAL-00025" summary="#fix #jsx Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form.">
-      <option name="closed" value="true" />
-      <created>1717940194548</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1717940194548</updated>
+      <workItem from="1720339069639" duration="4034000" />
     </task>
     <task id="LOCAL-00026" summary="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml.">
       <option name="closed" value="true" />
@@ -585,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720257129001</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="#fix #jsx Deleted sign-in&#10; and refactored management.jsx&#10; file">
+      <option name="closed" value="true" />
+      <created>1720339171497</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1720339171497</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,7 +605,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update menu links to admin routes, and routes for instructor portal, and create other pages for schedule" />
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for" />
     <MESSAGE value="Update menu links to admin routes and routes for instructor portal, create other pages for schedule, and improve UI" />
     <MESSAGE value="#fix #jsx Updated version menu on admin portal and instructor portal." />
@@ -629,7 +629,8 @@
     <MESSAGE value="#fix #jsx Refactored Files and form elements with attr" />
     <MESSAGE value="#fix #jsx Refactored Add test with Setting form validation" />
     <MESSAGE value="#fix #jsx Refactored register page with routing data" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored register page with routing data" />
+    <MESSAGE value="#fix #jsx Deleted sign-in&#10; and refactored management.jsx&#10; file" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Deleted sign-in&#10; and refactored management.jsx&#10; file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
