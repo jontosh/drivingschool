@@ -19,6 +19,7 @@ import { CheckProgress } from "@/modules/progress.jsx";
 import {
   useRequestDeleteMutation,
   useRequestGetQuery,
+  useRequestPatchMutation,
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import {
@@ -626,8 +627,6 @@ const Settings = ({ ...props }) => {
         data: values,
       });
 
-      console.log(res);
-
       if (res?.error?.status >= 400) {
         dispatch({ type: "ERROR", setIsOpen });
         setIsOpen(true);
@@ -875,7 +874,7 @@ const MultipleChoice = ({ form, ...props }) => {
           // console.log(fields);
           return (
             <Fragment>
-              {fields.map(({ key, name, ...restField }) => (
+              {fields.map(({ key, name, fieldKey, ...restField }) => (
                 <div key={key}>
                   <Form.Item
                     {...restField}
@@ -899,6 +898,8 @@ const MultipleChoice = ({ form, ...props }) => {
                       {...restField}
                       name={[name, "is_correct"]}
                       label={"CORRECT ANSWER"}
+                      fieldKey={fieldKey}
+                      valuePropName="checked"
                     >
                       <CustomCheckBox />
                     </Form.Item>
@@ -910,9 +911,8 @@ const MultipleChoice = ({ form, ...props }) => {
                 <ButtonComponent
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.info}
-                  type="dashed"
+                  type="button"
                   onClick={() => add()}
-                  // block
                   paddingInline={44}
                   borderRadius={5}
                 >
@@ -930,22 +930,46 @@ const MultipleChoice = ({ form, ...props }) => {
 const TrueFalse = ({ form, ...props }) => {
   return (
     <div className="space-y-5">
-      <Form.Item label="CHOISE OF ANSWER">
+      <Form.Item
+        label="CHOISE OF ANSWER"
+        rules={[
+          {
+            required: true,
+            message: "Please input title",
+          },
+        ]}
+        name={["answers", 0, "text"]}
+      >
         <div className="space-y-5">
-          <CustomInput placeholder={"True"} />
-          <CustomRadio name={"is_correct"}>
-            <span>CORRECT ANSWER</span>
-          </CustomRadio>
+          <CustomInput classNames={"w-full"} placeholder={"True"} />
         </div>
       </Form.Item>
 
-      <Form.Item label="CHOISE OF ANSWER">
+      <Form.Item name={["answers", 0, "is_correct"]} valuePropName="checked">
+        <CustomCheckBox>
+          <span>CORRECT ANSWER</span>
+        </CustomCheckBox>
+      </Form.Item>
+
+      <Form.Item
+        label="CHOISE OF ANSWER"
+        rules={[
+          {
+            required: true,
+            message: "Please input title",
+          },
+        ]}
+        name={["answers", 1, "text"]}
+      >
         <div className="space-y-5">
-          <CustomInput placeholder={"False"} />
-          <CustomRadio name={"is_correct"}>
-            <span>CORRECT ANSWER</span>
-          </CustomRadio>
+          <CustomInput classNames={"w-full"} placeholder={"False"} />
         </div>
+      </Form.Item>
+
+      <Form.Item name={["answers", 1, "is_correct"]} valuePropName="checked">
+        <CustomCheckBox>
+          <span>CORRECT ANSWER</span>
+        </CustomCheckBox>
       </Form.Item>
     </div>
   );
@@ -961,7 +985,7 @@ const Category = ({ form, ...props }) => {
           // console.log(fields);
           return (
             <Fragment>
-              {fields.map(({ key, name, ...restField }) => (
+              {fields.map(({ key, name, fieldKey, ...restField }) => (
                 <div key={key}>
                   <Form.Item
                     {...restField}
@@ -985,6 +1009,8 @@ const Category = ({ form, ...props }) => {
                       {...restField}
                       name={[name, "is_correct"]}
                       label={"CORRECT ANSWER"}
+                      fieldKey={fieldKey}
+                      valuePropName="checked"
                     >
                       <CustomCheckBox />
                     </Form.Item>
@@ -996,9 +1022,8 @@ const Category = ({ form, ...props }) => {
                 <ButtonComponent
                   defaultBg={colorsObject.info}
                   defaultHoverBg={colorsObject.info}
-                  type="dashed"
+                  type="button"
                   onClick={() => add()}
-                  // block
                   paddingInline={44}
                   borderRadius={5}
                 >
@@ -1216,10 +1241,32 @@ const Preview = ({ form, ...props }) => {
   );
 };
 
+const QuestionAnswerWrap = ({ array }) => {
+  return array?.map((item, index) => (
+    <div className={"mb-2.5"}>
+      <Paragraph
+        key={index}
+        className="py-2.5 px-5 rounded-2xl bg-gray-300"
+        fontSize={"text-gray-600 font-normal text-sm"}
+      >
+        {item?.text}
+      </Paragraph>
+    </div>
+  ));
+};
+
 const AddNewTest = () => {
+  const [requestPost] = useRequestPostMutation();
+  const [requestPatch] = useRequestPatchMutation();
+  const [requestDelete] = useRequestDeleteMutation();
   const { data, isLoading } = useRequestGetQuery({
     path: "/account_management/services/question_type/",
   });
+
+  const { data: QuestionsData } = useRequestGetQuery({
+    path: "/account_management/services/question/",
+  });
+
   const { colorsObject } = useContext(ColorsContext);
   const [TestSettings, setTestSettings] = useLocalStorage(
     "test-setting",
@@ -1232,7 +1279,7 @@ const AddNewTest = () => {
 
   const [form] = Form.useForm();
   const [QuestionType, setQuestionType] = useState([]);
-  const [Settings, setSettings] = useState(null);
+  const [QuestionsList, setQuestionsList] = useState([]);
 
   useEffect(() => {
     const options = [];
@@ -1243,27 +1290,80 @@ const AddNewTest = () => {
   }, [data, isLoading]);
 
   useEffect(() => {
-    setSettings(() => JSON.parse(TestSettings));
-  }, []);
+    const questionsId = JSON.parse(Questions);
+    const questions = [];
+
+    for (let i = 0; i < QuestionsData?.length; i++) {
+      for (let j = 0; j < questionsId?.length; j++) {
+        if (QuestionsData[i]?.id === questionsId[j]) {
+          questions.push(QuestionsData[i]);
+        }
+      }
+    }
+
+    setQuestionsList(questions);
+  }, [Questions, QuestionsData]);
 
   // func
   const onFinish = async (values) => {
+    const questions = JSON.parse(Questions);
+
     try {
-      console.log(values);
       if (values?.answers?.length === 0) {
         message.error("Not selected variants to answers!");
       } else {
-        //   code
+        const response = await requestPost({
+          path: "/account_management/services/question/",
+          data: values,
+        });
+
+        if (response?.data) {
+          questions.push(response?.data?.id);
+        }
       }
+      setQuestions(JSON.stringify(questions));
     } catch (error) {
       console.error(error?.message);
     }
   };
 
-  const onReset = () => {
-    form.resetFields();
+  const handleConfirm = () => {
+    try {
+      if (JSON.parse(TestSettings)?.id) {
+        requestPatch({
+          path: "/account_management/services/test",
+          id: JSON.parse(TestSettings)?.id,
+          data: {
+            ...JSON.parse(TestSettings),
+            questions: JSON.parse(Questions),
+          },
+        })
+          .unwrap()
+          .then(() => {
+            setQuestions(JSON.stringify([]));
+            setTestSettings("null");
+          });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    setTimeout(() => { }, 1000);
+  const handleDelete = (id) => {
+    const questions = JSON.parse(Questions);
+
+    try {
+      requestDelete({
+        path: "/account_management/services/question/" + id,
+      })
+        .unwrap()
+        .then(() => {
+          const newQuestions = questions?.filter((item) => item !== id);
+          setQuestions(JSON.stringify(newQuestions));
+        });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const AddQuizArrays = [
@@ -1272,36 +1372,70 @@ const AddNewTest = () => {
     <Category form={form} key={3} />,
   ];
 
-  const editButtons = (
-    <div className="flex flex-col space-y-2 w-[120px]">
-      <ButtonComponent
-        defaultBg="#FFEA79"
-        defaultHoverBg="#FFEA79"
-        defaultColor={colorsObject.black}
-        defaultHoverColor={colorsObject.black}
-        defaultActiveColor={colorsObject.black}
-        borderRadius={5}
-        className={"flex justify-between items-center w-full px-1.5"}
-        fontSize={12}
-      >
-        <FiEdit className="w-5" />
-        Edit Test
-      </ButtonComponent>
-      <ButtonComponent
-        defaultBg="#E37B7B"
-        defaultHoverBg="#E37B7B"
-        defaultColor={colorsObject.black}
-        defaultHoverColor={colorsObject.black}
-        defaultActiveColor={colorsObject.black}
-        borderRadius={5}
-        className={"flex justify-between items-center w-full px-1.5"}
-        fontSize={12}
-      >
-        <RiDeleteBin6Line className="w-5" />
-        Delete Test
-      </ButtonComponent>
-    </div>
-  )
+  const editButtons = (id) => {
+    return (
+      <div className="flex flex-col space-y-2 w-[120px]">
+        <ButtonComponent
+          defaultBg="#FFEA79"
+          defaultHoverBg="#FFEA79"
+          defaultColor={colorsObject.black}
+          defaultHoverColor={colorsObject.black}
+          defaultActiveColor={colorsObject.black}
+          borderRadius={5}
+          className={"flex justify-between items-center w-full px-1.5"}
+          fontSize={12}
+        >
+          <FiEdit className="w-5" />
+          Edit Test
+        </ButtonComponent>
+        <ButtonComponent
+          defaultBg="#E37B7B"
+          defaultHoverBg="#E37B7B"
+          defaultColor={colorsObject.black}
+          defaultHoverColor={colorsObject.black}
+          defaultActiveColor={colorsObject.black}
+          borderRadius={5}
+          className={"flex justify-between items-center w-full px-1.5"}
+          fontSize={12}
+          onClick={() => handleDelete(id)}
+        >
+          <RiDeleteBin6Line className="w-5" />
+          Delete Test
+        </ButtonComponent>
+      </div>
+    );
+  };
+
+  const questionItem = QuestionsList?.map((item, index) => {
+    index += 1;
+
+    return (
+      <Fragment key={index}>
+        <div className="space-y-1.5">
+          <Paragraph
+            className={"text-base font-semibold text-gray-600"}
+            fontSize={"flex space-x-1"}
+          >
+            <span className="text-2xl">{index}</span>
+            <span>{item?.question}</span>
+          </Paragraph>
+
+          <div className="relative pr-5">
+            <QuestionAnswerWrap array={item?.answers} />
+
+            <Tooltip
+              className={"absolute top-0 right-0"}
+              placement="left"
+              color="white"
+              title={editButtons(item?.id)}
+            >
+              <IconComponent icon={<HiDotsVertical />} iconWidth={"text-xl"} />
+            </Tooltip>
+          </div>
+        </div>
+      </Fragment>
+    );
+  });
 
   return (
     <Fragment>
@@ -1350,243 +1484,53 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                  getFieldValue("type")
+                getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
             </Form.Item>
 
-            <ButtonComponent
-              defaultBg={colorsObject.info}
-              defaultHoverBg={colorsObject.infoHover}
-              paddingInline={44}
-              borderRadius={5}
-              type={"submit"}
-              disabled={isLoading}
-            >
-              Save
-            </ButtonComponent>
+            <div className="space-x-5">
+              <ButtonComponent
+                defaultBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
+                paddingInline={44}
+                borderRadius={5}
+                type={"submit"}
+                disabled={isLoading}
+              >
+                Save
+              </ButtonComponent>
+
+              <ButtonComponent
+                defaultBg={colorsObject.info}
+                defaultHoverBg={colorsObject.infoHover}
+                paddingInline={44}
+                borderRadius={5}
+                type={"button"}
+                disabled={JSON.parse(Questions)?.length === 0}
+                onClick={handleConfirm}
+              >
+                Confirm
+              </ButtonComponent>
+            </div>
           </div>
 
-          {/*{isLoading}*/}
-          <div className="space-y-5">
-            <div className="flex justify-between items-center">
-              <Paragraph className={"text-xl font-normal"}>
-                Test Name: {Settings?.name}
-              </Paragraph>
+          {!isLoading && (
+            <div className="space-y-5">
+              <div className="flex justify-between items-center">
+                <Paragraph className={"text-xl font-normal"}>
+                  Test Name: {JSON.parse(TestSettings)?.name}
+                </Paragraph>
 
-              <span className="text-xl font-normal">
-                Questions {Settings?.questions?.length}
-              </span>
-            </div>
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">1</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
+                <span className="text-xl font-normal">
+                  Questions {JSON.parse(Questions)?.length}
                 </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
               </div>
+
+              {questionItem}
             </div>
-
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">2</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
-                </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">3</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
-                </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">4</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
-                </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">5</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
-                </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">6</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
-                </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">7</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
-                </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <Paragraph
-                className={"text-base font-semibold text-gray-600"}
-                fontSize={"flex space-x-1"}
-              >
-                <span className="text-2xl">8</span>
-                <span>
-                  What is the problem that you’re trying to solve or goals of
-                  this design?
-                </span>
-              </Paragraph>
-
-              <div className="flex items-center space-x-1.5">
-                <span className="py-2.5 px-5 rounded-2xl w-full bg-gray-300 text-gray-600 font-normal text-sm">
-                  The objective of this user flow is to map out...
-                </span>
-
-                <Tooltip placement="left" color="white" title={editButtons}>
-                  <IconComponent
-                    icon={<HiDotsVertical />}
-                    iconWidth={"text-xl"}
-                  />
-                </Tooltip>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </Form>
     </Fragment>
