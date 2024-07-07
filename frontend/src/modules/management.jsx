@@ -27,7 +27,7 @@ import {
   FormOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { Form, InputNumber, Radio, Switch } from "antd";
+import { Form, InputNumber, message, Switch } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState, useEffect, useReducer } from "react";
 import { GoClock, GoEye } from "react-icons/go";
@@ -883,6 +883,12 @@ const MultipleChoice = ({ form, ...props }) => {
                     name={[name, "text"]}
                     label={"choice of answers"}
                     className="w-full"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input title!",
+                      },
+                    ]}
                   >
                     <CustomInput
                       placeholder={"choice of answers"}
@@ -923,25 +929,6 @@ const MultipleChoice = ({ form, ...props }) => {
 };
 
 const TrueFalse = ({ form, ...props }) => {
-  const [isCorrectFirst, setIsCorrectFirst] = useState(false);
-  const [isCorrectSecond, setIsCorrectSecond] = useState(false);
-
-  const onChangeFirst = ({ target: { checked } }) => {
-    setIsCorrectFirst(checked);
-    setIsCorrectSecond(!checked);
-  };
-
-  const onChangeSecond = ({ target: { checked } }) => {
-    setIsCorrectFirst(!checked);
-    setIsCorrectSecond(checked);
-  };
-
-  const handleNotesValue = (value) => {
-    form?.setFieldsValue({
-      note: value,
-    });
-  };
-
   return (
     <div className="space-y-5">
       <Form.Item label="choice of answers">
@@ -972,6 +959,7 @@ const Category = ({ form, ...props }) => {
     <div className="space-y-5">
       <Form.List name="answers">
         {(fields, { add, remove }) => {
+          // console.log(fields);
           return (
             <Fragment>
               {fields.map(({ key, name, ...restField }) => (
@@ -981,6 +969,12 @@ const Category = ({ form, ...props }) => {
                     name={[name, "text"]}
                     label={"choice of answers"}
                     className="w-full"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input title!",
+                      },
+                    ]}
                   >
                     <CustomInput
                       placeholder={"choice of answers"}
@@ -1005,6 +999,7 @@ const Category = ({ form, ...props }) => {
                   defaultHoverBg={colorsObject.info}
                   type="dashed"
                   onClick={() => add()}
+                  // block
                   paddingInline={44}
                   borderRadius={5}
                 >
@@ -1228,14 +1223,18 @@ const AddNewTest = () => {
   });
   const { colorsObject } = useContext(ColorsContext);
   const [showDetails, setShowDetails] = useState(false);
+  const [TestSettings, setTestSettings] = useLocalStorage(
+    "test-setting",
+    "null",
+  );
+  const [Questions, setQuestions] = useLocalStorage(
+    "test-questions",
+    JSON.stringify([]),
+  );
 
   const [form] = Form.useForm();
-  const AddQuizArrays = [
-    <MultipleChoice form={form} />,
-    <TrueFalse form={form} />,
-    <Category form={form} />,
-  ];
   const [QuestionType, setQuestionType] = useState([]);
+  const [Settings, setSettings] = useState(null);
 
   useEffect(() => {
     const options = [];
@@ -1245,10 +1244,19 @@ const AddNewTest = () => {
     setQuestionType(options);
   }, [data, isLoading]);
 
+  useEffect(() => {
+    setSettings(() => JSON.parse(TestSettings));
+  }, []);
+
   // func
   const onFinish = async (values) => {
     try {
       console.log(values);
+      if (values?.answers?.length === 0) {
+        message.error("Not selected variants to answers!");
+      } else {
+        //   code
+      }
     } catch (error) {
       console.error(error?.message);
     }
@@ -1257,8 +1265,14 @@ const AddNewTest = () => {
   const onReset = () => {
     form.resetFields();
 
-    setTimeout(() => { }, 1000);
+    setTimeout(() => {}, 1000);
   };
+
+  const AddQuizArrays = [
+    <MultipleChoice form={form} key={1} />,
+    <TrueFalse form={form} key={2} />,
+    <Category form={form} key={3} />,
+  ];
 
   return (
     <Fragment>
@@ -1269,6 +1283,11 @@ const AddNewTest = () => {
         layout={"vertical"}
         initialValues={{
           question: "Hello",
+          answers: [
+            {
+              is_correct: false,
+            },
+          ],
         }}
       >
         <Form.Item name={"type"} className="w-[180px]">
@@ -1302,7 +1321,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                  getFieldValue("type")
+                getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1325,15 +1344,23 @@ const AddNewTest = () => {
           <div className="space-y-5">
             <div className="flex justify-between items-center">
               <Paragraph className={"text-xl font-normal"}>
-                Test Name:
+                Test Name: {Settings?.name}
               </Paragraph>
 
-              <span className="text-xl font-normal">Questions 8</span>
+              <span className="text-xl font-normal">
+                Questions {Settings?.questions?.length}
+              </span>
             </div>
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">1</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
@@ -1354,7 +1381,9 @@ const AddNewTest = () => {
                       defaultColor={colorsObject.black}
                       defaultHoverColor={colorsObject.black}
                       borderRadius={5}
-                      className={"flex justify-between items-center w-full px-1.5"}
+                      className={
+                        "flex justify-between items-center w-full px-1.5"
+                      }
                       fontSize={12}
                     >
                       <FiEdit className="w-5" />
@@ -1366,7 +1395,9 @@ const AddNewTest = () => {
                       defaultColor={colorsObject.black}
                       defaultHoverColor={colorsObject.black}
                       borderRadius={5}
-                      className={"flex justify-between items-center w-full px-1.5"}
+                      className={
+                        "flex justify-between items-center w-full px-1.5"
+                      }
                       fontSize={12}
                     >
                       <RiDeleteBin6Line className="w-5" />
@@ -1378,9 +1409,15 @@ const AddNewTest = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">2</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
@@ -1396,9 +1433,15 @@ const AddNewTest = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">3</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
@@ -1414,9 +1457,15 @@ const AddNewTest = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">4</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
@@ -1432,9 +1481,15 @@ const AddNewTest = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">5</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
@@ -1450,9 +1505,15 @@ const AddNewTest = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">6</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
@@ -1468,9 +1529,15 @@ const AddNewTest = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">7</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
@@ -1486,9 +1553,15 @@ const AddNewTest = () => {
             </div>
 
             <div className="space-y-1.5">
-              <Paragraph className={"text-base font-semibold text-gray-600"} fontSize={"flex space-x-1"}>
+              <Paragraph
+                className={"text-base font-semibold text-gray-600"}
+                fontSize={"flex space-x-1"}
+              >
                 <span className="text-2xl">8</span>
-                <span>What is the problem that you’re trying to solve or goals of this design?</span>
+                <span>
+                  What is the problem that you’re trying to solve or goals of
+                  this design?
+                </span>
               </Paragraph>
 
               <div className="flex items-center space-x-1.5">
