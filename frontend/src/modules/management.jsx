@@ -850,10 +850,9 @@ const Settings = ({ ...props }) => {
 
         <Form.Item className="text-center pt-7">
           <ButtonComponent
-            defaultBg={colorsObject.success}
-            defaultHoverBg={colorsObject.successHover}
-            paddingInline={43}
-            controlHeight={40}
+            defaultBg={colorsObject.info}
+            defaultHoverBg={colorsObject.info}
+            paddingInline={44}
             borderRadius={5}
             type={"submit"}
           >
