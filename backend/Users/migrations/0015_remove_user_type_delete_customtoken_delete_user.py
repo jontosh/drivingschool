@@ -10,14 +10,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='user',
-            name='type',
-        ),
-        migrations.DeleteModel(
-            name='CustomToken',
-        ),
-        migrations.DeleteModel(
-            name='User',
-        ),
+        # migrations.RemoveField(
+        #     model_name='user',
+        #     name='type',
+        # ),
+        # migrations.DeleteModel(
+        #     name='CustomToken',
+        # ),
+        # migrations.DeleteModel(
+        #     name='User',
+        # ),
     ]

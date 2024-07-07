@@ -143,7 +143,7 @@ class Discount(models.Model):
 class Question(models.Model):
     type = models.ForeignKey("QuestionType",on_delete=models.CASCADE)
     question = models.TextField()
-    answers = models.ManyToManyField("Answer")
+    answers = models.JSONField(default=dict)
 class Answer(models.Model):
     """
     Model to represent possible answers for multiple choice questions
@@ -167,7 +167,7 @@ class Test(Status,Extra,models.Model):
     """
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    questions = models.ManyToManyField(Question, )#related_name="question_test")
+    questions = models.ManyToManyField(Question,blank=True)
     count = models.IntegerField(verbose_name="number of question")
     passing_grade = models.IntegerField(default=1)
     timer = models.DateTimeField(blank=True,null=True)
