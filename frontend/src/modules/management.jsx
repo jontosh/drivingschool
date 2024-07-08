@@ -1,3 +1,4 @@
+import button from "@/components/button/index.jsx";
 import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
@@ -19,6 +20,7 @@ import { CheckProgress } from "@/modules/progress.jsx";
 import {
   useRequestDeleteMutation,
   useRequestGetQuery,
+  useRequestIdQuery,
   useRequestPatchMutation,
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
@@ -28,10 +30,19 @@ import {
   FormOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { Form, InputNumber, message, Switch, Tooltip } from "antd";
+import { Collapse, Form, InputNumber, message, Switch, Tooltip } from "antd";
+import classNames from "classnames";
 import { Formik } from "formik";
-import { Fragment, useContext, useState, useEffect, useReducer } from "react";
+import {
+  Fragment,
+  useContext,
+  useState,
+  useEffect,
+  useReducer,
+  useMemo,
+} from "react";
 import { GoClock, GoEye } from "react-icons/go";
+import { IoCheckmarkCircle } from "react-icons/io5";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
@@ -583,6 +594,7 @@ const Settings = ({ ...props }) => {
     "test-setting",
     "null",
   );
+  const [TestId, setTestId] = useLocalStorage("test-id", "0");
 
   const [ServiceOption, setServiceOption] = useState([]);
   const [ClassOption, setClassOption] = useState([]);
@@ -634,6 +646,7 @@ const Settings = ({ ...props }) => {
         dispatch({ type: "SUCCESS", setIsOpen });
         setIsOpen(true);
         setTestSettings(JSON.stringify(res?.data));
+        setTestId(JSON.parse(TestSettings)?.id);
       }
     } catch (error) {
       console.error(error.message);
@@ -874,11 +887,11 @@ const MultipleChoice = ({ form, ...props }) => {
           // console.log(fields);
           return (
             <Fragment>
-              {fields.map(({ key, name, fieldKey, ...restField }) => (
+              {fields.map(({ key, name, fieldKey, ...restField }, index) => (
                 <div key={key}>
                   <Form.Item
                     {...restField}
-                    name={[name, "text"]}
+                    name={[name, index, "text"]}
                     label={"CHOISE OF ANSWER"}
                     className="w-full"
                     rules={[
@@ -896,7 +909,7 @@ const MultipleChoice = ({ form, ...props }) => {
                   <div className="flex items-center justify-between">
                     <Form.Item
                       {...restField}
-                      name={[name, "is_correct"]}
+                      name={[name, index, "is_correct"]}
                       label={"CORRECT ANSWER"}
                       fieldKey={fieldKey}
                       valuePropName="checked"
@@ -985,11 +998,11 @@ const Category = ({ form, ...props }) => {
           // console.log(fields);
           return (
             <Fragment>
-              {fields.map(({ key, name, fieldKey, ...restField }) => (
+              {fields.map(({ key, name, fieldKey, ...restField }, index) => (
                 <div key={key}>
                   <Form.Item
                     {...restField}
-                    name={[name, "text"]}
+                    name={[name, index, "text"]}
                     label={"CHOISE OF ANSWER"}
                     className="w-full"
                     rules={[
@@ -1007,7 +1020,7 @@ const Category = ({ form, ...props }) => {
                   <div className="flex items-center justify-between">
                     <Form.Item
                       {...restField}
-                      name={[name, "is_correct"]}
+                      name={[name, index, "is_correct"]}
                       label={"CORRECT ANSWER"}
                       fieldKey={fieldKey}
                       valuePropName="checked"
@@ -1038,212 +1051,9 @@ const Category = ({ form, ...props }) => {
   );
 };
 
-const Preview = ({ form, ...props }) => {
-  return (
-    <Fragment>
-      <Formik
-        initialValues={{}}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {({ values, errors, handleChange, handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <div className="flex gap-10 max-[1100px]:flex-col">
-              <div className="w-auto space-y-5">
-                <Title fontSize={"text-2xl"} fontWeightStrong={400}>
-                  Quiz Title
-                </Title>
-
-                <div className="flex flex-col gap-y-2.5 border border-indigo-600 p-2.5 rounded-xl">
-                  <Title fontSize={"text-xl"} fontWeightStrong={400}>
-                    Question 12
-                  </Title>
-
-                  <Text
-                    fontSize={16}
-                    fontWeightStrong={400}
-                    className={"text-gray-600"}
-                  >
-                    A train passes a station platform in 36 seconds and a man
-                    standing on the platform in 20 seconds. If the speed of the
-                    train is 54 km/hr, what is the length of the platform?
-                  </Text>
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
-                  >
-                    <CustomRadio>
-                      <span className="text-lg">120 m</span>
-                    </CustomRadio>
-                  </label>
-
-                  <label
-                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
-                  >
-                    <CustomRadio>
-                      <span className="text-lg">240 m</span>
-                    </CustomRadio>
-                  </label>
-
-                  <label
-                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
-                  >
-                    <CustomRadio>
-                      <span className="text-lg">300 m</span>
-                    </CustomRadio>
-                  </label>
-
-                  <label
-                    className={`p-2.5 w-full rounded-xl shadow-[0px_4px_14px_0px_#00000033]`}
-                  >
-                    <CustomRadio>
-                      <span className="text-lg">None of these</span>
-                    </CustomRadio>
-                  </label>
-                </div>
-
-                <div className="space-x-5">
-                  <ButtonComponent
-                    defaultBg="#FFAAAF"
-                    defaultHoverBg="#FFAAAF"
-                    defaultColor="#000000"
-                    defaultHoverColor="#000000"
-                    paddingInline={20}
-                    borderRadius={12}
-                  >
-                    Prev
-                  </ButtonComponent>
-
-                  <ButtonComponent
-                    defaultBg="#5F66E9"
-                    defaultHoverBg="#5F66E9"
-                    paddingInline={20}
-                    borderRadius={12}
-                  >
-                    Next
-                  </ButtonComponent>
-                </div>
-
-                <div className="flex flex-col gap-y-2.5 p-2.5 rounded-xl shadow-[0px_4px_14px_0px_#00000033]">
-                  <Title fontSize={"text-xl"} fontWeightStrong={400}>
-                    Explanation
-                  </Title>
-
-                  <Text
-                    fontSize={16}
-                    fontWeightStrong={400}
-                    className={"text-gray-600"}
-                  >
-                    A train passes a station platform in 36 seconds and a man
-                    standing on the platform in 20 seconds. If the speed of the
-                    train is 54 km/hr, what is the length of the platform?
-                  </Text>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex justify-between items-center">
-                  <span className="font-normal text-xl">Question 1/8</span>
-
-                  <span className="font-normal text-xl">Need Help ?</span>
-                </div>
-
-                <div className="grid grid-cols-5 gap-2.5 mt-5 w-[310px]">
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">1</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">2</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">3</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">4</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">5</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">6</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">7</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">8</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">9</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-indigo-500 rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">10</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#FFAAAF] rounded-full text-center">
-                    <span className="text-[22px] text-white pt-1">11</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">12</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">13</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">14</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">15</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">16</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">17</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">18</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">19</span>
-                  </div>
-
-                  <div className="w-[48px] h-[48px] bg-[#C4C4C4] rounded-full text-center">
-                    <span className="text-[22px] pt-1">20</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        )}
-      </Formik>
-    </Fragment>
-  );
-};
-
 const QuestionAnswerWrap = ({ array }) => {
   return array?.map((item, index) => (
-    <div className={"mb-2.5"}>
+    <div className={"mb-2.5"} key={index}>
       <Paragraph
         key={index}
         className="py-2.5 px-5 rounded-2xl bg-gray-300"
@@ -1537,6 +1347,97 @@ const AddNewTest = () => {
   );
 };
 
+const TestView = () => {
+  const { colorsObject } = useContext(ColorsContext);
+  const [TestId, setTestId] = useLocalStorage("test-id", "0");
+  const [QuestionId, setQuestionId] = useState(0);
+  const [QuestionIndex, setQuestionIndex] = useState(0);
+
+  const { data: TestData } = useRequestIdQuery({
+    path: "/account_management/services/test",
+    id: TestId,
+  });
+
+  const { data: QuestionItem } = useRequestIdQuery({
+    path: "/account_management/services/question",
+    id: QuestionId,
+  });
+
+  const handleQuestionItem = (value, index) => {
+    setQuestionId(value);
+    setQuestionIndex(index);
+  };
+
+  const questionItem = TestData?.questions?.map((item, index) => {
+    index += 1;
+
+    return (
+      <li key={index}>
+        <ButtonComponent
+          //disabled
+          onClick={() => handleQuestionItem(item, index)}
+          controlHeight={42}
+          paddingInline={16}
+          className={"w-full"}
+          defaultBorderColor={colorsObject.main}
+          borderRadius={5}
+          defaultBg={"#5459EA1A"}
+          defaultHoverBg={"#5459EA1A"}
+        >
+          <div className={"flex items-center justify-between"}>
+            <Paragraph fontSize={"text-[#9195FF]"}>
+              Quiz question {index}
+            </Paragraph>
+
+            <IconComponent
+              className={"text-[#878CEE]"}
+              icon={<IoCheckmarkCircle />}
+            />
+          </div>
+        </ButtonComponent>
+      </li>
+    );
+  });
+
+  const items = [
+    {
+      key: "1",
+      label: "Quiz Questions List",
+      children: (
+        <ul
+          className={classNames(
+            "space-y-5 border-t p-4",
+            TestData?.questions?.length * 42 > 42 * 9
+              ? `h-[487px] overflow-y-scroll`
+              : null,
+          )}
+        >
+          {questionItem}
+        </ul>
+      ),
+    },
+  ];
+
+  return (
+    <div className={"flex gap-5"}>
+      <article className="flex-grow">
+        <div className="space-y-5">
+          <Title level={1}>{TestData?.name}</Title>
+          <Paragraph>
+            Question {QuestionIndex} of {TestData?.questions?.length}:
+          </Paragraph>
+
+          <Title level={2}>{QuestionItem?.question}</Title>
+        </div>
+      </article>
+
+      <aside className={"max-w-96 w-full"}>
+        <Collapse defaultActiveKey={["1"]} ghost items={items} />
+      </aside>
+    </div>
+  );
+};
+
 export const AddQuizTab = () => {
   return [
     {
@@ -1552,7 +1453,7 @@ export const AddQuizTab = () => {
     {
       key: "3",
       label: <span className={"uppercase"}>Preview QUIZ</span>,
-      children: <Preview />,
+      children: <TestView />,
     },
   ].map((item) => {
     return { ...item };
