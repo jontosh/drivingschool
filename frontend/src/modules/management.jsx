@@ -30,7 +30,15 @@ import {
   FormOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { Collapse, Form, InputNumber, message, Switch, Tooltip } from "antd";
+import {
+  Collapse,
+  Form,
+  InputNumber,
+  message,
+  Statistic,
+  Switch,
+  Tooltip,
+} from "antd";
 import classNames from "classnames";
 import { Formik } from "formik";
 import {
@@ -1358,7 +1366,7 @@ const TestView = () => {
     id: TestId,
   });
 
-  const { data: QuestionItem } = useRequestIdQuery({
+  const { data: QuestionItem, isLoading: QuestionLoading } = useRequestIdQuery({
     path: "/account_management/services/question",
     id: QuestionId,
   });
@@ -1406,7 +1414,7 @@ const TestView = () => {
       children: (
         <ul
           className={classNames(
-            "space-y-5 border-t p-4",
+            "space-y-5 border-t p-4 -m-4",
             TestData?.questions?.length * 42 > 42 * 9
               ? `h-[487px] overflow-y-scroll`
               : null,
@@ -1418,6 +1426,12 @@ const TestView = () => {
     },
   ];
 
+  const deadline = Date.now() + 1000 * 60 * 60 * 2 + 1000 * 30;
+
+  const onFinish = () => {
+    message.info("Time is finished!");
+  };
+
   return (
     <div className={"flex gap-5"}>
       <article className="flex-grow">
@@ -1427,11 +1441,19 @@ const TestView = () => {
             Question {QuestionIndex} of {TestData?.questions?.length}:
           </Paragraph>
 
-          <Title level={2}>{QuestionItem?.question}</Title>
+          <Title level={2}>
+            {QuestionLoading ? "Loading..." : QuestionItem?.question}
+          </Title>
         </div>
       </article>
 
       <aside className={"max-w-96 w-full"}>
+        <Statistic.Countdown
+          title="Timer Remaining :"
+          value={deadline}
+          onFinish={onFinish}
+        />
+
         <Collapse defaultActiveKey={["1"]} ghost items={items} />
       </aside>
     </div>
