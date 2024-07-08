@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Add feature: Implemented Form.List component for dynamic list rendering">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored data and created new View for test result">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
@@ -195,15 +195,7 @@
       <workItem from="1720359607801" duration="5774000" />
       <workItem from="1720374774410" duration="256000" />
       <workItem from="1720414341035" duration="1687000" />
-      <workItem from="1720421234326" duration="5236000" />
-    </task>
-    <task id="LOCAL-00028" summary="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs.">
-      <option name="closed" value="true" />
-      <created>1718092821114</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1718092821114</updated>
+      <workItem from="1720421234326" duration="6747000" />
     </task>
     <task id="LOCAL-00029" summary="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx.">
       <option name="closed" value="true" />
@@ -589,7 +581,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720348879765</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="#fix #jsx Refactored data and created new View for test result">
+      <option name="closed" value="true" />
+      <created>1720427328097</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1720427328097</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,7 +608,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Updated version menu on admin portal and instructor portal." />
     <MESSAGE value="#fix #jsx Fixed bug and remote imports" />
     <MESSAGE value="#fix #jsx Fixed useNavigate" />
     <MESSAGE value="#fix #jsx Created dashboard Student portal." />
@@ -633,7 +632,8 @@
     <MESSAGE value="#fix #jsx Deleted sign-in&#10; and refactored management.jsx&#10; file" />
     <MESSAGE value="#fix #jsx Refactored file data and structure code for form." />
     <MESSAGE value="#fix #jsx Add feature: Implemented Form.List component for dynamic list rendering" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Add feature: Implemented Form.List component for dynamic list rendering" />
+    <MESSAGE value="#fix #jsx Refactored data and created new View for test result" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored data and created new View for test result" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
