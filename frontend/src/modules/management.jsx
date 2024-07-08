@@ -32,6 +32,7 @@ import {
 } from "@ant-design/icons";
 import {
   Collapse,
+  ConfigProvider,
   Form,
   InputNumber,
   message,
@@ -1302,7 +1303,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1436,14 +1437,52 @@ const TestView = () => {
     <div className={"flex gap-5"}>
       <article className="flex-grow">
         <div className="space-y-5">
-          <Title level={1}>{TestData?.name}</Title>
-          <Paragraph>
+          <Title level={1} fontSize={"text-[42px] font-medium"}>{TestData?.name}</Title>
+
+          <Paragraph fontSize={"text-2xl font-medium"}>
             Question {QuestionIndex} of {TestData?.questions?.length}:
           </Paragraph>
 
           <Title level={2}>
             {QuestionLoading ? "Loading..." : QuestionItem?.question}
           </Title>
+
+          <Paragraph fontSize={"text-base"}>
+            When can you overtake on the left?
+          </Paragraph>
+        </div>
+
+        <div className="space-y-5 pt-10">
+          <CustomRadio classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"} name={"answer"}>
+            <span className="text-lg">
+              When you want to go straight ahead & the driver in front of you has moved out & signalled that they intend to turn right.
+            </span>
+          </CustomRadio>
+          <CustomRadio classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"} name={"answer"}>
+            <span className="text-lg">
+              When you have signalled that you intend to turn left.
+            </span>
+          </CustomRadio>
+          <CustomRadio classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"} name={"answer"}>
+            <span className="text-lg">
+              When traffic in both lanes is moving slowly & traffic in the left-hand lane is moving more quickly than the traffic in the right-hand lane.
+            </span>
+          </CustomRadio>
+          <CustomRadio classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"} name={"answer"}>
+            <span className="text-lg">
+              You must stay to the left & must not cross the line unless it is for access or in an emergency.
+            </span>
+          </CustomRadio>
+
+          <ButtonComponent
+            defaultBg="#878CEE"
+            defaultHoverBg="#878CE"
+            borderRadius={5}
+            paddingInline={44}
+            controlHeight={50}
+          >
+            Submit Answer
+          </ButtonComponent>
         </div>
       </article>
 
@@ -1452,9 +1491,16 @@ const TestView = () => {
           title="Timer Remaining :"
           value={deadline}
           onFinish={onFinish}
+          className="max-w-[315px] h-[175px] border rounded-xl shadow-xl text-center py-14"
         />
 
-        <Collapse defaultActiveKey={["1"]} ghost items={items} />
+        <Collapse
+          defaultActiveKey={["1"]}
+          ghost
+          items={items}
+          expandIconPosition="end"
+          className="text-base font-semibold"
+        />
       </aside>
     </div>
   );
