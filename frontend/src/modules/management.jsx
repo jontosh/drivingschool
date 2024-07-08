@@ -1303,7 +1303,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1505,7 +1505,7 @@ const TestView = () => {
           title="Timer Remaining :"
           value={deadline}
           onFinish={onFinish}
-          className="max-w-[315px] h-[175px] border rounded-xl shadow-xl text-center py-14"
+          className="w-full h-[175px] border rounded-xl shadow-xl text-center py-14"
         />
 
         <Collapse
@@ -1513,7 +1513,7 @@ const TestView = () => {
           ghost
           items={items}
           expandIconPosition="end"
-          className="text-base font-semibold"
+          className="text-base font-semibold w-full"
         />
       </aside>
     </div>
