@@ -1,6 +1,7 @@
 import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
+import ColorsContext from "@/context/colors.jsx";
 import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
 import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
 import { StudentMenu } from "@/layout/items/student-menu.jsx";
@@ -12,8 +13,8 @@ import UserAvatar from "../assets/user/user-avatar.jpeg";
 import Tenant from "../assets/user/tenant.jpeg";
 import { BellFilled } from "@ant-design/icons";
 import { useReducer as PortalReducer } from "@/hooks/portal.jsx";
-import { Badge, ConfigProvider, Dropdown, Menu } from "antd";
-import { Fragment, useEffect, useReducer, useState } from "react";
+import { Badge, ConfigProvider, Dropdown, Menu, Segmented } from "antd";
+import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BiMoon } from "react-icons/bi";
 import { FaListUl } from "react-icons/fa6";
@@ -41,6 +42,7 @@ const Layout = () => {
   const { items: InstructorItems } = InstructorMenu(IsActive, getItem);
   const { items: StudentItems } = StudentMenu(IsActive, getItem);
   const levelKeys = GetLevelKeys(items);
+  const { colorsObject } = useContext(ColorsContext);
 
   useEffect(() => {
     if (
@@ -153,20 +155,37 @@ const Layout = () => {
             </Fragment>
           )}
 
-          <div
-            className={`${LayoutStyle["Header__mode"]} inline-flex items-center gap-2.5 border-2 border-solid border-indigo-700 rounded-lg py-1 px-2.5`}
+          <ConfigProvider
+            theme={{
+              components: {
+                Segmented: {
+                  itemSelectedBg: colorsObject.info,
+                  itemHoverBg: colorsObject.main,
+                  itemActiveBg: colorsObject.main,
+                  itemSelectedColor: colorsObject.main,
+                  itemHoverColor: colorsObject.info,
+                  trackBg: colorsObject.main,
+                  trackPadding: 5,
+                },
+              },
+            }}
           >
-            <button
-              type={"button"}
-              className={`text-xl p-1 rounded-lg ${LayoutStyle["Header__mode-active"]}`}
-            >
-              <HiOutlineSun />
-            </button>
+            <Segmented
+              className={"border border-indigo-600"}
+              size={"large"}
+              options={[
+                {
+                  value: "Sun",
+                  icon: <HiOutlineSun />,
+                },
+                {
+                  value: "Moon",
+                  icon: <BiMoon />,
+                },
+              ]}
+            />
+          </ConfigProvider>
 
-            <button type={"button"} className={`text-xl p-1 rounded-lg`}>
-              <BiMoon />
-            </button>
-          </div>
           <div>
             <Dropdown
               menu={{
