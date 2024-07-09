@@ -1128,9 +1128,9 @@ const AddNewTest = () => {
             answers:
               values.type === 2
                 ? values.answers.map((item) => ({
-                  ...item,
-                  is_correct: item.is_correct === "true",
-                }))
+                    ...item,
+                    is_correct: item.is_correct === "true",
+                  }))
                 : values,
           },
         });
@@ -1301,7 +1301,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                  getFieldValue("type")
+                getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1382,12 +1382,15 @@ const TestForm = ({ data }) => {
       case 3:
         return data?.answers?.map((item, index) => (
           <Form.Item
-            name={["answer", index, "is_correct"]}
+            name={["answers", index, "is_correct"]}
             key={index}
             className={"border-2 border-[#878CEE] rounded-xl p-3"}
             valuePropName="checked"
           >
-            <CustomCheckBox onChange={() => handleCheckboxChange(index)} className={"space-x-2"}>
+            <CustomCheckBox
+              onChange={() => handleCheckboxChange(index)}
+              className={"space-x-2"}
+            >
               <div>{item?.text}</div>
             </CustomCheckBox>
           </Form.Item>
@@ -1425,9 +1428,11 @@ const TestForm = ({ data }) => {
 const TestView = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [TestId, setTestId] = useLocalStorage("test-id", "0");
+  const [TestResults, setTestResults] = useLocalStorage("test-results", "[]");
   const [QuestionId, setQuestionId] = useState(0);
   const [QuestionIndex, setQuestionIndex] = useState(0);
   const [form] = Form.useForm();
+  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
 
   const { data: TestData } = useRequestIdQuery({
     path: "/account_management/services/test",
@@ -1439,17 +1444,82 @@ const TestView = () => {
     id: QuestionId,
   });
 
+  useEffect(() => {
+    if (TestData && TestResults) {
+      const results = JSON.parse(TestResults);
+      const currentQuestionResult = results.find(
+        (result) => Object.keys(result)[0] === QuestionId.toString(),
+      );
+
+      if (currentQuestionResult) {
+        form.setFieldsValue({
+          answers: QuestionItem?.answers.map((answer) => ({
+            is_correct: answer.is_correct,
+          })),
+        });
+        setIsAnswerSubmitted(true);
+      } else {
+        setIsAnswerSubmitted(false);
+      }
+    }
+  }, [TestData, QuestionItem, QuestionId, TestResults, form]);
+
   const handleQuestionItem = (value, index) => {
     setQuestionId(value);
-    setQuestionIndex(index);
+    setQuestionIndex(index - 1);
+    setIsAnswerSubmitted(false);
+  };
+
+  const handlePrevQuestion = () => {
+    if (QuestionIndex > 0) {
+      setQuestionIndex((prev) => prev - 1);
+      setQuestionId(TestData.questions[QuestionIndex - 1]);
+    }
+  };
+
+  const handleNextQuestion = () => {
+    if (QuestionIndex < TestData.questions.length - 1) {
+      setQuestionIndex(QuestionIndex + 1);
+      setQuestionId(TestData.questions[QuestionIndex + 1]);
+    }
   };
 
   const onFinish = () => {
     message.info("Time is finished!");
   };
 
+  const checkCorrectness = (arr1, arr2) => {
+    const map1 = arr1?.reduce((acc, obj, index) => {
+      acc[index] = obj.is_correct;
+      return acc;
+    }, {});
+
+    const map2 = arr2?.reduce((acc, obj, index) => {
+      acc[index] = obj.is_correct;
+      return acc;
+    }, {});
+
+    return Object.keys(map1).some((key) => {
+      return map1[key] === true && map2[key] === true;
+    });
+  };
+
   const onFormFinish = async (values) => {
-    console.log("Answers:", values);
+    const questions = JSON.parse(TestResults);
+    const result = checkCorrectness(QuestionItem?.answers, values?.answers);
+
+    const existingQuestionIndex = questions.findIndex(
+      (q) => Object.keys(q)[0] === QuestionId.toString(),
+    );
+
+    if (existingQuestionIndex !== -1) {
+      questions[existingQuestionIndex] = { [QuestionId]: result };
+    } else {
+      questions.push({ [QuestionId]: result });
+    }
+
+    setTestResults(JSON.stringify(questions));
+    setIsAnswerSubmitted(true);
   };
 
   const deadline = moment(TestData?.timer ?? new Date()).add(2, "hour");
@@ -1460,7 +1530,6 @@ const TestView = () => {
     return (
       <li key={index}>
         <ButtonComponent
-          //disabled
           onClick={() => handleQuestionItem(item, index)}
           controlHeight={42}
           paddingInline={16}
@@ -1494,7 +1563,7 @@ const TestView = () => {
           className={classNames(
             "space-y-5 border-t p-4 -m-4",
             TestData?.questions?.length * 42 > 42 * 9
-              ? `h-[487px] overflow-y-scroll`
+              ? "h-[487px] overflow-y-scroll"
               : null,
           )}
         >
@@ -1513,7 +1582,7 @@ const TestView = () => {
           </Title>
 
           <Paragraph fontSize={"text-2xl font-medium"}>
-            Question {QuestionIndex} of {TestData?.questions?.length}:
+            Question {QuestionIndex + 1} of {TestData?.questions?.length}:
           </Paragraph>
 
           <Paragraph fontSize={"text-base"}>
@@ -1523,15 +1592,9 @@ const TestView = () => {
 
         {QuestionLoading ? (
           "Loading..."
-        ) : (
+        ) : QuestionIndex >= 0 ? (
           <Fragment>
-            <Form
-              initialValues={{
-                answers: [{ is_correct: false }, { is_correct: false }],
-              }}
-              form={form}
-              onFinish={onFormFinish}
-            >
+            <Form form={form} onFinish={onFormFinish}>
               <TestForm form={form} data={QuestionItem} />
               <div className="space-x-5">
                 <ButtonComponent
@@ -1540,6 +1603,8 @@ const TestView = () => {
                   paddingInline={43}
                   borderRadius={5}
                   type={"button"}
+                  onClick={handlePrevQuestion}
+                  disabled={QuestionIndex === 0}
                 >
                   Prev
                 </ButtonComponent>
@@ -1550,6 +1615,7 @@ const TestView = () => {
                   paddingInline={43}
                   borderRadius={5}
                   type={"submit"}
+                  disabled={isAnswerSubmitted}
                 >
                   Submit Answer
                 </ButtonComponent>
@@ -1560,12 +1626,16 @@ const TestView = () => {
                   paddingInline={43}
                   borderRadius={5}
                   type={"button"}
+                  onClick={handleNextQuestion}
+                  disabled={QuestionIndex === TestData?.questions?.length - 1}
                 >
                   Next
                 </ButtonComponent>
               </div>
             </Form>
           </Fragment>
+        ) : (
+          "Choose one of Question"
         )}
       </article>
 
@@ -1586,7 +1656,6 @@ const TestView = () => {
         >
           <Collapse
             defaultActiveKey={["1"]}
-            // ghost
             items={items}
             expandIconPosition="end"
             className="text-base font-semibold w-full shadow-xl mt-10"
