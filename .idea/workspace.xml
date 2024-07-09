@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created Statistic Countdown for deadline timer">
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Updated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,15 +195,8 @@
       <workItem from="1720359607801" duration="5774000" />
       <workItem from="1720374774410" duration="256000" />
       <workItem from="1720414341035" duration="1687000" />
-      <workItem from="1720421234326" duration="8317000" />
-    </task>
-    <task id="LOCAL-00030" summary="#fix #jsx Update modal.jsx with new service information and form inputs.">
-      <option name="closed" value="true" />
-      <created>1718100658457</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1718100658458</updated>
+      <workItem from="1720421234326" duration="11538000" />
+      <workItem from="1720502263263" duration="1971000" />
     </task>
     <task id="LOCAL-00031" summary="#fix #jsx Update modal.jsx with new service information and form inputs.">
       <option name="closed" value="true" />
@@ -588,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720428409328</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="#fix #jsx Updated">
+      <option name="closed" value="true" />
+      <created>1720434934193</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1720434934193</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +609,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fixed useNavigate" />
     <MESSAGE value="#fix #jsx Created dashboard Student portal." />
     <MESSAGE value="#fix #jsx Created tabs for information user" />
     <MESSAGE value="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files." />
@@ -632,7 +633,8 @@
     <MESSAGE value="#fix #jsx Add feature: Implemented Form.List component for dynamic list rendering" />
     <MESSAGE value="#fix #jsx Refactored data and created new View for test result" />
     <MESSAGE value="#fix #jsx Created Statistic Countdown for deadline timer" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created Statistic Countdown for deadline timer" />
+    <MESSAGE value="#fix #jsx Updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
