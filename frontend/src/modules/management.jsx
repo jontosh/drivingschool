@@ -30,6 +30,7 @@ import {
 } from "@ant-design/icons";
 import {
   Collapse,
+  ConfigProvider,
   Form,
   InputNumber,
   message,
@@ -727,7 +728,7 @@ const Settings = ({ ...props }) => {
                 },
               ]}
             >
-              <InputNumber className={"w-full h-[50px]"} />
+              <InputNumber className={"w-full h-[50px] py-2.5"} />
             </Form.Item>
 
             <Form.Item
@@ -740,7 +741,7 @@ const Settings = ({ ...props }) => {
                 },
               ]}
             >
-              <InputNumber className={"w-full h-[50px]"} />
+              <InputNumber className={"w-full h-[50px] py-2.5"} />
             </Form.Item>
 
             <Form.Item name={"_is_final"} label={"Final Exam"}>
@@ -751,7 +752,7 @@ const Settings = ({ ...props }) => {
               name={"_is_class_session"}
               label={"Associate with This Class Session"}
             >
-              <InputNumber className={"w-full h-[50px]"} />
+              <InputNumber className={"w-full h-[50px] py-2.5"} />
             </Form.Item>
 
             <Form.Item name={"timer"} label={"Time"}>
@@ -1127,9 +1128,9 @@ const AddNewTest = () => {
             answers:
               values.type === 2
                 ? values.answers.map((item) => ({
-                    ...item,
-                    is_correct: item.is_correct === "true",
-                  }))
+                  ...item,
+                  is_correct: item.is_correct === "true",
+                }))
                 : values,
           },
         });
@@ -1300,7 +1301,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1529,7 +1530,7 @@ const TestView = () => {
                   defaultBg={"#878CEE"}
                   defaultHoverBg={"#878CEE"}
                   paddingInline={43}
-                  controlHeight={40}
+                  borderRadius={5}
                   type={"button"}
                 >
                   Prev
@@ -1539,7 +1540,7 @@ const TestView = () => {
                   defaultBg={"#878CEE"}
                   defaultHoverBg={"#878CEE"}
                   paddingInline={43}
-                  controlHeight={40}
+                  borderRadius={5}
                   type={"button"}
                 >
                   Submit
@@ -1549,7 +1550,7 @@ const TestView = () => {
                   defaultBg={"#878CEE"}
                   defaultHoverBg={"#878CEE"}
                   paddingInline={43}
-                  controlHeight={40}
+                  borderRadius={5}
                   type={"button"}
                 >
                   Prev
@@ -1568,13 +1569,22 @@ const TestView = () => {
           className="w-full h-[175px] border rounded-xl shadow-xl text-center py-14"
         />
 
-        <Collapse
-          defaultActiveKey={["1"]}
-          ghost
-          items={items}
-          expandIconPosition="end"
-          className="text-base font-semibold w-full"
-        />
+        <ConfigProvider
+          theme={{
+            token: {
+              colorBorder: "#E1E1E1"
+            },
+          }}
+        >
+          <Collapse
+            defaultActiveKey={["1"]}
+            // ghost
+            items={items}
+            expandIconPosition="end"
+            className="text-base font-semibold w-full shadow-xl mt-10"
+          />
+        </ConfigProvider>
+
       </aside>
     </div>
   );
