@@ -1353,11 +1353,78 @@ const AddNewTest = () => {
   );
 };
 
+const TestForm = ({ form, data }) => {
+  const [Index, setIndex] = useState(0);
+  const [Answers, setAnswers] = useState([]);
+
+  useEffect(() => {
+    const answers = [];
+    for (let i = 0; i < data?.answers?.length; i++) {
+      if (data?.type === 2) {
+        answers.push({ ...data?.answers[i], boolean: i % 2 === 0 });
+      }
+    }
+    setAnswers(answers);
+  }, [data?.answers?.length]);
+
+  switch (data?.type) {
+    case 1: {
+      return data?.answers?.map((item, index) => (
+        <Form.Item
+          name={["answer", index, "is_correct"]}
+          key={index}
+          className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
+        >
+          <CustomCheckBox>
+            <div>{item?.text}</div>
+          </CustomCheckBox>
+        </Form.Item>
+      ));
+    }
+
+    case 2: {
+      const answer = Answers?.map((item, index) => (
+        <Radio
+          onChange={() => setIndex(index)}
+          value={item?.boolean}
+          key={index}
+          className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
+        >
+          {item?.text}
+        </Radio>
+      ));
+      return (
+        <Form.Item name={["answers", Index, "is_correct"]}>
+          <Radio.Group className={"flex flex-col gap-5"}>{answer}</Radio.Group>
+        </Form.Item>
+      );
+    }
+
+    case 3: {
+      return data?.answers?.map((item, index) => (
+        <Form.Item
+          name={["answer", index, "is_correct"]}
+          key={index}
+          className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
+        >
+          <CustomCheckBox>
+            <div>{item?.text}</div>
+          </CustomCheckBox>
+        </Form.Item>
+      ));
+    }
+    default: {
+      console.error(`Unknown type: ${data?.type}`);
+    }
+  }
+};
+
 const TestView = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [TestId, setTestId] = useLocalStorage("test-id", "0");
   const [QuestionId, setQuestionId] = useState(0);
   const [QuestionIndex, setQuestionIndex] = useState(0);
+  const [form] = Form.useForm();
 
   const { data: TestData } = useRequestIdQuery({
     path: "/account_management/services/test",
@@ -1373,6 +1440,16 @@ const TestView = () => {
     setQuestionId(value);
     setQuestionIndex(index);
   };
+
+  const onFinish = () => {
+    message.info("Time is finished!");
+  };
+
+  const onFormFinish = async (values) => {
+    console.log(values);
+  };
+
+  const deadline = moment(TestData?.timer ?? new Date()).add(2, "hour");
 
   const questionItem = TestData?.questions?.map((item, index) => {
     index += 1;
@@ -1424,12 +1501,6 @@ const TestView = () => {
     },
   ];
 
-  const deadline = Date.now() + 1000 * 60 * 60 * 2 + 1000 * 30;
-
-  const onFinish = () => {
-    message.info("Time is finished!");
-  };
-
   return (
     <div className={"flex gap-5"}>
       <article className="flex-grow">
@@ -1446,7 +1517,47 @@ const TestView = () => {
             {QuestionLoading ? "Loading..." : QuestionItem?.question}
           </Paragraph>
         </div>
-        {/*border-2 border-[#878CEE] rounded-xl p-3 space-x-2*/}
+
+        {QuestionLoading ? (
+          "Loading..."
+        ) : (
+          <Fragment>
+            <Form form={form} onFinish={onFormFinish}>
+              <TestForm form={form} data={QuestionItem} />
+              <div className="space-x-5">
+                <ButtonComponent
+                  defaultBg={"#878CEE"}
+                  defaultHoverBg={"#878CEE"}
+                  paddingInline={43}
+                  controlHeight={40}
+                  type={"button"}
+                >
+                  Prev
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultBg={"#878CEE"}
+                  defaultHoverBg={"#878CEE"}
+                  paddingInline={43}
+                  controlHeight={40}
+                  type={"button"}
+                >
+                  Submit
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultBg={"#878CEE"}
+                  defaultHoverBg={"#878CEE"}
+                  paddingInline={43}
+                  controlHeight={40}
+                  type={"button"}
+                >
+                  Prev
+                </ButtonComponent>
+              </div>
+            </Form>
+          </Fragment>
+        )}
       </article>
 
       <aside className={"max-w-96 w-full"}>
