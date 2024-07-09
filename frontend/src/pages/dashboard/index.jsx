@@ -207,7 +207,7 @@ const Dashboard = () => {
             </div>
             <div className="bg-white px-6 py-8 rounded-xl space-y-6 mt-3">
               <Link
-                to={"/student/account/profile/"}
+                to={"/admin/student/account/profile/"}
                 className={
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
@@ -216,7 +216,7 @@ const Dashboard = () => {
               </Link>
 
               <Link
-                to={"/enrollment/"}
+                to={"/admin/enrollment/"}
                 className={
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
@@ -225,7 +225,7 @@ const Dashboard = () => {
               </Link>
 
               <Link
-                to={"/"}
+                to={"/admin/class-list/notfound"}
                 className={
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
@@ -234,16 +234,16 @@ const Dashboard = () => {
               </Link>
 
               <Link
-                to={"/management/file"}
+                to={"/admin/management/file"}
                 className={
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
               >
-                File Managment
+                File Management
               </Link>
 
               <Link
-                to={"/enrollment"}
+                to={"/admin/scheduling/manage/appointment"}
                 className={
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
