@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored form elements and render components">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
@@ -197,15 +197,8 @@
       <workItem from="1720414341035" duration="1687000" />
       <workItem from="1720421234326" duration="11538000" />
       <workItem from="1720502263263" duration="18929000" />
-      <workItem from="1720537676476" duration="2118000" />
-    </task>
-    <task id="LOCAL-00037" summary="#fix #jsx Refactor form components for improved structure and readability.">
-      <option name="closed" value="true" />
-      <created>1718207063656</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1718207063656</updated>
+      <workItem from="1720537676476" duration="6300000" />
+      <workItem from="1720560327916" duration="7754000" />
     </task>
     <task id="LOCAL-00038" summary="#fix #jsx Update student password page title and refactor form components for improved structure and readability.">
       <option name="closed" value="true" />
@@ -591,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720538599942</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="#fix #jsx Refactored form elements and render components">
+      <option name="closed" value="true" />
+      <created>1720539863116</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1720539863117</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
