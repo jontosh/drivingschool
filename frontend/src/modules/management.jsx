@@ -1128,9 +1128,9 @@ const AddNewTest = () => {
             answers:
               values.type === 2
                 ? values.answers.map((item) => ({
-                  ...item,
-                  is_correct: item.is_correct === "true",
-                }))
+                    ...item,
+                    is_correct: item.is_correct === "true",
+                  }))
                 : values,
           },
         });
@@ -1301,7 +1301,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                  getFieldValue("type")
+                getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1354,70 +1354,66 @@ const AddNewTest = () => {
   );
 };
 
-const TestForm = ({ form, data }) => {
-  const [Index, setIndex] = useState(0);
+const TestForm = ({ data }) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [Answers, setAnswers] = useState([]);
 
   useEffect(() => {
-    const answers = [];
-    for (let i = 0; i < data?.answers?.length; i++) {
-      if (data?.type === 2) {
-        answers.push({ ...data?.answers[i], boolean: i % 2 === 0 });
-      }
-    }
-    setAnswers(answers);
-  }, [data?.answers?.length]);
+    if (data?.type === 2) {
+      const updatedAnswers = data?.answers?.map((item, index) => ({
+        ...item,
+        boolean: index % 2 === 0,
+      }));
+      setSelectedIndex(0);
 
-  switch (data?.type) {
-    case 1: {
-      return data?.answers?.map((item, index) => (
-        <Form.Item
-          name={["answer", index, "is_correct"]}
-          key={index}
-          className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
-        >
-          <CustomCheckBox>
-            <div>{item?.text}</div>
-          </CustomCheckBox>
-        </Form.Item>
-      ));
+      setAnswers(updatedAnswers);
     }
+  }, [data?.answers, data?.type]);
 
-    case 2: {
-      const answer = Answers?.map((item, index) => (
-        <Radio
-          onChange={() => setIndex(index)}
-          value={item?.boolean}
-          key={index}
-          className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
-        >
-          {item?.text}
-        </Radio>
-      ));
-      return (
-        <Form.Item name={["answers", Index, "is_correct"]}>
-          <Radio.Group className={"flex flex-col gap-5"}>{answer}</Radio.Group>
-        </Form.Item>
-      );
-    }
+  const renderAnswers = () => {
+    switch (data?.type) {
+      case 1:
+      case 3:
+        return data?.answers?.map((item, index) => (
+          <Form.Item
+            name={["answer", index, "is_correct"]}
+            key={index}
+            className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
+            valuePropName="checked"
+          >
+            <CustomCheckBox>
+              <div>{item?.text}</div>
+            </CustomCheckBox>
+          </Form.Item>
+        ));
 
-    case 3: {
-      return data?.answers?.map((item, index) => (
-        <Form.Item
-          name={["answer", index, "is_correct"]}
-          key={index}
-          className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
-        >
-          <CustomCheckBox>
-            <div>{item?.text}</div>
-          </CustomCheckBox>
-        </Form.Item>
-      ));
+      case 2:
+        return (
+          <Form.Item name={["answers", selectedIndex, "is_correct"]}>
+            <Radio.Group className={"flex flex-col gap-5"}>
+              {Answers?.map((item, index) => (
+                <Radio
+                  key={index}
+                  onChange={() => setSelectedIndex(index)}
+                  value={item?.boolean}
+                  className={
+                    "border-2 border-[#878CEE] rounded-xl p-3 space-x-2"
+                  }
+                >
+                  {item?.text}
+                </Radio>
+              ))}
+            </Radio.Group>
+          </Form.Item>
+        );
+
+      default:
+        console.error(`Unknown type: ${data?.type}`);
+        return null;
     }
-    default: {
-      console.error(`Unknown type: ${data?.type}`);
-    }
-  }
+  };
+
+  return renderAnswers();
 };
 
 const TestView = () => {
@@ -1447,7 +1443,7 @@ const TestView = () => {
   };
 
   const onFormFinish = async (values) => {
-    console.log(values);
+    console.log("Answers:", values);
   };
 
   const deadline = moment(TestData?.timer ?? new Date()).add(2, "hour");
@@ -1523,7 +1519,13 @@ const TestView = () => {
           "Loading..."
         ) : (
           <Fragment>
-            <Form form={form} onFinish={onFormFinish}>
+            <Form
+              initialValues={{
+                answers: [{ is_correct: false }, { is_correct: false }],
+              }}
+              form={form}
+              onFinish={onFormFinish}
+            >
               <TestForm form={form} data={QuestionItem} />
               <div className="space-x-5">
                 <ButtonComponent
@@ -1541,7 +1543,7 @@ const TestView = () => {
                   defaultHoverBg={"#878CEE"}
                   paddingInline={43}
                   borderRadius={5}
-                  type={"button"}
+                  type={"submit"}
                 >
                   Submit
                 </ButtonComponent>
@@ -1553,7 +1555,7 @@ const TestView = () => {
                   borderRadius={5}
                   type={"button"}
                 >
-                  Prev
+                  Next
                 </ButtonComponent>
               </div>
             </Form>
@@ -1572,7 +1574,7 @@ const TestView = () => {
         <ConfigProvider
           theme={{
             token: {
-              colorBorder: "#E1E1E1"
+              colorBorder: "#E1E1E1",
             },
           }}
         >
@@ -1584,7 +1586,6 @@ const TestView = () => {
             className="text-base font-semibold w-full shadow-xl mt-10"
           />
         </ConfigProvider>
-
       </aside>
     </div>
   );
