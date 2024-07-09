@@ -39,7 +39,6 @@ location/__pycache__/
 servises/__pycache__/
 /backend/venv/
 /.idea/inspectionProfiles/Project_Default.xml
-.idea/workspace.xml
 .idea/*
 /package.json
 /package-lock.json

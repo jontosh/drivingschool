@@ -57,6 +57,8 @@ Router = {
             "question_type":"question_type",
             "test":"test",
             "answer":"answer",
+            "student_test":"student_test",
+            "student_question":"student_question",
         }
     },
     "configuration": {

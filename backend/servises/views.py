@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 from rest_framework import viewsets
-from .models import AddOn ,Services,Component,Fee,Discount,Question ,Answer,QuestionType,Test
+from .models import AddOn ,Services,Component,Fee,Discount,Question ,Answer,QuestionType,Test,StudentQuestion,StudentTest
 from .serializer import AddOnSerializer,ServicesSerializer,DiscountSerializer,ComponentSerializer,FeeSerializer,\
-    QuestionSerializer,AnswerSerializer,QuestionTypeSerializer,TestSerializer
+    QuestionSerializer,AnswerSerializer,QuestionTypeSerializer,TestSerializer,StudentTestSerializer,StudentQuestionSerializer
 
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
@@ -81,6 +81,26 @@ class FeeViewSet(viewsets.ModelViewSet):
 class DiscountViewSet(viewsets.ModelViewSet):
     queryset = Discount.objects.all()
     serializer_class = DiscountSerializer
+    def perform_create(self, serializer):
+        # Perform any custom logic before saving the school, e.g., validation checks
+        serializer.save()
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()
+
+class StudentQuestionViewSet(viewsets.ModelViewSet):
+    queryset = StudentQuestion.objects.all()
+    serializer_class = StudentQuestionSerializer
+    def perform_create(self, serializer):
+        # Perform any custom logic before saving the school, e.g., validation checks
+        serializer.save()
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()
+
+class StudentTestViewSet(viewsets.ModelViewSet):
+    queryset = StudentTest.objects.all()
+    serializer_class = StudentTestSerializer
     def perform_create(self, serializer):
         # Perform any custom logic before saving the school, e.g., validation checks
         serializer.save()
