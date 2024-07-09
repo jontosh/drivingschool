@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored links">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored Settings and Form elements for correct request">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
@@ -196,15 +196,7 @@
       <workItem from="1720374774410" duration="256000" />
       <workItem from="1720414341035" duration="1687000" />
       <workItem from="1720421234326" duration="11538000" />
-      <workItem from="1720502263263" duration="7565000" />
-    </task>
-    <task id="LOCAL-00033" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
-      <option name="closed" value="true" />
-      <created>1718140880746</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1718140880746</updated>
+      <workItem from="1720502263263" duration="12949000" />
     </task>
     <task id="LOCAL-00034" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
       <option name="closed" value="true" />
@@ -590,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720505901293</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="#fix #jsx Refactored Settings and Form elements for correct request">
+      <option name="closed" value="true" />
+      <created>1720521891679</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1720521891679</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +609,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Created student-menu.jsx, enrollment-and-billing.jsx updated with content and other files." />
     <MESSAGE value="#fix #jsx Created Table with sort data and added select to filter" />
     <MESSAGE value="#fix #jsx Created enroll and connected data" />
     <MESSAGE value="#fix #jsx Created Contact and refactor router" />
@@ -634,7 +633,8 @@
     <MESSAGE value="#fix #jsx Updated" />
     <MESSAGE value="#fix #jsx Updated mode in header Layout.jsx with connecting Segment component ANTD" />
     <MESSAGE value="#fix #jsx Refactored links" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored links" />
+    <MESSAGE value="#fix #jsx Refactored Settings and Form elements for correct request" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored Settings and Form elements for correct request" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
