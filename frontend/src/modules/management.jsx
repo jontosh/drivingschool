@@ -33,6 +33,7 @@ import {
   Form,
   InputNumber,
   message,
+  Radio,
   Statistic,
   Switch,
   TimePicker,
@@ -949,50 +950,39 @@ const MultipleChoice = ({ form, ...props }) => {
 };
 
 const TrueFalse = ({ form, ...props }) => {
+  const [Index, setIndex] = useState(0);
+
+  const TrueAndFalse = [
+    { value: "true", label: "True" },
+    { value: "false", label: "False" },
+  ].map((option, index) => (
+    <Radio
+      onChange={() => setIndex(index)}
+      key={index}
+      value={option.value}
+      className={"flex flex-col-reverse"}
+    >
+      <Form.Item
+        label="CHOISE OF ANSWER"
+        rules={[
+          {
+            required: true,
+            message: "Please input title",
+          },
+        ]}
+        name={["answers", index, "text"]}
+      >
+        <div className="space-y-5">
+          <CustomInput classNames={"w-full"} placeholder={option.label} />
+        </div>
+      </Form.Item>
+    </Radio>
+  ));
+
   return (
-    <div className="space-y-5">
-      <Form.Item
-        label="CHOISE OF ANSWER"
-        rules={[
-          {
-            required: true,
-            message: "Please input title",
-          },
-        ]}
-        name={["answers", 0, "text"]}
-      >
-        <div className="space-y-5">
-          <CustomInput classNames={"w-full"} placeholder={"True"} />
-        </div>
-      </Form.Item>
-
-      <Form.Item name={["answers", 0, "is_correct"]} valuePropName="checked">
-        <CustomCheckBox>
-          <span>CORRECT ANSWER</span>
-        </CustomCheckBox>
-      </Form.Item>
-
-      <Form.Item
-        label="CHOISE OF ANSWER"
-        rules={[
-          {
-            required: true,
-            message: "Please input title",
-          },
-        ]}
-        name={["answers", 1, "text"]}
-      >
-        <div className="space-y-5">
-          <CustomInput classNames={"w-full"} placeholder={"False"} />
-        </div>
-      </Form.Item>
-
-      <Form.Item name={["answers", 1, "is_correct"]} valuePropName="checked">
-        <CustomCheckBox>
-          <span>CORRECT ANSWER</span>
-        </CustomCheckBox>
-      </Form.Item>
-    </div>
+    <Form.Item name={["answers", Index, "is_correct"]}>
+      <Radio.Group className={"flex flex-col"}>{TrueAndFalse}</Radio.Group>
+    </Form.Item>
   );
 };
 
@@ -1132,9 +1122,17 @@ const AddNewTest = () => {
       } else {
         const response = await requestPost({
           path: "/account_management/services/question/",
-          data: values,
+          data: {
+            ...values,
+            answers:
+              values.type === 2
+                ? values.answers.map((item) => ({
+                    ...item,
+                    is_correct: item.is_correct === "true",
+                  }))
+                : values,
+          },
         });
-
         if (response?.data) {
           questions.push(response?.data?.id);
         }
