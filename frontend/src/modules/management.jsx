@@ -1353,22 +1353,28 @@ const AddNewTest = () => {
     </Fragment>
   );
 };
-
 const TestForm = ({ data }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [Answers, setAnswers] = useState([]);
+  const [selectedIndices, setSelectedIndices] = useState([]);
 
   useEffect(() => {
     if (data?.type === 2) {
-      const updatedAnswers = data?.answers?.map((item, index) => ({
-        ...item,
-        boolean: index % 2 === 0,
-      }));
-      setSelectedIndex(0);
-
-      setAnswers(updatedAnswers);
+      setSelectedIndices([]);
     }
-  }, [data?.answers, data?.type]);
+  }, [data?.type]);
+
+  const handleCheckboxChange = (index) => {
+    let updatedIndices = [...selectedIndices];
+    if (updatedIndices.includes(index)) {
+      updatedIndices = updatedIndices.filter((idx) => idx !== index);
+    } else {
+      updatedIndices.push(index);
+    }
+    setSelectedIndices(updatedIndices);
+  };
+
+  const handleRadioChange = (index) => {
+    setSelectedIndices([index]);
+  };
 
   const renderAnswers = () => {
     switch (data?.type) {
@@ -1381,7 +1387,7 @@ const TestForm = ({ data }) => {
             className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
             valuePropName="checked"
           >
-            <CustomCheckBox>
+            <CustomCheckBox onChange={() => handleCheckboxChange(index)}>
               <div>{item?.text}</div>
             </CustomCheckBox>
           </Form.Item>
@@ -1389,13 +1395,13 @@ const TestForm = ({ data }) => {
 
       case 2:
         return (
-          <Form.Item name={["answers", selectedIndex, "is_correct"]}>
+          <Form.Item name={["answers", 0, "is_correct"]}>
             <Radio.Group className={"flex flex-col gap-5"}>
-              {Answers?.map((item, index) => (
+              {data?.answers?.map((item, index) => (
                 <Radio
                   key={index}
-                  onChange={() => setSelectedIndex(index)}
-                  value={item?.boolean}
+                  onChange={() => handleRadioChange(index)}
+                  value={index % 2 === 0}
                   className={
                     "border-2 border-[#878CEE] rounded-xl p-3 space-x-2"
                   }

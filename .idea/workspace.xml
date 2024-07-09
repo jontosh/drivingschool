@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Created Form content to view test">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored form elements and render components">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
@@ -197,15 +197,7 @@
       <workItem from="1720414341035" duration="1687000" />
       <workItem from="1720421234326" duration="11538000" />
       <workItem from="1720502263263" duration="18929000" />
-      <workItem from="1720537676476" duration="875000" />
-    </task>
-    <task id="LOCAL-00036" summary="#fix #jsx Refactor form components for improved structure and readability.">
-      <option name="closed" value="true" />
-      <created>1718205373873</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1718205373873</updated>
+      <workItem from="1720537676476" duration="2118000" />
     </task>
     <task id="LOCAL-00037" summary="#fix #jsx Refactor form components for improved structure and readability.">
       <option name="closed" value="true" />
@@ -591,7 +583,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720533784339</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="#fix #jsx Refactored form elements and render components">
+      <option name="closed" value="true" />
+      <created>1720538599941</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1720538599942</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +610,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Created Contact and refactor router" />
     <MESSAGE value="#fix #jsx Created schedule for student and connected URL path" />
     <MESSAGE value="#fix #jsx Fixed files and remove handle functions" />
     <MESSAGE value="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements" />
@@ -635,7 +634,8 @@
     <MESSAGE value="#fix #jsx Refactored Settings and Form elements for correct request" />
     <MESSAGE value="#fix #jsx Refactored test True and False with correct request" />
     <MESSAGE value="#fix #jsx Created Form content to view test" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Created Form content to view test" />
+    <MESSAGE value="#fix #jsx Refactored form elements and render components" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored form elements and render components" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
