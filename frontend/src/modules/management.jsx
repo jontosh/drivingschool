@@ -1128,9 +1128,9 @@ const AddNewTest = () => {
             answers:
               values.type === 2
                 ? values.answers.map((item) => ({
-                    ...item,
-                    is_correct: item.is_correct === "true",
-                  }))
+                  ...item,
+                  is_correct: item.is_correct === "true",
+                }))
                 : values,
           },
         });
@@ -1301,7 +1301,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1384,10 +1384,10 @@ const TestForm = ({ data }) => {
           <Form.Item
             name={["answer", index, "is_correct"]}
             key={index}
-            className={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
+            className={"border-2 border-[#878CEE] rounded-xl p-3"}
             valuePropName="checked"
           >
-            <CustomCheckBox onChange={() => handleCheckboxChange(index)}>
+            <CustomCheckBox onChange={() => handleCheckboxChange(index)} className={"space-x-2"}>
               <div>{item?.text}</div>
             </CustomCheckBox>
           </Form.Item>
@@ -1506,8 +1506,8 @@ const TestView = () => {
 
   return (
     <div className={"flex gap-5"}>
-      <article className="flex-grow">
-        <div className="space-y-5">
+      <article className="flex-grow space-y-8">
+        <div className="space-y-3.5">
           <Title level={1} fontSize={"text-[42px] font-medium"}>
             {TestData?.name}
           </Title>
@@ -1535,8 +1535,8 @@ const TestView = () => {
               <TestForm form={form} data={QuestionItem} />
               <div className="space-x-5">
                 <ButtonComponent
-                  defaultBg={"#878CEE"}
-                  defaultHoverBg={"#878CEE"}
+                  defaultBg={colorsObject.secondary}
+                  defaultHoverBg={colorsObject.secondaryHover}
                   paddingInline={43}
                   borderRadius={5}
                   type={"button"}
@@ -1551,12 +1551,12 @@ const TestView = () => {
                   borderRadius={5}
                   type={"submit"}
                 >
-                  Submit
+                  Submit Answer
                 </ButtonComponent>
 
                 <ButtonComponent
-                  defaultBg={"#878CEE"}
-                  defaultHoverBg={"#878CEE"}
+                  defaultBg={colorsObject.secondary}
+                  defaultHoverBg={colorsObject.secondaryHover}
                   paddingInline={43}
                   borderRadius={5}
                   type={"button"}
