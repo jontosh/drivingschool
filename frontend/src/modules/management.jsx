@@ -1,14 +1,12 @@
-import button from "@/components/button/index.jsx";
 import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
-  CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import IconComponent from "@/components/icons/index.jsx";
-import Title, { Paragraph, Text } from "@/components/title/index.jsx";
+import Title, { Paragraph } from "@/components/title/index.jsx";
 import AccountManagementContext from "@/context/account-management.jsx";
 import {
   AlertDelete,
@@ -32,24 +30,16 @@ import {
 } from "@ant-design/icons";
 import {
   Collapse,
-  ConfigProvider,
   Form,
   InputNumber,
   message,
   Statistic,
   Switch,
+  TimePicker,
   Tooltip,
 } from "antd";
 import classNames from "classnames";
-import { Formik } from "formik";
-import {
-  Fragment,
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-  useMemo,
-} from "react";
+import { Fragment, useContext, useState, useEffect, useReducer } from "react";
 import { GoClock, GoEye } from "react-icons/go";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { TbActivityHeartbeat } from "react-icons/tb";
@@ -60,6 +50,7 @@ import ModuleManagementStyle from "./modules.module.scss";
 import { HiDotsVertical } from "react-icons/hi";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import moment from "moment";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -762,6 +753,14 @@ const Settings = ({ ...props }) => {
               <InputNumber className={"w-full h-[50px]"} />
             </Form.Item>
 
+            <Form.Item name={"timer"} label={"Time"}>
+              <TimePicker
+                className={"w-full h-[50px]"}
+                format="hh:mm:ss"
+                placeholder={"Select duration"}
+              />
+            </Form.Item>
+
             <Form.Item name={"pass_text"} label={"Pass Feedback"}>
               <MDEditor
                 placeholder={"Text"}
@@ -1303,7 +1302,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                  getFieldValue("type")
+                getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1449,55 +1448,7 @@ const TestView = () => {
             {QuestionLoading ? "Loading..." : QuestionItem?.question}
           </Paragraph>
         </div>
-
-        <div className="space-y-5 pt-10">
-          <CustomRadio
-            classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
-            name={"answer"}
-          >
-            <span className="text-lg">
-              When you want to go straight ahead & the driver in front of you
-              has moved out & signalled that they intend to turn right.
-            </span>
-          </CustomRadio>
-          <CustomRadio
-            classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
-            name={"answer"}
-          >
-            <span className="text-lg">
-              When you have signalled that you intend to turn left.
-            </span>
-          </CustomRadio>
-          <CustomRadio
-            classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
-            name={"answer"}
-          >
-            <span className="text-lg">
-              When traffic in both lanes is moving slowly & traffic in the
-              left-hand lane is moving more quickly than the traffic in the
-              right-hand lane.
-            </span>
-          </CustomRadio>
-          <CustomRadio
-            classNames={"border-2 border-[#878CEE] rounded-xl p-3 space-x-2"}
-            name={"answer"}
-          >
-            <span className="text-lg">
-              You must stay to the left & must not cross the line unless it is
-              for access or in an emergency.
-            </span>
-          </CustomRadio>
-
-          <ButtonComponent
-            defaultBg="#878CEE"
-            defaultHoverBg="#878CE"
-            borderRadius={5}
-            paddingInline={44}
-            controlHeight={50}
-          >
-            Submit Answer
-          </ButtonComponent>
-        </div>
+        {/*border-2 border-[#878CEE] rounded-xl p-3 space-x-2*/}
       </article>
 
       <aside className={"max-w-96 w-full"}>
