@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from config.router import Router
 from .views import AddOnViewSet,ServicesViewSet,ComponentViewSet,FeeViewSet,DiscountViewSet,QuestionViewSet,\
-    AnswerViewSet,QuestionTypeViewSet,TestViewSet
+    AnswerViewSet,QuestionTypeViewSet,TestViewSet,StudentTestViewSet,StudentQuestionViewSet
 router = DefaultRouter()
 router.register(f'{Router["services"]["children"]["question"]}', QuestionViewSet, basename='question')
 router.register(f'{Router["services"]["children"]["question_type"]}', QuestionTypeViewSet, basename='question_type')
@@ -13,6 +13,9 @@ router.register(f'{Router["services"]["children"]["component"]}', ComponentViewS
 router.register(f'{Router["services"]["children"]["fee"]}', FeeViewSet, basename='fee')
 router.register(f'{Router["services"]["children"]["service"]}', ServicesViewSet, basename='service')
 router.register(f'{Router["services"]["children"]["discount"]}', DiscountViewSet, basename='discount')
+router.register(f'{Router["services"]["children"]["student_test"]}', StudentTestViewSet, basename='student_test')
+router.register(f'{Router["services"]["children"]["student_question"]}', StudentQuestionViewSet, basename='student_question')
+
 
 urlpatterns = [
     path("",include(router.urls))

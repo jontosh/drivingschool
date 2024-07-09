@@ -192,8 +192,17 @@ class Test(Status,Extra,models.Model):
     def __str__(self):
         return self.name
 
+class StudentQuestion(models.Model):
+    question = models.ForeignKey("Question",on_delete=models.CASCADE)
+    student_answer = models.TextField()
+    is_true = models.BooleanField(default=False)
+    score = models.PositiveIntegerField(default=0)
 
-
+class StudentTest(models.Model):
+    test = models.ForeignKey("Test",on_delete=models.CASCADE)
+    student = models.ForeignKey("Users.Student",on_delete=models.CASCADE)
+    total_score = models.PositiveIntegerField(default=0)
+    student_answers = models.ManyToManyField("StudentQuestion")
 #SIGNAL TO CREATE ADD_ON AUTOMATICALLY
 @receiver(post_save, sender=Services)
 @receiver(post_save, sender=Component)

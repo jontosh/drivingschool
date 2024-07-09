@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import AddOn ,Services,Component,Fee,Discount,Question ,Answer,QuestionType,Test
+from .models import AddOn ,Services,Component,Fee,Discount,Question ,Answer,QuestionType,Test,StudentQuestion,StudentTest
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
@@ -35,4 +35,14 @@ class FeeSerializer(serializers.ModelSerializer):
 class DiscountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discount
+        fields = "__all__"
+
+class StudentQuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentQuestion
+        fields = "__all__"
+
+class StudentTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentTest
         fields = "__all__"
