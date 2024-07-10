@@ -1353,9 +1353,9 @@ const AddNewTest = () => {
     </Fragment>
   );
 };
-const TestForm = ({ data }) => {
+const TestForm = ({ data, disabled }) => {
   const [selectedIndices, setSelectedIndices] = useState([]);
-
+  const { colorsObject } = useContext(ColorsContext);
   useEffect(() => {
     if (data?.type === 2) {
       setSelectedIndices([]);
@@ -1390,6 +1390,7 @@ const TestForm = ({ data }) => {
             <CustomCheckBox
               onChange={() => handleCheckboxChange(index)}
               className={"space-x-2"}
+              disabled={disabled}
             >
               <div>{item?.text}</div>
             </CustomCheckBox>
@@ -1401,16 +1402,30 @@ const TestForm = ({ data }) => {
           <Form.Item name={["answers", 0, "is_correct"]}>
             <Radio.Group className={"flex flex-col gap-5"}>
               {data?.answers?.map((item, index) => (
-                <Radio
+                <ConfigProvider
                   key={index}
-                  onChange={() => handleRadioChange(index)}
-                  value={index % 2 === 0}
-                  className={
-                    "border-2 border-[#878CEE] rounded-xl p-3 space-x-2"
-                  }
+                  theme={{
+                    components: {
+                      Radio: {
+                        radioSize: 20,
+                        dotColorDisabled: colorsObject.primary,
+                        colorBorder: colorsObject.primary,
+                      },
+                    },
+                  }}
                 >
-                  {item?.text}
-                </Radio>
+                  <Radio
+                    key={index}
+                    onChange={() => handleRadioChange(index)}
+                    value={index % 2 === 0}
+                    className={
+                      "border-2 border-[#878CEE] rounded-xl p-3 space-x-2"
+                    }
+                    disabled={disabled}
+                  >
+                    {item?.text}
+                  </Radio>
+                </ConfigProvider>
               ))}
             </Radio.Group>
           </Form.Item>
@@ -1433,6 +1448,8 @@ const TestView = () => {
   const [QuestionIndex, setQuestionIndex] = useState(0);
   const [form] = Form.useForm();
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
+  const [isFormDisabled, setIsFormDisabled] = useState(false);
+  const [Passed, setPassed] = useState(false);
 
   const { data: TestData, isLoading: TestLoading } = useRequestIdQuery({
     path: "/account_management/services/test",
@@ -1458,8 +1475,10 @@ const TestView = () => {
           })),
         });
         setIsAnswerSubmitted(true);
+        setIsFormDisabled(true);
       } else {
         setIsAnswerSubmitted(false);
+        setIsFormDisabled(false);
       }
     }
   }, [TestData, QuestionItem, QuestionId, TestResults, form]);
@@ -1468,12 +1487,14 @@ const TestView = () => {
     setQuestionId(value);
     setQuestionIndex(index - 1);
     setIsAnswerSubmitted(false);
+    setIsFormDisabled(false);
   };
 
   const handlePrevQuestion = () => {
     if (QuestionIndex > 0) {
       setQuestionIndex((prev) => prev - 1);
       setQuestionId(TestData.questions[QuestionIndex - 1]);
+      setIsFormDisabled(false);
     }
   };
 
@@ -1481,6 +1502,7 @@ const TestView = () => {
     if (QuestionIndex < TestData.questions.length - 1) {
       setQuestionIndex(QuestionIndex + 1);
       setQuestionId(TestData.questions[QuestionIndex + 1]);
+      setIsFormDisabled(false);
     }
   };
 
@@ -1520,6 +1542,26 @@ const TestView = () => {
 
     setTestResults(JSON.stringify(questions));
     setIsAnswerSubmitted(true);
+    setIsFormDisabled(true);
+  };
+
+  const handleConfirmAnswers = () => {
+    const results = JSON.parse(TestResults);
+
+    const booleanResults = results.map((result) => Object.values(result)[0]);
+
+    const correctAnswersCount = booleanResults.filter(
+      (answer) => answer,
+    ).length;
+
+    const correctAnswersPercentage =
+      (correctAnswersCount / booleanResults.length) * 100;
+
+    correctAnswersPercentage >= TestData?.passing_grade
+      ? setPassed(true)
+      : setPassed(false);
+
+    console.log(Passed ? "You passed the test!" : "You didn't pass the test.");
   };
 
   const deadline = moment(TestData?.timer ?? new Date()).add(2, "hour");
@@ -1595,7 +1637,8 @@ const TestView = () => {
         ) : QuestionIndex >= 0 ? (
           <Fragment>
             <Form form={form} onFinish={onFormFinish}>
-              <TestForm form={form} data={QuestionItem} />
+              <TestForm data={QuestionItem} disabled={isFormDisabled} />
+
               <div className="space-x-5">
                 <ButtonComponent
                   defaultBg={colorsObject.secondary}
@@ -1609,16 +1652,30 @@ const TestView = () => {
                   Prev
                 </ButtonComponent>
 
-                <ButtonComponent
-                  defaultBg={"#878CEE"}
-                  defaultHoverBg={"#878CEE"}
-                  paddingInline={43}
-                  borderRadius={5}
-                  type={"submit"}
-                  disabled={isAnswerSubmitted}
-                >
-                  Submit Answer
-                </ButtonComponent>
+                {JSON.parse(TestResults)?.length ===
+                TestData?.questions?.length ? (
+                  <ButtonComponent
+                    defaultBg={"#878CEE"}
+                    defaultHoverBg={"#878CEE"}
+                    paddingInline={43}
+                    borderRadius={5}
+                    type={"button"}
+                    onClick={handleConfirmAnswers}
+                  >
+                    Confirm Answers
+                  </ButtonComponent>
+                ) : (
+                  <ButtonComponent
+                    defaultBg={"#878CEE"}
+                    defaultHoverBg={"#878CEE"}
+                    paddingInline={43}
+                    borderRadius={5}
+                    type={"submit"}
+                    disabled={isAnswerSubmitted}
+                  >
+                    Submit Answer
+                  </ButtonComponent>
+                )}
 
                 <ButtonComponent
                   defaultBg={colorsObject.secondary}

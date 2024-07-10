@@ -20,6 +20,7 @@ export const CustomCheckBox = ({
   onChange,
   checked,
   customWrapClassName,
+  disabled,
   ...props
 }) => {
   className = classNames([
@@ -43,6 +44,7 @@ export const CustomCheckBox = ({
             name={name}
             checked={checked}
             className={`${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`}
+            disabled={disabled}
           />
           <span
             className={classNames(
