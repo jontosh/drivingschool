@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored code to get Success or Failed results, modal in process">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored code show result test in modal window">
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/report/items/nav-subpage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/report/items/nav-subpage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,15 +200,7 @@
       <workItem from="1720560327916" duration="8370000" />
       <workItem from="1720605742377" duration="6547000" />
       <workItem from="1720614458870" duration="3172000" />
-      <workItem from="1720623415776" duration="878000" />
-    </task>
-    <task id="LOCAL-00041" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
-      <option name="closed" value="true" />
-      <created>1718304876776</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1718304876777</updated>
+      <workItem from="1720623415776" duration="1377000" />
     </task>
     <task id="LOCAL-00042" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
       <option name="closed" value="true" />
@@ -595,7 +586,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720615082127</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="#fix #jsx Refactored code show result test in modal window">
+      <option name="closed" value="true" />
+      <created>1720624440737</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1720624440737</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +613,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Updated Form content remove and refactored." />
     <MESSAGE value="#fix #jsx Updated Icons wrapper and Tooltip components on hover information" />
     <MESSAGE value="#fix #jsx Updated form and initial values for elements" />
     <MESSAGE value="#fix #jsx Updated form request to patch data" />
@@ -639,7 +637,8 @@
     <MESSAGE value="#fix #jsx Refactored form elements and initial values for form if user answer or not" />
     <MESSAGE value="#fix #jsx Refactored form elements and code with get correct initial values" />
     <MESSAGE value="#fix #jsx Refactored code to get Success or Failed results, modal in process" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored code to get Success or Failed results, modal in process" />
+    <MESSAGE value="#fix #jsx Refactored code show result test in modal window" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored code show result test in modal window" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

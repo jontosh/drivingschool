@@ -121,7 +121,11 @@ export const NavSubpage = ({ ...props }) => {
       : "bg-white text-gray-500 p-2.5 rounded-lg hover:bg-indigo-400 hover:text-white transition ease-in-out";
 
   const navSubpageItem = NavSubpages.map(({ to, text }, index) => (
-    <NavLink to={`/report/business/${to}`} className={setActiveNav} key={index}>
+    <NavLink
+      to={`/admin/report/business/${to}`}
+      className={setActiveNav}
+      key={index}
+    >
       {text}
     </NavLink>
   ));
