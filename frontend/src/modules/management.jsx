@@ -39,10 +39,13 @@ import {
   Switch,
   TimePicker,
   Tooltip,
+  Modal,
 } from "antd";
 import classNames from "classnames";
 import { Fragment, useContext, useState, useEffect, useReducer } from "react";
+import { BiTime } from "react-icons/bi";
 import { GoClock, GoEye } from "react-icons/go";
+import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import MDEditor from "@uiw/react-md-editor";
@@ -53,6 +56,12 @@ import { HiDotsVertical } from "react-icons/hi";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "moment";
+import {
+  CircularProgressbar,
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -68,7 +77,6 @@ const reducer = (state, action) => {
         status: <AlertError setIsOpen={action.setIsOpen} />,
       };
     }
-
     default: {
       console.error(`Unknown action: ${action.type}`);
     }
@@ -1440,7 +1448,7 @@ const TestForm = ({ data, disabled }) => {
   return renderAnswers();
 };
 
-const TestView = () => {
+const TestView = ({ timer }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [TestId, setTestId] = useLocalStorage("test-id", "0");
   const [TestResults, setTestResults] = useLocalStorage("test-results", "[]");
@@ -1449,7 +1457,9 @@ const TestView = () => {
   const [form] = Form.useForm();
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
   const [isFormDisabled, setIsFormDisabled] = useState(false);
-  const [Passed, setPassed] = useState(false);
+  const [ModalResult, setModalResult] = useState(false);
+  const [Percentage, setPercentage] = useState(0);
+  const [CorrectAnswers, setCorrectAnswers] = useState(0);
 
   const { data: TestData, isLoading: TestLoading } = useRequestIdQuery({
     path: "/account_management/services/test",
@@ -1482,6 +1492,8 @@ const TestView = () => {
       }
     }
   }, [TestData, QuestionItem, QuestionId, TestResults, form]);
+
+  const handleModalState = () => setModalResult((prev) => !prev);
 
   const handleQuestionItem = (value, index) => {
     setQuestionId(value);
@@ -1545,7 +1557,7 @@ const TestView = () => {
     setIsFormDisabled(true);
   };
 
-  const handleConfirmAnswers = () => {
+  const handleConfirmAnswers = async () => {
     const results = JSON.parse(TestResults);
 
     const booleanResults = results.map((result) => Object.values(result)[0]);
@@ -1554,14 +1566,15 @@ const TestView = () => {
       (answer) => answer,
     ).length;
 
+    setCorrectAnswers(correctAnswersCount);
+
     const correctAnswersPercentage =
       (correctAnswersCount / booleanResults.length) * 100;
 
-    correctAnswersPercentage >= TestData?.passing_grade
-      ? setPassed(true)
-      : setPassed(false);
-
-    console.log(Passed ? "You passed the test!" : "You didn't pass the test.");
+    if (!TestLoading && correctAnswersPercentage >= TestData?.passing_grade) {
+      setPercentage(correctAnswersPercentage.toFixed(1));
+      setModalResult(true);
+    }
   };
 
   const deadline = moment(TestData?.timer ?? new Date()).add(2, "hour");
@@ -1662,7 +1675,7 @@ const TestView = () => {
                     type={"button"}
                     onClick={handleConfirmAnswers}
                   >
-                    Confirm Answers
+                    COMPLETE TEST
                   </ButtonComponent>
                 ) : (
                   <ButtonComponent
@@ -1690,6 +1703,70 @@ const TestView = () => {
                 </ButtonComponent>
               </div>
             </Form>
+
+            <Modal
+              title="Result"
+              centered
+              open={ModalResult}
+              onOk={handleModalState}
+              onCancel={handleModalState}
+            >
+              <div className="max-w-52 w-full mx-auto">
+                <CircularProgressbar
+                  value={Percentage}
+                  text={`${Percentage}%`}
+                  styles={buildStyles({
+                    textColor: "#383D54",
+                    pathColor:
+                      Percentage >= TestData?.passing_grade
+                        ? "#878CEE"
+                        : "#FF4D4D",
+                  })}
+                />
+              </div>
+
+              <Title level={2}>
+                {Percentage >= TestData?.passing_grade ? "Amazing!" : "Fail!"}
+              </Title>
+
+              <Paragraph>
+                {Percentage >= TestData?.passing_grade
+                  ? "Congratulations, you’ve successfully passed the test."
+                  : "You need 70% or above to pass Make time go over the lessons and try again!"}
+              </Paragraph>
+
+              {timer && (
+                <time>
+                  <BiTime /> {timer}
+                </time>
+              )}
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-red-50 p-5">
+                  <Title level={3}>
+                    {JSON.parse(TestResults)?.length - CorrectAnswers}
+                  </Title>
+
+                  <IconComponent
+                    className={"cursor-text"}
+                    icon={<IoMdCloseCircle />}
+                  >
+                    Mistakes
+                  </IconComponent>
+                </div>
+
+                <div className="bg-green-50 p-5">
+                  <Title level={3}>{CorrectAnswers}</Title>
+
+                  <IconComponent
+                    className={"cursor-text"}
+                    icon={<IoMdCheckmarkCircle />}
+                  >
+                    Correct
+                  </IconComponent>
+                </div>
+              </div>
+            </Modal>
           </Fragment>
         ) : (
           "Choose one of Question"
