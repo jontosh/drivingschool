@@ -1434,7 +1434,7 @@ const TestView = () => {
   const [form] = Form.useForm();
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
 
-  const { data: TestData } = useRequestIdQuery({
+  const { data: TestData, isLoading: TestLoading } = useRequestIdQuery({
     path: "/account_management/services/test",
     id: TestId,
   });
@@ -1445,15 +1445,15 @@ const TestView = () => {
   });
 
   useEffect(() => {
-    if (TestData && TestResults) {
-      const results = JSON.parse(TestResults);
+    const results = JSON.parse(TestResults);
+    if (TestData && TestResults && results) {
       const currentQuestionResult = results.find(
         (result) => Object.keys(result)[0] === QuestionId.toString(),
       );
 
       if (currentQuestionResult) {
         form.setFieldsValue({
-          answers: QuestionItem?.answers.map((answer) => ({
+          answers: currentQuestionResult?.values?.answers?.map((answer) => ({
             is_correct: answer.is_correct,
           })),
         });
@@ -1513,9 +1513,9 @@ const TestView = () => {
     );
 
     if (existingQuestionIndex !== -1) {
-      questions[existingQuestionIndex] = { [QuestionId]: result };
+      questions[existingQuestionIndex] = { [QuestionId]: result, values };
     } else {
-      questions.push({ [QuestionId]: result });
+      questions.push({ [QuestionId]: result, values });
     }
 
     setTestResults(JSON.stringify(questions));
@@ -1567,7 +1567,7 @@ const TestView = () => {
               : null,
           )}
         >
-          {questionItem}
+          {TestLoading ? "Loading..." : questionItem}
         </ul>
       ),
     },

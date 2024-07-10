@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored form elements and initial values for form if user answer or not">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
@@ -198,15 +198,8 @@
       <workItem from="1720421234326" duration="11538000" />
       <workItem from="1720502263263" duration="18929000" />
       <workItem from="1720537676476" duration="6300000" />
-      <workItem from="1720560327916" duration="7754000" />
-    </task>
-    <task id="LOCAL-00038" summary="#fix #jsx Update student password page title and refactor form components for improved structure and readability.">
-      <option name="closed" value="true" />
-      <created>1718216422911</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1718216422911</updated>
+      <workItem from="1720560327916" duration="8370000" />
+      <workItem from="1720605742377" duration="3076000" />
     </task>
     <task id="LOCAL-00039" summary="#fix #jsx Update form components and page title for student password for improved structure and readability.">
       <option name="closed" value="true" />
@@ -592,7 +585,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720539863117</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="#fix #jsx Refactored form elements and initial values for form if user answer or not">
+      <option name="closed" value="true" />
+      <created>1720568262187</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1720568262188</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +612,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Created schedule for student and connected URL path" />
     <MESSAGE value="#fix #jsx Fixed files and remove handle functions" />
     <MESSAGE value="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements" />
     <MESSAGE value="#fix #jsx Updated Form content remove and refactored." />
@@ -636,7 +636,8 @@
     <MESSAGE value="#fix #jsx Refactored test True and False with correct request" />
     <MESSAGE value="#fix #jsx Created Form content to view test" />
     <MESSAGE value="#fix #jsx Refactored form elements and render components" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored form elements and render components" />
+    <MESSAGE value="#fix #jsx Refactored form elements and initial values for form if user answer or not" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored form elements and initial values for form if user answer or not" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
