@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored form elements and code with get correct initial values">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Refactored code to get Success or Failed results, modal in process">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,15 +200,8 @@
       <workItem from="1720537676476" duration="6300000" />
       <workItem from="1720560327916" duration="8370000" />
       <workItem from="1720605742377" duration="6547000" />
-      <workItem from="1720614458870" duration="424000" />
-    </task>
-    <task id="LOCAL-00040" summary="#fix #jsx Update form components and page title for student password for improved structure and readability.">
-      <option name="closed" value="true" />
-      <created>1718304035730</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1718304035730</updated>
+      <workItem from="1720614458870" duration="3172000" />
+      <workItem from="1720623415776" duration="878000" />
     </task>
     <task id="LOCAL-00041" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
       <option name="closed" value="true" />
@@ -595,7 +587,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720610005068</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="#fix #jsx Refactored code to get Success or Failed results, modal in process">
+      <option name="closed" value="true" />
+      <created>1720615082126</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1720615082127</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +614,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements" />
     <MESSAGE value="#fix #jsx Updated Form content remove and refactored." />
     <MESSAGE value="#fix #jsx Updated Icons wrapper and Tooltip components on hover information" />
     <MESSAGE value="#fix #jsx Updated form and initial values for elements" />
@@ -639,7 +638,8 @@
     <MESSAGE value="#fix #jsx Refactored form elements and render components" />
     <MESSAGE value="#fix #jsx Refactored form elements and initial values for form if user answer or not" />
     <MESSAGE value="#fix #jsx Refactored form elements and code with get correct initial values" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored form elements and code with get correct initial values" />
+    <MESSAGE value="#fix #jsx Refactored code to get Success or Failed results, modal in process" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Refactored code to get Success or Failed results, modal in process" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
