@@ -176,6 +176,7 @@ class Test(Status,Extra,models.Model):
     fall_text = models.TextField(blank=True)
     service = models.ManyToManyField("servises.Services",)
     cr = models.ManyToManyField("location.Class",related_name="classroom")
+    attempts = models.PositiveIntegerField(default=1)
     _is_display_name = models.BooleanField(default=False)
     _is_final = models.BooleanField(default=False)
     _is_class_session = models.BooleanField(default=False,verbose_name="Associate with This Class Session")
@@ -199,10 +200,20 @@ class StudentQuestion(models.Model):
     score = models.PositiveIntegerField(default=0)
 
 class StudentTest(models.Model):
+    STATUS_CHOICE = [
+        ["PASSED","PASSED"],
+        ["FAILED","FAILED"],
+        ["NOT_ATTEMPTED","NOT_ATTEMPTED"],
+        ["CANCELED","CANCELED"]
+    ]
     test = models.ForeignKey("Test",on_delete=models.CASCADE)
     student = models.ForeignKey("Users.Student",on_delete=models.CASCADE)
     total_score = models.PositiveIntegerField(default=0)
     student_answers = models.ManyToManyField("StudentQuestion")
+    datetime = models.DateTimeField(auto_now=True)
+    number_correct = models.PositiveIntegerField(default=0)
+    number_wrong = models.PositiveIntegerField(default=0)
+    status = models.CharField(choices=STATUS_CHOICE,max_length=15,default="NOT_ATTEMPTED")
 #SIGNAL TO CREATE ADD_ON AUTOMATICALLY
 @receiver(post_save, sender=Services)
 @receiver(post_save, sender=Component)
