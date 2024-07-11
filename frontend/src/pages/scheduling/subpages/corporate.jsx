@@ -244,8 +244,9 @@ export const Corporate = () => {
                 <div className="flex flex-col gap-y-5">
                   <CustomInput
                     spanText={"Name"}
-                    spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
+                    spanClassName={"w-40 font-medium"}
+                    fontSize={"text-base"}
+                    classNames={"flex flex-row-reverse gap-5 items-center"}
                     className={"shadow-xl"}
                     placeholder={"Name"}
                   />
@@ -266,8 +267,9 @@ export const Corporate = () => {
 
                   <CustomInput
                     spanText={"Code"}
-                    spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
+                    spanClassName={"w-40 font-medium"}
+                    fontSize={"text-base"}
+                    classNames={"flex flex-row-reverse gap-5 items-center"}
                     className={"shadow-xl"}
                     placeholder={"Code"}
                   />
@@ -288,8 +290,9 @@ export const Corporate = () => {
 
                   <CustomInput
                     spanText={"Affected Date(s)"}
-                    spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
+                    spanClassName={"w-40 font-medium"}
+                    fontSize={"text-base"}
+                    classNames={"flex flex-row-reverse gap-5 items-center"}
                     className={"shadow-xl"}
                     placeholder={"Affected dates"}
                   />
@@ -340,8 +343,9 @@ export const Corporate = () => {
 
                   <CustomInput
                     spanText={"Note"}
-                    spanClassName={"w-40 font-medium text-base"}
-                    classNames={"flex flex-row-reverse gap-5 items-center h-[50px]"}
+                    spanClassName={"w-40 font-medium"}
+                    fontSize={"text-base"}
+                    classNames={"flex flex-row-reverse gap-5 items-center"}
                     className={"shadow-xl"}
                     placeholder={"Note"}
                   />

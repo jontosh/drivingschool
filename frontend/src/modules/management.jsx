@@ -62,6 +62,7 @@ import {
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { LuRefreshCw } from "react-icons/lu";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -1136,9 +1137,9 @@ const AddNewTest = () => {
             answers:
               values.type === 2
                 ? values.answers.map((item) => ({
-                    ...item,
-                    is_correct: item.is_correct === "true",
-                  }))
+                  ...item,
+                  is_correct: item.is_correct === "true",
+                }))
                 : values,
           },
         });
@@ -1309,7 +1310,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1666,7 +1667,7 @@ const TestView = ({ timer }) => {
                 </ButtonComponent>
 
                 {JSON.parse(TestResults)?.length ===
-                TestData?.questions?.length ? (
+                  TestData?.questions?.length ? (
                   <ButtonComponent
                     defaultBg={"#878CEE"}
                     defaultHoverBg={"#878CEE"}
@@ -1710,60 +1711,89 @@ const TestView = ({ timer }) => {
               open={ModalResult}
               onOk={handleModalState}
               onCancel={handleModalState}
+              footer={null}
             >
-              <div className="max-w-52 w-full mx-auto">
-                <CircularProgressbar
-                  value={Percentage}
-                  text={`${Percentage}%`}
-                  styles={buildStyles({
-                    textColor: "#383D54",
-                    pathColor:
-                      Percentage >= TestData?.passing_grade
-                        ? "#878CEE"
-                        : "#FF4D4D",
-                  })}
-                />
-              </div>
-
-              <Title level={2}>
-                {Percentage >= TestData?.passing_grade ? "Amazing!" : "Fail!"}
-              </Title>
-
-              <Paragraph>
-                {Percentage >= TestData?.passing_grade
-                  ? "Congratulations, you’ve successfully passed the test."
-                  : "You need 70% or above to pass Make time go over the lessons and try again!"}
-              </Paragraph>
-
-              {timer && (
-                <time>
-                  <BiTime /> {timer}
-                </time>
-              )}
-
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-red-50 p-5">
-                  <Title level={3}>
-                    {JSON.parse(TestResults)?.length - CorrectAnswers}
-                  </Title>
-
-                  <IconComponent
-                    className={"cursor-text"}
-                    icon={<IoMdCloseCircle />}
-                  >
-                    Mistakes
-                  </IconComponent>
+              <div className="space-y-5 text-center">
+                <div className="max-w-52 w-full mx-auto">
+                  <CircularProgressbar
+                    value={Percentage}
+                    text={`${Percentage}%`}
+                    styles={buildStyles({
+                      textColor: "#383D54",
+                      pathColor:
+                        Percentage >= TestData?.passing_grade
+                          ? "#878CEE"
+                          : "#FF4D4D",
+                    })}
+                  />
                 </div>
 
-                <div className="bg-green-50 p-5">
-                  <Title level={3}>{CorrectAnswers}</Title>
+                <Title level={2} fontSize={"text-[50px] font-bold"}>
+                  {Percentage >= TestData?.passing_grade ? "Amazing!" : "Fail!"}
+                </Title>
 
-                  <IconComponent
-                    className={"cursor-text"}
-                    icon={<IoMdCheckmarkCircle />}
+                <Paragraph fontSize={"text-xl"} fontWeightStrong={400}>
+                  {Percentage >= TestData?.passing_grade
+                    ? "Congratulations, you’ve successfully passed the test."
+                    : "You need 70% or above to pass Make time go over the lessons and try again!"}
+                </Paragraph>
+
+                {timer && (
+                  <time className="text-[#BEAB46] text-2xl font-normal">
+                    <BiTime /> {timer}
+                  </time>
+                )}
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="bg-red-50 p-5 rounded-lg space-y-3">
+                    <Title level={3} fontSize={"text-[50px] text-red-500"}>
+                      {JSON.parse(TestResults)?.length - CorrectAnswers}
+                    </Title>
+
+                    <IconComponent
+                      className={"cursor-text text-3xl"}
+                      icon={<IoMdCloseCircle />}
+                      classNames={"flex items-center gap-x-1 text-red-500"}
+                    >
+                      Mistakes
+                    </IconComponent>
+                  </div>
+
+                  <div className="bg-green-50 p-5 rounded-lg space-y-3">
+                    <Title level={3} fontSize={"text-[50px] text-green-500"}>
+                      {CorrectAnswers}
+                    </Title>
+
+                    <IconComponent
+                      className={"cursor-text text-3xl"}
+                      icon={<IoMdCheckmarkCircle />}
+                      classNames={"flex items-center gap-x-1 text-green-500"}
+                    >
+                      Correct
+                    </IconComponent>
+                  </div>
+                </div>
+
+                <div className="flex gap-6 items-center justify-center">
+                  <ButtonComponent
+                    defaultBg="#BEAB46"
+                    defaultHoverBg="#BEAB46"
+                    paddingInline={43}
+                    borderRadius={10}
+                    className={"flex items-center gap-x-2"}
                   >
-                    Correct
-                  </IconComponent>
+                    <LuRefreshCw />
+                    Retry
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    defaultBg={colorsObject.info}
+                    defaultHoverBg={colorsObject.infoHover}
+                    paddingInline={43}
+                    borderRadius={10}
+                  >
+                    Continue
+                  </ButtonComponent>
                 </div>
               </div>
             </Modal>
