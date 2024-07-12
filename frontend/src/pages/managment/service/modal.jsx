@@ -3775,7 +3775,7 @@ export const CorporateTimeModalContent = () => {
   const onFinish = async (values) => {
     console.log({
       ...values,
-      dates: values["dates"]?.format("YYY-MM-DD"),
+      dates: values["dates"]?.format("YYYY-MM-DD"),
     });
   };
 
@@ -3904,11 +3904,7 @@ export const CorporateTimeModalContent = () => {
                 },
               ]}
             >
-              <Switch
-                checkedChildren={"Yes"}
-                unCheckedChildren={"No"}
-                defaultChecked
-              />
+              <Switch checkedChildren={"Yes"} unCheckedChildren={"No"} />
             </Form.Item>
 
             <Form.Item
@@ -3921,11 +3917,7 @@ export const CorporateTimeModalContent = () => {
                 },
               ]}
             >
-              <Switch
-                checkedChildren={"Yes"}
-                unCheckedChildren={"No"}
-                defaultChecked
-              />
+              <Switch checkedChildren={"Yes"} unCheckedChildren={"No"} />
             </Form.Item>
 
             <Form.Item
@@ -3938,11 +3930,7 @@ export const CorporateTimeModalContent = () => {
                 },
               ]}
             >
-              <Switch
-                checkedChildren={"Yes"}
-                unCheckedChildren={"No"}
-                defaultChecked
-              />
+              <Switch checkedChildren={"Yes"} unCheckedChildren={"No"} />
             </Form.Item>
 
             <Form.Item name={"note"} label={"Note"}>
