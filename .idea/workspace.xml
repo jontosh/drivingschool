@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed some bugs">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed form elements, getting and updating request and show it">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/emergency.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/emergency.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -206,15 +203,7 @@
       <workItem from="1720614458870" duration="3172000" />
       <workItem from="1720623415776" duration="2135000" />
       <workItem from="1720688883919" duration="3355000" />
-      <workItem from="1720761244885" duration="13603000" />
-    </task>
-    <task id="LOCAL-00047" summary="#fix #jsx Refactored BigCalendar components to implement dynamic data changes">
-      <option name="closed" value="true" />
-      <created>1718576721016</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1718576721016</updated>
+      <workItem from="1720761244885" duration="15570000" />
     </task>
     <task id="LOCAL-00048" summary="Refactor BigCalendar components to implement dynamic data changes">
       <option name="closed" value="true" />
@@ -600,7 +589,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720768993292</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="#fix #js Fixed form elements, getting and updating request and show it">
+      <option name="closed" value="true" />
+      <created>1720780220773</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1720780220773</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +616,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Refactored Files and content" />
     <MESSAGE value="#fix #jsx Refactored Files and form elements with attr" />
     <MESSAGE value="#fix #jsx Refactored Add test with Setting form validation" />
     <MESSAGE value="#fix #jsx Refactored register page with routing data" />
@@ -644,7 +640,8 @@
     <MESSAGE value="#fix #js Fixed URL routing for NavLink components" />
     <MESSAGE value="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content" />
     <MESSAGE value="#fix #js Fixed some bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed some bugs" />
+    <MESSAGE value="#fix #js Fixed form elements, getting and updating request and show it" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed form elements, getting and updating request and show it" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
