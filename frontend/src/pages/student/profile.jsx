@@ -58,10 +58,14 @@ const Profile = () => {
   const { data: SchoolsData } = useRequestGetQuery({
     path: "/account_management/schools/",
   });
+  const { data: UserTypeData } = useRequestGetQuery({
+    path: "/student_account/user_type/",
+  });
 
   const [InstructorOptions, setInstructorOptions] = useState([]);
   const [SchoolsOptions, setSchoolsOptions] = useState([]);
   const [AssignLocationOptions, setAssignLocationOptions] = useState([]);
+  const [UserTypeOption, setUserTypeOption] = useState([]);
   const [IsMore, setIsMore] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
@@ -135,6 +139,22 @@ const Profile = () => {
 
     setSchoolsOptions(options);
   }, [SchoolsData, isLoading]);
+
+  // User Type
+  useEffect(() => {
+    const options = [];
+
+    for (let i = 0; i < UserTypeData?.length; i++) {
+      const type = UserTypeData[i];
+
+      options.push({
+        value: type?.id,
+        label: type?.name,
+      });
+    }
+
+    setUserTypeOption(options);
+  }, [UserTypeData, isLoading]);
 
   const handleMore = () => setIsMore((prev) => !prev);
 
@@ -282,11 +302,9 @@ const Profile = () => {
             <Form.Item name={"type"} label={"Student Type"}>
               <CustomSelect
                 placeholder={"Type"}
-                options={[
-                  { value: "TEEN", label: "TEEN" },
-                  { value: "ADULT", label: "ADULT" },
-                ]}
+                options={UserTypeOption}
                 className={"h-[50px]"}
+                disabled={isLoading}
               />
             </Form.Item>
 
@@ -689,7 +707,7 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex gap-6 justify-between items-center">
+                  <div className="flex gap-6 justify-between">
                     <Form.Item className={"flex-grow mb-0"} name={"note"}>
                       <Input.TextArea
                         className={"border-[#667085]"}
@@ -767,10 +785,10 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex gap-6 justify-between items-center">
-                    <CustomInput
-                      classNames={"w-full h-[50px]"}
-                      className={"border border-indigo-700 px-4 py-2.5"}
+                  <div className="flex gap-6 justify-between">
+                    <Input.TextArea
+                      className={"border-black"}
+                      placeholder={"Notes"}
                     />
                     <ButtonComponent
                       defaultBg={"#24C18F"}
