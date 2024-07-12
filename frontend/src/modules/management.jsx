@@ -910,8 +910,8 @@ const MultipleChoice = ({ form, ...props }) => {
                 <div key={key}>
                   <Form.Item
                     {...restField}
-                    name={[name, index, "text"]}
-                    label={"CHOISE OF ANSWER"}
+                    name={[name, "text"]}
+                    label={"CHOOSE OF ANSWER"}
                     className="w-full"
                     rules={[
                       {
@@ -921,14 +921,14 @@ const MultipleChoice = ({ form, ...props }) => {
                     ]}
                   >
                     <CustomInput
-                      placeholder={"CHOISE OF ANSWER"}
+                      placeholder={"CHOOSE OF ANSWER"}
                       classNames={"w-full"}
                     />
                   </Form.Item>
                   <div className="flex items-center justify-between">
                     <Form.Item
                       {...restField}
-                      name={[name, index, "is_correct"]}
+                      name={[name, "is_correct"]}
                       label={"CORRECT ANSWER"}
                       fieldKey={fieldKey}
                       valuePropName="checked"
@@ -1010,8 +1010,8 @@ const Category = ({ form, ...props }) => {
                 <div key={key}>
                   <Form.Item
                     {...restField}
-                    name={[name, index, "text"]}
-                    label={"CHOISE OF ANSWER"}
+                    name={[name, "text"]}
+                    label={"CHOOSE OF ANSWER"}
                     className="w-full"
                     rules={[
                       {
@@ -1021,14 +1021,14 @@ const Category = ({ form, ...props }) => {
                     ]}
                   >
                     <CustomInput
-                      placeholder={"CHOISE OF ANSWER"}
+                      placeholder={"CHOOSE OF ANSWER"}
                       classNames={"w-full"}
                     />
                   </Form.Item>
                   <div className="flex items-center justify-between">
                     <Form.Item
                       {...restField}
-                      name={[name, index, "is_correct"]}
+                      name={[name, "is_correct"]}
                       label={"CORRECT ANSWER"}
                       fieldKey={fieldKey}
                       valuePropName="checked"
@@ -1130,17 +1130,16 @@ const AddNewTest = () => {
       if (values?.answers?.length === 0) {
         message.error("Not selected variants to answers!");
       } else {
+        console.log(values);
         const response = await requestPost({
           path: "/account_management/services/question/",
           data: {
             ...values,
-            answers:
-              values.type === 2
-                ? values.answers.map((item) => ({
-                  ...item,
-                  is_correct: item.is_correct === "true",
-                }))
-                : values,
+            answers: values?.answers?.map((item) => ({
+              ...item,
+              is_correct:
+                item.is_correct === "true" || item.is_correct === true,
+            })),
           },
         });
         if (response?.data) {
@@ -1310,7 +1309,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                  getFieldValue("type")
+                getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1572,7 +1571,7 @@ const TestView = ({ timer }) => {
     const correctAnswersPercentage =
       (correctAnswersCount / booleanResults.length) * 100;
 
-    if (!TestLoading && correctAnswersPercentage >= TestData?.passing_grade) {
+    if (!TestLoading) {
       setPercentage(correctAnswersPercentage.toFixed(1));
       setModalResult(true);
     }
@@ -1667,7 +1666,7 @@ const TestView = ({ timer }) => {
                 </ButtonComponent>
 
                 {JSON.parse(TestResults)?.length ===
-                  TestData?.questions?.length ? (
+                TestData?.questions?.length ? (
                   <ButtonComponent
                     defaultBg={"#878CEE"}
                     defaultHoverBg={"#878CEE"}
@@ -1804,12 +1803,14 @@ const TestView = ({ timer }) => {
       </article>
 
       <aside className={"max-w-96 w-full"}>
-        <Statistic.Countdown
-          title="Timer Remaining :"
-          value={deadline}
-          onFinish={onFinish}
-          className="w-full h-[175px] border rounded-xl shadow-xl text-center py-14"
-        />
+        {timer && (
+          <Statistic.Countdown
+            title="Timer Remaining :"
+            value={deadline}
+            onFinish={onFinish}
+            className="w-full h-[175px] border rounded-xl shadow-xl text-center py-14"
+          />
+        )}
 
         <ConfigProvider
           theme={{
