@@ -23,23 +23,27 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import StudentAccountStyle from "./student-account.module.scss";
 
 const StudentAccount = () => {
+  const [form] = Form.useForm();
   const { colorsObject } = useContext(ColorsContext);
   const { title, studentId, subtitle } = useParams();
   const { columns: ShoppingCartColumns, data: ShoppingCartData } =
     ShoppingCartModule();
   const { columns: MoneyColumns, data: MoneyData } = MoneyModule();
   const { data } = useRequestGetQuery({ path: "/student_account/student/" });
-  const { data: StudentById } = useRequestIdQuery({
+  const { data: StudentById, isLoading } = useRequestIdQuery({
     path: "/student_account/student",
     id: studentId ?? 0,
   });
   const [Search, setSearch] = useState(null);
   const [Student, setStudent] = useState(null);
   const { Data } = useFilterStatus({ data, status: null, search: Search });
+  const [IsRequired, setIsRequired] = useState(true);
 
   useEffect(() => {
     setStudent(StudentById);
-  }, [studentId, title, data]);
+  }, [studentId, isLoading]);
+
+  const onFinish = (values) => setSearch(values["search"]);
 
   const searchItem = Data?.map((item, index) => {
     return (
@@ -49,6 +53,7 @@ const StudentAccount = () => {
           className={setActiveNav}
           onClick={() => {
             setStudent(item);
+            setSearch(null);
           }}
         >
           {item.first_name} {item.last_name}, {item.birth}
@@ -56,8 +61,6 @@ const StudentAccount = () => {
       </li>
     );
   });
-
-  const [form] = Form.useForm();
 
   return (
     <Fragment>
@@ -86,37 +89,36 @@ const StudentAccount = () => {
         )}
 
         <div className="mb-5 flex gap-5 flex-wrap">
-          <Form form={form}>
+          <Form form={form} onFinish={onFinish}>
             <Form.Item
-              name={"search"}
-              className={"relative w-full mb-0"}
+              name="search"
+              className={"mb-0"}
               rules={[
                 {
-                  required: true,
-                  message: "Please input student data",
+                  required: IsRequired,
+                  message: "Please input data",
                 },
               ]}
             >
               <CustomInput
-                colorBorder={colorsObject.main}
-                fontSize="text-base"
-                placeholder={"Search"}
-                classNames={
-                  "inline-flex flex-row-reverse items-center gap-5 w-full"
-                }
-                className={`pl-12 pr-4 py-2.5  h-10 text-sm inline-flex flex-row-reverse shadow-xl`}
                 onChange={(e) => setSearch(e.target.value)}
-              />
-              <span
-                className={"absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "}
+                placeholder={"search"}
+                classNames={"w-full"}
+                className={"pl-10"}
               >
-                <AiOutlineSearch />
-              </span>
+                <span
+                  className={
+                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
+                  }
+                >
+                  <AiOutlineSearch />
+                </span>
+              </CustomInput>
             </Form.Item>
 
-            {Search && !Student && (
+            {Search && (
               <ul className={"w-full p-5 bg-white rounded-b-2xl"}>
-                {searchItem}
+                {searchItem?.length === 0 ? "Empty..." : searchItem}
               </ul>
             )}
           </Form>

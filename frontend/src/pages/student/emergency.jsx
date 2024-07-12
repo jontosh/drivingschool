@@ -9,19 +9,28 @@ import { Form, Input } from "antd";
 import { Fragment, useState, useEffect } from "react";
 
 export const Emergency = ({ id }) => {
-  const { data: EmergencyData } = useRequestGetQuery({
-    path: "/student_account/emergency_contact/?student=" + id,
+  const { data: EmergencyData, isLoading } = useRequestGetQuery({
+    path: "/student_account/emergency_contact/",
   });
-
-  // console.log(EmergencyData);
 
   const { data: LeadData } = useRequestGetQuery({
     path: "/account_management/how_did_you_hear_us/",
   });
 
   const [LeadOptions, setLeadOptions] = useState([]);
-  const [Emergency, setEmergency] = useState(null);
   const [form] = Form.useForm();
+
+  // Emergency
+  useEffect(() => {
+    for (let i = 0; i < EmergencyData?.length; i++) {
+      const item = EmergencyData[i];
+
+      if (item?.student === id) {
+        form.setFieldsValue(item);
+        break;
+      }
+    }
+  }, [isLoading, id]);
 
   // LeadData
   useEffect(() => {
@@ -47,10 +56,6 @@ export const Emergency = ({ id }) => {
       <Form
         className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
         form={form}
-        initialValues={{
-          ...EmergencyData[0],
-          terms_conditions: true,
-        }}
         layout={"vertical"}
       >
         <Title fontSize={"text-2xl text-indigo-700"} fontWeightStrong={600}>
