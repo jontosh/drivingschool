@@ -1,23 +1,15 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
-import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import ModalStyle from "@/components/modal/modal.module.scss";
 import { Subpages } from "@/modules/subpages.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
-import {
-  DiscountModalContent,
-  FeesModalContent,
-  MiscellaneousModalContent,
-  ProductModalContent,
-} from "@/pages/managment/service/modal.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
 import { Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ServiceStyle from "../management.module.scss";
 
 export const StatusSelect = [
@@ -45,8 +37,8 @@ export const StatusSelect = [
 
 const Service = ({ subpage }) => {
   const { colorsObject } = useContext(ColorsContext);
-  const [Status, setStatus] = useState("");
-  const [Search, setSearch] = useState("");
+  const [Status, setStatus] = useState(null);
+  const [Search, setSearch] = useState(null);
   const [CurrentPagination, setCurrentPagination] = useState(1);
 
   const handleChangePagination = (page) => {
