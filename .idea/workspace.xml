@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed some bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/emergency.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/emergency.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,15 +206,7 @@
       <workItem from="1720614458870" duration="3172000" />
       <workItem from="1720623415776" duration="2135000" />
       <workItem from="1720688883919" duration="3355000" />
-      <workItem from="1720761244885" duration="7710000" />
-    </task>
-    <task id="LOCAL-00046" summary="#fix #jsx Refactored the logic for dynamic data changes in React-Big-Calendar.">
-      <option name="closed" value="true" />
-      <created>1718573641969</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1718573641969</updated>
+      <workItem from="1720761244885" duration="13603000" />
     </task>
     <task id="LOCAL-00047" summary="#fix #jsx Refactored BigCalendar components to implement dynamic data changes">
       <option name="closed" value="true" />
@@ -597,7 +592,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720768640256</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="#fix #js Fixed some bugs">
+      <option name="closed" value="true" />
+      <created>1720768993292</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1720768993292</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,7 +619,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Created get default values for forms and refactored appointments" />
     <MESSAGE value="#fix #jsx Refactored Files and content" />
     <MESSAGE value="#fix #jsx Refactored Files and form elements with attr" />
     <MESSAGE value="#fix #jsx Refactored Add test with Setting form validation" />
@@ -641,7 +643,8 @@
     <MESSAGE value="#fix #jsx Fixed code in test view" />
     <MESSAGE value="#fix #js Fixed URL routing for NavLink components" />
     <MESSAGE value="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content" />
+    <MESSAGE value="#fix #js Fixed some bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed some bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

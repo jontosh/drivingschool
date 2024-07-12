@@ -91,9 +91,12 @@ export const CustomInput = ({
           },
         }}
       >
-        <label className={props.classNames} {...props}>
+        <label className={classNames(props.classNames)} {...props}>
           <Input
-            className={`h-[50px] focus:border-[1px] focus:border-solid focus:border-[#5f66e9] ${className}`}
+            className={classNames(
+              "h-[50px] focus:border-[1px] focus:border-solid focus:border-[#5f66e9]",
+              className,
+            )}
             type={type}
             value={value}
             name={name}
