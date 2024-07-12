@@ -2793,7 +2793,7 @@ export const LocationModalContent = () => {
               <ConfigProvider
                 theme={{
                   token: {
-                    colorBorder: "#667085"
+                    colorBorder: "#667085",
                   },
                 }}
               >
@@ -2845,7 +2845,7 @@ export const LocationModalContent = () => {
               <ConfigProvider
                 theme={{
                   token: {
-                    colorBorder: "#667085"
+                    colorBorder: "#667085",
                   },
                 }}
               >
@@ -3324,7 +3324,10 @@ export const HowHearModalContent = () => {
             </Form.Item>
 
             <Form.Item name={"code"} label={"Lead Code"}>
-              <InputNumber placeholder={"Lead Code"} className="w-full h-[50px] border-[#667085] py-2.5" />
+              <InputNumber
+                placeholder={"Lead Code"}
+                className="w-full h-[50px] border-[#667085] py-2.5"
+              />
             </Form.Item>
 
             <Form.Item name={"expiration"} label={"Expiration"}>
@@ -3760,6 +3763,226 @@ export const AddQuiz = ({ ...props }) => {
       >
         <Tabs defaultActiveKey="1" items={AddQuizTab()} />
       </ConfigProvider>
+    </Fragment>
+  );
+};
+
+export const CorporateTimeModalContent = () => {
+  const [form] = Form.useForm();
+  const { colorsObject } = useContext(ColorsContext);
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    console.log({
+      ...values,
+      dates: values["dates"]?.format("YYY-MM-DD"),
+    });
+  };
+
+  const onReset = () => {
+    form.resetFields();
+
+    setTimeout(() => {
+      navigate("/admin/scheduling/corporate");
+    }, 1000);
+  };
+
+  return (
+    <Fragment>
+      <Form
+        form={form}
+        onFinish={onFinish}
+        layout={"vertical"}
+        className={"p-5"}
+      >
+        <Form.Item className={"mb-0"}>
+          <CustomSelect
+            placeholder={"Insert us standard holiday"}
+            className={" max-w-96 h-[50px]"}
+            options={[
+              {
+                value: 1,
+                label: 1,
+              },
+            ]}
+          />
+        </Form.Item>
+
+        <div className="grid grid-cols-2 pt-8 space-x-16">
+          <div className="space-y-5">
+            <Form.Item
+              name={"name"}
+              label={"Name"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input name",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Name"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"status"}
+              label={"Status"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select status",
+                },
+              ]}
+            >
+              <CustomSelect
+                className={"h-[50px]"}
+                placeholder={"Select status"}
+                options={[
+                  { value: "ACTIVE", label: "ACTIVE" },
+                  { value: "DELETED", label: "DELETED" },
+                  { value: "PENDING", label: "PENDING" },
+                ]}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"code"}
+              label={"Code"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input code",
+                },
+              ]}
+            >
+              <CustomInput classNames={"w-full"} placeholder={"Code"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"type"}
+              label={"Type"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select type",
+                },
+              ]}
+            >
+              <CustomSelect
+                className={"h-[50px]"}
+                placeholder={"Select type"}
+                options={[
+                  { value: "Federal Holiday", label: "Federal Holiday" },
+                  { value: "State Holiday", label: "State Holiday" },
+                  { value: "Religious Holiday", label: "Religious Holiday" },
+                  { value: "Corporate", label: "Corporate" },
+                ]}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"dates"}
+              label={"Affected Date(s)"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please select date(s)",
+                },
+              ]}
+            >
+              <DatePicker className={"w-full h-[50px] border-black"} />
+            </Form.Item>
+          </div>
+
+          <div className="space-y-5">
+            <Form.Item
+              name={"all_day"}
+              label={"All day"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please choose",
+                },
+              ]}
+            >
+              <Switch
+                checkedChildren={"Yes"}
+                unCheckedChildren={"No"}
+                defaultChecked
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"automatical"}
+              label={"Automatically Assign to New Staff"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please choose",
+                },
+              ]}
+            >
+              <Switch
+                checkedChildren={"Yes"}
+                unCheckedChildren={"No"}
+                defaultChecked
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"apply"}
+              label={"Apply to All Teaching Staff"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please choose",
+                },
+              ]}
+            >
+              <Switch
+                checkedChildren={"Yes"}
+                unCheckedChildren={"No"}
+                defaultChecked
+              />
+            </Form.Item>
+
+            <Form.Item name={"note"} label={"Note"}>
+              <Input.TextArea
+                placeholder={"Notes"}
+                className={"border-black"}
+              />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div className="text-center space-x-5 pt-10">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            borderRadius={5}
+            paddingInline={44}
+            type={"submit"}
+          >
+            Save
+          </ButtonComponent>
+
+          <ButtonComponent
+            type={"reset"}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultBorderColor={colorsObject.primary}
+            defaultHoverBorderColor={colorsObject.primary}
+            defaultColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            borderRadius={5}
+            paddingInline={44}
+            onClick={onReset}
+          >
+            Cancel
+          </ButtonComponent>
+        </div>
+      </Form>
     </Fragment>
   );
 };
