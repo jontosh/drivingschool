@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed code in test view">
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/manage-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/manage-spa.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed URL routing for NavLink components">
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/corporate-time-off.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/modals.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/corporate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/corporate.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,15 +206,7 @@
       <workItem from="1720614458870" duration="3172000" />
       <workItem from="1720623415776" duration="2135000" />
       <workItem from="1720688883919" duration="3355000" />
-      <workItem from="1720761244885" duration="3478000" />
-    </task>
-    <task id="LOCAL-00044" summary="#fix #jsx Refactor form submission handling and field validation messages.">
-      <option name="closed" value="true" />
-      <created>1718482278865</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1718482278865</updated>
+      <workItem from="1720761244885" duration="7345000" />
     </task>
     <task id="LOCAL-00045" summary="#fix #jsx Refactor form submission handling and field validation messages.">
       <option name="closed" value="true" />
@@ -596,7 +592,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720764552398</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="#fix #js Fixed URL routing for NavLink components">
+      <option name="closed" value="true" />
+      <created>1720765246787</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1720765246788</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +619,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Updated form request to patch data" />
     <MESSAGE value="#fix #jsx #style Updated form validation, connected notes and emergency" />
     <MESSAGE value="#fix #jsx Created get default values for forms and refactored appointments" />
     <MESSAGE value="#fix #jsx Refactored Files and content" />
@@ -640,7 +643,8 @@
     <MESSAGE value="#fix #jsx Refactored code show result test in modal window" />
     <MESSAGE value="#fix #jsx Refactored router link" />
     <MESSAGE value="#fix #jsx Fixed code in test view" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed code in test view" />
+    <MESSAGE value="#fix #js Fixed URL routing for NavLink components" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed URL routing for NavLink components" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,6 +4,7 @@ import {
   AddSchoolModalContent,
   AddServiceModalContent,
   AddStaffModalContent,
+  CorporateTimeModalContent,
   DiscountModalContent,
   FeesModalContent,
   FileCategoryModalContent,
@@ -279,6 +280,28 @@ export const CheckModal = () => {
 
           <div className="bg-white rounded-xl py-5 shadow-2xl">
             <VehiclesModalContent />
+          </div>
+        </Fragment>
+      );
+    }
+    case "corporate-time-off": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Modal - Corporate time off</title>
+          </Helmet>
+
+          <Title
+            level={2}
+            fontSize={"text-indigo-600 text-4xl"}
+            fontWeightStrong={600}
+            titleMarginBottom={20}
+          >
+            Corporate time off
+          </Title>
+
+          <div className="bg-white rounded-xl py-5 shadow-2xl">
+            <CorporateTimeModalContent />
           </div>
         </Fragment>
       );
