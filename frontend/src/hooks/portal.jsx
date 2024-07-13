@@ -26,3 +26,9 @@ export const useReducer = (state, action) => {
     }
   }
 };
+
+export const useBaseURL = () => {
+  const { pathname } = window.location;
+
+  return { pathname: pathname.split("/")[1] };
+};

@@ -39,7 +39,13 @@ export const DropMenuItems = [
   {
     key: "3",
     label: (
-      <Link to={"/log-out/"} className={"flex px-4"}>
+      <Link
+        onClick={() => {
+          window.sessionStorage.setItem("auth-user", null);
+        }}
+        to={"/"}
+        className={"flex px-4"}
+      >
         <IconComponent
           classNames={"items-center"}
           className={"text-sm text-gray-600"}

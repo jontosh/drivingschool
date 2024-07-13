@@ -1,19 +1,64 @@
 import LoginImage from "@/assets/others/sign-in.png";
+import { Crypto } from "@/auth/crypto.jsx";
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
-import { Form, Input } from "antd";
-import { Fragment } from "react";
+import { useBaseURL } from "@/hooks/portal.jsx";
+import { useRequestPostMutation } from "@/redux/query/index.jsx";
+import { Form, Input, message } from "antd";
+import { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { TfiArrowTopRight } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
+import useSessionStorageState from "use-session-storage-state";
 
 const Register = ({ title }) => {
+  const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
+    defaultValue: null,
+  });
+  const [RememberMe, setRememberMe] = useLocalStorage("register", null);
   const [form] = Form.useForm();
+  const [requestPost, { error }] = useRequestPostMutation();
+  const navigate = useNavigate();
+  const { pathname } = useBaseURL();
+
+  useEffect(() => {
+    if (RememberMe) {
+      // Расшифровываем данные
+      const { decrypted } = Crypto(RememberMe, import.meta.env.VITE_SECRET_KEY);
+      form.setFieldsValue(decrypted);
+    }
+  }, []);
 
   const onFinish = async (values) => {
-    console.log(values);
+    // Шифруем данные
+    const { encrypted } = Crypto(values, import.meta.env.VITE_SECRET_KEY);
+    values?.remember ? setRememberMe(encrypted) : setRememberMe(null);
+
+    try {
+      await requestPost({
+        path: "/authentication/token_obtain_pair",
+        data: values,
+      })
+        .unwrap()
+        .then((response) => {
+          if (response?.access) {
+            setAuthUser(response?.access);
+            console.log(1);
+          }
+        })
+        .then(() => {
+          navigate("/" + pathname + "/dashboard", { replace: true });
+        });
+    } catch (error) {
+      console.error(error);
+
+      if (error?.status >= 400) {
+        message.error(error?.data?.detail);
+      }
+    }
   };
 
   return (
@@ -33,9 +78,12 @@ const Register = ({ title }) => {
             onFinish={onFinish}
             layout={"vertical"}
             className={"space-y-5"}
+            initialValues={{
+              remember: false,
+            }}
           >
             <Form.Item
-              name={"login"}
+              name={"username"}
               label={"Login"}
               rules={[
                 {

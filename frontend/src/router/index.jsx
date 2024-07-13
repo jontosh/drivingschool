@@ -1,3 +1,4 @@
+import { PrivateRoute } from "@/auth/private-route.jsx";
 import Layout from "@/layout";
 import Communication from "@/pages/communication/index.jsx";
 import Configuration from "@/pages/configuration/index.jsx";
@@ -35,7 +36,11 @@ import { createBrowserRouter } from "react-router-dom";
 export const router = createBrowserRouter([
   {
     path: "/admin",
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "dashboard",
@@ -177,7 +182,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "instructor",
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "dashboard",
@@ -195,7 +204,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "student",
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "dashboard",
