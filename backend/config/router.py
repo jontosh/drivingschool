@@ -99,6 +99,8 @@ Router = {
             "emergency_contact":"emergency_contact",
             "student_note":"student_note",
             "driving_note":"driving_note",
+            "rights":"rights",
+            "fields":"fields",
         }
     },
     "main_admin":{

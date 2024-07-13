@@ -105,7 +105,7 @@ class StudentSerializerEmail(serializers.ModelSerializer):
             "zip",
             "email",
             "code",
-            "home_photo",
+            "home_phone",
             "cell_phone",
             "birth",
             "username",
