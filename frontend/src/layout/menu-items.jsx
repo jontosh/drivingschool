@@ -1,3 +1,4 @@
+import { useBaseURL } from "@/hooks/portal.jsx";
 import { DollarOutlined } from "@ant-design/icons";
 import {
   AiOutlineApartment,
@@ -12,10 +13,21 @@ import {
 } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
+import useSessionStorageState from "use-session-storage-state";
 
 export const MenuItems = (IsActive, getItem) => {
   const { studentId } = useParams();
+  const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
+    defaultValue: null,
+  });
+  const navigate = useNavigate();
+  const { pathname } = useBaseURL();
+
+  const handleLogOut = () => {
+    setAuthUser(null);
+    navigate("/" + pathname + "/register/sign-in");
+  };
 
   const items = [
     getItem(
@@ -27,7 +39,10 @@ export const MenuItems = (IsActive, getItem) => {
     ),
     getItem(
       IsActive && (
-        <NavLink to={"/admin/enrollment/"} children={"New student enrollment"} />
+        <NavLink
+          to={"/admin/enrollment/"}
+          children={"New student enrollment"}
+        />
       ),
       2,
       <span className={"w-5"}>
@@ -35,7 +50,9 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
     ),
     getItem(
-      IsActive && <NavLink to={"/admin/search/"} children={"Advanced search"} />,
+      IsActive && (
+        <NavLink to={"/admin/search/"} children={"Advanced search"} />
+      ),
       3,
       <span className={"w-5"}>
         <AiOutlineSearch />
@@ -114,11 +131,17 @@ export const MenuItems = (IsActive, getItem) => {
           "sub5-1",
         ),
         getItem(
-          <NavLink to={"/admin/scheduling/vehicle"} children={"Multi Vehicles"} />,
+          <NavLink
+            to={"/admin/scheduling/vehicle"}
+            children={"Multi Vehicles"}
+          />,
           "sub5-2",
         ),
         getItem(
-          <NavLink to={"/admin/scheduling/signle"} children={"Single Instructor"} />,
+          <NavLink
+            to={"/admin/scheduling/signle"}
+            children={"Single Instructor"}
+          />,
           "sub5-3",
         ),
         getItem(
@@ -126,7 +149,10 @@ export const MenuItems = (IsActive, getItem) => {
           "sub5-4",
         ),
         getItem(
-          <Link to={"/admin/scheduling/vehicle"} children={"Manage time slot"} />,
+          <Link
+            to={"/admin/scheduling/vehicle"}
+            children={"Manage time slot"}
+          />,
           "sub5-5",
           null,
           IsActive && [
@@ -271,7 +297,10 @@ export const MenuItems = (IsActive, getItem) => {
           ),
         ]),
         getItem(
-          <NavLink to={"/admin/management/file"} children={"File management"} />,
+          <NavLink
+            to={"/admin/management/file"}
+            children={"File management"}
+          />,
           "sub8-2",
         ),
         getItem(
@@ -354,7 +383,10 @@ export const MenuItems = (IsActive, getItem) => {
           "sub10-3",
         ),
         getItem(
-          <NavLink to={"/admin/configuration/zip-code"} children={"Zip Code"} />,
+          <NavLink
+            to={"/admin/configuration/zip-code"}
+            children={"Zip Code"}
+          />,
           "sub10-4",
         ),
       ],
@@ -367,9 +399,9 @@ export const MenuItems = (IsActive, getItem) => {
       </span>,
     ),
     getItem(
-      IsActive && "Log out",
+      IsActive && <div onClick={handleLogOut}>Log out</div>,
       12,
-      <span className="w-5">
+      <span className="w-5" onClick={handleLogOut}>
         <LuLogOut />
       </span>,
     ),

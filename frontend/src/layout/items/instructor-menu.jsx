@@ -1,12 +1,26 @@
+import { useBaseURL } from "@/hooks/portal.jsx";
 import { AiOutlineAppstore, AiOutlineSolution } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
 import { IoDiamondOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import { PiUsers } from "react-icons/pi";
 import { SlBasket } from "react-icons/sl";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import useSessionStorageState from "use-session-storage-state";
 
 export const InstructorMenu = (IsActive, getItem) => {
+  const { studentId } = useParams();
+  const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
+    defaultValue: null,
+  });
+  const navigate = useNavigate();
+  const { pathname } = useBaseURL();
+
+  const handleLogOut = () => {
+    setAuthUser(null);
+    navigate("/" + pathname + "/register/sign-in");
+  };
+
   const items = [
     getItem(
       IsActive && <NavLink to={"/instructor/dashboard"} children={"Home"} />,
@@ -55,20 +69,24 @@ export const InstructorMenu = (IsActive, getItem) => {
       </span>,
       IsActive && [getItem("Process", "sub4-1")],
     ),
-    getItem(IsActive && "Enroll", 5,
+    getItem(
+      IsActive && "Enroll",
+      5,
       <span className={"w-5"}>
         <SlBasket />
-      </span>
-    ),
-    getItem(IsActive && "Contact", 6,
-      <span className={"w-5"}>
-        <FiPhone />
-      </span>
+      </span>,
     ),
     getItem(
-      IsActive && "Log out",
+      IsActive && "Contact",
+      6,
+      <span className={"w-5"}>
+        <FiPhone />
+      </span>,
+    ),
+    getItem(
+      IsActive && <div onClick={handleLogOut}>Log out</div>,
       12,
-      <span className="w-5">
+      <span className="w-5" onClick={handleLogOut}>
         <LuLogOut />
       </span>,
     ),

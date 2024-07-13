@@ -7,6 +7,7 @@ import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
 import { StudentMenu } from "@/layout/items/student-menu.jsx";
 import { MenuItems } from "@/layout/menu-items.jsx";
 import { GetLevelKeys } from "@/modules/navbar.jsx";
+import useSessionStorageState from "use-session-storage-state";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
@@ -33,6 +34,7 @@ const getItem = (label, key, icon, children, type) => {
 };
 
 const Layout = () => {
+  console.clear();
   const [IsActive, setIsActive] = useState(true);
   const [stateOpenKeys, setStateOpenKeys] = useState([""]);
   const [state, dispatch] = useReducer(PortalReducer, { portal: false });

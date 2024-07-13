@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored request for type Student, updated elements">
+      <change afterPath="$PROJECT_DIR$/frontend/src/auth/crypto.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/auth/private-route.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/filter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/filter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/portal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/portal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/drop-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/drop-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/instructor-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/instructor-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +62,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;auth&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -205,6 +216,8 @@
       <workItem from="1720623415776" duration="2135000" />
       <workItem from="1720688883919" duration="3355000" />
       <workItem from="1720761244885" duration="17675000" />
+      <workItem from="1720857853249" duration="12746000" />
+      <workItem from="1720872563784" duration="6728000" />
     </task>
     <task id="LOCAL-00049" summary="Refactor enrollment form to improve dynamic data handling">
       <option name="closed" value="true" />
