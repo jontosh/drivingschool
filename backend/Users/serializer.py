@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import  Instructor,Student,Enrollment,FileCategory,UserType,Files,Bill,EmergencyContact,StudentNote,DrivingNote
+from .models import  Instructor,Student,Enrollment,FileCategory,Files,Bill,EmergencyContact,StudentNote,DrivingNote
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from mainadmin.models import CustomUser
 from django.contrib.auth.password_validation import validate_password
+from mainadmin.models import UserType, Rights, Fields
 
 class InstructorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,6 +39,15 @@ class FileCategorySerializer(serializers.ModelSerializer):
 class UserTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserType
+        fields = "__all__"
+
+class RightsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rights
+        fields = "__all__"
+class FieldsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fields
         fields = "__all__"
 class FilesSerializer(serializers.ModelSerializer):
     class Meta:

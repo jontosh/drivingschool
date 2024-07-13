@@ -195,7 +195,7 @@ class Test(Status,Extra,models.Model):
 
 class StudentQuestion(models.Model):
     question = models.ForeignKey("Question",on_delete=models.CASCADE)
-    student_answer = models.TextField()
+    student_answer = models.JSONField(null=True,blank=True)
     is_true = models.BooleanField(default=False)
     score = models.PositiveIntegerField(default=0)
 

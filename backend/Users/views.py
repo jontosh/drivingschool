@@ -5,11 +5,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from mainadmin.models import CustomUser
 from django.shortcuts import render
-from .models import Instructor, Student, Enrollment, FileCategory, UserType, Files, Bill,EmergencyContact,StudentNote,DrivingNote
+from .models import Instructor, Student, Enrollment, FileCategory, Files, Bill,EmergencyContact,StudentNote,DrivingNote
 from .serializer import InstructorSerializer, StudentSerializer, \
     EnrollmentSerializer, FileCategorySerializer, UserTypeSerializer, FilesSerializer, BillSerializer, \
-    AuthTokenSerializer, EmergencyContactSerializer, DrivingNoteSerializer, StudentNoteSerializer, \
-    PasswordResetSerializer, PasswordResetConfirmSerializer
+     EmergencyContactSerializer, DrivingNoteSerializer, StudentNoteSerializer, PasswordResetSerializer,\
+    PasswordResetConfirmSerializer,RightsSerializer,FieldsSerializer
+from mainadmin.models import UserType,Rights,Fields
 # Create your views here.
 
 class EmergencyContactViewSet(viewsets.ModelViewSet):
@@ -64,6 +65,20 @@ class FileCategoryViewSet(viewsets.ModelViewSet):
 class UserTypeViewSet(viewsets.ModelViewSet):
     queryset = UserType.objects.all()
     serializer_class = UserTypeSerializer
+    def perform_create(self, serializer):
+        serializer.save()
+    def perform_update(self, serializer):
+        serializer.save()
+class RightsViewSet(viewsets.ModelViewSet):
+    queryset = Rights.objects.all()
+    serializer_class = RightsSerializer
+    def perform_create(self, serializer):
+        serializer.save()
+    def perform_update(self, serializer):
+        serializer.save()
+class FieldsViewSet(viewsets.ModelViewSet):
+    queryset = Fields.objects.all()
+    serializer_class = FieldsSerializer
     def perform_create(self, serializer):
         serializer.save()
     def perform_update(self, serializer):
