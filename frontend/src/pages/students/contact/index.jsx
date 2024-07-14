@@ -35,7 +35,7 @@ const StudentContact = ({ className, children, ...props }) => {
           <Form
             form={form}
             onFinish={onFinish}
-            className={"grid grid-cols-2 gap-5"}
+            className={"grid grid-cols-2 gap-5 max-[900px]:grid-cols-1"}
             layout={"vertical"}
           >
             <Form.Item label={"Location"}>

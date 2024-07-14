@@ -150,7 +150,7 @@ const Dashboard = () => {
                 <Image className={"w-6"} src={LinksIcon} srcSet={LinksIcon} />
               </div>
 
-              <div className={"grid grid-cols-2 gap-5"}>
+              <div className={"grid grid-cols-2 gap-5 max-[600px]:grid-cols-1"}>
                 <Link
                   to={"/"}
                   className={
