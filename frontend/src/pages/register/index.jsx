@@ -67,8 +67,8 @@ const Register = ({ title }) => {
         <title>Sign in - Register page</title>
       </Helmet>
 
-      <section className={"bg-white p-5 grid grid-cols-2 gap-5"}>
-        <div className={"p-20"}>
+      <section className={"bg-white p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
+        <div className={"p-20 max-[600px]:p-5"}>
           <Title level={1} fontSize={"text-4xl"} titleMarginBottom={80}>
             Welcome to driving <br /> school
           </Title>
@@ -159,7 +159,7 @@ const Register = ({ title }) => {
             </div>
           </Form>
         </div>
-        <div className={"p-20 bg-[#FAFCFF] border border-[#E5EFFF] rounded-xl"}>
+        <div className={"p-20 bg-[#FAFCFF] border border-[#E5EFFF] rounded-xl max-[600px]:p-5"}>
           <Title
             level={1}
             className={"pt-2"}
