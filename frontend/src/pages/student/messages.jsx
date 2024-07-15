@@ -30,7 +30,7 @@ export const Messages = () => {
 
   return (
     <Fragment>
-      <div className={classNames("grid grid-cols-2 gap-5")}>
+      <div className={classNames("grid xl:grid-cols-2 gap-5")}>
         <div>
           <div
             className={"border border-indigo-700 rounded-2xl p-5 shadow-2xl"}
@@ -55,12 +55,12 @@ export const Messages = () => {
               </ButtonComponent>
             </div>
 
-            <div className="py-2.5 flex justify-between">
+            <div className="py-2.5 block md:flex space-y-5 justify-between">
               <form className={"flex gap-5 items-center"}>
-                <label className={"relative"}>
+                <label className={"w-full relative"}>
                   <CustomInput
                     placeholder={"Search"}
-                    className={`w-48 pl-12 pr-4 text-sm`}
+                    className={`w-full md:w-48 pl-12 pr-4 text-sm`}
                   />
 
                   <span

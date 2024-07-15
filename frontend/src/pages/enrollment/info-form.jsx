@@ -162,7 +162,7 @@ export const InfoForm = ({ packages }) => {
   return (
     <Fragment>
       <Form form={form} onFinish={onFinish} layout={"vertical"}>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid lg:grid-cols-2 gap-5">
           <div className="space-y-5">
             <Form.Item name={"staff"} label={"Assign to staff"}>
               <CustomSelect

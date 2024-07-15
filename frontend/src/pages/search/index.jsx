@@ -80,7 +80,7 @@ const SearchFormik = () => {
               </Title>
             )}
 
-            <div className="grid grid-cols-2 gap-5 mb-7">
+            <div className="grid min-[1150px]:grid-cols-2 gap-5 mb-7">
               <div className={"space-y-5"}>
                 <label className="inline-flex items-center w-full gap-5">
                   <span className={"w-40 text-base flex-shrink-0"}>

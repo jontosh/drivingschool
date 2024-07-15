@@ -73,7 +73,7 @@ export const Company = () => {
         onFinish={onFinish}
         layout={"vertical"}
       >
-        <div className={"grid grid-cols-2 gap-5"}>
+        <div className={"grid lg:grid-cols-2 gap-5"}>
           <div className="space-y-5">
             <Form.Item name={"name"} label={"Company name"}>
               <CustomInput classNames={"w-full"} placeholder={"Company name"} />

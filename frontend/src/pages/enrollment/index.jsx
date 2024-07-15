@@ -161,7 +161,7 @@ const Enrollment = () => {
           New Student Enrollment
         </Title>
 
-        <div className={EnrollmentStyle["Enrollment__selections"]}>
+        <div className={"grid lg:grid-cols-2 gap-7"}>
           <div>
             <div className={`bg-white p-5 rounded-3xl shadow-lg`}>
               <Title

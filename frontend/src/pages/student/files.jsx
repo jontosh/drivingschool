@@ -17,7 +17,7 @@ export const Files = () => {
 
   return (
     <div className={"pt-5"}>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid  xl:grid-cols-2 gap-5">
         <div>
           <Title fontSize={"text-2xl text-indigo-700"} titleMarginBottom={28}>
             Files

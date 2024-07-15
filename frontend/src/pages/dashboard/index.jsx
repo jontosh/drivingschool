@@ -183,7 +183,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="flex gap-5">
+        <div className="md:flex gap-5">
           <div className="flex-grow">
             <div className="flex items-center gap-4">
               <Title level={4} fontSize={"text-xl"}>
@@ -201,7 +201,7 @@ const Dashboard = () => {
               <ChartDashboard />
             </div>
           </div>
-          <div className="w-[300px]">
+          <div className="w-auto md:w-[300px]">
             <div className="flex items-center gap-4">
               <Title level={4} fontSize={"text-xl"}>
                 Quick links

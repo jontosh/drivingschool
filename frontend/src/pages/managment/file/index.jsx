@@ -40,7 +40,7 @@ const File = () => {
         >
           File management
         </Title>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid min-[1360px]:grid-cols-2 gap-2">
           <div className={"space-y-5"}>
             <div className="bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5">
               <IconComponent
