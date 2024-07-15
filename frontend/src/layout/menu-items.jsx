@@ -14,6 +14,7 @@ import {
 import { LuLogOut } from "react-icons/lu";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
+import useLocalStorage from "use-local-storage";
 import useSessionStorageState from "use-session-storage-state";
 
 export const MenuItems = (IsActive, getItem) => {
@@ -21,11 +22,13 @@ export const MenuItems = (IsActive, getItem) => {
   const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
     defaultValue: null,
   });
+  const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const navigate = useNavigate();
   const { pathname } = useBaseURL();
 
   const handleLogOut = () => {
     setAuthUser(null);
+    setLogTime(null);
     navigate("/" + pathname + "/register/sign-in");
   };
 

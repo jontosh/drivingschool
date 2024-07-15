@@ -19,8 +19,9 @@ const Register = ({ title }) => {
     defaultValue: null,
   });
   const [RememberMe, setRememberMe] = useLocalStorage("register", null);
+  const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const [form] = Form.useForm();
-  const [requestPost, { error }] = useRequestPostMutation();
+  const [requestPost] = useRequestPostMutation();
   const navigate = useNavigate();
   const { pathname } = useBaseURL();
 
@@ -36,6 +37,7 @@ const Register = ({ title }) => {
     // Шифруем данные
     const { encrypted } = Crypto(values, import.meta.env.VITE_SECRET_KEY);
     values?.remember ? setRememberMe(encrypted) : setRememberMe(null);
+    setLogTime(() => JSON.stringify(new Date()));
 
     try {
       await requestPost({
@@ -46,7 +48,6 @@ const Register = ({ title }) => {
         .then((response) => {
           if (response?.access) {
             setAuthUser(response?.access);
-            console.log(1);
           }
         })
         .then(() => {
