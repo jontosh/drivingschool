@@ -113,7 +113,7 @@ const Dashboard = () => {
           Dashboard
         </Title>
 
-        <div className="grid grid-cols-4 gap-7">
+        <div className="gap-5 min-[1335px]:grid-cols-4 md:grid-cols-2 md:grid">
           <div className="bg-white flex items-center p-5 rounded-xl gap-5">
             <div className="bg-[#FFF5D9] w-20 h-20 rounded-full flex items-center justify-center">
               <Image className={"w-8"} src={Earning} srcSet={Earning} />
@@ -126,10 +126,11 @@ const Dashboard = () => {
               prefix={"$"}
               formatter={formatter}
               valueStyle={{ fontWeight: 600 }}
+              className={"flex-grow"}
             />
           </div>
 
-          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
+          <div className="bg-white p-5 rounded-xl gap-5 flex items-center">
             <div className="bg-[#E7EDFF] w-20 h-20 rounded-full flex items-center justify-center">
               <Image
                 className={"w-8"}
@@ -144,6 +145,7 @@ const Dashboard = () => {
               formatter={formatter}
               suffix="k"
               valueStyle={{ fontWeight: 600 }}
+              className={"flex-grow"}
             />
           </div>
 
@@ -161,6 +163,7 @@ const Dashboard = () => {
               value={200}
               formatter={formatter}
               valueStyle={{ fontWeight: 600 }}
+              className={"flex-grow"}
             />
           </div>
 
@@ -175,6 +178,7 @@ const Dashboard = () => {
               formatter={formatter}
               prefix={"$"}
               valueStyle={{ fontWeight: 600 }}
+              className={"flex-grow"}
             />
           </div>
         </div>

@@ -213,7 +213,7 @@ const Layout = () => {
           </div>
         </div>
       </header>
-      <main className={`py-5 px-4 flex gap-x-4 max-w-full`}>
+      <main className={`relative py-5 px-4 flex gap-x-4 max-w-full`}>
         <aside>
           <div
             className={`${LayoutStyle["Tenant"]} flex gap-x-5 items-center mb-6`}

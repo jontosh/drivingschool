@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed bugs to log out and success token">
-      <change afterPath="$PROJECT_DIR$/frontend/src/context/auth.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/auth/private-route.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/auth/private-route.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/query/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,6 +209,7 @@
       <workItem from="1720857853249" duration="12746000" />
       <workItem from="1720872563784" duration="6728000" />
       <workItem from="1721022051378" duration="8288000" />
+      <workItem from="1721034864041" duration="2048000" />
     </task>
     <task id="LOCAL-00050" summary="#fix #jsx Fix(frontend): Update git widget placeholder and cleanup workspace XML">
       <option name="closed" value="true" />
