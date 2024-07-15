@@ -34,7 +34,7 @@ const getItem = (label, key, icon, children, type) => {
 };
 
 const Layout = () => {
-  console.clear();
+  // console.clear();
   const [IsActive, setIsActive] = useState(true);
   const [stateOpenKeys, setStateOpenKeys] = useState([""]);
   const [state, dispatch] = useReducer(PortalReducer, { portal: false });

@@ -18,6 +18,9 @@ const Register = ({ title }) => {
   const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
     defaultValue: null,
   });
+  const [UserRegister, setUserRegister] = useSessionStorageState("register", {
+    defaultValue: null,
+  });
   const [RememberMe, setRememberMe] = useLocalStorage("register", null);
   const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const [form] = Form.useForm();
@@ -36,7 +39,7 @@ const Register = ({ title }) => {
   const onFinish = async (values) => {
     // Шифруем данные
     const { encrypted } = Crypto(values, import.meta.env.VITE_SECRET_KEY);
-    values?.remember ? setRememberMe(encrypted) : setRememberMe(null);
+    values?.remember ? setRememberMe(encrypted) : setUserRegister(encrypted);
     setLogTime(() => JSON.stringify(new Date()));
 
     try {
@@ -68,7 +71,11 @@ const Register = ({ title }) => {
         <title>Sign in - Register page</title>
       </Helmet>
 
-      <section className={"bg-white p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"}>
+      <section
+        className={
+          "bg-white p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"
+        }
+      >
         <div className={"p-20 max-[600px]:p-5"}>
           <Title level={1} fontSize={"text-4xl"} titleMarginBottom={80}>
             Welcome to driving <br /> school
@@ -160,7 +167,11 @@ const Register = ({ title }) => {
             </div>
           </Form>
         </div>
-        <div className={"p-20 bg-[#FAFCFF] border border-[#E5EFFF] rounded-xl max-[600px]:p-5"}>
+        <div
+          className={
+            "p-20 bg-[#FAFCFF] border border-[#E5EFFF] rounded-xl max-[600px]:p-5"
+          }
+        >
           <Title
             level={1}
             className={"pt-2"}
