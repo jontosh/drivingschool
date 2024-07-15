@@ -41,7 +41,7 @@ export const FileItem = ({ note, name, file, date, category, by, id }) => {
       <div
         className={classNames(
           FilesStyle["File__item"],
-          "py-3.5 flex justify-between items-center gap-40 px-5 bg-white border border-indigo-700 rounded-2xl",
+          "py-3.5 flex justify-between items-center w-80 justify-between px-5 bg-white border border-indigo-700 rounded-2xl",
         )}
       >
         <Paragraph className={"text-base"}>{name ?? "File name"}</Paragraph>

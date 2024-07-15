@@ -82,7 +82,7 @@ export const StaffPassword = () => {
           admin_2AF: false,
         }}
       >
-        <div className={"grid grid-cols-3 gap-5"}>
+        <div className={"grid lg:grid-cols-3 gap-5"}>
           <div className="space-y-5">
             <Form.Item
               label={"Password History Policy"}

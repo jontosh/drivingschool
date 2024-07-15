@@ -190,9 +190,9 @@ const Profile = () => {
   return (
     <Fragment>
       <Form layout={"vertical"} form={form} onFinish={onFinish}>
-        <div className="flex justify-between gap-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5 max-[1300px]:flex-col">
+        <div className="flex flex-col min-[1200px]:flex-row items-center gap-y-7 min-[1200px]:gap-x-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
           <div
-            className={`rounded-2xl border-2 border-indigo-700 w-[460px] overflow-hidden max-[1300px]:w-full max-[1300px]:m-auto`}
+            className={`rounded-2xl border-2 border-indigo-700 w-full min-[1200px]:w-[460px] overflow-hidden`}
           >
             <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
               <Map
@@ -200,7 +200,7 @@ const Profile = () => {
                 defaultZoom={3}
                 gestureHandling={"greedy"}
                 disableDefaultUI={true}
-                className="h-full max-[1300px]:h-[267px]"
+                className="h-full h-[310px]"
               />
             </APIProvider>
           </div>
@@ -214,7 +214,7 @@ const Profile = () => {
               >
                 Activated
               </Title>
-              <div className={`grid grid-cols-2 gap-7`}>
+              <div className={`grid min-[850px]:grid-cols-2 gap-7`}>
                 <div className={"space-y-5"}>
                   <Form.Item name={"status"} className={"mb-0"}>
                     <CustomSelect
@@ -297,7 +297,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
+        <div className="p-5 grid lg:grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
           <div className="space-y-5">
             <Form.Item name={"type"} label={"Student Type"}>
               <CustomSelect
@@ -681,7 +681,7 @@ const Profile = () => {
         {IsMore && (
           <Fragment>
             <div className="space-y-5">
-              <div className="grid grid-cols-2 gap-7 max-[1400px]:grid-cols-1">
+              <div className="grid lg:grid-cols-2 gap-7">
                 <div
                   className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
                 >
@@ -707,19 +707,19 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex gap-6 justify-between">
-                    <Form.Item className={"flex-grow mb-0"} name={"note"}>
+                  <div className="flex flex-col gap-6 xl:flex-row items-center">
+                    <Form.Item className={"flex-grow mb-0 w-full"} name={"note"}>
                       <Input.TextArea
                         className={"border-[#667085]"}
                         placeholder={"Notes"}
                       />
                     </Form.Item>
+
                     <ButtonComponent
                       defaultBg={"#24C18F"}
                       defaultHoverBg={"#3CE3AE"}
                       defaultColor={colorsObject.main}
-                      paddingInline={97}
-                      controlHeight={40}
+                      paddingInline={90}
                       borderRadius={5}
                       type={"submit"}
                     >
@@ -756,7 +756,8 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-7 max-[1400px]:grid-cols-1">
+              
+              <div className="grid xl:grid-cols-2 gap-7">
                 <Emergency id={studentId} />
 
                 <div
@@ -785,11 +786,12 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex gap-6 justify-between">
+                  <div className="flex flex-col gap-6 xl:flex-row items-center">
                     <Input.TextArea
-                      className={"border-black"}
+                      className={"border-[#667085]"}
                       placeholder={"Notes"}
                     />
+
                     <ButtonComponent
                       defaultBg={"#24C18F"}
                       defaultHoverBg={"#3CE3AE"}
