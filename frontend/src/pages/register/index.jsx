@@ -73,7 +73,8 @@ const Register = ({ title }) => {
 
       <section
         className={
-          "bg-white p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"
+          // "bg-white p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"
+          "bg-white p-5 flex flex-col-reverse xl:grid xl:grid-cols-2 xl:gap-5"
         }
       >
         <div className={"p-20 max-[600px]:p-5"}>
@@ -169,7 +170,7 @@ const Register = ({ title }) => {
         </div>
         <div
           className={
-            "p-20 bg-[#FAFCFF] border border-[#E5EFFF] rounded-xl max-[600px]:p-5"
+            "pt-20 px-20 rounded-xl xl:border xl:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]"
           }
         >
           <Title
@@ -193,7 +194,7 @@ const Register = ({ title }) => {
           <Image
             src={LoginImage}
             srcSet={LoginImage}
-            className={"py-12 bg-white"}
+            className={"py-12 bg-white hidden xl:block"}
           />
         </div>
       </section>
