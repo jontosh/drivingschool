@@ -127,7 +127,7 @@ const Layout = () => {
         <meta name="theme-color" content="#ffffff" />
       </Helmet>
       <header
-        className={`${LayoutStyle["Header"]} px-5 py-4 bg-white flex items-center justify-between`}
+        className={`${LayoutStyle["Header"]} gap-2.5 px-5 py-4 bg-white flex items-center justify-between`}
       >
         <Link
           to={origin}
@@ -138,11 +138,13 @@ const Layout = () => {
           >
             <Image src={Logo} srcSet={Logo} type={"type/image"} />
           </div>
-          <span className={`text-sm text-black`}>software.com</span>
+          <span className={`text-sm text-black hidden sm:inline-block`}>
+            software.com
+          </span>
         </Link>
 
         <div
-          className={`${LayoutStyle["Header__right"]} flex justify-end gap-2.5 items-center`}
+          className={`${LayoutStyle["Header__right"]} flex justify-end gap-2.5 md:gap-5 items-center`}
         >
           {state?.portalText === "admin" && (
             <Badge count={2} className="mr-5 cursor-pointer">
@@ -173,7 +175,7 @@ const Layout = () => {
             }}
           >
             <Segmented
-              className={"border border-indigo-600"}
+              className={"border border-indigo-600 flex-shrink-0"}
               size={"large"}
               options={[
                 {
@@ -188,6 +190,10 @@ const Layout = () => {
             />
           </ConfigProvider>
 
+          <button className={`size-6 lg:hidden`}>
+            <FaListUl />
+          </button>
+
           <div>
             <Dropdown
               menu={{
@@ -199,7 +205,12 @@ const Layout = () => {
               <div
                 className={`${LayoutStyle["user"]} inline-flex items-center gap-3`}
               >
-                <Title level={5} fontWeightStrong={400} fontSize={"text-base"}>
+                <Title
+                  className={"hidden lg:block"}
+                  level={5}
+                  fontWeightStrong={400}
+                  fontSize={"text-base"}
+                >
                   Aminov Taminov
                 </Title>
 
@@ -214,7 +225,7 @@ const Layout = () => {
         </div>
       </header>
       <main className={`relative py-5 px-4 flex gap-x-4 max-w-full`}>
-        <aside>
+        <aside className={"hidden lg:block"}>
           <div
             className={`${LayoutStyle["Tenant"]} flex gap-x-5 items-center mb-6`}
           >
