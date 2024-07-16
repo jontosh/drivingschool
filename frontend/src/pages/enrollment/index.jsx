@@ -8,7 +8,6 @@ import { InfoForm } from "@/pages/enrollment/info-form.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import EnrollmentStyle from "./enrollment.module.scss";
 
 const Enrollment = () => {
   const { data: ServicePackage } = useRequestGetQuery({
@@ -79,9 +78,10 @@ const Enrollment = () => {
   const handleClass = (value) => setClassValue(value);
 
   useEffect(() => {
-    setPackageTotal(() =>
-      PackageSelection?.filter((item) => item.value === PackageValue),
+    const selectedPackages = PackageSelection?.filter(
+      (item) => item.value === PackageValue,
     );
+    setPackageTotal([...PackageTotal, ...selectedPackages]);
     const classItem = ClassSelection?.filter((item) => item?.id === ClassValue);
 
     setClassItem(() => classItem[0]);
@@ -149,9 +149,7 @@ const Enrollment = () => {
         <title>New student enrollment</title>
       </Helmet>
 
-      <section
-        className={`px-11 space-y-5 max-w-full w-full ${EnrollmentStyle["Enrollment"]}`}
-      >
+      <section className={"px-5 md:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}

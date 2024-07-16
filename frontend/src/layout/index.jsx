@@ -13,7 +13,7 @@ import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
 import Tenant from "../assets/user/tenant.jpeg";
 import { BellFilled } from "@ant-design/icons";
-import { useReducer as PortalReducer } from "@/hooks/portal.jsx";
+import { useBaseURL, useReducer as PortalReducer } from "@/hooks/portal.jsx";
 import { Badge, ConfigProvider, Dropdown, Menu, Segmented } from "antd";
 import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -45,6 +45,7 @@ const Layout = () => {
   const { items: StudentItems } = StudentMenu(IsActive, getItem);
   const levelKeys = GetLevelKeys(items);
   const { colorsObject } = useContext(ColorsContext);
+  const { pathname: toOrigin } = useBaseURL();
 
   useEffect(() => {
     if (
@@ -130,7 +131,7 @@ const Layout = () => {
         className={`${LayoutStyle["Header"]} gap-2.5 px-5 py-4 bg-white flex items-center justify-between`}
       >
         <Link
-          to={origin}
+          to={"/" + toOrigin + "/dashboard/"}
           className={`${LayoutStyle["logo"]} inline-flex items-center gap-4`}
         >
           <div

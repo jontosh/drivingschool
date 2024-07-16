@@ -200,7 +200,7 @@ const Profile = () => {
                 defaultZoom={3}
                 gestureHandling={"greedy"}
                 disableDefaultUI={true}
-                className="h-full h-[310px]"
+                className="h-[310px]"
               />
             </APIProvider>
           </div>
@@ -708,7 +708,10 @@ const Profile = () => {
                   </div>
 
                   <div className="flex flex-col gap-6 xl:flex-row items-center">
-                    <Form.Item className={"flex-grow mb-0 w-full"} name={"note"}>
+                    <Form.Item
+                      className={"flex-grow mb-0 w-full"}
+                      name={"note"}
+                    >
                       <Input.TextArea
                         className={"border-[#667085]"}
                         placeholder={"Notes"}
@@ -756,7 +759,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="grid xl:grid-cols-2 gap-7">
                 <Emergency id={studentId} />
 

@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed bugs to log out and success token">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed CSS class bugs and form validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/context/auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/auth.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/dashboard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/dashboard.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,22 +214,6 @@
       <workItem from="1720872563784" duration="6728000" />
       <workItem from="1721022051378" duration="8288000" />
       <workItem from="1721034864041" duration="2048000" />
-    </task>
-    <task id="LOCAL-00050" summary="#fix #jsx Fix(frontend): Update git widget placeholder and cleanup workspace XML">
-      <option name="closed" value="true" />
-      <created>1718843006553</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1718843006554</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Update menu links to admin routes, and routes for instructor portal, and create other pages for schedule">
-      <option name="closed" value="true" />
-      <created>1719054766481</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1719054766482</updated>
     </task>
     <task id="LOCAL-00052" summary="#fix #jsx Updated version menu on admin portal and instructor portal.">
       <option name="closed" value="true" />
@@ -604,7 +591,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721025716898</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="#fix #js Fixed bugs to auth, refactored css media on dashboard and validation to search">
+      <option name="closed" value="true" />
+      <created>1721124925548</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1721124925548</updated>
+    </task>
+    <task id="LOCAL-00100" summary="#fix #js Fixed CSS class bugs and form validation">
+      <option name="closed" value="true" />
+      <created>1721125953303</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1721125953303</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,8 +626,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Refactored register page with routing data" />
-    <MESSAGE value="#fix #jsx Deleted sign-in&#10; and refactored management.jsx&#10; file" />
     <MESSAGE value="#fix #jsx Refactored file data and structure code for form." />
     <MESSAGE value="#fix #jsx Add feature: Implemented Form.List component for dynamic list rendering" />
     <MESSAGE value="#fix #jsx Refactored data and created new View for test result" />
@@ -648,7 +649,9 @@
     <MESSAGE value="#fix #js Fixed form elements, getting and updating request and show it" />
     <MESSAGE value="#fix #js Refactored request for type Student, updated elements" />
     <MESSAGE value="#fix #js Fixed bugs to log out and success token" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed bugs to log out and success token" />
+    <MESSAGE value="#fix #js Fixed bugs to auth, refactored css media on dashboard and validation to search" />
+    <MESSAGE value="#fix #js Fixed CSS class bugs and form validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed CSS class bugs and form validation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
