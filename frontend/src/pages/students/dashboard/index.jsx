@@ -26,7 +26,7 @@ const Dashboard = () => {
       <Helmet>
         <title>Student - Dashboard</title>
       </Helmet>
-      <section className={"px-11 space-y-5 max-w-full w-full"}>
+      <section className={"px-3 sm:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -38,7 +38,7 @@ const Dashboard = () => {
         </Title>
 
         <div className="bg-white p-5 rounded-xl space-y-5">
-          <div className="bg-[#FFB82F80] p-10 rounded-xl">
+          <div className="bg-[#FFB82F80] p-10 rounded-xl space-y-2.5">
             <Title>Notifications</Title>
             <Paragraph>Welcome to your student portal!</Paragraph>
           </div>
@@ -107,7 +107,7 @@ const Dashboard = () => {
               >LEARN MORE</Link>
             </div>
 
-            <div className="max-w-60 flex flex-col justify-between border p-5 rounded-xl max-xl:gap-5">
+            <div className="w-60 flex flex-col justify-between border p-5 rounded-xl max-xl:gap-5 max-xl:m-auto">
               <Title fontSize={"text-lg"}>MY FILES</Title>
               <div className="flex items-center justify-between ">
                 <IconComponent
@@ -186,7 +186,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl">
+            <div className="flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl max-xl:gap-5">
               <Title fontSize={"text-base font-semibold"}>SIGN DOCUMENTS</Title>
               <Paragraph fontSize={"text-sm font-semibold"}>Teens 8hr in car instruction</Paragraph>
 

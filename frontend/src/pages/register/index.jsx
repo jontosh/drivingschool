@@ -80,7 +80,7 @@ const Register = ({ title }) => {
           "bg-white p-5 flex flex-col-reverse xl:grid xl:grid-cols-2 xl:gap-5"
         }
       >
-        <div className={"p-20 max-[600px]:p-5"}>
+        <div className={"p-2.5 min-[600px]:p-20"}>
           <Title level={1} fontSize={"text-4xl"} titleMarginBottom={80}>
             Welcome to driving <br /> school
           </Title>
@@ -173,7 +173,7 @@ const Register = ({ title }) => {
         </div>
         <div
           className={
-            "pt-20 px-20 rounded-xl xl:border xl:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]"
+            "rounded-xl xl:border p-2.5 min-[600px]:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]"
           }
         >
           <Title

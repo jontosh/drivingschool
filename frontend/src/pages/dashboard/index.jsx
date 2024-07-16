@@ -100,7 +100,7 @@ const Dashboard = () => {
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
-      <section className={"px-5 md:px-11 space-y-5 max-w-full w-full"}>
+      <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -111,7 +111,7 @@ const Dashboard = () => {
         </Title>
 
         <div className="space-y-5 sm:space-y-0 sm:gap-5 min-[1335px]:grid-cols-4 sm:grid-cols-2 sm:grid">
-          <div className="bg-white flex items-center p-5 rounded-xl gap-5">
+          <div className="bg-white flex items-center p-3 rounded-xl gap-5">
             <div className="bg-[#FFF5D9] rounded-full flex items-center justify-center w-12 h-12 sm:w-20 sm:h-20">
               <Image className={"w-8"} src={Earning} srcSet={Earning} />
             </div>
@@ -257,23 +257,32 @@ const Dashboard = () => {
 
         <div className={"space-y-5"}>
           <Form form={form} onFinish={onFinish}>
-            <Form.Item name="search" className={"mb-0"} label={"Teacher"}>
-              <CustomInput
-                onChange={(e) => setSearchTeacher(e.target.value)}
-                placeholder={"search"}
-                classNames={"max-w-96"}
-                className={"pl-10"}
-                colorBorder={colorsObject.main}
-              >
-                <span
-                  className={
-                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                  }
+            <ConfigProvider
+              theme={{
+                token: {
+                  fontSize: 16,
+                  fontWeightStrong: 500
+                },
+              }}
+            >
+              <Form.Item name="search" className={"mb-0 w-full"} label={"Teacher"} style={{ fontWeight: 500 }}>
+                <CustomInput
+                  onChange={(e) => setSearchTeacher(e.target.value)}
+                  placeholder={"search"}
+                  classNames={"w-full sm:max-w-96"}
+                  className={"pl-10"}
+                  colorBorder={colorsObject.main}
                 >
-                  <AiOutlineSearch />
-                </span>
-              </CustomInput>
-            </Form.Item>
+                  <span
+                    className={
+                      "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
+                    }
+                  >
+                    <AiOutlineSearch />
+                  </span>
+                </CustomInput>
+              </Form.Item>
+            </ConfigProvider>
           </Form>
 
           <div
