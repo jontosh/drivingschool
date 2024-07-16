@@ -21,6 +21,9 @@ const Register = ({ title }) => {
   const [UserRegister, setUserRegister] = useSessionStorageState("register", {
     defaultValue: null,
   });
+  const [AuthRefresh, setAuthRefresh] = useSessionStorageState("auth-upgrade", {
+    defaultValue: null,
+  });
   const [RememberMe, setRememberMe] = useLocalStorage("register", null);
   const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const [form] = Form.useForm();
@@ -51,6 +54,7 @@ const Register = ({ title }) => {
         .then((response) => {
           if (response?.access) {
             setAuthUser(response?.access);
+            setAuthRefresh(response?.refresh);
           }
         })
         .then(() => {
@@ -73,7 +77,6 @@ const Register = ({ title }) => {
 
       <section
         className={
-          // "bg-white p-5 grid grid-cols-2 gap-5 max-[1000px]:grid-cols-1"
           "bg-white p-5 flex flex-col-reverse xl:grid xl:grid-cols-2 xl:gap-5"
         }
       >

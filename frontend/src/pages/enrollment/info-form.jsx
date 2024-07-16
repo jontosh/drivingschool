@@ -214,7 +214,7 @@ export const InfoForm = ({ packages }) => {
 
             <Form.Item
               name={"address"}
-              label={"address"}
+              label={"Address"}
               rules={[
                 {
                   required: true,
