@@ -50,11 +50,14 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
+    if (AuthUser === null) {
+      setLogTime(null);
+    }
     const t = setInterval(
       () => {
         Auth();
       },
-      1000 * 60 * 20,
+      1000 * 60 * 50,
     );
 
     return () => clearInterval(t);

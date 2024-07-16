@@ -1,4 +1,3 @@
-import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
@@ -9,8 +8,8 @@ import { ChartDashboard } from "@/pages/dashboard/items/chart.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { filteredTeachers } from "@/redux/slice/filter-slice.jsx";
-import { ConfigProvider, Statistic, Tabs } from "antd";
-import { Formik } from "formik";
+import { ConfigProvider, Form, Statistic, Tabs } from "antd";
+import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -25,6 +24,7 @@ import Expenses from "../../assets/icons/expenses.svg";
 import DiagramUpBold from "../../assets/icons/overview.svg";
 import LinksIcon from "../../assets/icons/links.svg";
 import InstructorAva from "@/assets/user/instructor.jpeg";
+import DashboardStyle from "./dashboard.module.scss";
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -39,6 +39,7 @@ const Dashboard = () => {
   const [ActiveTeacherCart, setActiveTeacherCart] = useState(-1);
   const [SearchTeacher, setSearchTeacher] = useState("");
   const [Teachers, setTeachers] = useState([]);
+  const [form] = Form.useForm();
 
   useEffect(() => {
     setTeachers(ListOfTeachersData);
@@ -53,11 +54,7 @@ const Dashboard = () => {
   }, [Teachers?.length, SearchTeacher]);
 
   const handleClickTeacherCart = (id) => setActiveTeacherCart(id);
-  const handleViewAll = () => {
-    setTeachers(ListOfTeachersData);
-    setActiveTeacherCart(-1);
-    setSearchTeacher("");
-  };
+  const onFinish = (values) => setSearchTeacher(values["search"]);
 
   const teacher = Teachers?.map((teacher, index) => {
     return (
@@ -113,9 +110,9 @@ const Dashboard = () => {
           Dashboard
         </Title>
 
-        <div className="gap-5 min-[1335px]:grid-cols-4 md:grid-cols-2 md:grid">
+        <div className="space-y-5 sm:space-y-0 sm:gap-5 min-[1335px]:grid-cols-4 sm:grid-cols-2 sm:grid">
           <div className="bg-white flex items-center p-5 rounded-xl gap-5">
-            <div className="bg-[#FFF5D9] w-20 h-20 rounded-full flex items-center justify-center">
+            <div className="bg-[#FFF5D9] rounded-full flex items-center justify-center w-12 h-12 sm:w-20 sm:h-20">
               <Image className={"w-8"} src={Earning} srcSet={Earning} />
             </div>
 
@@ -131,7 +128,7 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-white p-5 rounded-xl gap-5 flex items-center">
-            <div className="bg-[#E7EDFF] w-20 h-20 rounded-full flex items-center justify-center">
+            <div className="bg-[#E7EDFF] rounded-full flex items-center justify-center w-12 h-12 sm:w-20 sm:h-20">
               <Image
                 className={"w-8"}
                 src={StudentStudying}
@@ -150,7 +147,7 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-white flex items-center p-5 rounded-xl gap-5">
-            <div className="bg-[#FFE0EB] w-20 h-20 rounded-full flex items-center justify-center">
+            <div className="bg-[#FFE0EB] rounded-full flex items-center justify-center w-12 h-12 sm:w-20 sm:h-20">
               <Image
                 className={"w-8"}
                 src={StudentsRegistration}
@@ -168,7 +165,7 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-white flex items-center p-5 rounded-xl gap-5">
-            <div className="bg-[#DCFAF8] w-20 h-20 rounded-full flex items-center justify-center">
+            <div className="bg-[#DCFAF8] rounded-full flex items-center justify-center w-12 h-12 sm:w-20 sm:h-20">
               <Image className={"w-8"} src={Expenses} srcSet={Expenses} />
             </div>
 
@@ -183,8 +180,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="md:flex gap-5">
-          <div className="flex-grow">
+        <div className="space-y-5 md:space-y-0 md:flex md:gap-5 md:justify-between">
+          <div className={classNames(DashboardStyle["Dashboard__overview"])}>
             <div className="flex items-center gap-4">
               <Title level={4} fontSize={"text-xl"}>
                 Overview
@@ -259,69 +256,43 @@ const Dashboard = () => {
         </div>
 
         <div className={"space-y-5"}>
-          <Formik
-            initialValues={{
-              search: "",
-            }}
-            validate={(values) => {
-              const errors = {};
-
-              if (!values.search) {
-                errors.search = "Is not valid value";
-              } else {
-                setSearchTeacher(values.search);
-              }
-
-              return errors;
-            }}
-          >
-            {({ handleChange, handleSubmit, values, errors }) => (
-              <form
-                className={"flex gap-5 justify-between"}
-                onSubmit={handleSubmit}
+          <Form form={form} onFinish={onFinish}>
+            <Form.Item
+              name="search"
+              className={"mb-0"}
+              label={"Teacher"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input data",
+                },
+              ]}
+            >
+              <CustomInput
+                onChange={(e) => setSearchTeacher(e.target.value)}
+                placeholder={"search"}
+                classNames={"w-96"}
+                className={"pl-10"}
+                colorBorder={colorsObject.main}
               >
-                <label className={"relative"}>
-                  <CustomInput
-                    colorBorder={colorsObject.main}
-                    spanText={"Teacher"}
-                    spanClassName={"font-medium"}
-                    fontSize="text-base"
-                    placeholder={"Find teacher"}
-                    classNames={
-                      "inline-flex flex-row-reverse items-center gap-5"
-                    }
-                    className={`w-96 pl-12 pr-4 py-2.5  h-10 text-sm inline-flex flex-row-reverse shadow-xl`}
-                    value={values.search}
-                    onChange={handleChange}
-                    name={"search"}
-                  />
-                  <span
-                    className={
-                      "absolute left-24 top-1/2 w-5 h-5 -translate-y-1/2 "
-                    }
-                  >
-                    <AiOutlineSearch />
-                  </span>
-                </label>
-
-                <ButtonComponent
-                  defaultColor={colorsObject.black}
-                  defaultHoverColor={colorsObject.black}
-                  onClick={handleViewAll}
-                  fontSize={"text-base"}
-                  className={"font-medium"}
+                <span
+                  className={
+                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
+                  }
                 >
-                  View All
-                </ButtonComponent>
-              </form>
-            )}
-          </Formik>
+                  <AiOutlineSearch />
+                </span>
+              </CustomInput>
+            </Form.Item>
+          </Form>
 
           <div className={"flex gap-5 overflow-hidden w-full"}>
             {isLoading ? (
               <Title level={4} fontSize={"text-lg"}>
                 Loading...
               </Title>
+            ) : teacher?.length === 0 ? (
+              "Empty..."
             ) : (
               teacher
             )}
