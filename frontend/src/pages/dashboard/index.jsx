@@ -60,7 +60,7 @@ const Dashboard = () => {
     return (
       <Fragment key={index}>
         <div
-          className="w-48 px-8 py-7 bg-white rounded-lg space-y-5"
+          className="w-48 px-8 py-7 bg-white rounded-lg space-y-5 flex-shrink-0"
           onClick={() => handleClickTeacherCart(index)}
         >
           <Image
@@ -194,7 +194,7 @@ const Dashboard = () => {
               />
             </div>
 
-            <div className="bg-white rounded-xl py-7 px-10 mt-3">
+            <div className="bg-white rounded-xl py-7 px-1.5 sm:px-10 mt-3">
               <ChartDashboard />
             </div>
           </div>
@@ -206,7 +206,7 @@ const Dashboard = () => {
 
               <Image className={"w-6"} src={LinksIcon} srcSet={LinksIcon} />
             </div>
-            <div className="bg-white px-6 py-8 rounded-xl space-y-6 mt-3">
+            <div className="bg-white rounded-xl py-7 px-2.5 sm:px-10 mt-3 space-y-5">
               <Link
                 to={"/admin/student/account/profile/"}
                 className={
@@ -257,21 +257,11 @@ const Dashboard = () => {
 
         <div className={"space-y-5"}>
           <Form form={form} onFinish={onFinish}>
-            <Form.Item
-              name="search"
-              className={"mb-0"}
-              label={"Teacher"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input data",
-                },
-              ]}
-            >
+            <Form.Item name="search" className={"mb-0"} label={"Teacher"}>
               <CustomInput
                 onChange={(e) => setSearchTeacher(e.target.value)}
                 placeholder={"search"}
-                classNames={"w-96"}
+                classNames={"max-w-96"}
                 className={"pl-10"}
                 colorBorder={colorsObject.main}
               >
@@ -286,7 +276,9 @@ const Dashboard = () => {
             </Form.Item>
           </Form>
 
-          <div className={"flex gap-5 overflow-hidden w-full"}>
+          <div
+            className={"flex gap-5 overflow-y-hidden overflow-x-scroll w-full"}
+          >
             {isLoading ? (
               <Title level={4} fontSize={"text-lg"}>
                 Loading...
@@ -303,7 +295,7 @@ const Dashboard = () => {
           )}
         </div>
 
-        <div className="bg-white px-12 py-3.5 rounded-2xl shadow-xl">
+        <div className="bg-white px-5 lg:px-12 py-3.5 rounded-2xl shadow-xl">
           <ConfigProvider
             theme={{
               components: {
