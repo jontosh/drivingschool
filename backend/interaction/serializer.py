@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Tasks,Logs,LatestNews,EmailTemplate
+from .models import Tasks,Logs,LatestNews,EmailTemplate,Template,SendTemplate
 from location.views import LocationSerializer,VehicleSerializer,SchoolSerializer,Vehicle,Class,Location
 from servises.serializer import ServicesSerializer
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,TimeRangeSerializer,\
@@ -157,4 +157,24 @@ class EmailTemplateSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = EmailTemplate
+        fields = "__all__"
+
+
+class TemplateSerializer(serializers.ModelSerializer):
+    """
+    This is email Template serializer. It will help to get text and Student or Instructor. while saving data it
+    will change text by itself
+    """
+    class Meta:
+        model = Template
+        fields = "__all__"
+
+
+class SendTemplateSerializer(serializers.ModelSerializer):
+    """
+    This is email Template serializer. It will help to get text and Student or Instructor. while saving data it
+    will change text by itself
+    """
+    class Meta:
+        model = SendTemplate
         fields = "__all__"
