@@ -81,7 +81,7 @@ const InstructorProfile = () => {
       <Helmet>
         <title>Instructor - Profile</title>
       </Helmet>
-      <section className={"px-11 space-y-5 max-w-full w-full"}>
+      <section className={"px-3 sm:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -95,7 +95,7 @@ const InstructorProfile = () => {
         <Form
           form={form}
           onFinish={onFinish}
-          className="bg-white rounded-xl py-16 px-[75px] space-y-5"
+          className="bg-white rounded-xl py-5 sm:py-16 px-7 sm:px-[75px] space-y-5"
           layout={"vertical"}
         >
           <Form.Item

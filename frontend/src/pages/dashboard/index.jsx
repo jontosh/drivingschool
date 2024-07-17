@@ -261,7 +261,6 @@ const Dashboard = () => {
               theme={{
                 token: {
                   fontSize: 16,
-                  fontWeightStrong: 500
                 },
               }}
             >

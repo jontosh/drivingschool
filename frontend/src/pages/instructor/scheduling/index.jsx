@@ -40,7 +40,7 @@ const Scheduling = () => {
         <title> Instructor - SCHEDULE LESSONS</title>
       </Helmet>
       <section
-        className={classNames("px-11 space-y-5 max-w-full w-full space-y-5")}
+        className={classNames("px-3 sm:px-11 space-y-5 max-w-full w-full space-y-5")}
       >
         <div className="flex items-center justify-between">
           <Title
@@ -48,7 +48,7 @@ const Scheduling = () => {
             fontSize={"text-indigo-600 text-4xl"}
             fontWeightStrong={600}
             titleMarginBottom={26}
-            className={"pl-7"}
+            className={"pl-1 sm:pl-7"}
           >
             SCHEDULE LESSONS
           </Title>
@@ -93,7 +93,7 @@ const Scheduling = () => {
             </div>
           </div>
 
-          <div className="flex gap-5 max-[1350px]:flex-col">
+          <div className="flex gap-5 max-[1250px]:flex-col">
             <aside className={"space-y-5"}>
               <Calendar value={value} onChange={onChange} size={370} />
 
@@ -102,7 +102,7 @@ const Scheduling = () => {
                   Quick links
                 </Title>
 
-                <div className={"grid grid-cols-2 items-center gap-2.5"}>
+                <div className={"grid min-[1350px]:grid-cols-2 items-center gap-2.5"}>
                   <Link to={"/#"}>
                     <ButtonComponent
                       defaultBg={colorsObject.primary}
