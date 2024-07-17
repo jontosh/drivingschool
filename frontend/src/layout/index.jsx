@@ -38,15 +38,15 @@ const Layout = () => {
   const [IsActive, setIsActive] = useState(true);
   const [stateOpenKeys, setStateOpenKeys] = useState([""]);
   const [state, dispatch] = useReducer(PortalReducer, { portal: false });
+  const [IsBurger, setIsBurger] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { items } = MenuItems(IsActive, getItem);
+  const { items } = MenuItems(IsActive, getItem, setIsBurger);
   const { items: InstructorItems } = InstructorMenu(IsActive, getItem);
   const { items: StudentItems } = StudentMenu(IsActive, getItem);
   const levelKeys = GetLevelKeys(items);
   const { colorsObject } = useContext(ColorsContext);
   const { pathname: toOrigin } = useBaseURL();
-  const [IsBurger, setIsBurger] = useState(false);
 
   useEffect(() => {
     if (
@@ -70,13 +70,21 @@ const Layout = () => {
     dispatch({ type: pathname.split("/")[1], pathname });
   }, []);
 
-  const handleSideBar = () => setIsActive((prev) => !prev);
-  const handleBurger = () => {
-    setIsBurger((prev) => !prev);
+  useEffect(() => {
     const root = document.getElementById("root");
-    root.style.overflow = IsBurger ? "visible" : "hidden";
-    root.style.height = IsBurger ? "auto" : "100vh";
-  };
+    root.style.overflow = IsBurger ? "hidden" : "visible";
+    root.style.height = IsBurger ? "100vh" : "auto";
+  }, [IsBurger]);
+
+  window.addEventListener("resize", () => {
+    const root = document.getElementById("root");
+    root.style.overflow = "visible";
+    root.style.height = "auto";
+    setIsBurger(false);
+  });
+
+  const handleSideBar = () => setIsActive((prev) => !prev);
+  const handleBurger = () => setIsBurger((prev) => !prev);
 
   const onOpenChange = (openKeys) => {
     const currentOpenKey = openKeys.find(
@@ -280,6 +288,7 @@ const Layout = () => {
                     subMenuItemBg: "transparent",
                     itemPaddingInline: 0,
                     padding: 0,
+                    itemSelectedColor: "black",
                   },
                 },
               }}
@@ -313,7 +322,9 @@ const Layout = () => {
           <Outlet />
           {IsBurger && (
             <div
-              className={"fixed top-[79px] left-0 right-0 bottom-0 lg:hidden"}
+              className={
+                "fixed top-[79px] left-0 right-0 bottom-0 lg:hidden z-10"
+              }
             >
               <div className="max-w-80 w-full ml-auto">
                 <ConfigProvider
@@ -325,6 +336,7 @@ const Layout = () => {
                         subMenuItemBg: "transparent",
                         itemPaddingInline: 0,
                         padding: 0,
+                        itemSelectedColor: "black",
                       },
                     },
                   }}

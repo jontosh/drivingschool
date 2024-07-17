@@ -67,7 +67,7 @@ const StudentAccount = () => {
       <Helmet>
         <title>Student Account</title>
       </Helmet>
-      <section className={classNames(StudentAccountStyle["Student"], "px-11")}>
+      <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -251,7 +251,9 @@ const StudentAccount = () => {
 
         <div className={"p-5 bg-white rounded-3xl"}>
           <div
-            className={"space-x-6 px-5 -mt-5 -mx-5 border-b border-b-gray-400"}
+            className={
+              "flex gap-x-5 flex-wrap px-5 -mt-5 -mx-5 border-b border-b-gray-400"
+            }
           >
             <NavLink
               to={`/admin/student/account/profile/${studentId ?? ""}`}
