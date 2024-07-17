@@ -39,13 +39,14 @@ const Layout = () => {
   const [stateOpenKeys, setStateOpenKeys] = useState([""]);
   const [state, dispatch] = useReducer(PortalReducer, { portal: false });
   const navigate = useNavigate();
-  const { pathname, origin } = useLocation();
+  const { pathname } = useLocation();
   const { items } = MenuItems(IsActive, getItem);
   const { items: InstructorItems } = InstructorMenu(IsActive, getItem);
   const { items: StudentItems } = StudentMenu(IsActive, getItem);
   const levelKeys = GetLevelKeys(items);
   const { colorsObject } = useContext(ColorsContext);
   const { pathname: toOrigin } = useBaseURL();
+  const [IsBurger, setIsBurger] = useState(false);
 
   useEffect(() => {
     if (
@@ -70,6 +71,12 @@ const Layout = () => {
   }, []);
 
   const handleSideBar = () => setIsActive((prev) => !prev);
+  const handleBurger = () => {
+    setIsBurger((prev) => !prev);
+    const root = document.getElementById("root");
+    root.style.overflow = IsBurger ? "visible" : "hidden";
+    root.style.height = IsBurger ? "auto" : "100vh";
+  };
 
   const onOpenChange = (openKeys) => {
     const currentOpenKey = openKeys.find(
@@ -128,7 +135,7 @@ const Layout = () => {
         <meta name="theme-color" content="#ffffff" />
       </Helmet>
       <header
-        className={`${LayoutStyle["Header"]} gap-2.5 px-5 py-4 bg-white flex items-center justify-between`}
+        className={`${LayoutStyle["Header"]} px-5 py-4 bg-white flex gap-2.5 items-center justify-between`}
       >
         <Link
           to={"/" + toOrigin + "/dashboard/"}
@@ -191,7 +198,7 @@ const Layout = () => {
             />
           </ConfigProvider>
 
-          <button className={`size-6 lg:hidden`}>
+          <button className={`size-6 lg:hidden`} onClick={handleBurger}>
             <FaListUl />
           </button>
 
@@ -300,8 +307,53 @@ const Layout = () => {
             </ConfigProvider>
           </nav>
         </aside>
-        <article className={`bg-slate-100 rounded-lg py-5 max-w-full w-full`}>
+        <article
+          className={`relative bg-slate-100 rounded-lg py-5 max-w-full w-full`}
+        >
           <Outlet />
+          {IsBurger && (
+            <div
+              className={"fixed top-[79px] left-0 right-0 bottom-0 lg:hidden"}
+            >
+              <div className="max-w-80 w-full ml-auto">
+                <ConfigProvider
+                  theme={{
+                    components: {
+                      Menu: {
+                        itemSelectedBg: "transparent",
+                        itemHoverBg: "transparent",
+                        subMenuItemBg: "transparent",
+                        itemPaddingInline: 0,
+                        padding: 0,
+                      },
+                    },
+                  }}
+                >
+                  <Menu
+                    style={{
+                      width: "100%",
+                      padding: 0,
+                      border: "none",
+                      boxShadow: "0 4px 4px 0 #00000040",
+                      minHeight: "100vh",
+                    }}
+                    defaultOpenKeys={["sub1"]}
+                    defaultSelectedKeys={["1"]}
+                    openKeys={stateOpenKeys}
+                    onOpenChange={onOpenChange}
+                    mode="inline"
+                    items={
+                      state?.portalText === "admin"
+                        ? items
+                        : state?.portalText === "instructor"
+                          ? InstructorItems
+                          : StudentItems
+                    }
+                  />
+                </ConfigProvider>
+              </div>
+            </div>
+          )}
         </article>
       </main>
     </Fragment>
