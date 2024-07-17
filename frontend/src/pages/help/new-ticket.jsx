@@ -4,6 +4,7 @@ import { Fragment, useContext } from "react"
 import { Helmet } from "react-helmet"
 import ColorsContext from "@/context/colors.jsx";
 import ButtonComponent from "@/components/button";
+import { Form } from "antd";
 
 export const NewTicket = () => {
     const { colorsObject } = useContext(ColorsContext);
@@ -12,7 +13,7 @@ export const NewTicket = () => {
             <Helmet>
                 <title>New Ticket</title>
             </Helmet>
-            <div className="px-11">
+            <div className="px-3 sm:px-11">
                 <Title
                     level={2}
                     fontSize={"text-black text-2xl"}
@@ -39,62 +40,57 @@ export const NewTicket = () => {
                     </Paragraph>
 
                     <div className="pt-10">
-                        <form>
-                            <div className="grid grid-cols-3 gap-x-5 items-center justify-between">
-                                <CustomInput
-                                    spanText={"Email"}
-                                    spanClassName={"font-medium"}
-                                    placeholder={"Type Email"}
-                                    classNames={"flex flex-col-reverse gap-y-2 h-[78px]"}
-                                    className={"w-full py-2.5 shadow-xl"}
-                                    colorBorder={colorsObject.primary}
-                                />
+                        <Form layout="vertical">
+                            <div className="grid md:grid-cols-3  gap-5 items-center">
+                                <Form.Item label="Email">
+                                    <CustomInput placeholder={"Type Email"} type="email" classNames={"w-full"} />
+                                </Form.Item>
 
-                                <label className="flex flex-col gap-y-1">
-                                    <span className="font-medium">Priority Status</span>
+                                <Form.Item label="Request Ticket Type">
                                     <CustomSelect
-                                        colorBorder={colorsObject.primary}
-                                        className={"w-full h-[50px] shadow-xl"}
+                                        placeholder={"Choose Type"}
                                         options={[
                                             {
-                                                value: 1,
-                                                label: 1,
-                                            },
+                                                value: "choose",
+                                                label: "choose",
+                                            }
                                         ]}
+                                        className={"h-[50px]"}
                                     />
-                                </label>
+                                </Form.Item>
 
-                                <CustomInput
-                                    spanText={"Priority Status"}
-                                    spanClassName={"font-medium"}
-                                    placeholder={"Select Status"}
-                                    classNames={"flex flex-col-reverse gap-y-2 h-[78px]"}
-                                    className={"w-full py-2.5 shadow-xl"}
-                                    colorBorder={colorsObject.primary}
-                                />
+                                <Form.Item label="Priority Status">
+                                    <CustomSelect
+                                        placeholder={"Select Status"}
+                                        options={[
+                                            {
+                                                value: "choose",
+                                                label: "choose",
+                                            }
+                                        ]}
+                                        className={"h-[50px]"}
+                                    />
+                                </Form.Item>
                             </div>
 
-                            <label className="flex flex-col gap-y-2 pt-10">
-                                <span className="font-medium">Ticket Body</span>
-
+                            <Form.Item label="Ticket Body">
                                 <textarea
                                     placeholder="Type ticket issue here.."
-                                    className="p-2.5 border border-blue-600 outline-none rounded-lg min-h-60 shadow-xl"
+                                    className="w-full border border-[#667085] rounded text-gray-500 p-3 outline-none"
                                 ></textarea>
-                            </label>
+                            </Form.Item>
 
                             <div className="text-end">
                                 <ButtonComponent
                                     defaultBg={colorsObject.info}
-                                    defaultHoverBg={colorsObject.info}
+                                    defaultHoverBg={colorsObject.infoHover}
+                                    paddingInline={43}
                                     borderRadius={4}
-                                    controlHeight={44}
-                                    className={"w-[157px] mt-10"}
                                 >
                                     Send Ticket
                                 </ButtonComponent>
                             </div>
-                        </form>
+                        </Form>
                     </div>
                 </section>
             </div>

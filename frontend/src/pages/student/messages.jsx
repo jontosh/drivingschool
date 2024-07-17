@@ -100,8 +100,10 @@ export const Messages = () => {
               </IconComponent>
             </Title>
 
-            <div className={"space-x-5"}>
-              <a className={"text-indigo-700 font-normal"}>(513)837-5128</a>
+            <div className={"flex max-[510px]:flex-col gap-5"}>
+              <a className={"text-indigo-700 font-normal"}>
+                (513)837-5128
+              </a>
               <a className={"text-gray-700 font-normal hover:text-indigo-700"}>
                 (513)837-5128
               </a>
@@ -132,7 +134,7 @@ export const Messages = () => {
               </div>
             </blockquote>
 
-            <div className={"flex gap-4 items-end"}>
+            <div className={"flex max-[510px]:flex-col gap-4 items-end"}>
               <textarea
                 className={
                   "w-full border border-[#667085] rounded-2xl p-5 outline-0"

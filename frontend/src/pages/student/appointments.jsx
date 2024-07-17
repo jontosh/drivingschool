@@ -15,7 +15,7 @@ export const Appointments = () => {
 
   return (
     <div>
-      <div className={"space-x-9"}>
+      <div className={"flex max-[500px]:flex-col gap-9 max-[500px]:gap-3 max-[500px]:text-center"}>
         {/*By Student IS*/}
         <NavLink
           className={setActiveLink}
@@ -33,13 +33,14 @@ export const Appointments = () => {
 
       <form
         className={
-          "pt-3.5 pb-3 flex gap-5 items-center border-b border-b-gray-400 -mx-5 px-5"
+          "pt-3.5 pb-3 flex max-xl:flex-col gap-5 items-center border-b border-b-gray-400 -mx-5 px-5"
         }
       >
-        <label className={"relative"}>
+        <label className={"relative w-full"}>
           <CustomInput
             placeholder={"Search"}
-            className={`w-96 pl-12 pr-4 text-sm`}
+            className={`xl:w-96 pl-12 pr-4 text-sm`}
+            classNames={`max-xl:w-full`}
           />
 
           <span className={"absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "}>
@@ -48,7 +49,7 @@ export const Appointments = () => {
         </label>
         <CustomSelect
           placeholder={"Please select type"}
-          className={`w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+          className={`w-full xl:w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
           options={[
             {
               value: "8h in car",
@@ -58,7 +59,7 @@ export const Appointments = () => {
         />
         <CustomSelect
           placeholder={"Please select status"}
-          className={`w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
+          className={`w-full xl:w-[207px] h-[50px] ${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
           options={[
             {
               value: "Confirmed",

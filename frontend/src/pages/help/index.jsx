@@ -28,7 +28,7 @@ export const Help = () => {
       <Helmet>
         <title>Help</title>
       </Helmet>
-      <div className="px-11">
+      <div className="px-3 sm:px-11">
         <Title
           level={2}
           fontSize={"text-black text-2xl"}
@@ -38,7 +38,7 @@ export const Help = () => {
           Customer Support
         </Title>
 
-        <header className="grid grid-cols-4 gap-10">
+        <header className="grid sm:grid-cols-2 xl:grid-cols-4 gap-10">
           <div className="bg-white flex flex-col gap-y-2 text-center pl-6 pr-6 pb-4 rounded-lg">
             <div className="w-14 h-14 bg-blue-500 rounded-full mx-auto -mt-[28px]">
               <MdEmail className="text-white w-[25px] h-[25px] m-auto mt-3.5" />
@@ -95,7 +95,7 @@ export const Help = () => {
               fontWeightStrong={500}
             >Latest news</Title>
 
-            <Link to="/support/news">
+            <Link to="/admin/support/news">
               <ButtonComponent
                 defaultBg="#1890FF"
                 defaultHoverBg="#1890FF"
@@ -112,7 +112,7 @@ export const Help = () => {
             {newsItems.map((item) => (
               <Link key={item.id} to={`ticket/${item.title}/${item.id}`}>
                 <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                  <div className="flex justify-between items-center">
+                  <div className="flex max-md:flex-col gap-2.5 justify-between items-center">
                     <Paragraph className="font-semibold text-lg">
                       {item.title.replace('-', ' ').toUpperCase()}
                     </Paragraph>
@@ -121,11 +121,11 @@ export const Help = () => {
                       <span className="text-lg font-normal">{item.date}</span>
                     </div>
                   </div>
-                  <span className="flex justify-between items-center">
+                  <span className="flex max-md:flex-col justify-between items-center max-md:items-end">
                     <Paragraph className="font-normal text-sm text-gray-400">
                       {item.description}
                     </Paragraph>
-                    <IconComponent icon={<ExportOutlined />} className="text-gray-400" />
+                    <IconComponent icon={<ExportOutlined />} className="text-gray-400 max-md:text-right" />
                   </span>
                 </div>
               </Link>
@@ -144,12 +144,13 @@ export const Help = () => {
           </Title>
 
           <div className="bg-white p-5 rounded-lg">
-            <div className="flex justify-between items-center pt-2.5">
-              <label className={"relative"}>
+            <div className="flex max-md:flex-col max-md:gap-y-3 justify-between items-center max-md:items-start pt-2.5">
+              <label className={"relative max-md:w-full"}>
                 <CustomInput
                   colorBorder={"#E7E7E7"}
                   placeholder={"Search for ticket"}
-                  className={`w-[254px] pl-10 pr-4 py-2.5 h-[50] text-sm inline-flex flex-row-reverse`}
+                  className={`md:w-[254px] pl-10 pr-4 py-2.5 h-[50] text-sm inline-flex flex-row-reverse`}
+                  classNames="w-full"
                 />
                 <span
                   className={
@@ -177,7 +178,7 @@ export const Help = () => {
                   ]}
                 />
 
-                <Link to="/support/new-ticket">
+                <Link to="/admin/support/new-ticket">
                   <ButtonComponent
                     defaultBg="#1890FF"
                     defaultHoverBg="#1890FF"

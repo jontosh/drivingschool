@@ -69,13 +69,13 @@ const Enrollment = () => {
   return (
     <Fragment>
       <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
-        <div className="-mx-10 px-3 md:px-10 border-b pb-5 border-b-gray-400 flex items-center flex-col md:flex-row space-y-2.5 justify-between">
+        <div className="-mx-10 px-3 md:px-10 border-b pb-5 border-b-gray-400 flex items-center flex-col md:flex-row max-md:space-y-2.5 justify-between">
           <Title level={2} fontSize={"text-xl space-x-2"}>
             <span className="text-indigo-700">Enrollment</span>
             <span className={"text-[#24C18F]"}>${Price}</span>
           </Title>
 
-          <div className="grid min-[500px]:grid-cols-3 gap-2 w-full">
+          <div className="grid min-[500px]:grid-cols-3 gap-2 max-md:w-full">
             <ButtonComponent
               defaultBg={"#24C18F"}
               defaultHoverBg={"#3CE3AE"}
@@ -174,13 +174,13 @@ const Billings = () => {
   return (
     <Fragment>
       <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
-        <div className="-mx-10 px-3 md:px-10 border-b pb-5 border-b-gray-400 flex items-center flex-col md:flex-row space-y-2.5 justify-between">
+        <div className="-mx-10 px-3 md:px-10 border-b pb-5 border-b-gray-400 flex items-center flex-col md:flex-row max-md:space-y-2.5 justify-between">
           <Title level={2} fontSize={"text-xl space-x-2"}>
             <span className="text-indigo-700">Billing</span>
             <span className={"text-[#24C18F]"}>${Price}</span>
           </Title>
 
-          <div className="grid min-[500px]:grid-cols-3 gap-2 w-full">
+          <div className="grid min-[500px]:grid-cols-3 gap-2 max-md:w-full">
             <ButtonComponent
               defaultBg={"#24C18F"}
               defaultHoverBg={"#3CE3AE"}
