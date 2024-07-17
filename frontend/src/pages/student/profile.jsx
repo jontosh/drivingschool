@@ -297,7 +297,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="p-5 grid lg:grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
+        <div className="p-0 sm:p-5 grid lg:grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
           <div className="space-y-5">
             <Form.Item name={"type"} label={"Student Type"}>
               <CustomSelect

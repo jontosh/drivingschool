@@ -27,6 +27,8 @@ Router = {
             "task":"task",
             "logs":"logs",
             "latest_news":"latest_news",
+            "send_template":"send_template",
+            "template":"template",
         }
     },
     "account_management":{

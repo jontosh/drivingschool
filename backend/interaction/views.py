@@ -1,12 +1,8 @@
-from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.views import APIView
 from django.apps import apps
 from rest_framework.response import Response
-from markdown import markdown
 from rest_framework import viewsets
-from rest_framework_simplejwt.authentication import JWTAuthentication
-
 from .models import Tasks ,Logs, LatestNews
 from configuration.models import Expanses
 from Users.serializer import BillSerializer,Bill,Enrollment,Files,FilesSerializer,Student,Instructor
@@ -16,10 +12,11 @@ from django.db.models import Sum,Count
 from collections import defaultdict
 from .serializer import TasksSerializer\
     ,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
-    StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate
+    StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate,\
+    TemplateSerializer,SendTemplateSerializer,Template,SendTemplate
+from django.core.mail import send_mail
+
 import  re
-from django import forms
-from django.shortcuts import render
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
@@ -261,3 +258,68 @@ class EmailTemplateStudentView(viewsets.ModelViewSet):
             return str(self.get_nested_value(data, key))
 
         return re.sub(pattern, replacer, text)
+
+
+
+class SendTemplateViewSet(viewsets.ModelViewSet):
+    queryset = SendTemplate.objects.all()
+    serializer_class = SendTemplateSerializer
+    permission_classes = [AllowAny]
+
+    def perform_create(self, serializer):
+        # # Perform any custom logic before saving the school, e.g., validation checks
+        # serializer.save()
+        if serializer.is_valid():
+            send_template = serializer.save()
+            main_template = send_template.template
+            template = main_template.template
+            subject = main_template.name
+            users = send_template.to.all()
+            for user in users:
+                if str(user.type.name).lower() == "student":
+                    data = StudentSerializerEmail(Student.objects.get(id=user.id)).data
+                    email = self.replace_placeholders(template, data)
+                    send_mail(subject,email,'aliyuldashev880@gmail.com',[user.email])
+                else:
+                    data = InstructorEmailSerializer(Instructor.objects.get(id=user.id)).data
+                    email = self.replace_placeholders(template, data)
+                    send_mail(subject,email,'aliyuldashev880@gmail.com',[user.email])
+
+
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()
+    def get_nested_value(self,data, key_path):
+        """
+        Here this will return value of variable provided by user in email template
+        """
+        keys = key_path.split('.')
+        value = data
+        print(keys)
+        for key in keys[1:]:
+            value = value.get(key)
+            if value is None:
+                return ''
+        return value
+    def replace_placeholders(self,text, data):
+        """
+        Here we will find is there any variable in text email template .
+        """
+        pattern = r'{{(.*?)}}'
+        def replacer(match):
+            key = match.group(1).strip()
+            return str(self.get_nested_value(data, key))
+
+        return re.sub(pattern, replacer, text)
+
+
+class TemplateViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = Template.objects.all()
+    serializer_class = TemplateSerializer
+    def perform_create(self, serializer):
+        # Perform any custom logic before saving the school, e.g., validation checks
+        serializer.save()
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()

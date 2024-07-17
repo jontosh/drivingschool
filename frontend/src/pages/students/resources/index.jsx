@@ -10,7 +10,7 @@ const StudentResource = () => {
       <Helmet>
         <title>Student - Resource</title>
       </Helmet>
-      <section className={"px-11 max-w-full w-full space-y-5"}>
+      <section className={"px-3 sm:px-11 max-w-full w-full space-y-5"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -35,7 +35,7 @@ const StudentResource = () => {
           </NavLink>
         </div>
 
-        <div className="bg-white p-5 rounded-xl">
+        <div className="bg-white p-3 sm:p-5 rounded-xl">
           <div className="bg-[#FFB82F80] rounded-xl p-6">
             <Paragraph fontSize={"text-xl"}>
               After each in-car lesson, we provide students with a comprehensive

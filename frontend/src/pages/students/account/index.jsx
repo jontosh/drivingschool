@@ -14,7 +14,7 @@ const StudentAccount = () => {
       <Helmet>
         <title>Student - Account</title>
       </Helmet>
-      <section className={"px-11 space-y-5 max-w-full w-full"}>
+      <section className={"px-3 sm:px-11 space-y-5 max-w-full w-full"}>
         <div className="flex items-center justify-between">
           <Title
             level={2}

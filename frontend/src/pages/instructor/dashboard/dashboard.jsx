@@ -33,7 +33,7 @@ const Dashboard = ({ className, children, ...props }) => {
         <title> Instructor - Dashboard</title>
       </Helmet>
       <section
-        className={classNames(className, "px-11 space-y-5 max-w-full w-full")}
+        className={classNames(className, "px-3 sm:px-11 space-y-5 max-w-full w-full")}
         {...props}
       >
         <Title
@@ -46,7 +46,7 @@ const Dashboard = ({ className, children, ...props }) => {
           Home
         </Title>
 
-        <div className="bg-white rounded-xl px-7 py-5 space-y-5">
+        <div className="bg-white rounded-xl p-5 space-y-5">
           <div className="grid grid-cols-4 gap-5 max-[1400px]:grid-cols-3 max-[1200px]:grid-cols-2 max-[960px]:grid-cols-1">
             <DrivingItem />
             <DrivingItem />
@@ -175,7 +175,7 @@ const Dashboard = ({ className, children, ...props }) => {
             </div>
 
             <div className="space-y-5 border border-[#CED8E5] p-5 rounded-xl">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center  max-sm:flex-col">
                 <div className={"flex items-center space-x-1"}>
                   <IconComponent
                     icon={<IoIosWarning />}
