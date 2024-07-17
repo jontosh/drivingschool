@@ -9,7 +9,6 @@ import { MoneyModule, ShoppingCartModule } from "@/modules/student-account.jsx";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { BookOutlined } from "@ant-design/icons";
 import { Form, Tooltip } from "antd";
-import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
@@ -20,7 +19,6 @@ import {
 import { IoCarOutline } from "react-icons/io5";
 import { PiMoney } from "react-icons/pi";
 import { NavLink, Outlet, useParams } from "react-router-dom";
-import StudentAccountStyle from "./student-account.module.scss";
 
 const StudentAccount = () => {
   const [form] = Form.useForm();
