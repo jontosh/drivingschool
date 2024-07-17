@@ -37,7 +37,6 @@ const StudentAccount = () => {
   const [Search, setSearch] = useState(null);
   const [Student, setStudent] = useState(null);
   const { Data } = useFilterStatus({ data, status: null, search: Search });
-  const [IsRequired, setIsRequired] = useState(true);
 
   useEffect(() => {
     setStudent(StudentById);
@@ -95,7 +94,7 @@ const StudentAccount = () => {
               className={"mb-0"}
               rules={[
                 {
-                  required: IsRequired,
+                  required: true,
                   message: "Please input data",
                 },
               ]}

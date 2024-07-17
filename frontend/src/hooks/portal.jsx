@@ -5,6 +5,7 @@ export const useReducer = (state, action) => {
         ...state,
         portal: action.pathname.split("/")[1] === action.type,
         portalText: action.type,
+        content: action?.content,
       };
     }
     case "instructor": {
@@ -12,6 +13,7 @@ export const useReducer = (state, action) => {
         ...state,
         portal: action.pathname.split("/")[1] === action.type,
         portalText: action.type,
+        content: action?.content,
       };
     }
     case "student": {
@@ -19,6 +21,7 @@ export const useReducer = (state, action) => {
         ...state,
         portal: action.pathname.split("/")[1] === action.type,
         portalText: action.type,
+        content: action?.content,
       };
     }
     default: {

@@ -1,5 +1,3 @@
-import { Company } from "@/pages/configuration/subpages/company.jsx";
-import { Payment } from "@/pages/configuration/subpages/payment.jsx";
 import { StaffPassword } from "@/pages/configuration/subpages/staff-password.jsx";
 import { StudentPassword } from "@/pages/configuration/subpages/student-password.jsx";
 import ServiceStyle from "@/pages/managment/management.module.scss";
@@ -33,14 +31,14 @@ export const PolicySpa = () => {
       <div className="bg-white rounded-2xl px-5">
         <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
           <NavLink
-            to={"/configuration/policies/staff-password"}
+            to={"/admin/configuration/policies/staff-password"}
             className={setActiveNav}
           >
             Staff Password Policies
           </NavLink>
 
           <NavLink
-            to={"/configuration/policies/student-password"}
+            to={"/admin/configuration/policies/student-password"}
             className={setActiveNav}
           >
             Student Password Policies
