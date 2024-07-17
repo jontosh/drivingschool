@@ -15,8 +15,8 @@ const StudentSchedule = ({ className, children, ...props }) => {
         <title>Student - Schedule</title>
       </Helmet>
 
-      <section className={"px-11 max-w-full w-full space-y-8"}>
-        <div className="flex items-start gap-x-20">
+      <section className={"px-3 sm:px-11 max-w-full w-full space-y-8"}>
+        <div className="flex flex-row max-sm:flex-col items-start gap-y-5 max-sm:gap-x-20">
           <Paragraph fontSize={"bg-[#FFB82F80] rounded-xl p-6 text-xl"}>
             You must cancel at least 24 hours before your appointment, or you
             will be charged a $75 fee. Make sure you have your permit and any

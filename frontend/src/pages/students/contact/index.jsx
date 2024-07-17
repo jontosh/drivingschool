@@ -15,18 +15,18 @@ const StudentContact = ({ className, children, ...props }) => {
       <Helmet>
         <title>Student - Contact</title>
       </Helmet>
-      <section className={"px-11 space-y-5 max-w-full w-full"} {...props}>
+      <section className={"px-3 sm:px-11 space-y-5 max-w-full w-full"} {...props}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
           fontWeightStrong={600}
           titleMarginBottom={26}
-          className={"pl-7"}
+          className={"pl-1 sm:pl-7"}
         >
           Contact
         </Title>
 
-        <Paragraph className={"pl-7"}>
+        <Paragraph className={"pl-1 sm:pl-7"}>
           Please select the location below to get address, phone, map, driving
           directions and more.
         </Paragraph>

@@ -67,7 +67,7 @@ const StudentAccount = () => {
       <Helmet>
         <title>Student Account</title>
       </Helmet>
-      <section className={classNames(StudentAccountStyle["Student"], "px-11")}>
+      <section className={classNames(StudentAccountStyle["Student"], "px-3 sm:px-11")}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}

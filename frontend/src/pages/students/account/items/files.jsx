@@ -49,7 +49,7 @@ export const Files = ({ ...props }) => {
               <StudentFileUpload />
             </Form.Item>
 
-            <div className="space-x-5 text-right">
+            <div className="flex max-[500px]:flex-col gap-5 justify-end">
               <ButtonComponent
                 type={"reset"}
                 paddingInline={43}

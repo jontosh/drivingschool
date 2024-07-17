@@ -149,7 +149,7 @@ const Enrollment = () => {
         <title>New student enrollment</title>
       </Helmet>
 
-      <section className={"px-5 md:px-11 space-y-5 max-w-full w-full"}>
+      <section className={"px-3 md:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}

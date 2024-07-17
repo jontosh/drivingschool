@@ -51,7 +51,7 @@ const StudentEnroll = ({ className, children, ...props }) => {
         <title>Student - Enrollment</title>
       </Helmet>
 
-      <section className={"px-11 space-y-5 max-w-full w-full"} {...props}>
+      <section className={"px-3 sm:px-11 space-y-5 max-w-full w-full"} {...props}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}

@@ -547,7 +547,7 @@ export const InfoForm = ({ packages }) => {
           </div>
         </div>
 
-        <div className="space-x-5 text-center pt-5">
+        <div className=" flex flex-col sm:flex-row gap-5 justify-center pt-5">
           <ButtonComponent
             type={"submit"}
             defaultBg={colorsObject.success}
@@ -579,7 +579,7 @@ export const InfoForm = ({ packages }) => {
                 label: "Enter Check Payment",
               },
             ]}
-            className={"h-10"}
+            className={"h-10 text-center"}
             selectorBg={colorsObject.info}
             colorTextPlaceholder={colorsObject.main}
             colorBorder={colorsObject.info}
