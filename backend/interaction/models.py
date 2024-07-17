@@ -6,6 +6,9 @@ from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 from django.conf import settings
 
+import mainadmin.models
+
+
 class Tasks(Extra):
     STATUS = [
         ["NEW","NEW"],
@@ -67,9 +70,19 @@ class EmailTemplate(models.Model):
     def __str__(self):
         return str(self.id)
 
+class Template(Status,Extra):
+    name = models.CharField(max_length=150)
+    template = models.TextField()
 
+    def __str__(self):
+        return self.name
 
+class SendTemplate(models.Model):
+    template = models.ForeignKey("Template",related_name="send_template",on_delete=models.CASCADE)
+    to = models.ManyToManyField("mainadmin.CustomUser",related_name="send_to")
 
+    def __str__(self):
+        return f"{self.template.name} - {self.pk}"
 
 # @receiver(pre_save, sender=Logs)
 # def log_user_actions(sender, instance, **kwargs):
