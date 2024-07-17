@@ -56,9 +56,10 @@ export const AuthProvider = ({ children }) => {
     }
     const t = setInterval(
       () => {
+        // console.log("fuck");
         Auth();
       },
-      1000 * 60 * 50,
+      1000 * 60 * 1000,
     );
 
     return () => clearInterval(t);

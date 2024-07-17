@@ -67,6 +67,7 @@ const StudentAccount = () => {
       <Helmet>
         <title>Student Account</title>
       </Helmet>
+      <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
       <section className={classNames(StudentAccountStyle["Student"], "px-3 sm:px-11")}>
         <Title
           level={2}

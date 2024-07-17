@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed mobile menubar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/auth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/menu-items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/active-nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/active-nav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,15 +213,7 @@
       <workItem from="1720872563784" duration="6728000" />
       <workItem from="1721022051378" duration="8288000" />
       <workItem from="1721034864041" duration="2048000" />
-      <workItem from="1721193897639" duration="2612000" />
-    </task>
-    <task id="LOCAL-00053" summary="#fix #jsx Fixed bug and remote imports">
-      <option name="closed" value="true" />
-      <created>1719107285771</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1719107285771</updated>
+      <workItem from="1721193897639" duration="14213000" />
     </task>
     <task id="LOCAL-00054" summary="#fix #jsx Fixed useNavigate">
       <option name="closed" value="true" />
@@ -602,7 +599,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721134707883</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="#fix #js Fixed mobile menubar">
+      <option name="closed" value="true" />
+      <created>1721196574754</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1721196574755</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +626,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Add feature: Implemented Form.List component for dynamic list rendering" />
     <MESSAGE value="#fix #jsx Refactored data and created new View for test result" />
     <MESSAGE value="#fix #jsx Created Statistic Countdown for deadline timer" />
     <MESSAGE value="#fix #jsx Updated" />
@@ -646,7 +650,8 @@
     <MESSAGE value="#fix #js Fixed bugs to auth, refactored css media on dashboard and validation to search" />
     <MESSAGE value="#fix #js Fixed CSS class bugs and form validation" />
     <MESSAGE value="#fix #js Fixed auth bugs, select total packages and configuration vite" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed auth bugs, select total packages and configuration vite" />
+    <MESSAGE value="#fix #js Fixed mobile menubar" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed mobile menubar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
