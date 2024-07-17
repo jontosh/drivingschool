@@ -9,7 +9,6 @@ import { MoneyModule, ShoppingCartModule } from "@/modules/student-account.jsx";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { BookOutlined } from "@ant-design/icons";
 import { Form, Tooltip } from "antd";
-import classNames from "classnames";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
@@ -20,7 +19,6 @@ import {
 import { IoCarOutline } from "react-icons/io5";
 import { PiMoney } from "react-icons/pi";
 import { NavLink, Outlet, useParams } from "react-router-dom";
-import StudentAccountStyle from "./student-account.module.scss";
 
 const StudentAccount = () => {
   const [form] = Form.useForm();
@@ -37,7 +35,6 @@ const StudentAccount = () => {
   const [Search, setSearch] = useState(null);
   const [Student, setStudent] = useState(null);
   const { Data } = useFilterStatus({ data, status: null, search: Search });
-  const [IsRequired, setIsRequired] = useState(true);
 
   useEffect(() => {
     setStudent(StudentById);
@@ -67,8 +64,7 @@ const StudentAccount = () => {
       <Helmet>
         <title>Student Account</title>
       </Helmet>
-      {/* <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}> */}
-      <section className={classNames(StudentAccountStyle["Student"], "px-3 sm:px-11")}>
+      <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -96,7 +92,7 @@ const StudentAccount = () => {
               className={"mb-0"}
               rules={[
                 {
-                  required: IsRequired,
+                  required: true,
                   message: "Please input data",
                 },
               ]}

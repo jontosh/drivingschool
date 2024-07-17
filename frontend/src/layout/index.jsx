@@ -2,19 +2,15 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { AdminMenu } from "@/layout/items/admin-menu.jsx";
 import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
-import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
-import { StudentMenu } from "@/layout/items/student-menu.jsx";
-import { MenuItems } from "@/layout/menu-items.jsx";
-import { GetLevelKeys } from "@/modules/navbar.jsx";
-import useSessionStorageState from "use-session-storage-state";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
 import Tenant from "../assets/user/tenant.jpeg";
 import { BellFilled } from "@ant-design/icons";
 import { useBaseURL, useReducer as PortalReducer } from "@/hooks/portal.jsx";
-import { Badge, ConfigProvider, Dropdown, Menu, Segmented } from "antd";
+import { Badge, ConfigProvider, Dropdown, Segmented } from "antd";
 import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BiMoon } from "react-icons/bi";
@@ -23,30 +19,23 @@ import { HiOutlineSun } from "react-icons/hi2";
 import { PiCurrencyCircleDollar, PiNoteDuotone } from "react-icons/pi";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
-const getItem = (label, key, icon, children, type) => {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  };
-};
-
 const Layout = () => {
-  // console.clear();
+  console.clear();
   const [IsActive, setIsActive] = useState(true);
-  const [stateOpenKeys, setStateOpenKeys] = useState([""]);
   const [state, dispatch] = useReducer(PortalReducer, { portal: false });
   const [IsBurger, setIsBurger] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { items } = MenuItems(IsActive, getItem, setIsBurger);
-  const { items: InstructorItems } = InstructorMenu(IsActive, getItem);
-  const { items: StudentItems } = StudentMenu(IsActive, getItem);
-  const levelKeys = GetLevelKeys(items);
   const { colorsObject } = useContext(ColorsContext);
   const { pathname: toOrigin } = useBaseURL();
+
+  useEffect(() => {
+    dispatch({
+      type: toOrigin,
+      pathname,
+      content: toOrigin === "admin" ? <AdminMenu /> : null,
+    });
+  }, []);
 
   useEffect(() => {
     if (
@@ -85,37 +74,6 @@ const Layout = () => {
 
   const handleSideBar = () => setIsActive((prev) => !prev);
   const handleBurger = () => setIsBurger((prev) => !prev);
-
-  const onOpenChange = (openKeys) => {
-    const currentOpenKey = openKeys.find(
-      (key) => stateOpenKeys.indexOf(key) === -1,
-    );
-
-    // open
-    if (currentOpenKey !== undefined) {
-      const repeatIndex = openKeys
-        .filter((key) => key !== currentOpenKey)
-        .findIndex((key) => levelKeys[key] === levelKeys[currentOpenKey]);
-
-      const a = openKeys
-        // remove repeat key
-        .filter((_, index) => index !== repeatIndex)
-        // remove current level all child
-        .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]);
-
-      setStateOpenKeys(a);
-      // setStateOpenKeys(
-      //   openKeys
-      //     // remove repeat key
-      //     .filter((_, index) => index !== repeatIndex)
-      //     // remove current level all child
-      //     .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]),
-      // );
-    } else {
-      // close
-      setStateOpenKeys(openKeys);
-    }
-  };
 
   return (
     <Fragment>
@@ -279,41 +237,9 @@ const Layout = () => {
               )}
             </div>
 
-            <ConfigProvider
-              theme={{
-                components: {
-                  Menu: {
-                    itemSelectedBg: "transparent",
-                    itemHoverBg: "transparent",
-                    subMenuItemBg: "transparent",
-                    itemPaddingInline: 0,
-                    padding: 0,
-                    itemSelectedColor: "black",
-                  },
-                },
-              }}
-            >
-              <Menu
-                style={{
-                  width: "100%",
-                  padding: 0,
-                  border: "none",
-                  boxShadow: "0 4px 4px 0 #00000040",
-                }}
-                defaultOpenKeys={["sub1"]}
-                defaultSelectedKeys={["1"]}
-                openKeys={stateOpenKeys}
-                onOpenChange={onOpenChange}
-                mode="inline"
-                items={
-                  state?.portalText === "admin"
-                    ? items
-                    : state?.portalText === "instructor"
-                      ? InstructorItems
-                      : StudentItems
-                }
-              />
-            </ConfigProvider>
+            {toOrigin === "admin" ? (
+              <AdminMenu inlineCollapsed={IsActive} />
+            ) : null}
           </nav>
         </aside>
         <article
@@ -327,42 +253,7 @@ const Layout = () => {
               }
             >
               <div className="max-w-80 w-full ml-auto">
-                <ConfigProvider
-                  theme={{
-                    components: {
-                      Menu: {
-                        itemSelectedBg: "transparent",
-                        itemHoverBg: "transparent",
-                        subMenuItemBg: "transparent",
-                        itemPaddingInline: 0,
-                        padding: 0,
-                        itemSelectedColor: "black",
-                      },
-                    },
-                  }}
-                >
-                  <Menu
-                    style={{
-                      width: "100%",
-                      padding: 0,
-                      border: "none",
-                      boxShadow: "0 4px 4px 0 #00000040",
-                      minHeight: "100vh",
-                    }}
-                    defaultOpenKeys={["sub1"]}
-                    defaultSelectedKeys={["1"]}
-                    openKeys={stateOpenKeys}
-                    onOpenChange={onOpenChange}
-                    mode="inline"
-                    items={
-                      state?.portalText === "admin"
-                        ? items
-                        : state?.portalText === "instructor"
-                          ? InstructorItems
-                          : StudentItems
-                    }
-                  />
-                </ConfigProvider>
+                {toOrigin === "admin" ? <AdminMenu /> : null}
               </div>
             </div>
           )}

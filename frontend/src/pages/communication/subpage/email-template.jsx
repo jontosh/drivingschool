@@ -1,15 +1,12 @@
-import ColorsContext from "@/context/colors.jsx";
-import ServiceStyle from "@/pages/managment/management.module.scss";
-import { Table } from "antd";
-import { Fragment, useContext } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import TableComponent from "@/components/table/index.jsx";
+import { setActiveNav } from "@/modules/active-nav.jsx";
+import { NavLink, useParams } from "react-router-dom";
 
 const CheckPage = ({ page, resources }) => {
-  const navigate = useNavigate();
   switch (page) {
     case "student-portal": {
       return (
-        <Table
+        <TableComponent
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
@@ -18,7 +15,7 @@ const CheckPage = ({ page, resources }) => {
     }
     case "staff-mobile": {
       return (
-        <Table
+        <TableComponent
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
@@ -27,7 +24,7 @@ const CheckPage = ({ page, resources }) => {
     }
     case "admin-portal": {
       return (
-        <Table
+        <TableComponent
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
@@ -36,7 +33,7 @@ const CheckPage = ({ page, resources }) => {
     }
     case "reminders": {
       return (
-        <Table
+        <TableComponent
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
@@ -44,46 +41,40 @@ const CheckPage = ({ page, resources }) => {
       );
     }
     default: {
-      navigate("/communication/email-templates/student-portal");
+      console.error(`Error! Unknown resource type ${page}`);
     }
   }
 };
 
 export const EmailTemplate = ({ header, resources }) => {
-  const { colorsObject } = useContext(ColorsContext);
   const { subpage } = useParams();
-
-  const setActiveNav = ({ isActive }) =>
-    isActive
-      ? `${ServiceStyle["Tab__link-active"]} text-lg py-5`
-      : "hover:text-indigo-500 text-lg text-gray-700 py-5";
 
   return (
     <div className={"pb-5"}>
       <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
         <NavLink
-          to={"/communication/email-templates/student-portal"}
+          to={"/admin/communication/email-templates/student-portal"}
           className={setActiveNav}
         >
           Student portal
         </NavLink>
 
         <NavLink
-          to={"/communication/email-templates/staff-mobile"}
+          to={"/admin/communication/email-templates/staff-mobile"}
           className={setActiveNav}
         >
           Staff mobile
         </NavLink>
 
         <NavLink
-          to={"/communication/email-templates/admin-portal"}
+          to={"/admin/communication/email-templates/admin-portal"}
           className={setActiveNav}
         >
           Admin portal
         </NavLink>
 
         <NavLink
-          to={"/communication/email-templates/reminders"}
+          to={"/admin/communication/email-templates/reminders"}
           className={setActiveNav}
         >
           Reminders

@@ -226,7 +226,7 @@ const Dashboard = () => {
               </Link>
 
               <Link
-                to={"/admin/class-list/notfound"}
+                to={"/admin/communication/student-resources/class"}
                 className={
                   "w-full rounded-lg text-center bg-sky-500 py-2 text-white hover:bg-sky-400"
                 }
@@ -264,7 +264,12 @@ const Dashboard = () => {
                 },
               }}
             >
-              <Form.Item name="search" className={"mb-0 w-full"} label={"Teacher"} style={{ fontWeight: 500 }}>
+              <Form.Item
+                name="search"
+                className={"mb-0 w-full"}
+                label={"Teacher"}
+                style={{ fontWeight: 500 }}
+              >
                 <CustomInput
                   onChange={(e) => setSearchTeacher(e.target.value)}
                   placeholder={"search"}
