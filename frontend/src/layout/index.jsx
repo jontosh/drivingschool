@@ -4,6 +4,7 @@ import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AdminMenu } from "@/layout/items/admin-menu.jsx";
 import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
+import { StudentMenu } from "@/layout/items/student-menu.jsx";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
@@ -101,7 +102,7 @@ const Layout = () => {
         <meta name="theme-color" content="#ffffff" />
       </Helmet>
       <header
-        className={`${LayoutStyle["Header"]} px-5 py-4 bg-white flex gap-2.5 items-center justify-between`}
+        className={`${LayoutStyle["Header"]} lg:static z-10 sticky top-0 left-0 right-0 px-5 py-4 bg-white flex gap-2.5 items-center justify-between`}
       >
         <Link
           to={"/" + toOrigin + "/dashboard/"}
@@ -238,7 +239,9 @@ const Layout = () => {
             </div>
 
             {toOrigin === "admin" ? (
-              <AdminMenu inlineCollapsed={IsActive} />
+              <AdminMenu inlineCollapsed={!IsActive} />
+            ) : toOrigin === "student" ? (
+              <StudentMenu inlineCollapsed={!IsActive} />
             ) : null}
           </nav>
         </aside>
@@ -253,7 +256,21 @@ const Layout = () => {
               }
             >
               <div className="max-w-80 w-full ml-auto">
-                {toOrigin === "admin" ? <AdminMenu /> : null}
+                {toOrigin === "admin" ? (
+                  <AdminMenu
+                    style={{
+                      minHeight: "calc(100vh - 79px)",
+                    }}
+                    inlineCollapsed={false}
+                  />
+                ) : toOrigin === "student" ? (
+                  <StudentMenu
+                    style={{
+                      minHeight: "calc(100vh - 79px)",
+                    }}
+                    inlineCollapsed={false}
+                  />
+                ) : null}
               </div>
             </div>
           )}

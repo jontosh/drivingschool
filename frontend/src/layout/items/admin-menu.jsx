@@ -15,18 +15,19 @@ import {
 } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import useSessionStorageState from "use-session-storage-state";
 
 const { SubMenu } = Menu;
 
-export const AdminMenu = ({ inlineCollapsed }) => {
+export const AdminMenu = ({ inlineCollapsed, style }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [openKeys, setOpenKeys] = useState([]);
-  const { pathname: PATHNAME } = useLocation();
+  const { pathname: PATHNAME, reload } = useLocation();
   const [selectedKeys, setSelectedKeys] = useState([PATHNAME]);
   const { studentId } = useParams();
+  const navigate = useNavigate();
   const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
     defaultValue: null,
   });
@@ -35,6 +36,8 @@ export const AdminMenu = ({ inlineCollapsed }) => {
   const handleLogOut = () => {
     setLogTime(null);
     setAuthUser(null);
+    navigate("/student/register/sign-in", { replace: true });
+    reload();
   };
   const handleMenuClick = (e) => {
     setSelectedKeys([e.key]);
@@ -65,8 +68,9 @@ export const AdminMenu = ({ inlineCollapsed }) => {
           onOpenChange={handleSubMenuOpenChange}
           onClick={handleMenuClick}
           defaultSelectedKeys={["/admin/dashboard"]}
-          inlineCollapsed={!inlineCollapsed}
+          inlineCollapsed={inlineCollapsed}
           style={{
+            ...style,
             border: "none",
           }}
         >

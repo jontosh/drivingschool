@@ -8,7 +8,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { NavLink, useParams } from "react-router-dom";
 
 const StudentSchedule = ({ className, children, ...props }) => {
-  const { title } = useParams();
+  const { title, studentId } = useParams();
   return (
     <Fragment>
       <Helmet>
@@ -33,14 +33,14 @@ const StudentSchedule = ({ className, children, ...props }) => {
         </div>
         <div className={"space-x-5 border-b border-b-black"}>
           <NavLink
-            to={"/student/schedule/my-schedule"}
+            to={"/student/schedule/my-schedule/" + (studentId ?? 0)}
             className={setActiveNav}
           >
             My Schedule
           </NavLink>
 
           <NavLink
-            to={"/student/schedule/book-lessons"}
+            to={"/student/schedule/book-lessons/" + (studentId ?? 0)}
             className={setActiveNav}
           >
             Book my lessons

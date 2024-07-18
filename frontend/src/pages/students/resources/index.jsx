@@ -2,9 +2,10 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const StudentResource = () => {
+  const { studentId } = useParams();
   return (
     <Fragment>
       <Helmet>
@@ -22,15 +23,24 @@ const StudentResource = () => {
         </Title>
 
         <div className={"space-x-5 border-b border-b-black"}>
-          <NavLink to={"/student/resource/in-car"} className={setActiveNav}>
+          <NavLink
+            to={"/student/resource/in-car/" + (studentId ?? 0)}
+            className={setActiveNav}
+          >
             IN CAR
           </NavLink>
 
-          <NavLink to={"/student/resource/road-test"} className={setActiveNav}>
+          <NavLink
+            to={"/student/resource/road-test/" + (studentId ?? 0)}
+            className={setActiveNav}
+          >
             ROAD TEST
           </NavLink>
 
-          <NavLink to={"/student/resource/parents"} className={setActiveNav}>
+          <NavLink
+            to={"/student/resource/parents/" + (studentId ?? 0)}
+            className={setActiveNav}
+          >
             PARENTS
           </NavLink>
         </div>
