@@ -58,7 +58,10 @@ const Register = ({ title }) => {
           }
         })
         .then(() => {
-          navigate("/" + pathname + "/dashboard", { replace: true });
+          navigate(
+            "/" + pathname + "/dashboard/" + (pathname === "student" ? 0 : ""),
+            { replace: true },
+          );
         });
     } catch (error) {
       console.error(error);

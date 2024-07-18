@@ -211,27 +211,27 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "dashboard",
+        path: "dashboard/:studentId",
         element: <StudentDashboard />,
       },
       {
-        path: "account",
+        path: "account/:studentId",
         element: <StudentAccount />,
       },
       {
-        path: "enroll",
+        path: "enroll/:studentId",
         element: <StudentEnroll />,
       },
       {
-        path: "contact",
+        path: "contact/:studentId",
         element: <StudentContact />,
       },
       {
-        path: "schedule/:title",
+        path: "schedule/:title/:studentId",
         element: <StudentSchedule />,
       },
       {
-        path: "resource/:title",
+        path: "resource/:title/:studentId",
         element: <StudentResource />,
       },
     ],
