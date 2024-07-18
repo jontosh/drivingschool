@@ -6,7 +6,7 @@ import {
 } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Pagination, Table } from "antd";
+import { DatePicker, Form, Pagination, Table } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -147,60 +147,53 @@ export const Process = () => {
   return (
     <Fragment>
       <div className="bg-white py-5 px-9">
-        <form>
-          <div className="grid grid-cols-2 gap-5">
-            <div className={"space-y-5"}>
-              <label className={"inline-flex w-full items-center gap-5"}>
-                <span className={"text-base flex-shrink-0 w-40 text-right"}>
-                  Appointment type:
-                </span>
+        <Form layout="vertical">
+          <div className="grid md:grid-cols-2 gap-5">
+            <div className="space-y-5">
+              <Form.Item label="Appointment type">
                 <CustomSelect
-                  className={"w-full h-[50px] shadow-xl"}
+                  placeholder={"Select"}
                   options={[
                     {
-                      value: 1,
-                      label: 1,
-                    },
+                      value: "Status",
+                      label: "Status",
+                    }
                   ]}
+                  className={"h-[50px]"}
                 />
-              </label>
+              </Form.Item>
 
-              <CustomInput
-                spanText={"Select date"}
-                placeholder={`MM/DD/YYYY - MM/DD/YYYY`}
-                spanClassName={"flex-shrink-0 w-40 text-right"}
-                className={" flex-grow shadow-xl"}
-                classNames={
-                  "inline-flex w-full h-[50px] flex-row-reverse items-center gap-5"
-                }
-              />
+              <Form.Item label="Select date">
+                <DatePicker className="w-full h-[50px] border-[#667085]" />
+              </Form.Item>
             </div>
 
             <div className="space-y-5">
-              <label className={"inline-flex w-full items-center gap-5"}>
-                <span className={"text-base flex-shrink-0 w-40 text-right"}>Location</span>
+              <Form.Item label="Location">
                 <CustomSelect
-                  className={"w-full h-[50px] shadow-xl"}
+                  placeholder={"Select"}
                   options={[
                     {
-                      value: 1,
-                      label: 1,
-                    },
+                      value: "Status",
+                      label: "Status",
+                    }
                   ]}
+                  className={"h-[50px]"}
                 />
-              </label>
-              <label className={"inline-flex w-full items-center gap-5"}>
-                <span className={"text-base flex-shrink-0 w-40 text-right"}>Instruction</span>
+              </Form.Item>
+
+              <Form.Item label="Instructor" className="w-full m-0">
                 <CustomSelect
-                  className={"w-full h-[50px] shadow-xl"}
+                  placeholder={"Select"}
                   options={[
                     {
-                      value: 1,
-                      label: 1,
-                    },
+                      value: "Khaetbek",
+                      label: "Khaetbek",
+                    }
                   ]}
+                  className={"h-[50px]"}
                 />
-              </label>
+              </Form.Item>
             </div>
           </div>
 
@@ -229,7 +222,7 @@ export const Process = () => {
               Clear
             </ButtonComponent>
           </div>
-        </form>
+        </Form>
       </div>
 
       {Filter && (
