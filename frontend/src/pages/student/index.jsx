@@ -122,7 +122,7 @@ const StudentAccount = () => {
 
           {studentId && (
             <div>
-              <div className={"gap-x-5 flex items-center flex-grow-0"}>
+              <div className={"gap-5 flex items-center flex-grow-0 flex-wrap"}>
                 <div>
                   <Title
                     level={4}
@@ -248,7 +248,9 @@ const StudentAccount = () => {
 
         <div className={"p-5 bg-white rounded-3xl"}>
           <div
-            className={"space-x-6 px-5 -mt-5 -mx-5 border-b border-b-gray-400"}
+            className={
+              "flex flex-wrap gap-x-5 px-5 -mt-5 -mx-5 border-b border-b-gray-400"
+            }
           >
             <NavLink
               to={`/admin/student/account/profile/${studentId ?? ""}`}
