@@ -1,7 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Alert } from "antd";
+import { Alert, DatePicker, Form } from "antd";
 import { Fragment, useContext, useState } from "react";
 import ActivityLogsStyle from "../scheduling.module.scss"
 
@@ -29,36 +29,27 @@ export const ActivityLogs = () => {
             showIcon
           />
         )}
-        <form>
-          <div className={"flex flex-col gap-y-5"}>
-            <label className={"inline-flex items-center gap-5 m-auto"}>
-              <span className={"text-base flex-shrink-0 w-40 text-right"}>
-                Appointment type:
-              </span>
+        <Form layout="vertical">
+          <div className="flex flex-col space-y-5">
+            <Form.Item label="Log type" className="w-[50%] m-auto">
               <CustomSelect
-                className={`h-[50px] shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
+                placeholder={"Select"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "Select",
+                    label: "Select",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
+            </Form.Item>
 
-            <CustomInput
-              spanText={"Select date"}
-              placeholder={`MM/DD/YYYY - MM/DD/YYYY`}
-              spanClassName={"flex-shrink-0 w-40 text-right"}
-              fontSize="text-base"
-              className={`flex-grow shadow-xl ${ActivityLogsStyle["ActivityLogs__input"]}`}
-              classNames={
-                "inline-flex h-[50px] flex-row-reverse items-center gap-5 m-auto"
-              }
-            />
+            <Form.Item label="Select date" className="w-[50%] m-auto">
+              <DatePicker className="w-full h-[50px] border-[#667085]" />
+            </Form.Item>
           </div>
 
-          <div className="text-center space-x-3 pt-6">
+          <div className="text-center space-x-3 pt-10">
             <ButtonComponent
               defaultHoverBg={"#24C18F"}
               defaultBg={"#24C18F"}
@@ -83,7 +74,7 @@ export const ActivityLogs = () => {
               Clear
             </ButtonComponent>
           </div>
-        </form>
+        </Form>
       </div>
     </Fragment>
   );
