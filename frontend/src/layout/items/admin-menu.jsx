@@ -43,7 +43,26 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
     setSelectedKeys([e.key]);
   };
 
-  const handleSubMenuOpenChange = (keys) => setOpenKeys(keys);
+  const handleSubMenuOpenChange = (keys) => {
+    const rootSubmenuKeys = [
+      `/admin/student/account`,
+      `/admin/scheduling`,
+      `/admin/communication`,
+      `/admin/report/business`,
+      `/admin/management`,
+      `/admin/finance`,
+      `/admin/configuration`,
+      `/admin/support`,
+    ];
+
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
 
   return (
     <Fragment>
@@ -113,7 +132,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
                 <AiOutlineTeam />
               </span>
             }
-            key={"/admin/student/account/"}
+            key={"/admin/student/account"}
             title={"Student account"}
           >
             <Menu.Item key={"/admin/student/account/profile/"}>
@@ -172,7 +191,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
                 <AiOutlineSolution />
               </span>
             }
-            key={"/admin/scheduling/"}
+            key={"/admin/scheduling"}
             title={"Scheduling"}
           >
             <Menu.Item key={"/admin/scheduling/student"}>
@@ -193,7 +212,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
 
             {/* Mange slot */}
             <SubMenu
-              key={"/admin/scheduling/manage/"}
+              key={"/admin/scheduling/manage"}
               title={"Manage time slot"}
             >
               <Menu.Item key={"/admin/scheduling/manage/appointment"}>
@@ -229,7 +248,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
                 <AiOutlineMail />
               </span>
             }
-            key={"/admin/communication/email-templates/"}
+            key={"/admin/communication"}
             title={"Communication"}
           >
             <Menu.Item
@@ -253,6 +272,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
               </span>
             }
             title={"Report center"}
+            key={"/admin/report/business"}
           >
             <Menu.Item key={"/admin/report/business/student-event-log"}>
               <Link to={"/admin/report/business/student-event-log"}>
@@ -270,7 +290,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
               </span>
             }
             title={"Account Management"}
-            key={"/admin/management/"}
+            key={"/admin/management"}
           >
             {/* Services */}
             <SubMenu title={"Services"} key={"/admin/management/service/"}>
@@ -356,7 +376,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
                 <AiOutlineDollar />
               </span>
             }
-            key={"/admin/finance/"}
+            key={"/admin/finance"}
           >
             <Menu.Item key={"/admin/finance/finances"}>
               <Link to={"/admin/finance/finances"}>Finances</Link>
@@ -367,7 +387,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
           </SubMenu>
           {/* Configuration */}
           <SubMenu
-            key={"/admin/configuration/company/"}
+            key={"/admin/configuration"}
             title={"Configuration"}
             icon={
               <span className={"w-5"}>
@@ -402,7 +422,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
                 <AiOutlineTool />
               </span>
             }
-            key={"/admin/support/"}
+            key={"/admin/support"}
             title={"Support"}
           >
             <Menu.Item key={"/admin/support/help"}>

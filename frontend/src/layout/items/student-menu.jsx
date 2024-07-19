@@ -10,33 +10,6 @@ import { SlBasket } from "react-icons/sl";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import useSessionStorageState from "use-session-storage-state";
-//
-// export const StudentMenu = (IsActive, getItem) => {
-//   const { studentId } = useParams();
-//   const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
-//     defaultValue: null,
-//   });
-//   const [LogTime, setLogTime] = useLocalStorage("log-time", null);
-//   const navigate = useNavigate();
-//   const { pathname } = useBaseURL();
-//
-//   const handleLogOut = () => {
-//     setAuthUser(null);
-//     setLogTime(null);
-//     navigate("/" + pathname + "/register/sign-in");
-//   };
-//
-//   const items = [
-//     getItem(
-//       IsActive && <div onClick={handleLogOut}>Log out</div>,
-//       12,
-//       <span className="w-5" onClick={handleLogOut}>
-//         <LuLogOut />
-//       </span>,
-//     ),
-//   ];
-//   return { items };
-// };
 
 const { SubMenu } = Menu;
 
@@ -62,7 +35,21 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
     setSelectedKeys([e.key]);
   };
 
-  const handleSubMenuOpenChange = (keys) => setOpenKeys(keys);
+  const handleSubMenuOpenChange = (keys) => {
+    const rootSubmenuKeys = [
+      `/student/schedule/${studentId ?? 0}`,
+      `/student/account/${studentId ?? 0}`,
+      `/student/resource/${studentId ?? 0}`,
+    ];
+
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
 
   return (
     <Fragment>

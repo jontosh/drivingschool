@@ -1,5 +1,5 @@
 import { useRequestPostMutation } from "@/redux/query/index.jsx";
-import { createContext, useEffect, useMemo } from "react";
+import { createContext, useCallback, useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 import useSessionStorageState from "use-session-storage-state";
 
@@ -19,51 +19,60 @@ export const AuthProvider = ({ children }) => {
   });
   const [requestPost] = useRequestPostMutation();
 
-  const Auth = useMemo(() => {
-    return async () => {
-      if (AuthRefresh) {
-        try {
-          await requestPost({
-            path: "/authentication/token_refresh",
-            data: AuthRefresh,
-          })
-            .unwrap()
-            .then((response) => {
-              if (response?.access) {
-                setAuthUser(response?.access);
-                setUserRegister(response?.access);
-                setAuthRefresh(response?.refresh);
-                setLogTime(() => new Date());
-              }
-            });
-        } catch (error) {
-          console.error(error);
+  const Auth = useCallback(async () => {
+    if (AuthRefresh) {
+      try {
+        const response = await requestPost({
+          path: "/authentication/token_refresh",
+          data: AuthRefresh,
+        }).unwrap();
 
-          if (error?.status >= 400) {
-            setAuthUser(null);
-            setLogTime(null);
-            setUserRegister(null);
-            setRememberMe(null);
-          }
+        if (response?.access) {
+          setAuthUser(response?.access);
+          setUserRegister(response?.access);
+          setAuthRefresh(response?.refresh);
+          setLogTime(new Date());
+        }
+      } catch (error) {
+        console.error(error);
+        if (error?.status >= 400) {
+          setAuthUser(null);
+          setLogTime(null);
+          setUserRegister(null);
+          setRememberMe(null);
         }
       }
-    };
-  });
+    }
+  }, [
+    AuthRefresh,
+    requestPost,
+    setAuthUser,
+    setAuthRefresh,
+    setLogTime,
+    setRememberMe,
+    setUserRegister,
+  ]);
 
   useEffect(() => {
     if (AuthUser === null) {
       setLogTime(null);
     }
-    const t = setInterval(
+
+    const intervalId = setInterval(
       () => {
-        // console.log("fuck");
         Auth();
       },
-      1000 * 60 * 1000,
-    );
+      1000 * 60 * 60,
+    ); // every 1 hour
 
-    return () => clearInterval(t);
-  }, []);
+    return () => clearInterval(intervalId);
+  }, [Auth, AuthUser]);
 
-  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{ AuthUser, AuthRefresh, RememberMe, LogTime, UserRegister }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
