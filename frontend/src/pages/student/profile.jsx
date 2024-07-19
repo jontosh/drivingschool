@@ -4,7 +4,7 @@ import {
   CustomInput,
   CustomSelect,
 } from "@/components/form/index.jsx";
-import Title from "@/components/title/index.jsx";
+import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
 import { Emergency } from "@/pages/student/emergency.jsx";
@@ -16,7 +16,7 @@ import {
 import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProfileStyle from "./student-account.module.scss";
-import { DatePicker, Form, Input, QRCode, Radio } from "antd";
+import { DatePicker, Dropdown, Form, Input, QRCode, Radio } from "antd";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import moment from "moment";
 
@@ -268,20 +268,38 @@ const Profile = () => {
                     defaultHoverBg={colorsObject.info}
                     className={"w-full pt-1.5"}
                     borderRadius={5}
-                    href={"/student/dashboard/"}
+                    href={`/student/dashboard/${studentId}`}
                     target={"_blank"}
                   >
                     Access Student Center
                   </ButtonComponent>
 
-                  <ButtonComponent
-                    defaultBg={colorsObject.info}
-                    defaultHoverBg={colorsObject.info}
-                    className={"w-full"}
-                    borderRadius={5}
+                  <Dropdown
+                    menu={{
+                      items: [
+                        {
+                          key: "1",
+                          label: (
+                            <div className={"space-y-2.5"}>
+                              <Paragraph>
+                                <b>Username:</b>
+                                <span>{form.getFieldValue("username")}</span>
+                              </Paragraph>
+                            </div>
+                          ),
+                        },
+                      ],
+                    }}
                   >
-                    Username/Password
-                  </ButtonComponent>
+                    <ButtonComponent
+                      defaultBg={colorsObject.info}
+                      defaultHoverBg={colorsObject.info}
+                      className={"w-full"}
+                      borderRadius={5}
+                    >
+                      Username/Password
+                    </ButtonComponent>
+                  </Dropdown>
 
                   <ButtonComponent
                     defaultBg={colorsObject.info}
@@ -806,12 +824,12 @@ const Profile = () => {
                     />
 
                     <ButtonComponent
-                      defaultBg={"#24C18F"}
-                      defaultHoverBg={"#3CE3AE"}
+                      defaultBg={colorsObject.success}
+                      defaultHoverBg={colorsObject.successHover}
                       defaultColor={colorsObject.main}
-                      paddingInline={97}
-                      controlHeight={40}
+                      paddingInline={90}
                       borderRadius={5}
+                      type={"submit"}
                     >
                       Save
                     </ButtonComponent>
