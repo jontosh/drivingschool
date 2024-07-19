@@ -57,6 +57,7 @@ export const Emergency = ({ id }) => {
         className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
         form={form}
         layout={"vertical"}
+        disabled={isLoading}
       >
         <Title fontSize={"text-2xl text-indigo-700"} fontWeightStrong={600}>
           Emergency

@@ -190,7 +190,7 @@ const Profile = () => {
   return (
     <Fragment>
       <Form layout={"vertical"} form={form} onFinish={onFinish}>
-        <div className="flex flex-col min-[1200px]:flex-row items-center gap-y-7 min-[1200px]:gap-x-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
+        <div className="space-y-5 min-[1200px]:space-y-0 min-[1200px]:flex min-[1200px]:flex-row items-center gap-y-7 min-[1200px]:gap-x-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
           <div
             className={`rounded-2xl border-2 border-indigo-700 w-full min-[1200px]:w-[460px] overflow-hidden`}
           >
@@ -242,7 +242,7 @@ const Profile = () => {
                   </ButtonComponent>
                   <div className="flex gap-5 items-center">
                     <div
-                      className={`${ProfileStyle["Student-profile__imageholder-small"]} rounded-lg border-2 border-indigo-700`}
+                      className={`${ProfileStyle["Student-profile__imageholder-small"]} hidden min-[850px]:block rounded-lg border-2 border-indigo-700`}
                     >
                       <QRCode
                         style={{ width: "100%", height: "100%" }}
@@ -291,6 +291,16 @@ const Profile = () => {
                   >
                     Other
                   </ButtonComponent>
+
+                  <div
+                    className={`${ProfileStyle["Student-profile__imageholder-small"]} mx-auto min-[850px]:hidden rounded-lg border-2 border-indigo-700`}
+                  >
+                    <QRCode
+                      style={{ width: "100%", height: "100%" }}
+                      type="svg"
+                      value="https://ant.design/"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -681,7 +691,7 @@ const Profile = () => {
         {IsMore && (
           <Fragment>
             <div className="space-y-5">
-              <div className="grid lg:grid-cols-2 gap-7">
+              <div className="grid xl:grid-cols-2 gap-7">
                 <div
                   className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
                 >
@@ -707,7 +717,7 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex flex-col gap-6 xl:flex-row items-center">
+                  <div className="flex flex-col gap-6 xl:flex-row xl:items-center">
                     <Form.Item
                       className={"flex-grow mb-0 w-full"}
                       name={"note"}
@@ -719,8 +729,8 @@ const Profile = () => {
                     </Form.Item>
 
                     <ButtonComponent
-                      defaultBg={"#24C18F"}
-                      defaultHoverBg={"#3CE3AE"}
+                      defaultBg={colorsObject.success}
+                      defaultHoverBg={colorsObject.successHover}
                       defaultColor={colorsObject.main}
                       paddingInline={90}
                       borderRadius={5}
@@ -789,7 +799,7 @@ const Profile = () => {
                     </ButtonComponent>
                   </div>
 
-                  <div className="flex flex-col gap-6 xl:flex-row items-center">
+                  <div className="flex flex-col gap-6 xl:flex-row xl:items-center">
                     <Input.TextArea
                       className={"border-[#667085]"}
                       placeholder={"Notes"}
