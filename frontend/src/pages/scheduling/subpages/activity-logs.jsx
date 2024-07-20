@@ -19,7 +19,7 @@ export const ActivityLogs = () => {
 
   return (
     <Fragment>
-      <div className={"bg-white py-5 px-9"}>
+      <div className={"bg-white py-5 px-5 sm:px-9"}>
         {IsExport && (
           <Alert
             message="Success Export"
@@ -31,7 +31,7 @@ export const ActivityLogs = () => {
         )}
         <Form layout="vertical">
           <div className="flex flex-col space-y-5">
-            <Form.Item label="Log type" className="w-[50%] m-auto">
+            <Form.Item label="Log type" className="w-full min-[850px]:w-[50%] m-auto">
               <CustomSelect
                 placeholder={"Select"}
                 options={[
@@ -44,19 +44,18 @@ export const ActivityLogs = () => {
               />
             </Form.Item>
 
-            <Form.Item label="Select date" className="w-[50%] m-auto">
+            <Form.Item label="Select date" className="w-full min-[850px]:w-[50%] m-auto">
               <DatePicker className="w-full h-[50px] border-[#667085]" />
             </Form.Item>
           </div>
 
-          <div className="text-center space-x-3 pt-10">
+          <div className="flex max-[600px]:flex-col justify-center gap-5 pt-5">
             <ButtonComponent
               defaultHoverBg={"#24C18F"}
               defaultBg={"#24C18F"}
               defaultHoverColor={colorsObject.main}
               defaultColor={colorsObject.main}
               borderRadius={5}
-              controlHeight={40}
               paddingInline={98}
               onClick={handleExport}
             >
@@ -68,7 +67,6 @@ export const ActivityLogs = () => {
               defaultHoverColor={colorsObject.main}
               defaultColor={colorsObject.main}
               borderRadius={5}
-              controlHeight={40}
               paddingInline={98}
             >
               Clear
