@@ -205,7 +205,7 @@ export const AppointmentEdit = () => {
 
   return (
     <Fragment>
-      <Form layout="vertical" className="bg-white p-10">
+      <Form layout="vertical" className="bg-white p-5 sm:p-10">
         <div className="grid md:grid-cols-2 gap-5">
           <div className="space-y-5">
             <Form.Item label="Instructor">
@@ -345,7 +345,7 @@ export const AppointmentEdit = () => {
           </div>
         </div>
 
-        <div className="text-center space-x-3 pt-6">
+        <div className="flex max-[500px]:flex-col justify-center gap-5 pt-5">
           <ButtonComponent
             defaultHoverBg={"#24C18F"}
             defaultBg={"#24C18F"}
