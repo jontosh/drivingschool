@@ -17,7 +17,7 @@ export const Statistic = () => {
       <Helmet>
         <title>Finance - Statistic</title>
       </Helmet>
-      <div className="grid grid-cols-4 gap-2.5">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-2.5">
         <div className="rounded-xl shadow-xl bg-white p-5 flex justify-between items-center">
           <Paragraph fontSize={"text-xl"} className={"font-semibold"}>
             Student active
@@ -65,8 +65,8 @@ export const Statistic = () => {
       </div>
 
       <div>
-        <div className="flex justify-between gap-2.5">
-          <div className="bg-white py-5 rounded-xl shadow-xl max-w-[550px] w-full">
+        <div className="flex max-[1000px]:flex-col justify-between gap-2.5">
+          <div className="bg-white py-5 rounded-xl shadow-xl max-w-full min-[1000px]:max-w-[550px] w-full">
             <Title
               className={"px-5 "}
               level={4}
@@ -80,7 +80,7 @@ export const Statistic = () => {
             <Table columns={columns} dataSource={data} pagination={false} />
           </div>
 
-          <div className="bg-white py-5 rounded-xl shadow-xl max-w-[330px] w-full">
+          <div className="bg-white py-5 rounded-xl shadow-xl max-w-full min-[1000px]:max-w-[330px] w-full">
             <Title
               className={"px-5 "}
               level={4}
@@ -96,7 +96,7 @@ export const Statistic = () => {
             </div>
           </div>
 
-          <div className="bg-white py-5 rounded-xl shadow-xl max-w-[550px] w-full">
+          <div className="bg-white py-5 rounded-xl shadow-xl max-w-full min-[1000px]:max-w-[550px] w-full">
             <Title
               className={"px-5 "}
               level={4}

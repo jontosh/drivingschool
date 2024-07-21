@@ -19,7 +19,7 @@ export const Finances = () => {
         <title>Finance - Finances</title>
       </Helmet>
 
-      <div className={"grid grid-cols-3 gap-4"}>
+      <div className={"grid grid-cols-3 max-[980px]:grid-cols-2 max-[680px]:grid-cols-1 gap-4"}>
         <div>
           <div className="bg-white p-5 shadow-xl rounded-xl">
             <div className="flex items-center justify-between">
@@ -128,7 +128,7 @@ export const Finances = () => {
         </div>
       </div>
 
-      <div className="flex justify-between gap-5">
+      <div className="flex max-md:flex-col justify-between gap-5">
         <div className={"flex-grow shadow-xl"}>
           <div className="bg-white py-7 pl-7 pr-4 rounded-xl space-y-4">
             <div className="flex items-center justify-between">
@@ -153,7 +153,7 @@ export const Finances = () => {
           </div>
         </div>
         <div>
-          <div className="w-64 bg-white p-7 rounded-xl shadow-xl">
+          <div className="w-full sm:w-64 bg-white p-7 rounded-xl shadow-xl">
             <div className="flex items-center justify-between mb-5">
               <Title level={4} fontSize={"text-base"} fontWeightStrong={600}>
                 P/L
@@ -244,7 +244,7 @@ export const Finances = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2.5">
+      <div className="grid min-[1200px]:grid-cols-2 gap-2.5">
         <div>
           <div className="bg-white shadow-xl py-5 rounded-xl space-y-4">
             <Paragraph className={"px-5"} fontSize={"text-xl font-bold"}>
