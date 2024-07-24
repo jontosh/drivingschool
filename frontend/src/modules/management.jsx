@@ -1361,7 +1361,7 @@ const AddNewTest = () => {
     </Fragment>
   );
 };
-const TestForm = ({ data, disabled }) => {
+const TestForm = ({ data, disabled, border }) => {
   const [selectedIndices, setSelectedIndices] = useState([]);
   const { colorsObject } = useContext(ColorsContext);
   useEffect(() => {
@@ -1392,7 +1392,9 @@ const TestForm = ({ data, disabled }) => {
           <Form.Item
             name={["answers", index, "is_correct"]}
             key={index}
-            className={"border-2 border-[#878CEE] rounded-xl p-3"}
+            className={
+              border ? "border-2 border-[#878CEE] rounded-xl p-3" : null
+            }
             valuePropName="checked"
           >
             <CustomCheckBox
@@ -1427,7 +1429,7 @@ const TestForm = ({ data, disabled }) => {
                     onChange={() => handleRadioChange(index)}
                     value={index % 2 === 0}
                     className={
-                      "border-2 border-[#878CEE] rounded-xl p-3 space-x-2"
+                      border ? "border-2 border-[#878CEE] rounded-xl p-3" : null
                     }
                     disabled={disabled}
                   >
@@ -1448,9 +1450,131 @@ const TestForm = ({ data, disabled }) => {
   return renderAnswers();
 };
 
-const TestView = ({ timer }) => {
+const TestPreview = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const [TestId, setTestId] = useLocalStorage("test-id", "0");
+  const [TestId] = useLocalStorage("test-id", null);
+  const [TestIndex, setTestIndex] = useState(0);
+  const [TestItemId, setTestItemId] = useState(0);
+  const [form] = Form.useForm();
+
+  const [requestDelete] = useRequestDeleteMutation();
+  const [requestPatch] = useRequestPatchMutation();
+  const { data: TestData, isLoading: isTestData } = useRequestIdQuery({
+    path: "/account_management/services/test",
+    id: TestId,
+  });
+
+  const { data: Question, isLoading: isQuestion } = useRequestIdQuery({
+    path: "/account_management/services/question",
+    id: TestItemId,
+  });
+
+  useEffect(() => {
+    form?.setFieldsValue(Question);
+  }, [Question, form]);
+
+  const onDelete = async () => {
+    await requestDelete({
+      path: "/account_management/services/question/" + TestItemId,
+    }).reset();
+
+    await requestPatch({
+      path: "/account_management/services/test",
+      id: TestId,
+      data: {
+        ...TestData,
+        questions: TestData?.questions?.filter((item) => item !== TestId),
+      },
+    }).reset();
+  };
+
+  const handleQuestionChange = (index, itemId) => {
+    setTestIndex(index);
+    setTestItemId(itemId);
+  };
+
+  const questionButtons = TestData?.questions?.map((item, index) => (
+    <ButtonComponent
+      onClick={() => handleQuestionChange(index + 1, item)}
+      defaultBg={TestIndex === index + 1 ? colorsObject?.primary : "#C4C4C4"}
+      defaultHoverBg="#FFAAAF"
+      key={index}
+      paddingInline={15}
+      className="rounded-full"
+    >
+      {index + 1}
+    </ButtonComponent>
+  ));
+
+  if (isTestData) return "Loading...";
+
+  return (
+    <Fragment>
+      <Title titleMarginBottom={20} level={2}>
+        {TestData?.name}
+      </Title>
+      <div className="grid grid-cols-2 gap-5">
+        {isQuestion ? (
+          "Loading..."
+        ) : TestIndex === 0 ? (
+          "Select test"
+        ) : (
+          <div className="space-y-5">
+            <blockquote className="py-5 px-4 border border-indigo-600">
+              <Title titleMarginBottom={20} level={4}>
+                Question {TestIndex}
+              </Title>
+              <Paragraph>{Question?.question}</Paragraph>
+            </blockquote>
+            <Form form={form} className={"space-y-5"}>
+              <TestForm data={Question} />
+
+              <div className="space-x-5">
+                <ButtonComponent
+                  defaultBg={colorsObject?.danger}
+                  defaultHoverBg={colorsObject?.dangerHover}
+                  paddingInline={43}
+                  controlHeight={40}
+                  borderRadius={5}
+                  type={"submit"}
+                  onClick={onDelete}
+                >
+                  Delete
+                </ButtonComponent>
+
+                <ButtonComponent
+                  defaultBg={colorsObject?.orange}
+                  defaultHoverBg={colorsObject?.orange}
+                  paddingInline={43}
+                  controlHeight={40}
+                  borderRadius={5}
+                  type={"submit"}
+                >
+                  Upgrade
+                </ButtonComponent>
+              </div>
+            </Form>
+          </div>
+        )}
+        <div className="space-y-5">
+          <div className="flex gap-2.5 justify-between">
+            <Paragraph>
+              Question {TestIndex}/{TestData?.questions?.length}
+            </Paragraph>
+            <Tooltip title="Empty">
+              <span>Need Help?</span>
+            </Tooltip>
+          </div>
+          <div className="flex gap-3">{questionButtons}</div>
+        </div>
+      </div>
+    </Fragment>
+  );
+};
+
+export const StudentTestView = ({ timer }) => {
+  const { colorsObject } = useContext(ColorsContext);
+  const [TestId] = useLocalStorage("test-id", "0");
   const [TestResults, setTestResults] = useLocalStorage("test-results", "[]");
   const [QuestionId, setQuestionId] = useState(0);
   const [QuestionIndex, setQuestionIndex] = useState(0);
@@ -1846,7 +1970,7 @@ export const AddQuizTab = () => {
     {
       key: "3",
       label: <span className={"uppercase"}>Preview QUIZ</span>,
-      children: <TestView />,
+      children: <TestPreview />,
     },
   ].map((item) => {
     return { ...item };
