@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs on code structure and optimized functions.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/dashboard/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,15 +214,8 @@
       <workItem from="1721391208141" duration="10258000" />
       <workItem from="1721556404337" duration="35000" />
       <workItem from="1721556448011" duration="2549000" />
-      <workItem from="1721756747693" duration="12664000" />
-    </task>
-    <task id="LOCAL-00061" summary="#fix #jsx Created schedule for student and connected URL path">
-      <option name="closed" value="true" />
-      <created>1719492763905</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1719492763905</updated>
+      <workItem from="1721756747693" duration="12907000" />
+      <workItem from="1721809337129" duration="4746000" />
     </task>
     <task id="LOCAL-00062" summary="#fix #jsx Fixed files and remove handle functions">
       <option name="closed" value="true" />
@@ -607,7 +601,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721401517046</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal.">
+      <option name="closed" value="true" />
+      <created>1721781236960</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1721781236961</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +628,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Created Form content to view test" />
     <MESSAGE value="#fix #jsx Refactored form elements and render components" />
     <MESSAGE value="#fix #jsx Refactored form elements and initial values for form if user answer or not" />
     <MESSAGE value="#fix #jsx Refactored form elements and code with get correct initial values" />
@@ -651,7 +652,8 @@
     <MESSAGE value="#fix #js #html Fixed routing path, menu data, optimized code structure and other" />
     <MESSAGE value="#fix #jsx Fixed bug in mobile media and request loading data." />
     <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs on code structure and optimized functions." />
+    <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

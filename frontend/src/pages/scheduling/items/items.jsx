@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import classNames from "classnames";
 import { Fragment, useContext, useState } from "react";
 import { TbEdit, TbClockFilled } from "react-icons/tb";
 import { AlertEdit } from "@/hooks/alert.jsx";
@@ -9,7 +10,7 @@ import { TiUser } from "react-icons/ti";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import { HiLocationMarker } from "react-icons/hi";
 
-export const DrivingItem = ({ item }) => {
+export const DrivingItem = ({ item, className }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [IsOpen, setIsOpen] = useState(false);
 
@@ -17,7 +18,12 @@ export const DrivingItem = ({ item }) => {
 
   return (
     <Fragment>
-      <div className={"bg-gray-200 pt-8 pr-2 pl-5 pb-2 rounded-lg space-y-3"}>
+      <div
+        className={classNames(
+          "bg-gray-200 pt-8 pr-2 pl-5 pb-2 rounded-lg space-y-3",
+          className,
+        )}
+      >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <Title level={5} fontSize={"text-sm"} fontWeightStrong={600}>
