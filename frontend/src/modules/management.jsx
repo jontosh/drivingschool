@@ -1309,7 +1309,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                getFieldValue("type")
+                  getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1510,7 +1510,7 @@ const TestPreview = () => {
 
   return (
     <Fragment>
-      <Title titleMarginBottom={20} level={2}>
+      <Title titleMarginBottom={20} level={2} fontSize={"text-2xl font-normal"}>
         {TestData?.name}
       </Title>
       <div className="grid grid-cols-2 gap-5">
@@ -1520,11 +1520,11 @@ const TestPreview = () => {
           "Select test"
         ) : (
           <div className="space-y-5">
-            <blockquote className="py-5 px-4 border border-indigo-600">
-              <Title titleMarginBottom={20} level={4}>
+            <blockquote className="py-5 px-4 border border-indigo-600 rounded-xl">
+              <Title titleMarginBottom={20} level={4} fontSize={"text-xl font-medium"}>
                 Question {TestIndex}
               </Title>
-              <Paragraph>{Question?.question}</Paragraph>
+              <Paragraph className={"text-gray-500"} fontSize={"text-base"}>{Question?.question}</Paragraph>
             </blockquote>
             <Form form={form} className={"space-y-5"}>
               <TestForm data={Question} />
@@ -1554,15 +1554,25 @@ const TestPreview = () => {
                 </ButtonComponent>
               </div>
             </Form>
+
+            <div className="p-5 rounded-xl shadow-[0px_4px_14px_0px_rgba(0,0,0,0.2)] space-y-5">
+              <Title level={3} fontSize={"text-[22px] font-medium"}>
+                Explanation
+              </Title>
+
+              <Paragraph fontSize="text-base text-gray-500">
+                A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+              </Paragraph>
+            </div>
           </div>
         )}
         <div className="space-y-5">
           <div className="flex gap-2.5 justify-between">
-            <Paragraph>
+            <Paragraph fontSize={"text-xl"}>
               Question {TestIndex}/{TestData?.questions?.length}
             </Paragraph>
             <Tooltip title="Empty">
-              <span>Need Help?</span>
+              <span className="text-xl cursor-pointer">Need Help?</span>
             </Tooltip>
           </div>
           <div className="flex gap-3">{questionButtons}</div>
@@ -1790,7 +1800,7 @@ export const StudentTestView = ({ timer }) => {
                 </ButtonComponent>
 
                 {JSON.parse(TestResults)?.length ===
-                TestData?.questions?.length ? (
+                  TestData?.questions?.length ? (
                   <ButtonComponent
                     defaultBg={"#878CEE"}
                     defaultHoverBg={"#878CEE"}
