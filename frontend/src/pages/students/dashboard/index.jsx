@@ -4,8 +4,18 @@ import Image from "@/components/image/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import { DrivingItem } from "@/pages/scheduling/items/items.jsx";
 import { Upload } from "@/pages/students/dashboard/items/upload.jsx";
-import { ConfigProvider, Statistic } from "antd";
-import { Fragment, useContext } from "react";
+import { DollarOutlined } from "@ant-design/icons";
+import {
+  ConfigProvider,
+  Statistic,
+  Modal,
+  Form,
+  InputNumber,
+  DatePicker,
+  Input,
+  Select,
+} from "antd";
+import { Fragment, useContext, useState } from "react";
 import CountUp from "react-countup";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -19,14 +29,24 @@ import { IoMdEye } from "react-icons/io";
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [Open, setOpen] = useState(false);
+  const [form] = Form.useForm();
 
   const formatter = (value) => <CountUp end={value} separator="," />;
+  const handleModal = () => setOpen((prev) => !prev);
+  const onFinish = async (values) => {
+    console.log({
+      ...values,
+      expiration: values["expiration"]?.format("YYYY-MM"),
+    });
+  };
+
   return (
     <Fragment>
       <Helmet>
         <title>Student - Dashboard</title>
       </Helmet>
-      <section className={"px-3 sm:px-11 space-y-5 max-w-full w-full"}>
+      <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -45,14 +65,16 @@ const Dashboard = () => {
 
           <div className="flex items-center justify-between">
             <Title>Upcoming schedule</Title>
-            <Link to={"/"} className="text-[#1890FF]">View all &#62;</Link>
+            <Link to={"/"} className="text-[#1890FF]">
+              View all &#62;
+            </Link>
           </div>
 
-          <div className="grid grid-cols-4 gap-5 max-[1400px]:grid-cols-3 max-[1200px]:grid-cols-2 max-[960px]:grid-cols-1">
-            <DrivingItem />
-            <DrivingItem />
-            <DrivingItem />
-            <DrivingItem />
+          <div className="flex gap-5 overflow-x-scroll">
+            <DrivingItem className={"flex-shrink-0"} />
+            <DrivingItem className={"flex-shrink-0"} />
+            <DrivingItem className={"flex-shrink-0"} />
+            <DrivingItem className={"flex-shrink-0"} />
           </div>
 
           <div className="grid grid-cols-3 gap-2.5 max-[1250px]:grid-cols-2 max-[1000px]:grid-cols-1">
@@ -75,20 +97,25 @@ const Dashboard = () => {
               </ConfigProvider>
 
               <div className="flex items-center justify-between">
-                <IconComponent
-                  icon={<GiWallet />}
-                  iconWidth={"text-[66px]"}
-                />
+                <IconComponent icon={<GiWallet />} iconWidth={"text-[66px]"} />
 
                 <div className="flex items-center space-x-2">
-                  <Link
+                  <ButtonComponent
+                    defaultColor={colorsObject.black}
+                    defaultHoverColor={colorsObject.black}
+                    defaultBorderColor={colorsObject.secondary}
                     className="py-2 px-4 border rounded-xl"
-                  >PAY NOW</Link>
+                    onClick={handleModal}
+                  >
+                    PAY NOW
+                  </ButtonComponent>
 
                   <IconComponent
                     icon={<BiDollar />}
                     iconWidth={"text-xl"}
-                    className={"bg-black text-white rounded-xl w-[35px] h-[35px] mb-1"}
+                    className={
+                      "bg-black text-white rounded-xl w-[35px] h-[35px] mb-1"
+                    }
                     iconClass={"pt-1.5"}
                   />
                 </div>
@@ -101,10 +128,9 @@ const Dashboard = () => {
                 Please contact our customer service if you want to purchase an
                 online course.
               </Paragraph>
-              <Link
-                to={"/"}
-                className="py-2 px-4 border rounded-xl"
-              >LEARN MORE</Link>
+              <Link to={"/"} className="py-2 px-4 border rounded-xl">
+                LEARN MORE
+              </Link>
             </div>
 
             <div className="w-60 flex flex-col justify-between border p-5 rounded-xl max-xl:gap-5 max-xl:m-auto">
@@ -117,7 +143,9 @@ const Dashboard = () => {
                   iconWidth={"text-xl"}
                 />
 
-                <Paragraph fontSize={"text-xs font-semibold"}>Student Contract</Paragraph>
+                <Paragraph fontSize={"text-xs font-semibold"}>
+                  Student Contract
+                </Paragraph>
               </div>
               <div className="flex justify-between items-center">
                 <IconComponent
@@ -188,7 +216,9 @@ const Dashboard = () => {
 
             <div className="flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl max-xl:gap-5">
               <Title fontSize={"text-base font-semibold"}>SIGN DOCUMENTS</Title>
-              <Paragraph fontSize={"text-sm font-semibold"}>Teens 8hr in car instruction</Paragraph>
+              <Paragraph fontSize={"text-sm font-semibold"}>
+                Teens 8hr in car instruction
+              </Paragraph>
 
               <div className="flex justify-between items-center">
                 <div className="space-x-3">
@@ -206,27 +236,39 @@ const Dashboard = () => {
                   />
                 </div>
 
-                <Link
-                  to={"/"}
-                  className="bg-[#24C18F] py-2.5 px-5 rounded-xl"
-                >SIGN</Link>
+                <Link to={"/"} className="bg-[#24C18F] py-2.5 px-5 rounded-xl">
+                  SIGN
+                </Link>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2.5 max-[1000px]:grid-cols-1">
             <div className="space-y-5 border rounded-xl p-5">
-              <Title fontSize={"text-xl font-semibold"} className={"border-b border-[#CED8E5] pb-5"}>UPLOAD FILES</Title>
+              <Title
+                fontSize={"text-xl font-semibold"}
+                className={"border-b border-[#CED8E5] pb-5"}
+              >
+                UPLOAD FILES
+              </Title>
 
-              <Paragraph colorText="#9D9D9D" className={"border-b boder-[#9D9D9D] pb-5"}>
-                Click “CHOOSE FILE” below to select an image or to take a picture from your mobile device to upload to the school (jpg, png, or pdf ONLY).
+              <Paragraph
+                colorText="#9D9D9D"
+                className={"border-b boder-[#9D9D9D] pb-5"}
+              >
+                Click “CHOOSE FILE” below to select an image or to take a
+                picture from your mobile device to upload to the school (jpg,
+                png, or pdf ONLY).
               </Paragraph>
 
               <Paragraph colorText="#9D9D9D">
-                After selecting the file, choose the correct category for your image or form from the dropdown menu.
-                <br /><br />
+                After selecting the file, choose the correct category for your
+                image or form from the dropdown menu.
+                <br />
+                <br />
                 Click Upload.
-                <br /><br />
+                <br />
+                <br />
                 (Only jpg, png, and pdf file formats are allowed)
               </Paragraph>
 
@@ -258,17 +300,33 @@ const Dashboard = () => {
             </div>
 
             <div className="space-y-5 border rounded-xl p-5">
-              <Title fontSize={"text-xl font-semibold"} className={"border-b border-[#E3E3E3] pb-5"}>REQUIRED PAPERWORK</Title>
+              <Title
+                fontSize={"text-xl font-semibold"}
+                className={"border-b border-[#E3E3E3] pb-5"}
+              >
+                REQUIRED PAPERWORK
+              </Title>
 
-              <Paragraph colorText="#9D9D9D" className={"border-b border-[#E3E3E3] pb-5"}>
-                Click “CHOOSE FILE” below to select an image or to take a picture from your mobile device to upload to the school (jpg, png, or pdf ONLY).
+              <Paragraph
+                colorText="#9D9D9D"
+                className={"border-b border-[#E3E3E3] pb-5"}
+              >
+                Click “CHOOSE FILE” below to select an image or to take a
+                picture from your mobile device to upload to the school (jpg,
+                png, or pdf ONLY).
               </Paragraph>
 
-              <Paragraph colorText="#9D9D9D" className={"border-b border-[#E3E3E3] pb-5"}>
-                After selecting the file, choose the correct category for your image or form from the dropdown menu.
-                <br /><br />
+              <Paragraph
+                colorText="#9D9D9D"
+                className={"border-b border-[#E3E3E3] pb-5"}
+              >
+                After selecting the file, choose the correct category for your
+                image or form from the dropdown menu.
+                <br />
+                <br />
                 Click Upload.
-                <br /><br />
+                <br />
+                <br />
                 (Only jpg, png, and pdf file formats are allowed)
               </Paragraph>
 
@@ -280,7 +338,9 @@ const Dashboard = () => {
                   defaultHoverBg={colorsObject.infoHover}
                   paddingInline={20}
                   borderRadius={10}
-                >UPLOAD</ButtonComponent>
+                >
+                  UPLOAD
+                </ButtonComponent>
               </div>
 
               <div className="flex justify-between items-center">
@@ -291,11 +351,184 @@ const Dashboard = () => {
                   defaultHoverBg={colorsObject.infoHover}
                   paddingInline={20}
                   borderRadius={10}
-                >UPLOAD</ButtonComponent>
+                >
+                  UPLOAD
+                </ButtonComponent>
               </div>
             </div>
           </div>
         </div>
+
+        <Modal
+          title="Pay Balance"
+          centered
+          open={Open}
+          onOk={handleModal}
+          onCancel={handleModal}
+          footer={[
+            <ButtonComponent
+              key={2}
+              defaultColor={colorsObject.black}
+              defaultHoverColor={colorsObject.black}
+              defaultBorderColor={colorsObject.secondary}
+              className="py-2 border rounded-xl"
+              paddingInline={43}
+            >
+              PAY $650
+            </ButtonComponent>,
+            <ButtonComponent
+              key={1}
+              defaultHoverBg={colorsObject.dangerHover}
+              defaultBg={colorsObject.danger}
+              className="py-2 border rounded-xl"
+              onClick={handleModal}
+              paddingInline={43}
+            >
+              Cancel
+            </ButtonComponent>,
+          ]}
+        >
+          <Form form={form} layout={"vertical"}>
+            <Form.Item
+              label={"Amount"}
+              name="amount"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your amount!",
+                },
+              ]}
+            >
+              <InputNumber
+                className={"w-full"}
+                prefix={<DollarOutlined className="site-form-item-icon" />}
+                placeholder="amount"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={"Card Number"}
+              name="card"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Card Number!",
+                },
+              ]}
+            >
+              <InputNumber className={"w-full"} placeholder="Card Number" />
+            </Form.Item>
+
+            <Form.Item
+              label={"Expiration(MM/YYYY)"}
+              name="expiration"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Card Expiration Date!",
+                },
+              ]}
+            >
+              <DatePicker
+                className={"w-full"}
+                format={"YYYY/MM"}
+                picker="month"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={"Security Code"}
+              name="securaty_code"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Security Code!",
+                },
+              ]}
+            >
+              <InputNumber className={"w-full"} placeholder="Security Code" />
+            </Form.Item>
+
+            <Form.Item
+              label={"Name on Card"}
+              name="name_card"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Name on Card!",
+                },
+              ]}
+            >
+              <Input
+                className={"w-full h-[50px] border-black"}
+                placeholder="Name on Card"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={"Billing Address"}
+              name="address"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Billing Address!",
+                },
+              ]}
+            >
+              <Input
+                className={"w-full h-[50px] border-black"}
+                placeholder="Billing Address"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label={"Billing City"}
+              name="city"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Billing City!",
+                },
+              ]}
+            >
+              <Input
+                className={"w-full h-[50px] border-black"}
+                placeholder="Billing City"
+              />
+            </Form.Item>
+
+            <Form.Item label={"Billing State/Zip "}>
+              <div className={"grid grid-cols-2 gap-2.5"}>
+                <Form.Item
+                  name={"state"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input!",
+                    },
+                  ]}
+                >
+                  <Select
+                    placeholder={"State"}
+                    options={[{ value: "USA", label: "USA" }]}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name={"zip"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input!",
+                    },
+                  ]}
+                >
+                  <Input placeholder="Zip Code" />
+                </Form.Item>
+              </div>
+            </Form.Item>
+          </Form>
+        </Modal>
       </section>
     </Fragment>
   );
