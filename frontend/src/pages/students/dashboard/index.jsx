@@ -26,6 +26,7 @@ import { BiDollar } from "react-icons/bi";
 import { FaDownload, FaFilePdf } from "react-icons/fa6";
 import { IoPrint } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
+import { CustomInput, CustomSelect } from "@/components/form";
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -400,7 +401,7 @@ const Dashboard = () => {
               ]}
             >
               <InputNumber
-                className={"w-full"}
+                className={"w-full h-[50px] border-[#667085] py-2.5"}
                 prefix={<DollarOutlined className="site-form-item-icon" />}
                 placeholder="amount"
               />
@@ -416,7 +417,7 @@ const Dashboard = () => {
                 },
               ]}
             >
-              <InputNumber className={"w-full"} placeholder="Card Number" />
+              <InputNumber className={"w-full h-[50px] border-[#667085] py-2.5"} placeholder="Card Number" />
             </Form.Item>
 
             <Form.Item
@@ -430,7 +431,7 @@ const Dashboard = () => {
               ]}
             >
               <DatePicker
-                className={"w-full"}
+                className={"w-full h-[50px] border-[#667085]"}
                 format={"YYYY/MM"}
                 picker="month"
               />
@@ -446,7 +447,7 @@ const Dashboard = () => {
                 },
               ]}
             >
-              <InputNumber className={"w-full"} placeholder="Security Code" />
+              <InputNumber className={"w-full h-[50px] border-[#667085] py-2.5"} placeholder="Security Code" />
             </Form.Item>
 
             <Form.Item
@@ -460,7 +461,7 @@ const Dashboard = () => {
               ]}
             >
               <Input
-                className={"w-full h-[50px] border-black"}
+                className={"w-full h-[50px] border-[#667085]"}
                 placeholder="Name on Card"
               />
             </Form.Item>
@@ -476,7 +477,7 @@ const Dashboard = () => {
               ]}
             >
               <Input
-                className={"w-full h-[50px] border-black"}
+                className={"w-full h-[50px] border-[#667085]"}
                 placeholder="Billing Address"
               />
             </Form.Item>
@@ -492,7 +493,7 @@ const Dashboard = () => {
               ]}
             >
               <Input
-                className={"w-full h-[50px] border-black"}
+                className={"w-full h-[50px] border-[#667085]"}
                 placeholder="Billing City"
               />
             </Form.Item>
@@ -508,10 +509,19 @@ const Dashboard = () => {
                     },
                   ]}
                 >
-                  <Select
-                    placeholder={"State"}
-                    options={[{ value: "USA", label: "USA" }]}
-                  />
+                  <ConfigProvider
+                    theme={{
+                      token: {
+                        colorBorder: "#667085"
+                      },
+                    }}
+                  >
+                    <Select
+                      placeholder={"State"}
+                      options={[{ value: "USA", label: "USA" }]}
+                      className={"h-[50px]"}
+                    />
+                  </ConfigProvider>
                 </Form.Item>
 
                 <Form.Item
@@ -523,7 +533,7 @@ const Dashboard = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="Zip Code" />
+                  <Input placeholder="Zip Code" className="h-[50px] border-[#667085]" />
                 </Form.Item>
               </div>
             </Form.Item>
