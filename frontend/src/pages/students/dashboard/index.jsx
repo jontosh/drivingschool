@@ -65,8 +65,10 @@ const Dashboard = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <Title>Upcoming schedule</Title>
-            <Link to={"/"} className="text-[#1890FF]">
+            <Title level={3} fontSize={"text-sm sm:text-xl"}>
+              Upcoming schedule
+            </Title>
+            <Link to={"/"} className="text-[#1890FF] text-xs sm:text-base">
               View all &#62;
             </Link>
           </div>
@@ -78,7 +80,7 @@ const Dashboard = () => {
             <DrivingItem className={"flex-shrink-0"} />
           </div>
 
-          <div className="grid grid-cols-3 gap-2.5 max-[1250px]:grid-cols-2 max-[1000px]:grid-cols-1">
+          <div className="space-y-5 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-2.5 md:grid-cols-3">
             <div className="flex flex-col justify-between border p-5 rounded-xl">
               <ConfigProvider
                 theme={{
@@ -134,39 +136,69 @@ const Dashboard = () => {
               </Link>
             </div>
 
-            <div className="w-60 flex flex-col justify-between border p-5 rounded-xl max-xl:gap-5 max-xl:m-auto">
-              <Title fontSize={"text-lg"}>MY FILES</Title>
-              <div className="flex items-center justify-between ">
-                <IconComponent
-                  icon={<FaFilePdf />}
-                  className={"bg-black text-white w-10 h-10 rounded-xl"}
-                  iconClass={"pt-1.5"}
-                  iconWidth={"text-xl"}
-                />
+            <div>
+              <div className="border p-5 rounded-xl space-y-5 lg:max-w-72">
+                <Title fontSize={"text-lg"}>MY FILES</Title>
+                <div className="flex items-center justify-between ">
+                  <IconComponent
+                    icon={<FaFilePdf />}
+                    className={"bg-black text-white w-10 h-10 rounded-xl"}
+                    iconClass={"pt-1.5"}
+                    iconWidth={"text-xl"}
+                  />
 
-                <Paragraph fontSize={"text-xs font-semibold"}>
-                  Student Contract
-                </Paragraph>
+                  <Paragraph fontSize={"text-xs font-semibold"}>
+                    Student Contract
+                  </Paragraph>
+                </div>
+                <div className="flex justify-between items-center">
+                  <IconComponent
+                    icon={<IoPrint />}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
+                    iconWidth={"text-2xl"}
+                    iconClass={"pt-1.5"}
+                  />
+                  <IconComponent
+                    icon={<IoMdEye />}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
+                    iconWidth={"text-2xl"}
+                    iconClass={"pt-1.5"}
+                  />
+                  <IconComponent
+                    icon={<FaDownload />}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
+                    iconWidth={"text-xl"}
+                    iconClass={"pt-1.5"}
+                  />
+                </div>
               </div>
+            </div>
+
+            <div className="flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl max-xl:gap-5">
+              <Title fontSize={"text-base font-semibold"}>SIGN DOCUMENTS</Title>
+              <Paragraph fontSize={"text-sm font-semibold"}>
+                Teens 8hr in car instruction
+              </Paragraph>
+
               <div className="flex justify-between items-center">
-                <IconComponent
-                  icon={<IoPrint />}
-                  className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
-                  iconWidth={"text-2xl"}
-                  iconClass={"pt-1.5"}
-                />
-                <IconComponent
-                  icon={<IoMdEye />}
-                  className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
-                  iconWidth={"text-2xl"}
-                  iconClass={"pt-1.5"}
-                />
-                <IconComponent
-                  icon={<FaDownload />}
-                  className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
-                  iconWidth={"text-xl"}
-                  iconClass={"pt-1.5"}
-                />
+                <div className="space-x-3">
+                  <IconComponent
+                    icon={<IoPrint />}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
+                    iconWidth={"text-2xl"}
+                    iconClass={"pt-1.5"}
+                  />
+                  <IconComponent
+                    icon={<IoMdEye />}
+                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
+                    iconWidth={"text-2xl"}
+                    iconClass={"pt-1.5"}
+                  />
+                </div>
+
+                <Link to={"/"} className="bg-[#24C18F] py-2.5 px-5 rounded-xl">
+                  SIGN
+                </Link>
               </div>
             </div>
 
@@ -179,7 +211,7 @@ const Dashboard = () => {
                 <Image className={"w-6"} src={LinksIcon} srcSet={LinksIcon} />
               </div>
 
-              <div className={"grid grid-cols-2 gap-5 max-[600px]:grid-cols-1"}>
+              <div className={"space-y-5"}>
                 <Link
                   to={"/"}
                   className={
@@ -211,34 +243,6 @@ const Dashboard = () => {
                   }
                 >
                   Book lessons
-                </Link>
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl max-xl:gap-5">
-              <Title fontSize={"text-base font-semibold"}>SIGN DOCUMENTS</Title>
-              <Paragraph fontSize={"text-sm font-semibold"}>
-                Teens 8hr in car instruction
-              </Paragraph>
-
-              <div className="flex justify-between items-center">
-                <div className="space-x-3">
-                  <IconComponent
-                    icon={<IoPrint />}
-                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
-                    iconWidth={"text-2xl"}
-                    iconClass={"pt-1.5"}
-                  />
-                  <IconComponent
-                    icon={<IoMdEye />}
-                    className={"bg-[#ECECEC] w-10 h-10 rounded-xl"}
-                    iconWidth={"text-2xl"}
-                    iconClass={"pt-1.5"}
-                  />
-                </div>
-
-                <Link to={"/"} className="bg-[#24C18F] py-2.5 px-5 rounded-xl">
-                  SIGN
                 </Link>
               </div>
             </div>
@@ -417,7 +421,10 @@ const Dashboard = () => {
                 },
               ]}
             >
-              <InputNumber className={"w-full h-[50px] border-[#667085] py-2.5"} placeholder="Card Number" />
+              <InputNumber
+                className={"w-full h-[50px] border-[#667085] py-2.5"}
+                placeholder="Card Number"
+              />
             </Form.Item>
 
             <Form.Item
@@ -447,7 +454,10 @@ const Dashboard = () => {
                 },
               ]}
             >
-              <InputNumber className={"w-full h-[50px] border-[#667085] py-2.5"} placeholder="Security Code" />
+              <InputNumber
+                className={"w-full h-[50px] border-[#667085] py-2.5"}
+                placeholder="Security Code"
+              />
             </Form.Item>
 
             <Form.Item
@@ -512,7 +522,7 @@ const Dashboard = () => {
                   <ConfigProvider
                     theme={{
                       token: {
-                        colorBorder: "#667085"
+                        colorBorder: "#667085",
                       },
                     }}
                   >
@@ -533,7 +543,10 @@ const Dashboard = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="Zip Code" className="h-[50px] border-[#667085]" />
+                  <Input
+                    placeholder="Zip Code"
+                    className="h-[50px] border-[#667085]"
+                  />
                 </Form.Item>
               </div>
             </Form.Item>
