@@ -24,6 +24,7 @@ import {
 } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
+  ExclamationCircleFilled,
   ExportOutlined,
   FormOutlined,
   MinusCircleOutlined,
@@ -40,9 +41,18 @@ import {
   TimePicker,
   Tooltip,
   Modal,
+  Input,
 } from "antd";
 import classNames from "classnames";
-import { Fragment, useContext, useState, useEffect, useReducer } from "react";
+import {
+  Fragment,
+  useContext,
+  useState,
+  useEffect,
+  useReducer,
+  useCallback,
+  useMemo,
+} from "react";
 import { BiTime } from "react-icons/bi";
 import { GoClock, GoEye } from "react-icons/go";
 import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
@@ -56,11 +66,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "moment";
-import {
-  CircularProgressbar,
-  CircularProgressbarWithChildren,
-  buildStyles,
-} from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { LuRefreshCw } from "react-icons/lu";
 
@@ -1309,7 +1315,7 @@ const AddNewTest = () => {
             >
               {({ getFieldValue }) =>
                 QuestionType[getFieldValue("type") - 1]?.id ===
-                  getFieldValue("type")
+                getFieldValue("type")
                   ? AddQuizArrays[getFieldValue("type") - 1]
                   : null
               }
@@ -1361,6 +1367,7 @@ const AddNewTest = () => {
     </Fragment>
   );
 };
+
 const TestForm = ({ data, disabled, border }) => {
   const [selectedIndices, setSelectedIndices] = useState([]);
   const { colorsObject } = useContext(ColorsContext);
@@ -1456,7 +1463,8 @@ const TestPreview = () => {
   const [TestIndex, setTestIndex] = useState(0);
   const [TestItemId, setTestItemId] = useState(0);
   const [form] = Form.useForm();
-
+  const [updateForm] = Form.useForm();
+  const { confirm } = Modal;
   const [requestDelete] = useRequestDeleteMutation();
   const [requestPatch] = useRequestPatchMutation();
   const { data: TestData, isLoading: isTestData } = useRequestIdQuery({
@@ -1470,12 +1478,15 @@ const TestPreview = () => {
   });
 
   useEffect(() => {
-    form?.setFieldsValue(Question);
-  }, [Question, form]);
+    if (Question) {
+      form.setFieldsValue(Question);
+      updateForm.setFieldsValue(Question);
+    }
+  }, [Question, form, updateForm]);
 
-  const onDelete = async () => {
+  const onDelete = useCallback(async () => {
     await requestDelete({
-      path: "/account_management/services/question/" + TestItemId,
+      path: `/account_management/services/question/${TestItemId}`,
     }).reset();
 
     await requestPatch({
@@ -1483,34 +1494,121 @@ const TestPreview = () => {
       id: TestId,
       data: {
         ...TestData,
-        questions: TestData?.questions?.filter((item) => item !== TestId),
+        questions: TestData?.questions?.filter((item) => item !== TestItemId),
       },
     }).reset();
-  };
+  }, [requestDelete, requestPatch, TestItemId, TestId, TestData]);
 
-  const handleQuestionChange = (index, itemId) => {
+  const onUpdate = useCallback(() => {
+    confirm({
+      title: `Update: ${Question?.question}`,
+      icon: <ExclamationCircleFilled />,
+      content: (
+        <Fragment>
+          <Form form={updateForm} className="space-y-5">
+            {Question?.type === 1 || Question?.type === 3
+              ? Question?.answers?.map((item, index) => (
+                  <div className="flex gap-2.5 items-end" key={index}>
+                    <Form.Item
+                      name={["answers", index, "is_correct"]}
+                      valuePropName="checked"
+                    >
+                      <CustomCheckBox />
+                    </Form.Item>
+                    <Form.Item name={["answers", index, "text"]}>
+                      <Input placeholder="Text" />
+                    </Form.Item>
+                  </div>
+                ))
+              : Question?.type === 2 && (
+                  <Form.Item name={["answers", 0, "is_correct"]}>
+                    <Radio.Group className="flex flex-col gap-5">
+                      {Question?.answers?.map((item, index) => (
+                        <ConfigProvider
+                          key={index}
+                          theme={{
+                            components: {
+                              Radio: {
+                                radioSize: 20,
+                                dotColorDisabled: colorsObject.primary,
+                                colorBorder: colorsObject.primary,
+                              },
+                            },
+                          }}
+                        >
+                          <div
+                            className="flex gap-2.5 items-center"
+                            key={index}
+                          >
+                            <Radio value={index % 2 === 0} />
+                            <Form.Item
+                              name={["answers", index, "text"]}
+                              className={"mb-0"}
+                            >
+                              <Input placeholder="Text" />
+                            </Form.Item>
+                          </div>
+                        </ConfigProvider>
+                      ))}
+                    </Radio.Group>
+                  </Form.Item>
+                )}
+          </Form>
+        </Fragment>
+      ),
+      onOk: async () => {
+        try {
+          await requestPatch({
+            path: "/account_management/services/question",
+            id: TestItemId,
+            data: {
+              ...Question,
+              answers: updateForm.getFieldValue("answers"),
+            },
+          }).reset();
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    });
+  }, [
+    confirm,
+    Question,
+    requestPatch,
+    TestItemId,
+    colorsObject.primary,
+    updateForm,
+  ]);
+
+  const handleQuestionChange = useCallback((index, itemId) => {
     setTestIndex(index);
     setTestItemId(itemId);
-  };
+  }, []);
 
-  const questionButtons = TestData?.questions?.map((item, index) => (
-    <ButtonComponent
-      onClick={() => handleQuestionChange(index + 1, item)}
-      defaultBg={TestIndex === index + 1 ? colorsObject?.primary : "#C4C4C4"}
-      defaultHoverBg="#FFAAAF"
-      key={index}
-      paddingInline={15}
-      className="rounded-full"
-    >
-      {index + 1}
-    </ButtonComponent>
-  ));
+  const questionButtons = useMemo(
+    () =>
+      TestData?.questions?.map((item, index) => (
+        <ButtonComponent
+          onClick={() => handleQuestionChange(index + 1, item)}
+          defaultBg={
+            TestIndex === index + 1 ? colorsObject?.primary : "#C4C4C4"
+          }
+          defaultHoverBg="#FFAAAF"
+          key={index}
+          paddingInline={15}
+          className="rounded-full"
+        >
+          {index + 1}
+        </ButtonComponent>
+      )),
+    [TestData, TestIndex, colorsObject?.primary, handleQuestionChange],
+  );
 
   if (isTestData) return "Loading...";
 
   return (
     <Fragment>
-      <Title titleMarginBottom={20} level={2} fontSize={"text-2xl font-normal"}>
+      <Title titleMarginBottom={20} level={2} fontSize="text-2xl font-normal">
         {TestData?.name}
       </Title>
       <div className="grid grid-cols-2 gap-5">
@@ -1521,14 +1619,19 @@ const TestPreview = () => {
         ) : (
           <div className="space-y-5">
             <blockquote className="py-5 px-4 border border-indigo-600 rounded-xl">
-              <Title titleMarginBottom={20} level={4} fontSize={"text-xl font-medium"}>
+              <Title
+                titleMarginBottom={20}
+                level={4}
+                fontSize="text-xl font-medium"
+              >
                 Question {TestIndex}
               </Title>
-              <Paragraph className={"text-gray-500"} fontSize={"text-base"}>{Question?.question}</Paragraph>
+              <Paragraph className="text-gray-500" fontSize="text-base">
+                {Question?.question}
+              </Paragraph>
             </blockquote>
-            <Form form={form} className={"space-y-5"}>
+            <Form form={form} className="space-y-5">
               <TestForm data={Question} />
-
               <div className="space-x-5">
                 <ButtonComponent
                   defaultBg={colorsObject?.danger}
@@ -1536,39 +1639,39 @@ const TestPreview = () => {
                   paddingInline={43}
                   controlHeight={40}
                   borderRadius={5}
-                  type={"submit"}
+                  type="submit"
                   onClick={onDelete}
                 >
                   Delete
                 </ButtonComponent>
-
                 <ButtonComponent
                   defaultBg={colorsObject?.orange}
                   defaultHoverBg={colorsObject?.orange}
                   paddingInline={43}
                   controlHeight={40}
                   borderRadius={5}
-                  type={"submit"}
+                  type="submit"
+                  onClick={onUpdate}
                 >
-                  Upgrade
+                  Update
                 </ButtonComponent>
               </div>
             </Form>
-
             <div className="p-5 rounded-xl shadow-[0px_4px_14px_0px_rgba(0,0,0,0.2)] space-y-5">
-              <Title level={3} fontSize={"text-[22px] font-medium"}>
+              <Title level={3} fontSize="text-[22px] font-medium">
                 Explanation
               </Title>
-
               <Paragraph fontSize="text-base text-gray-500">
-                A train passes a station platform in 36 seconds and a man standing on the platform in 20 seconds. If the speed of the train is 54 km/hr, what is the length of the platform?
+                A train passes a station platform in 36 seconds and a man
+                standing on the platform in 20 seconds. If the speed of the
+                train is 54 km/hr, what is the length of the platform?
               </Paragraph>
             </div>
           </div>
         )}
         <div className="space-y-5">
           <div className="flex gap-2.5 justify-between">
-            <Paragraph fontSize={"text-xl"}>
+            <Paragraph fontSize="text-xl">
               Question {TestIndex}/{TestData?.questions?.length}
             </Paragraph>
             <Tooltip title="Empty">
@@ -1800,7 +1903,7 @@ export const StudentTestView = ({ timer }) => {
                 </ButtonComponent>
 
                 {JSON.parse(TestResults)?.length ===
-                  TestData?.questions?.length ? (
+                TestData?.questions?.length ? (
                   <ButtonComponent
                     defaultBg={"#878CEE"}
                     defaultHoverBg={"#878CEE"}

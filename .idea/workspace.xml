@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed modal to payment i student portal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/dashboard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,15 +214,7 @@
       <workItem from="1721556404337" duration="35000" />
       <workItem from="1721556448011" duration="2549000" />
       <workItem from="1721756747693" duration="12907000" />
-      <workItem from="1721809337129" duration="4746000" />
-    </task>
-    <task id="LOCAL-00062" summary="#fix #jsx Fixed files and remove handle functions">
-      <option name="closed" value="true" />
-      <created>1719706683587</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1719706683588</updated>
+      <workItem from="1721809337129" duration="12824000" />
     </task>
     <task id="LOCAL-00063" summary="#fix #jsx #npm Installed @vis.gl/react-google-maps and refactored form elements">
       <option name="closed" value="true" />
@@ -609,7 +600,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721781236961</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="#fix #jsx Fixed modal to payment i student portal">
+      <option name="closed" value="true" />
+      <created>1721816189241</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1721816189241</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +627,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Refactored form elements and render components" />
     <MESSAGE value="#fix #jsx Refactored form elements and initial values for form if user answer or not" />
     <MESSAGE value="#fix #jsx Refactored form elements and code with get correct initial values" />
     <MESSAGE value="#fix #jsx Refactored code to get Success or Failed results, modal in process" />
@@ -653,7 +651,8 @@
     <MESSAGE value="#fix #jsx Fixed bug in mobile media and request loading data." />
     <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions." />
     <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal." />
+    <MESSAGE value="#fix #jsx Fixed modal to payment i student portal" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed modal to payment i student portal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
