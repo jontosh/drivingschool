@@ -81,7 +81,7 @@ const Dashboard = () => {
           </div>
 
           <div className="space-y-5 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-2.5 md:grid-cols-3">
-            <div className="flex flex-col justify-between border p-5 rounded-xl">
+            <div className="h-[181px] flex flex-col justify-between border p-5 rounded-xl">
               <ConfigProvider
                 theme={{
                   token: {
@@ -99,7 +99,7 @@ const Dashboard = () => {
                 />
               </ConfigProvider>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-x-3">
                 <IconComponent icon={<GiWallet />} iconWidth={"text-[66px]"} />
 
                 <div className="flex items-center space-x-2">
@@ -125,7 +125,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="border p-5 rounded-xl space-y-5">
+            <div className="border p-5 rounded-xl space-y-2.5">
               <Title fontSize={"text-lg"}>EZ DRIVE ONLINE COURSE</Title>
               <Paragraph fontSize={"text-base"}>
                 Please contact our customer service if you want to purchase an
@@ -174,7 +174,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl max-xl:gap-5">
+            <div className="h-[179px] flex flex-col justify-between border border-[#CED8E5] p-5 rounded-xl">
               <Title fontSize={"text-base font-semibold"}>SIGN DOCUMENTS</Title>
               <Paragraph fontSize={"text-sm font-semibold"}>
                 Teens 8hr in car instruction
@@ -279,7 +279,7 @@ const Dashboard = () => {
 
               <Upload />
 
-              <div className="space-x-2.5 text-end border-t border-[#CED8E5] pt-5">
+              <div className="flex max-[400px]:flex-col gap-2.5 justify-end border-t border-[#CED8E5] pt-5">
                 <ButtonComponent
                   defaultBg={colorsObject.main}
                   defaultColor={colorsObject.black}
@@ -335,7 +335,7 @@ const Dashboard = () => {
                 (Only jpg, png, and pdf file formats are allowed)
               </Paragraph>
 
-              <div className="flex justify-between items-center border-b border-[#E3E3E3] pb-5">
+              <div className="flex max-[400px]:flex-col gap-y-5 justify-between items-center border-b border-[#E3E3E3] pb-5">
                 <Paragraph>Copy of Permit</Paragraph>
 
                 <ButtonComponent
@@ -348,7 +348,7 @@ const Dashboard = () => {
                 </ButtonComponent>
               </div>
 
-              <div className="flex justify-between items-center">
+              <div className="flex max-[400px]:flex-col gap-y-5 justify-between items-center border-b border-[#E3E3E3] pb-5">
                 <Paragraph>Copy of Permit</Paragraph>
 
                 <ButtonComponent
