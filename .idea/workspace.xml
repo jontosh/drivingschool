@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized media in student portal">
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/exams.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/resources/quiz/exams.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/resources/quiz/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/resources/quiz/results.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/students/resources/quiz/test.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized code and created quiz router for student portal.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/student-menu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/schedule/book-lessons.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/schedule/book-lessons.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,14 +217,6 @@
       <workItem from="1721556448011" duration="2549000" />
       <workItem from="1721756747693" duration="12907000" />
       <workItem from="1721809337129" duration="18414000" />
-    </task>
-    <task id="LOCAL-00065" summary="#fix #jsx Updated Icons wrapper and Tooltip components on hover information">
-      <option name="closed" value="true" />
-      <created>1719833948391</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1719833948393</updated>
     </task>
     <task id="LOCAL-00066" summary="#fix #jsx Updated form and initial values for elements">
       <option name="closed" value="true" />
@@ -616,7 +602,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721916413692</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="#fix #jsx Optimized code and created quiz router for student portal.">
+      <option name="closed" value="true" />
+      <created>1721992787938</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1721992787938</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +629,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Refactored code to get Success or Failed results, modal in process" />
     <MESSAGE value="#fix #jsx Refactored code show result test in modal window" />
     <MESSAGE value="#fix #jsx Refactored router link" />
     <MESSAGE value="#fix #jsx Fixed code in test view" />
@@ -660,7 +653,8 @@
     <MESSAGE value="#fix #jsx Fixed modal to payment i student portal" />
     <MESSAGE value="#fix #jsx Fixed modal to update questions answers." />
     <MESSAGE value="#fix #jsx Optimized media in student portal" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized media in student portal" />
+    <MESSAGE value="#fix #jsx Optimized code and created quiz router for student portal." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized code and created quiz router for student portal." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

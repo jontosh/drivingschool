@@ -5,17 +5,22 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SchedulingModule } from "@/modules/scheduling.jsx";
 import { Calendar } from "@natscale/react-calendar";
-import { Fragment, useCallback, useContext, useState } from "react";
+import { Fragment, useCallback, useContext, useMemo, useState } from "react";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
+import MediaQuery from "react-responsive";
 
-export const StudentBookLessons = ({ ...props }) => {
-  const Time = new Date();
+export const StudentBookLessons = () => {
   const { colorsObject } = useContext(ColorsContext);
 
-  const [value, setValue] = useState([
-    new Date(Time.getFullYear(), Time.getMonth(), 1),
-    new Date(Time.getFullYear(), Time.getMonth() + 1, 5),
-  ]);
+  const initialValue = useMemo(() => {
+    const Time = new Date();
+    return [
+      new Date(Time.getFullYear(), Time.getMonth(), 1),
+      new Date(Time.getFullYear(), Time.getMonth() + 1, 5),
+    ];
+  }, []);
+
+  const [value, setValue] = useState(initialValue);
 
   const onChange = useCallback(
     (value) => {
@@ -29,38 +34,40 @@ export const StudentBookLessons = ({ ...props }) => {
   return (
     <Fragment>
       <div className="flex gap-5">
-        <div className={"flex-grow space-y-5"}>
-          <div className=" border border-gray-500 px-6 py-4 rounded-lg space-y-5">
+        <div className="flex-grow space-y-5">
+          <div className="border border-gray-500 px-6 py-4 rounded-lg space-y-5">
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}
-                fontSize={"text-base text-gray-500 uppercase"}
+                fontSize="text-base text-gray-500 uppercase"
                 fontWeightStrong={500}
               >
                 FILTER BY DATE
               </Title>
               <IconComponent
-                className={"cursor-text text-gray-500"}
-                iconWidth={"w-[18px]"}
+                className="cursor-text text-gray-500"
+                iconWidth="w-[18px]"
                 icon={<BsFillCalendarWeekFill />}
               />
             </div>
 
-            <hr className={"border border-gray-400"} />
+            <hr className="border border-gray-400" />
 
-            <div>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={300}
-              />
-            </div>
+            <MediaQuery minWidth={1536}>
+              {(matches) => (
+                <Calendar
+                  showDualCalendar
+                  isRangeSelector
+                  value={value}
+                  onChange={onChange}
+                  hideAdjacentDates
+                  className="w-full"
+                  size={matches ? 500 : 300}
+                />
+              )}
+            </MediaQuery>
 
-            <Paragraph className={"text-gray-500"}>
+            <Paragraph className="text-gray-500">
               Available Booked or currently unavailable (Call for assistance if
               you don't see availability) Date unavailable or slots are not
               created
@@ -99,22 +106,18 @@ export const StudentBookLessons = ({ ...props }) => {
         </div>
 
         <div>
-          <aside
-            className={
-              "w-96 border border-gray-500 px-6 py-4 rounded-lg flex-shrink-0"
-            }
-          >
+          <aside className="w-96 border border-gray-500 px-6 py-4 rounded-lg flex-shrink-0">
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}
-                fontSize={"text-base text-gray-500 uppercase"}
+                fontSize="text-base text-gray-500 uppercase"
                 fontWeightStrong={500}
               >
                 AVAILABLE OPEN SLOT
               </Title>
               <IconComponent
-                className={"cursor-text text-gray-500"}
-                iconWidth={"w-[18px]"}
+                className="cursor-text text-gray-500"
+                iconWidth="w-[18px]"
                 icon={<BsFillCalendarWeekFill />}
               />
             </div>
