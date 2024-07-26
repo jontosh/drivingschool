@@ -1,4 +1,17 @@
 Router = {
+    "swagger":{
+        "base":"",
+        "methods":["ALL METHODS ARE SHOWN"],
+        "descriptions":"Here you can test entire endpoint with help of SWAGGER",
+        "note":"Mani endpoints are of this section "
+               "<li><span>schema-swagger-ui</span></li>"
+               "<li><span>schema-redoc</span></li><br>",
+        "children":{
+        "schema-json":"swagger<format>/",
+        "schema-swagger-ui":"swagger/",
+        "schema-redoc":"redoc/",
+        }
+    },
     "authentication":{
         "base":"authentication/",
         "methods":["GET","POST","OTHER METHODS BLOCKED"],

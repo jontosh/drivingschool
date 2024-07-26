@@ -43,6 +43,13 @@ class LatestNews(models.Model):
     def __str__(self):
         return self.title
 
+class Resources(models.Model):
+    to_class = models.TextField(blank=True,null=True)
+    in_car = models.TextField(blank=True,null=True)
+    road_test = models.TextField(blank=True,null=True)
+    parents = models.TextField(blank=True,null=True)
+    def __str__(self):
+        return  self.pk
 
 class Logs(models.Model):
     time = models.DateTimeField(auto_now=True)
