@@ -30,6 +30,10 @@ import StudentContact from "@/pages/students/contact/index.jsx";
 import { default as StudentDashboard } from "@/pages/students/dashboard";
 import StudentEnroll from "@/pages/students/enroll/index.jsx";
 import StudentResource from "@/pages/students/resources/index.jsx";
+import StudentExams from "@/pages/students/resources/quiz/exams.jsx";
+import Quiz, { QuizView } from "@/pages/students/resources/quiz/index.jsx";
+import StudentResults from "@/pages/students/resources/quiz/results.jsx";
+import StudentTestView from "@/pages/students/resources/quiz/test.jsx";
 import StudentSchedule from "@/pages/students/schedule/index.jsx";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -233,6 +237,30 @@ export const router = createBrowserRouter([
       {
         path: "resource/:title/:studentId",
         element: <StudentResource />,
+      },
+      {
+        path: "resource/quiz/:studentId",
+        element: <Quiz />,
+        children: [
+          {
+            path: "view",
+            element: <QuizView />,
+            children: [
+              {
+                path: "exams",
+                element: <StudentExams />,
+              },
+              {
+                path: "results",
+                element: <StudentResults />,
+              },
+            ],
+          },
+          {
+            path: "test/:testId",
+            element: <StudentTestView />,
+          },
+        ],
       },
     ],
   },

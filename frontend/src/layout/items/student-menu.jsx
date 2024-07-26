@@ -179,6 +179,18 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
                 Parents
               </Link>
             </Menu.Item>
+
+            <Menu.Item
+              key={"/student/resource/quiz/" + (studentId ?? 0) + "/view/exams"}
+            >
+              <Link
+                to={
+                  "/student/resource/quiz/" + (studentId ?? 0) + "/view/exams"
+                }
+              >
+                Quiz
+              </Link>
+            </Menu.Item>
           </SubMenu>
           <Menu.Item
             icon={
