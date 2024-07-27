@@ -58,12 +58,7 @@ export const AuthProvider = ({ children }) => {
       setLogTime(null);
     }
 
-    const intervalId = setInterval(
-      () => {
-        Auth();
-      },
-      1000 * 60 * 60,
-    ); // every 1 hour
+    const intervalId = setInterval(Auth, 1000 * 60 * 60 * 3);
 
     return () => clearInterval(intervalId);
   }, [Auth, AuthUser]);
