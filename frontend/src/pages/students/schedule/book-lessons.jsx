@@ -33,7 +33,7 @@ export const StudentBookLessons = () => {
 
   return (
     <Fragment>
-      <div className="flex gap-5">
+      <div className="flex max-[1000px]:flex-col gap-5">
         <div className="flex-grow space-y-5">
           <div className="border border-gray-500 px-6 py-4 rounded-lg space-y-5">
             <div className="flex items-center gap-2.5">
@@ -53,18 +53,61 @@ export const StudentBookLessons = () => {
 
             <hr className="border border-gray-400" />
 
-            <MediaQuery minWidth={1536}>
-              {(matches) => (
-                <Calendar
-                  showDualCalendar
-                  isRangeSelector
-                  value={value}
-                  onChange={onChange}
-                  hideAdjacentDates
-                  className="w-full"
-                  size={matches ? 500 : 300}
-                />
-              )}
+
+            <MediaQuery minWidth={1536} maxWidth={1919}>
+              <Calendar
+                showDualCalendar
+                isRangeSelector
+                value={value}
+                onChange={onChange}
+                hideAdjacentDates
+                className={"w-full"}
+                size={300}
+              />
+            </MediaQuery>
+            <MediaQuery minWidth={1275} maxWidth={1536}>
+              <Calendar
+                showDualCalendar
+                isRangeSelector
+                value={value}
+                onChange={onChange}
+                hideAdjacentDates
+                className={"w-full"}
+                size={200}
+              />
+            </MediaQuery>
+            <MediaQuery minWidth={1000} maxWidth={1275}>
+              <Calendar
+                showDualCalendar
+                isRangeSelector
+                value={value}
+                onChange={onChange}
+                hideAdjacentDates
+                className={"w-full"}
+                size={180}
+              />
+            </MediaQuery>
+            <MediaQuery minWidth={600} maxWidth={1000}>
+              <Calendar
+                showDualCalendar
+                isRangeSelector
+                value={value}
+                onChange={onChange}
+                hideAdjacentDates
+                className={"w-full"}
+                size={300}
+              />
+            </MediaQuery>
+            <MediaQuery minWidth={280} maxWidth={600}>
+              <Calendar
+                showDualCalendar
+                isRangeSelector
+                value={value}
+                onChange={onChange}
+                hideAdjacentDates
+                className={"w-full"}
+                size={200}
+              />
             </MediaQuery>
 
             <Paragraph className="text-gray-500">
@@ -74,7 +117,7 @@ export const StudentBookLessons = () => {
             </Paragraph>
           </div>
 
-          <div className="text-center space-x-4">
+          <div className="flex flex-col min-[600px]:flex-row text-center gap-4">
             <ButtonComponent
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
@@ -106,7 +149,7 @@ export const StudentBookLessons = () => {
         </div>
 
         <div>
-          <aside className="w-96 border border-gray-500 px-6 py-4 rounded-lg flex-shrink-0">
+          <aside className="w-full min-[1000px]:w-96 border border-gray-500 px-6 py-4 rounded-lg flex-shrink-0">
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}

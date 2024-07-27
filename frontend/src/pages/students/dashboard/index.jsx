@@ -80,7 +80,7 @@ const Dashboard = () => {
             <DrivingItem className={"flex-shrink-0"} />
           </div>
 
-          <div className="space-y-5 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-2.5 md:grid-cols-3">
+          <div className="space-y-5 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-2.5 min-[1200px]:grid-cols-3">
             <div className="h-[181px] flex flex-col justify-between border p-5 rounded-xl">
               <ConfigProvider
                 theme={{
@@ -99,10 +99,10 @@ const Dashboard = () => {
                 />
               </ConfigProvider>
 
-              <div className="flex items-center justify-between gap-x-3">
-                <IconComponent icon={<GiWallet />} iconWidth={"text-[66px]"} />
+              <div className="flex max-[400px]:block items-center justify-between gap-x-3">
+                <IconComponent icon={<GiWallet />} iconWidth={"w-10 max-[400px]:hidden"} />
 
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center justify-between min-[400px]:space-x-2">
                   <ButtonComponent
                     defaultColor={colorsObject.black}
                     defaultHoverColor={colorsObject.black}
@@ -343,6 +343,7 @@ const Dashboard = () => {
                   defaultHoverBg={colorsObject.infoHover}
                   paddingInline={20}
                   borderRadius={10}
+                  className={"max-[400px]:w-full"}
                 >
                   UPLOAD
                 </ButtonComponent>
@@ -356,6 +357,7 @@ const Dashboard = () => {
                   defaultHoverBg={colorsObject.infoHover}
                   paddingInline={20}
                   borderRadius={10}
+                  className={"max-[400px]:w-full"}
                 >
                   UPLOAD
                 </ButtonComponent>
