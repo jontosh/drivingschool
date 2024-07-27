@@ -53,8 +53,7 @@ export const StudentBookLessons = () => {
 
             <hr className="border border-gray-400" />
 
-
-            <MediaQuery minWidth={1536} maxWidth={1919}>
+            <MediaQuery minWidth={1536}>
               <Calendar
                 showDualCalendar
                 isRangeSelector
@@ -65,7 +64,7 @@ export const StudentBookLessons = () => {
                 size={300}
               />
             </MediaQuery>
-            <MediaQuery minWidth={1275} maxWidth={1536}>
+            <MediaQuery minWidth={1275} maxWidth={1535}>
               <Calendar
                 showDualCalendar
                 isRangeSelector
@@ -76,7 +75,7 @@ export const StudentBookLessons = () => {
                 size={200}
               />
             </MediaQuery>
-            <MediaQuery minWidth={1000} maxWidth={1275}>
+            <MediaQuery minWidth={1000} maxWidth={1274}>
               <Calendar
                 showDualCalendar
                 isRangeSelector
@@ -87,7 +86,7 @@ export const StudentBookLessons = () => {
                 size={180}
               />
             </MediaQuery>
-            <MediaQuery minWidth={600} maxWidth={1000}>
+            <MediaQuery minWidth={600} maxWidth={999}>
               <Calendar
                 showDualCalendar
                 isRangeSelector
@@ -98,7 +97,7 @@ export const StudentBookLessons = () => {
                 size={300}
               />
             </MediaQuery>
-            <MediaQuery minWidth={280} maxWidth={600}>
+            <MediaQuery maxWidth={599}>
               <Calendar
                 showDualCalendar
                 isRangeSelector
