@@ -1,11 +1,10 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
-  CustomInput,
   CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
-import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
+import { ModalReducer } from "@/hooks/reducer.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import {
   useRequestGetQuery,
@@ -15,35 +14,15 @@ import { DatePicker, Form, Input } from "antd";
 import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import ColorsContext from "@/context/colors.jsx";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "SUCCESS": {
-      return {
-        ...state,
-        status: <AlertSuccess setIsOpen={action.setIsOpen} />,
-      };
-    }
-    case "ERROR": {
-      return {
-        ...state,
-        status: <AlertError setIsOpen={action.setIsOpen} />,
-      };
-    }
-
-    default: {
-      console.error(`Unknown action: ${action.type}`);
-    }
-  }
-};
-
-export const InfoForm = ({ packages }) => {
+export const InfoForm = ({ packages, type }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [requestPost] = useRequestPostMutation();
-
   const [IsOpen, setIsOpen] = useState(false);
-  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+  const [state, dispatch] = useReducer(ModalReducer, {
+    status: false,
+    setIsOpen,
+  });
 
-  // Data
   const { data: InstructorData, isLoading: isInstructor } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
@@ -57,54 +36,39 @@ export const InfoForm = ({ packages }) => {
     path: "/account_management/how_did_you_hear_us/",
   });
 
-  // hooks
   const [form] = Form.useForm();
   const [StaffSelect, setStaffSelect] = useState([]);
   const [LocationSelect, setLocationSelect] = useState([]);
   const [SchoolsSelect, setSchoolsSelect] = useState([]);
   const [LeadSelect, setLeadSelect] = useState([]);
 
-  // dep
   useEffect(() => {
-    const staffOptions = [];
-    const locationOptions = [];
-    const schoolsOptions = [];
-    const leadOptions = [];
-
-    for (let i = 0; i < InstructorData?.length; i++) {
-      const instructor = InstructorData[i];
-
-      if (instructor.status.toLowerCase() === "active") {
-        staffOptions.push({
-          label: instructor.first_name + " " + instructor?.last_name,
-          value: instructor.id,
-        });
-      }
-    }
-
-    for (let i = 0; i < LocationData?.length; i++) {
-      const location = LocationData[i];
-
-      if (location.status.toLowerCase() === "active") {
-        locationOptions.push({ label: location?.name, value: location.id });
-      }
-    }
-
-    for (let i = 0; i < SchoolData?.length; i++) {
-      const school = SchoolData[i];
-
-      if (school.status.toLowerCase() === "active") {
-        schoolsOptions.push({ label: school?.name, value: school.id });
-      }
-    }
-
-    for (let i = 0; i < LeadData?.length; i++) {
-      const lead = LeadData[i];
-
-      if (lead.status.toLowerCase() === "active") {
-        leadOptions.push({ label: lead?.name, value: lead.id });
-      }
-    }
+    const staffOptions =
+      InstructorData?.filter((i) => i.status.toLowerCase() === "active").map(
+        (i) => ({
+          label: `${i.first_name} ${i.last_name}`,
+          value: i.id,
+        }),
+      ) || [];
+    const locationOptions =
+      LocationData?.filter((l) => l.status.toLowerCase() === "active").map(
+        (l) => ({
+          label: l.name,
+          value: l.id,
+        }),
+      ) || [];
+    const schoolsOptions =
+      SchoolData?.filter((s) => s.status.toLowerCase() === "active").map(
+        (s) => ({
+          label: s.name,
+          value: s.id,
+        }),
+      ) || [];
+    const leadOptions =
+      LeadData?.filter((l) => l.status.toLowerCase() === "active").map((l) => ({
+        label: l.name,
+        value: l.id,
+      })) || [];
 
     setStaffSelect(staffOptions);
     setLocationSelect(locationOptions);
@@ -112,23 +76,32 @@ export const InfoForm = ({ packages }) => {
     setLeadSelect(leadOptions);
   }, [InstructorData, LocationData, SchoolData, LeadData]);
 
-  // func
+  useEffect(() => {
+    form.setFieldsValue({
+      type,
+    });
+  }, [type]);
+
   const onFinish = async (values) => {
     try {
       const response = await requestPost({
         path: "/student_account/student/",
         data: {
           ...values,
-          dl_given_date: values["dl_given_date"]?.format("YYYY-MM-DD"),
-          dl_expire_date: values["dl_expire_date"]?.format("YYYY-MM-DD"),
-          extantion_date: values["extantion_date"]?.format("YYYY-MM-DD"),
-          birth: values["birth"]?.format("YYYY-MM-DD"),
+          dl_given_date: values.dl_given_date?.format("YYYY-MM-DD"),
+          dl_expire_date: values.dl_expire_date?.format("YYYY-MM-DD"),
+          extension_data: values.extension_data?.format("YYYY-MM-DD"),
+          birth: values.birth?.format("YYYY-MM-DD"),
         },
       });
 
       if (response?.error?.status >= 400) {
-        dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
+        dispatch({
+          type: "ERROR",
+          data: response?.error?.data,
+          open: IsOpen,
+          onEvent: () => setIsOpen((prev) => !prev),
+        });
       } else {
         const res = await requestPost({
           path: "/student_account/enrollment/",
@@ -145,16 +118,29 @@ export const InfoForm = ({ packages }) => {
         });
 
         if (res?.data?.id) {
-          dispatch({ type: "SUCCESS", setIsOpen });
-          setIsOpen(true);
+          dispatch({
+            type: "SUCCESS",
+            open: IsOpen,
+            onEvent: () => setIsOpen((prev) => !prev),
+          });
         } else {
-          dispatch({ type: "ERROR", setIsOpen });
-          setIsOpen(true);
+          dispatch({
+            type: "ERROR",
+            data: res?.error?.data,
+            open: IsOpen,
+            onEvent: () => setIsOpen((prev) => !prev),
+          });
         }
       }
     } catch (error) {
-      console.error(error?.message);
-      dispatch({ type: "ERROR", setIsOpen });
+      console.error(error);
+      dispatch({
+        type: "ERROR",
+        data: {},
+        open: IsOpen,
+        onEvent: () => setIsOpen((prev) => !prev),
+      });
+    } finally {
       setIsOpen(true);
     }
   };
@@ -185,76 +171,46 @@ export const InfoForm = ({ packages }) => {
             <Form.Item
               name={"first_name"}
               label={"First name"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input First name!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input First name!" }]}
             >
-              <CustomInput classNames={"w-full"} placeholder={"First name"} />
+              <Input className="w-full h-[50px]" placeholder={"First name"} />
             </Form.Item>
 
             <Form.Item name={"mid_name"} label={"Middle name"}>
-              <CustomInput classNames={"w-full"} placeholder={"Middle name"} />
+              <Input className="w-full h-[50px]" placeholder={"Middle name"} />
             </Form.Item>
 
             <Form.Item
               name={"last_name"}
               label={"Last name"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input Last name!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input Last name!" }]}
             >
-              <CustomInput classNames={"w-full"} placeholder={"Last name"} />
+              <Input className="w-full h-[50px]" placeholder={"Last name"} />
             </Form.Item>
 
             <Form.Item
               name={"address"}
               label={"Address"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input address!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input address!" }]}
             >
-              <CustomInput classNames={"w-full"} placeholder={"address"} />
+              <Input className="w-full h-[50px]" placeholder={"address"} />
             </Form.Item>
 
             <Form.Item
               name={"city"}
               label={"City"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input city!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input city!" }]}
             >
-              <CustomInput classNames={"w-full"} placeholder={"City"} />
+              <Input className="w-full h-[50px]" placeholder={"City"} />
             </Form.Item>
 
             <Form.Item
               name={"state"}
               label={"State"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please select state!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please select state!" }]}
             >
               <CustomSelect
-                options={[
-                  {
-                    value: "USA",
-                    label: "USA",
-                  },
-                ]}
+                options={[{ value: "USA", label: "USA" }]}
                 placeholder={"Select state"}
                 className={"h-[50px]"}
               />
@@ -263,68 +219,43 @@ export const InfoForm = ({ packages }) => {
             <Form.Item
               name={"zip"}
               label={"Zip/Postal code"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input zip!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input zip!" }]}
             >
-              <CustomInput placeholder={"Zip"} classNames={"w-full"} />
+              <Input className="w-full h-[50px]" placeholder={"Zip"} />
             </Form.Item>
 
             <Form.Item
               name={"home_phone"}
               label={"Home Phone"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input Home Phone!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input Home Phone!" }]}
             >
-              <CustomInput placeholder={"Home Phone"} classNames={"w-full"} />
+              <Input className="w-full h-[50px]" placeholder={"Home Phone"} />
             </Form.Item>
 
             <Form.Item
               name={"cell_phone"}
               label={"Cell Phone"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input Cell Phone!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input Cell Phone!" }]}
             >
-              <CustomInput placeholder={"Cell Phone"} classNames={"w-full"} />
+              <Input className="w-full h-[50px]" placeholder={"Cell Phone"} />
             </Form.Item>
 
             <Form.Item
               name={"email"}
               label={"Email"}
-              rules={[
-                {
-                  required: true,
-                  type: "email",
-                },
-              ]}
+              rules={[{ required: true, type: "email" }]}
             >
-              <CustomInput
+              <Input
                 type={"email"}
+                className="w-full h-[50px]"
                 placeholder={"Email"}
-                classNames={"w-full"}
               />
             </Form.Item>
 
             <Form.Item
               label={"Gender"}
               name={"gender"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please select gender!",
-                },
-              ]}
+              rules={[{ required: true, message: "Please select gender!" }]}
             >
               <div className="grid grid-cols-3 gap-2.5">
                 <CustomRadio
@@ -361,59 +292,75 @@ export const InfoForm = ({ packages }) => {
 
             <Form.Item
               name={"preferred_pronoun"}
-              label={"Perferred Pronoun"}
+              label={"Preferred Pronoun"}
               rules={[
-                {
-                  required: true,
-                  message: "Please select perferred pronoun!",
-                },
+                { required: true, message: "Please select preferred pronoun!" },
               ]}
             >
               <CustomSelect
                 options={[
-                  { value: "He", label: "He" },
-                  { value: "She", label: "She" },
-                  { value: "Other", label: "Other" },
+                  { label: "She/Her", value: "She" },
+                  { label: "He/Him", value: "He" },
+                  { label: "Other", value: "Other" },
                 ]}
-                placeholder={"Select perferred pronoun!"}
+                placeholder={"Select preferred pronoun"}
                 className={"h-[50px]"}
               />
             </Form.Item>
 
             <Form.Item name={"medical_condition"} label={"Medical condition"}>
-              <Input.TextArea
-                placeholder={"Medical condition"}
-                className={"border-[#667085]"}
-              />
+              <Input.TextArea placeholder={"Text"} />
             </Form.Item>
 
-            <Form.Item name={"driving_notes"} label={"Student driving notes"}>
-              <Input.TextArea
-                placeholder={"Student driving notes"}
-                className={"border-[#667085]"}
-              />
+            <Form.Item name={"note"} label={"Student Notes"}>
+              <Input.TextArea placeholder={"Text"} />
             </Form.Item>
 
-            <Form.Item
-              name="agree"
-              valuePropName="checked"
-              label={"I have read and agreed to Terms and Conditions"}
-            >
-              <CustomCheckBox />
+            <Form.Item name={"driving_note"} label={"Student driving notes"}>
+              <Input.TextArea placeholder={"Text"} />
             </Form.Item>
           </div>
 
           <div className="space-y-5">
+            <Form.Item
+              name={"birth"}
+              label={"Birth"}
+              rules={[{ required: true, message: "Please input birth date!" }]}
+            >
+              <DatePicker
+                className={`w-full h-[50px] ${colorsObject?.accent}`}
+                placeholder={"Select birth date"}
+              />
+            </Form.Item>
+
             <Form.Item name={"dl_permit"} label={"DL/Permit"}>
-              <CustomInput placeholder={"DL/Permit #"} classNames={"w-full"} />
+              <Input className="w-full h-[50px]" placeholder={"DL/Permit"} />
             </Form.Item>
 
-            <Form.Item name={"dl_given_date"} label={"DL/Permit Issued"}>
-              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            <Form.Item
+              name={"dl_given_date"}
+              label={"DL Given Date"}
+              rules={[
+                { required: true, message: "Please input DL given date!" },
+              ]}
+            >
+              <DatePicker
+                className={`w-full h-[50px] ${colorsObject?.accent}`}
+                placeholder={"Select DL given date"}
+              />
             </Form.Item>
 
-            <Form.Item name={"dl_expire_date"} label={"DL Permit Expiration"}>
-              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            <Form.Item
+              name={"dl_expire_date"}
+              label={"DL Expire Date"}
+              rules={[
+                { required: true, message: "Please input DL expire date!" },
+              ]}
+            >
+              <DatePicker
+                className={`w-full h-[50px] ${colorsObject?.accent}`}
+                placeholder={"Select DL expire date"}
+              />
             </Form.Item>
 
             <Form.Item
@@ -432,117 +379,87 @@ export const InfoForm = ({ packages }) => {
               <CustomCheckBox />
             </Form.Item>
 
-            <Form.Item name={"extantion_date"} label={"Extantion Date"}>
-              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+            <Form.Item
+              name={"extension_data"}
+              label={"Extension Date"}
+              rules={[
+                { required: true, message: "Please input extension date!" },
+              ]}
+            >
+              <DatePicker
+                className={`w-full h-[50px]`}
+                placeholder={"Select extension date"}
+              />
             </Form.Item>
 
             <Form.Item name={"high_school"} label={"High School"}>
               <CustomSelect
                 options={SchoolsSelect}
-                placeholder={"High School"}
+                placeholder={"Select School"}
                 disabled={isSchools}
                 className={"h-[50px]"}
               />
             </Form.Item>
 
             <Form.Item
-              name={"parent_name"}
-              label={"Parent name"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input parent name",
-                },
-              ]}
+              name={"lead"}
+              label={"Lead"}
+              rules={[{ required: true, message: "Please select lead!" }]}
             >
-              <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
-            </Form.Item>
-
-            <Form.Item name={"parent_phone"} label={"Parent phone"}>
-              <CustomInput placeholder={"Parent phone"} classNames={"w-full"} />
-            </Form.Item>
-
-            <Form.Item
-              name={"parent_email"}
-              label={"Parent email"}
-              rules={[
-                {
-                  type: "email",
-                },
-              ]}
-            >
-              <CustomInput placeholder={"Parent email"} classNames={"w-full"} />
-            </Form.Item>
-
-            <Form.Item
-              name={"parent_2_name"}
-              label={"Parent name 2"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input parent name 2",
-                },
-              ]}
-            >
-              <CustomInput placeholder={"Parent name"} classNames={"w-full"} />
-            </Form.Item>
-
-            <Form.Item name={"parent_2_phone"} label={"Parent phone 2"}>
-              <CustomInput placeholder={"Parent phone"} classNames={"w-full"} />
-            </Form.Item>
-
-            <Form.Item
-              name={"parent_2_email"}
-              label={"Parent email 2"}
-              rules={[
-                {
-                  type: "email",
-                },
-              ]}
-            >
-              <CustomInput placeholder={"Parent email"} classNames={"w-full"} />
-            </Form.Item>
-
-            <Form.Item
-              name={"birth"}
-              label={"Birth"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please select birth!",
-                },
-              ]}
-            >
-              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
-            </Form.Item>
-
-            <Form.Item name={"lead"} label={"Lead"}>
               <CustomSelect
-                disabled={isLead}
                 options={LeadSelect}
                 placeholder={"Select Lead"}
+                disabled={isLead}
                 className={"h-[50px]"}
-              />
-            </Form.Item>
-
-            <Form.Item name={"note"} label={"Student notes"}>
-              <Input.TextArea
-                placeholder={"Student notes"}
-                className="border-[#667085]"
               />
             </Form.Item>
 
             <Form.Item
               name={"username"}
               label={"Username"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input username",
-                },
-              ]}
+              rules={[{ required: true, message: "Please input username!" }]}
             >
-              <CustomInput placeholder={"username"} classNames={"w-full"} />
+              <Input className="w-full h-[50px]" placeholder={"Username"} />
+            </Form.Item>
+
+            <Form.Item
+              name={"parent_name"}
+              label={"Parent name"}
+              rules={[{ required: true, message: "Please input Parent name!" }]}
+            >
+              <Input className="w-full h-[50px]" placeholder={"Parent name"} />
+            </Form.Item>
+
+            <Form.Item name={"parent_phone"} label={"Parent phone"}>
+              <Input className="w-full h-[50px]" placeholder={"Parent phone"} />
+            </Form.Item>
+
+            <Form.Item name={"parent_email"} label={"Parent email"}>
+              <Input
+                type={"email"}
+                className="w-full h-[50px]"
+                placeholder={"Email"}
+              />
+            </Form.Item>
+
+            <Form.Item
+              name={"parent_2_name"}
+              label={"Parent name 2"}
+              rules={[{ required: true, message: "Please input Parent name!" }]}
+            >
+              <Input className="w-full h-[50px]" placeholder={"Parent name"} />
+            </Form.Item>
+
+            <Form.Item name={"parent_2_phone"} label={"Parent phone 2"}>
+              <Input className="w-full h-[50px]" placeholder={"Parent phone"} />
+            </Form.Item>
+
+            <Form.Item name={"parent_2_email"} label={"Parent email 2"}>
+              <Input
+                type={"email"}
+                className="w-full h-[50px]"
+                placeholder={"Email"}
+              />
             </Form.Item>
           </div>
         </div>
@@ -586,8 +503,7 @@ export const InfoForm = ({ packages }) => {
           />
         </div>
       </Form>
-
-      {IsOpen && state?.status}
+      {IsOpen && state.status}
     </Fragment>
   );
 };

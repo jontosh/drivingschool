@@ -1,15 +1,7 @@
 import classNames from "classnames";
 import { Fragment, useEffect, useRef, useState } from "react";
 import FormStyle from "./form.module.scss";
-import {
-  ConfigProvider,
-  Input,
-  Select,
-  Transfer,
-  Checkbox,
-  Row,
-  Col,
-} from "antd";
+import { ConfigProvider, Input, Select, Transfer } from "antd";
 const { Option } = Select;
 
 export const CustomCheckBox = ({
@@ -126,7 +118,7 @@ export const CustomSelect = ({
   value,
   onBlur,
   onChange,
-  options,
+  options = [],
   placeholder,
   dropdownClassName,
   style,
