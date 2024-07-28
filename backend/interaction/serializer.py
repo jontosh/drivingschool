@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Tasks,Logs,LatestNews,EmailTemplate,Template,SendTemplate
 from location.views import LocationSerializer,VehicleSerializer,SchoolSerializer,Vehicle,Class,Location
-from servises.serializer import ServicesSerializer
+from servises.serializer import ServicesSerializer,TestSerializer,StudentQuestionSerializer,StudentTest
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,TimeRangeSerializer,\
     TimeSlot,Appointment, TimeOffSerializer
 from Users.serializer import StudentSerializer,BillSerializer,FilesSerializer,Enrollment,Student,Instructor
@@ -57,6 +57,13 @@ class LatestNewsSerializer(serializers.ModelSerializer):
         model = LatestNews
         fields = "__all__"
 
+#TEST FULL SERIALIZER
+class StudentTestFullSerializer(serializers.ModelSerializer):
+    test = TestSerializer(read_only=True)
+    student_answers = StudentQuestionSerializer(read_only=True,many=True)
+    class Meta:
+        fields= "__all__"
+        model = StudentTest
 
 
 class EnrollmentSerializer_(serializers.ModelSerializer):
@@ -144,8 +151,8 @@ class InstructorEmailSerializer(serializers.ModelSerializer):
     time_off = TimeOffSerializer(read_only=True,many=True)
     class Meta:
         fields =["id","status","first_name","mid_name","last_name","address","city","state","zip","email","code",
-                 "home_photo","cell_phone","birth","username","password","type","staff_type","location","vehicle",
-                 "emergency_name","emergency_relation","emergency_phone","permit_number","car_permit_data","car_permit_expire",
+                 "home_phone","cell_phone","birth","username","password","type","staff_type","location","vehicle",
+                 "emergency_name","emergency_relation","emergency_phone","licenses","car_permit_data","car_permit_expire",
                  "color","zoom","picture","working_hours","classes","time_slot","time_off",
         ]
         model = Instructor

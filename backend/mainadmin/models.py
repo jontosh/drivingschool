@@ -50,7 +50,10 @@ class CustomUser(AbstractUser):
 
 class UserType(models.Model):
     name = models.CharField(max_length=100)
-    rights = models.ManyToManyField("Rights",related_name="user_rights")
+    # rights = models.ManyToManyField("Rights",related_name="user_rights")
+    _admin_portal = models.BooleanField(default=False)
+    _student_portal = models.BooleanField(default=False)
+    _super_user_portal = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 

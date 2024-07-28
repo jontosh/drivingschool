@@ -13,7 +13,7 @@ from collections import defaultdict
 from .serializer import TasksSerializer\
     ,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
     StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate,\
-    TemplateSerializer,SendTemplateSerializer,Template,SendTemplate
+    TemplateSerializer,SendTemplateSerializer,StudentTestFullSerializer,Template,SendTemplate,StudentTest
 from django.core.mail import send_mail
 
 import  re
@@ -125,6 +125,9 @@ class InstructorHomeAPI(APIView):
 class StudentHomeAPI(APIView):
     def get(self,request,id):
         data = {}
+        student_tests = StudentTest.objects.filter(student__id=id)
+        student_tests = StudentTestFullSerializer(student_tests,many=True)
+        data[ "student_test" ] = student_tests.data
         enrolment = Enrollment.objects.filter(student__id=id)
         enrolment = EnrollmentSerializer_(enrolment,many=True)
         data[ "enrolments" ] = enrolment.data
