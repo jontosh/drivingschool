@@ -76,7 +76,6 @@ TENANT_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     "abstracts",
     "multiselectfield"
-
 ]
 
 INSTALLED_APPS = SHARED_APPS + [ apps for apps in TENANT_APPS if apps not in SHARED_APPS]
