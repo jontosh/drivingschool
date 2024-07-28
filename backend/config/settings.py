@@ -43,7 +43,9 @@ SHARED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 #     APPS
-
+    "rest_framework",
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     "corsheaders",
     'drf_yasg',
 
@@ -68,6 +70,8 @@ TENANT_APPS = [
     "colorfield",
     "creditcards",
     "rest_framework",
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     "phonenumber_field",
     'rest_framework_simplejwt.token_blacklist',
     "abstracts",

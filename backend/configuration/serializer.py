@@ -73,3 +73,5 @@ class  ExpansesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expanses
         fields = "__all__"
+
+
