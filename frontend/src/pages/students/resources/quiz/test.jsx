@@ -203,7 +203,7 @@ const StudentTestView = ({ timer }) => {
   ];
 
   return (
-    <div className={"flex gap-5"}>
+    <div className={"px-3 sm:px-11 flex gap-5"}>
       <article className="flex-grow space-y-8">
         <div className="space-y-3.5">
           <Title level={1} fontSize={"text-[42px] font-medium"}>
@@ -224,7 +224,7 @@ const StudentTestView = ({ timer }) => {
         ) : QuestionIndex >= 0 ? (
           <Fragment>
             <Form form={form} onFinish={onFormFinish}>
-              <TestForm data={QuestionItem} disabled={isFormDisabled} />
+              <TestForm data={QuestionItem} disabled={isFormDisabled} border={true} />
 
               <div className="space-x-5">
                 <ButtonComponent
@@ -240,7 +240,7 @@ const StudentTestView = ({ timer }) => {
                 </ButtonComponent>
 
                 {JSON.parse(TestResults)?.length ===
-                TestData?.questions?.length ? (
+                  TestData?.questions?.length ? (
                   <ButtonComponent
                     defaultBg={"#878CEE"}
                     defaultHoverBg={"#878CEE"}
@@ -253,8 +253,8 @@ const StudentTestView = ({ timer }) => {
                   </ButtonComponent>
                 ) : (
                   <ButtonComponent
-                    defaultBg={"#878CEE"}
-                    defaultHoverBg={"#878CEE"}
+                    defaultBg={colorsObject.info}
+                    defaultHoverBg={colorsObject.infoHover}
                     paddingInline={43}
                     borderRadius={5}
                     type={"submit"}
