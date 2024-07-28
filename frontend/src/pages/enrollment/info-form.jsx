@@ -173,11 +173,11 @@ export const InfoForm = ({ packages, type }) => {
               label={"First name"}
               rules={[{ required: true, message: "Please input First name!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"First name"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"First name"} />
             </Form.Item>
 
             <Form.Item name={"mid_name"} label={"Middle name"}>
-              <Input className="w-full h-[50px]" placeholder={"Middle name"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Middle name"} />
             </Form.Item>
 
             <Form.Item
@@ -185,7 +185,7 @@ export const InfoForm = ({ packages, type }) => {
               label={"Last name"}
               rules={[{ required: true, message: "Please input Last name!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"Last name"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Last name"} />
             </Form.Item>
 
             <Form.Item
@@ -193,7 +193,7 @@ export const InfoForm = ({ packages, type }) => {
               label={"Address"}
               rules={[{ required: true, message: "Please input address!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"address"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"address"} />
             </Form.Item>
 
             <Form.Item
@@ -201,7 +201,7 @@ export const InfoForm = ({ packages, type }) => {
               label={"City"}
               rules={[{ required: true, message: "Please input city!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"City"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"City"} />
             </Form.Item>
 
             <Form.Item
@@ -221,7 +221,7 @@ export const InfoForm = ({ packages, type }) => {
               label={"Zip/Postal code"}
               rules={[{ required: true, message: "Please input zip!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"Zip"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Zip"} />
             </Form.Item>
 
             <Form.Item
@@ -229,7 +229,7 @@ export const InfoForm = ({ packages, type }) => {
               label={"Home Phone"}
               rules={[{ required: true, message: "Please input Home Phone!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"Home Phone"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Home Phone"} />
             </Form.Item>
 
             <Form.Item
@@ -237,7 +237,7 @@ export const InfoForm = ({ packages, type }) => {
               label={"Cell Phone"}
               rules={[{ required: true, message: "Please input Cell Phone!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"Cell Phone"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Cell Phone"} />
             </Form.Item>
 
             <Form.Item
@@ -247,7 +247,7 @@ export const InfoForm = ({ packages, type }) => {
             >
               <Input
                 type={"email"}
-                className="w-full h-[50px]"
+                className="w-full h-[50px] border-[#667085]"
                 placeholder={"Email"}
               />
             </Form.Item>
@@ -309,15 +309,15 @@ export const InfoForm = ({ packages, type }) => {
             </Form.Item>
 
             <Form.Item name={"medical_condition"} label={"Medical condition"}>
-              <Input.TextArea placeholder={"Text"} />
+              <Input.TextArea placeholder={"Text"} className="border-[#667085]" />
             </Form.Item>
 
             <Form.Item name={"note"} label={"Student Notes"}>
-              <Input.TextArea placeholder={"Text"} />
+              <Input.TextArea placeholder={"Text"} className="border-[#667085]" />
             </Form.Item>
 
             <Form.Item name={"driving_note"} label={"Student driving notes"}>
-              <Input.TextArea placeholder={"Text"} />
+              <Input.TextArea placeholder={"Text"} className="border-[#667085]" />
             </Form.Item>
           </div>
 
@@ -328,13 +328,13 @@ export const InfoForm = ({ packages, type }) => {
               rules={[{ required: true, message: "Please input birth date!" }]}
             >
               <DatePicker
-                className={`w-full h-[50px] ${colorsObject?.accent}`}
+                className={`w-full h-[50px] border-[#667085] ${colorsObject?.accent}`}
                 placeholder={"Select birth date"}
               />
             </Form.Item>
 
             <Form.Item name={"dl_permit"} label={"DL/Permit"}>
-              <Input className="w-full h-[50px]" placeholder={"DL/Permit"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"DL/Permit"} />
             </Form.Item>
 
             <Form.Item
@@ -345,7 +345,7 @@ export const InfoForm = ({ packages, type }) => {
               ]}
             >
               <DatePicker
-                className={`w-full h-[50px] ${colorsObject?.accent}`}
+                className={`w-full h-[50px] border-[#667085] ${colorsObject?.accent}`}
                 placeholder={"Select DL given date"}
               />
             </Form.Item>
@@ -358,7 +358,7 @@ export const InfoForm = ({ packages, type }) => {
               ]}
             >
               <DatePicker
-                className={`w-full h-[50px] ${colorsObject?.accent}`}
+                className={`w-full h-[50px] border-[#667085] ${colorsObject?.accent}`}
                 placeholder={"Select DL expire date"}
               />
             </Form.Item>
@@ -387,7 +387,7 @@ export const InfoForm = ({ packages, type }) => {
               ]}
             >
               <DatePicker
-                className={`w-full h-[50px]`}
+                className={`w-full h-[50px] border-[#667085]`}
                 placeholder={"Select extension date"}
               />
             </Form.Item>
@@ -419,7 +419,7 @@ export const InfoForm = ({ packages, type }) => {
               label={"Username"}
               rules={[{ required: true, message: "Please input username!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"Username"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Username"} />
             </Form.Item>
 
             <Form.Item
@@ -427,17 +427,17 @@ export const InfoForm = ({ packages, type }) => {
               label={"Parent name"}
               rules={[{ required: true, message: "Please input Parent name!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"Parent name"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Parent name"} />
             </Form.Item>
 
             <Form.Item name={"parent_phone"} label={"Parent phone"}>
-              <Input className="w-full h-[50px]" placeholder={"Parent phone"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Parent phone"} />
             </Form.Item>
 
             <Form.Item name={"parent_email"} label={"Parent email"}>
               <Input
                 type={"email"}
-                className="w-full h-[50px]"
+                className="w-full h-[50px] border-[#667085]"
                 placeholder={"Email"}
               />
             </Form.Item>
@@ -447,17 +447,17 @@ export const InfoForm = ({ packages, type }) => {
               label={"Parent name 2"}
               rules={[{ required: true, message: "Please input Parent name!" }]}
             >
-              <Input className="w-full h-[50px]" placeholder={"Parent name"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Parent name"} />
             </Form.Item>
 
             <Form.Item name={"parent_2_phone"} label={"Parent phone 2"}>
-              <Input className="w-full h-[50px]" placeholder={"Parent phone"} />
+              <Input className="w-full h-[50px] border-[#667085]" placeholder={"Parent phone"} />
             </Form.Item>
 
             <Form.Item name={"parent_2_email"} label={"Parent email 2"}>
               <Input
                 type={"email"}
-                className="w-full h-[50px]"
+                className="w-full h-[50px] border-[#667085]"
                 placeholder={"Email"}
               />
             </Form.Item>
