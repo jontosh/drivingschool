@@ -5,7 +5,13 @@ export const ModalReducer = (state, action) => {
     case "SUCCESS":
       return {
         ...state,
-        status: <ModalSuccess open={action.open} onEvent={action.onEvent} />,
+        status: (
+          <ModalSuccess
+            open={action.open}
+            onEvent={action.onEvent}
+            footer={null}
+          />
+        ),
       };
     case "ERROR":
       return {
@@ -15,6 +21,7 @@ export const ModalReducer = (state, action) => {
             data={action?.data}
             open={action.open}
             onEvent={action.onEvent}
+            footer={null}
           />
         ),
       };
