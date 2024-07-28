@@ -5,6 +5,7 @@ import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Dropdown } from "antd";
+import classNames from "classnames";
 import {
   useState,
   useEffect,
@@ -75,75 +76,65 @@ const items = [
 export const DashboardCalendar = ({ data }) => {
   const { colorsObject } = useContext(ColorsContext);
   const localizer = momentLocalizer(moment);
-  const [EventsList, setEventsList] = useState([]);
-  const { data: TimeSlot } = useRequestGetQuery({
+  const [eventsList, setEventsList] = useState([]);
+  const { data: timeSlot } = useRequestGetQuery({
     path: "/scheduling/time_slot/",
   });
-  const { data: TimeRange } = useRequestGetQuery({
+  const { data: timeRange } = useRequestGetQuery({
     path: "/scheduling/time_range/",
   });
 
   useEffect(() => {
-    const rangeTimes = [];
-    const rangeTime = [];
+    if (timeSlot && timeRange && data?.id) {
+      const rangeTimes = [];
+      const rangeTime = [];
 
-    for (let i = 0; i < TimeSlot?.length; i++) {
-      const item = TimeSlot[i];
-      if (data?.id === item.staff) {
-        for (let j = 0; j < TimeRange?.length; j++) {
-          const item2 = TimeRange[j];
-
-          if (item?.slots[j] === item2.id) {
-            rangeTimes.push(item2);
-          }
+      timeSlot.forEach((item) => {
+        if (data?.id === item.staff) {
+          timeRange.forEach((item2) => {
+            if (item.slots.includes(item2.id)) {
+              rangeTimes.push(item2);
+            }
+          });
         }
-        break;
-      }
-    }
-
-    for (let i = 0; i < rangeTimes.length; i++) {
-      const item = rangeTimes[i];
-
-      rangeTime.push({
-        title: item?.name,
-        start: new Date(item?.start),
-        end: new Date(item?.end),
-        allDay: false,
       });
-    }
 
-    setEventsList(rangeTime);
-  }, [TimeSlot, TimeRange, data?.id]);
+      rangeTimes.forEach((item) => {
+        rangeTime.push({
+          title: item.name,
+          start: new Date(item.start),
+          end: new Date(item.end),
+          allDay: false,
+        });
+      });
+
+      setEventsList(rangeTime);
+    }
+  }, [timeSlot, timeRange, data?.id]);
 
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
       components: {
-        timeGutterHeader: () => {
-          return (
-            <div className={"flex justify-center min-h-[62px]"}>
-              <SlClock className={"w-7 text-[#C3CAD9]"} />
-            </div>
-          );
-        },
-
+        timeGutterHeader: () => (
+          <div className="flex justify-center min-h-[62px]">
+            <SlClock className="w-7 text-[#C3CAD9]" />
+          </div>
+        ),
         toolbar: (e) => {
-          const GoTo = (value) => e.onNavigate(value);
-
-          const handleMode = (value) => {
-            e.onView(value);
-          };
+          const goTo = (value) => e.onNavigate(value);
+          const handleMode = (value) => e.onView(value);
 
           return (
-            <div className={"flex items-center justify-between p-7"}>
+            <div className="flex items-center justify-between p-7">
               <ButtonComponent
                 borderRadius={20}
-                defaultBorderColor={"#F5F6F7"}
-                defaultHoverBorderColor={"#F5F6F7"}
-                defaultColor={"#6B7A99"}
-                defaultHoverColor={"#6B7A99"}
+                defaultBorderColor="#F5F6F7"
+                defaultHoverBorderColor="#F5F6F7"
+                defaultColor="#6B7A99"
+                defaultHoverColor="#6B7A99"
                 controlHeight={40}
                 paddingInline={20}
-                onClick={() => GoTo("TODAY")}
+                onClick={() => goTo("TODAY")}
               >
                 Today
               </ButtonComponent>
@@ -151,28 +142,28 @@ export const DashboardCalendar = ({ data }) => {
               <div className="flex items-center gap-8">
                 <ButtonComponent
                   borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
+                  defaultBorderColor="#F5F6F7"
+                  defaultHoverBorderColor="#F5F6F7"
+                  defaultColor="#6B7A99"
+                  defaultHoverColor="#6B7A99"
                   controlHeight={40}
                   paddingInline={12}
-                  onClick={() => GoTo("PREV")}
+                  onClick={() => goTo("PREV")}
                 >
                   <MdKeyboardArrowLeft />
                 </ButtonComponent>
 
-                <Title fontSize={"text-[#6B7A99]"}>{e.label}</Title>
+                <Title fontSize="text-[#6B7A99]">{e.label}</Title>
 
                 <ButtonComponent
                   borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
+                  defaultBorderColor="#F5F6F7"
+                  defaultHoverBorderColor="#F5F6F7"
+                  defaultColor="#6B7A99"
+                  defaultHoverColor="#6B7A99"
                   controlHeight={40}
                   paddingInline={12}
-                  onClick={() => GoTo("NEXT")}
+                  onClick={() => goTo("NEXT")}
                 >
                   <MdKeyboardArrowRight />
                 </ButtonComponent>
@@ -180,39 +171,39 @@ export const DashboardCalendar = ({ data }) => {
 
               <div className="flex border border-[#26334D08]">
                 <ButtonComponent
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
+                  defaultBorderColor="#F5F6F7"
+                  defaultHoverBorderColor="#F5F6F7"
+                  defaultColor="#6B7A99"
+                  defaultHoverColor="#6B7A99"
                   controlHeight={40}
                   paddingInline={20}
-                  className={"uppercase"}
+                  className="uppercase"
                   onClick={() => handleMode("month")}
                 >
                   MONTH
                 </ButtonComponent>
 
                 <ButtonComponent
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
+                  defaultBorderColor="#F5F6F7"
+                  defaultHoverBorderColor="#F5F6F7"
+                  defaultColor="#6B7A99"
+                  defaultHoverColor="#6B7A99"
                   controlHeight={40}
                   paddingInline={20}
-                  className={"uppercase"}
+                  className="uppercase"
                   onClick={() => handleMode("week")}
                 >
                   WEEK
                 </ButtonComponent>
 
                 <ButtonComponent
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
+                  defaultBorderColor="#F5F6F7"
+                  defaultHoverBorderColor="#F5F6F7"
+                  defaultColor="#6B7A99"
+                  defaultHoverColor="#6B7A99"
                   controlHeight={40}
                   paddingInline={20}
-                  className={"uppercase"}
+                  className="uppercase"
                   onClick={() => handleMode("day")}
                 >
                   DAY
@@ -236,21 +227,14 @@ export const DashboardCalendar = ({ data }) => {
       views: [Views.MONTH, Views.WEEK, Views.DAY],
       toolbar: true,
     };
-  });
+  }, []);
 
   const eventPropGetter = useCallback(
     (event, start, end, isSelected) => ({
-      ...(event && {
-        // For event config and classNames
-        className: `text-[#2C5A41] bg-[#29CC390D] `,
-        style: {
-          border: "1px solid #29CC39",
-        },
-      }),
-
-      ...(isSelected && {
-        className: "text-white",
-      }),
+      className: `text-[#2C5A41] bg-[#29CC390D] ${isSelected ? "text-white" : ""}`,
+      style: {
+        border: "1px solid #29CC39",
+      },
     }),
     [],
   );
@@ -258,94 +242,68 @@ export const DashboardCalendar = ({ data }) => {
   const dayPropGetter = useCallback(
     (date) => ({
       ...(moment(date).day() > -1 && {
-        className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
+        className: classNames("bg-white", CalendarStyle["rbc-header"]),
       }),
     }),
     [],
   );
 
   const slotGroupPropGetter = useCallback(
-    () => ({
-      style: {
-        minHeight: 80,
-      },
-    }),
+    () => ({ style: { minHeight: 80 } }),
     [],
   );
 
   const slotPropGetter = useCallback(
-    () => ({
-      className: "px-2.5 pt-6 text-[#ADB8CC]",
-    }),
+    () => ({ className: "px-2.5 pt-6 text-[#ADB8CC]" }),
     [],
   );
 
   return (
     <Fragment>
-      <div className={"flex justify-between items-center"}>
+      <div className="flex justify-between items-center">
         <div className="flex items-center gap-5">
           <Image
-            className={"w-16 h-16 overflow-hidden rounded-full"}
+            className="w-16 h-16 overflow-hidden rounded-full"
             src={data?.picture ?? InstructorAva}
             srcSet={data?.picture ?? InstructorAva}
           />
-
-          <Title level={2} fontSize={"text-2xl"}>
+          <Title level={2} fontSize="text-2xl">
             {data?.first_name} {data?.last_name}
           </Title>
         </div>
 
-        <Dropdown
-          menu={{
-            items,
-          }}
-          placement="bottomRight"
-        >
+        <Dropdown menu={{ items }} placement="bottomRight">
           <IconComponent
-            className={"w-6"}
-            icon={<BsPersonFillGear className={"text-xl"} />}
+            className="w-6"
+            icon={<BsPersonFillGear className="text-xl" />}
           />
         </Dropdown>
       </div>
-      <div
-        className={
-          "overflow-hidden rounded-xl bg-white flex justify-between gap-5"
-        }
-      >
+      <div className="overflow-hidden rounded-xl bg-white flex justify-between gap-5">
         <div className="-mx-1 flex-grow pl-1">
           <Calendar
-            // To selection column and add events
-            // selectable
             localizer={localizer}
-            events={EventsList}
-            // To scroll
+            events={eventsList}
             startAccessor="start"
             endAccessor="end"
-            // onSelectSlot={handleSelect}
-            // onSelectEvent={(event) => alert(event.title)}
             defaultView={Views.WEEK}
             defaultDate={defaultDate}
             style={{ height: 850 }}
             views={views}
             formats={formats}
-            // {/*Header toolbar*/}
             toolbar={toolbar}
-            //{/*Event Item*/}
             eventPropGetter={eventPropGetter}
-            //{/*Day column*/}
             dayPropGetter={dayPropGetter}
             showMultiDayTimes
-            // Slot
             slotGroupPropGetter={slotGroupPropGetter}
             slotPropGetter={slotPropGetter}
-            //compo
             components={components}
           />
         </div>
 
         <div className="space-y-12 pr-5 pt-7 w-[230px]">
           <div className="space-y-3">
-            <Title level={2} fontSize={"text-base text-[#6B7A99]"}>
+            <Title level={2} fontSize="text-base text-[#6B7A99]">
               Action
             </Title>
             <ButtonComponent
@@ -354,7 +312,7 @@ export const DashboardCalendar = ({ data }) => {
               controlHeight={40}
               borderRadius={5}
               paddingInline={43}
-              className={"w-full"}
+              className="w-full"
             >
               Add slot 1 h
             </ButtonComponent>
@@ -364,10 +322,11 @@ export const DashboardCalendar = ({ data }) => {
               controlHeight={40}
               borderRadius={5}
               paddingInline={43}
-              className={"w-full"}
+              className="w-full"
             >
               Add slot 2h
             </ButtonComponent>
+
             <ButtonComponent
               defaultBg={colorsObject.info}
               defaultHoverBg={colorsObject.infoHover}

@@ -42,56 +42,53 @@ const Dashboard = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    setTeachers(ListOfTeachersData);
-  }, [ListOfTeachersData?.length]);
+    setTeachers(ListOfTeachersData || []);
+  }, [ListOfTeachersData]);
 
   useEffect(() => {
     dispatch(
       filteredTeachers({ search: SearchTeacher, data: ListOfTeachersData }),
     );
+  }, [SearchTeacher, ListOfTeachersData]);
 
+  useEffect(() => {
     setTeachers(FilteredTeachersState);
-  }, [Teachers?.length, SearchTeacher]);
+  }, [FilteredTeachersState]);
 
   const handleClickTeacherCart = (id) => setActiveTeacherCart(id);
-  const onFinish = (values) => setSearchTeacher(values["search"]);
+  const onFinish = (values) => setSearchTeacher(values.search);
 
-  const teacher = Teachers?.map((teacher, index) => {
-    return (
-      <Fragment key={index}>
-        <div
-          className="w-48 px-8 py-7 bg-white rounded-lg space-y-5 flex-shrink-0"
-          onClick={() => handleClickTeacherCart(index)}
-        >
-          <Image
-            className={"w-[60px] mx-auto overflow-hidden rounded-lg"}
-            src={teacher?.picture ?? InstructorAva}
-            srcSet={teacher?.picture ?? InstructorAva}
-          />
-
-          <Title
-            level={4}
-            fontSize={"text-xs"}
-            className={"text-center min-h-10"}
-          >
-            {teacher.first_name} {teacher.last_name}
-          </Title>
-
-          <IconComponent
-            icon={<PiCheckSquare />}
-            iconWidth={"w-6"}
-            vertical={"items-center justify-center"}
-            className={`w-full rounded-lg border-2 pt-1.5 ${ActiveTeacherCart === index ? "border-[#F5F6F7] bg-[#3575FF]" : "border-[#F5F6F7] "}`}
-            spaceIconX={2.5}
-            iconClass={"text-[#C3CAD9] "}
-            childrenClass={` ${ActiveTeacherCart === index ? "text-white" : "text-[#6B7A99]"}`}
-          >
-            Show on
-          </IconComponent>
-        </div>
-      </Fragment>
-    );
-  });
+  const teacherComponents = Teachers?.map((teacher, index) => (
+    <div
+      key={index}
+      className="w-48 px-8 py-7 bg-white rounded-lg space-y-5 flex-shrink-0"
+      onClick={() => handleClickTeacherCart(index)}
+    >
+      <Image
+        className={"w-[60px] mx-auto overflow-hidden rounded-lg"}
+        src={teacher?.picture ?? InstructorAva}
+        alt={teacher?.first_name}
+      />
+      <Title level={4} fontSize={"text-xs"} className={"text-center min-h-10"}>
+        {teacher.first_name} {teacher.last_name}
+      </Title>
+      <IconComponent
+        icon={<PiCheckSquare />}
+        iconWidth={"w-6"}
+        vertical={"items-center justify-center"}
+        className={`w-full rounded-lg border-2 pt-1.5 ${
+          ActiveTeacherCart === index
+            ? "border-[#F5F6F7] bg-[#3575FF]"
+            : "border-[#F5F6F7]"
+        }`}
+        spaceIconX={2.5}
+        iconClass={"text-[#C3CAD9]"}
+        childrenClass={` ${ActiveTeacherCart === index ? "text-white" : "text-[#6B7A99]"}`}
+      >
+        Show on
+      </IconComponent>
+    </div>
+  ));
 
   const formatter = (value) => <CountUp end={value} separator="," />;
 
@@ -113,7 +110,7 @@ const Dashboard = () => {
         <div className="space-y-5 sm:space-y-0 sm:gap-5 min-[1335px]:grid-cols-4 sm:grid-cols-2 sm:grid">
           <div className="bg-white flex items-center p-3 rounded-xl gap-5">
             <div className="bg-[#FFF5D9] rounded-full flex items-center justify-center w-12 h-12 sm:w-20 sm:h-20">
-              <Image className={"w-8"} src={Earning} srcSet={Earning} />
+              <Image className={"w-8"} src={Earning} alt="Earning" />
             </div>
 
             <Statistic
@@ -132,12 +129,12 @@ const Dashboard = () => {
               <Image
                 className={"w-8"}
                 src={StudentStudying}
-                srcSet={StudentStudying}
+                alt="Student Studying"
               />
             </div>
 
             <Statistic
-              title="Student stadying"
+              title="Student studying"
               value={24}
               formatter={formatter}
               suffix="k"
@@ -151,7 +148,7 @@ const Dashboard = () => {
               <Image
                 className={"w-8"}
                 src={StudentsRegistration}
-                srcSet={StudentsRegistration}
+                alt="Students Registration"
               />
             </div>
 
@@ -166,7 +163,7 @@ const Dashboard = () => {
 
           <div className="bg-white flex items-center p-5 rounded-xl gap-5">
             <div className="bg-[#DCFAF8] rounded-full flex items-center justify-center w-12 h-12 sm:w-20 sm:h-20">
-              <Image className={"w-8"} src={Expenses} srcSet={Expenses} />
+              <Image className={"w-8"} src={Expenses} alt="Expenses" />
             </div>
 
             <Statistic
@@ -181,16 +178,15 @@ const Dashboard = () => {
         </div>
 
         <div className="space-y-5 md:space-y-0 md:flex md:gap-5 md:justify-between">
-          <div className={classNames(DashboardStyle["Dashboard__overview"])}>
+          <div className={classNames(DashboardStyle.Dashboard__overview)}>
             <div className="flex items-center gap-4">
               <Title level={4} fontSize={"text-xl"}>
                 Overview
               </Title>
-
               <Image
                 className={"w-6"}
                 src={DiagramUpBold}
-                srcSet={DiagramUpBold}
+                alt="Diagram Up Bold"
               />
             </div>
 
@@ -203,8 +199,7 @@ const Dashboard = () => {
               <Title level={4} fontSize={"text-xl"}>
                 Quick links
               </Title>
-
-              <Image className={"w-6"} src={LinksIcon} srcSet={LinksIcon} />
+              <Image className={"w-6"} src={LinksIcon} alt="Links Icon" />
             </div>
             <div className="bg-white rounded-xl py-7 px-2.5 sm:px-10 mt-3 space-y-5">
               <Link
@@ -296,14 +291,14 @@ const Dashboard = () => {
               <Title level={4} fontSize={"text-lg"}>
                 Loading...
               </Title>
-            ) : teacher?.length === 0 ? (
+            ) : teacherComponents?.length === 0 ? (
               "Empty..."
             ) : (
-              teacher
+              teacherComponents
             )}
           </div>
 
-          {ActiveTeacherCart > -1 && teacher.length > 0 && (
+          {ActiveTeacherCart > -1 && teacherComponents.length > 0 && (
             <DashboardCalendar data={Teachers[ActiveTeacherCart]} />
           )}
         </div>

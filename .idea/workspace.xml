@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized code in schedule and added react-response to do media with calendar">
-      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/form/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/context/colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/colors.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/chart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/chart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,14 +219,6 @@
       <workItem from="1721756747693" duration="12907000" />
       <workItem from="1721809337129" duration="18414000" />
       <workItem from="1722070194728" duration="1861000" />
-    </task>
-    <task id="LOCAL-00067" summary="#fix #jsx Updated form request to patch data">
-      <option name="closed" value="true" />
-      <created>1719899269852</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1719899269852</updated>
     </task>
     <task id="LOCAL-00068" summary="#fix #jsx #style Updated form validation, connected notes and emergency">
       <option name="closed" value="true" />
@@ -614,7 +604,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721996517119</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment">
+      <option name="closed" value="true" />
+      <created>1722122203890</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1722122203890</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Refactored router link" />
     <MESSAGE value="#fix #jsx Fixed code in test view" />
     <MESSAGE value="#fix #js Fixed URL routing for NavLink components" />
     <MESSAGE value="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content" />
@@ -658,7 +655,8 @@
     <MESSAGE value="#fix #jsx Optimized media in student portal" />
     <MESSAGE value="#fix #jsx Optimized code and created quiz router for student portal." />
     <MESSAGE value="#fix #jsx Optimized code in schedule and added react-response to do media with calendar" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized code in schedule and added react-response to do media with calendar" />
+    <MESSAGE value="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
