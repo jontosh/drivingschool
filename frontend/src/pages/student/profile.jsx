@@ -6,7 +6,7 @@ import {
 } from "@/components/form/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { AlertError, AlertSuccess } from "@/hooks/alert.jsx";
+import { ModalReducer } from "@/hooks/reducer.jsx";
 import { Emergency } from "@/pages/student/emergency.jsx";
 import {
   useRequestGetQuery,
@@ -19,27 +19,6 @@ import ProfileStyle from "./student-account.module.scss";
 import { DatePicker, Dropdown, Form, Input, QRCode, Radio } from "antd";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import moment from "moment";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "SUCCESS": {
-      return {
-        ...state,
-        status: <AlertSuccess setIsOpen={action.setIsOpen} />,
-      };
-    }
-    case "ERROR": {
-      return {
-        ...state,
-        status: <AlertError setIsOpen={action.setIsOpen} />,
-      };
-    }
-
-    default: {
-      console.error(`Unknown action: ${action.type}`);
-    }
-  }
-};
 
 const Profile = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -68,121 +47,87 @@ const Profile = () => {
   const [UserTypeOption, setUserTypeOption] = useState([]);
   const [IsMore, setIsMore] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
-  const [state, dispatch] = useReducer(reducer, { status: false, setIsOpen });
+  const [state, dispatch] = useReducer(ModalReducer, { status: false });
   const [form] = Form.useForm();
 
-  // INSTRUCTOR
-  useEffect(() => {
-    const options = [];
+  const generateOptions = (data, transformFunc) =>
+    data?.filter((item) => item.status === "ACTIVE").map(transformFunc) || [];
 
-    for (let i = 0; i < InstructorData?.length; i++) {
-      const instructor = InstructorData[i];
-      if (instructor.status === "ACTIVE") {
-        options.push({
-          ...instructor,
-          value: instructor?.id,
-          label: instructor?.first_name + " " + instructor?.last_name,
-        });
-      }
-    }
+  const instructorTransform = (instructor) => ({
+    value: instructor.id,
+    label: `${instructor?.first_name} ${instructor?.last_name}`,
+  });
 
-    setInstructorOptions(options);
-  }, [InstructorData, isLoading]);
+  const locationTransform = (location) => ({
+    value: location.id,
+    label: location.name,
+  });
 
-  // LOCATION
-  useEffect(() => {
-    const options = [];
+  const schoolTransform = (school) => ({
+    value: school.id,
+    label: school.name,
+  });
 
-    for (let i = 0; i < LocationData?.length; i++) {
-      const location = LocationData[i];
-      if (location.status === "ACTIVE") {
-        options.push({
-          ...location,
-          value: location?.id,
-          label: location?.name,
-        });
-      }
-    }
-
-    setAssignLocationOptions(options);
-  }, [LocationData, isLoading]);
-
-  // InitialValues
+  const userTypeTransform = (type) => ({
+    value: type.id,
+    label: type.name,
+  });
 
   useEffect(() => {
-    form.setFieldsValue({
-      ...data,
-      birth: moment(data?.birth),
-      dl_given_date: moment(data?.dl_given_date),
-      dl_expire_date: moment(data?.dl_expire_date),
-      extension_data: moment(data?.extension_data ?? moment()),
-      _disable_self_scheduling: false,
-      _payment_plan: false,
-    });
-  }, [isLoading]);
+    setInstructorOptions(generateOptions(InstructorData, instructorTransform));
+    setAssignLocationOptions(generateOptions(LocationData, locationTransform));
+    setSchoolsOptions(generateOptions(SchoolsData, schoolTransform));
+    setUserTypeOption(UserTypeData?.map(userTypeTransform) || []);
+  }, [InstructorData, LocationData, SchoolsData, UserTypeData, isLoading]);
 
-  // Schools
   useEffect(() => {
-    const options = [];
-
-    for (let i = 0; i < SchoolsData?.length; i++) {
-      const school = SchoolsData[i];
-
-      if (school?.status?.toLowerCase() === "active") {
-        options.push({
-          ...school,
-          value: school?.id,
-          label: school?.name,
-        });
-      }
-    }
-
-    setSchoolsOptions(options);
-  }, [SchoolsData, isLoading]);
-
-  // User Type
-  useEffect(() => {
-    const options = [];
-
-    for (let i = 0; i < UserTypeData?.length; i++) {
-      const type = UserTypeData[i];
-
-      options.push({
-        value: type?.id,
-        label: type?.name,
+    if (!isLoading && data) {
+      form.setFieldsValue({
+        ...data,
+        birth: moment(data.birth),
+        dl_given_date: moment(data.dl_given_date),
+        dl_expire_date: moment(data.dl_expire_date),
+        extension_data: moment(data.extension_data || moment()),
+        _disable_self_scheduling: false,
+        _payment_plan: false,
       });
     }
-
-    setUserTypeOption(options);
-  }, [UserTypeData, isLoading]);
+  }, [isLoading, data, form]);
 
   const handleMore = () => setIsMore((prev) => !prev);
 
   const onFinish = async (values) => {
     try {
-      console.log(values);
+      const formattedValues = {
+        ...values,
+        birth: values.birth?.format("YYYY-MM-DD"),
+        dl_given_date: values.dl_given_date?.format("YYYY-MM-DD"),
+        dl_expire_date: values.dl_expire_date?.format("YYYY-MM-DD"),
+        extension_data: values.extension_data?.format("YYYY-MM-DD"),
+      };
+
       const res = await requestPatch({
         path: "/student_account/student",
-        data: {
-          ...values,
-          birth: values["birth"]?.format("YYYY-MM-DD"),
-          dl_given_date: values["dl_given_date"]?.format("YYYY-MM-DD"),
-          dl_expire_date: values["dl_expire_date"]?.format("YYYY-MM-DD"),
-          extension_data: values["extension_data"]?.format("YYYY-MM-DD"),
-        },
+        data: formattedValues,
         id: studentId,
       });
 
-      if (res?.error?.status >= 400) {
-        dispatch({ type: "ERROR", setIsOpen });
-        setIsOpen(true);
-      } else {
-        dispatch({ type: "SUCCESS", setIsOpen });
-        setIsOpen(true);
-      }
+      const actionType = res?.error?.status >= 400 ? "ERROR" : "SUCCESS";
+      dispatch({
+        type: actionType,
+        data: res?.error?.data || {},
+        open: IsOpen,
+        onEvent: () => setIsOpen(false),
+      });
     } catch (error) {
-      console.error(error.message);
-      dispatch({ type: "ERROR", setIsOpen });
+      console.error(error);
+      dispatch({
+        type: "ERROR",
+        data: {},
+        open: IsOpen,
+        onEvent: () => setIsOpen(false),
+      });
+    } finally {
       setIsOpen(true);
     }
   };
