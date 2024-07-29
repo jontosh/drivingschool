@@ -12,6 +12,21 @@ Router = {
         "schema-redoc":"redoc/",
         }
     },
+    "dj-rest-auth": {
+        "base":         "dj-rest-auth/",
+        "methods":      [ "ALL METHODS ARE SHOWN" ],
+        "descriptions": "Here you can test entire endpoint with help of SWAGGER",
+        "note":         "Mani endpoints are of this section "
+                        "<li><span>schema-swagger-ui</span></li>"
+                        "<li><span>schema-redoc</span></li><br>",
+        "children":     {
+            "change-password":       "password/change/",
+            "user": "user/",
+            "reset-password":      "password/reset/",
+            "login":"login/",
+            "logout":"logout/"
+        }
+    },
     "authentication":{
         "base":"authentication/",
         "methods":["GET","POST","OTHER METHODS BLOCKED"],
