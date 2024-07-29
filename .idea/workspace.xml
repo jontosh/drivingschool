@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs and optimized code in js files">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/billing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,15 +218,7 @@
       <workItem from="1721809337129" duration="18414000" />
       <workItem from="1722070194728" duration="1861000" />
       <workItem from="1722159281009" duration="734000" />
-      <workItem from="1722197504402" duration="6060000" />
-    </task>
-    <task id="LOCAL-00069" summary="#fix #jsx Created get default values for forms and refactored appointments">
-      <option name="closed" value="true" />
-      <created>1720081992668</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1720081992669</updated>
+      <workItem from="1722197504402" duration="7763000" />
     </task>
     <task id="LOCAL-00070" summary="#fix #jsx Refactored Files and content">
       <option name="closed" value="true" />
@@ -614,7 +604,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722125478547</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page">
+      <option name="closed" value="true" />
+      <created>1722203654303</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1722203654304</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +631,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js Fixed URL routing for NavLink components" />
     <MESSAGE value="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content" />
     <MESSAGE value="#fix #js Fixed some bugs" />
     <MESSAGE value="#fix #js Fixed form elements, getting and updating request and show it" />
@@ -658,7 +655,8 @@
     <MESSAGE value="#fix #jsx Optimized code in schedule and added react-response to do media with calendar" />
     <MESSAGE value="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment" />
     <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs and optimized code in js files" />
+    <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

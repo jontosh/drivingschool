@@ -19,61 +19,58 @@ import rehypeSanitize from "rehype-sanitize";
 import BillingStyle from "./student-account.module.scss";
 
 const reduce = (state, action) => {
+  const commonModalProps = {
+    open: action.open,
+    onOk: action.onEvent,
+    onCancel: action.onEvent,
+    title: action.title,
+    centered: true,
+    footer: null,
+  };
+
   switch (action.type) {
-    case "print": {
+    case "print":
       return {
         ...state,
         modal: (
-          <ModalComponent
-            open={action.open}
-            onOk={action.onEvent}
-            onCancel={action.onEvent}
-            title={action.title}
-            centered
-            footer={null}
-          >
+          <ModalComponent {...commonModalProps}>
             <Form form={action.form} onFinish={action.onFinish}>
-              <Form.Item name="billing" valuePropName="checked">
-                <CustomCheckBox>
-                  <Paragraph>Billing</Paragraph>
-                </CustomCheckBox>
-              </Form.Item>
-
-              <Form.Item name={"enrollment"} valuePropName="checked">
-                <CustomCheckBox>
-                  <Paragraph>Enrollment</Paragraph>
-                </CustomCheckBox>
-              </Form.Item>
-
-              <Form.Item name={""} valuePropName="checked">
+              {["billing", "enrollment"].map((name) => (
+                <Form.Item key={name} name={name} valuePropName="checked">
+                  <CustomCheckBox>
+                    <Paragraph>
+                      {name === "billing" ? "Billing" : "Enrollment"}
+                    </Paragraph>
+                  </CustomCheckBox>
+                </Form.Item>
+              ))}
+              <Form.Item>
                 <CustomCheckBox>
                   <Paragraph>
                     3/9/2024 Teens 8hr in car instruction $649.99
                   </Paragraph>
                 </CustomCheckBox>
               </Form.Item>
-
               <div className="text-center space-x-5">
                 <ButtonComponent
-                  defaultBg={"#24C18F"}
-                  defaultHoverBg={"#24C18F"}
+                  defaultBg="#24C18F"
+                  defaultHoverBg="#24C18F"
                   paddingInline={43}
                   borderRadius={5}
-                  type={"submit"}
+                  type="submit"
                   controlHeight={50}
                 >
                   Print
                 </ButtonComponent>
-
                 <ButtonComponent
                   paddingInline={43}
                   borderRadius={5}
                   onClick={action.onReset}
                   controlHeight={50}
-                  defaultBorderColor={"#5459EA"}
-                  defaultHoverBorderColor={"#5459EA"}
-                  defaultColor={"#5459EA"}
-                  defaultHoverColor={"#5459EA"}
+                  defaultBorderColor="#5459EA"
+                  defaultHoverBorderColor="#5459EA"
+                  defaultColor="#5459EA"
+                  defaultHoverColor="#5459EA"
                 >
                   Cancel
                 </ButtonComponent>
@@ -82,91 +79,66 @@ const reduce = (state, action) => {
           </ModalComponent>
         ),
       };
-    }
-    case "email": {
+
+    case "email":
       return {
         ...state,
         modal: (
-          <ModalComponent
-            open={action.open}
-            onOk={action.onEvent}
-            onCancel={action.onEvent}
-            title={action.title}
-            centered
-            footer={null}
-          >
+          <ModalComponent {...commonModalProps}>
             <Form
-              layout={"vertical"}
+              layout="vertical"
               form={action.form}
               onFinish={action.onFinish}
             >
-              <Form.Item name={"email"} valuePropName="checked">
-                <CustomCheckBox>
-                  <Paragraph>
-                    Student Email: {action.form.getFieldValue("email")}
-                  </Paragraph>
-                </CustomCheckBox>
-              </Form.Item>
-
-              <Form.Item name={"parent_email"} valuePropName="checked">
-                <CustomCheckBox>
-                  <Paragraph>
-                    Parent Email: {action.form.getFieldValue("parent_email")}
-                  </Paragraph>
-                </CustomCheckBox>
-              </Form.Item>
-
-              <Form.Item name={"parent_2_email"} valuePropName="checked">
-                <CustomCheckBox>
-                  <Paragraph>
-                    Parent 2 Email:{" "}
-                    {action.form.getFieldValue("parent_2_email")}
-                  </Paragraph>
-                </CustomCheckBox>
-              </Form.Item>
-
-              <Form.Item name={"enrollment"} valuePropName="checked">
-                <CustomCheckBox>
-                  <Paragraph>Enrollemnt</Paragraph>
-                </CustomCheckBox>
-              </Form.Item>
-
-              <Form.Item name={"teens"} valuePropName="checked">
-                <CustomCheckBox>
-                  <Paragraph>
-                    3/9/2024 Teens 8hr in car instruction $649.99
-                  </Paragraph>
-                </CustomCheckBox>
-              </Form.Item>
-
+              {["email", "parent_email", "parent_2_email"].map((name) => (
+                <Form.Item key={name} name={name} valuePropName="checked">
+                  <CustomCheckBox>
+                    <Paragraph>
+                      {name
+                        .replace("_", " ")
+                        .replace(/\b\w/g, (l) => l.toUpperCase())}
+                      : {action.form.getFieldValue(name)}
+                    </Paragraph>
+                  </CustomCheckBox>
+                </Form.Item>
+              ))}
+              {["enrollment", "teens"].map((name) => (
+                <Form.Item key={name} name={name} valuePropName="checked">
+                  <CustomCheckBox>
+                    <Paragraph>
+                      {name === "enrollment"
+                        ? "Enrollment"
+                        : "3/9/2024 Teens 8hr in car instruction $649.99"}
+                    </Paragraph>
+                  </CustomCheckBox>
+                </Form.Item>
+              ))}
               <Form.Item name="" label="Enrollment And Billing Receipt">
                 <MDEditor
                   placeholder="Text"
                   previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}
                 />
               </Form.Item>
-
               <div className="text-center space-x-5">
                 <ButtonComponent
-                  defaultBg={"#24C18F"}
-                  defaultHoverBg={"#24C18F"}
+                  defaultBg="#24C18F"
+                  defaultHoverBg="#24C18F"
                   paddingInline={43}
                   borderRadius={5}
-                  type={"submit"}
+                  type="submit"
                   controlHeight={50}
                 >
                   Print
                 </ButtonComponent>
-
                 <ButtonComponent
                   paddingInline={43}
                   borderRadius={5}
                   onClick={action.onReset}
                   controlHeight={50}
-                  defaultBorderColor={"#5459EA"}
-                  defaultHoverBorderColor={"#5459EA"}
-                  defaultColor={"#5459EA"}
-                  defaultHoverColor={"#5459EA"}
+                  defaultBorderColor="#5459EA"
+                  defaultHoverBorderColor="#5459EA"
+                  defaultColor="#5459EA"
+                  defaultHoverColor="#5459EA"
                 >
                   Cancel
                 </ButtonComponent>
@@ -175,17 +147,15 @@ const reduce = (state, action) => {
           </ModalComponent>
         ),
       };
-    }
-    default: {
+
+    default:
       console.error(`Unknown action: ${action.type}`);
       return state;
-    }
   }
 };
 
 const Enrollment = () => {
   const { studentId } = useParams();
-
   const { data: Packages } = useRequestGetQuery({
     path: "/account_management/services/service/",
   });
@@ -198,12 +168,12 @@ const Enrollment = () => {
   });
 
   const { colorsObject } = useContext(ColorsContext);
-  const [IsOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [form] = Form.useForm();
+  const [state, dispatch] = useReducer(reduce, { modal: null, form });
   const { data, columns } = StudentAccountEnrollmentModule();
   const [enrollmentData, setEnrollmentData] = useState([]);
   const [price, setPrice] = useState(0);
-  const [form] = Form.useForm();
-  const [state, dispatch] = useReducer(reduce, { modal: null, form });
 
   useEffect(() => {
     if (data && Packages && Instructor) {
@@ -225,15 +195,13 @@ const Enrollment = () => {
       type: "print",
       title: "Print Enrollments and Billing Information",
       onEvent: () => setIsOpen((prev) => !prev),
-      onFinish: (values) => {
-        console.log(values);
-      },
+      onFinish: (values) => console.log(values),
       onReset: () => {
         form.resetFields();
         setIsOpen(false);
       },
-      form: form,
-      open: !IsOpen,
+      form,
+      open: !isOpen,
     });
   };
 
@@ -243,15 +211,13 @@ const Enrollment = () => {
       type: "email",
       title: "Print Enrollments and Billing Information",
       onEvent: () => setIsOpen((prev) => !prev),
-      onFinish: (values) => {
-        console.log(values);
-      },
+      onFinish: (values) => console.log(values),
       onReset: () => {
         form.resetFields();
         setIsOpen(false);
       },
-      form: form,
-      open: !IsOpen,
+      form,
+      open: !isOpen,
     });
   };
 
@@ -259,14 +225,14 @@ const Enrollment = () => {
     <Fragment>
       <div className="border shadow-2xl border-indigo-700 px-10 py-5 rounded-2xl">
         <div className="-mx-10 px-3 md:px-10 border-b pb-5 border-b-gray-400 flex items-center flex-col md:flex-row max-md:space-y-2.5 justify-between">
-          <Title level={2} fontSize={"text-xl space-x-2"}>
+          <Title level={2} fontSize="text-xl space-x-2">
             <span className="text-indigo-700">Enrollment</span>
-            <span className={"text-[#24C18F]"}>${price}</span>
+            <span className="text-[#24C18F]">${price}</span>
           </Title>
           <div className="grid min-[500px]:grid-cols-3 gap-2 max-md:w-full">
             <ButtonComponent
-              defaultBg={"#24C18F"}
-              defaultHoverBg={"#3CE3AE"}
+              defaultBg="#24C18F"
+              defaultHoverBg="#3CE3AE"
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
               paddingInline={16}
@@ -311,17 +277,21 @@ const Enrollment = () => {
 };
 
 const Billings = () => {
+  const { studentId } = useParams();
   const { data: Instructor } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
+  const { data: StudentData } = useRequestIdQuery({
+    path: "/student_account/student",
+    id: studentId,
+  });
   const { colorsObject } = useContext(ColorsContext);
-  const { studentId } = useParams();
   const { data, columns } = StudentAccountModule();
   const [isOpen, setIsOpen] = useState(false);
-  const [modalCase, setModalCase] = useState("");
   const [billingData, setBillingData] = useState([]);
-  const { ResultOfModalContent } = ResultModalButton(modalCase);
   const [price, setPrice] = useState(0);
+  const [form] = Form.useForm();
+  const [state, dispatch] = useReducer(reduce, { modal: null, form });
 
   useEffect(() => {
     if (data) {
@@ -332,9 +302,20 @@ const Billings = () => {
     }
   }, [data, studentId]);
 
-  const handleModal = (typeModal = "") => {
-    setIsOpen((prev) => !prev);
-    setModalCase(typeModal);
+  const handleAction = (type) => {
+    form.setFieldsValue(StudentData);
+    dispatch({
+      type,
+      title: "Print Enrollments and Billing Information",
+      onEvent: () => setIsOpen((prev) => !prev),
+      onFinish: (values) => console.log(values),
+      onReset: () => {
+        form.resetFields();
+        setIsOpen(false);
+      },
+      form,
+      open: !isOpen,
+    });
   };
 
   return (
@@ -365,7 +346,7 @@ const Billings = () => {
               paddingInline={29}
               fontSize={14}
               borderRadius={5}
-              onClick={() => handleModal("email")}
+              onClick={() => handleAction("email")}
             >
               Email
             </ButtonComponent>
@@ -377,7 +358,7 @@ const Billings = () => {
               paddingInline={29}
               fontSize={14}
               borderRadius={5}
-              onClick={() => handleModal("print")}
+              onClick={() => handleAction("print")}
             >
               Print
             </ButtonComponent>
@@ -386,22 +367,8 @@ const Billings = () => {
         <div className="pt-5 -mx-10">
           <TableComponent columns={columns} data={billingData} />
         </div>
-        {isOpen && (
-          <Modal setIsOpen={setIsOpen}>
-            <div
-              className={classNames(
-                "py-6 px-8 bg-white rounded-2xl w-full",
-                BillingStyle["Modal__content"],
-              )}
-            >
-              <ResultOfModalContent
-                modalButton={modalCase}
-                handleClose={() => setIsOpen(false)}
-              />
-            </div>
-          </Modal>
-        )}
       </div>
+      {state?.modal}
     </Fragment>
   );
 };
