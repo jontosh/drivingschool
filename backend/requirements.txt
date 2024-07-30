@@ -2,7 +2,7 @@ asgiref==3.8.1
 certifi==2024.2.2
 cffi==1.16.0
 charset-normalizer==3.3.2
-cryptography==43.0.0
+# cryptography==43.0.0
 defusedxml==0.7.1
 distlib==0.3.8
 dj-rest-auth==6.0.0
