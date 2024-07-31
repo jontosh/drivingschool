@@ -2,7 +2,6 @@ import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
-import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { ModalReducer } from "@/hooks/reducer.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
@@ -29,7 +28,7 @@ const EditFormItems = () => {
         rules={[
           {
             required: true,
-            message: "Please enter component name!",
+            message: "Please enter last name!",
           },
         ]}
       >
@@ -41,7 +40,7 @@ const EditFormItems = () => {
         rules={[
           {
             required: true,
-            message: "Please enter code!",
+            message: "Please enter first name!",
           },
         ]}
       >
@@ -70,12 +69,10 @@ const EditFormItems = () => {
 
 export const StaffModule = () => {
   const { data } = useRequestGetQuery({ path: "/student_account/instructor/" });
-
   const [IsOpen, setIsOpen] = useState(false);
   const [form] = Form.useForm();
   const [state, dispatch] = useReducer(ModalReducer, { modal: null, form });
   const [Action, setAction] = useState({ id: null, type: undefined });
-
   const [requestDelete, { reset: DeleteReset }] = useRequestDeleteMutation();
   const [requestPatch, { reset: PatchReset }] = useRequestPatchMutation();
 
@@ -239,7 +236,7 @@ export const StaffModule = () => {
               }}
             />
             <Link
-              to={"/admin/modals/staff/add-staff" + item?.id}
+              to={"/admin/modals/staff/add-staff/" + item?.id}
               target={"_blank"}
             >
               <IconComponent
@@ -249,7 +246,7 @@ export const StaffModule = () => {
               />
             </Link>
           </div>
-          {index === Action.id ? state?.modal : null}
+          {index === Action.id && state?.modal}
         </Fragment>
       ),
     },
