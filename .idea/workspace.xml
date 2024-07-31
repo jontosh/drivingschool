@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized code on services module with delete and patch request data.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/managment/file/items/file-item.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized code on file management and refactored some structure.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/file-category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/file/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/staff/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/staff/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,15 +219,7 @@
       <workItem from="1722070194728" duration="1861000" />
       <workItem from="1722159281009" duration="734000" />
       <workItem from="1722197504402" duration="11259000" />
-      <workItem from="1722377989411" duration="13801000" />
-    </task>
-    <task id="LOCAL-00074" summary="#fix #jsx Deleted sign-in&#10; and refactored management.jsx&#10; file">
-      <option name="closed" value="true" />
-      <created>1720339171497</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1720339171497</updated>
+      <workItem from="1722377989411" duration="15372000" />
     </task>
     <task id="LOCAL-00075" summary="#fix #jsx Refactored file data and structure code for form.">
       <option name="closed" value="true" />
@@ -614,7 +605,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722389462158</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="#fix #jsx Optimized code on file management and refactored some structure.">
+      <option name="closed" value="true" />
+      <created>1722391845237</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1722391845237</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +632,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js Fixed bugs to log out and success token" />
     <MESSAGE value="#fix #js Fixed bugs to auth, refactored css media on dashboard and validation to search" />
     <MESSAGE value="#fix #js Fixed CSS class bugs and form validation" />
     <MESSAGE value="#fix #js Fixed auth bugs, select total packages and configuration vite" />
@@ -658,7 +656,8 @@
     <MESSAGE value="#fix #jsx Optimized code and products module structure with delete and patch form data." />
     <MESSAGE value="#fix #jsx Optimized code on discount, fees and quiz-exam modules with delete and patch request data." />
     <MESSAGE value="#fix #jsx Optimized code on services module with delete and patch request data." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized code on services module with delete and patch request data." />
+    <MESSAGE value="#fix #jsx Optimized code on file management and refactored some structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized code on file management and refactored some structure." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
