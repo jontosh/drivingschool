@@ -8,7 +8,9 @@ import { useFilterStatus } from "@/hooks/filter.jsx";
 import { useDate } from "@/hooks/useDate.jsx";
 import { FileCategoryModule } from "@/modules/file-category.jsx";
 import { FileChart } from "@/pages/managment/file/items/chart.jsx";
+import { RecentItem } from "@/pages/managment/file/items/file-item.jsx";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { FiFileText } from "react-icons/fi";
@@ -25,6 +27,16 @@ const File = () => {
   const [Filter, setFilter] = useState("");
   const handleFilter = (value) => setFilter(value);
   const { Data } = useFilterStatus({ data, status: Filter, search: "" });
+  const { data: RecentActivities, isLoading: IsRecentActivities } =
+    useRequestGetQuery({ path: "/student_account/files" });
+
+  const recentItem = RecentActivities?.slice(RecentActivities?.length - 6)?.map(
+    (item, index) => (
+      <Fragment key={index}>
+        <RecentItem {...item} />
+      </Fragment>
+    ),
+  );
 
   return (
     <Fragment>
@@ -259,78 +271,19 @@ const File = () => {
                       label: "Upload",
                     },
                     {
-                      value: "Dowload",
-                      label: "Dowload",
+                      value: "Download",
+                      label: "Download",
                     },
                   ]}
                 />
               </div>
 
               <div className="space-y-2.5 pb-2.5">
-                <div className="flex items-center justify-between ">
-                  <div className="flex items-center gap-x-5">
-                    <button
-                      className={
-                        "border-2 border-indigo-700 rounded p-1 text-black"
-                      }
-                    >
-                      <SlCloudDownload />
-                    </button>
-
-                    <Paragraph className={"text-gray-600"}>
-                      File upload
-                    </Paragraph>
-                  </div>
-
-                  <Paragraph className={"text-gray-500"} fontSize={"text-sm"}>
-                    2hr ago
-                  </Paragraph>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-x-5">
-                    <button
-                      className={
-                        "border-2 border-indigo-700 rounded p-1 text-black"
-                      }
-                    >
-                      <SlCloudDownload />
-                    </button>
-
-                    <Paragraph className={"text-gray-600"}>
-                      File upload
-                    </Paragraph>
-                  </div>
-
-                  <Paragraph className={"text-gray-500"} fontSize={"text-sm"}>
-                    2hr ago
-                  </Paragraph>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-x-5">
-                    <button
-                      className={
-                        "border-2 border-indigo-700 rounded p-1 text-black"
-                      }
-                    >
-                      <SlCloudDownload />
-                    </button>
-
-                    <Paragraph className={"text-gray-600"}>
-                      File upload
-                    </Paragraph>
-                  </div>
-
-                  <Paragraph className={"text-gray-500"} fontSize={"text-sm"}>
-                    2hr ago
-                  </Paragraph>
-                </div>
+                {IsRecentActivities ? "Loading..." : recentItem}
               </div>
 
               <div className="text-end">
                 <ButtonComponent
-                  //
                   defaultBg={colorsObject.main}
                   defaultHoverBg={colorsObject.main}
                   defaultColor={colorsObject.black}
@@ -338,6 +291,7 @@ const File = () => {
                   defaultBorderColor={colorsObject.primary}
                   paddingInline={20}
                   borderRadius={5}
+                  disabled={IsRecentActivities}
                 >
                   See all Activity
                 </ButtonComponent>
