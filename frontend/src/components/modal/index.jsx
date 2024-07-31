@@ -1,11 +1,14 @@
+import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
+import ColorsContext from "@/context/colors.jsx";
+import { ExclamationCircleFilled } from "@ant-design/icons";
 import classNames from "classnames";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { MdClose, MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
-import { Modal as ModalComponent, Steps } from "antd";
+import { Form, Modal as ModalComponent, Steps } from "antd";
 
 const Modal = ({ className, setIsOpen, children }) => {
   className = classNames(className, ModalStyle["Modal"]);
@@ -88,6 +91,125 @@ export const ModalError = ({ title, open, onEvent, footer, data = {} }) => {
 
         <Steps progressDot direction="vertical" items={items} />
       </div>
+    </ModalComponent>
+  );
+};
+
+export const ModalConfirm = ({ title, onOk, onCancel, footer, open }) => {
+  const { colorsObject } = useContext(ColorsContext);
+
+  return (
+    <ModalComponent
+      title={title}
+      centered
+      open={open}
+      onOk={onOk}
+      onCancel={onCancel}
+      footer={footer}
+    >
+      <div className="bg-white max-w-[490px] w-full px-10 py-8 text-center">
+        <div className="relative mb-6">
+          <Title
+            fontSize={"text-3xl"}
+            titleMarginBottom={8}
+            fontWeightStrong={600}
+          >
+            Are you sure?
+          </Title>
+
+          <Paragraph
+            fontWeightStrong={400}
+            fontSize={"text-xs text-[#54595E99]"}
+          >
+            You won't be able to revert this!
+          </Paragraph>
+        </div>
+
+        <div className="space-x-4">
+          <ButtonComponent
+            defaultHoverColor={colorsObject.dangerHover}
+            defaultColor={colorsObject.danger}
+            defaultHoverBorderColor={colorsObject.dangerHover}
+            defaultBorderColor={colorsObject.danger}
+            borderRadius={5}
+            paddingInline={43}
+            onClick={onCancel}
+          >
+            No, cancel
+          </ButtonComponent>
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            borderRadius={5}
+            paddingInline={43}
+            onClick={onOk}
+          >
+            Yes, confirm
+          </ButtonComponent>
+        </div>
+      </div>
+    </ModalComponent>
+  );
+};
+
+export const ModalEdit = ({
+  title,
+  onOk,
+  onCancel,
+  footer,
+  children,
+  form,
+  onFinish,
+  open,
+}) => {
+  const { colorsObject } = useContext(ColorsContext);
+
+  return (
+    <ModalComponent
+      title={title}
+      centered
+      open={open}
+      onCancel={onCancel}
+      footer={footer}
+      className={"space-y-5"}
+    >
+      <Title fontSize={"text-3xl"} titleMarginBottom={8} fontWeightStrong={600}>
+        Edit
+      </Title>
+
+      <Form
+        form={form}
+        onFinish={onFinish}
+        className={"space-y-5"}
+        layout={"vertical"}
+      >
+        {children}
+
+        <div className="space-x-4">
+          <ButtonComponent
+            defaultBg={colorsObject.success}
+            defaultHoverBg={colorsObject.successHover}
+            borderRadius={5}
+            paddingInline={43}
+            onClick={onOk}
+            type={"submit"}
+          >
+            SAVE
+          </ButtonComponent>
+
+          <ButtonComponent
+            defaultHoverColor={colorsObject.dangerHover}
+            defaultColor={colorsObject.danger}
+            defaultHoverBorderColor={colorsObject.dangerHover}
+            defaultBorderColor={colorsObject.danger}
+            borderRadius={5}
+            paddingInline={43}
+            onClick={onCancel}
+          >
+            CLOSE
+          </ButtonComponent>
+        </div>
+      </Form>
     </ModalComponent>
   );
 };
