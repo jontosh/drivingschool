@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized code and refactored structure">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized code and products module structure with delete and patch form data.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/discount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/fees.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/quiz-exam.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/quiz-exam.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,15 +220,7 @@
       <workItem from="1722070194728" duration="1861000" />
       <workItem from="1722159281009" duration="734000" />
       <workItem from="1722197504402" duration="11259000" />
-      <workItem from="1722377989411" duration="6468000" />
-    </task>
-    <task id="LOCAL-00071" summary="#fix #jsx Refactored Files and form elements with attr">
-      <option name="closed" value="true" />
-      <created>1720094024881</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1720094024881</updated>
+      <workItem from="1722377989411" duration="10041000" />
     </task>
     <task id="LOCAL-00072" summary="#fix #jsx Refactored Add test with Setting form validation">
       <option name="closed" value="true" />
@@ -614,7 +606,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722245221622</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="#fix #jsx Optimized code and products module structure with delete and patch form data.">
+      <option name="closed" value="true" />
+      <created>1722384548065</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1722384548066</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +633,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js Fixed some bugs" />
     <MESSAGE value="#fix #js Fixed form elements, getting and updating request and show it" />
     <MESSAGE value="#fix #js Refactored request for type Student, updated elements" />
     <MESSAGE value="#fix #js Fixed bugs to log out and success token" />
@@ -658,7 +657,8 @@
     <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files" />
     <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page" />
     <MESSAGE value="#fix #jsx Optimized code and refactored structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized code and refactored structure" />
+    <MESSAGE value="#fix #jsx Optimized code and products module structure with delete and patch form data." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized code and products module structure with delete and patch form data." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
