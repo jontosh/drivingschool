@@ -128,7 +128,7 @@ export const FeesModule = () => {
                 />
               </Link>
             </div>
-            {index === Action?.id ? state?.modal : null}
+            {index === Action.id && state?.modal}
           </Fragment>
         );
       },
