@@ -15,7 +15,7 @@ import {
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { Form, Input, Space } from "antd";
+import { Form, Input, InputNumber, Space } from "antd";
 import { Fragment, useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const EditFormItems = () => {
           },
         ]}
       >
-        <Input className={"w-full h-[50px]"} placeholder={"Product name"} />
+        <Input className={"w-full h-[50px] border-[#667085]"} placeholder={"Product name"} />
       </Form.Item>
       <Form.Item
         label={"Item#/Code:"}
@@ -44,7 +44,7 @@ const EditFormItems = () => {
           },
         ]}
       >
-        <Input className={"w-full h-[50px]"} placeholder={"Item#"} />
+        <Input className={"w-full h-[50px] border-[#667085]"} placeholder={"Item#"} />
       </Form.Item>
       <Form.Item
         label={"Status:"}
@@ -62,7 +62,105 @@ const EditFormItems = () => {
           placeholder={"status"}
         />
       </Form.Item>
-      @todo
+      <Form.Item
+        label="Public Name:"
+        name={"publicName"}
+      >
+        <Input className="wfull h-[50px] border-[#667085]" placeholder="Public Name" />
+      </Form.Item>
+      <Form.Item
+        label={"Type:"}
+        name={"type"}
+        rules={[
+          {
+            required: true,
+            message: "Please select status!",
+          },
+        ]}
+      >
+        <CustomSelect
+          options={[
+            {
+              label: "BTW",
+              value: "BTW",
+            },
+            {
+              label: "CR",
+              value: "CR",
+            },
+            {
+              label: "WEB BASED",
+              value: "WEB BASED",
+            },
+          ]}
+          className={"w-full h-[50px]"}
+          placeholder={"Please Select"}
+        />
+      </Form.Item>
+      <Form.Item
+        label={"Sub Type:"}
+        name={"subType"}
+        rules={[
+          {
+            required: true,
+            message: "Please select status!",
+          },
+        ]}
+      >
+        <CustomSelect
+          options={[
+            {
+              label: "TEEN BTW",
+              value: "TEEN BTW",
+            },
+          ]}
+          className={"w-full h-[50px]"}
+          placeholder={"Please Select"}
+        />
+      </Form.Item>
+      <Form.Item
+        label={"Driving Time:"}
+        name={"drivingTime"}
+        rules={[
+          {
+            required: true,
+            message: "Please select status!",
+          },
+        ]}
+      >
+        <div className="flex space-x-2.5">
+          <InputNumber className="w-full h-[50px] border-[#667085] py-2.5" placeholder="Hours" />
+          <CustomSelect
+            options={[
+              {
+                label: 0,
+                value: 0,
+              },
+              {
+                label: "15 minutes",
+                value: "15 minutes",
+              },
+            ]}
+            className={"w-full h-[50px]"}
+            placeholder={"Please Select"}
+          />
+        </div>
+      </Form.Item>
+      <Form.Item
+        label="Duration:"
+        name={"duration"}
+      >
+        <CustomSelect
+          options={[
+            {
+              label: "00:15",
+              value: "00:15",
+            }
+          ]}
+          className={"w-full h-[50px]"}
+          placeholder={"Please Select"}
+        />
+      </Form.Item>
     </div>
   );
 };

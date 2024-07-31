@@ -5,12 +5,14 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SchedulingModule } from "@/modules/scheduling.jsx";
 import { Calendar } from "@natscale/react-calendar";
-import { Fragment, useCallback, useContext, useMemo, useState } from "react";
+import { Fragment, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import MediaQuery from "react-responsive";
 
 export const StudentBookLessons = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+  const [calendar, setCalendar] = useState(0);
 
   const initialValue = useMemo(() => {
     const Time = new Date();
@@ -31,9 +33,37 @@ export const StudentBookLessons = () => {
 
   const { columns, data } = SchedulingModule();
 
+  useEffect(() => {
+    const handleResize = (event) => {
+      setInnerWidth(event.target.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (innerWidth >= 1536) {
+      setCalendar(300);
+    } else if (innerWidth >= 1275) {
+      setCalendar(200);
+    } else if (innerWidth >= 1000) {
+      setCalendar(180);
+    } else if (innerWidth >= 600) {
+      setCalendar(300)
+    } else if (innerWidth >= 450) {
+      setCalendar(200)
+    } else if (innerWidth > 0) {
+      setCalendar(160)
+    }
+  }, [innerWidth]);
+
   return (
     <Fragment>
-      <div className="flex max-[1000px]:flex-col gap-5">
+      <div className="flex max-[1270px]:flex-col gap-5">
         <div className="flex-grow space-y-5">
           <div className="border border-gray-500 px-6 py-4 rounded-lg space-y-5">
             <div className="flex items-center gap-2.5">
@@ -53,7 +83,19 @@ export const StudentBookLessons = () => {
 
             <hr className="border border-gray-400" />
 
-            <MediaQuery minWidth={1536}>
+            <MediaQuery minWidth={0}>
+              <Calendar
+                showDualCalendar
+                isRangeSelector
+                value={value}
+                onChange={onChange}
+                hideAdjacentDates
+                className={"w-full"}
+                size={calendar}
+              />
+            </MediaQuery>
+
+            {/* <MediaQuery minWidth={1536}>
               <Calendar
                 showDualCalendar
                 isRangeSelector
@@ -107,7 +149,7 @@ export const StudentBookLessons = () => {
                 className={"w-full"}
                 size={200}
               />
-            </MediaQuery>
+            </MediaQuery> */}
 
             <Paragraph className="text-gray-500">
               Available Booked or currently unavailable (Call for assistance if
