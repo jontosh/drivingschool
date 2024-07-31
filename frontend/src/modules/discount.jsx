@@ -117,7 +117,7 @@ export const DiscountsModule = () => {
               />
             </Link>
           </div>
-          {index === action?.id ? state?.modal : null}
+          {index === action.id && state?.modal}
         </Fragment>
       ),
     },

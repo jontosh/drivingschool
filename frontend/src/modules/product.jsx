@@ -15,7 +15,7 @@ import {
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { Form, Input, Select, Space } from "antd";
+import { Form, Input, Space } from "antd";
 import { Fragment, useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 
