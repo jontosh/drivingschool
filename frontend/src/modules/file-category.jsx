@@ -1,5 +1,5 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
+import { CustomInput, CustomSelect, CustomTransfer } from "@/components/form/index.jsx";
 import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import { AlertDelete, AlertEdit } from "@/hooks/alert.jsx";
 import { ModalReducer } from "@/hooks/reducer.jsx";
@@ -11,54 +11,147 @@ import {
   useRequestPatchMutation,
 } from "@/redux/query/index.jsx";
 import { FormOutlined } from "@ant-design/icons";
-import { Form, Input } from "antd";
+import { Form, Input, Switch } from "antd";
 import { Fragment, useEffect, useReducer, useState } from "react";
 
 const EditFormItems = () => {
   return (
-    <div className={"space-y-5"}>
+    <Form
+      layout={"vertical"}
+      className="px-5 space-y-5"
+    >
       <Form.Item
-        label={"Component Name:"}
         name={"name"}
+        label={"Category name"}
         rules={[
           {
             required: true,
-            message: "Please enter component name!",
+            message: "Category name is empty",
           },
         ]}
       >
-        <Input className={"w-full h-[50px]"} placeholder={"Product name"} />
+        <CustomInput
+          // disabled={isLoading}
+          classNames={"w-full"}
+          placeholder={"Category name"}
+        />
       </Form.Item>
+
       <Form.Item
-        label={"Item#/Code:"}
-        name={"code"}
-        rules={[
-          {
-            required: true,
-            message: "Please enter code!",
-          },
-        ]}
-      >
-        <Input className={"w-full h-[50px]"} placeholder={"Item#"} />
-      </Form.Item>
-      <Form.Item
-        label={"Status:"}
         name={"status"}
+        label={"Status"}
         rules={[
           {
             required: true,
-            message: "Please select status!",
+            message: "Status is empty",
           },
         ]}
       >
         <CustomSelect
-          options={StatusSelect}
-          className={"w-full h-[50px]"}
-          placeholder={"status"}
+          placeholder={"Select status"}
+          className={`w-full h-[50px]`}
+        // options={StatusSelect}
+        // onChange={handleStatus}
+        // disabled={isLoading}
         />
       </Form.Item>
-      @todo
-    </div>
+
+      <Form.Item name={"signature"} label={"Signature link:"}>
+        <CustomInput
+          type={"url"}
+          classNames={"w-full"}
+          placeholder={"Link"}
+        // disabled={isLoading}
+        />
+      </Form.Item>
+
+      <Form.Item name={"note"} label={"Note"}>
+        <Input.TextArea
+          showCount
+          maxLength={100}
+          className={"border-[#667085] p-5"}
+          placeholder={"Notes"}
+        // disabled={isLoading}
+        />
+      </Form.Item>
+
+      <Form.Item name={"package"} label={"Packages:"}>
+        <CustomTransfer
+          // dataSource={PackagesMock}
+          listHeight={200}
+        // setSelectedKeys={setPackages}
+        // selectedKeys={Packages}
+        // disabled={isLoading}
+        />
+      </Form.Item>
+
+      <div className="grid grid-cols-2 gap-5">
+        <Form.Item
+          label={"Display on Student Portal:"}
+          valuePropName="checked"
+          name={"has_portal"}
+          className="max-w-[250px]"
+        >
+          <Switch />
+        </Form.Item>
+        <Form.Item
+          label={"Must Be Uploaded to Student Account:"}
+          valuePropName="checked"
+          name={"has_student_account"}
+          className="max-w-[250px]"
+        >
+          <Switch />
+        </Form.Item>
+        <Form.Item
+          label={
+            "Disallow files associated with category from displaying on Student Portal:"
+          }
+          valuePropName="checked"
+          name={"has_category_portal"}
+          className="max-w-[250px]"
+        >
+          <Switch />
+        </Form.Item>
+        <Form.Item
+          label={
+            "Disallow files associated with this category  from displaying on Instructor/Teacher Portal:"
+          }
+          valuePropName="checked"
+          name={"has_teacher_portal"}
+          className="max-w-[250px]"
+        >
+          <Switch />
+        </Form.Item>
+      </div>
+
+      {/* <div className="text-center space-x-5">
+        <ButtonComponent
+          defaultBg={colorsObject.success}
+          defaultHoverBg={colorsObject.successHover}
+          defaultColor={colorsObject.main}
+          defaultHoverColor={colorsObject.main}
+          borderRadius={5}
+          paddingInline={44}
+          type={"submit"}
+        >
+          Save
+        </ButtonComponent>
+
+        <ButtonComponent
+          defaultBg={colorsObject.main}
+          defaultHoverBg={colorsObject.main}
+          defaultBorderColor={colorsObject.primary}
+          defaultHoverBorderColor={colorsObject.primary}
+          defaultColor={colorsObject.primary}
+          defaultHoverColor={colorsObject.primary}
+          borderRadius={5}
+          paddingInline={44}
+          onClick={onReset}
+        >
+          Cancel
+        </ButtonComponent>
+      </div> */}
+    </Form>
   );
 };
 

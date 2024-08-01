@@ -15,6 +15,7 @@ export const ModalReducer = (state, action) => {
             open={action.open}
             onEvent={action.onEvent}
             footer={null}
+            width={action.width}
           />
         ),
       };
@@ -28,6 +29,7 @@ export const ModalReducer = (state, action) => {
             open={action.open}
             onEvent={action.onEvent}
             footer={null}
+            width={action.width}
           />
         ),
       };
@@ -41,6 +43,7 @@ export const ModalReducer = (state, action) => {
             onOk={action.onOk}
             onCancel={action.onCancel}
             open={action.open}
+            width={action.width}
           />
         ),
       };
@@ -55,6 +58,7 @@ export const ModalReducer = (state, action) => {
             open={action.open}
             form={action.form}
             onFinish={action.onFinish}
+            width={action.width}
           >
             {action.children}
           </ModalEdit>
