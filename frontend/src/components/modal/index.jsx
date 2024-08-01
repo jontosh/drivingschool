@@ -10,26 +10,26 @@ import { MdClose, MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
 import { Form, Modal as ModalComponent, Steps } from "antd";
 
-const Modal = ({ className, setIsOpen, children }) => {
+const Modal = ({ className, setIsOpen, children, width }) => {
   className = classNames(className, ModalStyle["Modal"]);
   const handleClick = (e) => {
     if (e.target.dataset.modal) {
       setIsOpen(false);
     }
   };
-
   return (
     <div
       data-modal={true}
       onClick={handleClick}
       className={`fixed flex items-center justify-center flex-col top-0 left-0 z-20 w-full h-full ${className}`}
+      style={{ width: width }}
     >
       {children}
     </div>
   );
 };
 
-export const ModalSuccess = ({ title, open, onEvent, footer }) => {
+export const ModalSuccess = ({ title, open, onEvent, footer, width }) => {
   return (
     <ModalComponent
       title={title}
@@ -38,6 +38,7 @@ export const ModalSuccess = ({ title, open, onEvent, footer }) => {
       onOk={onEvent}
       onCancel={onEvent}
       footer={footer}
+      width={width}
     >
       <div className="bg-white max-w-[490px] w-full px-10 py-8 text-center">
         <div className="relative mb-6">
@@ -64,7 +65,7 @@ export const ModalSuccess = ({ title, open, onEvent, footer }) => {
   );
 };
 
-export const ModalError = ({ title, open, onEvent, footer, data = {} }) => {
+export const ModalError = ({ title, open, onEvent, footer, data = {}, width }) => {
   const items = useMemo(() => {
     return Object.values(data).map((item) => ({ title: item[0] }));
   }, [data]);
@@ -77,6 +78,7 @@ export const ModalError = ({ title, open, onEvent, footer, data = {} }) => {
       onOk={onEvent}
       onCancel={onEvent}
       footer={footer}
+      width={width}
     >
       <div className="bg-white max-w-[490px] w-full px-10 py-8 text-center">
         <div className="relative mb-6">
@@ -95,7 +97,7 @@ export const ModalError = ({ title, open, onEvent, footer, data = {} }) => {
   );
 };
 
-export const ModalConfirm = ({ title, onOk, onCancel, footer, open }) => {
+export const ModalConfirm = ({ title, onOk, onCancel, footer, open, width }) => {
   const { colorsObject } = useContext(ColorsContext);
 
   return (
@@ -106,6 +108,7 @@ export const ModalConfirm = ({ title, onOk, onCancel, footer, open }) => {
       onOk={onOk}
       onCancel={onCancel}
       footer={footer}
+      width={width}
     >
       <div className="bg-white max-w-[490px] w-full px-10 py-8 text-center">
         <div className="relative mb-6">
@@ -161,6 +164,7 @@ export const ModalEdit = ({
   form,
   onFinish,
   open,
+  width,
 }) => {
   const { colorsObject } = useContext(ColorsContext);
 
@@ -172,6 +176,7 @@ export const ModalEdit = ({
       onCancel={onCancel}
       footer={footer}
       className={"space-y-5"}
+      width={width}
     >
       <Title fontSize={"text-3xl"} titleMarginBottom={8} fontWeightStrong={600}>
         Edit
