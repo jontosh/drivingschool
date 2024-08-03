@@ -8,6 +8,7 @@ const TableComponent = ({
   columns,
   pagination = false,
   cellPaddingInline = 16,
+  scroll,
   ...props
 }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -27,6 +28,7 @@ const TableComponent = ({
           columns={columns}
           dataSource={data}
           pagination={pagination}
+          scroll={scroll}
           {...props}
         />
       </ConfigProvider>
