@@ -104,10 +104,20 @@ export const InfoForm = ({ packages }) => {
     setSchoolsSelect(schoolsOptions);
     setLeadSelect(leadOptions);
     GeneratePassword();
-  }, [InstructorData, LocationData, SchoolData, LeadData, IsOpen]);
+  }, [InstructorData, LocationData, SchoolData, LeadData, IsOpen, form]);
 
   const onFinish = async (values) => {
     try {
+      console.log({
+        ...values,
+        dl_given_date: values.dl_given_date?.format("YYYY-MM-DD"),
+        dl_expire_date: values.dl_expire_date?.format("YYYY-MM-DD"),
+        extension_data: values.extension_data?.format("YYYY-MM-DD"),
+        birth: values.birth?.format("YYYY-MM-DD"),
+        type: 3,
+        password: Password,
+      });
+
       const response = await requestPost({
         path: "/student_account/student/",
         data: {
