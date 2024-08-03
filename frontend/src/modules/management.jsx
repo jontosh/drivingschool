@@ -30,20 +30,18 @@ import {
   MinusCircleOutlined,
 } from "@ant-design/icons";
 import {
-  Collapse,
   ConfigProvider,
   Form,
   InputNumber,
   message,
   Radio,
-  Statistic,
   Switch,
   TimePicker,
   Tooltip,
   Modal,
   Input,
 } from "antd";
-import classNames from "classnames";
+
 import {
   Fragment,
   useContext,
@@ -53,10 +51,7 @@ import {
   useCallback,
   useMemo,
 } from "react";
-import { BiTime } from "react-icons/bi";
 import { GoClock, GoEye } from "react-icons/go";
-import { IoMdCheckmarkCircle, IoMdCloseCircle } from "react-icons/io";
-import { IoCheckmarkCircle } from "react-icons/io5";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
@@ -1405,51 +1400,51 @@ const TestPreview = () => {
           <Form form={updateForm} className="space-y-5">
             {Question?.type === 1 || Question?.type === 3
               ? Question?.answers?.map((item, index) => (
-                <div className="flex gap-2.5 items-end" key={index}>
-                  <Form.Item
-                    name={["answers", index, "is_correct"]}
-                    valuePropName="checked"
-                  >
-                    <CustomCheckBox />
-                  </Form.Item>
-                  <Form.Item name={["answers", index, "text"]}>
-                    <Input placeholder="Text" />
-                  </Form.Item>
-                </div>
-              ))
+                  <div className="flex gap-2.5 items-end" key={index}>
+                    <Form.Item
+                      name={["answers", index, "is_correct"]}
+                      valuePropName="checked"
+                    >
+                      <CustomCheckBox />
+                    </Form.Item>
+                    <Form.Item name={["answers", index, "text"]}>
+                      <Input placeholder="Text" />
+                    </Form.Item>
+                  </div>
+                ))
               : Question?.type === 2 && (
-                <Form.Item name={["answers", 0, "is_correct"]}>
-                  <Radio.Group className="flex flex-col gap-5">
-                    {Question?.answers?.map((item, index) => (
-                      <ConfigProvider
-                        key={index}
-                        theme={{
-                          components: {
-                            Radio: {
-                              radioSize: 20,
-                              dotColorDisabled: colorsObject.primary,
-                              colorBorder: colorsObject.primary,
-                            },
-                          },
-                        }}
-                      >
-                        <div
-                          className="flex gap-2.5 items-center"
+                  <Form.Item name={["answers", 0, "is_correct"]}>
+                    <Radio.Group className="flex flex-col gap-5">
+                      {Question?.answers?.map((item, index) => (
+                        <ConfigProvider
                           key={index}
+                          theme={{
+                            components: {
+                              Radio: {
+                                radioSize: 20,
+                                dotColorDisabled: colorsObject.primary,
+                                colorBorder: colorsObject.primary,
+                              },
+                            },
+                          }}
                         >
-                          <Radio value={index % 2 === 0} />
-                          <Form.Item
-                            name={["answers", index, "text"]}
-                            className="mb-0"
+                          <div
+                            className="flex gap-2.5 items-center"
+                            key={index}
                           >
-                            <Input placeholder="Text" />
-                          </Form.Item>
-                        </div>
-                      </ConfigProvider>
-                    ))}
-                  </Radio.Group>
-                </Form.Item>
-              )}
+                            <Radio value={index % 2 === 0} />
+                            <Form.Item
+                              name={["answers", index, "text"]}
+                              className="mb-0"
+                            >
+                              <Input placeholder="Text" />
+                            </Form.Item>
+                          </div>
+                        </ConfigProvider>
+                      ))}
+                    </Radio.Group>
+                  </Form.Item>
+                )}
           </Form>
         </Fragment>
       ),
