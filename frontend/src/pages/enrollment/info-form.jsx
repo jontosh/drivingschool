@@ -8,14 +8,33 @@ import { ModalReducer } from "@/hooks/reducer.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import {
   useRequestGetQuery,
+  useRequestIdQuery,
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import { DatePicker, Form, Input } from "antd";
 import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import ColorsContext from "@/context/colors.jsx";
 
-export const InfoForm = ({ packages, type }) => {
+const random = (min = 0, max = 1) => {
+  return Math.floor(Math.random() * (max + 1 - min) + min);
+};
+
+const randomLower = () => {
+  return String.fromCharCode(random(97, 122));
+};
+
+const randomUpper = () => {
+  return String.fromCharCode(random(65, 90));
+};
+
+const randomSymbol = () => {
+  const symbols = "~*$%@#^&!?*'-=/,.{}()[]<>";
+  return symbols[random(0, symbols.length - 1)];
+};
+
+export const InfoForm = ({ packages }) => {
   const { colorsObject } = useContext(ColorsContext);
+  const [Password, setPassword] = useState(null);
   const [requestPost] = useRequestPostMutation();
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(ModalReducer, {
@@ -40,6 +59,17 @@ export const InfoForm = ({ packages, type }) => {
   const [LocationSelect, setLocationSelect] = useState([]);
   const [SchoolsSelect, setSchoolsSelect] = useState([]);
   const [LeadSelect, setLeadSelect] = useState([]);
+
+  const GeneratePassword = () => {
+    let password = "";
+    for (let i = 0; i < 5; i++) {
+      password += randomLower();
+      password += randomUpper();
+      password += randomSymbol();
+      password += random(0, 9);
+    }
+    setPassword(password);
+  };
 
   useEffect(() => {
     const staffOptions =
@@ -73,13 +103,8 @@ export const InfoForm = ({ packages, type }) => {
     setLocationSelect(locationOptions);
     setSchoolsSelect(schoolsOptions);
     setLeadSelect(leadOptions);
-  }, [InstructorData, LocationData, SchoolData, LeadData]);
-
-  useEffect(() => {
-    form.setFieldsValue({
-      type,
-    });
-  }, [type]);
+    GeneratePassword();
+  }, [InstructorData, LocationData, SchoolData, LeadData, IsOpen]);
 
   const onFinish = async (values) => {
     try {
@@ -91,6 +116,8 @@ export const InfoForm = ({ packages, type }) => {
           dl_expire_date: values.dl_expire_date?.format("YYYY-MM-DD"),
           extension_data: values.extension_data?.format("YYYY-MM-DD"),
           birth: values.birth?.format("YYYY-MM-DD"),
+          type: 3,
+          password: Password,
         },
       });
 
@@ -99,7 +126,7 @@ export const InfoForm = ({ packages, type }) => {
           type: "ERROR",
           data: response?.error?.data,
           open: IsOpen,
-          onEvent: () => setIsOpen((prev) => !prev),
+          onEvent: () => setIsOpen(false),
         });
       } else {
         const res = await requestPost({
@@ -120,14 +147,17 @@ export const InfoForm = ({ packages, type }) => {
           dispatch({
             type: "SUCCESS",
             open: IsOpen,
-            onEvent: () => setIsOpen((prev) => !prev),
+            onEvent: () => {
+              setIsOpen(false);
+              form.resetFields();
+            },
           });
         } else {
           dispatch({
             type: "ERROR",
             data: res?.error?.data,
             open: IsOpen,
-            onEvent: () => setIsOpen((prev) => !prev),
+            onEvent: () => setIsOpen(false),
           });
         }
       }
@@ -137,10 +167,8 @@ export const InfoForm = ({ packages, type }) => {
         type: "ERROR",
         data: {},
         open: IsOpen,
-        onEvent: () => setIsOpen((prev) => !prev),
+        onEvent: () => setIsOpen(false),
       });
-    } finally {
-      setIsOpen(true);
     }
   };
 
@@ -522,6 +550,7 @@ export const InfoForm = ({ packages, type }) => {
             defaultColor={colorsObject.main}
             paddingInline={44}
             borderRadius={5}
+            onClick={() => setIsOpen(true)}
           >
             Save
           </ButtonComponent>
@@ -553,7 +582,7 @@ export const InfoForm = ({ packages, type }) => {
           />
         </div>
       </Form>
-      {IsOpen && state.status}
+      {IsOpen && state?.modal}
     </Fragment>
   );
 };
