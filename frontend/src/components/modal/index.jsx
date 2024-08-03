@@ -1,14 +1,13 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { ExclamationCircleFilled } from "@ant-design/icons";
 import classNames from "classnames";
 import { useContext, useMemo } from "react";
 import { CiCircleCheck } from "react-icons/ci";
-import { MdClose, MdErrorOutline } from "react-icons/md";
+import { MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
-import { Form, Modal as ModalComponent, Steps } from "antd";
+import { Form, Input, Modal as ModalComponent, Steps, Switch } from "antd";
+import MDEditor from "@uiw/react-md-editor";
 
 const Modal = ({ className, setIsOpen, children, width }) => {
   className = classNames(className, ModalStyle["Modal"]);
@@ -213,6 +212,75 @@ export const ModalEdit = ({
           >
             CLOSE
           </ButtonComponent>
+        </div>
+      </Form>
+    </ModalComponent>
+  );
+};
+
+export const ModalEmail = ({
+  title,
+  onOk,
+  onCancel,
+  footer,
+  open,
+  width,
+  onFinish,
+  form,
+}) => {
+  const { colorsObject } = useContext(ColorsContext);
+
+  return (
+    <ModalComponent
+      title={title}
+      centered
+      open={open}
+      onCancel={onCancel}
+      footer={footer}
+      className={"space-y-5"}
+      onOk={onOk}
+      width={width}
+    >
+      <Form
+        onFinish={onFinish}
+        form={form}
+        className="flex gap-5"
+        layout={"vertical"}
+        initialValues={{ send: true, body: "Body" }}
+      >
+        <article className={"flex-grow space-y-5"}>
+          <Title level={3}>EDIT EMAIL TEMPLATE</Title>
+
+          <Form.Item name={"send"} label={"Send Email"}>
+            <Switch />
+          </Form.Item>
+
+          <Form.Item name={"subject"} label={"Email Subject"}>
+            <Input className={"w-full h-[50px]"} placeholder={"Subject"} />
+          </Form.Item>
+
+          <Form.Item name="body">
+            <MDEditor preview={"edit"} />
+          </Form.Item>
+        </article>
+
+        <div className={"w-[400px]"}>
+          <code className="p-4 block border max-h-[400px] h-full overflow-y-scroll bg-white rounded-3xl">
+            <Title level={3}>Keywords:</Title>
+          </code>
+          <div className="p-4 border max-h-[400px] h-full overflow-y-scroll bg-white rounded-3xl">
+            <Title level={3}>Files</Title>
+
+            <ButtonComponent
+              defaultBg={colorsObject.success}
+              defaultHoverBg={colorsObject.successHover}
+              controlHeight={40}
+              paddingInline={43}
+              type={"submit"}
+            >
+              Save
+            </ButtonComponent>
+          </div>
         </div>
       </Form>
     </ModalComponent>

@@ -1,6 +1,7 @@
 import {
   ModalConfirm,
   ModalEdit,
+  ModalEmail,
   ModalError,
   ModalSuccess,
 } from "@/components/modal/index.jsx";
@@ -62,6 +63,21 @@ export const ModalReducer = (state, action) => {
           >
             {action.children}
           </ModalEdit>
+        ),
+      };
+    }
+    case "EMAIL": {
+      return {
+        ...state,
+        modal: (
+          <ModalEmail
+            footer={null}
+            onOk={action.onOk}
+            onCancel={action.onCancel}
+            open={action.open}
+            width={action.width}
+            onFinish={action.onFinish}
+          />
         ),
       };
     }

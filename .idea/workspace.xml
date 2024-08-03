@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Optimized code on Add staff and its module">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed some bugs in code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/staff.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/management.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/management.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="auth" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,7 +54,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;email__temp&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -218,15 +222,11 @@
       <workItem from="1722070194728" duration="1861000" />
       <workItem from="1722159281009" duration="734000" />
       <workItem from="1722197504402" duration="11259000" />
-      <workItem from="1722377989411" duration="15890000" />
-    </task>
-    <task id="LOCAL-00076" summary="#fix #jsx Add feature: Implemented Form.List component for dynamic list rendering">
-      <option name="closed" value="true" />
-      <created>1720348879764</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1720348879765</updated>
+      <workItem from="1722377989411" duration="16007000" />
+      <workItem from="1722461484845" duration="338000" />
+      <workItem from="1722496727075" duration="13568000" />
+      <workItem from="1722518406778" duration="6527000" />
+      <workItem from="1722670216371" duration="3496000" />
     </task>
     <task id="LOCAL-00077" summary="#fix #jsx Refactored data and created new View for test result">
       <option name="closed" value="true" />
@@ -612,7 +612,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722393427748</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="#fix #jsx Fixed some bugs in code">
+      <option name="closed" value="true" />
+      <created>1722393909634</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1722393909634</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +639,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js Fixed CSS class bugs and form validation" />
     <MESSAGE value="#fix #js Fixed auth bugs, select total packages and configuration vite" />
     <MESSAGE value="#fix #js Fixed mobile menubar" />
     <MESSAGE value="#fix #js Fixed mobile menubar with color and active color status" />
@@ -656,7 +663,8 @@
     <MESSAGE value="#fix #jsx Optimized code on services module with delete and patch request data." />
     <MESSAGE value="#fix #jsx Optimized code on file management and refactored some structure." />
     <MESSAGE value="#fix #jsx Optimized code on Add staff and its module" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Optimized code on Add staff and its module" />
+    <MESSAGE value="#fix #jsx Fixed some bugs in code" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed some bugs in code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
