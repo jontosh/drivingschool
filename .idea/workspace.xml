@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed some bugs in code">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs and structure code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -226,14 +225,6 @@
       <workItem from="1722496727075" duration="13568000" />
       <workItem from="1722518406778" duration="6527000" />
       <workItem from="1722670216371" duration="3496000" />
-    </task>
-    <task id="LOCAL-00077" summary="#fix #jsx Refactored data and created new View for test result">
-      <option name="closed" value="true" />
-      <created>1720427328097</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1720427328097</updated>
     </task>
     <task id="LOCAL-00078" summary="#fix #jsx Created Statistic Countdown for deadline timer">
       <option name="closed" value="true" />
@@ -619,7 +610,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722393909634</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="#fix #jsx Fixed bugs and structure code">
+      <option name="closed" value="true" />
+      <created>1722690566718</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1722690566718</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +637,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js Fixed auth bugs, select total packages and configuration vite" />
     <MESSAGE value="#fix #js Fixed mobile menubar" />
     <MESSAGE value="#fix #js Fixed mobile menubar with color and active color status" />
     <MESSAGE value="#fix #js #html Fixed HTML structure" />
@@ -663,7 +661,8 @@
     <MESSAGE value="#fix #jsx Optimized code on file management and refactored some structure." />
     <MESSAGE value="#fix #jsx Optimized code on Add staff and its module" />
     <MESSAGE value="#fix #jsx Fixed some bugs in code" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed some bugs in code" />
+    <MESSAGE value="#fix #jsx Fixed bugs and structure code" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs and structure code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

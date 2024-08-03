@@ -55,6 +55,8 @@ const ActionIcons = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {
+    document.body.style.overflow = "";
+
     dispatch({
       type: "EMAIL",
       onFinish: async (values) => {

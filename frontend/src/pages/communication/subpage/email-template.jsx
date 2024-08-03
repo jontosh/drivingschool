@@ -8,7 +8,7 @@ const CheckPage = ({ page, resources }) => {
       return (
         <TableComponent
           columns={resources?.columns}
-          dataSource={resources?.data}
+          data={resources?.data}
           pagination={false}
           scroll={{ x: 800 }}
         />
@@ -18,7 +18,7 @@ const CheckPage = ({ page, resources }) => {
       return (
         <TableComponent
           columns={resources?.columns}
-          dataSource={resources?.data}
+          data={resources?.data}
           pagination={false}
           scroll={{ x: 800 }}
         />
@@ -28,7 +28,7 @@ const CheckPage = ({ page, resources }) => {
       return (
         <TableComponent
           columns={resources?.columns}
-          dataSource={resources?.data}
+          data={resources?.data}
           pagination={false}
           scroll={{ x: 800 }}
         />
@@ -38,7 +38,7 @@ const CheckPage = ({ page, resources }) => {
       return (
         <TableComponent
           columns={resources?.columns}
-          dataSource={resources?.data}
+          data={resources?.data}
           pagination={false}
           scroll={{ x: 800 }}
         />
