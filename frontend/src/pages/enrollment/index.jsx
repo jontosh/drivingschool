@@ -234,7 +234,6 @@ const Enrollment = () => {
                 total: totalPrice,
                 class: ClassItem,
               }}
-              type={StudentInfoType}
             />
           )}
         </div>

@@ -64,7 +64,14 @@ export const ModalSuccess = ({ title, open, onEvent, footer, width }) => {
   );
 };
 
-export const ModalError = ({ title, open, onEvent, footer, data = {}, width }) => {
+export const ModalError = ({
+  title,
+  open,
+  onCancel,
+  footer,
+  data = {},
+  width,
+}) => {
   const items = useMemo(() => {
     return Object.values(data).map((item) => ({ title: item[0] }));
   }, [data]);
@@ -74,8 +81,7 @@ export const ModalError = ({ title, open, onEvent, footer, data = {}, width }) =
       title={title}
       centered
       open={open}
-      onOk={onEvent}
-      onCancel={onEvent}
+      onCancel={onCancel}
       footer={footer}
       width={width}
     >
@@ -96,7 +102,14 @@ export const ModalError = ({ title, open, onEvent, footer, data = {}, width }) =
   );
 };
 
-export const ModalConfirm = ({ title, onOk, onCancel, footer, open, width }) => {
+export const ModalConfirm = ({
+  title,
+  onOk,
+  onCancel,
+  footer,
+  open,
+  width,
+}) => {
   const { colorsObject } = useContext(ColorsContext);
 
   return (
