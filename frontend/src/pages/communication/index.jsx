@@ -10,7 +10,7 @@ const Communication = () => {
         <title>Communication</title>
       </Helmet>
 
-      <section className={`px-11 space-y-5 max-w-full w-full`}>
+      <section className={`px-3 sm:px-11 space-y-5 max-w-full w-full`}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}

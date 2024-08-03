@@ -10,6 +10,7 @@ const CheckPage = ({ page, resources }) => {
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
+          scroll={{ x: 800 }}
         />
       );
     }
@@ -19,6 +20,7 @@ const CheckPage = ({ page, resources }) => {
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
+          scroll={{ x: 800 }}
         />
       );
     }
@@ -28,6 +30,7 @@ const CheckPage = ({ page, resources }) => {
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
+          scroll={{ x: 800 }}
         />
       );
     }
@@ -37,6 +40,7 @@ const CheckPage = ({ page, resources }) => {
           columns={resources?.columns}
           dataSource={resources?.data}
           pagination={false}
+          scroll={{ x: 800 }}
         />
       );
     }
