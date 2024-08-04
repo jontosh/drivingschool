@@ -41,7 +41,7 @@ export const CommunicationSpa = () => {
             resources={{ columns, data }}
             header={
               <Fragment>
-                <div className="flex max-md:flex-col justify-between items-center">
+                <div className="flex flex-col md:flex-row justify-between items-center">
                   <IconComponent
                     className={"cursor-text"}
                     iconClass={"text-indigo-600"}
