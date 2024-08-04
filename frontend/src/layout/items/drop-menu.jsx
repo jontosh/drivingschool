@@ -5,7 +5,7 @@ import { LuLogOut } from "react-icons/lu";
 import { TbPassword } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 
-const DropMenuItems = () => {
+const DropMenuItems = (id) => {
   const { pathname: basePath } = useBaseURL();
   const navigate = useNavigate();
 
@@ -36,7 +36,16 @@ const DropMenuItems = () => {
     {
       key: "2",
       label: (
-        <Link to={`/${basePath}/password`} className="flex px-4">
+        <Link
+          to={
+            basePath === "admin"
+              ? `/admin/password/` + id
+              : basePath === "instructor"
+                ? `/instructor/profile/` + id
+                : "/student/account/profile/" + id
+          }
+          className="flex px-4"
+        >
           <IconComponent
             classNames="items-center text-sm text-gray-600"
             spaceIconX={2.5}

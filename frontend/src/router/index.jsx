@@ -17,6 +17,7 @@ import Management from "@/pages/managment/index.jsx";
 import Modal from "@/pages/modal/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
+import Password from "@/pages/register/password.jsx";
 import Report from "@/pages/report/index.jsx";
 import Scheduling from "@/pages/scheduling/index.jsx";
 import Manage from "@/pages/scheduling/subpages/manage.jsx";
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "password/:id",
+        element: <Password />,
       },
       {
         path: "report/:title",
@@ -193,15 +198,15 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "dashboard",
+        path: "dashboard/:instructorId",
         element: <InstructorDashboard />,
       },
       {
-        path: "schedule-lessons",
+        path: "schedule-lessons/:instructorId",
         element: <InstructorScheduling />,
       },
       {
-        path: "profile",
+        path: "profile/:instructorId",
         element: <InstructorProfile />,
       },
     ],
@@ -219,7 +224,7 @@ export const router = createBrowserRouter([
         element: <StudentDashboard />,
       },
       {
-        path: "account/:studentId",
+        path: "account/:subpage/:studentId",
         element: <StudentAccount />,
       },
       {

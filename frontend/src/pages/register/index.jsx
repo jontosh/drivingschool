@@ -52,9 +52,12 @@ const Register = ({ title }) => {
       if (response?.access) {
         setAuthUser(response?.access);
         setAuthRefresh(response?.refresh);
-        navigate(`/${pathname}/dashboard/${pathname === "student" ? 0 : ""}`, {
-          replace: true,
-        });
+        navigate(
+          `/${pathname}/dashboard/${pathname === "student" || pathname === "instructor" ? 0 : ""}`,
+          {
+            replace: true,
+          },
+        );
       }
     } catch (error) {
       console.error(error);
