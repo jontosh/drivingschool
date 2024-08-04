@@ -30,7 +30,7 @@ const Layout = () => {
   const { pathname } = useLocation();
   const { colorsObject } = useContext(ColorsContext);
   const { pathname: toOrigin } = useBaseURL();
-  const DropMenuItems = DropMenu();
+  const DropMenuItems = DropMenu(0);
 
   useEffect(() => {
     if (["/", "/student", "/student/"].includes(pathname)) {
@@ -120,7 +120,7 @@ const Layout = () => {
               <BellFilled className="w-5 h-5" />
             </Badge>
           )}
-          {toOrigin === "instructor" && (
+          {(toOrigin === "instructor" || toOrigin === "student") && (
             <Fragment>
               <IconComponent className="text-3xl" icon={<PiNoteDuotone />} />
               <IconComponent
