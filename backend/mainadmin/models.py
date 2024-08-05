@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.db import models
 from django_tenants.models import TenantMixin, DomainMixin
 from django.contrib.auth.models import AbstractUser,Group
@@ -41,7 +42,9 @@ class CustomUser(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4()
-        self.set_password(self.password)
+        self.is_active = True
+        if not self.password.startswith('pbkdf2_'):
+            self.set_password(self.password)
         super().save(*args, **kwargs)
     def __str__(self):
         return  self.username
