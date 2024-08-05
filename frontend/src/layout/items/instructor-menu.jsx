@@ -1,6 +1,7 @@
+import { Crypto } from "@/auth/crypto.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { ConfigProvider, Menu } from "antd";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { AiOutlineAppstore, AiOutlineSolution } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { PiUsers } from "react-icons/pi";
@@ -19,11 +20,20 @@ export const InstructorMenu = ({ inlineCollapsed, style }) => {
   });
   const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const navigate = useNavigate();
+  const [User, setUser] = useSessionStorageState("user", {
+    defaultValue: null,
+  });
+  const [UserData, setUserData] = useState(undefined);
+
+  useEffect(() => {
+    const { decrypted } = Crypto(User, import.meta.env.VITE_SECRET_KEY);
+    setUserData(decrypted);
+  }, [User]);
 
   const handleLogOut = () => {
     setLogTime(null);
     setAuthUser(null);
-    navigate("/instructor/register/sign-in", { replace: true });
+    navigate("/register/sign-in", { replace: true });
     reload();
   };
   const handleMenuClick = (e) => {
@@ -32,9 +42,9 @@ export const InstructorMenu = ({ inlineCollapsed, style }) => {
 
   const handleSubMenuOpenChange = (keys) => {
     const rootSubmenuKeys = [
-      `/student/schedule-lessons/${instructorId ?? 0}`,
-      `/student/profile/${instructorId ?? 0}`,
-      `/student/resource/${instructorId ?? 0}`,
+      `/student/schedule-lessons/${UserData?.id ?? instructorId}`,
+      `/student/profile/${UserData?.id ?? instructorId}`,
+      `/student/resource/${UserData?.id ?? instructorId}`,
     ];
 
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -68,7 +78,9 @@ export const InstructorMenu = ({ inlineCollapsed, style }) => {
           openKeys={openKeys}
           onOpenChange={handleSubMenuOpenChange}
           onClick={handleMenuClick}
-          defaultSelectedKeys={["/instructor/dashboard/" + (instructorId ?? 0)]}
+          defaultSelectedKeys={[
+            "/instructor/dashboard/" + (UserData?.id ?? instructorId),
+          ]}
           inlineCollapsed={inlineCollapsed}
           style={{
             ...style,
@@ -76,14 +88,16 @@ export const InstructorMenu = ({ inlineCollapsed, style }) => {
           }}
         >
           <Menu.Item
-            key={"/instructor/dashboard/" + (instructorId ?? 0)}
+            key={"/instructor/dashboard/" + (UserData?.id ?? instructorId)}
             icon={
               <span className={"w-5"}>
                 <AiOutlineAppstore />
               </span>
             }
           >
-            <Link to={"/instructor/dashboard/" + (instructorId ?? 0)}>
+            <Link
+              to={"/instructor/dashboard/" + (UserData?.id ?? instructorId)}
+            >
               Home
             </Link>
           </Menu.Item>
@@ -94,9 +108,15 @@ export const InstructorMenu = ({ inlineCollapsed, style }) => {
                 <AiOutlineSolution />
               </span>
             }
-            key={"/instructor/schedule-lessons/" + (instructorId ?? 0)}
+            key={
+              "/instructor/schedule-lessons/" + (UserData?.id ?? instructorId)
+            }
           >
-            <Link to={"/instructor/schedule-lessons/" + (instructorId ?? 0)}>
+            <Link
+              to={
+                "/instructor/schedule-lessons/" + (UserData?.id ?? instructorId)
+              }
+            >
               Scheduling
             </Link>
           </Menu.Item>
@@ -107,9 +127,9 @@ export const InstructorMenu = ({ inlineCollapsed, style }) => {
                 <PiUsers />
               </span>
             }
-            key={"/instructor/profile/" + (instructorId ?? 0)}
+            key={"/instructor/profile/" + (UserData?.id ?? instructorId)}
           >
-            <Link to={"/instructor/profile/" + (instructorId ?? 0)}>
+            <Link to={"/instructor/profile/" + (UserData?.id ?? instructorId)}>
               Profile
             </Link>
           </Menu.Item>
@@ -119,9 +139,9 @@ export const InstructorMenu = ({ inlineCollapsed, style }) => {
                 <LuLogOut />
               </span>
             }
-            key={"/instructor/register/sign-in"}
+            key={"/register/sign-in"}
           >
-            <Link onClick={handleLogOut} to={"/instructor/register/sign-in"}>
+            <Link onClick={handleLogOut} to={"/register/sign-in"}>
               Log out
             </Link>
           </Menu.Item>
