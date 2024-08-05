@@ -5,7 +5,10 @@ import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import { useBaseURL } from "@/hooks/portal.jsx";
-import { useRequestPostMutation } from "@/redux/query/index.jsx";
+import {
+  useRequestPatchMutation,
+  useRequestPostMutation,
+} from "@/redux/query/index.jsx";
 import { Form, Input, message } from "antd";
 import { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet";
@@ -28,6 +31,7 @@ const Register = ({ title }) => {
   const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const [form] = Form.useForm();
   const [requestPost] = useRequestPostMutation();
+  const [requestPatch] = useRequestPatchMutation();
   const navigate = useNavigate();
   const { pathname } = useBaseURL();
 
@@ -52,12 +56,36 @@ const Register = ({ title }) => {
       if (response?.access) {
         setAuthUser(response?.access);
         setAuthRefresh(response?.refresh);
-        navigate(
-          `/${pathname}/dashboard/${pathname === "student" || pathname === "instructor" ? 0 : ""}`,
-          {
-            replace: true,
-          },
+        const { encrypted } = Crypto(
+          response?.user,
+          import.meta.env.VITE_SECRET_KEY,
         );
+
+        window.localStorage.setItem("user", encrypted);
+
+        if (response?.user?.usertype === 3) {
+          await requestPatch({
+            path: "/student_account/student",
+            id: response?.user?.id,
+            data: {
+              last_login: new Date(),
+            },
+          })
+            .unwrap()
+            .then(() => {
+              navigate("/student/dashboard/" + response?.user?.id, {
+                replace: true,
+              });
+            });
+        } else if (response?.user?.usertype === 4) {
+          navigate("/instructor/dashboard/" + response?.user?.id, {
+            replace: true,
+          });
+        } else if (response?.user?.usertype === 5) {
+          navigate("/admin/dashboard/", { replace: true });
+        } else {
+          navigate(pathname + "register/sign-in", { replace: true });
+        }
       }
     } catch (error) {
       console.error(error);
@@ -74,7 +102,7 @@ const Register = ({ title }) => {
       </Helmet>
 
       <section className="bg-white p-5 flex flex-col-reverse xl:grid xl:grid-cols-2 xl:gap-5">
-        <div className="p-2.5 min-[600px]:p-20">
+        <div className="p-2.5 xl:p-20">
           <Title level={1} fontSize="text-4xl" titleMarginBottom={80}>
             Welcome to driving <br /> school
           </Title>
@@ -147,7 +175,7 @@ const Register = ({ title }) => {
             </div>
           </Form>
         </div>
-        <div className="rounded-xl xl:border p-2.5 min-[600px]:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]">
+        <div className="rounded-xl xl:border p-2.5 xl:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]">
           <Title
             level={1}
             className="pt-2"
