@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fix routing and set to store">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/layout/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/notfound/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/register/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,27 +48,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "auth",
-    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "service.view.auto.scroll.to.source": "true",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;auth&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/pages/students/account" />
@@ -225,14 +227,8 @@
       <workItem from="1722518406778" duration="6527000" />
       <workItem from="1722670216371" duration="3496000" />
       <workItem from="1722758647569" duration="4293000" />
-    </task>
-    <task id="LOCAL-00079" summary="#fix #jsx Updated">
-      <option name="closed" value="true" />
-      <created>1720434934193</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1720434934193</updated>
+      <workItem from="1722848939785" duration="536000" />
+      <workItem from="1722856562237" duration="2904000" />
     </task>
     <task id="LOCAL-00080" summary="#fix #jsx Updated mode in header Layout.jsx with connecting Segment component ANTD">
       <option name="closed" value="true" />
@@ -618,7 +614,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722705961680</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="#fix #jsx Fix routing and set to store">
+      <option name="closed" value="true" />
+      <created>1722832841886</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1722832841887</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -637,7 +641,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js Fixed mobile menubar with color and active color status" />
     <MESSAGE value="#fix #js #html Fixed HTML structure" />
     <MESSAGE value="#fix #js #html Fixed URL router to pages, fixed structure data for control dynamic change active mrnu item" />
     <MESSAGE value="#fix #js #html Fixed routing path, menu on portal student and link in other pages" />
@@ -662,7 +665,8 @@
     <MESSAGE value="#fix #jsx Fixed some bugs in code" />
     <MESSAGE value="#fix #jsx Fixed bugs and structure code" />
     <MESSAGE value="#fix #jsx Fixed bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs" />
+    <MESSAGE value="#fix #jsx Fix routing and set to store" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fix routing and set to store" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

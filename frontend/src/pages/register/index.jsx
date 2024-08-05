@@ -12,12 +12,11 @@ import {
 import { Form, Input, message } from "antd";
 import { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { TfiArrowTopRight } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import useSessionStorageState from "use-session-storage-state";
 
-const Register = ({ title }) => {
+const Register = () => {
   const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
     defaultValue: null,
   });
@@ -25,6 +24,9 @@ const Register = ({ title }) => {
     defaultValue: null,
   });
   const [AuthRefresh, setAuthRefresh] = useSessionStorageState("auth-upgrade", {
+    defaultValue: null,
+  });
+  const [User, setUser] = useSessionStorageState("user", {
     defaultValue: null,
   });
   const [RememberMe, setRememberMe] = useLocalStorage("register", null);
@@ -61,7 +63,7 @@ const Register = ({ title }) => {
           import.meta.env.VITE_SECRET_KEY,
         );
 
-        window.localStorage.setItem("user", encrypted);
+        setUser(encrypted);
 
         if (response?.user?.usertype === 3) {
           await requestPatch({
@@ -78,11 +80,33 @@ const Register = ({ title }) => {
               });
             });
         } else if (response?.user?.usertype === 4) {
-          navigate("/instructor/dashboard/" + response?.user?.id, {
-            replace: true,
-          });
+          await requestPatch({
+            path: "/student_account/instructor",
+            id: response?.user?.id,
+            data: {
+              last_login: new Date(),
+            },
+          })
+            .unwrap()
+            .then(() => {
+              navigate("/instructor/dashboard/" + response?.user?.id, {
+                replace: true,
+              });
+            });
         } else if (response?.user?.usertype === 5) {
-          navigate("/admin/dashboard/", { replace: true });
+          await requestPatch({
+            path: "/student_account/instructor",
+            id: response?.user?.id,
+            data: {
+              last_login: new Date(),
+            },
+          })
+            .unwrap()
+            .then(() => {
+              navigate("/admin/dashboard/", {
+                replace: true,
+              });
+            });
         } else {
           navigate(pathname + "register/sign-in", { replace: true });
         }
@@ -135,9 +159,11 @@ const Register = ({ title }) => {
               />
             </Form.Item>
 
-            <Link to="/" className="w-full text-right text-[#4C4C4C] text-lg">
-              Forgot Password?
-            </Link>
+            <Paragraph className={"text-right"}>
+              <Link to="/" className="text-[#4C4C4C] text-lg">
+                Forgot Password?
+              </Link>
+            </Paragraph>
 
             <hr className="border-[#E5EFFF]" />
 
@@ -159,20 +185,6 @@ const Register = ({ title }) => {
                 Login
               </ButtonComponent>
             </div>
-
-            <div className="flex items-center justify-center gap-2 pt-10">
-              <Paragraph colorText="#4C4C4C" fontWeightStrong="font-normal">
-                Don’t have an account?
-              </Paragraph>
-
-              <Link
-                to="/register/sign-up/"
-                className="flex items-center gap-1 underline font-medium text-[#4C4C4C]"
-              >
-                <span>Sign Up</span>
-                <TfiArrowTopRight className="w-4 mt-1" />
-              </Link>
-            </div>
           </Form>
         </div>
         <div className="rounded-xl xl:border p-2.5 xl:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]">
@@ -182,7 +194,7 @@ const Register = ({ title }) => {
             fontSize="text-4xl"
             titleMarginBottom={20}
           >
-            Login {title}
+            Login
           </Title>
           <Paragraph
             fontSize="text-lg mb-12"
