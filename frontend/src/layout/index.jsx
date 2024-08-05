@@ -2,10 +2,12 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { Crypto } from "@/auth/crypto.jsx";
 import { AdminMenu } from "@/layout/items/admin-menu.jsx";
 import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
 import { StudentMenu } from "@/layout/items/student-menu.jsx";
 import classNames from "classnames";
+import useSessionStorageState from "use-session-storage-state";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
@@ -26,19 +28,19 @@ const Layout = () => {
   console.clear();
   const [IsActive, setIsActive] = useState(true);
   const [IsBurger, setIsBurger] = useState(false);
+  const [User, setUser] = useSessionStorageState("user", {
+    defaultValue: null,
+  });
+  const [UserData, setUserData] = useState(undefined);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { colorsObject } = useContext(ColorsContext);
   const { pathname: toOrigin } = useBaseURL();
-  const DropMenuItems = DropMenu(0);
+  const DropMenuItems = DropMenu(UserData?.id);
 
   useEffect(() => {
-    if (["/", "/student", "/student/"].includes(pathname)) {
-      navigate("/student/register/sign-in", { replace: true });
-    } else if (["/instructor", "/instructor/"].includes(pathname)) {
-      navigate("/instructor/register/sign-in", { replace: true });
-    } else if (["/admin", "/admin/"].includes(pathname)) {
-      navigate("/admin/register/sign-in", { replace: true });
+    if (["/", "/student/", "/instructor/", "/admin/"].includes(pathname)) {
+      navigate("/register/sign-in", { replace: true });
     }
   }, [pathname, navigate]);
 
@@ -61,6 +63,11 @@ const Layout = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [IsBurger]);
+
+  useEffect(() => {
+    const { decrypted } = Crypto(User, import.meta.env.VITE_SECRET_KEY);
+    setUserData(decrypted);
+  }, [User]);
 
   const handleSideBar = useCallback(() => setIsActive((prev) => !prev), []);
   const handleBurger = useCallback(() => setIsBurger((prev) => !prev), []);
@@ -170,7 +177,7 @@ const Layout = () => {
                 fontWeightStrong={400}
                 fontSize="text-base"
               >
-                Aminov Taminov
+                {UserData?.username}
               </Title>
               <div
                 className={`w-10 h-10 rounded-full overflow-hidden ${LayoutStyle.user__avatar}`}
