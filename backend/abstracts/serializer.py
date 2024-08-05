@@ -1,6 +1,5 @@
 # serializers.py
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.views import TokenObtainPairView
 User = get_user_model()
@@ -18,6 +17,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
     def validate(self, attrs):
+        print(attrs)
         data = super().validate(attrs)
         try:
             uid = self.user.type.id
