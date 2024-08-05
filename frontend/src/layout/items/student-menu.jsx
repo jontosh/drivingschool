@@ -1,6 +1,7 @@
+import { Crypto } from "@/auth/crypto.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { ConfigProvider, Menu } from "antd";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { AiOutlineAppstore, AiOutlineSolution } from "react-icons/ai";
 import { FiPhone } from "react-icons/fi";
 import { IoDiamondOutline } from "react-icons/io5";
@@ -24,6 +25,15 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
   });
   const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const navigate = useNavigate();
+  const [User, setUser] = useSessionStorageState("user", {
+    defaultValue: null,
+  });
+  const [UserData, setUserData] = useState(undefined);
+
+  useEffect(() => {
+    const { decrypted } = Crypto(User, import.meta.env.VITE_SECRET_KEY);
+    setUserData(decrypted);
+  }, [User]);
 
   const handleLogOut = () => {
     setLogTime(null);
@@ -37,9 +47,9 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
 
   const handleSubMenuOpenChange = (keys) => {
     const rootSubmenuKeys = [
-      `/student/schedule/${studentId ?? 0}`,
-      `/student/account/${studentId ?? 0}`,
-      `/student/resource/${studentId ?? 0}`,
+      `/student/schedule/${UserData?.id ?? studentId}`,
+      `/student/account/${UserData?.id ?? studentId}`,
+      `/student/resource/${UserData?.id ?? studentId}`,
     ];
 
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -73,7 +83,9 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
           openKeys={openKeys}
           onOpenChange={handleSubMenuOpenChange}
           onClick={handleMenuClick}
-          defaultSelectedKeys={["/student/dashboard/" + (studentId ?? 0)]}
+          defaultSelectedKeys={[
+            "/student/dashboard/" + (UserData?.id ?? studentId),
+          ]}
           inlineCollapsed={inlineCollapsed}
           style={{
             ...style,
@@ -81,18 +93,20 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
           }}
         >
           <Menu.Item
-            key={"/student/dashboard/" + (studentId ?? 0)}
+            key={"/student/dashboard/" + (UserData?.id ?? studentId)}
             icon={
               <span className={"w-5"}>
                 <AiOutlineAppstore />
               </span>
             }
           >
-            <Link to={"/student/dashboard/" + (studentId ?? 0)}>Home</Link>
+            <Link to={"/student/dashboard/" + (UserData?.id ?? studentId)}>
+              Home
+            </Link>
           </Menu.Item>
           {/* schedule */}
           <SubMenu
-            key={"/student/schedule/" + (studentId ?? 0)}
+            key={"/student/schedule/" + (UserData?.id ?? studentId)}
             title={"Scheduling"}
             icon={
               <span className={"w-5"}>
@@ -101,17 +115,30 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
             }
           >
             <Menu.Item
-              key={"/student/schedule/my-schedule/" + (studentId ?? 0)}
+              key={
+                "/student/schedule/my-schedule/" + (UserData?.id ?? studentId)
+              }
             >
-              <Link to={"/student/schedule/my-schedule/" + (studentId ?? 0)}>
+              <Link
+                to={
+                  "/student/schedule/my-schedule/" + (UserData?.id ?? studentId)
+                }
+              >
                 My schedule
               </Link>
             </Menu.Item>
 
             <Menu.Item
-              key={"/student/schedule/book-lessons/" + (studentId ?? 0)}
+              key={
+                "/student/schedule/book-lessons/" + (UserData?.id ?? studentId)
+              }
             >
-              <Link to={"/student/schedule/book-lessons/" + (studentId ?? 0)}>
+              <Link
+                to={
+                  "/student/schedule/book-lessons/" +
+                  (UserData?.id ?? studentId)
+                }
+              >
                 Book my lessons
               </Link>
             </Menu.Item>
@@ -124,37 +151,55 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
               </span>
             }
             title={"My account"}
-            key={"/student/account/" + (studentId ?? 0)}
+            key={"/student/account/" + (UserData?.id ?? studentId)}
           >
-            <Menu.Item key={"/student/account/profile/" + (studentId ?? 0)}>
-              <Link to={"/student/account/profile/" + (studentId ?? 0)}>
+            <Menu.Item
+              key={"/student/account/profile/" + (UserData?.id ?? studentId)}
+            >
+              <Link
+                to={"/student/account/profile/" + (UserData?.id ?? studentId)}
+              >
                 Profile
               </Link>
             </Menu.Item>
 
-            <Menu.Item key={"/student/account/billing/" + (studentId ?? 0)}>
-              <Link to={"/student/account/billing/" + (studentId ?? 0)}>
+            <Menu.Item
+              key={"/student/account/billing/" + (UserData?.id ?? studentId)}
+            >
+              <Link
+                to={"/student/account/billing/" + (UserData?.id ?? studentId)}
+              >
                 Enrollment and Billing
               </Link>
             </Menu.Item>
 
             <Menu.Item
-              key={"/student/account/appointments/" + (studentId ?? 0)}
+              key={
+                "/student/account/appointments/" + (UserData?.id ?? studentId)
+              }
             >
-              <Link to={"/student/account/appointments/" + (studentId ?? 0)}>
+              <Link
+                to={
+                  "/student/account/appointments/" + (UserData?.id ?? studentId)
+                }
+              >
                 Appointments
               </Link>
             </Menu.Item>
 
-            <Menu.Item key={"/student/account/files/" + (studentId ?? 0)}>
-              <Link to={"/student/account/files/" + (studentId ?? 0)}>
+            <Menu.Item
+              key={"/student/account/files/" + (UserData?.id ?? studentId)}
+            >
+              <Link
+                to={"/student/account/files/" + (UserData?.id ?? studentId)}
+              >
                 Files
               </Link>
             </Menu.Item>
           </SubMenu>
           {/* Resources */}
           <SubMenu
-            key={"/student/resource/" + (studentId ?? 0)}
+            key={"/student/resource/" + (UserData?.id ?? studentId)}
             title={"Resources"}
             icon={
               <span className={"w-5"}>
@@ -162,30 +207,44 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
               </span>
             }
           >
-            <Menu.Item key={"/student/resource/in-car/" + (studentId ?? 0)}>
-              <Link to={"/student/resource/in-car/" + (studentId ?? 0)}>
+            <Menu.Item
+              key={"/student/resource/in-car/" + (UserData?.id ?? studentId)}
+            >
+              <Link
+                to={"/student/resource/in-car/" + (UserData?.id ?? studentId)}
+              >
                 In-car
               </Link>
             </Menu.Item>
 
-            <Menu.Item key={"/student/resource/road-test/" + (studentId ?? 0)}>
+            <Menu.Item
+              key={"/student/resource/road-test/" + (UserData?.id ?? studentId)}
+            >
               <Link to={"/student/resource/road-test/" + (studentId ?? 0)}>
                 Road test
               </Link>
             </Menu.Item>
 
             <Menu.Item key={"/student/resource/parents/" + (studentId ?? 0)}>
-              <Link to={"/student/resource/parents/" + (studentId ?? 0)}>
+              <Link
+                to={"/student/resource/parents/" + (UserData?.id ?? studentId)}
+              >
                 Parents
               </Link>
             </Menu.Item>
 
             <Menu.Item
-              key={"/student/resource/quiz/" + (studentId ?? 0) + "/view/exams"}
+              key={
+                "/student/resource/quiz/" +
+                (UserData?.id ?? studentId) +
+                "/view/exams"
+              }
             >
               <Link
                 to={
-                  "/student/resource/quiz/" + (studentId ?? 0) + "/view/exams"
+                  "/student/resource/quiz/" +
+                  (UserData?.id ?? studentId) +
+                  "/view/exams"
                 }
               >
                 Quiz
@@ -198,9 +257,11 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
                 <SlBasket />
               </span>
             }
-            key={"/student/enroll/" + (studentId ?? 0)}
+            key={"/student/enroll/" + (UserData?.id ?? studentId)}
           >
-            <Link to={"/student/enroll/" + (studentId ?? 0)}>Enroll</Link>
+            <Link to={"/student/enroll/" + (UserData?.id ?? studentId)}>
+              Enroll
+            </Link>
           </Menu.Item>
           <Menu.Item
             icon={
@@ -208,9 +269,11 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
                 <FiPhone />
               </span>
             }
-            key={"/student/contact/" + (studentId ?? 0)}
+            key={"/student/contact/" + (UserData?.id ?? studentId)}
           >
-            <Link to={"/student/contact/" + (studentId ?? 0)}>Contact</Link>
+            <Link to={"/student/contact/" + (UserData?.id ?? studentId)}>
+              Contact
+            </Link>
           </Menu.Item>
           <Menu.Item
             icon={
@@ -218,9 +281,9 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
                 <LuLogOut />
               </span>
             }
-            key={"/student/register/sign-in"}
+            key={"/register/sign-in"}
           >
-            <Link onClick={handleLogOut} to={"/student/register/sign-in"}>
+            <Link onClick={handleLogOut} to={"/register/sign-in"}>
               Log out
             </Link>
           </Menu.Item>

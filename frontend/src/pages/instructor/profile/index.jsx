@@ -1,11 +1,11 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
-import Modal from "@/components/modal/index.jsx";
+// import Modal from "@/components/modal/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { Form, Upload, message, DatePicker, Input } from "antd";
+import { Form, Upload, message, DatePicker, Input, Modal } from "antd";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { PiCameraLight } from "react-icons/pi";
@@ -19,6 +19,7 @@ const InstructorProfile = () => {
   });
   const { colorsObject } = useContext(ColorsContext);
   const [form] = Form.useForm();
+  const [formPassword] = Form.useForm();
   const [fileList, setFileList] = useState([]);
   const [Location, setLocation] = useState([]);
   const [IsOpen, setIsOpen] = useState(false);
@@ -121,7 +122,9 @@ const InstructorProfile = () => {
               </Upload>
 
               <div className="space-y-2.5">
-                <Title fontSize={"text-2xl text-[#083A50]"}>Hasanboy Nurmuhammadov</Title>
+                <Title fontSize={"text-2xl text-[#083A50]"}>
+                  Hasanboy Nurmuhammadov
+                </Title>
                 <Paragraph fontSize={"text-xl text-[#083A50]"}>
                   Your account is ready, you can now apply for advice.
                 </Paragraph>
@@ -384,106 +387,118 @@ const InstructorProfile = () => {
           </div>
         </Form>
 
-        {IsOpen && (
-          <Form form={form} onFinish={onFinishPassword} layout={"vertical"}>
-            <Modal setIsOpen={setIsOpen}>
-              <div className="bg-white max-w-[630px] w-full px-24 py-14 text-center">
-                <div className="flex items-center justify-center space-x-1.5">
-                  <MdLockReset className="w-10 text-[#364152]" />
-                  <Title fontSize={"text-[31px] font-bold text-[#364152]"}>
-                    Reset Your Password
-                  </Title>
-                </div>
-                <Paragraph colorText="#B7B6B6" fontSize={"text-[17px]"} className={"py-2.5"}>
-                  Please enter your current passowrd and new
-                  password to reset your password
-                </Paragraph>
-                <Form.Item
-                  name="current_password"
-                  label="Current password"
-                  dependencies={["password"]}
-                  hasFeedback
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please confirm your password!",
-                    },
-                    ({ getFieldValue }) => ({
-                      validator(_, value) {
-                        if (!value || getFieldValue("password") === value) {
-                          return Promise.resolve();
-                        }
-                        return Promise.reject(
-                          new Error(
-                            "The new password that you entered do not match!",
-                          ),
-                        );
-                      },
-                    }),
-                  ]}
-                >
-                  <Input.Password className="h-[50px] border-[#667085]" />
-                </Form.Item>
-
-                <Form.Item
-                  name="password"
-                  label="Password"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your password!",
-                    },
-                  ]}
-                  hasFeedback
-                >
-                  <Input.Password className="h-[50px] border-[#667085]" />
-                </Form.Item>
-
-                <Form.Item
-                  name="confirm"
-                  label="Confirm Password"
-                  dependencies={["password"]}
-                  hasFeedback
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please confirm your password!",
-                    },
-                    ({ getFieldValue }) => ({
-                      validator(_, value) {
-                        if (!value || getFieldValue("password") === value) {
-                          return Promise.resolve();
-                        }
-                        return Promise.reject(
-                          new Error(
-                            "The new password that you entered do not match!",
-                          ),
-                        );
-                      },
-                    }),
-                  ]}
-                >
-                  <Input.Password className="h-[50px] border-[#667085]" />
-                </Form.Item>
-
-                <ButtonComponent
-                  type={"submit"}
-                  defaultBg={colorsObject.primary}
-                  defaultHoverBg={colorsObject.primaryHover}
-                  borderRadius={10}
-                  className={"w-full mt-2.5"}
-                >
-                  Upgrade
-                </ButtonComponent>
-
-                <Link
-                  to={"/"}
-                  className="pt-2.5 text-[#5F66E9]"
-                >Forgot Current Password?</Link>
+        <Modal
+          open={IsOpen}
+          onOk={() => setIsOpen(false)}
+          onCancel={() => setIsOpen(false)}
+          footer={null}
+          centered
+          width={626}
+        >
+          <Form
+            onFinish={onFinishPassword}
+            layout={"vertical"}
+            form={formPassword}
+          >
+            <div className="bg-white px-24 py-14 text-center">
+              <div className="flex items-center justify-center space-x-1.5">
+                <MdLockReset className="w-10 text-[#364152]" />
+                <Title fontSize={"text-[31px] font-bold text-[#364152]"}>
+                  Reset Your Password
+                </Title>
               </div>
-            </Modal>
+              <Paragraph
+                colorText="#B7B6B6"
+                fontSize={"text-[17px]"}
+                className={"py-2.5"}
+              >
+                Please enter your current passowrd and new password to reset
+                your password
+              </Paragraph>
+              <Form.Item
+                name="current_password"
+                label="Current password"
+                dependencies={["password"]}
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: "Please confirm your password!",
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error(
+                          "The new password that you entered do not match!",
+                        ),
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password className="h-[50px] border-[#667085]" />
+              </Form.Item>
+
+              <Form.Item
+                name="password"
+                label="Password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                ]}
+                hasFeedback
+              >
+                <Input.Password className="h-[50px] border-[#667085]" />
+              </Form.Item>
+
+              <Form.Item
+                name="confirm"
+                label="Confirm Password"
+                dependencies={["password"]}
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: "Please confirm your password!",
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error(
+                          "The new password that you entered do not match!",
+                        ),
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password className="h-[50px] border-[#667085]" />
+              </Form.Item>
+
+              <ButtonComponent
+                type={"submit"}
+                defaultBg={colorsObject.primary}
+                defaultHoverBg={colorsObject.primaryHover}
+                borderRadius={10}
+                className={"w-full mt-2.5"}
+              >
+                Upgrade
+              </ButtonComponent>
+
+              <Link to={"/"} className="pt-2.5 text-[#5F66E9]">
+                Forgot Current Password?
+              </Link>
+            </div>
           </Form>
-        )}
+        </Modal>
       </section>
     </Fragment>
   );

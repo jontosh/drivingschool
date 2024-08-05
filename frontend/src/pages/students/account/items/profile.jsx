@@ -1,6 +1,7 @@
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import Password from "@/pages/register/password.jsx";
 import { ProfileForm } from "@/pages/students/account/items/profile-form.jsx";
 import { Form, Upload, message, Tabs, ConfigProvider } from "antd";
 import { Fragment, useContext, useState } from "react";
@@ -17,18 +18,8 @@ const TabItems = () => {
     },
     {
       key: "2",
-      label: <span className={"px-3"}>Notifications</span>,
-      children: 2,
-    },
-    {
-      key: "3",
-      label: <span className={"px-3"}>Choose Plan</span>,
-      children: 3,
-    },
-    {
-      key: "4",
       label: <span className={"px-3"}>Password & Security</span>,
-      children: 4,
+      children: <Password />,
     },
   ].map((item) => {
     return { ...item };
@@ -50,13 +41,10 @@ export const Profile = () => {
   const handleUploadChange = (info) => {
     let fileList = [...info.fileList];
 
-    // Ограничение на количество файлов до одного
     fileList = fileList.slice(-1);
 
-    // Обновляем список файлов
     setFileList(fileList);
 
-    // Если файл успешно загружен, выводим сообщение
     if (info.file.status === "done") {
       message.success(`${info.file.name} успешно загружен`);
     } else if (info.file.status === "error") {
@@ -86,11 +74,11 @@ export const Profile = () => {
               listType={"picture-circle"}
               fileList={fileList}
               onChange={handleUploadChange}
-              maxCount={1} // Ограничение на один загружаемый файл
-              beforeUpload={() => false} // Отменяем автоматическую загрузку
+              maxCount={1}
+              beforeUpload={() => false}
               className={ProfileStyle["Upload"]}
             >
-              {fileList.length === 0 && ( // Отображаем кнопку загрузки, если список пуст
+              {fileList.length === 0 && (
                 <IconComponent
                   className={"absolute bottom-1 right-1"}
                   icon={<PiCameraLight />}
