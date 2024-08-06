@@ -1,12 +1,16 @@
+import { Crypto } from "@/auth/crypto.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import Password from "@/pages/register/password.jsx";
 import { ProfileForm } from "@/pages/students/account/items/profile-form.jsx";
+import { useRequestIdQuery } from "@/redux/query/index.jsx";
 import { Form, Upload, message, Tabs, ConfigProvider } from "antd";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { PiCameraLight } from "react-icons/pi";
 import ProfileStyle from "@/pages/instructor/profile/profile.module.scss";
+import { useParams } from "react-router-dom";
+import useSessionStorageState from "use-session-storage-state";
 import ProfileAccountStyle from "./../account.module.scss";
 
 const TabItems = () => {
@@ -28,8 +32,27 @@ const TabItems = () => {
 
 export const Profile = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const { studentId } = useParams();
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
+  const [User, setUser] = useSessionStorageState("user", {
+    defaultValue: null,
+  });
+  const [UserData, setUserData] = useState(undefined);
+
+  useEffect(() => {
+    const { decrypted } = Crypto(User, import.meta.env.VITE_SECRET_KEY);
+    setUserData(decrypted);
+  }, [User]);
+
+  const { data: StudentData, isLoading: isStudent } = useRequestIdQuery({
+    path: "/student_account/student",
+    id: UserData?.id ?? studentId,
+  });
+
+  useEffect(() => {
+    form.setFieldsValue(StudentData);
+  }, [form, StudentData, studentId]);
 
   const normFile = (e) => {
     if (Array.isArray(e)) {
@@ -63,6 +86,7 @@ export const Profile = () => {
         onFinish={onFinish}
         className="bg-white rounded-xl space-y-5"
         layout={"vertical"}
+        disabled={isStudent}
       >
         <Form.Item
           name={"picture"}
@@ -75,7 +99,7 @@ export const Profile = () => {
               fileList={fileList}
               onChange={handleUploadChange}
               maxCount={1}
-              beforeUpload={() => false}
+              beforeUpload={() => true}
               className={ProfileStyle["Upload"]}
             >
               {fileList.length === 0 && (
@@ -88,7 +112,8 @@ export const Profile = () => {
 
             <div className="space-y-2.5">
               <Title fontSize={"text-2xl text-[#083A50]"}>
-                Hasanboy Nurmuhammadov
+                {StudentData?.first_name ?? "Loading..."}{" "}
+                {StudentData?.last_name}
               </Title>
               <Paragraph fontSize={"text-xl text-[#083A50]"}>
                 Your account is ready, you can now apply for advice.
@@ -97,7 +122,6 @@ export const Profile = () => {
           </div>
         </Form.Item>
       </Form>
-
       <ConfigProvider
         theme={{
           components: {
