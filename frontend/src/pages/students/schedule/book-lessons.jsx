@@ -49,17 +49,18 @@ export const StudentBookLessons = () => {
     if (innerWidth >= 1536) {
       setCalendar(300);
     } else if (innerWidth >= 1275) {
-      setCalendar(200);
+      setCalendar(210);
     } else if (innerWidth >= 1000) {
-      setCalendar(180);
+      setCalendar(280);
     } else if (innerWidth >= 600) {
-      setCalendar(300)
+      setCalendar(300);
     } else if (innerWidth >= 450) {
-      setCalendar(200)
-    } else if (innerWidth > 0) {
-      setCalendar(160)
+      setCalendar(250);
+    } else {
+      setCalendar(200);
     }
   }, [innerWidth]);
+
 
   return (
     <Fragment>
@@ -90,66 +91,10 @@ export const StudentBookLessons = () => {
                 value={value}
                 onChange={onChange}
                 hideAdjacentDates
-                className={"w-full"}
+                className={"w-full flex justify-center max-[700px]:flex-col"}
                 size={calendar}
               />
             </MediaQuery>
-
-            {/* <MediaQuery minWidth={1536}>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={300}
-              />
-            </MediaQuery>
-            <MediaQuery minWidth={1275} maxWidth={1535}>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={200}
-              />
-            </MediaQuery>
-            <MediaQuery minWidth={1000} maxWidth={1274}>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={180}
-              />
-            </MediaQuery>
-            <MediaQuery minWidth={600} maxWidth={999}>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={300}
-              />
-            </MediaQuery>
-            <MediaQuery maxWidth={599}>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={200}
-              />
-            </MediaQuery> */}
 
             <Paragraph className="text-gray-500">
               Available Booked or currently unavailable (Call for assistance if
