@@ -2,7 +2,6 @@ import ButtonComponent from "@/components/button";
 import Title, { Paragraph } from "@/components/title";
 import { Form, Input } from "antd";
 import { Fragment, useContext } from "react";
-import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import ColorsContext from "@/context/colors.jsx";
 
@@ -12,13 +11,12 @@ const Password = () => {
 
   return (
     <Fragment>
-      <Helmet>
-        <title>Change Password</title>
-      </Helmet>
       <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
         <div className="bg-white max-w-[972px] h-[484px] rounded-xl p-16 flex items-center justify-between">
           <div className="w-[273px] space-y-5">
-            <Title level={1} fontSize={"text-[25px]"}>Change Password</Title>
+            <Title level={1} fontSize={"text-[25px]"}>
+              Change Password
+            </Title>
 
             <Paragraph fontSize={"text-gray-500 text-base"}>
               Password must contain:
@@ -40,14 +38,14 @@ const Password = () => {
             </div>
           </div>
 
-          <Form
-            layout="vertical"
-            className="w-[366px] space-y-5"
-          >
+          <Form layout="vertical" className="w-[366px] space-y-5">
             <Form.Item
               label="Current password"
               rules={[
-                { required: true, message: "Please input your current password !" }
+                {
+                  required: true,
+                  message: "Please input your current password !",
+                },
               ]}
               name="currentPassword"
             >
@@ -60,7 +58,7 @@ const Password = () => {
             <Form.Item
               label="New Password"
               rules={[
-                { required: true, message: "Please input your new password !" }
+                { required: true, message: "Please input your new password !" },
               ]}
               name="newName"
             >
@@ -73,7 +71,10 @@ const Password = () => {
             <Form.Item
               label="Re-enter Password"
               rules={[
-                { required: true, message: "Please input your new password again !" }
+                {
+                  required: true,
+                  message: "Please input your new password again !",
+                },
               ]}
               name="rePassword"
             >

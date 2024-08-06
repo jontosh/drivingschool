@@ -38,7 +38,6 @@ export const ModalSuccess = ({ title, open, onEvent, footer, width }) => {
       title={title}
       centered
       open={open}
-      onOk={onEvent}
       onCancel={onEvent}
       footer={footer}
       width={width}
@@ -266,7 +265,9 @@ export const ModalEmail = ({
         initialValues={{ send: true, body: "Body" }}
       >
         <article className={"flex-grow space-y-5"}>
-          <Title level={1} fontSize={"text-xl font-extrabold"}>EDIT EMAIL TEMPLATE</Title>
+          <Title level={1} fontSize={"text-xl font-extrabold"}>
+            EDIT EMAIL TEMPLATE
+          </Title>
 
           <Form.Item name={"send"} label={"Send Email"}>
             <Switch />
@@ -282,7 +283,9 @@ export const ModalEmail = ({
 
           <div className="p-4 border max-h-[400px] h-full overflow-y-scroll bg-white rounded-3xl space-y-5">
             <div className="flex justify-between">
-              <Title level={3} fontSize={"font-extrabold text-lg"}>Files</Title>
+              <Title level={3} fontSize={"font-extrabold text-lg"}>
+                Files
+              </Title>
 
               <IconComponent
                 icon={<PiDotsThreeOutlineVertical />}
@@ -292,7 +295,9 @@ export const ModalEmail = ({
 
             <div className="space-y-5">
               <div className="space-y-1.5">
-                <Title level={4} fontSize={"text-sm font-bold"}>File Upload 1:</Title>
+                <Title level={4} fontSize={"text-sm font-bold"}>
+                  File Upload 1:
+                </Title>
 
                 <div className="flex justify-between items-center border border-gray-500 rounded-full p-3">
                   <IconComponent
@@ -300,7 +305,9 @@ export const ModalEmail = ({
                     classNames={"flex items-center space-x-1 text-gray-600"}
                     iconWidth={"w-5"}
                     childrenClass={"text-base font-medium"}
-                  >Select Files</IconComponent>
+                  >
+                    Select Files
+                  </IconComponent>
 
                   <IconComponent
                     icon={<FiHelpCircle />}
@@ -310,7 +317,9 @@ export const ModalEmail = ({
               </div>
 
               <div className="space-y-1.5">
-                <Title level={4} fontSize={"text-sm font-bold"}>File Upload 2:</Title>
+                <Title level={4} fontSize={"text-sm font-bold"}>
+                  File Upload 2:
+                </Title>
 
                 <div className="flex justify-between items-center border border-gray-500 rounded-full p-3">
                   <IconComponent
@@ -318,7 +327,9 @@ export const ModalEmail = ({
                     classNames={"flex items-center space-x-1 text-gray-600"}
                     iconWidth={"w-5"}
                     childrenClass={"text-base font-medium"}
-                  >Select Files</IconComponent>
+                  >
+                    Select Files
+                  </IconComponent>
 
                   <IconComponent
                     icon={<FiHelpCircle />}
@@ -328,7 +339,9 @@ export const ModalEmail = ({
               </div>
 
               <div className="space-y-1.5">
-                <Title level={4} fontSize={"text-sm font-bold"}>File Upload 3:</Title>
+                <Title level={4} fontSize={"text-sm font-bold"}>
+                  File Upload 3:
+                </Title>
 
                 <div className="flex justify-between items-center border border-gray-500 rounded-full p-3">
                   <IconComponent
@@ -336,7 +349,9 @@ export const ModalEmail = ({
                     classNames={"flex items-center space-x-1 text-gray-600"}
                     iconWidth={"w-5"}
                     childrenClass={"text-base font-medium"}
-                  >Select Files</IconComponent>
+                  >
+                    Select Files
+                  </IconComponent>
 
                   <IconComponent
                     icon={<FiHelpCircle />}
@@ -371,7 +386,9 @@ export const ModalEmail = ({
 
         <div className={"w-[400px]"}>
           <code className="p-4 block border h-[400px] h-full overflow-y-scroll bg-white rounded-3xl">
-            <Title level={2} fontSize={"text-base font-extrabold"}>Keywords:</Title>
+            <Title level={2} fontSize={"text-base font-extrabold"}>
+              Keywords:
+            </Title>
           </code>
         </div>
       </Form>

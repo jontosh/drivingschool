@@ -21,7 +21,16 @@ const DropMenuItems = (id) => {
     {
       key: "1",
       label: (
-        <Link to={`/${basePath}/profile/${id}`} className="flex px-4">
+        <Link
+          to={
+            basePath === "admin"
+              ? "/admin/profile/" + id
+              : basePath === "student"
+                ? "/student/account/profile/" + id
+                : "/instructor/profile/" + id
+          }
+          className="flex px-4"
+        >
           <IconComponent
             classNames="items-center text-sm text-gray-600"
             spaceIconX={2.5}

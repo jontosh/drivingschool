@@ -438,7 +438,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
             }
             key={"/admin/register/"}
           >
-            <Link onClick={handleLogOut} to={"/admin/register/sign-in"}>
+            <Link onClick={handleLogOut} to={"/register/sign-in"}>
               Log out
             </Link>
           </Menu.Item>

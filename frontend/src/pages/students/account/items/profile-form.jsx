@@ -1,534 +1,462 @@
+import { Crypto } from "@/auth/crypto.jsx";
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomInput,
-  CustomRadio,
-  CustomSelect,
-} from "@/components/form/index.jsx";
-import Modal from "@/components/modal/index.jsx";
-import Title, { Paragraph } from "@/components/title/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import ManagementStyle from "@/pages/managment/management.module.scss";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { Form, DatePicker, Input } from "antd";
-import { Fragment, useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { MdLockReset } from "react-icons/md";
-import { FiHelpCircle } from "react-icons/fi";
+import { ModalReducer } from "@/hooks/reducer.jsx";
+import {
+  useRequestGetQuery,
+  useRequestIdQuery,
+  useRequestPatchMutation,
+} from "@/redux/query/index.jsx";
+import { Form, DatePicker, Radio, ConfigProvider, Input } from "antd";
+import {
+  Fragment,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
+import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
+import useSessionStorageState from "use-session-storage-state";
+import moment from "moment";
 
 export const ProfileForm = () => {
-  const { data: LocationData } = useRequestGetQuery({
+  const { data: locationData } = useRequestGetQuery({
     path: "/account_management/location/",
   });
-  const { data: InstructorData } = useRequestGetQuery({
+  const { data: instructorData } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
+  const { studentId } = useParams();
   const { colorsObject } = useContext(ColorsContext);
   const [form] = Form.useForm();
-  const [Location, setLocation] = useState([]);
-  const [Instructor, setInstructor] = useState([]);
+  const [user, setUser] = useSessionStorageState("user", {
+    defaultValue: null,
+  });
+  const [userData, setUserData] = useState(undefined);
+  const [requestPatch, { reset }] = useRequestPatchMutation();
+  const [state, dispatch] = useReducer(ModalReducer, { modal: null });
   const [IsOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    const { decrypted } = Crypto(user, import.meta.env.VITE_SECRET_KEY);
+    setUserData(decrypted);
+  }, [user]);
+
+  const { data: studentData, isLoading: isStudent } = useRequestIdQuery({
+    path: "/student_account/student",
+    id: userData?.id ?? studentId,
+  });
+
+  const locations = useMemo(
+    () =>
+      locationData
+        ?.filter((location) => location.status === "ACTIVE")
+        .map((location) => ({
+          value: location.id,
+          label: location.name,
+        })),
+    [locationData],
+  );
+
+  const instructors = useMemo(
+    () =>
+      instructorData
+        ?.filter((staff) => staff.status === "ACTIVE")
+        .map((staff) => ({
+          value: staff.id,
+          label: `${staff.first_name} ${staff.last_name}`,
+        })),
+    [instructorData],
+  );
 
   useEffect(() => {
-    const locations = [];
-    for (let i = 0; i < LocationData?.length; i++) {
-      const item = LocationData[i];
-      locations.push({
-        ...item,
-        value: item.id,
-        label: item.name,
-      });
-    }
-
-    const instructors = [];
-    for (let i = 0; i < InstructorData?.length; i++) {
-      const item = InstructorData[i];
-      instructors.push({
-        ...item,
-        value: item.id,
-        label: item.first_name + " " + item.last_name,
-      });
-    }
-
-    setLocation(locations);
-    setInstructor(instructors);
-  }, [LocationData, InstructorData]);
-
-  const onFinish = async (values) => {
-    console.log({
-      ...values,
-      birth: values["birth"].format("YYYY-MM-DD"),
-      car_permit_data: values["car_permit_data"]?.format("YYYY-MM-DD"),
-      car_permit_expire: values["car_permit_expire"]?.format("YYYY-MM-DD"),
+    form.setFieldsValue({
+      ...studentData,
+      staff: studentData?.staff,
+      location: studentData?.location,
+      birth: moment(studentData?.birth),
+      car_permit_data: moment(studentData?.car_permit_data),
+      car_permit_expire: moment(studentData?.car_permit_expire),
     });
-  };
+  }, [form, studentData]);
 
-  const onFinishPassword = async (values) => {
-    console.log(values);
-  };
+  const onFinish = useCallback(
+    async (values) => {
+      try {
+        const data = {
+          ...values,
+          birth: values.birth?.format("YYYY-MM-DD"),
+          car_permit_data: values.car_permit_data?.format("YYYY-MM-DD"),
+          car_permit_expire: values.car_permit_expire?.format("YYYY-MM-DD"),
+        };
 
-  const handleOpen = () => setIsOpen((prev) => !prev);
+        await requestPatch({
+          path: "/student_account/student",
+          id: userData?.id ?? studentId,
+          data,
+        })
+          .unwrap()
+          .then((response) => {
+            dispatch({
+              type: "SUCCESS",
+              open: IsOpen,
+              onEvent: () => {
+                setIsOpen(false);
+                reset();
+              },
+            });
+
+            const { encrypted } = Crypto(
+              {
+                username: response?.username,
+                email: response?.email,
+                usertype: 3,
+                admin_portal: false,
+                student_portal: true,
+                super_user_portal: false,
+              },
+              import.meta.env.VITE_SECRET_KEY,
+            );
+
+            setUser(encrypted);
+          });
+      } catch (e) {
+        console.error(e);
+        dispatch({
+          type: "ERROR",
+          open: IsOpen,
+          onEvent: () => setIsOpen(false),
+          data: {},
+        });
+      }
+    },
+    [IsOpen],
+  );
+
+  const firstColumn = [
+    {
+      label: "Assign to Staff",
+      name: "staff",
+      component: (
+        <CustomSelect
+          placeholder="Assign to Staff"
+          className="h-[50px]"
+          options={instructors}
+          disable={isStudent}
+        />
+      ),
+    },
+    {
+      label: "Location",
+      name: "location",
+      component: (
+        <CustomSelect
+          placeholder="Location"
+          className="h-[50px]"
+          options={locations}
+          disable={isStudent}
+        />
+      ),
+    },
+    {
+      label: "First name",
+      name: "first_name",
+      required: true,
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          disable={isStudent}
+          placeholder={"First name"}
+        />
+      ),
+    },
+    {
+      label: "Middle name",
+      name: "mid_name",
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          disable={isStudent}
+          placeholder={"Middle name"}
+        />
+      ),
+    },
+    {
+      label: "Last name",
+      name: "last_name",
+      required: true,
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          disable={isStudent}
+          placeholder="Last name"
+        />
+      ),
+    },
+    {
+      label: "Address",
+      name: "address",
+      required: true,
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          disable={isStudent}
+          placeholder="Address"
+        />
+      ),
+    },
+    {
+      label: "City",
+      name: "city",
+      required: true,
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          disable={isStudent}
+          placeholder="City"
+        />
+      ),
+    },
+    {
+      label: "State",
+      name: "state",
+      required: true,
+      component: (
+        <CustomSelect
+          placeholder="State"
+          className="h-[50px]"
+          options={[{ value: "USA", label: "USA" }]}
+        />
+      ),
+    },
+    {
+      label: "Zip Code",
+      name: "zip",
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          disable={isStudent}
+          placeholder="Zip"
+        />
+      ),
+    },
+    {
+      label: "Home phone",
+      name: "home_phone",
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          disable={isStudent}
+          placeholder="phone number"
+        />
+      ),
+    },
+    {
+      label: "Cell Phone",
+      name: "cell_phone",
+      required: true,
+      component: (
+        <Input
+          disable={isStudent}
+          className={"w-full h-[50px]"}
+          placeholder="phone"
+        />
+      ),
+    },
+    {
+      label: "Email",
+      name: "email",
+      required: true,
+      type: "email",
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          classNames="w-full"
+          placeholder="email"
+          disable={isStudent}
+        />
+      ),
+    },
+  ];
+
+  const secondColumn = [
+    {
+      label: "Emergency Contact Name",
+      name: "parent_name",
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          placeholder="Emergency Contact Name"
+          disable={isStudent}
+        />
+      ),
+    },
+    {
+      label: "Emergency Contact Phone",
+      name: "parent_phone",
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          placeholder="Emergency Contact Phone"
+          disable={isStudent}
+        />
+      ),
+    },
+    {
+      label: "Emergency Contact Relation",
+      name: "parent_email",
+      component: (
+        <Input
+          className={"w-full h-[50px]"}
+          placeholder="Emergency Contact Relation"
+          disable={isStudent}
+        />
+      ),
+    },
+    {
+      label: "Permit#",
+      name: "dl_permit",
+      component: (
+        <Input
+          disable={isStudent}
+          className={"w-full h-[50px]"}
+          placeholder="Permit"
+        />
+      ),
+    },
+    {
+      label: "Permit Issued Date",
+      name: "car_permit_data",
+      component: (
+        <DatePicker
+          disable={isStudent}
+          className="w-full h-[50px] border-[#667085]"
+        />
+      ),
+    },
+    {
+      label: "Permit Expiration Date",
+      name: "car_permit_expire",
+      component: (
+        <DatePicker
+          disable={isStudent}
+          className="w-full h-[50px] border-[#667085]"
+        />
+      ),
+    },
+    {
+      label: "Username",
+      name: "username",
+      required: true,
+      component: (
+        <Input
+          disable={isStudent}
+          className={"w-full h-[50px]"}
+          placeholder="Username"
+        />
+      ),
+    },
+  ];
 
   return (
     <Fragment>
-      <Form
-        form={form}
-        onFinish={onFinish}
-        layout={"vertical"}
-      >
+      <Helmet>
+        <title>Profile</title>
+      </Helmet>
+      <Form form={form} onFinish={onFinish} layout="vertical">
         <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-5">
           <div className="space-y-5">
-            <Form.Item label={"Assign to Staff"} name={"staff"}>
-              <div className="flex items-center gap-3">
-                <CustomSelect
-                  placeholder={"Assign to Staff"}
-                  className={"h-[50px]"}
-                  options={Instructor}
-                />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item label={"Location"} name={"location"}>
-              <div className="flex items-center gap-3">
-                <CustomSelect
-                  placeholder={"Location"}
-                  className={"h-[50px]"}
-                  options={Location}
-                />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"First name"}
-              name={"first_name"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your first name!",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"First name"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item label={"Middle name"} name={"mid_name"}>
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"Middle name"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"Last name"}
-              name={"last_name"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your first name!",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"Last name"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"Address"}
-              name={"address"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your address!",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"Address"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"City"}
-              name={"city"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your city!",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"City"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"State"}
-              name={"state"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your state!",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomSelect
-                  placeholder={"State"}
-                  className={"h-[50px]"}
-                  options={[{ value: "USA", label: "USA" }]}
-                />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item label={"Zip Code"} name={"zip"}>
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"Zip"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item label={"Home phone"} name={"home_phone"}>
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"phone number"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"Cell Phone"}
-              name={"cell_phone"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your cell phone!",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"phone"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"Email"}
-              name={"email"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your email!",
-                  type: "email",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput
-                  type={"email"}
-                  classNames={"w-full"}
-                  placeholder={"email"}
-                />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
+            {firstColumn.map((item, index) => (
+              <Form.Item
+                key={index}
+                label={item.label}
+                name={item.name}
+                rules={
+                  item.required
+                    ? [
+                        {
+                          required: true,
+                          message: `Please input your ${item.label.toLowerCase()}!`,
+                          type: item.type,
+                        },
+                      ]
+                    : []
+                }
+              >
+                {item.component}
+              </Form.Item>
+            ))}
           </div>
-
           <div className="space-y-5">
             <Form.Item
-              label={"Birth"}
-              name={"birth"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your birth!",
-                },
-              ]}
+              label="Birth"
+              name="birth"
+              rules={[{ required: true, message: "Please input your birth!" }]}
             >
               <DatePicker className="w-full h-[50px] border-[#667085]" />
             </Form.Item>
-
             <Form.Item
-              label={"Gender"}
-              name={"gender"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please select gender!",
-                },
-              ]}
+              label="Gender"
+              name="gender"
+              rules={[{ required: true, message: "Please select gender!" }]}
             >
-              <div>
-                <CustomRadio
-                  className={"space-x-2.5 "}
-                  classNames={"inline-flex items-center gap-2.5"}
-                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                  value={`Male`}
-                  name={"gender"}
+              <Radio.Group>
+                <ConfigProvider
+                  theme={{
+                    components: {
+                      Radio: {
+                        radioSize: 20,
+                        dotColorDisabled: colorsObject.primary,
+                        colorBorder: colorsObject.primary,
+                      },
+                    },
+                  }}
                 >
-                  <span className={"text-sm flex-shrink-0 w-32"}>Male</span>
-                </CustomRadio>
-
-                <CustomRadio
-                  className={"space-x-2.5 "}
-                  classNames={"inline-flex items-center gap-2.5"}
-                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                  value={`Female`}
-                  name={"gender"}
-                >
-                  <span className={"text-sm flex-shrink-0 w-32"}>Female</span>
-                </CustomRadio>
-
-                <CustomRadio
-                  className={"space-x-2.5 "}
-                  classNames={"inline-flex items-center gap-2.5"}
-                  customWrapClassName={`${ManagementStyle["CheckModal__form-element__shadow"]} rounded`}
-                  value={`Other`}
-                  name={"gender"}
-                >
-                  <span className={"text-sm flex-shrink-0 w-32"}>Other</span>
-                </CustomRadio>
-              </div>
+                  <Radio value="Male">Male</Radio>
+                  <Radio value="Female">Female</Radio>
+                  <Radio value="Other">Other</Radio>
+                </ConfigProvider>
+              </Radio.Group>
             </Form.Item>
-
-            <Form.Item label={"Emergency Contact Name"} name={"emergency_name"}>
-              <div className="flex items-center gap-3">
-                <CustomInput
-                  classNames={"w-full"}
-                  placeholder={"Emergency Contact Name"}
-                />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item label={"Emergency Contact Phone"} name={"emergency_phone"}>
-              <div className="flex items-center gap-3">
-                <CustomInput
-                  classNames={"w-full"}
-                  placeholder={"Emergency Contact Phone"}
-                />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item
-              label={"Emergency Contact Relation"}
-              name={"emergency_relation"}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput
-                  classNames={"w-full"}
-                  placeholder={"Emergency Contact Relation"}
-                />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item label={"Permit#"} name={"dl_permit"}>
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"Permit"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <Form.Item label={"Permit Issued Date"} name={"car_permit_data"}>
-              <DatePicker className="w-full h-[50px] border-[#667085]" />
-            </Form.Item>
-
-            <Form.Item
-              label={"Permit Expiration Date"}
-              name={"car_permit_expire"}
-            >
-              <DatePicker className="w-full h-[50px] border-[#667085]" />
-            </Form.Item>
-
-            <Form.Item
-              label={"User Name"}
-              name={"username"}
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your username!",
-                },
-              ]}
-            >
-              <div className="flex items-center gap-3">
-                <CustomInput classNames={"w-full"} placeholder={"Username"} />
-                <span>
-                  <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
-                </span>
-              </div>
-            </Form.Item>
-
-            <ButtonComponent
-              type={"button"}
-              defaultBg={colorsObject.success}
-              defaultHoverBg={colorsObject.successHover}
-              borderRadius={5}
-              paddingInline={44}
-              onClick={handleOpen}
-            >
-              FILTER STUDENTS
-            </ButtonComponent>
+            {secondColumn.map((item, index) => (
+              <Form.Item
+                className={"relative"}
+                key={index}
+                label={item.label}
+                name={item.name}
+                rules={
+                  item.required
+                    ? [
+                        {
+                          required: true,
+                          message: `Please input your ${item.label.toLowerCase()}!`,
+                        },
+                      ]
+                    : []
+                }
+              >
+                {item.component}
+              </Form.Item>
+            ))}
           </div>
         </div>
-
         <div className="text-center pt-10">
           <ButtonComponent
-            type={"submit"}
+            type="submit"
             defaultBg={colorsObject.secondary}
             defaultHoverBg={colorsObject.secondaryHover}
             borderRadius={5}
             paddingInline={44}
+            onClick={() => setIsOpen(true)}
           >
             UPDATE
           </ButtonComponent>
         </div>
       </Form>
-
-      {IsOpen && (
-        <Form form={form} onFinish={onFinishPassword} layout={"vertical"}>
-          <Modal setIsOpen={setIsOpen}>
-            <div className="bg-white max-w-[630px] w-full px-24 py-14 text-center">
-              <div className="flex items-center justify-center space-x-1.5">
-                <MdLockReset className="w-10 text-[#364152]" />
-                <Title fontSize={"text-[31px] font-bold text-[#364152]"}>
-                  Reset Your Password
-                </Title>
-              </div>
-              <Paragraph
-                colorText="#B7B6B6"
-                fontSize={"text-[17px]"}
-                className={"py-2.5"}
-              >
-                Please enter your current passowrd and new password to reset
-                your password
-              </Paragraph>
-              <Form.Item
-                name="current_password"
-                label="Current password"
-                dependencies={["password"]}
-                hasFeedback
-                rules={[
-                  {
-                    required: true,
-                    message: "Please confirm your password!",
-                  },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error(
-                          "The new password that you entered do not match!",
-                        ),
-                      );
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password className="h-[50px] border-[#667085]" />
-              </Form.Item>
-
-              <Form.Item
-                name="password"
-                label="Password"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your password!",
-                  },
-                ]}
-                hasFeedback
-              >
-                <Input.Password className="h-[50px] border-[#667085]" />
-              </Form.Item>
-
-              <Form.Item
-                name="confirm"
-                label="Confirm Password"
-                dependencies={["password"]}
-                hasFeedback
-                rules={[
-                  {
-                    required: true,
-                    message: "Please confirm your password!",
-                  },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error(
-                          "The new password that you entered do not match!",
-                        ),
-                      );
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password className="h-[50px] border-[#667085]" />
-              </Form.Item>
-
-              <ButtonComponent
-                type={"submit"}
-                defaultBg={colorsObject.primary}
-                defaultHoverBg={colorsObject.primaryHover}
-                borderRadius={10}
-                className={"w-full mt-2.5"}
-              >
-                Upgrade
-              </ButtonComponent>
-
-              <Link to={"/"} className="pt-2.5 text-[#5F66E9]">
-                Forgot Current Password?
-              </Link>
-            </div>
-          </Modal>
-        </Form>
-      )}
+      {state?.modal}
     </Fragment>
   );
 };
