@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fix routing and set to store">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/items/drop-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/items/drop-menu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/communication-spa.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/studenе-resources.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,14 +228,6 @@
       <workItem from="1722856562237" duration="2904000" />
       <workItem from="1722939555127" duration="621000" />
       <workItem from="1722948832504" duration="6297000" />
-    </task>
-    <task id="LOCAL-00080" summary="#fix #jsx Updated mode in header Layout.jsx with connecting Segment component ANTD">
-      <option name="closed" value="true" />
-      <created>1720504296202</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1720504296203</updated>
     </task>
     <task id="LOCAL-00081" summary="#fix #jsx Refactored links">
       <option name="closed" value="true" />
@@ -629,7 +613,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722832841887</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars.">
+      <option name="closed" value="true" />
+      <created>1723023533315</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1723023533316</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,7 +640,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js #html Fixed HTML structure" />
     <MESSAGE value="#fix #js #html Fixed URL router to pages, fixed structure data for control dynamic change active mrnu item" />
     <MESSAGE value="#fix #js #html Fixed routing path, menu on portal student and link in other pages" />
     <MESSAGE value="#fix #js #html Fixed routing path, menu data, optimized code structure and other" />
@@ -673,6 +664,7 @@
     <MESSAGE value="#fix #jsx Fixed bugs and structure code" />
     <MESSAGE value="#fix #jsx Fixed bugs" />
     <MESSAGE value="#fix #jsx Fix routing and set to store" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fix routing and set to store" />
+    <MESSAGE value="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars." />
   </component>
 </project>
