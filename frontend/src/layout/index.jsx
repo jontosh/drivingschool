@@ -39,7 +39,11 @@ const Layout = () => {
   const DropMenuItems = DropMenu(UserData?.id);
 
   useEffect(() => {
-    if (["/", "/student/", "/instructor/", "/admin/"].includes(pathname)) {
+    const path = ["/", "/student/", "/instructor/", "/admin/"].reduce(
+      (_, item) => item.includes(pathname),
+    );
+
+    if (path) {
       navigate("/register/sign-in", { replace: true });
     }
   }, [pathname, navigate]);

@@ -11,8 +11,10 @@ const Password = () => {
 
   return (
     <Fragment>
-      <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
-        <div className="bg-white max-w-[972px] h-[484px] rounded-xl p-16 flex items-center justify-between">
+      <section
+        className={"px-3 sm:px-5 md:px-11 space-y-5 h-full max-w-full w-full"}
+      >
+        <div className="bg-white h-full rounded-xl p-16 flex items-center justify-center gap-5">
           <div className="w-[273px] space-y-5">
             <Title level={1} fontSize={"text-[25px]"}>
               Change Password
