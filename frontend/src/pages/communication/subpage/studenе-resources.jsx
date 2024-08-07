@@ -6,6 +6,7 @@ import { StudentResourcesInCar } from "@/pages/communication/subpage/student-res
 import { StudentResourcesRoadTest } from "@/pages/communication/subpage/student-resources-road-test.jsx";
 import { StudentResourcesClass } from "@/pages/communication/subpage/student-resourse-class.jsx";
 import { Fragment, useContext } from "react";
+import { Helmet } from "react-helmet";
 import { NavLink, useParams } from "react-router-dom";
 
 const CheckPage = ({ page }) => {
@@ -114,42 +115,48 @@ const CheckPage = ({ page }) => {
   }
 };
 
-export const StudenResources = () => {
+export const StudentResources = () => {
   const { subpage } = useParams();
 
   return (
-    <div className={"pb-5"}>
-      <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
-        <NavLink
-          to={"/admin/communication/student-resources/class"}
-          className={setActiveNav}
-        >
-          Class
-        </NavLink>
+    <Fragment>
+      <Helmet>
+        <title>Communication - Student Resources</title>
+      </Helmet>
 
-        <NavLink
-          to={"/admin/communication/student-resources/in-car"}
-          className={setActiveNav}
-        >
-          In-car
-        </NavLink>
+      <div className={"pb-5"}>
+        <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
+          <NavLink
+            to={"/admin/communication/student-resources/class"}
+            className={setActiveNav}
+          >
+            Class
+          </NavLink>
 
-        <NavLink
-          to={"/admin/communication/student-resources/road-test"}
-          className={setActiveNav}
-        >
-          Road test
-        </NavLink>
+          <NavLink
+            to={"/admin/communication/student-resources/in-car"}
+            className={setActiveNav}
+          >
+            In-car
+          </NavLink>
 
-        <NavLink
-          to={"/admin/communication/student-resources/parents"}
-          className={setActiveNav}
-        >
-          Parents
-        </NavLink>
+          <NavLink
+            to={"/admin/communication/student-resources/road-test"}
+            className={setActiveNav}
+          >
+            Road test
+          </NavLink>
+
+          <NavLink
+            to={"/admin/communication/student-resources/parents"}
+            className={setActiveNav}
+          >
+            Parents
+          </NavLink>
+        </div>
+
+        <CheckPage page={subpage} />
       </div>
-
-      <CheckPage page={subpage} />
-    </div>
+    </Fragment>
   );
 };

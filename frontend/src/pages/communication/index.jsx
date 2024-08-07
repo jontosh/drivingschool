@@ -1,7 +1,8 @@
 import Title from "@/components/title/index.jsx";
-import { CommunicationSpa } from "@/pages/communication/subpage/communication-spa.jsx";
+// import { CommunicationSpa } from "@/pages/communication/subpage/communication-spa.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
+import { Outlet } from "react-router-dom";
 
 const Communication = () => {
   return (
@@ -21,7 +22,7 @@ const Communication = () => {
         </Title>
 
         <div className={"bg-white rounded-2xl px-5 shadow-2xl"}>
-          <CommunicationSpa />
+          <Outlet />
         </div>
       </section>
     </Fragment>

@@ -13,7 +13,7 @@ const DropMenuItems = (id) => {
     window.sessionStorage.setItem("auth-user", null);
     window.sessionStorage.setItem("auth-upgrade", null);
     window.localStorage.setItem("log-time", null);
-    navigate(`/${basePath}/register/sign-in`, { replace: true });
+    navigate(`/register/sign-in`, { replace: true });
     window.location.reload();
   };
 

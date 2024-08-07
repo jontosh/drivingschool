@@ -2,14 +2,13 @@ import ButtonComponent from "@/components/button/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import classNames from "classnames";
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
 import { Form, Input, Modal as ModalComponent, Steps, Switch } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 import IconComponent from "../icons";
-import { PiDotsThreeOutlineVertical } from "react-icons/pi";
 import { BiLinkAlt } from "react-icons/bi";
 import { FiHelpCircle } from "react-icons/fi";
 
@@ -234,6 +233,47 @@ export const ModalEdit = ({
   );
 };
 
+const VariableList = ({ variables }) => {
+  const handleDragStart = (e, variable) => {
+    e.dataTransfer.setData("text/plain", variable);
+  };
+
+  const varsItem = variables?.map((variable) => (
+    <li
+      key={variable}
+      draggable
+      onDragStart={(e) => handleDragStart(e, variable)}
+    >
+      {variable}
+    </li>
+  ));
+
+  return <ul className={"max-h-[350px] overflow-y-scroll"}>{varsItem}</ul>;
+};
+
+const MarkdownEditor = () => {
+  const [value, setValue] = useState("");
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const variable = e.dataTransfer.getData("text/plain");
+    const cursorPosition = e.target.selectionStart;
+    const newValue =
+      value.slice(0, cursorPosition) + variable + value.slice(cursorPosition);
+    setValue(newValue);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <div onDrop={handleDrop} onDragOver={handleDragOver}>
+      <MDEditor preview={"edit"} value={value} onChange={setValue} />
+    </div>
+  );
+};
+
 export const ModalEmail = ({
   title,
   onOk,
@@ -243,6 +283,7 @@ export const ModalEmail = ({
   width,
   onFinish,
   form,
+  keywords = [],
 }) => {
   const { colorsObject } = useContext(ColorsContext);
 
@@ -262,7 +303,7 @@ export const ModalEmail = ({
         form={form}
         className="flex gap-5 p-3"
         layout={"vertical"}
-        initialValues={{ send: true, body: "Body" }}
+        initialValues={{ send: true }}
       >
         <article className={"flex-grow space-y-5"}>
           <Title level={1} fontSize={"text-xl font-extrabold"}>
@@ -278,20 +319,23 @@ export const ModalEmail = ({
           </Form.Item>
 
           <Form.Item name="body">
-            <MDEditor preview={"edit"} />
+            <MarkdownEditor />
           </Form.Item>
+        </article>
 
-          <div className="p-4 border max-h-[400px] h-full overflow-y-scroll bg-white rounded-3xl space-y-5">
-            <div className="flex justify-between">
-              <Title level={3} fontSize={"font-extrabold text-lg"}>
-                Files
-              </Title>
+        <div className={"w-[400px] space-y-5"}>
+          <code className="p-4 block border overflow-y-scroll bg-white rounded-3xl">
+            <Title level={2} fontSize={"text-base font-extrabold"}>
+              Keywords:
+            </Title>
 
-              <IconComponent
-                icon={<PiDotsThreeOutlineVertical />}
-                iconClass={"text-gray-500"}
-              />
-            </div>
+            <VariableList variables={keywords} />
+          </code>
+
+          <div className="p-4 border overflow-y-scroll bg-white rounded-3xl space-y-5">
+            <Title level={3} fontSize={"font-extrabold text-lg"}>
+              Files
+            </Title>
 
             <div className="space-y-5">
               <div className="space-y-1.5">
@@ -377,19 +421,12 @@ export const ModalEmail = ({
                 defaultHoverBg={colorsObject.secondaryHover}
                 paddingInline={43}
                 borderRadius={5}
+                type={"reset"}
               >
                 CLEAR
               </ButtonComponent>
             </div>
           </div>
-        </article>
-
-        <div className={"w-[400px]"}>
-          <code className="p-4 block border h-[400px] h-full overflow-y-scroll bg-white rounded-3xl">
-            <Title level={2} fontSize={"text-base font-extrabold"}>
-              Keywords:
-            </Title>
-          </code>
         </div>
       </Form>
     </ModalComponent>

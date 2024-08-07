@@ -48,7 +48,7 @@ const SendingStatusButton = ({ status, colorsObject }) => (
   </ButtonComponent>
 );
 
-const ActionIcons = () => {
+const ActionIcons = ({ keywords = [] }) => {
   const [state, dispatch] = useReducer(ModalReducer, { modal: null });
   const [IsOpen, setIsOpen] = useState(false);
   const [Action, setAction] = useState({ id: undefined });
@@ -61,7 +61,6 @@ const ActionIcons = () => {
       type: "EMAIL",
       onFinish: async (values) => {
         console.log(values);
-        setIsOpen(false);
       },
       onCancel: () => {
         setIsOpen(false);
@@ -69,6 +68,7 @@ const ActionIcons = () => {
       open: IsOpen,
       width: 1250,
       form,
+      keywords,
     });
   }, [IsOpen]);
 
@@ -94,7 +94,7 @@ const ActionIcons = () => {
   );
 };
 
-export const EmailTemplateModule = () => {
+export const EmailTemplateModule = (keywords = []) => {
   const { colorsObject } = useContext(ColorsContext);
 
   const columns = useMemo(
@@ -127,7 +127,7 @@ export const EmailTemplateModule = () => {
         dataIndex: "action",
         key: "action",
         align: "center",
-        render: () => <ActionIcons />,
+        render: () => <ActionIcons keywords={keywords} />,
       },
     ],
     [colorsObject],
