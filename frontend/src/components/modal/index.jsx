@@ -2,7 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import classNames from "classnames";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
@@ -251,7 +251,7 @@ const VariableList = ({ variables }) => {
   return <ul className={"max-h-[350px] overflow-y-scroll"}>{varsItem}</ul>;
 };
 
-const MarkdownEditor = () => {
+const MarkdownEditor = ({ onChange }) => {
   const [value, setValue] = useState("");
 
   const handleDrop = (e) => {
@@ -269,7 +269,14 @@ const MarkdownEditor = () => {
 
   return (
     <div onDrop={handleDrop} onDragOver={handleDragOver}>
-      <MDEditor preview={"edit"} value={value} onChange={setValue} />
+      <MDEditor
+        preview={"edit"}
+        value={value}
+        onChange={(e) => {
+          setValue(e);
+          onChange(e);
+        }}
+      />
     </div>
   );
 };
@@ -286,6 +293,12 @@ export const ModalEmail = ({
   keywords = [],
 }) => {
   const { colorsObject } = useContext(ColorsContext);
+  const [value, setValue] = useState(undefined);
+  useEffect(() => {
+    form?.setFieldValue({
+      body: value,
+    });
+  }, [form, value]);
 
   return (
     <ModalComponent
@@ -319,7 +332,7 @@ export const ModalEmail = ({
           </Form.Item>
 
           <Form.Item name="body">
-            <MarkdownEditor />
+            <MarkdownEditor onChange={(value) => setValue(value)} />
           </Form.Item>
         </article>
 
