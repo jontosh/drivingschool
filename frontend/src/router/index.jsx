@@ -37,6 +37,8 @@ import Quiz, { QuizView } from "@/pages/students/resources/quiz/index.jsx";
 import StudentResults from "@/pages/students/resources/quiz/results.jsx";
 import StudentTestView from "@/pages/students/resources/quiz/test.jsx";
 import StudentSchedule from "@/pages/students/schedule/index.jsx";
+import { Fragment } from "react";
+import { Helmet } from "react-helmet";
 import { createBrowserRouter } from "react-router-dom";
 import { StudentResources } from "@/pages/communication/subpage/studenе-resources.jsx";
 
@@ -55,7 +57,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "password/:id",
-        element: <Password />,
+        element: (
+          <Fragment>
+            <Helmet>
+              <title>Password</title>
+            </Helmet>
+            <Password />
+          </Fragment>
+        ),
       },
       {
         path: "report/:title",

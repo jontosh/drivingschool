@@ -15,7 +15,11 @@ const Notfound = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (["/", "/student/", "/instructor/", "/admin/"].includes(pathname)) {
+    const path = ["/", "/student/", "/instructor/", "/admin/"].reduce(
+      (_, item) => item.includes(pathname),
+    );
+
+    if (path) {
       navigate("/register/sign-in", { replace: true });
     }
   }, [pathname, navigate]);
