@@ -1,6 +1,7 @@
 import { PrivateRoute } from "@/auth/private-route.jsx";
 import Layout from "@/layout";
 import Communication from "@/pages/communication/index.jsx";
+import { EmailTemplate } from "@/pages/communication/subpage/email-template.jsx";
 import Configuration from "@/pages/configuration/index.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
@@ -37,6 +38,7 @@ import StudentResults from "@/pages/students/resources/quiz/results.jsx";
 import StudentTestView from "@/pages/students/resources/quiz/test.jsx";
 import StudentSchedule from "@/pages/students/schedule/index.jsx";
 import { createBrowserRouter } from "react-router-dom";
+import { StudentResources } from "@/pages/communication/subpage/studenе-resources.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -108,11 +110,16 @@ export const router = createBrowserRouter([
         element: <Search />,
       },
       {
-        path: "communication/:title",
+        path: "communication",
         element: <Communication />,
         children: [
           {
-            path: ":subpage",
+            path: "email-templates/:subpage",
+            element: <EmailTemplate />,
+          },
+          {
+            path: "student-resources/:subpage",
+            element: <StudentResources />,
           },
         ],
       },

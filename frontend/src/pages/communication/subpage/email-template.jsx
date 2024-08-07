@@ -1,5 +1,12 @@
+import IconComponent from "@/components/icons/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
+import { EmailTemplateModule } from "@/modules/email-template.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import classNames from "classnames";
+import { Fragment, useMemo } from "react";
+import { Helmet } from "react-helmet";
+import { LuMail } from "react-icons/lu";
 import { NavLink, useParams } from "react-router-dom";
 
 const CheckPage = ({ page, resources }) => {
@@ -50,45 +57,68 @@ const CheckPage = ({ page, resources }) => {
   }
 };
 
-export const EmailTemplate = ({ header, resources }) => {
+const navLinks = [
+  { path: "student-portal", label: "Student portal" },
+  { path: "staff-mobile", label: "Staff mobile" },
+  { path: "admin-portal", label: "Admin portal" },
+  { path: "reminders", label: "Reminders" },
+];
+
+export const EmailTemplate = () => {
   const { subpage } = useParams();
 
+  const keywords = useMemo(
+    () =>
+      subpage === "student-portal"
+        ? "/page_api/student_email_templates"
+        : "/page_api/instructor_email_templates",
+    [subpage],
+  );
+
+  const { data: KeywordsData, isLoading } = useRequestGetQuery({
+    path: keywords,
+  });
+
+  const filteredVars = useMemo(
+    () => KeywordsData?.map((item) => `{{${item}}}`) ?? ["{{empty}}"],
+    [isLoading, keywords],
+  );
+
+  const { columns, data } = EmailTemplateModule(filteredVars);
+
   return (
-    <div className={"pb-5"}>
-      <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
-        <NavLink
-          to={"/admin/communication/email-templates/student-portal"}
-          className={setActiveNav}
-        >
-          Student portal
-        </NavLink>
+    <Fragment>
+      <Helmet>
+        <title>Communication - Email Templates</title>
+      </Helmet>
 
-        <NavLink
-          to={"/admin/communication/email-templates/staff-mobile"}
-          className={setActiveNav}
-        >
-          Staff mobile
-        </NavLink>
+      <div className="pb-5">
+        <div className="space-x-6 px-5 -mx-5 border-b border-b-gray-400">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.path}
+              to={`/admin/communication/email-templates/${link.path}`}
+              className={setActiveNav}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
 
-        <NavLink
-          to={"/admin/communication/email-templates/admin-portal"}
-          className={setActiveNav}
+        <IconComponent
+          vertical={classNames("items-center")}
+          spaceIconX={2.5}
+          icon={<LuMail />}
+          iconClass={classNames("text-2xl text-indigo-600")}
+          className={"py-2.5 cursor-default"}
         >
-          Admin portal
-        </NavLink>
+          {subpage?.split("-").join(" ")}
+        </IconComponent>
 
-        <NavLink
-          to={"/admin/communication/email-templates/reminders"}
-          className={setActiveNav}
-        >
-          Reminders
-        </NavLink>
+        <div className="rounded-2xl overflow-hidden border border-indigo-600">
+          <CheckPage page={subpage} resources={{ columns, data }} />
+        </div>
       </div>
-      <div className="py-5">{header}</div>
-
-      <div className={"rounded-2xl overflow-hidden border border-indigo-600"}>
-        <CheckPage page={subpage} resources={resources} />
-      </div>
-    </div>
+    </Fragment>
   );
 };
