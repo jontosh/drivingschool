@@ -167,7 +167,7 @@ export const ProfileForm = () => {
       required: true,
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           disable={isStudent}
           placeholder={"First name"}
         />
@@ -178,7 +178,7 @@ export const ProfileForm = () => {
       name: "mid_name",
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           disable={isStudent}
           placeholder={"Middle name"}
         />
@@ -190,7 +190,7 @@ export const ProfileForm = () => {
       required: true,
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           disable={isStudent}
           placeholder="Last name"
         />
@@ -202,7 +202,7 @@ export const ProfileForm = () => {
       required: true,
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           disable={isStudent}
           placeholder="Address"
         />
@@ -214,7 +214,7 @@ export const ProfileForm = () => {
       required: true,
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           disable={isStudent}
           placeholder="City"
         />
@@ -237,7 +237,7 @@ export const ProfileForm = () => {
       name: "zip",
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           disable={isStudent}
           placeholder="Zip"
         />
@@ -248,7 +248,7 @@ export const ProfileForm = () => {
       name: "home_phone",
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           disable={isStudent}
           placeholder="phone number"
         />
@@ -261,7 +261,7 @@ export const ProfileForm = () => {
       component: (
         <Input
           disable={isStudent}
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           placeholder="phone"
         />
       ),
@@ -273,7 +273,7 @@ export const ProfileForm = () => {
       type: "email",
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           classNames="w-full"
           placeholder="email"
           disable={isStudent}
@@ -288,7 +288,7 @@ export const ProfileForm = () => {
       name: "parent_name",
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           placeholder="Emergency Contact Name"
           disable={isStudent}
         />
@@ -299,7 +299,7 @@ export const ProfileForm = () => {
       name: "parent_phone",
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           placeholder="Emergency Contact Phone"
           disable={isStudent}
         />
@@ -310,7 +310,7 @@ export const ProfileForm = () => {
       name: "parent_email",
       component: (
         <Input
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           placeholder="Emergency Contact Relation"
           disable={isStudent}
         />
@@ -322,7 +322,7 @@ export const ProfileForm = () => {
       component: (
         <Input
           disable={isStudent}
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           placeholder="Permit"
         />
       ),
@@ -354,7 +354,7 @@ export const ProfileForm = () => {
       component: (
         <Input
           disable={isStudent}
-          className={"w-full h-[50px]"}
+          className={"w-full h-[50px] border-[#667085]"}
           placeholder="Username"
         />
       ),
@@ -377,12 +377,12 @@ export const ProfileForm = () => {
                 rules={
                   item.required
                     ? [
-                        {
-                          required: true,
-                          message: `Please input your ${item.label.toLowerCase()}!`,
-                          type: item.type,
-                        },
-                      ]
+                      {
+                        required: true,
+                        message: `Please input your ${item.label.toLowerCase()}!`,
+                        type: item.type,
+                      },
+                    ]
                     : []
                 }
               >
@@ -430,11 +430,11 @@ export const ProfileForm = () => {
                 rules={
                   item.required
                     ? [
-                        {
-                          required: true,
-                          message: `Please input your ${item.label.toLowerCase()}!`,
-                        },
-                      ]
+                      {
+                        required: true,
+                        message: `Please input your ${item.label.toLowerCase()}!`,
+                      },
+                    ]
                     : []
                 }
               >
