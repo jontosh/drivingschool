@@ -3,7 +3,11 @@ import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { ModalReducer } from "@/hooks/reducer.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import {
+  useRequestGetQuery,
+  useRequestIdQuery,
+  useRequestPatchMutation,
+} from "@/redux/query/index.jsx";
 import { Form } from "antd";
 import {
   Fragment,
@@ -52,15 +56,42 @@ const SendingStatusButton = ({ status, colorsObject }) => (
 const ActionIcons = ({ keywords = [] }) => {
   const [state, dispatch] = useReducer(ModalReducer, { modal: null });
   const [IsOpen, setIsOpen] = useState(false);
-  const [Action, setAction] = useState({ id: undefined });
+  const [Action, setAction] = useState({ id: undefined, index: undefined });
   const [form] = Form.useForm();
+
+  const { data: TempItemData } = useRequestIdQuery({
+    path: "/communication/template",
+    id: Action?.index,
+  });
+
+  const [requestPatch, { reset }] = useRequestPatchMutation();
+
+  useEffect(() => {
+    form?.setFieldsValue(TempItemData);
+  }, [TempItemData, IsOpen]);
 
   useEffect(() => {
     if (keywords.length > 0) {
       dispatch({
         type: "EMAIL",
         onFinish: async (values) => {
-          console.log(values);
+          const response = await requestPatch({
+            path: "/communication/template",
+            id: Action?.index,
+            data: values,
+          });
+
+          if (response?.data) {
+            setIsOpen(false);
+            reset();
+          } else {
+            dispatch({
+              type: "ERROR",
+              data: response?.error?.data,
+              open: IsOpen,
+              onEvent: () => setIsOpen(false),
+            });
+          }
         },
         onCancel: () => {
           setIsOpen(false);
@@ -78,20 +109,22 @@ const ActionIcons = ({ keywords = [] }) => {
   return (
     <div className="space-x-2">
       {[TbEdit, LuSmartphone, AiOutlineEye, IoTimeOutline].map(
-        (Icon, index) => (
-          <Fragment key={index}>
-            <IconComponent
-              key={index}
-              className="text-2xl border border-indigo-600 rounded-lg p-1"
-              icon={<Icon />}
-              onClick={() => {
-                setAction({ id: index });
-                setIsOpen(TbEdit === Icon);
-              }}
-            />
-            {Action.id === index && state?.modal}
-          </Fragment>
-        ),
+        (Icon, index) => {
+          return (
+            <Fragment key={index}>
+              <IconComponent
+                key={index}
+                className="text-2xl border border-indigo-600 rounded-lg p-1"
+                icon={<Icon />}
+                onClick={() => {
+                  setAction({ id: index, index: (index += 1) });
+                  setIsOpen(TbEdit === Icon);
+                }}
+              />
+              {Action.id === index && state?.modal}
+            </Fragment>
+          );
+        },
       )}
     </div>
   );
@@ -119,7 +152,9 @@ export const EmailTemplateModule = (keywords = []) => {
         key: "template",
         align: "center",
         render: (text) => (
-          <EmailSubjectCell text={text?.substring(0, 255) + "..."} />
+          <EmailSubjectCell
+            text={text?.length > 255 ? text?.substring(0, 255) + "..." : text}
+          />
         ),
       },
       {

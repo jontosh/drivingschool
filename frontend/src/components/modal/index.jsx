@@ -1,12 +1,21 @@
 import ButtonComponent from "@/components/button/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { InboxOutlined, PlusOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
-import { Form, Input, Modal as ModalComponent, Steps, Switch } from "antd";
+import {
+  Form,
+  Input,
+  Modal as ModalComponent,
+  Steps,
+  Switch,
+  Upload,
+} from "antd";
 import MDEditor from "@uiw/react-md-editor";
 import IconComponent from "../icons";
 import { BiLinkAlt } from "react-icons/bi";
@@ -251,7 +260,7 @@ const VariableList = ({ variables }) => {
   return <ul className={"max-h-[350px] overflow-y-scroll"}>{varsItem}</ul>;
 };
 
-const MarkdownEditor = ({ onChange }) => {
+const MarkdownEditor = ({ onChange, value: initialValues }) => {
   const [value, setValue] = useState("");
 
   const handleDrop = (e) => {
@@ -266,6 +275,12 @@ const MarkdownEditor = ({ onChange }) => {
   const handleDragOver = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    if (initialValues) {
+      setValue(initialValues);
+    }
+  }, [initialValues]);
 
   return (
     <div onDrop={handleDrop} onDragOver={handleDragOver}>
@@ -296,11 +311,45 @@ export const ModalEmail = ({
   const [value, setValue] = useState(undefined);
   useEffect(() => {
     form?.setFieldValue({
-      body: value,
+      template: value,
     });
   }, [form, value]);
 
+  useEffect(() => {
+    if (form?.getFieldValue("template")) {
+      setValue(form?.getFieldValue("template"));
+    }
+  }, [form, open]);
+
   const ownerKeywords = [`{{${import.meta.env.VITE_ICON}}}`];
+
+  const normFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
+
+  const { Dragger } = Upload;
+  const props = {
+    name: "file",
+    multiple: true,
+    action: "https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload",
+    onChange(info) {
+      const { status } = info.file;
+      if (status !== "uploading") {
+        console.log(info.file, info.fileList);
+      }
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } else if (status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
+  };
 
   return (
     <ModalComponent
@@ -325,16 +374,45 @@ export const ModalEmail = ({
             EDIT EMAIL TEMPLATE
           </Title>
 
-          <Form.Item name={"send"} label={"Send Email"}>
-            <Switch />
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Please select status",
+              },
+            ]}
+            name={"status"}
+            label={"Send Email"}
+          >
+            <CustomSelect
+              placeholder={"STATUS"}
+              className={"h-[50px]"}
+              options={[
+                { value: "ACTIVE", label: "ACTIVE" },
+                { value: "DELETED", label: "DELETED" },
+                { value: "INACTIVE", label: "INACTIVE" },
+              ]}
+            />
           </Form.Item>
 
-          <Form.Item name={"subject"} label={"Email Subject"}>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Please input subject!",
+              },
+            ]}
+            name={"name"}
+            label={"Email Subject"}
+          >
             <Input className={"w-full h-[50px]"} placeholder={"Subject"} />
           </Form.Item>
 
-          <Form.Item name="body">
-            <MarkdownEditor onChange={(value) => setValue(value)} />
+          <Form.Item name="template">
+            <MarkdownEditor
+              value={value}
+              onChange={(value) => setValue(value)}
+            />
           </Form.Item>
         </article>
 
@@ -360,73 +438,16 @@ export const ModalEmail = ({
               Files
             </Title>
 
-            <div className="space-y-5">
-              <div className="space-y-1.5">
-                <Title level={4} fontSize={"text-sm font-bold"}>
-                  File Upload 1:
-                </Title>
-
-                <div className="flex justify-between items-center border border-gray-500 rounded-full p-3">
-                  <IconComponent
-                    icon={<BiLinkAlt />}
-                    classNames={"flex items-center space-x-1 text-gray-600"}
-                    iconWidth={"w-5"}
-                    childrenClass={"text-base font-medium"}
-                  >
-                    Select Files
-                  </IconComponent>
-
-                  <IconComponent
-                    icon={<FiHelpCircle />}
-                    iconClass={"text-xl text-[#98A2B3] cursor-pointer"}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <Title level={4} fontSize={"text-sm font-bold"}>
-                  File Upload 2:
-                </Title>
-
-                <div className="flex justify-between items-center border border-gray-500 rounded-full p-3">
-                  <IconComponent
-                    icon={<BiLinkAlt />}
-                    classNames={"flex items-center space-x-1 text-gray-600"}
-                    iconWidth={"w-5"}
-                    childrenClass={"text-base font-medium"}
-                  >
-                    Select Files
-                  </IconComponent>
-
-                  <IconComponent
-                    icon={<FiHelpCircle />}
-                    iconClass={"text-xl text-[#98A2B3] cursor-pointer"}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <Title level={4} fontSize={"text-sm font-bold"}>
-                  File Upload 3:
-                </Title>
-
-                <div className="flex justify-between items-center border border-gray-500 rounded-full p-3">
-                  <IconComponent
-                    icon={<BiLinkAlt />}
-                    classNames={"flex items-center space-x-1 text-gray-600"}
-                    iconWidth={"w-5"}
-                    childrenClass={"text-base font-medium"}
-                  >
-                    Select Files
-                  </IconComponent>
-
-                  <IconComponent
-                    icon={<FiHelpCircle />}
-                    iconClass={"text-xl text-[#98A2B3] cursor-pointer"}
-                  />
-                </div>
-              </div>
-            </div>
+            <Form.Item valuePropName="fileList" getValueFromEvent={normFile}>
+              <Dragger {...props}>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">
+                  Click or drag file to this area to upload
+                </p>
+              </Dragger>
+            </Form.Item>
 
             <div className="space-x-5">
               <ButtonComponent
@@ -445,7 +466,6 @@ export const ModalEmail = ({
                 paddingInline={43}
                 borderRadius={5}
                 type={"reset"}
-                onClick={() => form?.resetFields()}
               >
                 CLEAR
               </ButtonComponent>

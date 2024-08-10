@@ -79,6 +79,7 @@ export const ModalReducer = (state, action) => {
             width={action.width}
             onFinish={action.onFinish}
             keywords={action.keywords}
+            form={action.form}
           />
         ),
       };
