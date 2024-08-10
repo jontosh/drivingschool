@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed routing and password.jsx">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed get request data, updated attr img and module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/image/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/image/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/modal/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/reducer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/communication/subpage/email-template.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,15 +232,7 @@
       <workItem from="1722948832504" duration="6297000" />
       <workItem from="1723048299656" duration="1540000" />
       <workItem from="1723196365112" duration="2723000" />
-      <workItem from="1723266597990" duration="3210000" />
-    </task>
-    <task id="LOCAL-00082" summary="#fix #jsx Refactored Settings and Form elements for correct request">
-      <option name="closed" value="true" />
-      <created>1720521891679</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1720521891679</updated>
+      <workItem from="1723266597990" duration="6754000" />
     </task>
     <task id="LOCAL-00083" summary="#fix #jsx Refactored test True and False with correct request">
       <option name="closed" value="true" />
@@ -627,7 +618,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723025453006</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="#fix #jsx Fixed get request data, updated attr img and module">
+      <option name="closed" value="true" />
+      <created>1723269920965</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1723269920966</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +645,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #js #html Fixed routing path, menu on portal student and link in other pages" />
     <MESSAGE value="#fix #js #html Fixed routing path, menu data, optimized code structure and other" />
     <MESSAGE value="#fix #jsx Fixed bug in mobile media and request loading data." />
     <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions." />
@@ -671,6 +669,7 @@
     <MESSAGE value="#fix #jsx Fix routing and set to store" />
     <MESSAGE value="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars." />
     <MESSAGE value="#fix #jsx Fixed routing and password.jsx" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed routing and password.jsx" />
+    <MESSAGE value="#fix #jsx Fixed get request data, updated attr img and module" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed get request data, updated attr img and module" />
   </component>
 </project>
