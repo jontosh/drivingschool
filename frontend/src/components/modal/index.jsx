@@ -300,6 +300,8 @@ export const ModalEmail = ({
     });
   }, [form, value]);
 
+  const ownerKeywords = [`{{${import.meta.env.VITE_ICON}}}`];
+
   return (
     <ModalComponent
       title={title}
@@ -343,6 +345,14 @@ export const ModalEmail = ({
             </Title>
 
             <VariableList variables={keywords} />
+          </code>
+
+          <code className="p-4 block border overflow-y-scroll bg-white rounded-3xl">
+            <Title level={2} fontSize={"text-base font-extrabold"}>
+              Owner:
+            </Title>
+
+            <VariableList variables={ownerKeywords} />
           </code>
 
           <div className="p-4 border overflow-y-scroll bg-white rounded-3xl space-y-5">
@@ -435,6 +445,7 @@ export const ModalEmail = ({
                 paddingInline={43}
                 borderRadius={5}
                 type={"reset"}
+                onClick={() => form?.resetFields()}
               >
                 CLEAR
               </ButtonComponent>

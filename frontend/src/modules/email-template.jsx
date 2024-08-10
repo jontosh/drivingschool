@@ -3,6 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { ModalReducer } from "@/hooks/reducer.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Form } from "antd";
 import {
   Fragment,
@@ -55,22 +56,24 @@ const ActionIcons = ({ keywords = [] }) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    document.body.style.overflow = "";
+    if (keywords.length > 0) {
+      dispatch({
+        type: "EMAIL",
+        onFinish: async (values) => {
+          console.log(values);
+        },
+        onCancel: () => {
+          setIsOpen(false);
+        },
+        open: IsOpen,
+        width: 1250,
+        form,
+        keywords,
+      });
+    }
 
-    dispatch({
-      type: "EMAIL",
-      onFinish: async (values) => {
-        console.log(values);
-      },
-      onCancel: () => {
-        setIsOpen(false);
-      },
-      open: IsOpen,
-      width: 1250,
-      form,
-      keywords,
-    });
-  }, [IsOpen]);
+    document.body.style.overflow = "";
+  }, [IsOpen, keywords?.length]);
 
   return (
     <div className="space-x-2">
@@ -97,6 +100,10 @@ const ActionIcons = ({ keywords = [] }) => {
 export const EmailTemplateModule = (keywords = []) => {
   const { colorsObject } = useContext(ColorsContext);
 
+  const { data } = useRequestGetQuery({
+    path: "/communication/template/",
+  });
+
   const columns = useMemo(
     () => [
       {
@@ -107,16 +114,18 @@ export const EmailTemplateModule = (keywords = []) => {
         render: (text) => <EmailNameCell text={text} />,
       },
       {
-        title: "Email subject",
-        dataIndex: "subject",
-        key: "subject",
+        title: "Email text",
+        dataIndex: "template",
+        key: "template",
         align: "center",
-        render: (text) => <EmailSubjectCell text={text} />,
+        render: (text) => (
+          <EmailSubjectCell text={text?.substring(0, 255) + "..."} />
+        ),
       },
       {
         title: "Sending",
-        dataIndex: "sending",
-        key: "sending",
+        dataIndex: "status",
+        key: "status",
         align: "center",
         render: (status) => (
           <SendingStatusButton status={status} colorsObject={colorsObject} />
@@ -131,27 +140,6 @@ export const EmailTemplateModule = (keywords = []) => {
       },
     ],
     [colorsObject],
-  );
-
-  const data = useMemo(
-    () => [
-      {
-        name: "Billing payment Confirmation",
-        subject: "Payment successful",
-        sending: true,
-      },
-      {
-        name: "Billing payment Confirmation",
-        subject: "Payment successful",
-        sending: true,
-      },
-      {
-        name: "Billing payment Confirmation",
-        subject: "Payment successful",
-        sending: true,
-      },
-    ],
-    [],
   );
 
   return { columns, data };

@@ -75,16 +75,29 @@ export const EmailTemplate = () => {
     [subpage],
   );
 
-  const { data: KeywordsData, isLoading } = useRequestGetQuery({
+  const { data: KeywordsData } = useRequestGetQuery({
     path: keywords,
   });
 
   const filteredVars = useMemo(
-    () => KeywordsData?.map((item) => `{{${item}}}`) ?? ["{{empty}}"],
-    [isLoading, keywords],
+    () =>
+      KeywordsData && KeywordsData.length > 0
+        ? KeywordsData?.map((item) => `{{${item}}}`)
+        : [],
+    [KeywordsData],
   );
 
   const { columns, data } = EmailTemplateModule(filteredVars);
+
+  const nav = navLinks.map((link, index) => (
+    <NavLink
+      key={index}
+      to={`/admin/communication/email-templates/${link.path}`}
+      className={setActiveNav}
+    >
+      {link.label}
+    </NavLink>
+  ));
 
   return (
     <Fragment>
@@ -94,15 +107,7 @@ export const EmailTemplate = () => {
 
       <div className="pb-5">
         <div className="space-x-6 px-5 -mx-5 border-b border-b-gray-400">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={`/admin/communication/email-templates/${link.path}`}
-              className={setActiveNav}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+          {nav}
         </div>
 
         <IconComponent
