@@ -12,6 +12,7 @@ import {
   useRequestGetQuery,
   useRequestIdQuery,
   useRequestPatchMutation,
+  useRequestPostMutation,
 } from "@/redux/query/index.jsx";
 import { Fragment, useContext, useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -24,6 +25,7 @@ const Profile = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { studentId } = useParams();
   const [requestPatch] = useRequestPatchMutation();
+  const [requestPost] = useRequestPostMutation();
   const { data, isLoading } = useRequestIdQuery({
     path: "/student_account/student",
     id: studentId,
@@ -37,14 +39,10 @@ const Profile = () => {
   const { data: SchoolsData } = useRequestGetQuery({
     path: "/account_management/schools/",
   });
-  const { data: UserTypeData } = useRequestGetQuery({
-    path: "/student_account/user_type/",
-  });
 
   const [InstructorOptions, setInstructorOptions] = useState([]);
   const [SchoolsOptions, setSchoolsOptions] = useState([]);
   const [AssignLocationOptions, setAssignLocationOptions] = useState([]);
-  const [UserTypeOption, setUserTypeOption] = useState([]);
   const [IsMore, setIsMore] = useState(false);
   const [IsOpen, setIsOpen] = useState(false);
   const [state, dispatch] = useReducer(ModalReducer, { status: false });
@@ -68,17 +66,11 @@ const Profile = () => {
     label: school.name,
   });
 
-  const userTypeTransform = (type) => ({
-    value: type.id,
-    label: type.name,
-  });
-
   useEffect(() => {
     setInstructorOptions(generateOptions(InstructorData, instructorTransform));
     setAssignLocationOptions(generateOptions(LocationData, locationTransform));
     setSchoolsOptions(generateOptions(SchoolsData, schoolTransform));
-    setUserTypeOption(UserTypeData?.map(userTypeTransform) || []);
-  }, [InstructorData, LocationData, SchoolsData, UserTypeData, isLoading]);
+  }, [InstructorData, LocationData, SchoolsData, isLoading]);
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -95,6 +87,34 @@ const Profile = () => {
   }, [isLoading, data, form]);
 
   const handleMore = () => setIsMore((prev) => !prev);
+  const handleUsernameAndPassword = async () => {
+    try {
+      const response = await requestPost({
+        path: "/communication/send_template/",
+        data: {
+          template: 4,
+          to: [studentId],
+        },
+      });
+
+      if (response?.error?.status >= 400) {
+        dispatch({
+          type: "ERROR",
+          data: {},
+          open: IsOpen,
+          onEvent: () => setIsOpen(false),
+        });
+      } else {
+        dispatch({
+          type: "SUCCESS",
+          open: IsOpen,
+          onEvent: () => setIsOpen(false),
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onFinish = async (values) => {
     try {
@@ -219,32 +239,18 @@ const Profile = () => {
                     Access Student Center
                   </ButtonComponent>
 
-                  <Dropdown
-                    menu={{
-                      items: [
-                        {
-                          key: "1",
-                          label: (
-                            <div className={"space-y-2.5"}>
-                              <Paragraph>
-                                <b>Username:</b>
-                                <span>{form.getFieldValue("username")}</span>
-                              </Paragraph>
-                            </div>
-                          ),
-                        },
-                      ],
+                  <ButtonComponent
+                    defaultBg={colorsObject.info}
+                    defaultHoverBg={colorsObject.info}
+                    className={"w-full"}
+                    borderRadius={5}
+                    onClick={() => {
+                      setIsOpen(true);
+                      setTimeout(handleUsernameAndPassword, 1000);
                     }}
                   >
-                    <ButtonComponent
-                      defaultBg={colorsObject.info}
-                      defaultHoverBg={colorsObject.info}
-                      className={"w-full"}
-                      borderRadius={5}
-                    >
-                      Username/Password
-                    </ButtonComponent>
-                  </Dropdown>
+                    Username/Password
+                  </ButtonComponent>
 
                   <ButtonComponent
                     defaultBg={colorsObject.info}
@@ -272,12 +278,16 @@ const Profile = () => {
 
         <div className="p-0 sm:p-5 grid lg:grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
           <div className="space-y-5">
-            <Form.Item name={"type"} label={"Student Type"}>
+            <Form.Item name={"information_type"} label={"Student Type"}>
               <CustomSelect
                 placeholder={"Type"}
-                options={UserTypeOption}
+                options={[
+                  { value: "Teen", label: "Teen" },
+                  { value: "Adult", label: "Adult" },
+                  { value: "Knowledge Test", label: "Knowledge Test" },
+                  { value: "Road Test", label: "Road Test" },
+                ]}
                 className={"h-[50px]"}
-                disabled={isLoading}
               />
             </Form.Item>
 
@@ -814,7 +824,7 @@ const Profile = () => {
         </div>
       </Form>
 
-      {IsOpen && state?.status}
+      {state?.modal}
     </Fragment>
   );
 };
