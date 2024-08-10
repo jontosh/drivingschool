@@ -8,7 +8,13 @@ const Image = ({ className, srcSet, type, src, alt, title, ...props }) => {
     <Fragment>
       <picture className={className} {...props}>
         <source srcSet={srcSet} type={type} />
-        <img src={src} alt={alt} title={title} className={`object-cover`} />
+        <img
+          loading={"lazy"}
+          src={src}
+          alt={alt}
+          title={title}
+          className={`object-cover`}
+        />
       </picture>
     </Fragment>
   );
