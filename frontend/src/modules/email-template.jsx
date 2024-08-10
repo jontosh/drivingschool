@@ -30,11 +30,7 @@ const EmailNameCell = ({ text }) => (
 );
 
 const EmailSubjectCell = ({ text }) => (
-  <Paragraph
-    className="text-center"
-    fontSize="text-base"
-    fontWeightStrong={400}
-  >
+  <Paragraph className="text-start" fontSize="text-base" fontWeightStrong={400}>
     {text}
   </Paragraph>
 );

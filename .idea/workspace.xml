@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/enrollment/info-form.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,15 +231,7 @@
       <workItem from="1722948832504" duration="6297000" />
       <workItem from="1723048299656" duration="1540000" />
       <workItem from="1723196365112" duration="2723000" />
-      <workItem from="1723266597990" duration="14344000" />
-    </task>
-    <task id="LOCAL-00084" summary="#fix #jsx Created Form content to view test">
-      <option name="closed" value="true" />
-      <created>1720533784339</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1720533784339</updated>
+      <workItem from="1723266597990" duration="17974000" />
     </task>
     <task id="LOCAL-00085" summary="#fix #jsx Refactored form elements and render components">
       <option name="closed" value="true" />
@@ -626,7 +617,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723273382661</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors.">
+      <option name="closed" value="true" />
+      <created>1723285555110</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1723285555110</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,7 +644,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fixed bug in mobile media and request loading data." />
     <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions." />
     <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal." />
     <MESSAGE value="#fix #jsx Fixed modal to payment i student portal" />
@@ -670,6 +668,7 @@
     <MESSAGE value="#fix #jsx Fixed routing and password.jsx" />
     <MESSAGE value="#fix #jsx Fixed get request data, updated attr img and module" />
     <MESSAGE value="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values." />
+    <MESSAGE value="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors." />
   </component>
 </project>
