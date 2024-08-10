@@ -3,12 +3,13 @@ import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { ModalReducer } from "@/hooks/reducer.jsx";
+import { CheckProgress } from "@/modules/progress.jsx";
 import {
   useRequestGetQuery,
   useRequestIdQuery,
   useRequestPatchMutation,
 } from "@/redux/query/index.jsx";
-import { Form } from "antd";
+import { Form, Space } from "antd";
 import {
   Fragment,
   useContext,
@@ -38,22 +39,7 @@ const EmailSubjectCell = ({ text }) => (
   </Paragraph>
 );
 
-const SendingStatusButton = ({ status, colorsObject }) => (
-  <ButtonComponent
-    defaultBg={status ? colorsObject.success : colorsObject.danger}
-    defaultHoverBg={status ? colorsObject.success : colorsObject.danger}
-    defaultColor={colorsObject.main}
-    defaultHoverColor={colorsObject.main}
-    borderRadius={5}
-    paddingInline={43}
-    controlHeight={40}
-    className="shadow-[#00000040]"
-  >
-    {status ? "Active" : "Not active"}
-  </ButtonComponent>
-);
-
-const ActionIcons = ({ keywords = [] }) => {
+const ActionIcons = ({ keywords = [], data }) => {
   const [state, dispatch] = useReducer(ModalReducer, { modal: null });
   const [IsOpen, setIsOpen] = useState(false);
   const [Action, setAction] = useState({ id: undefined, index: undefined });
@@ -117,7 +103,7 @@ const ActionIcons = ({ keywords = [] }) => {
                 className="text-2xl border border-indigo-600 rounded-lg p-1"
                 icon={<Icon />}
                 onClick={() => {
-                  setAction({ id: index, index: (index += 1) });
+                  setAction({ id: index, index: data?.id });
                   setIsOpen(TbEdit === Icon);
                 }}
               />
@@ -161,17 +147,30 @@ export const EmailTemplateModule = (keywords = []) => {
         title: "Sending",
         dataIndex: "status",
         key: "status",
-        align: "center",
-        render: (status) => (
-          <SendingStatusButton status={status} colorsObject={colorsObject} />
-        ),
+        render: (text) => {
+          const { bg, hover } = CheckProgress(text);
+          return (
+            <Space size="middle">
+              <ButtonComponent
+                defaultBg={bg}
+                defaultHoverBg={hover}
+                borderRadius={5}
+                style={{ width: 128 }}
+              >
+                {text.toUpperCase()}
+              </ButtonComponent>
+            </Space>
+          );
+        },
       },
       {
         title: "Action",
-        dataIndex: "action",
-        key: "action",
+        dataIndex: "id",
+        key: "id",
         align: "center",
-        render: () => <ActionIcons keywords={keywords} />,
+        render: (_, record) => (
+          <ActionIcons keywords={keywords} data={record} />
+        ),
       },
     ],
     [colorsObject],
