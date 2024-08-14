@@ -96,7 +96,7 @@ const ActionIcons = ({ keywords = [], data }) => {
             <Fragment key={index}>
               <IconComponent
                 key={index}
-                className="text-2xl border border-indigo-600 rounded-lg p-1"
+                className="text-2xl border border-indigo-600 rounded-lg px-1 pt-1"
                 icon={<Icon />}
                 onClick={() => {
                   setAction({ id: index, index: data?.id });
@@ -164,6 +164,7 @@ export const EmailTemplateModule = (keywords = []) => {
         dataIndex: "id",
         key: "id",
         align: "center",
+        width: 200,
         render: (_, record) => (
           <ActionIcons keywords={keywords} data={record} />
         ),
