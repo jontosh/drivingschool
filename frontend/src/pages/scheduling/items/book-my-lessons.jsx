@@ -4,17 +4,21 @@ import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SchedulingModule } from "@/modules/scheduling.jsx";
-import { Fragment, useContext, useState, useCallback } from "react";
+import { Fragment, useContext, useState, useCallback, useEffect } from "react";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import dayLocaleData from "dayjs/plugin/localeData";
 import "@natscale/react-calendar/dist/main.css";
 import { Calendar } from "@natscale/react-calendar";
+import MediaQuery from "react-responsive";
 
 dayjs.extend(dayLocaleData);
 
 export const BookMyLessons = ({ ...props }) => {
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+  const [calendar, setCalendar] = useState(0);
+
   const Time = new Date();
   const { colorsObject } = useContext(ColorsContext);
 
@@ -32,9 +36,37 @@ export const BookMyLessons = ({ ...props }) => {
 
   const { columns, data } = SchedulingModule();
 
+  useEffect(() => {
+    const handleResize = (event) => {
+      setInnerWidth(event.target.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (innerWidth >= 1536) {
+      setCalendar(300);
+    } else if (innerWidth >= 1275) {
+      setCalendar(210);
+    } else if (innerWidth >= 1000) {
+      setCalendar(280);
+    } else if (innerWidth >= 600) {
+      setCalendar(300);
+    } else if (innerWidth >= 450) {
+      setCalendar(250);
+    } else {
+      setCalendar(200);
+    }
+  }, [innerWidth]);
+
   return (
     <Fragment>
-      <div className="flex gap-5">
+      <div className="flex max-[1270px]:flex-col gap-5">
         <div className={"flex-grow space-y-5"}>
           <div className=" border border-gray-500 px-6 py-4 rounded-lg space-y-5">
             <div className="flex items-center gap-2.5">
@@ -55,15 +87,17 @@ export const BookMyLessons = ({ ...props }) => {
             <hr className={"border border-gray-400"} />
 
             <div>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={500}
-              />
+              <MediaQuery minWidth={0}>
+                <Calendar
+                  showDualCalendar
+                  isRangeSelector
+                  value={value}
+                  onChange={onChange}
+                  hideAdjacentDates
+                  className={"w-full flex justify-center max-[700px]:flex-col"}
+                  size={calendar}
+                />
+              </MediaQuery>
             </div>
 
             <Paragraph className={"text-gray-500"}>
@@ -73,7 +107,7 @@ export const BookMyLessons = ({ ...props }) => {
             </Paragraph>
           </div>
 
-          <div className="text-center space-x-4">
+          <div className="flex flex-col min-[600px]:flex-row text-center gap-4">
             <ButtonComponent
               defaultColor={colorsObject.main}
               defaultHoverColor={colorsObject.main}
@@ -105,11 +139,7 @@ export const BookMyLessons = ({ ...props }) => {
         </div>
 
         <div>
-          <aside
-            className={
-              "w-96 border border-gray-500 px-6 py-4 rounded-lg flex-shrink-0"
-            }
-          >
+          <aside className="w-full min-[1000px]:w-96 border border-gray-500 px-6 py-4 rounded-lg flex-shrink-0">
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}

@@ -1,10 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import {
-  CustomCheckBox,
   CustomInput,
-  CustomSelect,
 } from "@/components/form/index.jsx";
-import Modal from "@/components/modal";
 import TableComponent from "@/components/table/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
