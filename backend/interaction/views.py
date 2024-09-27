@@ -1,8 +1,7 @@
-from rest_framework import status
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.views import APIView
 from django.apps import apps
 from rest_framework.response import Response
-from markdown import markdown
 from rest_framework import viewsets
 from .models import Tasks ,Logs, LatestNews
 from configuration.models import Expanses
@@ -13,10 +12,11 @@ from django.db.models import Sum,Count
 from collections import defaultdict
 from .serializer import TasksSerializer\
     ,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
-    StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate
+    StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate,\
+    TemplateSerializer,SendTemplateSerializer,StudentTestFullSerializer,Template,SendTemplate,StudentTest
+from django.core.mail import send_mail
+
 import  re
-from django import forms
-from django.shortcuts import render
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
     serializer_class = TasksSerializer
@@ -69,7 +69,7 @@ class CategorizedDataAPIView(APIView):
     """
     API endpoint to retrieve data categorized by name and status with summed amounts.
     """
-
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # Group the model instances by 'name' and 'status' and calculate the sum of 'amount'
         grouped_data = Expanses.objects.values('name', 'status').annotate(total_amount=Sum('amount'))
@@ -125,6 +125,9 @@ class InstructorHomeAPI(APIView):
 class StudentHomeAPI(APIView):
     def get(self,request,id):
         data = {}
+        student_tests = StudentTest.objects.filter(student__id=id)
+        student_tests = StudentTestFullSerializer(student_tests,many=True)
+        data[ "student_test" ] = student_tests.data
         enrolment = Enrollment.objects.filter(student__id=id)
         enrolment = EnrollmentSerializer_(enrolment,many=True)
         data[ "enrolments" ] = enrolment.data
@@ -258,3 +261,68 @@ class EmailTemplateStudentView(viewsets.ModelViewSet):
             return str(self.get_nested_value(data, key))
 
         return re.sub(pattern, replacer, text)
+
+
+
+class SendTemplateViewSet(viewsets.ModelViewSet):
+    queryset = SendTemplate.objects.all()
+    serializer_class = SendTemplateSerializer
+    permission_classes = [AllowAny]
+
+    def perform_create(self, serializer):
+        # # Perform any custom logic before saving the school, e.g., validation checks
+        # serializer.save()
+        if serializer.is_valid():
+            send_template = serializer.save()
+            main_template = send_template.template
+            template = main_template.template
+            subject = main_template.name
+            users = send_template.to.all()
+            for user in users:
+                if str(user.type.name).lower() == "student":
+                    data = StudentSerializerEmail(Student.objects.get(id=user.id)).data
+                    email = self.replace_placeholders(template, data)
+                    send_mail(subject,email,'aliyuldashev880@gmail.com',[user.email])
+                else:
+                    data = InstructorEmailSerializer(Instructor.objects.get(id=user.id)).data
+                    email = self.replace_placeholders(template, data)
+                    send_mail(subject,email,'aliyuldashev880@gmail.com',[user.email])
+
+
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()
+    def get_nested_value(self,data, key_path):
+        """
+        Here this will return value of variable provided by user in email template
+        """
+        keys = key_path.split('.')
+        value = data
+        print(keys)
+        for key in keys[1:]:
+            value = value.get(key)
+            if value is None:
+                return ''
+        return value
+    def replace_placeholders(self,text, data):
+        """
+        Here we will find is there any variable in text email template .
+        """
+        pattern = r'{{(.*?)}}'
+        def replacer(match):
+            key = match.group(1).strip()
+            return str(self.get_nested_value(data, key))
+
+        return re.sub(pattern, replacer, text)
+
+
+class TemplateViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = Template.objects.all()
+    serializer_class = TemplateSerializer
+    def perform_create(self, serializer):
+        # Perform any custom logic before saving the school, e.g., validation checks
+        serializer.save()
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()

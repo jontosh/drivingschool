@@ -340,3 +340,108 @@ export const AccountActivitiesModule = () => {
 
   return { data, columns };
 };
+
+export const ShoppingCartModule = () => {
+  const columns = [
+    {
+      title: "Enrolled ",
+      dataIndex: "enrolled",
+      key: "enrolled",
+      align: "center",
+      render: (text) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Price ",
+      dataIndex: "price",
+      key: "price",
+      align: "center",
+      render: (text) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          ${text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Package",
+      dataIndex: "package",
+      key: "package",
+      align: "center",
+      render: (text) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "CR Date",
+      dataIndex: "cr",
+      key: "cr",
+      align: "center",
+      render: (text) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {text}
+        </Paragraph>
+      ),
+    },
+  ];
+  const data = [
+    {
+      enrolled: "03/09/2024",
+      price: 649.99,
+      package: "8h in car instruction",
+    },
+  ];
+
+  return { columns, data };
+};
+
+export const MoneyModule = () => {
+  const columns = [
+    {
+      title: "Enrolled ",
+      dataIndex: "enrolled",
+      key: "enrolled",
+      align: "center",
+      render: (text) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Price ",
+      dataIndex: "price",
+      key: "price",
+      align: "center",
+      render: (text) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          ${text}
+        </Paragraph>
+      ),
+    },
+    {
+      title: "Package",
+      dataIndex: "package",
+      key: "package",
+      align: "center",
+      render: (text) => (
+        <Paragraph className={"text-center"} fontSize={"text-base"}>
+          {text}
+        </Paragraph>
+      ),
+    },
+  ];
+  const data = [
+    {
+      enrolled: "03/09/2024",
+      price: 649.99,
+      package: "8h in car instruction",
+    },
+  ];
+
+  return { columns, data };
+};

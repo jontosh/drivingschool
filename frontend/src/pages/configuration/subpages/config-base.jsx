@@ -25,12 +25,15 @@ export const ConfigBase = () => {
     <Fragment>
       <div className="bg-white rounded-2xl px-5">
         <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
-          <NavLink to={"/configuration/company/info"} className={setActiveNav}>
+          <NavLink
+            to={"/admin/configuration/company/info"}
+            className={setActiveNav}
+          >
             Company info
           </NavLink>
 
           <NavLink
-            to={"/configuration/company/payment"}
+            to={"/admin/configuration/company/payment"}
             className={setActiveNav}
           >
             Integrate payment

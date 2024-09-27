@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+from datetime import  timedelta
 from dotenv import load_dotenv
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,8 +43,11 @@ SHARED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 #     APPS
-
+    "rest_framework",
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     "corsheaders",
+    'drf_yasg',
 
 
 ]
@@ -56,7 +59,7 @@ TENANT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #APPS
-    # "mainadmin",
+    "mainadmin",
     "Users",
     "servises",
     "location",
@@ -67,11 +70,12 @@ TENANT_APPS = [
     "colorfield",
     "creditcards",
     "rest_framework",
-    # "rest_framework.authtoken",
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     "phonenumber_field",
+    'rest_framework_simplejwt.token_blacklist',
     "abstracts",
     "multiselectfield"
-
 ]
 
 INSTALLED_APPS = SHARED_APPS + [ apps for apps in TENANT_APPS if apps not in SHARED_APPS]
@@ -182,17 +186,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "mainadmin.CustomUser"
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-# }
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+            # 'rest_framework.permissions.IsAuthenticated',
+        ),
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=3),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 # AUTHENTICATION_BACKENDS = [
-#     'Users.backends.CustomUserBackend',
+#     # 'Users.backends.CustomUserBackend',
 #     'django.contrib.auth.backends.ModelBackend',  # Optional, for default user model support
 # ]
 TENANT_MODEL = "mainadmin.Client"
@@ -211,3 +221,12 @@ CORS_ALLOW_METHODS = (
 )
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'aliyuldashev880@gmail.com'
+EMAIL_HOST_PASSWORD = 'plgs ztsa wrog jvue'

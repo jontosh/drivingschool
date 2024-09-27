@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from config.router import Router
 from .views import  InstructorViewSet, StudentViewSet,EnrollmentViewSet,  FileCategoryViewSet, UserTypeViewSet,\
-                    FilesViewSet, BillViewSet,EmergencyContactViewSet,StudentNoteViewSet,DrivingNoteViewSet
+                    FilesViewSet, BillViewSet,EmergencyContactViewSet,StudentNoteViewSet,DrivingNoteViewSet,PasswordResetView,\
+                    PasswordResetConfirmView,RightsViewSet,FieldsViewSet
 router = DefaultRouter()
 
 router.register(f'{Router["student_account"]["children"]["instructor"]}', InstructorViewSet, basename='instructor')
@@ -15,9 +16,16 @@ router.register(f'{Router["student_account"]["children"]["bill"]}', BillViewSet,
 router.register(f'{Router["student_account"]["children"]["emergency_contact"]}', EmergencyContactViewSet, basename='emergency_contact')
 router.register(f'{Router["student_account"]["children"]["student_note"]}', StudentNoteViewSet, basename='student_note')
 router.register(f'{Router["student_account"]["children"]["driving_note"]}', DrivingNoteViewSet, basename='driving_note')
+router.register(f'{Router["student_account"]["children"]["rights"]}', RightsViewSet, basename='rights')
+router.register(f'{Router["student_account"]["children"]["fields"]}', FieldsViewSet, basename='fields')
+
 
 urlpatterns = [
     path("",include(router.urls)),
+    path('password-reset/', PasswordResetView.as_view(), name='password_reset'),
+    path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+
+
     # path("auth/",CustomAuthToken.as_view(),name="auth")
 
 ]

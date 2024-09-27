@@ -1,23 +1,15 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import { CustomInput, CustomSelect } from "@/components/form/index.jsx";
-import Modal from "@/components/modal/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import ModalStyle from "@/components/modal/modal.module.scss";
 import { Subpages } from "@/modules/subpages.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
-import {
-  DiscountModalContent,
-  FeesModalContent,
-  MiscellaneousModalContent,
-  ProductModalContent,
-} from "@/pages/managment/service/modal.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
 import { Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ServiceStyle from "../management.module.scss";
 
 export const StatusSelect = [
@@ -45,8 +37,8 @@ export const StatusSelect = [
 
 const Service = ({ subpage }) => {
   const { colorsObject } = useContext(ColorsContext);
-  const [Status, setStatus] = useState("");
-  const [Search, setSearch] = useState("");
+  const [Status, setStatus] = useState(null);
+  const [Search, setSearch] = useState(null);
   const [CurrentPagination, setCurrentPagination] = useState(1);
 
   const handleChangePagination = (page) => {
@@ -83,46 +75,49 @@ const Service = ({ subpage }) => {
         <div className={"px-5 bg-white rounded-3xl"}>
           <div className={"space-x-6 px-5 -mx-5  border-b border-b-gray-400"}>
             <NavLink
-              to={"/management/service/product"}
+              to={"/admin/management/service/product"}
               className={setActiveNav}
             >
               Components (Product)
             </NavLink>
 
-            <NavLink to={"/management/service/fees"} className={setActiveNav}>
+            <NavLink
+              to={"/admin/management/service/fees"}
+              className={setActiveNav}
+            >
               Fees
             </NavLink>
 
             <NavLink
-              to={"/management/service/discounts"}
+              to={"/admin/management/service/discounts"}
               className={setActiveNav}
             >
               Discounts
             </NavLink>
 
             <NavLink
-              to={"/management/service/miscellaneous"}
+              to={"/admin/management/service/miscellaneous"}
               className={setActiveNav}
             >
               Miscellaneous
             </NavLink>
 
             <NavLink
-              to={"/management/service/quiz-exam"}
+              to={"/admin/management/service/quiz-exam"}
               className={setActiveNav}
             >
               Quiz Exam
             </NavLink>
 
             <NavLink
-              to={"/management/service/quiz-report"}
+              to={"/admin/management/service/quiz-report"}
               className={setActiveNav}
             >
               Quiz Report
             </NavLink>
 
             <NavLink
-              to={"/management/service/packages"}
+              to={"/admin/management/service/packages"}
               className={setActiveNav}
             >
               Services (Packages)
@@ -164,7 +159,7 @@ const Service = ({ subpage }) => {
                       paddingInline={26}
                       borderRadius={5}
                       className={"inline-flex items-center"}
-                      href={`/modals/management-service/${subpage}`}
+                      href={`/admin/modals/management-service/${subpage}`}
                     >
                       Add new
                     </ButtonComponent>

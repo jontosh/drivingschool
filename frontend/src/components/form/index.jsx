@@ -1,15 +1,7 @@
 import classNames from "classnames";
 import { Fragment, useEffect, useRef, useState } from "react";
 import FormStyle from "./form.module.scss";
-import {
-  ConfigProvider,
-  Input,
-  Select,
-  Transfer,
-  Checkbox,
-  Row,
-  Col,
-} from "antd";
+import { ConfigProvider, Input, Select, Transfer } from "antd";
 const { Option } = Select;
 
 export const CustomCheckBox = ({
@@ -20,6 +12,7 @@ export const CustomCheckBox = ({
   onChange,
   checked,
   customWrapClassName,
+  disabled,
   ...props
 }) => {
   className = classNames([
@@ -43,6 +36,7 @@ export const CustomCheckBox = ({
             name={name}
             checked={checked}
             className={`${FormStyle["Origin-checkbox"]} absolute top-0 left-0 -z-10 opacity-0`}
+            disabled={disabled}
           />
           <span
             className={classNames(
@@ -89,9 +83,12 @@ export const CustomInput = ({
           },
         }}
       >
-        <label className={props.classNames} {...props}>
+        <label className={classNames(props.classNames)} {...props}>
           <Input
-            className={`h-[50px] focus:border-[1px] focus:border-solid focus:border-[#5f66e9] ${className}`}
+            className={classNames(
+              "h-[50px] focus:border-[1px] focus:border-solid focus:border-[#5f66e9]",
+              className,
+            )}
             type={type}
             value={value}
             name={name}
@@ -121,7 +118,7 @@ export const CustomSelect = ({
   value,
   onBlur,
   onChange,
-  options,
+  options = [],
   placeholder,
   dropdownClassName,
   style,
@@ -135,7 +132,7 @@ export const CustomSelect = ({
   colorTextPlaceholder,
   ...props
 }) => {
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const option = options.map(({ ...option }, index) => (
     <Option key={index} {...option}>
@@ -156,7 +153,7 @@ export const CustomSelect = ({
               colorBorder,
               selectorBg,
               colorText,
-              colorTextPlaceholder
+              colorTextPlaceholder,
             },
           },
         }}
@@ -373,7 +370,7 @@ export const SelectCheckbox = ({
             }
             setSelectAll(
               selectedItems.length === options.length - 1 &&
-              !selectedItems.includes(value),
+                !selectedItems.includes(value),
             );
           }}
           className="block px-4 py-2 flex items-center text-base font-medium"

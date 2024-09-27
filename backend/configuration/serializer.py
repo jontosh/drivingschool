@@ -37,6 +37,7 @@ class MessagesSerializer(serializers.ModelSerializer):
 class FieldsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fields
+        ref_name = "ConfigurationFields"
         fields = "__all__"
 
 class  PasswordManagementSerializer(serializers.ModelSerializer):
@@ -72,3 +73,5 @@ class  ExpansesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expanses
         fields = "__all__"
+
+

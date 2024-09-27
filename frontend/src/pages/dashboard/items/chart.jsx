@@ -1,9 +1,9 @@
+import ColorsContext from "@/context/colors.jsx";
+import { useContext } from "react";
 import ReactApexChart from "react-apexcharts";
 
 export const ChartDashboard = () => {
-  const time = new Date();
-  const Weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
+  const { colorsObject } = useContext(ColorsContext);
   const series = [
     {
       name: "Lessons",
@@ -14,6 +14,7 @@ export const ChartDashboard = () => {
       data: [5, 7, 6, 8, 7, 5, 7],
     },
   ];
+
   const options = {
     title: {
       text: "Lessons",
@@ -54,26 +55,14 @@ export const ChartDashboard = () => {
       show: false,
     },
     fill: {
-      colors: ["#A3ABBD", "#1890FF"],
+      colors: [colorsObject.secondary, colorsObject.info],
     },
     grid: {
       show: false,
     },
-    tooltip: {
-      // y: {
-      //   formatter: function (val) {
-      //     return "$ " + val + " thousands";
-      //   },
-      // },
-    },
   };
 
   return (
-    <ReactApexChart
-      height={300}
-      type={"bar"}
-      options={options}
-      series={series}
-    />
+    <ReactApexChart height={300} type="bar" options={options} series={series} />
   );
 };

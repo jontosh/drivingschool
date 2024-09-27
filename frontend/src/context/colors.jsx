@@ -3,7 +3,7 @@ import { createContext } from "react";
 const ColorsContext = createContext();
 
 export const ColorsProvider = ({ children }) => {
-  const colorsObject = {
+  const colors = {
     main: "#fff",
     black: "#000",
     bg: "#F1F5F9",
@@ -23,9 +23,9 @@ export const ColorsProvider = ({ children }) => {
     secondaryHover: "#5F5F5F40",
     secondaryDisabled: "#E4E4E4",
   };
-  const ColorsValues = { colorsObject };
+
   return (
-    <ColorsContext.Provider value={ColorsValues}>
+    <ColorsContext.Provider value={{ colorsObject: colors }}>
       {children}
     </ColorsContext.Provider>
   );

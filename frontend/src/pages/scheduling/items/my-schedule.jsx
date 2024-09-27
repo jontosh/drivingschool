@@ -61,7 +61,7 @@ export const MySchedule = ({ ...props }) => {
           </ButtonComponent>
         </div>
 
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 min-[1440px]:grid-cols-4 gap-5">
           <DrivingItem />
           <DrivingItem />
           <DrivingItem />

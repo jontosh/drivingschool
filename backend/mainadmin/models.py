@@ -1,6 +1,7 @@
+from django.contrib.auth.hashers import make_password
 from django.db import models
 from django_tenants.models import TenantMixin, DomainMixin
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,Group
 import uuid
 class Client(TenantMixin):
     name = models.CharField(max_length=100)
@@ -41,14 +42,19 @@ class CustomUser(AbstractUser):
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4()
+        self.is_active = True
+        if not self.password.startswith('pbkdf2_'):
+            self.set_password(self.password)
         super().save(*args, **kwargs)
-
     def __str__(self):
         return  self.username
 
 class UserType(models.Model):
     name = models.CharField(max_length=100)
-    rights = models.ManyToManyField("Rights",related_name="user_rights")
+    # rights = models.ManyToManyField("Rights",related_name="user_rights")
+    _admin_portal = models.BooleanField(default=False)
+    _student_portal = models.BooleanField(default=False)
+    _super_user_portal = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 

@@ -1,16 +1,16 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { setActiveNav } from "@/modules/active-nav.jsx";
 import { StudentResourceParent } from "@/pages/communication/subpage/student-resource-parent.jsx";
 import { StudentResourcesInCar } from "@/pages/communication/subpage/student-resources-in-car.jsx";
 import { StudentResourcesRoadTest } from "@/pages/communication/subpage/student-resources-road-test.jsx";
 import { StudentResourcesClass } from "@/pages/communication/subpage/student-resourse-class.jsx";
-import ServiceStyle from "@/pages/managment/management.module.scss";
 import { Fragment, useContext } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { NavLink, useParams } from "react-router-dom";
 
 const CheckPage = ({ page }) => {
   const { colorsObject } = useContext(ColorsContext);
-  const navigate = useNavigate();
 
   switch (page) {
     case "class": {
@@ -110,52 +110,53 @@ const CheckPage = ({ page }) => {
       );
     }
     default: {
-      navigate("/communication/student-resources/class");
+      console.error(`Error! Unknown type ${page}`);
     }
   }
 };
 
-export const StudenResources = () => {
+export const StudentResources = () => {
   const { subpage } = useParams();
 
-  const setActiveNav = ({ isActive }) =>
-    isActive
-      ? `${ServiceStyle["Tab__link-active"]} text-lg py-5`
-      : "hover:text-indigo-500 text-lg text-gray-700 py-5";
-
   return (
-    <div className={"pb-5"}>
-      <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
-        <NavLink
-          to={"/communication/student-resources/class"}
-          className={setActiveNav}
-        >
-          Class
-        </NavLink>
+    <Fragment>
+      <Helmet>
+        <title>Communication - Student Resources</title>
+      </Helmet>
 
-        <NavLink
-          to={"/communication/student-resources/in-car"}
-          className={setActiveNav}
-        >
-          In-car
-        </NavLink>
+      <div className={"pb-5"}>
+        <div className={"space-x-6 px-5 -mx-5 border-b border-b-gray-400"}>
+          <NavLink
+            to={"/admin/communication/student-resources/class"}
+            className={setActiveNav}
+          >
+            Class
+          </NavLink>
 
-        <NavLink
-          to={"/communication/student-resources/road-test"}
-          className={setActiveNav}
-        >
-          Road test
-        </NavLink>
+          <NavLink
+            to={"/admin/communication/student-resources/in-car"}
+            className={setActiveNav}
+          >
+            In-car
+          </NavLink>
 
-        <NavLink
-          to={"/communication/student-resources/parents"}
-          className={setActiveNav}
-        >
-          Parents
-        </NavLink>
+          <NavLink
+            to={"/admin/communication/student-resources/road-test"}
+            className={setActiveNav}
+          >
+            Road test
+          </NavLink>
+
+          <NavLink
+            to={"/admin/communication/student-resources/parents"}
+            className={setActiveNav}
+          >
+            Parents
+          </NavLink>
+        </div>
+
+        <CheckPage page={subpage} />
       </div>
-
-      <CheckPage page={subpage} />
-    </div>
+    </Fragment>
   );
 };

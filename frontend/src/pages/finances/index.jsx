@@ -34,7 +34,7 @@ const Finance = () => {
         <title>Finances</title>
       </Helmet>
 
-      <section className={`px-11 space-y-5 max-w-full w-full`}>
+      <section className={`px-3 sm:px-11 space-y-5 max-w-full w-full`}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -45,11 +45,11 @@ const Finance = () => {
         </Title>
 
         <div className={"p-5 bg-white rounded-3xl space-x-6"}>
-          <NavLink to={"/finance/finances"} className={setActiveNav}>
+          <NavLink to={"/admin/finance/finances"} className={setActiveNav}>
             Finances
           </NavLink>
 
-          <NavLink to={"/finance/statistic"} className={setActiveNav}>
+          <NavLink to={"/admin/finance/statistic"} className={setActiveNav}>
             Statistic
           </NavLink>
         </div>

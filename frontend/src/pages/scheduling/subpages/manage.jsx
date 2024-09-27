@@ -7,7 +7,7 @@ const Manage = () => {
 
   if (title) {
     return (
-      <section className={`px-11 space-y-5 max-w-full w-full`}>
+      <section className={`px-3 sm:px-11 space-y-5 max-w-full w-full`}>
         <div className="space-y-5">
           <Title
             level={2}

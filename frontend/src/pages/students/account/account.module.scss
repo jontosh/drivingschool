@@ -1,0 +1,10 @@
+@import "@/styles/vars";
+
+.Profile {
+  div[class*="ant-tabs-tab"] {
+    border-radius: 8px;
+  }
+  div[class*="ant-tabs-tab-active"] {
+    background: #5f66e940;
+  }
+}

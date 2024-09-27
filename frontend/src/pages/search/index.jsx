@@ -9,7 +9,7 @@ import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SearchModule } from "@/modules/search.jsx";
 import ProfileStyle from "@/pages/student/student-account.module.scss";
-import { Pagination, Table } from "antd";
+import { DatePicker, Form, Pagination, Table } from "antd";
 import { Formik } from "formik";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -68,7 +68,7 @@ const SearchFormik = () => {
           isSubmitting,
           /* and other goodies */
         }) => (
-          <form onSubmit={handleSubmit} className="bg-white p-5 rounded-xl">
+          <Form onSubmit={handleSubmit} className="bg-white p-5 rounded-xl" layout="vertical">
             {CheckValues && (
               <Title
                 level={3}
@@ -80,239 +80,180 @@ const SearchFormik = () => {
               </Title>
             )}
 
-            <div className="grid grid-cols-2 gap-5 mb-7">
-              <div className={"space-y-5"}>
-                <label className="inline-flex items-center w-full gap-5">
-                  <span className={"w-40 text-base flex-shrink-0"}>
-                    Account status
-                  </span>
+            {/* <div className="grid min-[1150px]:grid-cols-2 gap-5 mb-7"> */}
+
+            <div className="grid md:grid-cols-2 gap-5">
+              <div className="space-y-5">
+                <Form.Item label="Account status">
                   <CustomSelect
                     placeholder={"Select"}
-                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
-                        value: "Active",
-                        label: "Active",
-                      },
+                        value: "Status",
+                        label: "Status",
+                      }
                     ]}
+                    className={"h-[50px]"}
                   />
-                </label>
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Account #"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Account #"}
-                  name={"account"}
-                  value={values.account}
-                  onChange={handleChange}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Account #">
+                  <CustomInput
+                    placeholder={"Account #"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"First name"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"First name"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="First name">
+                  <CustomInput
+                    placeholder={"First name"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Last name"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Last name"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Last name">
+                  <CustomInput
+                    placeholder={"Last name"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Zip code"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Zip code"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Zip code">
+                  <CustomInput
+                    placeholder={"Zip code"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Phone"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Phone"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Phone">
+                  <CustomInput
+                    placeholder={"Phone"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Student City"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Student City"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Student City">
+                  <CustomInput
+                    placeholder={"Student City"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Year opened"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Year opened"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Year opened">
+                  <CustomInput
+                    placeholder={"Year opened"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Student address"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Student address"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Student address">
+                  <CustomInput
+                    placeholder={"Student address"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Permit number"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Permit number"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Permit number">
+                  <CustomInput
+                    placeholder={"Permit number"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
               </div>
-              <div className={"space-y-5"}>
-                <label className="inline-flex items-center w-full gap-5">
-                  <span className={"w-40 text-base flex-shrink-0"}>
-                    Associated staff
-                  </span>
+
+              <div className="space-y-5">
+                <Form.Item label="Associated staff">
                   <CustomSelect
                     placeholder={"Select"}
-                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
-                        value: "Active",
-                        label: "Active",
-                      },
+                        value: "Status",
+                        label: "Status",
+                      }
                     ]}
+                    className={"h-[50px]"}
                   />
-                </label>
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"MM/DD/YYYY"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Account created"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Account created">
+                  <DatePicker className="w-full h-[50px] border-[#667085]" />
+                </Form.Item>
 
-                <div className="inline-flex items-center w-full gap-5">
-                  <span className={"w-40 text-base flex-shrink-0"}>
-                    Student Type
-                  </span>
-
-                  <div className={"w-full space-x-5"}>
-                    <CustomRadio
-                      classNames={"inline-flex items-center gap-2.5"}
-                      name={"type"}
-                    >
-                      <span className={"text-base"}>Adult</span>
+                <Form.Item label="Student Type">
+                  <div className="flex space-x-7">
+                    <CustomRadio name={"StudentType"}>
+                      Adult
                     </CustomRadio>
-                    <CustomRadio
-                      classNames={"inline-flex items-center gap-2.5"}
-                      name={"type"}
-                    >
-                      <span className={"text-base"}>Teen</span>
+
+                    <CustomRadio name={"StudentType"}>
+                      Teen
                     </CustomRadio>
                   </div>
-                </div>
+                </Form.Item>
 
-                <label className="inline-flex items-center w-full gap-5">
-                  <span className={"w-40 text-base flex-shrink-0"}>
-                    Location
-                  </span>
+                <Form.Item label="Location">
                   <CustomSelect
                     placeholder={"Select"}
-                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
-                        value: "USA",
-                        label: "USA",
-                      },
+                        value: "Status",
+                        label: "Status",
+                      }
                     ]}
+                    className={"h-[50px]"}
                   />
-                </label>
+                </Form.Item>
 
-                <label className="inline-flex items-center w-full gap-5">
-                  <span className={"w-40 text-base flex-shrink-0"}>
-                    High school
-                  </span>
+                <Form.Item label="High school">
                   <CustomSelect
                     placeholder={"Select"}
-                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
-                        value: "School",
-                        label: "School",
-                      },
+                        value: "Status",
+                        label: "Status",
+                      }
                     ]}
+                    className={"h-[50px]"}
                   />
-                </label>
+                </Form.Item>
 
-                <label className="inline-flex items-center w-full gap-5">
-                  <span className={"w-40 text-base flex-shrink-0"}>CR No</span>
+                <Form.Item label="CR No">
                   <CustomSelect
                     placeholder={"Select"}
-                    className={`w-full h-[50px] shadow-lg ${ProfileStyle["Student-profile__div"]}`}
                     options={[
                       {
-                        value: "School",
-                        label: "School",
-                      },
+                        value: "Status",
+                        label: "Status",
+                      }
                     ]}
+                    className={"h-[50px]"}
                   />
-                </label>
+                </Form.Item>
 
-                <CustomInput
-                  placeholder={"Parent name"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Parent name"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                <Form.Item label="Parent name">
+                  <CustomInput
+                    placeholder={"Parent name"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
 
-                <div>
+                <Form.Item label="Email ID">
                   <CustomInput
                     placeholder={"Email ID"}
-                    className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                    spanText={"Email ID"}
-                    spanClassName={"w-40 flex-shrink-0"}
-                    fontSize={"text-base"}
-                    name={"email"}
-                    onChange={handleChange}
-                    value={values.email}
-                    classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
+                    classNames={"w-full"}
                   />
-                  {errors.email && (
-                    <div className={"pl-[180px] pt-2.5 text-red-600"}>{errors.email}</div>
-                  )}
-                </div>
-
-                <CustomInput
-                  placeholder={"Phone search"}
-                  className={`shadow-lg w-full px-4 p-2.5 ${ProfileStyle["Student-profile__div"]}`}
-                  spanText={"Phone search"}
-                  spanClassName={"w-40 flex-shrink-0"}
-                  fontSize={"text-base"}
-                  classNames={`inline-flex flex-shrink-0 justify-end items-center w-full gap-5 flex-row-reverse h-[50px]`}
-                />
+                </Form.Item>
+                
+                <Form.Item label="Phone search">
+                  <CustomInput
+                    placeholder={"Phone search"}
+                    classNames={"w-full"}
+                  />
+                </Form.Item>
               </div>
             </div>
 
-            <div className="text-center space-x-5">
+            <div className="flex max-[500px]:flex-col justify-center gap-5 pt-5">
               <ButtonComponent
                 defaultBg={"#24C18F"}
                 defaultHoverBg={"#24C18F"}
@@ -344,7 +285,7 @@ const SearchFormik = () => {
                 Reset
               </ButtonComponent>
             </div>
-          </form>
+          </Form>
         )}
       </Formik>
 
@@ -406,7 +347,7 @@ const Search = () => {
         <title>Advanced search</title>
       </Helmet>
 
-      <section className={"px-11 space-y-5 max-w-full w-full"}>
+      <section className={"px-3 sm:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}

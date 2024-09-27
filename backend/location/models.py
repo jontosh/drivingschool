@@ -85,7 +85,7 @@ class Class(Extra):
     day = models.ManyToManyField("scheduling.TimeRange",related_name="day_class")
     teacher = models.ForeignKey("Users.Instructor", on_delete=models.CASCADE,null=True,blank=True)
     def __str__(self):
-        return f"id \t{self.class_id}  {self.teacher.username}"
+        return f"id \t{self.class_id}  "
 
 
 

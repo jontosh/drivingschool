@@ -5,6 +5,15 @@ export const APIRequest = createApi({
   tagTypes: ["Device"],
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL,
+    prepareHeaders: (headers) => {
+      const token = JSON.parse(window.sessionStorage.getItem("auth-user"));
+
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+        return headers;
+      }
+      return headers;
+    },
   }),
 
   endpoints: (builder) => ({

@@ -2,12 +2,13 @@ import ButtonComponent from "@/components/button/index.jsx";
 import {
   CustomCheckBox,
   CustomInput,
+  CustomRadio,
   CustomSelect,
 } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { Pagination, Table } from "antd";
-import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import { DatePicker, Form, Pagination, Table } from "antd";
+import { Fragment, useContext, useRef, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
 export const AppointmentEdit = () => {
@@ -204,166 +205,147 @@ export const AppointmentEdit = () => {
 
   return (
     <Fragment>
-      <form className="bg-white p-10">
-        <div className="grid grid-cols-2 gap-4">
+      <Form layout="vertical" className="bg-white p-5 sm:p-10">
+        <div className="grid md:grid-cols-2 gap-5">
           <div className="space-y-5">
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>
-                Instructor
-              </span>
-
+            <Form.Item label="Instructor">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Instructor"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "Khaetbek",
+                    label: "Khaetbek",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
+            </Form.Item>
 
-            <CustomInput
-              spanClassName={`flex-shrink-0 w-40 text-right`}
-              spanText={"Select date"}
-              className={"w-full shadow-xl"}
-              placeholder={"MM/DD/YYYY - MM/DD/YYYY"}
-              classNames={
-                "inline-flex w-full h-[50px] flex-row-reverse items-center gap-5"
-              }
-            />
+            <Form.Item label="Select date">
+              <DatePicker className="w-full h-[50px] border-[#667085]" />
+            </Form.Item>
 
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>
-                Time filter
-              </span>
-
+            <Form.Item label="Time filter">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Time filter"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "8:18 PM",
+                    label: "8:18 PM",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
+            </Form.Item>
 
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>Weekdays</span>
-
+            <Form.Item label="Weekdays">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Weekdays"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "Monday",
+                    label: "Monday",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
+            </Form.Item>
 
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>
-                Displayed In Student Center
-              </span>
-
+            <Form.Item label="Displayed In Student Center">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Displayed In Student Center"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "Monday",
+                    label: "Monday",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
+            </Form.Item>
 
-            <div className={"space-x-5 text-center"}>
-              <CustomCheckBox className={"gap-x-2.5"}>Student 1</CustomCheckBox>
+            <Form.Item>
+              <div className="flex items-center space-x-5">
+                <CustomRadio name={"student"}>
+                  Student 1
+                </CustomRadio>
 
-              <CustomCheckBox className={"gap-x-2.5"}>Student 2</CustomCheckBox>
-            </div>
+                <CustomRadio name={"student"}>
+                  Student 2
+                </CustomRadio>
+              </div>
+            </Form.Item>
           </div>
 
-          <div className={"space-y-5"}>
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>Status</span>
-
+          <div className="space-y-5">
+            <Form.Item label="Status">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Status"}
                 options={[
                   {
-                    value: "Confirmed",
-                    label: "Confirmed",
-                  },
-                  {
-                    value: "Canceled",
-                    label: "Canceled",
-                  },
+                    value: "Status",
+                    label: "Status",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>Vehicle</span>
+            </Form.Item>
 
+            <Form.Item label="Vehicle">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Select"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "Status",
+                    label: "Status",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>Location</span>
+            </Form.Item>
 
+            <Form.Item label="Location">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Select"}
                 options={[
                   {
-                    value: "USA",
-                    label: "USA",
-                  },
+                    value: "Status",
+                    label: "Status",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>
-                BTW Subtype
-              </span>
+            </Form.Item>
 
+            <Form.Item label="BTW Subtype">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Select"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "Status",
+                    label: "Status",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
-            <label className={"inline-flex w-full items-center gap-5"}>
-              <span className={`flex-shrink-0 w-40 text-right`}>
-                Appointment type
-              </span>
+            </Form.Item>
 
+            <Form.Item label="Appointment type">
               <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
+                placeholder={"Select"}
                 options={[
                   {
-                    value: 1,
-                    label: 1,
-                  },
+                    value: "Status",
+                    label: "Status",
+                  }
                 ]}
+                className={"h-[50px]"}
               />
-            </label>
+            </Form.Item>
           </div>
         </div>
 
-        <div className="text-center space-x-3 pt-6">
+        <div className="flex max-[500px]:flex-col justify-center gap-5 pt-5">
           <ButtonComponent
             defaultHoverBg={"#24C18F"}
             defaultBg={"#24C18F"}
@@ -388,7 +370,7 @@ export const AppointmentEdit = () => {
             Clear
           </ButtonComponent>
         </div>
-      </form>
+      </Form>
 
       {Filter && (
         <div className={"mt-5 px-5 py-6 bg-white"}>

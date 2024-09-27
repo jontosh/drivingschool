@@ -1,7 +1,7 @@
 export const useDate = () => {
   const Months = Array.from({ length: 12 }, (item, i) => {
     return {
-      value: i + 1,
+      value: i,
       label: new Date(0, i).toLocaleString("en-US", { month: "long" }),
     };
   });

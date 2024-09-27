@@ -27,7 +27,7 @@ export const StudentLog = () => {
         Account Activities
       </Title>
 
-      <div className="flex justify-between border-b border-b-gray-400 pb-4 -mx-5 px-5">
+      <div className="flex max-[610px]:flex-col max-[610px]:space-y-3 justify-between border-b border-b-gray-400 pb-4 -mx-5 px-5">
         <Title
           level={4}
           fontSize={"text-base text-indigo-700 "}

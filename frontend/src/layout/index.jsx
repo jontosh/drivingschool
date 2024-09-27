@@ -1,79 +1,80 @@
+import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
-import { DropMenuItems } from "@/layout/items/drop-menu.jsx";
-import { MenuItems } from "@/layout/menu-items.jsx";
-import { GetLevelKeys } from "@/modules/navbar.jsx";
-import { Badge, ConfigProvider, Dropdown, Menu } from "antd";
-import { Fragment, useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { BiMoon } from "react-icons/bi";
-import { FaListUl } from "react-icons/fa6";
-import { HiOutlineSun } from "react-icons/hi2";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import ColorsContext from "@/context/colors.jsx";
+import { Crypto } from "@/auth/crypto.jsx";
+import { AdminMenu } from "@/layout/items/admin-menu.jsx";
+import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
+import { StudentMenu } from "@/layout/items/student-menu.jsx";
+import classNames from "classnames";
+import useSessionStorageState from "use-session-storage-state";
 import LayoutStyle from "./layout.module.scss";
 import Logo from "../assets/logo.jpeg";
 import UserAvatar from "../assets/user/user-avatar.jpeg";
 import Tenant from "../assets/user/tenant.jpeg";
 import { BellFilled } from "@ant-design/icons";
-
-const getItem = (label, key, icon, children, type) => {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  };
-};
+import { useBaseURL } from "@/hooks/portal.jsx";
+import { default as DropMenu } from "./items/drop-menu.jsx";
+import { Badge, ConfigProvider, Dropdown, Segmented } from "antd";
+import { Fragment, useContext, useEffect, useState, useCallback } from "react";
+import { Helmet } from "react-helmet";
+import { BiMoon } from "react-icons/bi";
+import { FaListUl } from "react-icons/fa6";
+import { HiOutlineSun } from "react-icons/hi2";
+import { PiCurrencyCircleDollar, PiNoteDuotone } from "react-icons/pi";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const Layout = () => {
+  console.clear();
   const [IsActive, setIsActive] = useState(true);
-  const [stateOpenKeys, setStateOpenKeys] = useState([""]);
-
+  const [IsBurger, setIsBurger] = useState(false);
+  const [User, setUser] = useSessionStorageState("user", {
+    defaultValue: null,
+  });
+  const [UserData, setUserData] = useState(undefined);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { colorsObject } = useContext(ColorsContext);
+  const { pathname: toOrigin } = useBaseURL();
+  const DropMenuItems = DropMenu(UserData?.id);
+
   useEffect(() => {
-    if (pathname === "/") {
-      navigate("/dashboard/");
-    }
-  }, [pathname]);
-
-  const handleSideBar = () => setIsActive((prev) => !prev);
-
-  const { items } = MenuItems(IsActive, getItem);
-
-  const levelKeys = GetLevelKeys(items);
-
-  const onOpenChange = (openKeys) => {
-    const currentOpenKey = openKeys.find(
-      (key) => stateOpenKeys.indexOf(key) === -1,
+    const path = ["/", "/student/", "/instructor/", "/admin/"].reduce(
+      (_, item) => item.includes(pathname),
     );
 
-    // open
-    if (currentOpenKey !== undefined) {
-      const repeatIndex = openKeys
-        .filter((key) => key !== currentOpenKey)
-        .findIndex((key) => levelKeys[key] === levelKeys[currentOpenKey]);
-
-      const a = openKeys
-        // remove repeat key
-        .filter((_, index) => index !== repeatIndex)
-        // remove current level all child
-        .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]);
-
-      setStateOpenKeys(a);
-      // setStateOpenKeys(
-      //   openKeys
-      //     // remove repeat key
-      //     .filter((_, index) => index !== repeatIndex)
-      //     // remove current level all child
-      //     .filter((key) => levelKeys[key] <= levelKeys[currentOpenKey]),
-      // );
-    } else {
-      // close
-      setStateOpenKeys(openKeys);
+    if (path) {
+      navigate("/register/sign-in", { replace: true });
     }
-  };
+  }, [pathname, navigate]);
+
+  useEffect(() => {
+    const root = document.getElementById("root");
+    if (IsBurger) {
+      root.style.overflow = "hidden";
+      root.style.height = "100vh";
+    } else {
+      root.style.overflow = "visible";
+      root.style.height = "auto";
+    }
+
+    const handleResize = () => {
+      root.style.overflow = "visible";
+      root.style.height = "auto";
+      setIsBurger(false);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [IsBurger]);
+
+  useEffect(() => {
+    const { decrypted } = Crypto(User, import.meta.env.VITE_SECRET_KEY);
+    setUserData(decrypted);
+  }, [User]);
+
+  const handleSideBar = useCallback(() => setIsActive((prev) => !prev), []);
+  const handleBurger = useCallback(() => setIsBurger((prev) => !prev), []);
 
   return (
     <Fragment>
@@ -101,139 +102,171 @@ const Layout = () => {
         <meta name="theme-color" content="#ffffff" />
       </Helmet>
       <header
-        className={`${LayoutStyle["Header"]} px-5 py-4 bg-white flex items-center justify-between`}
+        className={`${LayoutStyle.Header} lg:static z-10 sticky top-0 left-0 right-0 px-5 py-4 bg-white flex gap-2.5 items-center justify-between`}
       >
         <Link
-          to={"/dashboard"}
-          className={`${LayoutStyle["logo"]} inline-flex items-center gap-4`}
+          to={`/${toOrigin}/dashboard/`}
+          className={classNames(
+            "inline-flex items-center gap-4",
+            LayoutStyle.logo,
+          )}
         >
           <div
-            className={`${LayoutStyle["logo__imageholder"]} w-10 h-10 rounded-full overflow-hidden`}
+            className={`${LayoutStyle.logo__imageholder} w-10 h-10 rounded-full overflow-hidden`}
           >
-            <Image src={Logo} srcSet={Logo} type={"type/image"} />
+            <Image src={Logo} srcSet={Logo} alt="Logo" />
           </div>
-          <span className={`text-sm text-black`}>software.com</span>
+          <span className="text-sm text-black hidden sm:inline-block">
+            software.com
+          </span>
         </Link>
-
         <div
-          className={`${LayoutStyle["Header__right"]} flex justify-end gap-2.5 items-center`}
+          className={classNames(
+            "flex justify-end gap-2.5 md:gap-5 items-center",
+            LayoutStyle.Header__right,
+          )}
         >
-          <Badge count={2} className="mr-5 cursor-pointer">
-            <BellFilled className="w-5 h-5" />
-          </Badge>
-          <div
-            className={`${LayoutStyle["Header__mode"]} inline-flex items-center gap-2.5 border-2 border-solid border-indigo-700 rounded-lg py-1 px-2.5`}
+          {toOrigin === "admin" && (
+            <Badge count={2} className="mr-5 cursor-pointer">
+              <BellFilled className="w-5 h-5" />
+            </Badge>
+          )}
+          {(toOrigin === "instructor" || toOrigin === "student") && (
+            <Fragment>
+              <IconComponent className="text-3xl" icon={<PiNoteDuotone />} />
+              <IconComponent
+                className="text-3xl"
+                icon={<PiCurrencyCircleDollar />}
+              />
+            </Fragment>
+          )}
+          <ConfigProvider
+            theme={{
+              components: {
+                Segmented: {
+                  itemSelectedBg: colorsObject.info,
+                  itemHoverBg: colorsObject.main,
+                  itemActiveBg: colorsObject.main,
+                  itemSelectedColor: colorsObject.main,
+                  itemHoverColor: colorsObject.info,
+                  trackBg: colorsObject.main,
+                  trackPadding: 5,
+                },
+              },
+            }}
           >
-            <button
-              type={"button"}
-              className={`text-xl p-1 rounded-lg ${LayoutStyle["Header__mode-active"]}`}
-            >
-              <HiOutlineSun />
-            </button>
-
-            <button type={"button"} className={`text-xl p-1 rounded-lg`}>
-              <BiMoon />
-            </button>
-          </div>
-          <div>
-            <Dropdown
-              menu={{
-                items: DropMenuItems,
-              }}
-              placement="bottomRight"
-              className={"cursor-pointer"}
-            >
-              <div
-                className={`${LayoutStyle["user"]} inline-flex items-center gap-3`}
-              >
-                <Title level={5} fontWeightStrong={400} fontSize={"text-base"}>
-                  Aminov Taminov
-                </Title>
-
-                <div
-                  className={`w-10 h-10 rounded-full overflow-hidden ${LayoutStyle["user__avatar"]}`}
-                >
-                  <Image src={UserAvatar} srcSet={UserAvatar} alt={"Avatar"} />
-                </div>
-              </div>
-            </Dropdown>
-          </div>
-        </div>
-      </header>
-      <main className={`py-5 px-4 flex gap-x-4 max-w-full`}>
-        <aside>
-          <div
-            className={`${LayoutStyle["Tenant"]} flex gap-x-5 items-center mb-6`}
+            <Segmented
+              className="border border-indigo-600 flex-shrink-0"
+              size="large"
+              options={[
+                { value: "Sun", icon: <HiOutlineSun /> },
+                { value: "Moon", icon: <BiMoon /> },
+              ]}
+            />
+          </ConfigProvider>
+          <button className="size-6 lg:hidden" onClick={handleBurger}>
+            <FaListUl />
+          </button>
+          <Dropdown
+            menu={{ items: DropMenuItems }}
+            placement="bottomRight"
+            className="cursor-pointer"
           >
             <div
-              className={`${LayoutStyle["Tenant"]} w-10 h-10 overflow-hidden rounded-full  `}
+              className={`${LayoutStyle.user} inline-flex items-center gap-3`}
+            >
+              <Title
+                className="hidden lg:block"
+                level={5}
+                fontWeightStrong={400}
+                fontSize="text-base"
+              >
+                {UserData?.username}
+              </Title>
+              <div
+                className={`w-10 h-10 rounded-full overflow-hidden ${LayoutStyle.user__avatar}`}
+              >
+                <Image src={UserAvatar} srcSet={UserAvatar} alt="Avatar" />
+              </div>
+            </div>
+          </Dropdown>
+        </div>
+      </header>
+      <main className="relative py-5 px-4 flex gap-x-4 max-w-full">
+        <aside className="hidden lg:block">
+          <div
+            className={`${LayoutStyle.Tenant} flex gap-x-5 items-center mb-6`}
+          >
+            <div
+              className={`${LayoutStyle.Tenant} w-10 h-10 overflow-hidden rounded-full`}
             >
               <Image
                 src={Tenant}
                 srcSet={Tenant}
-                alt={"Tenant: Driving sсhool"}
+                alt="Tenant: Driving school"
               />
             </div>
             {IsActive && (
-              <Title fontWeightStrong={600} level={5} fontSize={"text-base"}>
+              <Title fontWeightStrong={600} level={5} fontSize="text-base">
                 Driving school
               </Title>
             )}
           </div>
-
           <nav
-            className={`${LayoutStyle["Menu"]} overflow-hidden ${!IsActive && `w-[50px] shadow-md Menu__icons`}`}
+            className={classNames(LayoutStyle.Menu, "overflow-hidden", {
+              "w-[50px] shadow-md Menu__icons": !IsActive,
+            })}
           >
             <div
-              className={`${LayoutStyle["Menu__top"]} relative z-10 flex gap-x-2.5 p-2.5`}
+              className={`${LayoutStyle.Menu__top} relative z-10 flex gap-x-2.5 p-2.5`}
               onClick={handleSideBar}
             >
-              <button className={`size-6`}>
+              <button className="size-6">
                 <FaListUl />
               </button>
-
               {IsActive && (
-                <Title fontWeightStrong={600} level={5} fontSize={"text-base"}>
+                <Title fontWeightStrong={600} level={5} fontSize="text-base">
                   Main menu
                 </Title>
               )}
             </div>
-
-            <ConfigProvider
-              theme={{
-                components: {
-                  Menu: {
-                    itemSelectedBg: "transparent",
-                    itemHoverBg: "transparent",
-                    subMenuItemBg: "transparent",
-                    itemPaddingInline: 0,
-                    padding: 0,
-                  },
-                },
-              }}
-            >
-              <Menu
-                style={{
-                  width: "100%",
-                  padding: 0,
-                  border: "none",
-                  boxShadow: "0 4px 4px 0 #00000040",
-                }}
-                defaultOpenKeys={["sub1"]}
-                defaultSelectedKeys={["1"]}
-                openKeys={stateOpenKeys}
-                onOpenChange={onOpenChange}
-                mode="inline"
-                items={items}
-              />
-            </ConfigProvider>
+            {toOrigin === "admin" && <AdminMenu inlineCollapsed={!IsActive} />}
+            {toOrigin === "student" && (
+              <StudentMenu inlineCollapsed={!IsActive} />
+            )}
+            {toOrigin === "instructor" && (
+              <InstructorMenu inlineCollapsed={!IsActive} />
+            )}
           </nav>
         </aside>
-        <article className={`bg-slate-100 rounded-lg py-5 max-w-full w-full`}>
+        <article className="relative bg-slate-100 rounded-lg py-5 max-w-full w-full">
           <Outlet />
+          {IsBurger && (
+            <div className="fixed top-[79px] left-0 right-0 bottom-0 lg:hidden z-10">
+              <div className="max-w-80 w-full ml-auto">
+                {toOrigin === "admin" && (
+                  <AdminMenu
+                    style={{ minHeight: "calc(100vh - 79px)" }}
+                    inlineCollapsed={false}
+                  />
+                )}
+                {toOrigin === "student" && (
+                  <StudentMenu
+                    style={{ minHeight: "calc(100vh - 79px)" }}
+                    inlineCollapsed={false}
+                  />
+                )}
+                {toOrigin === "instructor" && (
+                  <InstructorMenu
+                    style={{ minHeight: "calc(100vh - 79px)" }}
+                    inlineCollapsed={false}
+                  />
+                )}
+              </div>
+            </div>
+          )}
         </article>
       </main>
-      <footer>Footer</footer>
     </Fragment>
   );
 };

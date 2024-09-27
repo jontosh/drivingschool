@@ -6,6 +6,9 @@ from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 from django.conf import settings
 
+import mainadmin.models
+
+
 class Tasks(Extra):
     STATUS = [
         ["NEW","NEW"],
@@ -40,6 +43,13 @@ class LatestNews(models.Model):
     def __str__(self):
         return self.title
 
+class Resources(models.Model):
+    to_class = models.TextField(blank=True,null=True)
+    in_car = models.TextField(blank=True,null=True)
+    road_test = models.TextField(blank=True,null=True)
+    parents = models.TextField(blank=True,null=True)
+    def __str__(self):
+        return  self.pk
 
 class Logs(models.Model):
     time = models.DateTimeField(auto_now=True)
@@ -61,15 +71,25 @@ class EmailTemplate(models.Model):
     if you choose 2 of them or nether of them data will not be saved
     """
     email = models.TextField()
-    student = models.ForeignKey("Users.Student",on_delete=models.CASCADE,blank=True,null=True)
-    instructor = models.ForeignKey("Users.Instructor",on_delete=models.CASCADE,blank=True,null=True)
+    student = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,blank=True,null=True,related_name="student_email")
+    instructor = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,blank=True,null=True,related_name="staff_email")
 
     def __str__(self):
         return str(self.id)
 
+class Template(Status,Extra):
+    name = models.CharField(max_length=150)
+    template = models.TextField()
 
+    def __str__(self):
+        return self.name
 
+class SendTemplate(models.Model):
+    template = models.ForeignKey("Template",related_name="send_template",on_delete=models.CASCADE)
+    to = models.ManyToManyField("mainadmin.CustomUser",related_name="send_to")
 
+    def __str__(self):
+        return f"{self.template.name} - {self.pk}"
 
 # @receiver(pre_save, sender=Logs)
 # def log_user_actions(sender, instance, **kwargs):

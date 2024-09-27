@@ -143,7 +143,7 @@ class Discount(models.Model):
 class Question(models.Model):
     type = models.ForeignKey("QuestionType",on_delete=models.CASCADE)
     question = models.TextField()
-    answers = models.ManyToManyField("Answer")
+    answers = models.JSONField(default=dict)
 class Answer(models.Model):
     """
     Model to represent possible answers for multiple choice questions
@@ -167,7 +167,7 @@ class Test(Status,Extra,models.Model):
     """
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    questions = models.ManyToManyField(Question, )#related_name="question_test")
+    questions = models.ManyToManyField(Question,blank=True)
     count = models.IntegerField(verbose_name="number of question")
     passing_grade = models.IntegerField(default=1)
     timer = models.DateTimeField(blank=True,null=True)
@@ -176,6 +176,7 @@ class Test(Status,Extra,models.Model):
     fall_text = models.TextField(blank=True)
     service = models.ManyToManyField("servises.Services",)
     cr = models.ManyToManyField("location.Class",related_name="classroom")
+    attempts = models.PositiveIntegerField(default=1)
     _is_display_name = models.BooleanField(default=False)
     _is_final = models.BooleanField(default=False)
     _is_class_session = models.BooleanField(default=False,verbose_name="Associate with This Class Session")
@@ -192,8 +193,27 @@ class Test(Status,Extra,models.Model):
     def __str__(self):
         return self.name
 
+class StudentQuestion(models.Model):
+    question = models.ForeignKey("Question",on_delete=models.CASCADE)
+    student_answer = models.JSONField(null=True,blank=True)
+    is_true = models.BooleanField(default=False)
+    score = models.PositiveIntegerField(default=0)
 
-
+class StudentTest(models.Model):
+    STATUS_CHOICE = [
+        ["PASSED","PASSED"],
+        ["FAILED","FAILED"],
+        ["NOT_ATTEMPTED","NOT_ATTEMPTED"],
+        ["CANCELED","CANCELED"]
+    ]
+    test = models.ForeignKey("Test",on_delete=models.CASCADE)
+    student = models.ForeignKey("Users.Student",on_delete=models.CASCADE)
+    total_score = models.PositiveIntegerField(default=0)
+    student_answers = models.ManyToManyField("StudentQuestion")
+    datetime = models.DateTimeField(auto_now=True)
+    number_correct = models.PositiveIntegerField(default=0)
+    number_wrong = models.PositiveIntegerField(default=0)
+    status = models.CharField(choices=STATUS_CHOICE,max_length=15,default="NOT_ATTEMPTED")
 #SIGNAL TO CREATE ADD_ON AUTOMATICALLY
 @receiver(post_save, sender=Services)
 @receiver(post_save, sender=Component)

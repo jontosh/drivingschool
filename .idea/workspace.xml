@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="Refactor enrollment form to improve dynamic data handling">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/single.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/email-template.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/profile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,15 +17,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JSX File" />
         <option value="SCSS File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="managment" />
+        <entry key="$PROJECT_DIR$" value="email_temp" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,26 +46,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/package.json&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;app.aicomit.ApplicationSettingsConfigurable&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "refactoring",
+    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
+    "service.view.auto.scroll.to.source": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/pages/students/account" />
+      <recent name="$PROJECT_DIR$/frontend/src/pages/instructor/dashboard" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -76,7 +81,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" editBeforeRun="true" focusToolWindowBeforeRun="true" nameIsGenerated="true">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
       <scripts>
@@ -90,7 +95,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17890.13" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
       </set>
     </attachedChunks>
   </component>
@@ -158,400 +163,469 @@
       <workItem from="1718696349698" duration="25285000" />
       <workItem from="1718837465981" duration="367000" />
       <workItem from="1718837942426" duration="463000" />
+      <workItem from="1718842762425" duration="4438000" />
+      <workItem from="1718847284567" duration="124000" />
+      <workItem from="1718981148519" duration="164000" />
+      <workItem from="1719041873329" duration="1128000" />
+      <workItem from="1719044657801" duration="5733000" />
+      <workItem from="1719054678939" duration="618000" />
+      <workItem from="1719055343216" duration="1133000" />
+      <workItem from="1719056544791" duration="7443000" />
+      <workItem from="1719100901134" duration="5279000" />
+      <workItem from="1719106614736" duration="2963000" />
+      <workItem from="1719230594295" duration="8558000" />
+      <workItem from="1719385566939" duration="13349000" />
+      <workItem from="1719403326960" duration="4046000" />
+      <workItem from="1719418763681" duration="14453000" />
+      <workItem from="1719743326992" duration="10825000" />
+      <workItem from="1719830924597" duration="10575000" />
+      <workItem from="1719899215970" duration="3689000" />
+      <workItem from="1719906951305" duration="41000" />
+      <workItem from="1719906999684" duration="5576000" />
+      <workItem from="1719929965137" duration="5651000" />
+      <workItem from="1720002700606" duration="2116000" />
+      <workItem from="1720024876161" duration="392000" />
+      <workItem from="1720077186714" duration="9558000" />
+      <workItem from="1720087242727" duration="6254000" />
+      <workItem from="1720093605418" duration="9191000" />
+      <workItem from="1720240716440" duration="541000" />
+      <workItem from="1720241480634" duration="3383000" />
+      <workItem from="1720253450177" duration="9469000" />
+      <workItem from="1720339069639" duration="8760000" />
+      <workItem from="1720348549891" duration="2620000" />
+      <workItem from="1720359607801" duration="5774000" />
+      <workItem from="1720374774410" duration="256000" />
+      <workItem from="1720414341035" duration="1687000" />
+      <workItem from="1720421234326" duration="11538000" />
+      <workItem from="1720502263263" duration="18929000" />
+      <workItem from="1720537676476" duration="6300000" />
+      <workItem from="1720560327916" duration="8370000" />
+      <workItem from="1720605742377" duration="6547000" />
+      <workItem from="1720614458870" duration="3172000" />
+      <workItem from="1720623415776" duration="2135000" />
+      <workItem from="1720688883919" duration="3355000" />
+      <workItem from="1720761244885" duration="17675000" />
+      <workItem from="1720857853249" duration="12746000" />
+      <workItem from="1720872563784" duration="6728000" />
+      <workItem from="1721022051378" duration="8288000" />
+      <workItem from="1721034864041" duration="2048000" />
+      <workItem from="1721193897639" duration="26080000" />
+      <workItem from="1721224955607" duration="17138000" />
+      <workItem from="1721391208141" duration="10258000" />
+      <workItem from="1721556404337" duration="35000" />
+      <workItem from="1721556448011" duration="2549000" />
+      <workItem from="1721756747693" duration="12907000" />
+      <workItem from="1721809337129" duration="18414000" />
+      <workItem from="1722070194728" duration="1861000" />
+      <workItem from="1722159281009" duration="734000" />
+      <workItem from="1722197504402" duration="11259000" />
+      <workItem from="1722377989411" duration="16007000" />
+      <workItem from="1722461484845" duration="338000" />
+      <workItem from="1722496727075" duration="13568000" />
+      <workItem from="1722518406778" duration="6527000" />
+      <workItem from="1722670216371" duration="3496000" />
+      <workItem from="1722758647569" duration="4293000" />
+      <workItem from="1722848939785" duration="536000" />
+      <workItem from="1722856562237" duration="2904000" />
+      <workItem from="1722939555127" duration="621000" />
+      <workItem from="1722948832504" duration="6297000" />
+      <workItem from="1723048299656" duration="1540000" />
+      <workItem from="1723196365112" duration="2723000" />
+      <workItem from="1723266597990" duration="17974000" />
     </task>
-    <task id="LOCAL-00001" summary="#fix #jsx #api Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component. Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
+    <task id="LOCAL-00085" summary="#fix #jsx Refactored form elements and render components">
       <option name="closed" value="true" />
-      <created>1716289491899</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+      <created>1720538599941</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
       <option name="project" value="LOCAL" />
-      <updated>1716289491899</updated>
+      <updated>1720538599942</updated>
     </task>
-    <task id="LOCAL-00002" summary="#fix #jsx Refactor components to include date pickers and form handling for improved user interaction in the evaluation report component.">
+    <task id="LOCAL-00086" summary="#fix #jsx Refactored form elements and render components">
       <option name="closed" value="true" />
-      <created>1716331688025</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+      <created>1720539863116</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
       <option name="project" value="LOCAL" />
-      <updated>1716331688025</updated>
+      <updated>1720539863117</updated>
     </task>
-    <task id="LOCAL-00003" summary="#fix #jsx Update account management slice to include location data and dispatch actions using Redux hooks.">
+    <task id="LOCAL-00087" summary="#fix #jsx Refactored form elements and initial values for form if user answer or not">
       <option name="closed" value="true" />
-      <created>1716459969047</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
+      <created>1720568262187</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
       <option name="project" value="LOCAL" />
-      <updated>1716459969047</updated>
+      <updated>1720568262188</updated>
     </task>
-    <task id="LOCAL-00004" summary="#fix #jsx Refactor file-category component to use new data key &quot;name&quot; instead of &quot;category&quot; and add data fetching logic using useRequestGetQuery.">
+    <task id="LOCAL-00088" summary="#fix #jsx Refactored form elements and code with get correct initial values">
       <option name="closed" value="true" />
-      <created>1716674769197</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
+      <created>1720610005067</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
       <option name="project" value="LOCAL" />
-      <updated>1716674769197</updated>
+      <updated>1720610005068</updated>
     </task>
-    <task id="LOCAL-00005" summary="#fix #jsx Refactor component to utilize new state management and optimize form inputs.  Refactor components to include a DatePicker for improved user interaction and form handling.">
+    <task id="LOCAL-00089" summary="#fix #jsx Refactored code to get Success or Failed results, modal in process">
       <option name="closed" value="true" />
-      <created>1716767392285</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
+      <created>1720615082126</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
       <option name="project" value="LOCAL" />
-      <updated>1716767392285</updated>
+      <updated>1720615082127</updated>
     </task>
-    <task id="LOCAL-00006" summary="#fix #jsx Refactor components to include a DatePicker for improved user interaction and form handling.">
+    <task id="LOCAL-00090" summary="#fix #jsx Refactored code show result test in modal window">
       <option name="closed" value="true" />
-      <created>1716812799444</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
+      <created>1720624440737</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
-      <updated>1716812799445</updated>
+      <updated>1720624440737</updated>
     </task>
-    <task id="LOCAL-00007" summary="# fix #jsx Update scheduling components to include dynamic rendering based on the route params for improved user experience.">
+    <task id="LOCAL-00091" summary="#fix #jsx Refactored router link">
       <option name="closed" value="true" />
-      <created>1716964942121</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
+      <created>1720624845738</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
       <option name="project" value="LOCAL" />
-      <updated>1716964942121</updated>
+      <updated>1720624845738</updated>
     </task>
-    <task id="LOCAL-00008" summary="#fix #jsx Update components to include dynamic rendering based on route params for improved user experience.">
+    <task id="LOCAL-00092" summary="#fix #jsx Fixed code in test view">
       <option name="closed" value="true" />
-      <created>1716969487159</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
+      <created>1720764552397</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
       <option name="project" value="LOCAL" />
-      <updated>1716969487159</updated>
+      <updated>1720764552398</updated>
     </task>
-    <task id="LOCAL-00009" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in index.jsx, fees.jsx, file-category.jsx, management.jsx, packages.jsx, product.jsx, staff.jsx, and workspace.xml.">
+    <task id="LOCAL-00093" summary="#fix #js Fixed URL routing for NavLink components">
       <option name="closed" value="true" />
-      <created>1717025250488</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
+      <created>1720765246787</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
       <option name="project" value="LOCAL" />
-      <updated>1717025250488</updated>
+      <updated>1720765246788</updated>
     </task>
-    <task id="LOCAL-00010" summary="#fix #jsx Refactor component render methods to include setting ActionIndex state in various files for better code organization.">
+    <task id="LOCAL-00094" summary="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content">
       <option name="closed" value="true" />
-      <created>1717066097071</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
+      <created>1720768640256</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
       <option name="project" value="LOCAL" />
-      <updated>1717066097071</updated>
+      <updated>1720768640256</updated>
     </task>
-    <task id="LOCAL-00011" summary="#fix #jsx Add form validation and input handling for student information in profile page. Refactor form inputs to use Custom Components for improved user interaction.">
+    <task id="LOCAL-00095" summary="#fix #js Fixed some bugs">
       <option name="closed" value="true" />
-      <created>1717499312883</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
+      <created>1720768993292</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
       <option name="project" value="LOCAL" />
-      <updated>1717499312883</updated>
+      <updated>1720768993292</updated>
     </task>
-    <task id="LOCAL-00012" summary="#fix #jsx Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
+    <task id="LOCAL-00096" summary="#fix #js Fixed form elements, getting and updating request and show it">
       <option name="closed" value="true" />
-      <created>1717509127963</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
+      <created>1720780220773</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
-      <updated>1717509127963</updated>
+      <updated>1720780220773</updated>
     </task>
-    <task id="LOCAL-00013" summary="#fix #jsx Refactor form inputs, handle state changes, and update data fetching in profile and index components. Update form inputs to handle null values gracefully and add form validation for student information in the profile page.">
+    <task id="LOCAL-00097" summary="#fix #js Refactored request for type Student, updated elements">
       <option name="closed" value="true" />
-      <created>1717547650041</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
+      <created>1720781745960</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
       <option name="project" value="LOCAL" />
-      <updated>1717547650041</updated>
+      <updated>1720781745960</updated>
     </task>
-    <task id="LOCAL-00014" summary="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components.">
+    <task id="LOCAL-00098" summary="#fix #js Fixed bugs to log out and success token">
       <option name="closed" value="true" />
-      <created>1717579859497</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
+      <created>1721025716897</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
       <option name="project" value="LOCAL" />
-      <updated>1717579859497</updated>
+      <updated>1721025716898</updated>
     </task>
-    <task id="LOCAL-00015" summary="#fix #jsx Update form inputs, handle state changes, and update data fetching in profile and index components.">
+    <task id="LOCAL-00099" summary="#fix #js Fixed bugs to auth, refactored css media on dashboard and validation to search">
       <option name="closed" value="true" />
-      <created>1717582734981</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
+      <created>1721124925548</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
       <option name="project" value="LOCAL" />
-      <updated>1717582734981</updated>
+      <updated>1721124925548</updated>
     </task>
-    <task id="LOCAL-00016" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
+    <task id="LOCAL-00100" summary="#fix #js Fixed CSS class bugs and form validation">
       <option name="closed" value="true" />
-      <created>1717612744993</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
+      <created>1721125953303</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
       <option name="project" value="LOCAL" />
-      <updated>1717612744993</updated>
+      <updated>1721125953303</updated>
     </task>
-    <task id="LOCAL-00017" summary="#fix #jsx Update profile component to include QR code functionality and update workspace configuration for package dependencies and local tasks.">
+    <task id="LOCAL-00101" summary="#fix #js Fixed auth bugs, select total packages and configuration vite">
       <option name="closed" value="true" />
-      <created>1717612871464</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
+      <created>1721134707883</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
       <option name="project" value="LOCAL" />
-      <updated>1717612871464</updated>
+      <updated>1721134707883</updated>
     </task>
-    <task id="LOCAL-00018" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
+    <task id="LOCAL-00102" summary="#fix #js Fixed mobile menubar">
       <option name="closed" value="true" />
-      <created>1717626169798</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
+      <created>1721196574754</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
       <option name="project" value="LOCAL" />
-      <updated>1717626169799</updated>
+      <updated>1721196574755</updated>
     </task>
-    <task id="LOCAL-00019" summary="#fix #jsx Refactor state initialization and handling in scheduling-student component and update workspace paths.">
+    <task id="LOCAL-00103" summary="#fix #js Fixed mobile menubar with color and active color status">
       <option name="closed" value="true" />
-      <created>1717661008010</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
+      <created>1721213216650</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
       <option name="project" value="LOCAL" />
-      <updated>1717661008010</updated>
+      <updated>1721213216650</updated>
     </task>
-    <task id="LOCAL-00020" summary="#fix #jsx Refactor render method to include index parameter and update conditional rendering logic based on ActionIndex.">
+    <task id="LOCAL-00104" summary="#fix #js #html Fixed HTML structure">
       <option name="closed" value="true" />
-      <created>1717683927280</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
+      <created>1721213607478</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
       <option name="project" value="LOCAL" />
-      <updated>1717683927281</updated>
+      <updated>1721213607478</updated>
     </task>
-    <task id="LOCAL-00021" summary="#fix #jsx #style Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
+    <task id="LOCAL-00105" summary="#fix #js #html Fixed URL router to pages, fixed structure data for control dynamic change active mrnu item">
       <option name="closed" value="true" />
-      <created>1717848423665</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
+      <created>1721232119934</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
       <option name="project" value="LOCAL" />
-      <updated>1717848423665</updated>
+      <updated>1721232119934</updated>
     </task>
-    <task id="LOCAL-00022" summary="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
+    <task id="LOCAL-00106" summary="#fix #js #html Fixed routing path, menu on portal student and link in other pages">
       <option name="closed" value="true" />
-      <created>1717848811933</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
+      <created>1721300441752</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
       <option name="project" value="LOCAL" />
-      <updated>1717848811933</updated>
+      <updated>1721300441752</updated>
     </task>
-    <task id="LOCAL-00023" summary="#fix #jsx Update form fields and handlers for status, type, sub-type, driving hours, location, days, number of sessions, session duration, session times, and other settings in the management module.">
+    <task id="LOCAL-00107" summary="#fix #js #html Fixed routing path, menu data, optimized code structure and other">
       <option name="closed" value="true" />
-      <created>1717852155565</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
+      <created>1721395614326</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
       <option name="project" value="LOCAL" />
-      <updated>1717852155565</updated>
+      <updated>1721395614326</updated>
     </task>
-    <task id="LOCAL-00024" summary="#fix #jsx Refactor form fields and handlers for status, type, and other settings in the management module.">
+    <task id="LOCAL-00108" summary="#fix #jsx Fixed bug in mobile media and request loading data.">
       <option name="closed" value="true" />
-      <created>1717859560348</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
+      <created>1721398815227</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
       <option name="project" value="LOCAL" />
-      <updated>1717859560348</updated>
+      <updated>1721398815227</updated>
     </task>
-    <task id="LOCAL-00025" summary="#fix #jsx Update student profile, billing, appointments, files, messages, tests, and log links to handle potential missing studentId and subtitle values; add validation messages for empty fields and implement save and cancel buttons in the form.">
+    <task id="LOCAL-00109" summary="#fix #jsx Fixed bugs on code structure and optimized functions.">
       <option name="closed" value="true" />
-      <created>1717940194548</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
+      <created>1721401517046</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
       <option name="project" value="LOCAL" />
-      <updated>1717940194548</updated>
+      <updated>1721401517046</updated>
     </task>
-    <task id="LOCAL-00026" summary="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml.">
+    <task id="LOCAL-00110" summary="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal.">
       <option name="closed" value="true" />
-      <created>1718010940967</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
+      <created>1721781236960</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
       <option name="project" value="LOCAL" />
-      <updated>1718010940967</updated>
+      <updated>1721781236961</updated>
     </task>
-    <task id="LOCAL-00027" summary="#fix #jsx Add to-do section in management.jsx and update a work item in workspace.xml.">
+    <task id="LOCAL-00111" summary="#fix #jsx Fixed modal to payment i student portal">
       <option name="closed" value="true" />
-      <created>1718012807754</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
+      <created>1721816189241</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
       <option name="project" value="LOCAL" />
-      <updated>1718012807754</updated>
+      <updated>1721816189241</updated>
     </task>
-    <task id="LOCAL-00028" summary="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs.">
+    <task id="LOCAL-00112" summary="#fix #jsx Fixed modal to update questions answers.">
       <option name="closed" value="true" />
-      <created>1718092821114</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
+      <created>1721897248735</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
       <option name="project" value="LOCAL" />
-      <updated>1718092821114</updated>
+      <updated>1721897248735</updated>
     </task>
-    <task id="LOCAL-00029" summary="#fix #jsx Update workspace.xml and modal.jsx with new service information and form inputs, and add to-do section in management.jsx.">
+    <task id="LOCAL-00113" summary="#fix #jsx Optimized media in student portal">
       <option name="closed" value="true" />
-      <created>1718093196829</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
+      <created>1721916413692</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
       <option name="project" value="LOCAL" />
-      <updated>1718093196829</updated>
+      <updated>1721916413692</updated>
     </task>
-    <task id="LOCAL-00030" summary="#fix #jsx Update modal.jsx with new service information and form inputs.">
+    <task id="LOCAL-00114" summary="#fix #jsx Optimized code and created quiz router for student portal.">
       <option name="closed" value="true" />
-      <created>1718100658457</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
+      <created>1721992787938</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
       <option name="project" value="LOCAL" />
-      <updated>1718100658458</updated>
+      <updated>1721992787938</updated>
     </task>
-    <task id="LOCAL-00031" summary="#fix #jsx Update modal.jsx with new service information and form inputs.">
+    <task id="LOCAL-00115" summary="#fix #jsx Optimized code in schedule and added react-response to do media with calendar">
       <option name="closed" value="true" />
-      <created>1718104686677</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
+      <created>1721996517119</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
       <option name="project" value="LOCAL" />
-      <updated>1718104686677</updated>
+      <updated>1721996517119</updated>
     </task>
-    <task id="LOCAL-00032" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+    <task id="LOCAL-00116" summary="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment">
       <option name="closed" value="true" />
-      <created>1718119179298</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
+      <created>1722122203890</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
       <option name="project" value="LOCAL" />
-      <updated>1718119179298</updated>
+      <updated>1722122203890</updated>
     </task>
-    <task id="LOCAL-00033" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+    <task id="LOCAL-00117" summary="#fix #jsx Fixed bugs and optimized code in js files">
       <option name="closed" value="true" />
-      <created>1718140880746</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
+      <created>1722125478547</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
       <option name="project" value="LOCAL" />
-      <updated>1718140880746</updated>
+      <updated>1722125478547</updated>
     </task>
-    <task id="LOCAL-00034" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+    <task id="LOCAL-00118" summary="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page">
       <option name="closed" value="true" />
-      <created>1718194280992</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
+      <created>1722203654303</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
       <option name="project" value="LOCAL" />
-      <updated>1718194280992</updated>
+      <updated>1722203654304</updated>
     </task>
-    <task id="LOCAL-00035" summary="#fix #jsx Refactor form list and custom input components for improved structure and readability.">
+    <task id="LOCAL-00119" summary="#fix #jsx Optimized code and refactored structure">
       <option name="closed" value="true" />
-      <created>1718199026653</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
+      <created>1722245221622</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
       <option name="project" value="LOCAL" />
-      <updated>1718199026653</updated>
+      <updated>1722245221622</updated>
     </task>
-    <task id="LOCAL-00036" summary="#fix #jsx Refactor form components for improved structure and readability.">
+    <task id="LOCAL-00120" summary="#fix #jsx Optimized code and products module structure with delete and patch form data.">
       <option name="closed" value="true" />
-      <created>1718205373873</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
+      <created>1722384548065</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
       <option name="project" value="LOCAL" />
-      <updated>1718205373873</updated>
+      <updated>1722384548066</updated>
     </task>
-    <task id="LOCAL-00037" summary="#fix #jsx Refactor form components for improved structure and readability.">
+    <task id="LOCAL-00121" summary="#fix #jsx Optimized code on discount, fees and quiz-exam modules with delete and patch request data.">
       <option name="closed" value="true" />
-      <created>1718207063656</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
+      <created>1722388157811</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
       <option name="project" value="LOCAL" />
-      <updated>1718207063656</updated>
+      <updated>1722388157811</updated>
     </task>
-    <task id="LOCAL-00038" summary="#fix #jsx Update student password page title and refactor form components for improved structure and readability.">
+    <task id="LOCAL-00122" summary="#fix #jsx Optimized code on services module with delete and patch request data.">
       <option name="closed" value="true" />
-      <created>1718216422911</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
+      <created>1722389462158</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
       <option name="project" value="LOCAL" />
-      <updated>1718216422911</updated>
+      <updated>1722389462158</updated>
     </task>
-    <task id="LOCAL-00039" summary="#fix #jsx Update form components and page title for student password for improved structure and readability.">
+    <task id="LOCAL-00123" summary="#fix #jsx Optimized code on file management and refactored some structure.">
       <option name="closed" value="true" />
-      <created>1718289552580</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
+      <created>1722391845237</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
       <option name="project" value="LOCAL" />
-      <updated>1718289552580</updated>
+      <updated>1722391845237</updated>
     </task>
-    <task id="LOCAL-00040" summary="#fix #jsx Update form components and page title for student password for improved structure and readability.">
+    <task id="LOCAL-00124" summary="#fix #jsx Optimized code on Add staff and its module">
       <option name="closed" value="true" />
-      <created>1718304035730</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
+      <created>1722393427748</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
       <option name="project" value="LOCAL" />
-      <updated>1718304035730</updated>
+      <updated>1722393427748</updated>
     </task>
-    <task id="LOCAL-00041" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+    <task id="LOCAL-00125" summary="#fix #jsx Fixed some bugs in code">
       <option name="closed" value="true" />
-      <created>1718304876776</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
+      <created>1722393909634</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
       <option name="project" value="LOCAL" />
-      <updated>1718304876777</updated>
+      <updated>1722393909634</updated>
     </task>
-    <task id="LOCAL-00042" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+    <task id="LOCAL-00126" summary="#fix #jsx Fixed bugs and structure code">
       <option name="closed" value="true" />
-      <created>1718472372711</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
+      <created>1722690566718</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
       <option name="project" value="LOCAL" />
-      <updated>1718472372711</updated>
+      <updated>1722690566718</updated>
     </task>
-    <task id="LOCAL-00043" summary="#fix #jsx Refactor form submission handling and form field validation messages.">
+    <task id="LOCAL-00127" summary="#fix #jsx Fixed bugs">
       <option name="closed" value="true" />
-      <created>1718475445056</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
+      <created>1722705961680</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
       <option name="project" value="LOCAL" />
-      <updated>1718475445056</updated>
+      <updated>1722705961680</updated>
     </task>
-    <task id="LOCAL-00044" summary="#fix #jsx Refactor form submission handling and field validation messages.">
+    <task id="LOCAL-00128" summary="#fix #jsx Fix routing and set to store">
       <option name="closed" value="true" />
-      <created>1718482278865</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
+      <created>1722832841886</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
       <option name="project" value="LOCAL" />
-      <updated>1718482278865</updated>
+      <updated>1722832841887</updated>
     </task>
-    <task id="LOCAL-00045" summary="#fix #jsx Refactor form submission handling and field validation messages.">
+    <task id="LOCAL-00129" summary="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars.">
       <option name="closed" value="true" />
-      <created>1718541844895</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
+      <created>1723023533315</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
       <option name="project" value="LOCAL" />
-      <updated>1718541844895</updated>
+      <updated>1723023533316</updated>
     </task>
-    <task id="LOCAL-00046" summary="#fix #jsx Refactored the logic for dynamic data changes in React-Big-Calendar.">
+    <task id="LOCAL-00130" summary="#fix #jsx Fixed routing and password.jsx">
       <option name="closed" value="true" />
-      <created>1718573641969</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
+      <created>1723025453006</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
       <option name="project" value="LOCAL" />
-      <updated>1718573641969</updated>
+      <updated>1723025453006</updated>
     </task>
-    <task id="LOCAL-00047" summary="#fix #jsx Refactored BigCalendar components to implement dynamic data changes">
+    <task id="LOCAL-00131" summary="#fix #jsx Fixed get request data, updated attr img and module">
       <option name="closed" value="true" />
-      <created>1718576721016</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
+      <created>1723269920965</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
       <option name="project" value="LOCAL" />
-      <updated>1718576721016</updated>
+      <updated>1723269920966</updated>
     </task>
-    <task id="LOCAL-00048" summary="Refactor BigCalendar components to implement dynamic data changes">
+    <task id="LOCAL-00132" summary="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values.">
       <option name="closed" value="true" />
-      <created>1718733433872</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
+      <created>1723273382661</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
       <option name="project" value="LOCAL" />
-      <updated>1718733433872</updated>
+      <updated>1723273382661</updated>
     </task>
-    <task id="LOCAL-00049" summary="Refactor enrollment form to improve dynamic data handling">
+    <task id="LOCAL-00133" summary="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors.">
       <option name="closed" value="true" />
-      <created>1718748699036</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
+      <created>1723285555110</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
       <option name="project" value="LOCAL" />
-      <updated>1718748699036</updated>
+      <updated>1723285555110</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,31 +644,31 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactored the logic for dynamic data" />
-    <MESSAGE value="Refactored the logic for dynamic data changes" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in React" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in React-B" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-C" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-Calendar" />
-    <MESSAGE value="Refactored the logic for dynamic data changes in React-Big-Calendar." />
-    <MESSAGE value="#fix #jsx Refactored BigCalendar components to implement dynamic data changes" />
-    <MESSAGE value="Ref" />
-    <MESSAGE value="Refact" />
-    <MESSAGE value="Refactored" />
-    <MESSAGE value="Refactored Big" />
-    <MESSAGE value="Refactored BigCalendar" />
-    <MESSAGE value="Refactored BigCalendar components" />
-    <MESSAGE value="Refactored BigCalendar components to" />
-    <MESSAGE value="Refactored BigCalendar components to implement" />
-    <MESSAGE value="Refactored BigCalendar components to implement dynamic" />
-    <MESSAGE value="Refactored BigCalendar components to implement dynamic data" />
-    <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes." />
-    <MESSAGE value="Refactored BigCalendar components to implement dynamic data changes" />
-    <MESSAGE value="Refactor BigCalendar components to implement dynamic data changes" />
-    <MESSAGE value="Refactor enrollment form to improve dynamic data handling" />
-    <MESSAGE value="Refactor dependencies, UI, components, and view logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor dependencies, UI, components, and view logic" />
+    <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions." />
+    <MESSAGE value="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal." />
+    <MESSAGE value="#fix #jsx Fixed modal to payment i student portal" />
+    <MESSAGE value="#fix #jsx Fixed modal to update questions answers." />
+    <MESSAGE value="#fix #jsx Optimized media in student portal" />
+    <MESSAGE value="#fix #jsx Optimized code and created quiz router for student portal." />
+    <MESSAGE value="#fix #jsx Optimized code in schedule and added react-response to do media with calendar" />
+    <MESSAGE value="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment" />
+    <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files" />
+    <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page" />
+    <MESSAGE value="#fix #jsx Optimized code and refactored structure" />
+    <MESSAGE value="#fix #jsx Optimized code and products module structure with delete and patch form data." />
+    <MESSAGE value="#fix #jsx Optimized code on discount, fees and quiz-exam modules with delete and patch request data." />
+    <MESSAGE value="#fix #jsx Optimized code on services module with delete and patch request data." />
+    <MESSAGE value="#fix #jsx Optimized code on file management and refactored some structure." />
+    <MESSAGE value="#fix #jsx Optimized code on Add staff and its module" />
+    <MESSAGE value="#fix #jsx Fixed some bugs in code" />
+    <MESSAGE value="#fix #jsx Fixed bugs and structure code" />
+    <MESSAGE value="#fix #jsx Fixed bugs" />
+    <MESSAGE value="#fix #jsx Fix routing and set to store" />
+    <MESSAGE value="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars." />
+    <MESSAGE value="#fix #jsx Fixed routing and password.jsx" />
+    <MESSAGE value="#fix #jsx Fixed get request data, updated attr img and module" />
+    <MESSAGE value="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values." />
+    <MESSAGE value="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors." />
   </component>
 </project>

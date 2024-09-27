@@ -33,13 +33,13 @@ Users/__pycache__/
 abstracts/__pycache__/
 backend/config/__pycache__/urls.cpython-311.pyc
 backend/config/__pycache__/wsgi.cpython-311.pyc
+backend/config/__pycache__/settings.cpython-311.pyc
 configuration/__pycache__/
 interaction/__pycache__/
 location/__pycache__/
 servises/__pycache__/
 /backend/venv/
 /.idea/inspectionProfiles/Project_Default.xml
-.idea/workspace.xml
 .idea/*
 /package.json
 /package-lock.json

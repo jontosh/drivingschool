@@ -1,18 +1,49 @@
 Router = {
+    "swagger":{
+        "base":"",
+        "methods":["ALL METHODS ARE SHOWN"],
+        "descriptions":"Here you can test entire endpoint with help of SWAGGER",
+        "note":"Mani endpoints are of this section "
+               "<li><span>schema-swagger-ui</span></li>"
+               "<li><span>schema-redoc</span></li><br>",
+        "children":{
+        "schema-json":"swagger<format>/",
+        "schema-swagger-ui":"swagger/",
+        "schema-redoc":"redoc/",
+        }
+    },
+    "dj-rest-auth": {
+        "base":         "dj-rest-auth/",
+        "methods":      [ "ALL METHODS ARE SHOWN" ],
+        "descriptions": "Here you can test entire endpoint with help of SWAGGER",
+        "note":         "Mani endpoints are of this section "
+                        "<li><span>schema-swagger-ui</span></li>"
+                        "<li><span>schema-redoc</span></li><br>",
+        "children":     {
+            "change-password":       "password/change/",
+            "user": "user/",
+            "reset-password":      "password/reset/",
+            "login":"login/",
+            "logout":"logout/"
+        }
+    },
     "authentication":{
         "base":"authentication/",
         "methods":["GET","POST","OTHER METHODS BLOCKED"],
         "descriptions":"Here we provide login url to obtain token for api interaction. ",
-        "note":"<li>From now on, you have to be loged in to enter API DOCUMENTATION. First you have to send request "
-               "<span>obtain_auth_token/</span> with <span>username/</span> and <span>password/</span> then access to other pages.</li><br>"
-               "<li><span>login/</span> made for searching in <span class='highlight-red'>API DOCUMENTATION</span>, "
-               "you will enter by some  username and password then you can access to other API endpoints</li>"
+        "note":"<li>From now on, you have to be logged in to enter API DOCUMENTATION. First you have to send request </li>"
+               "<li><span>token_obtain_pair/</span> with <span  class='highlight-red'>username/</span> and <span  class='highlight-red'>password/</span> then access to other pages.</li>"
+               "<li><span>token_refresh/</span> By using this endpoint you will get access to create new access token by providing old token without providing <span  class='highlight-red'>username/</span> and <span  class='highlight-red'>password/</span> </li>"
+               "<li><span>token_verify/</span> This endpoint check token of yours and return 200 response if it is <span  class='highlight-green'>OK</span> if not  <span  class='highlight-red'>401/</span> and error message</li>"
                "<li>Only <span>GET</span> and <span>POST</span> methods are allowed other will end up with <span class='highlight-red'>ERROR</span></li>"
                "<li>if you are web scrolling <span class='highlight-red'>do not forget logout</span> it will cause to interruption of signals</li>",
         "children":{
-            "login":"login/",
-            "logout":"logout/",
-            "obtain_auth_token":"obtain_auth_token/",
+            # "login":"login/",
+            # "logout":"logout/",
+            # "obtain_auth_token":"obtain_auth_token/",
+            "token_obtain_pair":"token_obtain_pair",
+            "token_refresh":"token_refresh",
+            "token_verify":"token_verify",
         }
     },
     "communication":{
@@ -24,6 +55,8 @@ Router = {
             "task":"task",
             "logs":"logs",
             "latest_news":"latest_news",
+            "send_template":"send_template",
+            "template":"template",
         }
     },
     "account_management":{
@@ -54,6 +87,8 @@ Router = {
             "question_type":"question_type",
             "test":"test",
             "answer":"answer",
+            "student_test":"student_test",
+            "student_question":"student_question",
         }
     },
     "configuration": {
@@ -94,6 +129,8 @@ Router = {
             "emergency_contact":"emergency_contact",
             "student_note":"student_note",
             "driving_note":"driving_note",
+            "rights":"rights",
+            "fields":"fields",
         }
     },
     "main_admin":{

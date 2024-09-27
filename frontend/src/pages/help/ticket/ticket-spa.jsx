@@ -9,9 +9,9 @@ export const TicketSpa = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>News Details</title>
+        <title>Help - News Details</title>
       </Helmet>
-      <div className="px-11">
+      <div className="px-3 sm:px-11">
         <Title
           level={2}
           fontSize={"text-black text-2xl"}
@@ -22,7 +22,7 @@ export const TicketSpa = () => {
         </Title>
 
         <div className="bg-white p-5 rounded-lg">
-          <div className="flex justify-between items-center">
+          <div className="flex max-[500px]:flex-col gap-3 justify-between items-center">
             <Title
               level={2}
               fontSize={"text-black text-2xl"}

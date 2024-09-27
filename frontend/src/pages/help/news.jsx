@@ -22,17 +22,17 @@ export const News = () => {
     return (
         <Fragment>
             <Helmet>
-                <title>News</title>
+                <title>Help - News</title>
             </Helmet>
-            <div className="px-11">
+            <div className="px-3 sm:px-11">
                 <Title level={2} fontSize={"text-black text-2xl"} fontWeightStrong={500} titleMarginBottom={40}>
                     News
                 </Title>
-                <div className="flex flex-col gap-y-2 pl-6 pr-6 pb-4 rounded-lg">
+                <div className="flex flex-col gap-y-2 p3 sm:px-6 pb-4 rounded-lg">
                     {newsItems.map((item) => (
                         <Link key={item.id} to={`ticket/${item.title}/${item.id}`}>
                             <div className="bg-white w-full flex flex-col gap-y-5 p-5 rounded-tr-lg rounded-br-lg border-l-4 border-l-transparent hover:border-l-blue-500">
-                                <div className="flex justify-between items-center">
+                                <div className="flex max-md:flex-col gap-2.5 justify-between items-center">
                                     <Paragraph className="font-semibold text-lg">
                                         {item.title.replace('-', ' ').toUpperCase()}
                                     </Paragraph>
@@ -41,11 +41,11 @@ export const News = () => {
                                         <span className="text-lg font-normal">{item.date}</span>
                                     </div>
                                 </div>
-                                <span className="flex justify-between items-center">
+                                <span className="flex max-md:flex-col justify-between items-center max-md:items-end">
                                     <Paragraph className="font-normal text-sm text-gray-400">
                                         {item.description}
                                     </Paragraph>
-                                    <IconComponent icon={<ExportOutlined />} className="text-gray-400" />
+                                    <IconComponent icon={<ExportOutlined />} className="text-gray-400 max-md:text-right" />
                                 </span>
                             </div>
                         </Link>

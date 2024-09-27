@@ -1,5 +1,13 @@
 @import "@/styles/vars";
 
+.Status {
+  span[class*="ant-select-selection-placeholder"],
+  span[class*="ant-select-selection-item"] {
+    color: $main;
+    text-align: center;
+  }
+}
+
 .Student {
   &-profile {
     &__imageholder {
@@ -9,15 +17,6 @@
         width: 88px;
       }
     }
-
-    // &__email {
-
-    //   &-icon {
-    //     width: 25.5px;
-    //     height: 23.57px;
-    //     color: #00000073;
-    //   }
-    // }
 
     &__div {
       width: 305.15px;
