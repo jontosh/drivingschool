@@ -140,7 +140,7 @@ export const Company = () => {
 
             <Form.Item name={"notes"} label={"Notes"}>
               <Input.TextArea
-                className={"border-[#667085]"}
+                className={"border-black"}
                 placeholder={"Notes"}
                 allowClear
               />

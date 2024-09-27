@@ -2,13 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { ModalReducer } from "@/hooks/reducer.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import {
-  useRequestGetQuery,
-  useRequestIdQuery,
-  useRequestPatchMutation,
-} from "@/redux/query/index.jsx";
 import { Form, Space } from "antd";
 import {
   Fragment,
@@ -22,6 +16,12 @@ import { AiOutlineEye } from "react-icons/ai";
 import { IoTimeOutline } from "react-icons/io5";
 import { LuSmartphone } from "react-icons/lu";
 import { TbEdit } from "react-icons/tb";
+import {
+  useRequestGetQuery,
+  useRequestPatchMutation,
+} from "@/redux/query/index.jsx";
+import { ModalReducer } from "@/hooks/reducer.jsx";
+import { useParams } from "react-router-dom";
 
 const EmailNameCell = ({ text }) => (
   <Paragraph className="text-start" fontSize="text-base" fontWeightStrong={400}>
@@ -35,59 +35,52 @@ const EmailSubjectCell = ({ text }) => (
   </Paragraph>
 );
 
-const ActionIcons = ({ keywords = [], data }) => {
-  const [state, dispatch] = useReducer(ModalReducer, { modal: null });
+const ActionIcons = ({ data }) => {
+  const [state, dispatch] = useReducer(ModalReducer, { modal: false });
+  const [RowId, setRowId] = useState(null);
   const [IsOpen, setIsOpen] = useState(false);
-  const [Action, setAction] = useState({ id: undefined, index: undefined });
   const [form] = Form.useForm();
-
-  const { data: TempItemData } = useRequestIdQuery({
-    path: "/communication/template",
-    id: Action?.index,
-  });
-
+  const { subpage } = useParams();
+  const portalPath = useMemo(
+    () =>
+      subpage === "student-portal"
+        ? "/page_api/student_email_templates"
+        : "/page_api/instructor_email_templates",
+    [subpage],
+  );
   const [requestPatch, { reset }] = useRequestPatchMutation();
+  const { data: KeywordsData } = useRequestGetQuery({ path: portalPath });
 
   useEffect(() => {
-    form?.setFieldsValue(TempItemData);
-  }, [TempItemData, IsOpen]);
-
-  useEffect(() => {
-    if (keywords.length > 0) {
-      dispatch({
-        type: "EMAIL",
-        onFinish: async (values) => {
-          const response = await requestPatch({
+    dispatch({
+      type: "EMAIL",
+      open: IsOpen,
+      onCancel: () => setIsOpen(false),
+      width: 1360,
+      form,
+      data,
+      onFinish: async (values) => {
+        try {
+          await requestPatch({
             path: "/communication/template",
-            id: Action?.index,
+            id: data?.id,
             data: values,
-          });
+          })
+            .unwrap()
+            .then(() => {
+              reset();
 
-          if (response?.data) {
-            setIsOpen(false);
-            reset();
-          } else {
-            dispatch({
-              type: "ERROR",
-              data: response?.error?.data,
-              open: IsOpen,
-              onEvent: () => setIsOpen(false),
+              setTimeout(() => {
+                setIsOpen(false);
+              }, 1000);
             });
-          }
-        },
-        onCancel: () => {
-          setIsOpen(false);
-        },
-        open: IsOpen,
-        width: 1250,
-        form,
-        keywords,
-      });
-    }
-
-    document.body.style.overflow = "";
-  }, [IsOpen, keywords?.length]);
-
+        } catch (e) {
+          console.error(e);
+        }
+      },
+      keywords: KeywordsData?.map((item) => `{{${item}}}`),
+    });
+  }, [IsOpen]);
   return (
     <div className="space-x-2">
       {[TbEdit, LuSmartphone, AiOutlineEye, IoTimeOutline].map(
@@ -96,14 +89,14 @@ const ActionIcons = ({ keywords = [], data }) => {
             <Fragment key={index}>
               <IconComponent
                 key={index}
-                className="text-2xl border border-indigo-600 rounded-lg px-1 pt-1"
+                className="text-2xl border border-indigo-600 rounded-lg p-1"
                 icon={<Icon />}
                 onClick={() => {
-                  setAction({ id: index, index: data?.id });
-                  setIsOpen(TbEdit === Icon);
+                  setRowId(index);
+                  setIsOpen(true);
                 }}
               />
-              {Action.id === index && state?.modal}
+              {index === RowId && state?.modal}
             </Fragment>
           );
         },
@@ -112,7 +105,7 @@ const ActionIcons = ({ keywords = [], data }) => {
   );
 };
 
-export const EmailTemplateModule = (keywords = []) => {
+export const EmailTemplateModule = () => {
   const { colorsObject } = useContext(ColorsContext);
 
   const { data } = useRequestGetQuery({
@@ -127,6 +120,7 @@ export const EmailTemplateModule = (keywords = []) => {
         key: "name",
         align: "center",
         render: (text) => <EmailNameCell text={text} />,
+        width: 280,
       },
       {
         title: "Email text",
@@ -164,10 +158,10 @@ export const EmailTemplateModule = (keywords = []) => {
         dataIndex: "id",
         key: "id",
         align: "center",
-        width: 200,
-        render: (_, record) => (
-          <ActionIcons keywords={keywords} data={record} />
-        ),
+        width: 320,
+        render: (_, record) => {
+          return <ActionIcons data={record} />;
+        },
       },
     ],
     [colorsObject],

@@ -2,7 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import { CustomSelect } from "@/components/form/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { InboxOutlined, PlusOutlined } from "@ant-design/icons";
+import { InboxOutlined } from "@ant-design/icons";
 import classNames from "classnames";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
@@ -13,13 +13,11 @@ import {
   Input,
   Modal as ModalComponent,
   Steps,
-  Switch,
+  message,
   Upload,
 } from "antd";
-import MDEditor from "@uiw/react-md-editor";
-import IconComponent from "../icons";
-import { BiLinkAlt } from "react-icons/bi";
-import { FiHelpCircle } from "react-icons/fi";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const Modal = ({ className, setIsOpen, children, width }) => {
   className = classNames(className, ModalStyle["Modal"]);
@@ -242,60 +240,6 @@ export const ModalEdit = ({
   );
 };
 
-const VariableList = ({ variables }) => {
-  const handleDragStart = (e, variable) => {
-    e.dataTransfer.setData("text/plain", variable);
-  };
-
-  const varsItem = variables?.map((variable) => (
-    <li
-      key={variable}
-      draggable
-      onDragStart={(e) => handleDragStart(e, variable)}
-    >
-      {variable}
-    </li>
-  ));
-
-  return <ul className={"max-h-[350px] overflow-y-scroll"}>{varsItem}</ul>;
-};
-
-const MarkdownEditor = ({ onChange, value: initialValues }) => {
-  const [value, setValue] = useState("");
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const variable = e.dataTransfer.getData("text/plain");
-    const cursorPosition = e.target.selectionStart;
-    const newValue =
-      value.slice(0, cursorPosition) + variable + value.slice(cursorPosition);
-    setValue(newValue);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    if (initialValues) {
-      setValue(initialValues);
-    }
-  }, [initialValues]);
-
-  return (
-    <div onDrop={handleDrop} onDragOver={handleDragOver}>
-      <MDEditor
-        preview={"edit"}
-        value={value}
-        onChange={(e) => {
-          setValue(e);
-          onChange(e);
-        }}
-      />
-    </div>
-  );
-};
-
 export const ModalEmail = ({
   title,
   onOk,
@@ -305,23 +249,14 @@ export const ModalEmail = ({
   width,
   onFinish,
   form,
+  data,
   keywords = [],
 }) => {
   const { colorsObject } = useContext(ColorsContext);
-  const [value, setValue] = useState(undefined);
-  useEffect(() => {
-    form?.setFieldValue({
-      template: value,
-    });
-  }, [form, value]);
 
   useEffect(() => {
-    if (form?.getFieldValue("template")) {
-      setValue(form?.getFieldValue("template"));
-    }
-  }, [form, open]);
-
-  const ownerKeywords = [`{{${import.meta.env.VITE_ICON}}}`];
+    form?.setFieldsValue(data);
+  }, [form, data]);
 
   const normFile = (e) => {
     if (Array.isArray(e)) {
@@ -332,6 +267,7 @@ export const ModalEmail = ({
 
   const { Dragger } = Upload;
   const props = {
+    maxCount: 3,
     name: "file",
     multiple: true,
     action: "https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload",
@@ -350,6 +286,30 @@ export const ModalEmail = ({
       console.log("Dropped files", e.dataTransfer.files);
     },
   };
+
+  const insertKeyword = (editor, keyword) => {
+    const viewFragment = editor.data.processor.toView(keyword);
+    const modelFragment = editor.data.toModel(viewFragment);
+    editor.model.insertContent(modelFragment);
+  };
+
+  const keyword = keywords.map((keyword) => (
+    <div
+      key={keyword}
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.setData("text/plain", keyword);
+      }}
+      onDrop={(e) => {
+        e.preventDefault();
+        const keyword = e.dataTransfer.getData("text");
+        insertKeyword(editor, keyword);
+      }}
+      className="cursor-pointer text-blue-500 hover:underline"
+    >
+      {keyword}
+    </div>
+  ));
 
   return (
     <ModalComponent
@@ -409,9 +369,119 @@ export const ModalEmail = ({
           </Form.Item>
 
           <Form.Item name="template">
-            <MarkdownEditor
-              value={value}
-              onChange={(value) => setValue(value)}
+            <CKEditor
+              editor={ClassicEditor}
+              config={{
+                toolbar: {
+                  items: [
+                    "heading",
+                    "|",
+                    "bold",
+                    "italic",
+                    "strikethrough",
+                    "subscript",
+                    "superscript",
+                    "code",
+                    "|",
+                    "alignment",
+                    "|",
+                    "fontfamily",
+                    "fontsize",
+                    "fontColor",
+                    "fontBackgroundColor",
+                    "|",
+                    "alignment",
+                    "|",
+                    "link",
+                    "|",
+                    "bulletedList",
+                    "numberedList",
+                    "todoList",
+                    "|",
+                    "blockQuote",
+                    "|",
+                    "insertTable",
+                    "tableColumn",
+                    "tableRow",
+                    "mergeTableCells",
+                    "|",
+                    "imageUpload",
+                    "mediaEmbed",
+                    "|",
+                    "undo",
+                    "redo",
+                  ],
+                },
+                image: {
+                  toolbar: [
+                    "imageTextAlternative",
+                    "imageStyle:full",
+                    "imageStyle:side",
+                  ],
+                  upload: {
+                    types: ["jpeg", "png", "gif", "bmp", "webp", "tiff"],
+                  },
+                },
+                table: {
+                  contentToolbar: [
+                    "tableColumn",
+                    "tableRow",
+                    "mergeTableCells",
+                  ],
+                  tableToolbar: ["bold", "italic"],
+                },
+                heading: {
+                  options: [
+                    {
+                      model: "paragraph",
+                      title: "Paragraph",
+                      class: "ck-heading_paragraph",
+                    },
+                    {
+                      model: "heading1",
+                      view: "h1",
+                      title: "Heading 1",
+                      class: "ck-heading_heading1",
+                    },
+                    {
+                      model: "heading2",
+                      view: "h2",
+                      title: "Heading 2",
+                      class: "ck-heading_heading2",
+                    },
+                    {
+                      model: "heading3",
+                      view: "h3",
+                      title: "Heading 3",
+                      class: "ck-heading_heading3",
+                    },
+                  ],
+                },
+                mediaEmbed: {
+                  previewsInData: true,
+                },
+                simpleUpload: {
+                  uploadUrl:
+                    import.meta.env.VITE_API_URL + "/student_account/files/",
+                },
+              }}
+              data={`
+                    ${data?.template}
+                    <br>
+                    
+                    <img src="${import.meta.env.VITE_LOGO}" alt="Logo" height="200" width="400" />
+                    
+                    <p class="footer-text">This is an automatically generated email. Please do not reply to this email.</p>
+                `}
+              onReady={(editor) => {
+                console.log("Editor is ready to use!", editor);
+              }}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                form?.setFieldsValue({
+                  template: data,
+                });
+              }}
             />
           </Form.Item>
         </article>
@@ -421,16 +491,9 @@ export const ModalEmail = ({
             <Title level={2} fontSize={"text-base font-extrabold"}>
               Keywords:
             </Title>
-
-            <VariableList variables={keywords} />
-          </code>
-
-          <code className="p-4 block border overflow-y-scroll bg-white rounded-3xl">
-            <Title level={2} fontSize={"text-base font-extrabold"}>
-              Owner:
-            </Title>
-
-            <VariableList variables={ownerKeywords} />
+            <code className={"max-h-[800px] h-full overflow-y-scroll"}>
+              {keyword.length === 0 ? "EMPTY" : keyword}
+            </code>
           </code>
 
           <div className="p-4 border overflow-y-scroll bg-white rounded-3xl space-y-5">

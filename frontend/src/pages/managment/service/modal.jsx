@@ -3889,7 +3889,7 @@ export const CorporateTimeModalContent = () => {
                 },
               ]}
             >
-              <DatePicker className={"w-full h-[50px] border-[#667085]"} />
+              <DatePicker className={"w-full h-[50px] border-black"} />
             </Form.Item>
           </div>
 
@@ -3936,7 +3936,7 @@ export const CorporateTimeModalContent = () => {
             <Form.Item name={"note"} label={"Note"}>
               <Input.TextArea
                 placeholder={"Notes"}
-                className={"border-[#667085]"}
+                className={"border-black"}
               />
             </Form.Item>
           </div>
