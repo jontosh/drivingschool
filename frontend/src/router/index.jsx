@@ -1,6 +1,7 @@
 import { PrivateRoute } from "@/auth/private-route.jsx";
 import Layout from "@/layout";
 import Communication from "@/pages/communication/index.jsx";
+import { EmailTemplate } from "@/pages/communication/subpage/email-template.jsx";
 import Configuration from "@/pages/configuration/index.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
@@ -17,6 +18,7 @@ import Management from "@/pages/managment/index.jsx";
 import Modal from "@/pages/modal/index.jsx";
 import Notfound from "@/pages/notfound/index.jsx";
 import Register from "@/pages/register/index.jsx";
+import Password from "@/pages/register/password.jsx";
 import Report from "@/pages/report/index.jsx";
 import Scheduling from "@/pages/scheduling/index.jsx";
 import Manage from "@/pages/scheduling/subpages/manage.jsx";
@@ -35,7 +37,10 @@ import Quiz, { QuizView } from "@/pages/students/resources/quiz/index.jsx";
 import StudentResults from "@/pages/students/resources/quiz/results.jsx";
 import StudentTestView from "@/pages/students/resources/quiz/test.jsx";
 import StudentSchedule from "@/pages/students/schedule/index.jsx";
+import { Fragment } from "react";
+import { Helmet } from "react-helmet";
 import { createBrowserRouter } from "react-router-dom";
+import { StudentResources } from "@/pages/communication/subpage/studenе-resources.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +54,17 @@ export const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "password/:id",
+        element: (
+          <Fragment>
+            <Helmet>
+              <title>Password</title>
+            </Helmet>
+            <Password />
+          </Fragment>
+        ),
       },
       {
         path: "report/:title",
@@ -103,11 +119,16 @@ export const router = createBrowserRouter([
         element: <Search />,
       },
       {
-        path: "communication/:title",
+        path: "communication",
         element: <Communication />,
         children: [
           {
-            path: ":subpage",
+            path: "email-templates/:subpage",
+            element: <EmailTemplate />,
+          },
+          {
+            path: "student-resources/:subpage",
+            element: <StudentResources />,
           },
         ],
       },
@@ -173,16 +194,8 @@ export const router = createBrowserRouter([
     element: <Notfound />,
   },
   {
-    path: "admin/register/sign-in",
-    element: <Register title={"Admin"} />,
-  },
-  {
-    path: "instructor/register/sign-in",
-    element: <Register title={"instructor"} />,
-  },
-  {
-    path: "student/register/sign-in",
-    element: <Register title={"student"} />,
+    path: "/register/sign-in",
+    element: <Register />,
   },
   {
     path: "instructor",
@@ -193,15 +206,15 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "dashboard",
+        path: "dashboard/:instructorId",
         element: <InstructorDashboard />,
       },
       {
-        path: "schedule-lessons",
+        path: "schedule-lessons/:instructorId",
         element: <InstructorScheduling />,
       },
       {
-        path: "profile",
+        path: "profile/:instructorId",
         element: <InstructorProfile />,
       },
     ],
@@ -219,7 +232,7 @@ export const router = createBrowserRouter([
         element: <StudentDashboard />,
       },
       {
-        path: "account/:studentId",
+        path: "account/:subpage/:studentId",
         element: <StudentAccount />,
       },
       {

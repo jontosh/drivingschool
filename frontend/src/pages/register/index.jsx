@@ -5,16 +5,18 @@ import { CustomCheckBox, CustomInput } from "@/components/form/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import { useBaseURL } from "@/hooks/portal.jsx";
-import { useRequestPostMutation } from "@/redux/query/index.jsx";
+import {
+  useRequestPatchMutation,
+  useRequestPostMutation,
+} from "@/redux/query/index.jsx";
 import { Form, Input, message } from "antd";
 import { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { TfiArrowTopRight } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "use-local-storage";
 import useSessionStorageState from "use-session-storage-state";
 
-const Register = ({ title }) => {
+const Register = () => {
   const [AuthUser, setAuthUser] = useSessionStorageState("auth-user", {
     defaultValue: null,
   });
@@ -24,10 +26,14 @@ const Register = ({ title }) => {
   const [AuthRefresh, setAuthRefresh] = useSessionStorageState("auth-upgrade", {
     defaultValue: null,
   });
+  const [User, setUser] = useSessionStorageState("user", {
+    defaultValue: null,
+  });
   const [RememberMe, setRememberMe] = useLocalStorage("register", null);
   const [LogTime, setLogTime] = useLocalStorage("log-time", null);
   const [form] = Form.useForm();
   const [requestPost] = useRequestPostMutation();
+  const [requestPatch] = useRequestPatchMutation();
   const navigate = useNavigate();
   const { pathname } = useBaseURL();
 
@@ -52,9 +58,58 @@ const Register = ({ title }) => {
       if (response?.access) {
         setAuthUser(response?.access);
         setAuthRefresh(response?.refresh);
-        navigate(`/${pathname}/dashboard/${pathname === "student" ? 0 : ""}`, {
-          replace: true,
-        });
+        const { encrypted } = Crypto(
+          response?.user,
+          import.meta.env.VITE_SECRET_KEY,
+        );
+
+        setUser(encrypted);
+
+        if (response?.user?.usertype === 3) {
+          await requestPatch({
+            path: "/student_account/student",
+            id: response?.user?.id,
+            data: {
+              last_login: new Date(),
+            },
+          })
+            .unwrap()
+            .then(() => {
+              navigate("/student/dashboard/" + response?.user?.id, {
+                replace: true,
+              });
+            });
+        } else if (response?.user?.usertype === 4) {
+          await requestPatch({
+            path: "/student_account/instructor",
+            id: response?.user?.id,
+            data: {
+              last_login: new Date(),
+            },
+          })
+            .unwrap()
+            .then(() => {
+              navigate("/instructor/dashboard/" + response?.user?.id, {
+                replace: true,
+              });
+            });
+        } else if (response?.user?.usertype === 5) {
+          await requestPatch({
+            path: "/student_account/instructor",
+            id: response?.user?.id,
+            data: {
+              last_login: new Date(),
+            },
+          })
+            .unwrap()
+            .then(() => {
+              navigate("/admin/dashboard/", {
+                replace: true,
+              });
+            });
+        } else {
+          navigate(pathname + "register/sign-in", { replace: true });
+        }
       }
     } catch (error) {
       console.error(error);
@@ -71,7 +126,7 @@ const Register = ({ title }) => {
       </Helmet>
 
       <section className="bg-white p-5 flex flex-col-reverse xl:grid xl:grid-cols-2 xl:gap-5">
-        <div className="p-2.5 min-[600px]:p-20">
+        <div className="p-2.5 xl:p-20">
           <Title level={1} fontSize="text-4xl" titleMarginBottom={80}>
             Welcome to driving <br /> school
           </Title>
@@ -104,9 +159,11 @@ const Register = ({ title }) => {
               />
             </Form.Item>
 
-            <Link to="/" className="w-full text-right text-[#4C4C4C] text-lg">
-              Forgot Password?
-            </Link>
+            <Paragraph className={"text-right"}>
+              <Link to="/" className="text-[#4C4C4C] text-lg">
+                Forgot Password?
+              </Link>
+            </Paragraph>
 
             <hr className="border-[#E5EFFF]" />
 
@@ -128,30 +185,16 @@ const Register = ({ title }) => {
                 Login
               </ButtonComponent>
             </div>
-
-            <div className="flex items-center justify-center gap-2 pt-10">
-              <Paragraph colorText="#4C4C4C" fontWeightStrong="font-normal">
-                Don’t have an account?
-              </Paragraph>
-
-              <Link
-                to="/register/sign-up/"
-                className="flex items-center gap-1 underline font-medium text-[#4C4C4C]"
-              >
-                <span>Sign Up</span>
-                <TfiArrowTopRight className="w-4 mt-1" />
-              </Link>
-            </div>
           </Form>
         </div>
-        <div className="rounded-xl xl:border p-2.5 min-[600px]:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]">
+        <div className="rounded-xl xl:border p-2.5 xl:p-20 xl:bg-[#FAFCFF] xl:border-[#E5EFFF]">
           <Title
             level={1}
             className="pt-2"
             fontSize="text-4xl"
             titleMarginBottom={20}
           >
-            Login {title}
+            Login
           </Title>
           <Paragraph
             fontSize="text-lg mb-12"

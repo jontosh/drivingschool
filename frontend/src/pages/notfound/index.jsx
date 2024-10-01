@@ -15,22 +15,14 @@ const Notfound = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (
-      pathname === "/" ||
-      pathname === "/student" ||
-      pathname === "/student/"
-    ) {
-      navigate("/student/register/sign-in", { replace: true });
-    }
+    const path = ["/", "/student/", "/instructor/", "/admin/"].reduce(
+      (_, item) => item.includes(pathname),
+    );
 
-    if (pathname === "/instructor" || pathname === "/instructor/") {
-      navigate("/instructor/register/sign-in", { replace: true });
+    if (path) {
+      navigate("/register/sign-in", { replace: true });
     }
-
-    if (pathname === "/admin" || pathname === "/admin/") {
-      navigate("/admin/register/sign-in", { replace: true });
-    }
-  }, [pathname]);
+  }, [pathname, navigate]);
 
   return (
     <Fragment>

@@ -32,7 +32,7 @@ const randomSymbol = () => {
   return symbols[random(0, symbols.length - 1)];
 };
 
-export const InfoForm = ({ packages }) => {
+export const InfoForm = ({ packages, type }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [Password, setPassword] = useState(null);
   const [requestPost] = useRequestPostMutation();
@@ -108,16 +108,6 @@ export const InfoForm = ({ packages }) => {
 
   const onFinish = async (values) => {
     try {
-      console.log({
-        ...values,
-        dl_given_date: values.dl_given_date?.format("YYYY-MM-DD"),
-        dl_expire_date: values.dl_expire_date?.format("YYYY-MM-DD"),
-        extension_data: values.extension_data?.format("YYYY-MM-DD"),
-        birth: values.birth?.format("YYYY-MM-DD"),
-        type: 3,
-        password: Password,
-      });
-
       const response = await requestPost({
         path: "/student_account/student/",
         data: {
@@ -128,8 +118,19 @@ export const InfoForm = ({ packages }) => {
           birth: values.birth?.format("YYYY-MM-DD"),
           type: 3,
           password: Password,
+          information_type: type ?? "TEEN",
         },
       });
+
+      if (response?.data?.email) {
+        await requestPost({
+          path: "/communication/send_template",
+          data: {
+            template: 1,
+            to: [response?.data?.id],
+          },
+        });
+      }
 
       if (response?.error?.status >= 400) {
         dispatch({

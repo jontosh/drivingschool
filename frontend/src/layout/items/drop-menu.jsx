@@ -5,7 +5,7 @@ import { LuLogOut } from "react-icons/lu";
 import { TbPassword } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 
-const DropMenuItems = () => {
+const DropMenuItems = (id) => {
   const { pathname: basePath } = useBaseURL();
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const DropMenuItems = () => {
     window.sessionStorage.setItem("auth-user", null);
     window.sessionStorage.setItem("auth-upgrade", null);
     window.localStorage.setItem("log-time", null);
-    navigate(`/${basePath}/register/sign-in`, { replace: true });
+    navigate(`/register/sign-in`, { replace: true });
     window.location.reload();
   };
 
@@ -21,7 +21,16 @@ const DropMenuItems = () => {
     {
       key: "1",
       label: (
-        <Link to={`/${basePath}/profile`} className="flex px-4">
+        <Link
+          to={
+            basePath === "admin"
+              ? "/admin/profile/" + id
+              : basePath === "student"
+                ? "/student/account/profile/" + id
+                : "/instructor/profile/" + id
+          }
+          className="flex px-4"
+        >
           <IconComponent
             classNames="items-center text-sm text-gray-600"
             spaceIconX={2.5}
@@ -36,7 +45,16 @@ const DropMenuItems = () => {
     {
       key: "2",
       label: (
-        <Link to={`/${basePath}/password`} className="flex px-4">
+        <Link
+          to={
+            basePath === "admin"
+              ? `/admin/password/` + id
+              : basePath === "instructor"
+                ? `/instructor/profile/` + id
+                : "/student/account/profile/" + id
+          }
+          className="flex px-4"
+        >
           <IconComponent
             classNames="items-center text-sm text-gray-600"
             spaceIconX={2.5}

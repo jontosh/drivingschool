@@ -1,13 +1,25 @@
 import ButtonComponent from "@/components/button/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import { InboxOutlined, PlusOutlined } from "@ant-design/icons";
 import classNames from "classnames";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
-import { Form, Input, Modal as ModalComponent, Steps, Switch } from "antd";
+import {
+  Form,
+  Input,
+  Modal as ModalComponent,
+  Steps,
+  Switch,
+  Upload,
+} from "antd";
 import MDEditor from "@uiw/react-md-editor";
+import IconComponent from "../icons";
+import { BiLinkAlt } from "react-icons/bi";
+import { FiHelpCircle } from "react-icons/fi";
 
 const Modal = ({ className, setIsOpen, children, width }) => {
   className = classNames(className, ModalStyle["Modal"]);
@@ -34,7 +46,6 @@ export const ModalSuccess = ({ title, open, onEvent, footer, width }) => {
       title={title}
       centered
       open={open}
-      onOk={onEvent}
       onCancel={onEvent}
       footer={footer}
       width={width}
@@ -231,6 +242,60 @@ export const ModalEdit = ({
   );
 };
 
+const VariableList = ({ variables }) => {
+  const handleDragStart = (e, variable) => {
+    e.dataTransfer.setData("text/plain", variable);
+  };
+
+  const varsItem = variables?.map((variable) => (
+    <li
+      key={variable}
+      draggable
+      onDragStart={(e) => handleDragStart(e, variable)}
+    >
+      {variable}
+    </li>
+  ));
+
+  return <ul className={"max-h-[350px] overflow-y-scroll"}>{varsItem}</ul>;
+};
+
+const MarkdownEditor = ({ onChange, value: initialValues }) => {
+  const [value, setValue] = useState("");
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const variable = e.dataTransfer.getData("text/plain");
+    const cursorPosition = e.target.selectionStart;
+    const newValue =
+      value.slice(0, cursorPosition) + variable + value.slice(cursorPosition);
+    setValue(newValue);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    if (initialValues) {
+      setValue(initialValues);
+    }
+  }, [initialValues]);
+
+  return (
+    <div onDrop={handleDrop} onDragOver={handleDragOver}>
+      <MDEditor
+        preview={"edit"}
+        value={value}
+        onChange={(e) => {
+          setValue(e);
+          onChange(e);
+        }}
+      />
+    </div>
+  );
+};
+
 export const ModalEmail = ({
   title,
   onOk,
@@ -240,8 +305,51 @@ export const ModalEmail = ({
   width,
   onFinish,
   form,
+  keywords = [],
 }) => {
   const { colorsObject } = useContext(ColorsContext);
+  const [value, setValue] = useState(undefined);
+  useEffect(() => {
+    form?.setFieldValue({
+      template: value,
+    });
+  }, [form, value]);
+
+  useEffect(() => {
+    if (form?.getFieldValue("template")) {
+      setValue(form?.getFieldValue("template"));
+    }
+  }, [form, open]);
+
+  const ownerKeywords = [`{{${import.meta.env.VITE_ICON}}}`];
+
+  const normFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
+
+  const { Dragger } = Upload;
+  const props = {
+    name: "file",
+    multiple: true,
+    action: "https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload",
+    onChange(info) {
+      const { status } = info.file;
+      if (status !== "uploading") {
+        console.log(info.file, info.fileList);
+      }
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } else if (status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
+  };
 
   return (
     <ModalComponent
@@ -257,42 +365,111 @@ export const ModalEmail = ({
       <Form
         onFinish={onFinish}
         form={form}
-        className="flex gap-5"
+        className="flex gap-5 p-3"
         layout={"vertical"}
-        initialValues={{ send: true, body: "Body" }}
+        initialValues={{ send: true }}
       >
         <article className={"flex-grow space-y-5"}>
-          <Title level={3}>EDIT EMAIL TEMPLATE</Title>
+          <Title level={1} fontSize={"text-xl font-extrabold"}>
+            EDIT EMAIL TEMPLATE
+          </Title>
 
-          <Form.Item name={"send"} label={"Send Email"}>
-            <Switch />
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Please select status",
+              },
+            ]}
+            name={"status"}
+            label={"Send Email"}
+          >
+            <CustomSelect
+              placeholder={"STATUS"}
+              className={"h-[50px]"}
+              options={[
+                { value: "ACTIVE", label: "ACTIVE" },
+                { value: "DELETED", label: "DELETED" },
+                { value: "INACTIVE", label: "INACTIVE" },
+              ]}
+            />
           </Form.Item>
 
-          <Form.Item name={"subject"} label={"Email Subject"}>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: "Please input subject!",
+              },
+            ]}
+            name={"name"}
+            label={"Email Subject"}
+          >
             <Input className={"w-full h-[50px]"} placeholder={"Subject"} />
           </Form.Item>
 
-          <Form.Item name="body">
-            <MDEditor preview={"edit"} />
+          <Form.Item name="template">
+            <MarkdownEditor
+              value={value}
+              onChange={(value) => setValue(value)}
+            />
           </Form.Item>
         </article>
 
-        <div className={"w-[400px]"}>
-          <code className="p-4 block border max-h-[400px] h-full overflow-y-scroll bg-white rounded-3xl">
-            <Title level={3}>Keywords:</Title>
-          </code>
-          <div className="p-4 border max-h-[400px] h-full overflow-y-scroll bg-white rounded-3xl">
-            <Title level={3}>Files</Title>
+        <div className={"w-[400px] space-y-5"}>
+          <code className="p-4 block border overflow-y-scroll bg-white rounded-3xl">
+            <Title level={2} fontSize={"text-base font-extrabold"}>
+              Keywords:
+            </Title>
 
-            <ButtonComponent
-              defaultBg={colorsObject.success}
-              defaultHoverBg={colorsObject.successHover}
-              controlHeight={40}
-              paddingInline={43}
-              type={"submit"}
-            >
-              Save
-            </ButtonComponent>
+            <VariableList variables={keywords} />
+          </code>
+
+          <code className="p-4 block border overflow-y-scroll bg-white rounded-3xl">
+            <Title level={2} fontSize={"text-base font-extrabold"}>
+              Owner:
+            </Title>
+
+            <VariableList variables={ownerKeywords} />
+          </code>
+
+          <div className="p-4 border overflow-y-scroll bg-white rounded-3xl space-y-5">
+            <Title level={3} fontSize={"font-extrabold text-lg"}>
+              Files
+            </Title>
+
+            <Form.Item valuePropName="fileList" getValueFromEvent={normFile}>
+              <Dragger {...props}>
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">
+                  Click or drag file to this area to upload
+                </p>
+              </Dragger>
+            </Form.Item>
+
+            <div className="space-x-5">
+              <ButtonComponent
+                defaultBg={colorsObject.success}
+                defaultHoverBg={colorsObject.successHover}
+                paddingInline={43}
+                borderRadius={5}
+                type={"submit"}
+              >
+                Save
+              </ButtonComponent>
+
+              <ButtonComponent
+                defaultBg={colorsObject.secondary}
+                defaultHoverBg={colorsObject.secondaryHover}
+                paddingInline={43}
+                borderRadius={5}
+                type={"reset"}
+              >
+                CLEAR
+              </ButtonComponent>
+            </div>
           </div>
         </div>
       </Form>
