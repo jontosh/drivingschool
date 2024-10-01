@@ -1,7 +1,8 @@
 from django.db import models
 from location.models import Vehicle,Location,School
 import uuid
-from multiselectfield import MultiSelectField
+from django.db.models.signals import post_save,post_delete
+from django.dispatch import receiver
 from django.contrib.postgres.fields import ArrayField
 from abstracts.models import Extra,Status
 # Create your models here.
@@ -88,7 +89,7 @@ class TimeSlot(Extra,Status):
     slots_per_day = models.IntegerField(default=1,blank=False)
     def __str__(self):
         return f"{self.staff.username}\t{self.type}"
-class Appointment(models.Model):
+class Appointment(Status):
     """
     Assign slot for student
     """
@@ -98,3 +99,16 @@ class Appointment(models.Model):
         unique_together = ['time_slot', 'id']
     def __str__(self):
         return f"{self.time_slot.staff.username}\t{self.time_slot.type}"
+@receiver((post_save,post_delete),sender=Appointment)
+def handle_appointment_changes(sender, instance, created=False, **kwargs):
+    time_slot = TimeSlot.objects.get(pk=instance.time_slot.id)
+
+    if kwargs.get("signal") == post_delete:
+        # Handle appointment deletion
+        time_slot.status = "DELETED"
+    elif created:
+        # Handle appointment creation
+        time_slot.status = "INACTIVE"
+
+    # Save the time_slot if any status change occurred
+    time_slot.save( )
