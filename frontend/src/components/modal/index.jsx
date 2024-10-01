@@ -4,7 +4,7 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { InboxOutlined } from "@ant-design/icons";
 import classNames from "classnames";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import { MdErrorOutline } from "react-icons/md";
 import ModalStyle from "./modal.module.scss";
