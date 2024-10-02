@@ -7,7 +7,7 @@ from django.contrib.postgres.fields import ArrayField
 from abstracts.models import Extra, Status
 
 
-# Create your models here.
+# FIXME: APPOINTMENT SECTIONS
 class Weekday(models.TextChoices):
     MONDAY = 'MON', 'Monday'
     TUESDAY = 'TUE', 'Tuesday'
@@ -131,3 +131,38 @@ def handle_appointment_changes(sender, instance, created=False, **kwargs):
 
     # Save the time_slot if any status change occurred
     time_slot.save( )
+
+
+# FIXME: VIDEO LESSONS SECTIONS
+class VideoLecture(Extra, Status):
+    video = models.FileField(upload_to="video/video_lessons", blank=True)
+    theme = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    tests = models.ManyToManyField("VideoLectureTest", blank=True)
+    _has_test = models.BooleanField(default=False)
+    views = models.PositiveIntegerField(default=0)
+
+
+class VideoLectureTest(models.Model):
+    question = models.TextField( )
+    answers = models.JSONField(blank=True)
+
+
+class VideoLectureStudent(Extra):
+    student = models.ForeignKey("Users.Student", on_delete=models.CASCADE)
+    video_lecture = models.ForeignKey("VideoLecture", on_delete=models.CASCADE)
+    answer = models.JSONField(blank=True)
+    ball = models.PositiveSmallIntegerField(default=0)
+
+class VideoLectureSection(Status,Extra):
+    lectures = models.ManyToManyField("VideoLecture",related_name="section_lecture")
+    text = models.TextField(blank=True)
+    name = models.CharField(100)
+    student_count = models.PositiveIntegerField(default=0)
+
+class VideoLectureSectionStudent(models.Model):
+    student = models.ForeignKey("Users.Student", on_delete=models.CASCADE)
+    section = models.ForeignKey("VideoLectureSection", on_delete=models.CASCADE)
+    progress = models.PositiveSmallIntegerField(default=0)
+    total_score = models.PositiveSmallIntegerField(default=0)
+
