@@ -80,6 +80,8 @@ export const ModalReducer = (state, action) => {
             onFinish={action.onFinish}
             keywords={action.keywords}
             form={action.form}
+            title={action.title}
+            data={action.data}
           />
         ),
       };
