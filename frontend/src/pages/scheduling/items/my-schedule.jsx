@@ -2,6 +2,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { DrivingItem } from "@/pages/scheduling/items/items.jsx";
 import { Fragment, useContext } from "react";
+import { WeeklyCalendar } from "@/components/calendar/index.jsx";
 
 export const MySchedule = ({ ...props }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -9,7 +10,7 @@ export const MySchedule = ({ ...props }) => {
   return (
     <Fragment>
       <div className="space-y-5">
-        <div>calendar</div>
+        <WeeklyCalendar />
 
         <div className="flex items-center gap-2.5">
           <ButtonComponent
