@@ -164,16 +164,6 @@ export const router = createBrowserRouter([
           {
             path: ":title",
             element: <StudentSpa />,
-            children: [
-              {
-                path: ":studentId",
-                children: [
-                  {
-                    path: ":subtitle",
-                  },
-                ],
-              },
-            ],
           },
         ],
       },

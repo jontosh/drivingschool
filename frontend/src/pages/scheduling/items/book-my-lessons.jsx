@@ -14,14 +14,10 @@ import { Calendar } from "@natscale/react-calendar";
 
 dayjs.extend(dayLocaleData);
 
-export const BookMyLessons = ({ ...props }) => {
-  const Time = new Date();
+export const BookMyLessons = () => {
   const { colorsObject } = useContext(ColorsContext);
 
-  const [value, setValue] = useState([
-    new Date(Time.getFullYear(), Time.getMonth(), 1),
-    new Date(Time.getFullYear(), Time.getMonth() + 1, 5),
-  ]);
+  const [value, setValue] = useState(null);
 
   const onChange = useCallback(
     (value) => {

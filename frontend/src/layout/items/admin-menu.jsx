@@ -136,51 +136,35 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
             title={"Student account"}
           >
             <Menu.Item key={"/admin/student/account/profile/"}>
-              <Link to={"/admin/student/account/profile/" + (studentId ?? "")}>
-                Profile
-              </Link>
+              <Link to={"/admin/student/account/profile/"}>Profile</Link>
             </Menu.Item>
 
             <Menu.Item key={"/admin/student/account/billing/"}>
-              <Link to={"/admin/student/account/billing/" + (studentId ?? "")}>
+              <Link to={"/admin/student/account/billing/"}>
                 Enrollment/Billing
               </Link>
             </Menu.Item>
 
             <Menu.Item key={"/admin/student/account/appointments/"}>
-              <Link
-                to={
-                  "/admin/student/account/appointments/" +
-                  (studentId ?? "") +
-                  "/wheel"
-                }
-              >
+              <Link to={"/admin/student/account/appointments/"}>
                 Appointments
               </Link>
             </Menu.Item>
 
             <Menu.Item key={"/admin/student/account/files/"}>
-              <Link to={"/admin/student/account/files/" + (studentId ?? "")}>
-                Files
-              </Link>
+              <Link to={"/admin/student/account/files/"}>Files</Link>
             </Menu.Item>
 
             <Menu.Item key={"/admin/student/account/messages/"}>
-              <Link to={"/admin/student/account/messages/" + (studentId ?? "")}>
-                Messages
-              </Link>
+              <Link to={"/admin/student/account/messages/"}>Messages</Link>
             </Menu.Item>
 
             <Menu.Item key={"/admin/student/account/tests/"}>
-              <Link to={"/admin/student/account/tests/" + (studentId ?? "")}>
-                Quiz/Tests
-              </Link>
+              <Link to={"/admin/student/account/tests/"}>Quiz/Tests</Link>
             </Menu.Item>
 
             <Menu.Item key={"/admin/student/account/log/"}>
-              <Link to={"/admin/student/account/log/" + (studentId ?? "")}>
-                Activity Log
-              </Link>
+              <Link to={"/admin/student/account/log/"}>Activity Log</Link>
             </Menu.Item>
           </SubMenu>
 

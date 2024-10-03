@@ -20,10 +20,11 @@ import ProfileStyle from "./student-account.module.scss";
 import { DatePicker, Dropdown, Form, Input, QRCode, Radio } from "antd";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import moment from "moment";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
 
 const Profile = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { studentId } = useParams();
+  const studentId = useURLSearchParams("studentId");
   const [requestPatch] = useRequestPatchMutation();
   const [requestPost] = useRequestPostMutation();
   const { data, isLoading } = useRequestIdQuery({
@@ -155,7 +156,7 @@ const Profile = () => {
   return (
     <Fragment>
       <Form layout={"vertical"} form={form} onFinish={onFinish}>
-        <div className="space-y-5 min-[1200px]:space-y-0 min-[1200px]:flex min-[1200px]:flex-row items-center gap-y-7 min-[1200px]:gap-x-7 pb-6 border-b border-b-indigo-700 px-5 -mx-5">
+        <div className="space-y-5 min-[1200px]:space-y-0 min-[1200px]:flex min-[1200px]:flex-row items-center gap-y-7 min-[1200px]:gap-x-7 pb-6 border-b border-b-indigo-700 px-5">
           <div
             className={`rounded-2xl border-2 border-indigo-700 w-full min-[1200px]:w-[460px] overflow-hidden`}
           >

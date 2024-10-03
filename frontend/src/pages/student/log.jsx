@@ -1,13 +1,10 @@
-import ButtonComponent from "@/components/button/index.jsx";
 import TableComponent from "@/components/table/index.jsx";
-import Title, { Paragraph } from "@/components/title/index.jsx";
-import ColorsContext from "@/context/colors.jsx";
+import Title from "@/components/title/index.jsx";
 import { AccountActivitiesModule } from "@/modules/student-account.jsx";
 import { Pagination } from "antd";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 export const StudentLog = () => {
-  const { colorsObject } = useContext(ColorsContext);
   const [CurrentPagination, setCurrentPagination] = useState(1);
 
   const handleChangePagination = (page) => {
