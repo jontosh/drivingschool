@@ -9,6 +9,11 @@ router.register(f'{Router["scheduling"]["children"]["timeOff"]}', TimeOffViewSet
 router.register(f'{Router["scheduling"]["children"]["date_range"]}', DateRangeViewSet, basename='date_range')
 router.register(f'{Router["scheduling"]["children"]["appointment"]}', AppointmentViewSet, basename='appointment')
 router.register(f'{Router["scheduling"]["children"]["time_range"]}', TimeRangeViewSet, basename='time_range')
+router.register(f'{Router["scheduling"]["children"]["video_lecture"]}', VideoLectureViewSet, basename='video_lecture')
+router.register(f'{Router["scheduling"]["children"]["video_lecture_test"]}', VideoLectureTestViewSet, basename='video_lecture_test')
+router.register(f'{Router["scheduling"]["children"]["video_lecture_student"]}', VideoLectureStudentViewSet, basename='video_lecture_student')
+router.register(f'{Router["scheduling"]["children"]["video_lecture_section"]}', VideoLectureSectionViewSet, basename='video_lecture_section')
+router.register(f'{Router["scheduling"]["children"]["video_lecture_section_student"]}', VideoLectureSectionStudentViewSet, basename='video_lecture_section_student')
 urlpatterns = [
     path('',include(router.urls))
 

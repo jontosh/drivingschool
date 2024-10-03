@@ -1,5 +1,5 @@
 from rest_framework import serializers ,fields
-from .models import  TimeRange,TimeSlot,TimeOff,DateRange,Appointment
+from .models import  TimeRange,TimeSlot,TimeOff,DateRange,Appointment,VideoLecture,VideoLectureTest,VideoLectureStudent,VideoLectureSection,VideoLectureSectionStudent
 class TimeRangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeRange
@@ -60,3 +60,51 @@ class TimeSlotSerializer(serializers.ModelSerializer):
                 instance.slots.add(time_range)
 
         return instance
+
+
+
+class VideoLectureTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoLectureTest
+        fields = "__all__"
+class VideoLectureSerializer(serializers.ModelSerializer):
+    tests = VideoLectureTestSerializer(many=True)
+    class Meta:
+        model = VideoLecture
+        fields = "__all__"
+
+    def create(self, validated_data):
+        # Extract the nested VideoLectureTest data
+        tests = validated_data.pop('tests')
+        lectures = VideoLecture.objects.create(**validated_data)
+
+        # Create related TimeRange objects
+        for test_data in tests:
+            test, created = VideoLectureTest.objects.get_or_create(**test_data)
+            lectures.tests.add(test)  # Add the created TimeRange to TimeSlot
+
+        return lectures
+
+    def update(self, instance, validated_data):
+        tests = validated_data.pop('tests', None)
+        if tests is not None:
+            instance.tests.clear( )
+            for test_data in tests:
+                test, created = VideoLectureTest.objects.get_or_create(**test_data)
+                instance.test.add(test)
+        return instance
+
+class VideoLectureStudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoLectureStudent
+        fields = "__all__"
+
+class VideoLectureSectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoLectureSection
+        fields = "__all__"
+
+class VideoLectureSectionStudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoLectureSectionStudent
+        fields = "__all__"

@@ -188,6 +188,11 @@ Router = {
             "date_range":"date_range",
             "appointment":"appointment",
             "time_range":"time_range",
+            "video_lecture":"video_lecture",
+            "video_lecture_test":"video_lecture_test",
+            "video_lecture_student":"video_lecture_student",
+            "video_lecture_section":"video_lecture_section",
+            "video_lecture_section_student":"video_lecture_section_student",
         }
     },
     "abstracts":{
