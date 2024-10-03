@@ -1,7 +1,6 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-// import { Table } from "antd";
 import TableComponent from "@/components/table/index.jsx";
 import { useContext } from "react";
 
@@ -14,7 +13,11 @@ export const Tests = () => {
       key: "name",
       align: "center",
       render: (text) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-center"}
+          fontSize={"text-base"}
+          fontWeightStrong={400}
+        >
           {text}
         </Paragraph>
       ),
@@ -25,7 +28,11 @@ export const Tests = () => {
       key: "date",
       align: "center",
       render: (date) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-center"}
+          fontSize={"text-base"}
+          fontWeightStrong={400}
+        >
           {date}
         </Paragraph>
       ),
@@ -36,7 +43,11 @@ export const Tests = () => {
       key: "course",
       align: "center",
       render: (course) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-center"}
+          fontSize={"text-base"}
+          fontWeightStrong={400}
+        >
           {course}
         </Paragraph>
       ),
@@ -47,7 +58,11 @@ export const Tests = () => {
       key: "score",
       align: "center",
       render: (score) => (
-        <Paragraph className={"text-center"} fontSize={"text-base"} fontWeightStrong={400}>
+        <Paragraph
+          className={"text-center"}
+          fontSize={"text-base"}
+          fontWeightStrong={400}
+        >
           {score}
         </Paragraph>
       ),
@@ -99,7 +114,11 @@ export const Tests = () => {
       </Title>
 
       <div className={"-mx-5"}>
-        <TableComponent columns={columns} dataSource={data} pagination={false} />
+        <TableComponent
+          columns={columns}
+          dataSource={data}
+          pagination={false}
+        />
       </div>
     </div>
   );

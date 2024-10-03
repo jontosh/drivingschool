@@ -7,11 +7,14 @@ import Title from "@/components/title/index.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Form, Input } from "antd";
 import { Fragment, useState, useEffect } from "react";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
 
-export const Emergency = ({ id }) => {
+export const Emergency = () => {
   const { data: EmergencyData, isLoading } = useRequestGetQuery({
     path: "/student_account/emergency_contact/",
   });
+
+  const studentId = useURLSearchParams("studentId");
 
   const { data: LeadData } = useRequestGetQuery({
     path: "/account_management/how_did_you_hear_us/",
@@ -25,12 +28,12 @@ export const Emergency = ({ id }) => {
     for (let i = 0; i < EmergencyData?.length; i++) {
       const item = EmergencyData[i];
 
-      if (item?.student === id) {
+      if (item?.student === studentId) {
         form.setFieldsValue(item);
         break;
       }
     }
-  }, [isLoading, id]);
+  }, [isLoading, studentId]);
 
   // LeadData
   useEffect(() => {

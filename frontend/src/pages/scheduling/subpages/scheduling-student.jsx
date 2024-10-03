@@ -41,6 +41,7 @@ export const SchedulingStudent = () => {
     >
       <Link
         to={`/admin/scheduling/student?studentId=${item.id}&first-name=${item.first_name}&last-name=${item.last_name}`}
+        className={"w-full"}
       >
         {item?.first_name} {item?.last_name}
       </Link>

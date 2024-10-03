@@ -4,9 +4,10 @@ import Upload from "@/pages/student/upload.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
 
 export const Files = () => {
-  const { studentId } = useParams();
+  const studentId = useURLSearchParams("studentId");
   const { data } = useRequestGetQuery({ path: "/student_account/files/" });
 
   const fileItem = data?.map((file, index) => (

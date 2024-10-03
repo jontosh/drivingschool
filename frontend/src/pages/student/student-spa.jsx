@@ -1,10 +1,10 @@
 import { Appointments } from "@/pages/student/appointments.jsx";
 import { Billing } from "@/pages/student/billing.jsx";
-import { Files } from '@/pages/student/files.jsx'
-import { StudentLog } from '@/pages/student/log.jsx'
-import { Messages } from '@/pages/student/messages.jsx'
+import { Files } from "@/pages/student/files.jsx";
+import { StudentLog } from "@/pages/student/log.jsx";
+import { Messages } from "@/pages/student/messages.jsx";
 import Profile from "@/pages/student/profile.jsx";
-import { Tests } from '@/pages/student/tests.jsx'
+import { Tests } from "@/pages/student/tests.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
@@ -85,7 +85,7 @@ const StudentSpa = ({}) => {
     }
 
     default: {
-      navigate(`/student/account/`);
+      navigate(`/admin/student/account/profile`);
     }
   }
 };

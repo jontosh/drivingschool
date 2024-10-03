@@ -3,11 +3,12 @@ import TableComponent from "@/components/table/index.jsx";
 import { AppointmentsModule } from "@/modules/student-appointment.jsx";
 import { ConfigProvider, Form, Input } from "antd";
 import { AiOutlineSearch } from "react-icons/ai";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ManagementStyle from "@/pages/managment/management.module.scss";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
 
 export const Appointments = () => {
-  const { studentId } = useParams();
+  const studentId = useURLSearchParams("studentId");
   const { columns, data } = AppointmentsModule(studentId);
   const [form] = Form.useForm();
   const onFinish = async (values) => {
@@ -29,13 +30,13 @@ export const Appointments = () => {
         {/*By Student IS*/}
         <NavLink
           className={setActiveLink}
-          to={`/admin/student/account/appointments/${studentId}/wheel`}
+          to={`/admin/student/account/appointments?studentId=${studentId}&page=wheel`}
         >
           Behind the wheel
         </NavLink>
         <NavLink
           className={setActiveLink}
-          to={`/admin/student/account/appointments/${studentId}/online`}
+          to={`/admin/student/account/appointments?studentId=${studentId}&page=online`}
         >
           Online course
         </NavLink>
@@ -49,18 +50,23 @@ export const Appointments = () => {
             },
           }}
         >
-          <Form.Item name={"search"} label={"Search"}>
-            <div className="relative">
-              <Input
-                className="xl:w-96 pl-12 pr-4 text-sm h-[50px] border-[#667085]"
-                placeholder={"Search"}
-              />
-              <span
-                className={"absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "}
-              >
-                <AiOutlineSearch />
-              </span>
-            </div>
+          <Form.Item
+            name={"search"}
+            className={"mb-0"}
+            rules={[
+              {
+                required: true,
+                message: "Search is required",
+              },
+            ]}
+          >
+            <Input
+              className={"h-[50px]"}
+              placeholder={"Search"}
+              prefix={<AiOutlineSearch className={"text-xl"} />}
+              allowClear
+              enterButton="Search"
+            />
           </Form.Item>
         </ConfigProvider>
 

@@ -17,6 +17,7 @@ import { Form, Modal as ModalComponent } from "antd";
 import { useParams } from "react-router-dom";
 import rehypeSanitize from "rehype-sanitize";
 import BillingStyle from "./student-account.module.scss";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
 
 const reduce = (state, action) => {
   const commonModalProps = {
@@ -155,7 +156,7 @@ const reduce = (state, action) => {
 };
 
 const Enrollment = () => {
-  const { studentId } = useParams();
+  const studentId = useURLSearchParams("studentId");
   const { data: Packages } = useRequestGetQuery({
     path: "/account_management/services/service/",
   });
@@ -277,7 +278,7 @@ const Enrollment = () => {
 };
 
 const Billings = () => {
-  const { studentId } = useParams();
+  const studentId = useURLSearchParams("studentId");
   const { data: Instructor } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
