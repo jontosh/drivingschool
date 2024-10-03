@@ -142,27 +142,71 @@ class VideoLecture(Extra, Status):
     _has_test = models.BooleanField(default=False)
     views = models.PositiveIntegerField(default=0)
 
+    def __str__(self):
+        return self.theme
+
 
 class VideoLectureTest(models.Model):
     question = models.TextField( )
     answers = models.JSONField(blank=True)
+    weight = models.PositiveSmallIntegerField(default=1)
 
 
 class VideoLectureStudent(Extra):
-    student = models.ForeignKey("Users.Student", on_delete=models.CASCADE)
-    video_lecture = models.ForeignKey("VideoLecture", on_delete=models.CASCADE)
+    student = models.ForeignKey("Users.Student", on_delete=models.CASCADE, blank=False)
+    video_lecture = models.ForeignKey("VideoLecture", on_delete=models.CASCADE, blank=False)
     answer = models.JSONField(blank=True)
     ball = models.PositiveSmallIntegerField(default=0)
 
-class VideoLectureSection(Status,Extra):
-    lectures = models.ManyToManyField("VideoLecture",related_name="section_lecture")
+    def __str__(self):
+        return f"{self.student.username} - {self.video_lecture.theme} - ball: {self.ball}"
+
+
+class VideoLectureSection(Status, Extra):
+    lectures = models.ManyToManyField("VideoLecture", related_name="section_lecture")
     text = models.TextField(blank=True)
-    name = models.CharField(100)
+    name = models.CharField(max_length=100, blank=False)
     student_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
 
 class VideoLectureSectionStudent(models.Model):
     student = models.ForeignKey("Users.Student", on_delete=models.CASCADE)
     section = models.ForeignKey("VideoLectureSection", on_delete=models.CASCADE)
     progress = models.PositiveSmallIntegerField(default=0)
     total_score = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        # Ensure that each student can only have a unique section entry
+        constraints = [
+            models.UniqueConstraint(fields=[ 'student', 'section' ], name='unique_student_section')
+        ]
+
+
+@receiver((post_save), sender=VideoLectureStudent)
+def handle_appointment_changes(sender, instance, created=False, **kwargs):
+    if created:
+        from Users.models import Student
+        student = Student.objects.get(pk=instance.student.id)
+        video_lecture = VideoLecture.objects.get(pk=instance.video_lecture.id)
+        video_lecture.views = video_lecture.views + 1
+        section = VideoLectureSection.objects.filter(lectures=video_lecture).first( )
+
+        # Step 2: If no such section exists, create a new VideoLectureSection
+        if not section:
+            section = VideoLectureSection.objects.create( )
+            section.lectures.add(video_lecture)
+            section.student_count = 1
+            section.name = video_lecture.theme
+        else:
+            section.student_count = section.student_count + 1
+        section_student,get = VideoLectureSectionStudent.objects.get_or_create(student=student, section=section)
+        section_student.progress = section_student.progress+1
+        section_student.total_score = section_student.total_score + instance.ball
+
+        video_lecture.save()
+        section.save()
+        section_student.save()
 
