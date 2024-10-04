@@ -158,23 +158,97 @@ const StudentAccount = () => {
                 </Paragraph>
               </div>
 
-              <Tooltip className={"w-9"} title={"Info"}>
+              <Tooltip className={"w-9"}
+                title={
+                  <div className="space-y-2.5">
+                    <p>Account created: 09/13/2023 at 1:37 pm</p>
+                    <p>Last modifled: 09/13/2023 at 1:37 pm</p>
+                  </div>
+                }
+                overlayInnerStyle={{ width: 270 }}
+              >
                 <AiOutlineInfoCircle className={"text-indigo-600"} />
               </Tooltip>
 
-              <Tooltip className={"w-9"} title={"Enrolled "}>
+              <Tooltip
+                className={"w-9"}
+                title={
+                  <table>
+                    <thead className="flex gap-12">
+                      <th>
+                        <tr>Enrolled</tr>
+                      </th>
+                      <th>
+                        <tr>Price</tr>
+                      </th>
+                      <th>
+                        <tr>Package</tr>
+                      </th>
+                      <th>
+                        <tr>CR Date</tr>
+                      </th>
+                    </thead>
+                    <tbody className="flex gap-8">
+                      <th className="font-normal">
+                        <tr>03/09/2024</tr>
+                      </th>
+                      <th className="font-normal">
+                        <tr>$649.99</tr>
+                      </th>
+                      <th className="font-normal">
+                        <tr>8h in car instruction</tr>
+                      </th>
+                    </tbody>
+                  </table>
+                }
+                overlayInnerStyle={{ width: 400 }}
+              >
                 <AiOutlineShoppingCart className={"text-indigo-600"} />
               </Tooltip>
 
-              <Tooltip className={"w-9"} title={"Price "}>
+              <Tooltip
+                className={"w-9"}
+                title={
+                  <div className="flex space-x-5">
+                    <p>Enrolled</p>
+                    <p>Price</p>
+                    <p>Package</p>
+                  </div>
+                }
+              >
                 <AiOutlineMoneyCollect className={"text-indigo-600"} />
               </Tooltip>
 
-              <Tooltip className={"w-9"} title={"Book "}>
+              <Tooltip
+                className={"w-9"}
+                title={
+                  <div className="space-y-5">
+                    <p className="font-bold text-sm">BTW Balance: <span className="font-normal">8:00 Hours</span></p>
+                    <p className="font-bold text-sm">Driwing <span className="font-normal">8:00 Hours</span></p>
+                    <p className="font-bold text-sm">Web <span className="font-normal">8:00 Hours</span></p>
+                    <p className="font-bold text-sm">Confirmed <span className="font-normal">8:00 Hours</span></p>
+                    <p className="font-bold text-sm">Complete <span className="font-normal">8:00 Hours</span></p>
+                    <p className="font-bold text-sm">Pending <span className="font-normal">8:00 Hours</span></p>
+                    <p className="font-bold text-sm">Total purchased <span className="font-normal">8:00 Hours</span></p>
+                  </div>
+                }
+              >
                 <AiOutlineBook className={"text-indigo-600"} />
               </Tooltip>
 
-              <Tooltip className={"w-9"} title={"Car "}>
+              <Tooltip
+                className={"w-9"}
+                title={
+                  <div className="space-y-2">
+                    <p>Activated</p>
+                    <p>Not Activated</p>
+                    <p>Completed</p>
+                    <p>Potential</p>
+                    <p>Web Signup</p>
+                    <p>Pending</p>
+                  </div>
+                }
+              >
                 <AiFillCar className={"text-indigo-600"} />
               </Tooltip>
 
