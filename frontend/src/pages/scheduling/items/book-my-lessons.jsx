@@ -16,73 +16,60 @@ dayjs.extend(dayLocaleData);
 
 export const BookMyLessons = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [value, setValue] = useState([]);
+  const onClear = () => {
+    setValue([]);
+  };
 
-  const [value, setValue] = useState(null);
+  const isDisabled = useCallback((date) => {
+    return date < new Date();
+  }, []);
 
-  const onChange = useCallback(
-    (value) => {
-      setValue(value);
-    },
-    [setValue],
-  );
+  const onChange = useCallback((newValue) => {
+    setValue(newValue);
+  }, []);
 
-  const { columns, data } = SchedulingModule();
+  const { columns, data } = SchedulingModule(value);
 
   return (
     <Fragment>
       <div className="flex gap-5">
-        <div className={"flex-grow space-y-5"}>
-          <div className=" border border-gray-500 px-6 py-4 rounded-lg space-y-5">
+        <div className="space-y-5 max-w-[550px] w-full">
+          <div className="border border-gray-500 px-6 py-4 rounded-lg space-y-5">
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}
-                fontSize={"text-base text-gray-500 uppercase"}
+                fontSize="text-base text-gray-500 uppercase"
                 fontWeightStrong={500}
               >
                 FILTER BY DATE
               </Title>
               <IconComponent
-                className={"cursor-text text-gray-500"}
-                iconWidth={"w-[18px]"}
+                className="cursor-text text-gray-500"
+                iconWidth="w-[18px]"
                 icon={<BsFillCalendarWeekFill />}
               />
             </div>
 
-            <hr className={"border border-gray-400"} />
+            <hr className="border border-gray-400" />
 
-            <div>
-              <Calendar
-                showDualCalendar
-                isRangeSelector
-                value={value}
-                onChange={onChange}
-                hideAdjacentDates
-                className={"w-full"}
-                size={500}
-              />
-            </div>
+            <Calendar
+              value={value}
+              onChange={onChange}
+              hideAdjacentDates
+              size={500}
+              isMultiSelector
+              isDisabled={isDisabled}
+            />
 
-            <Paragraph className={"text-gray-500"}>
+            <Paragraph className="text-gray-500">
               Available Booked or currently unavailable (Call for assistance if
               you don't see availability) Date unavailable or slots are not
               created
             </Paragraph>
           </div>
 
-          <div className="text-center space-x-4">
-            <ButtonComponent
-              defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
-              defaultHoverBg={colorsObject.primaryHover}
-              defaultBg={colorsObject.primary}
-              controlHeight={40}
-              paddingInline={43}
-              borderRadius={5}
-              fontSize={16}
-            >
-              REFINE SEARCH
-            </ButtonComponent>
-
+          <div className="text-center">
             <ButtonComponent
               defaultColor={colorsObject.black}
               defaultHoverColor={colorsObject.black}
@@ -94,29 +81,26 @@ export const BookMyLessons = () => {
               paddingInline={43}
               borderRadius={5}
               fontSize={16}
+              onClick={onClear}
             >
               CLEAR SEARCH
             </ButtonComponent>
           </div>
         </div>
 
-        <div>
-          <aside
-            className={
-              "w-96 border border-gray-500 px-6 py-4 rounded-lg flex-shrink-0"
-            }
-          >
+        <div className="flex-grow">
+          <aside className="border border-gray-500 px-6 py-4 rounded-lg">
             <div className="flex items-center gap-2.5">
               <Title
                 level={4}
-                fontSize={"text-base text-gray-500 uppercase"}
+                fontSize="text-base text-gray-500 uppercase"
                 fontWeightStrong={500}
               >
                 AVAILABLE OPEN SLOT
               </Title>
               <IconComponent
-                className={"cursor-text text-gray-500"}
-                iconWidth={"w-[18px]"}
+                className="cursor-text text-gray-500"
+                iconWidth="w-[18px]"
                 icon={<BsFillCalendarWeekFill />}
               />
             </div>

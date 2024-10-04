@@ -340,7 +340,7 @@ export const Subpages = ({ page, status, search }) => {
         </Fragment>
       );
     }
-    case "signle": {
+    case "single": {
       return (
         <Fragment>
           <Helmet>
