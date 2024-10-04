@@ -44,6 +44,7 @@ export const Paragraph = ({
   fontSize,
   colorText = "#000",
   fontWeightStrong = 400,
+  onClick,
 }) => {
   className = classNames([className, TypographyStyle["Paragraph"]]);
   return (
@@ -61,7 +62,7 @@ export const Paragraph = ({
           },
         }}
       >
-        <Typography.Paragraph className={className}>
+        <Typography.Paragraph className={className} onClick={onClick}>
           <span className={fontSize}>{children}</span>
         </Typography.Paragraph>
       </ConfigProvider>
