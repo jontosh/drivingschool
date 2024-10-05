@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { format, addDays, subDays, startOfWeek } from "date-fns";
 import classNames from "classnames";
-import ButtonComponent from "@/components/button/index.jsx";
 import { Button, Tooltip } from "antd";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+
 export const WeeklyCalendar = () => {
   const [currentDay, setCurrentDay] = useState(new Date());
 
@@ -28,13 +28,13 @@ export const WeeklyCalendar = () => {
     <div
       key={day}
       className={classNames(
-        "text-center hover:bg-red-200",
+        "text-center rounded-lg cursor-pointer hover:bg-[#5F66E9CC] hover:text-white",
         format(day, "yyyy-MM-dd") === format(currentDay, "yyyy-MM-dd") &&
-          "bg-red-500",
+        "bg-[#5F66E9] text-white",
       )}
     >
-      <p>{format(day, "eeee")}</p>
-      <p>{format(day, "dd")}</p>
+      <p className="text-lg">{format(day, "eeee")}</p>
+      <p className="text-base">{format(day, "dd")}</p>
     </div>
   ));
 
