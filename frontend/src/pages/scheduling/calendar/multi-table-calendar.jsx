@@ -1,99 +1,47 @@
-import ButtonComponent from "@/components/button/index.jsx";
 import Title from "@/components/title/index.jsx";
 import CalendarStyle from "@/pages/dashboard/dashboard.module.scss";
-import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 
-export const MultiTable = ({ setLabel, setViews, ...props }) => {
+export const MultiTable = ({ instructor, student, date }) => {
   const Time = new Date();
   const [MonthName, setMonthName] = useState("");
   const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState([]);
+  const { data: Appointments } = useRequestGetQuery({
+    path: "/scheduling/appointment/",
+  });
+  const { data: TimeSlot } = useRequestGetQuery({
+    path: "/scheduling/time_slot/",
+  });
 
-  let EventsList = [
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        4,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        6,
-        0,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        6,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        7,
-        30,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        16,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        18,
-        0,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        20,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        22,
-        30,
-        0,
-      ),
-      allDay: false,
-    },
-  ];
+  const EventsList = useMemo(() => {
+    let newEvents = [];
+    for (let i = 0; i < Appointments?.length; i++) {
+      const appointment = Appointments[i];
+
+      for (let j = 0; j < appointment?.student?.length; j++) {
+        const studentId = appointment?.student[j];
+
+        if (studentId === student) {
+          for (let k = 0; k < TimeSlot?.length; k++) {
+            const timeSlot = TimeSlot[k];
+            if (timeSlot?.id === appointment?.time_slot) {
+              newEvents = timeSlot?.slots?.map((item) => ({
+                title: item.name,
+                start: new Date(item?.start),
+                end: new Date(item?.end),
+              }));
+              break;
+            }
+          }
+        }
+      }
+    }
+    return newEvents;
+  }, [Appointments, TimeSlot]);
 
   useEffect(() => {
     setEvents(EventsList);
@@ -102,56 +50,15 @@ export const MultiTable = ({ setLabel, setViews, ...props }) => {
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
       components: {
-        toolbar: (e) => {
-          const GoTo = (value) => e.onNavigate(value);
-
-          setLabel(e.label);
-
+        toolbar: () => {
           return (
-            <div className={"flex items-center justify-between p-7"}>
-              <ButtonComponent
-                borderRadius={20}
-                defaultBorderColor={"#F5F6F7"}
-                defaultHoverBorderColor={"#F5F6F7"}
-                defaultColor={"#6B7A99"}
-                defaultHoverColor={"#6B7A99"}
-                controlHeight={40}
-                paddingInline={20}
-                onClick={() => GoTo("TODAY")}
-              >
-                Today
-              </ButtonComponent>
-
-              <div className="flex items-center gap-8">
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
-                  controlHeight={40}
-                  paddingInline={12}
-                  onClick={() => GoTo("PREV")}
-                >
-                  <MdKeyboardArrowLeft />
-                </ButtonComponent>
-
-                <Title fontSize={"text-[#6B7A99]"}>{e.label}</Title>
-
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
-                  controlHeight={40}
-                  paddingInline={12}
-                  onClick={() => GoTo("NEXT")}
-                >
-                  <MdKeyboardArrowRight />
-                </ButtonComponent>
-              </div>
-            </div>
+            <Title
+              level={2}
+              className={"text-center p-7"}
+              fontSize={"text-[#6B7A99]"}
+            >
+              {instructor?.first_name} {instructor?.last_name}
+            </Title>
           );
         },
       },
@@ -166,14 +73,10 @@ export const MultiTable = ({ setLabel, setViews, ...props }) => {
           " " +
           localizer.format(end, "hh:mm", culture),
       },
-      views: [Views.WEEK, Views.MONTH, Views.DAY],
+      views: [Views.DAY],
       toolbar: true,
     };
   });
-
-  useEffect(() => {
-    setViews(views);
-  }, []);
 
   const eventPropGetter = useCallback(
     (event, start, end, isSelected) => ({
@@ -233,35 +136,23 @@ export const MultiTable = ({ setLabel, setViews, ...props }) => {
   );
 
   return (
-    <Fragment>
+    <div className={"min-w-64 w-full"}>
       <Calendar
-        // To selection column and add events
-        // selectable
         localizer={localizer}
         events={events}
-        // To scroll
-        startAccessor="start"
-        endAccessor="end"
-        // onSelectSlot={handleSelect}
-        // onSelectEvent={(event) => alert(event.title)}
-        defaultView={Views.WEEK}
+        defaultView={Views.DAY}
         defaultDate={defaultDate}
-        //style={{ height: 564 }}
+        date={date}
         views={views}
         formats={formats}
-        // {/*Header toolbar*/}
         toolbar={toolbar}
-        //{/*Event Item*/}
         eventPropGetter={eventPropGetter}
-        //{/*Day column*/}
         dayPropGetter={dayPropGetter}
         showMultiDayTimes
-        // Slot
         slotGroupPropGetter={slotGroupPropGetter}
         slotPropGetter={slotPropGetter}
-        //compo
         components={components}
       />
-    </Fragment>
+    </div>
   );
 };

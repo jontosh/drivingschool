@@ -1,18 +1,63 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomInput, CustomSelect } from "@/components/form";
 import IconComponent from "@/components/icons";
 import Title from "@/components/title/index.jsx";
-import { BigCalendar } from "@/pages/scheduling/calendar/big-calendar.jsx";
 import { MultiSidebar } from "@/pages/scheduling/calendar/multi-sidebar.jsx";
 import { MultiTable } from "@/pages/scheduling/calendar/multi-table-calendar.jsx";
-import { VehicleSidebar } from "@/pages/scheduling/calendar/vehicle-sidebar.jsx";
-import { Fragment, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { LuSettings } from "react-icons/lu";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { Form, Modal, Select } from "antd";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import dayjs from "dayjs";
 
 export const Multi = () => {
-  const [Label, setLabel] = useState("");
-  const [Views, setViews] = useState([]);
+  const [Schedules, setSchedules] = useState([]);
+  const [ShowTable, setShowTable] = useState(false);
+  const [Now, setNow] = useState(new Date());
+  const [form] = Form.useForm();
+  const { data: Instructors } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+  const { data: Students } = useRequestGetQuery({
+    path: "/student_account/student/",
+  });
+
+  const instructorsOptions = useMemo(() => {
+    return Instructors?.map((item) => ({
+      value: item.id,
+      label: `${item?.first_name} ${item?.last_name}`,
+    }));
+  }, [Instructors]);
+
+  const studentOptions = useMemo(() => {
+    return Students?.map((item) => ({
+      value: item.id,
+      label: `${item?.first_name} ${item?.last_name}`,
+    }));
+  }, [Students]);
+
+  const onFinish = async (values) => {
+    if (values.instructors.length !== 0) {
+      setShowTable(true);
+      setSchedules(
+        Instructors?.filter(
+          (item, index) => values.instructors[index] === item.id,
+        ).map((item) => ({ instructor: item, student: values.student })),
+      );
+    }
+  };
+
+  const onMore = () => {
+    Modal.info({
+      title: "Learn about this page".toUpperCase(),
+      content: <>content</>,
+      width: 650,
+    });
+  };
+
+  const instructorTable = Schedules?.map((item, index) => {
+    return <MultiTable key={index} date={Now} {...item} />;
+  });
 
   return (
     <Fragment>
@@ -26,6 +71,7 @@ export const Multi = () => {
             defaultHoverColor={"#6B7A99"}
             controlHeight={40}
             paddingInline={20}
+            onClick={() => setNow(new Date())}
           >
             Today
           </ButtonComponent>
@@ -43,7 +89,9 @@ export const Multi = () => {
               <MdKeyboardArrowLeft />
             </ButtonComponent>
 
-            <Title fontSize={"text-[#6B7A99]"}>{Label}</Title>
+            <Title fontSize={"text-[#6B7A99]"}>
+              {dayjs(Now)?.format("MMMM-DD-YYYY")}
+            </Title>
 
             <ButtonComponent
               borderRadius={20}
@@ -57,57 +105,53 @@ export const Multi = () => {
               <MdKeyboardArrowRight />
             </ButtonComponent>
           </div>
-
-          <div className="flex border border-[#26334D08]">
-            {Views.map((item, key) => (
-              <Fragment key={key}>
-                <ButtonComponent
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
-                  controlHeight={40}
-                  paddingInline={20}
-                  className={"uppercase"}
-                >
-                  {item}
-                </ButtonComponent>
-              </Fragment>
-            ))}
-          </div>
         </div>
 
         <div className="flex gap-5">
-          <aside className={"w-96"}>
-            <MultiSidebar />
+          <aside className={"w-96 space-y-5"}>
+            <MultiSidebar getDate={setNow} defaultDate={Now} />
 
-            <div className="flex flex-col gap-y-5 pt-10">
-              <label className="flex flex-col gap-y-1.5">
-                <span className="text-gray-500 text-base">Select Vehicle:</span>
-
-                <CustomSelect
-                  placeholder={"SELECT"}
-                  className={"w-full h-[50px]"}
-                  colorBorder="#9CA3AF"
-                  colorText="#9CA3AF"
-                  options={[
-                    {
-                      label: 'UZB',
-                      value: 'UZB'
-                    },
-                    {
-                      label: 'USA',
-                      value: 'USA'
-                    },
-                  ]}
+            <Form onFinish={onFinish} form={form} layout={"vertical"}>
+              <Form.Item
+                name={"instructors"}
+                label={"Select"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Select instructor is required!",
+                  },
+                ]}
+              >
+                <Select
+                  className={"h-[50px]"}
+                  placeholder={"Select instructor"}
+                  mode="multiple"
+                  allowClear
+                  options={instructorsOptions}
                 />
-              </label>
+              </Form.Item>
 
-              <CustomInput
-                placeholder={"SEARCH STUDENT"}
-                classNames={"w-full"}
-                colorBorder="#9CA3AF"
-              />
+              <Form.Item
+                name={"student"}
+                rules={[
+                  {
+                    required: true,
+                    message: "Select student is required!",
+                  },
+                ]}
+              >
+                <Select
+                  className={"h-[50px]"}
+                  showSearch
+                  placeholder="Select student"
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  options={studentOptions}
+                />
+              </Form.Item>
 
               <div className="flex flex-col gap-y-5 border border-gray-400 rounded-xl p-5">
                 <ButtonComponent
@@ -116,6 +160,7 @@ export const Multi = () => {
                   controlHeight={40}
                   borderRadius={5}
                   className={"w-full"}
+                  type={"submit"}
                 >
                   GET SCHEDULE
                 </ButtonComponent>
@@ -126,8 +171,10 @@ export const Multi = () => {
                   controlHeight={40}
                   borderRadius={5}
                   className={"w-full"}
+                  type={"button"}
+                  onClick={onMore}
                 >
-                  GET SCHEDULE
+                  LEARN MORE
                 </ButtonComponent>
 
                 <div className="w-[50px] h-[50px] bg-[#24C18F] rounded text-center m-auto cursor-pointer">
@@ -138,11 +185,13 @@ export const Multi = () => {
                   />
                 </div>
               </div>
-            </div>
+            </Form>
           </aside>
-          <div className="flex-grow border border-gray-400 rounded-xl overflow-hidden">
-            <MultiTable setLabel={setLabel} setViews={setViews} />
-          </div>
+          {ShowTable && (
+            <div className="flex-grow w-min flex border border-gray-400 rounded-xl overflow-x-scroll">
+              {instructorTable}
+            </div>
+          )}
         </div>
       </div>
     </Fragment>
