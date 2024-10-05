@@ -44,14 +44,6 @@ export const SingleTableCalendar = () => {
     }
   }, [EventsList]);
 
-  const handleSelect = useCallback((slotInfo) => {
-    const title = window.prompt("New Event name");
-    if (title) {
-      const newEvent = { title, start: slotInfo.start, end: slotInfo.end };
-      setEvents((prevEvents) => [...prevEvents, newEvent]);
-    }
-  }, []);
-
   const { formats, defaultDate, views, toolbar, components } = useMemo(
     () => ({
       components: {
@@ -201,9 +193,6 @@ export const SingleTableCalendar = () => {
         selectable
         localizer={localizer}
         events={events}
-        startAccessor="start"
-        endAccessor="end"
-        onSelectSlot={handleSelect}
         defaultView={Views.WEEK}
         defaultDate={defaultDate}
         style={{ height: 810 }}
