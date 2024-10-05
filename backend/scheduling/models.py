@@ -185,7 +185,7 @@ class VideoLectureSectionStudent(models.Model):
         ]
 
 
-@receiver((post_save), sender=VideoLectureStudent)
+@receiver(post_save, sender=VideoLectureStudent)
 def handle_appointment_changes(sender, instance, created=False, **kwargs):
     if created:
         from Users.models import Student
