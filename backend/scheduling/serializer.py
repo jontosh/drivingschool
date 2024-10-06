@@ -1,23 +1,30 @@
-from rest_framework import serializers ,fields
-from .models import  TimeRange,TimeSlot,TimeOff,DateRange,Appointment,VideoLecture,VideoLectureTest,VideoLectureStudent,VideoLectureSection,VideoLectureSectionStudent
+from rest_framework import serializers, fields
+from .models import TimeRange, TimeSlot, TimeOff, DateRange, Appointment, VideoLecture, VideoLectureTest, \
+    VideoLectureStudent, VideoLectureSection, VideoLectureSectionStudent
+
+
 class TimeRangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeRange
         fields = "__all__"
 
+
 class TimeOffSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeOff
         fields = "__all__"
+
+
 class DateRangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = DateRange
         fields = "__all__"
+
+
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = "__all__"
-
 
 
 class TimeSlotSerializer(serializers.ModelSerializer):
@@ -32,11 +39,13 @@ class TimeSlotSerializer(serializers.ModelSerializer):
     ]
     week_range = fields.MultipleChoiceField(choices=WEEK_CHOICES)
     slots = TimeRangeSerializer(many=True)
-
+    staff_name = serializers.SerializerMethodField( )
+    location_name = serializers.SerializerMethodField( )
 
     class Meta:
         model = TimeSlot
         fields = "__all__"
+
     def create(self, validated_data):
         # Extract the nested TimeRange data
         time_ranges_data = validated_data.pop('slots')
@@ -61,14 +70,22 @@ class TimeSlotSerializer(serializers.ModelSerializer):
 
         return instance
 
+    def get_staff_name(self, obj):
+        return f"{obj.staff.first_name} {obj.staff.last_name}"
+
+    def get_location_name(self, obj):
+        return f"{obj.location.name}"
 
 
 class VideoLectureTestSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoLectureTest
         fields = "__all__"
+
+
 class VideoLectureSerializer(serializers.ModelSerializer):
     tests = VideoLectureTestSerializer(many=True)
+
     class Meta:
         model = VideoLecture
         fields = "__all__"
@@ -94,15 +111,18 @@ class VideoLectureSerializer(serializers.ModelSerializer):
                 instance.test.add(test)
         return instance
 
+
 class VideoLectureStudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoLectureStudent
         fields = "__all__"
 
+
 class VideoLectureSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoLectureSection
         fields = "__all__"
+
 
 class VideoLectureSectionStudentSerializer(serializers.ModelSerializer):
     class Meta:
