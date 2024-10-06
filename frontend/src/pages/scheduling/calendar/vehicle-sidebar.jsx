@@ -1,13 +1,18 @@
 import { Calendar } from "@natscale/react-calendar";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "@natscale/react-calendar/dist/main.css";
 
-export const VehicleSidebar = ({ ...props }) => {
-  const [value, setValue] = useState(new Date());
+export const VehicleSidebar = ({ getDate, defaultDate }) => {
+  const [value, setValue] = useState(defaultDate);
+
+  useEffect(() => {
+    setValue(defaultDate);
+  }, [defaultDate]);
 
   const onChange = useCallback(
     (val) => {
       setValue(val);
+      getDate(val);
     },
     [setValue],
   );

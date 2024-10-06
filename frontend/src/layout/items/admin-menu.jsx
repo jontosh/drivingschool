@@ -183,7 +183,7 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
             </Menu.Item>
 
             <Menu.Item key={"/admin/scheduling/vehicle"}>
-              <Link to={"/admin/scheduling/vehicle"}>Multi Vehicles</Link>
+              <Link to={"/admin/scheduling/vehicle"}>Vehicles</Link>
             </Menu.Item>
 
             <Menu.Item key={"/admin/scheduling/single"}>
