@@ -28,9 +28,9 @@ export const WeeklyCalendar = () => {
     <div
       key={day}
       className={classNames(
-        "text-center rounded-lg cursor-pointer hover:bg-[#5F66E9CC] hover:text-white",
+        "text-center rounded-lg cursor-pointer hover:text-[#5F66E9]",
         format(day, "yyyy-MM-dd") === format(currentDay, "yyyy-MM-dd") &&
-        "bg-[#5F66E9] text-white",
+        "text-[#5F66E9]",
       )}
     >
       <p className="text-lg">{format(day, "eeee")}</p>
