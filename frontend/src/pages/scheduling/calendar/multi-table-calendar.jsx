@@ -21,14 +21,14 @@ export const MultiTable = ({ instructor, student, date }) => {
     return Appointments.flatMap((appointment) =>
       appointment.student.includes(student)
         ? TimeSlot.filter(
-            (timeSlot) => timeSlot.id === appointment.time_slot,
-          ).flatMap((timeSlot) =>
-            timeSlot.slots.map((item) => ({
-              title: item.name,
-              start: new Date(item.start),
-              end: new Date(item.end),
-            })),
-          )
+          (timeSlot) => timeSlot.id === appointment.time_slot,
+        ).flatMap((timeSlot) =>
+          timeSlot.slots.map((item) => ({
+            title: item.name,
+            start: new Date(item.start),
+            end: new Date(item.end),
+          })),
+        )
         : [],
     );
   }, [Appointments, TimeSlot, student]);
@@ -70,9 +70,8 @@ export const MultiTable = ({ instructor, student, date }) => {
 
   const eventPropGetter = useCallback(
     (event, start, end, isSelected) => ({
-      className: `text-[#2C5A41] bg-[#29CC390D] ${
-        isSelected ? "text-white" : ""
-      }`,
+      className: `text-[#2C5A41] bg-[#29CC390D] ${isSelected ? "text-white" : ""
+        }`,
       style: { border: "1px solid #29CC39" },
     }),
     [],
