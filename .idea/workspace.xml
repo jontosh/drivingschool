@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed path" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed components and optimized code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -250,30 +250,6 @@
       <workItem from="1727588540263" duration="1388000" />
       <workItem from="1727710439108" duration="685000" />
       <workItem from="1727759849256" duration="1186000" />
-    </task>
-    <task id="LOCAL-00087" summary="#fix #jsx Refactored form elements and initial values for form if user answer or not">
-      <option name="closed" value="true" />
-      <created>1720568262187</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1720568262188</updated>
-    </task>
-    <task id="LOCAL-00088" summary="#fix #jsx Refactored form elements and code with get correct initial values">
-      <option name="closed" value="true" />
-      <created>1720610005067</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1720610005068</updated>
-    </task>
-    <task id="LOCAL-00089" summary="#fix #jsx Refactored code to get Success or Failed results, modal in process">
-      <option name="closed" value="true" />
-      <created>1720615082126</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1720615082127</updated>
     </task>
     <task id="LOCAL-00090" summary="#fix #jsx Refactored code show result test in modal window">
       <option name="closed" value="true" />
@@ -643,7 +619,31 @@
       <option name="project" value="LOCAL" />
       <updated>1727976140045</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="#fix #js Fixed path, routing, components and refactored page Schedule as student and single instructor">
+      <option name="closed" value="true" />
+      <created>1728073577441</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1728073577441</updated>
+    </task>
+    <task id="LOCAL-00137" summary="#fix #js Fixed default image for instructor and refactored logic to get schedule teachers and student">
+      <option name="closed" value="true" />
+      <created>1728086460165</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1728086460165</updated>
+    </task>
+    <task id="LOCAL-00138" summary="#fix #js Fixed components and optimized code">
+      <option name="closed" value="true" />
+      <created>1728087583172</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1728087583172</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,9 +662,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fixed modal to payment i student portal" />
-    <MESSAGE value="#fix #jsx Fixed modal to update questions answers." />
-    <MESSAGE value="#fix #jsx Optimized media in student portal" />
     <MESSAGE value="#fix #jsx Optimized code and created quiz router for student portal." />
     <MESSAGE value="#fix #jsx Optimized code in schedule and added react-response to do media with calendar" />
     <MESSAGE value="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment" />
@@ -687,7 +684,10 @@
     <MESSAGE value="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors." />
     <MESSAGE value="#fix #js Fixed components and refactored student account pages" />
     <MESSAGE value="#fix #js Fixed path" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed path" />
+    <MESSAGE value="#fix #js Fixed path, routing, components and refactored page Schedule as student and single instructor" />
+    <MESSAGE value="#fix #js Fixed default image for instructor and refactored logic to get schedule teachers and student" />
+    <MESSAGE value="#fix #js Fixed components and optimized code" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed components and optimized code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

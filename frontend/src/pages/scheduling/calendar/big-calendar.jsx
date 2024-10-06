@@ -1,160 +1,35 @@
-import ButtonComponent from "@/components/button/index.jsx";
 import Title from "@/components/title/index.jsx";
 import CalendarStyle from "@/pages/dashboard/dashboard.module.scss";
-
-import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import moment from "moment";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-export const BigCalendar = ({ setLabel, setViews, ...props }) => {
-  const Time = new Date();
-  const [MonthName, setMonthName] = useState("");
+export const BigCalendar = ({ data, date }) => {
   const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState([]);
 
-  let EventsList = [
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        4,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        6,
-        0,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        6,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        7,
-        30,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        16,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        18,
-        0,
-        0,
-      ),
-      allDay: false,
-    },
-    {
-      title: "Event Name",
-      start: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        20,
-        0,
-        0,
-      ),
-      end: new Date(
-        Time.getFullYear(),
-        Time.getMonth(),
-        Time.getDate(),
-        22,
-        30,
-        0,
-      ),
-      allDay: false,
-    },
-  ];
-
   useEffect(() => {
-    setEvents(EventsList);
-  }, []);
+    setEvents(
+      data?.slots?.map((item) => ({
+        title: item?.name,
+        start: new Date(item?.start),
+        end: new Date(item?.end),
+      })),
+    );
+  }, [data?.slots]);
 
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
     return {
       components: {
-        toolbar: (e) => {
-          const GoTo = (value) => e.onNavigate(value);
-
-          setLabel(e.label);
-
-          return (
-            <div className={"flex items-center justify-between p-7"}>
-              <ButtonComponent
-                borderRadius={20}
-                defaultBorderColor={"#F5F6F7"}
-                defaultHoverBorderColor={"#F5F6F7"}
-                defaultColor={"#6B7A99"}
-                defaultHoverColor={"#6B7A99"}
-                controlHeight={40}
-                paddingInline={20}
-                onClick={() => GoTo("TODAY")}
-              >
-                Today
-              </ButtonComponent>
-
-              <div className="flex items-center gap-8">
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
-                  controlHeight={40}
-                  paddingInline={12}
-                  onClick={() => GoTo("PREV")}
-                >
-                  <MdKeyboardArrowLeft />
-                </ButtonComponent>
-
-                <Title fontSize={"text-[#6B7A99]"}>{e.label}</Title>
-
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor={"#F5F6F7"}
-                  defaultHoverBorderColor={"#F5F6F7"}
-                  defaultColor={"#6B7A99"}
-                  defaultHoverColor={"#6B7A99"}
-                  controlHeight={40}
-                  paddingInline={12}
-                  onClick={() => GoTo("NEXT")}
-                >
-                  <MdKeyboardArrowRight />
-                </ButtonComponent>
-              </div>
-            </div>
-          );
-        },
+        toolbar: () => (
+          <Title
+            level={2}
+            className={"text-center p-7"}
+            fontSize={"text-[#6B7A99]"}
+          >
+            {data?.vehicle}
+          </Title>
+        ),
       },
       defaultDate: new Date(),
       formats: {
@@ -167,14 +42,10 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
           " " +
           localizer.format(end, "hh:mm", culture),
       },
-      views: [Views.WEEK, Views.MONTH, Views.DAY],
+      views: [Views.DAY],
       toolbar: true,
     };
   });
-
-  useEffect(() => {
-    setViews(views);
-  }, []);
 
   const eventPropGetter = useCallback(
     (event, start, end, isSelected) => ({
@@ -195,30 +66,12 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
 
   const dayPropGetter = useCallback(
     (date) => ({
-      // ...((moment(date).day() === 6 || moment(date).day() === 0) && {
-      //   className: "bg-[#F2F2F2]",
-      // }),
       ...(moment(date).day() > -1 && {
         className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
       }),
     }),
     [],
   );
-
-  const months = Array.from({ length: 12 }, (item, i) => {
-    return {
-      value: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-      label: new Date(0, i).toLocaleString("en-US", { month: "long" }),
-    };
-  });
-
-  useEffect(() => {
-    months.map((month, index) => {
-      if (index === Time.getMonth()) {
-        setMonthName(month.value);
-      }
-    });
-  }, [MonthName]);
 
   const slotGroupPropGetter = useCallback(
     () => ({
@@ -237,35 +90,23 @@ export const BigCalendar = ({ setLabel, setViews, ...props }) => {
   );
 
   return (
-    <Fragment>
+    <div className="min-w-64 w-full">
       <Calendar
-        // To selection column and add events
-        // selectable
         localizer={localizer}
         events={events}
-        // To scroll
-        startAccessor="start"
-        endAccessor="end"
-        // onSelectSlot={handleSelect}
-        // onSelectEvent={(event) => alert(event.title)}
-        defaultView={Views.WEEK}
+        defaultView={Views.DAY}
         defaultDate={defaultDate}
-        //style={{ height: 564 }}
+        date={date}
         views={views}
         formats={formats}
-        // {/*Header toolbar*/}
         toolbar={toolbar}
-        //{/*Event Item*/}
         eventPropGetter={eventPropGetter}
-        //{/*Day column*/}
         dayPropGetter={dayPropGetter}
         showMultiDayTimes
-        // Slot
         slotGroupPropGetter={slotGroupPropGetter}
         slotPropGetter={slotPropGetter}
-        //compo
         components={components}
       />
-    </Fragment>
+    </div>
   );
 };
