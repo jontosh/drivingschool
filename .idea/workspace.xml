@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed components and optimized code" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed components and refactored routing, vehicles" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -250,14 +250,6 @@
       <workItem from="1727588540263" duration="1388000" />
       <workItem from="1727710439108" duration="685000" />
       <workItem from="1727759849256" duration="1186000" />
-    </task>
-    <task id="LOCAL-00090" summary="#fix #jsx Refactored code show result test in modal window">
-      <option name="closed" value="true" />
-      <created>1720624440737</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1720624440737</updated>
     </task>
     <task id="LOCAL-00091" summary="#fix #jsx Refactored router link">
       <option name="closed" value="true" />
@@ -643,7 +635,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728087583172</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="#fix #js Fixed components and refactored routing, vehicles">
+      <option name="closed" value="true" />
+      <created>1728220264537</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1728220264537</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +662,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Optimized code and created quiz router for student portal." />
     <MESSAGE value="#fix #jsx Optimized code in schedule and added react-response to do media with calendar" />
     <MESSAGE value="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment" />
     <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files" />
@@ -687,7 +686,8 @@
     <MESSAGE value="#fix #js Fixed path, routing, components and refactored page Schedule as student and single instructor" />
     <MESSAGE value="#fix #js Fixed default image for instructor and refactored logic to get schedule teachers and student" />
     <MESSAGE value="#fix #js Fixed components and optimized code" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed components and optimized code" />
+    <MESSAGE value="#fix #js Fixed components and refactored routing, vehicles" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed components and refactored routing, vehicles" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
