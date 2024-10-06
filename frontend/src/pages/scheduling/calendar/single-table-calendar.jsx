@@ -12,6 +12,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { SlClock } from "react-icons/sl";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
+
 export const SingleTableCalendar = () => {
   const instructorId = useURLSearchParams("instructorId");
   const { data: TimeSlot } = useRequestGetQuery({
@@ -53,7 +54,7 @@ export const SingleTableCalendar = () => {
           </div>
         ),
         toolbar: (props) => (
-          <div className="flex items-center justify-between p-7">
+          <div className="flex max-[830px]:flex-col max-[830px]:space-y-2 items-center justify-between p-7">
             <ButtonComponent
               borderRadius={20}
               defaultBorderColor="#F5F6F7"
@@ -67,7 +68,7 @@ export const SingleTableCalendar = () => {
               Today
             </ButtonComponent>
 
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-4 sm:gap-8">
               <ButtonComponent
                 borderRadius={20}
                 defaultBorderColor="#F5F6F7"
@@ -171,14 +172,16 @@ export const SingleTableCalendar = () => {
   return (
     <Fragment>
       {instructorData && (
-        <div className="flex items-center gap-5">
-          <Image
-            className="w-16 h-16 overflow-hidden rounded-full"
-            src={instructorData?.picture ?? InstructorAva}
-          />
-          <Title level={2} fontSize="text-2xl">
-            {instructorData?.first_name} {instructorData?.last_name}
-          </Title>
+        <div className="flex max-[600px]:flex-col items-center gap-5">
+          <div className="flex items-center gap-5">
+            <Image
+              className="w-16 h-16 overflow-hidden rounded-full"
+              src={instructorData?.picture ?? InstructorAva}
+            />
+            <Title level={2} fontSize="text-2xl">
+              {instructorData?.first_name} {instructorData?.last_name}
+            </Title>
+          </div>
           <a
             className="text-[#6B7A99] text-base font-medium"
             href={`tel:+${formattedNumber}`}
