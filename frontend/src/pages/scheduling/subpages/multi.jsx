@@ -7,13 +7,14 @@ import { Fragment, useMemo, useState, useCallback } from "react";
 import { LuSettings } from "react-icons/lu";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { Form, Modal, Select } from "antd";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import dayjs from "dayjs";
 
 export const Multi = () => {
-  const [Schedules, setSchedules] = useState([]);
-  const [Now, setNow] = useState(new Date());
   const [form] = Form.useForm();
+  const [Now, setNow] = useState(new Date());
+  const [StudentId, setStudentId] = useState(undefined);
+  const [InstructorsSlot, setInstructorsSlot] = useState([]);
 
   const { data: Instructors } = useRequestGetQuery({
     path: "/student_account/instructor/",
@@ -22,38 +23,70 @@ export const Multi = () => {
     path: "/student_account/student/",
   });
 
+  const { data: StudentAPI, isSuccess } = useRequestIdQuery({
+    path: "/page_api/student",
+    id: StudentId,
+  });
+
   const instructorsOptions = useMemo(
     () =>
-      Instructors?.map((item) => ({
-        value: item.id,
-        label: `${item?.first_name} ${item?.last_name}`,
+      Instructors?.map((instructor) => ({
+        value: instructor?.id,
+        label: `${instructor?.first_name} ${instructor?.last_name}`,
       })),
     [Instructors],
   );
 
   const studentOptions = useMemo(
     () =>
-      Students?.map((item) => ({
-        value: item.id,
-        label: `${item?.first_name} ${item?.last_name}`,
+      Students?.map((student) => ({
+        value: student?.id,
+        label: `${student?.first_name} ${student?.last_name}`,
       })),
     [Students],
   );
 
-  const onFinish = useCallback(
-    (values) => {
-      if (values.instructors.length > 0) {
-        const filteredSchedules = Instructors?.filter((item) =>
-          values.instructors.includes(item.id),
-        ).map((item) => ({
-          instructor: item,
-          student: values.student,
-        }));
-        setSchedules(filteredSchedules);
+  const instructors = useMemo(() => {
+    if (isSuccess) {
+      const appointments = [];
+      for (let i = 0; i < StudentAPI?.appointments?.length; i++) {
+        const appointment = StudentAPI?.appointments[i];
+        for (let j = 0; j < appointment?.student?.length; j++) {
+          const student = appointment?.student[j];
+          for (let k = 0; k < Instructors?.length; k++) {
+            const staff = Instructors[k];
+            if (student?.staff === staff?.id) {
+              appointments.push({
+                instructor: student?.staff,
+                name: `${staff?.first_name} ${staff?.last_name}`,
+                slots: appointment?.time_slot?.slots?.map((item) => ({
+                  title: item?.name,
+                  start: new Date(item?.start),
+                  end: new Date(item?.end),
+                })),
+              });
+            }
+          }
+        }
       }
-    },
-    [Instructors],
-  );
+      return appointments;
+    }
+  }, [isSuccess]);
+
+  const onFinish = async (values) => {
+    setStudentId(values?.student);
+
+    setInstructorsSlot(
+      instructors?.filter(
+        (instructor, index) =>
+          instructor?.instructor === values?.instructors[index],
+      ),
+    );
+  };
+
+  const slot = InstructorsSlot?.map((item, index) => (
+    <MultiTable key={index} date={Now} data={item} />
+  ));
 
   const onMore = useCallback(() => {
     Modal.info({
@@ -62,14 +95,6 @@ export const Multi = () => {
       width: 650,
     });
   }, []);
-
-  const instructorTable = useMemo(
-    () =>
-      Schedules?.map((item, index) => (
-        <MultiTable key={index} date={Now} {...item} />
-      )),
-    [Schedules, Now],
-  );
 
   return (
     <Fragment>
@@ -196,11 +221,9 @@ export const Multi = () => {
             </Form>
           </aside>
 
-          {Schedules.length > 0 && (
-            <div className="flex-grow w-full min-[1350px]:w-min flex border border-gray-400 rounded-xl overflow-x-scroll">
-              {instructorTable}
-            </div>
-          )}
+          <div className="flex-grow w-full min-[1350px]:w-min flex border border-gray-400 rounded-xl overflow-x-scroll">
+            {slot}
+          </div>
         </div>
       </div>
     </Fragment>
