@@ -1,4 +1,3 @@
-import { CustomInput } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
@@ -7,15 +6,13 @@ import { DashboardCalendar } from "@/pages/dashboard/items/calendar.jsx";
 import { ChartDashboard } from "@/pages/dashboard/items/chart.jsx";
 import TabItem from "@/pages/dashboard/items/tab-content.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { filteredTeachers } from "@/redux/slice/filter-slice.jsx";
-import { ConfigProvider, Form, Statistic, Tabs } from "antd";
+import { ConfigProvider, Form, Input, Statistic, Tabs } from "antd";
 import classNames from "classnames";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
 import { PiCheckSquare } from "react-icons/pi";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Earning from "../../assets/icons/earning.svg";
 import StudentStudying from "../../assets/icons/student-studying.svg";
 import CountUp from "react-countup";
@@ -25,69 +22,69 @@ import DiagramUpBold from "../../assets/icons/overview.svg";
 import LinksIcon from "../../assets/icons/links.svg";
 import InstructorAva from "@/assets/user/instructor.jpeg";
 import DashboardStyle from "./dashboard.module.scss";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
+import { useFilterStatus } from "@/hooks/filter.jsx";
 
 const Dashboard = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { data: ListOfTeachersData, isLoading } = useRequestGetQuery({
+  const { search, pathname } = useLocation();
+  const { data, isLoading } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
-  const dispatch = useDispatch();
-  const FilteredTeachersState = useSelector(
-    (state) => state.filter.filteredTeachers,
-  );
-
-  const [ActiveTeacherCart, setActiveTeacherCart] = useState(-1);
-  const [SearchTeacher, setSearchTeacher] = useState("");
-  const [Teachers, setTeachers] = useState([]);
+  const instructorId = useURLSearchParams("instructorId");
   const [form] = Form.useForm();
+  const [Search, setSearch] = useState("");
 
-  useEffect(() => {
-    setTeachers(ListOfTeachersData || []);
-  }, [ListOfTeachersData]);
+  const { Data } = useFilterStatus({
+    data,
+    status: "ACTIVE",
+    search: Search,
+  });
 
-  useEffect(() => {
-    dispatch(
-      filteredTeachers({ search: SearchTeacher, data: ListOfTeachersData }),
-    );
-  }, [SearchTeacher, ListOfTeachersData]);
+  const teachers = useMemo(() => Data, [search, pathname]);
 
-  useEffect(() => {
-    setTeachers(FilteredTeachersState);
-  }, [FilteredTeachersState]);
+  const onFinish = (values) => {
+    setSearch(values.search);
+  };
 
-  const handleClickTeacherCart = (id) => setActiveTeacherCart(id);
-  const onFinish = (values) => setSearchTeacher(values.search);
-
-  const teacherComponents = Teachers?.map((teacher, index) => (
-    <div
+  const teacherComponents = teachers?.map((teacher, index) => (
+    <Link
+      to={`/admin/dashboard?instructorId=${teacher?.id}&first_name=${teacher?.first_name}&last_name=${teacher?.last_name}&picture=${teacher?.picture}`}
       key={index}
-      className="w-48 px-8 py-7 bg-white rounded-lg space-y-5 flex-shrink-0"
-      onClick={() => handleClickTeacherCart(index)}
+      className="flex-shrink-0"
+      onClick={() => {
+        form.resetFields();
+        setSearch("");
+      }}
     >
-      <Image
-        className={"w-[60px] mx-auto overflow-hidden rounded-lg"}
-        src={teacher?.picture ?? InstructorAva}
-        alt={teacher?.first_name}
-      />
-      <Title level={4} fontSize={"text-xs"} className={"text-center min-h-10"}>
-        {teacher.first_name} {teacher.last_name}
-      </Title>
-      <IconComponent
-        icon={<PiCheckSquare />}
-        iconWidth={"w-6"}
-        vertical={"items-center justify-center"}
-        className={`w-full rounded-lg border-2 pt-1.5 ${
-          ActiveTeacherCart === index
-            ? "border-[#F5F6F7] bg-[#3575FF]"
-            : "border-[#F5F6F7]"
-        }`}
-        spaceIconX={2.5}
-        iconClass={"text-[#C3CAD9]"}
-        childrenClass={` ${ActiveTeacherCart === index ? "text-white" : "text-[#6B7A99]"}`}
-      >
-        Show on
-      </IconComponent>
-    </div>
+      <div className="w-48 px-8 py-7 bg-white rounded-lg space-y-5 border">
+        <Image
+          className={"w-[60px] mx-auto overflow-hidden rounded-lg"}
+          src={teacher?.picture ?? InstructorAva}
+          srcSet={teacher?.picture ?? InstructorAva}
+        />
+
+        <Title
+          level={4}
+          fontSize={"text-xs"}
+          className={"text-center min-h-10"}
+        >
+          {teacher.first_name} {teacher.last_name}
+        </Title>
+
+        <IconComponent
+          icon={<PiCheckSquare />}
+          iconWidth={"w-6"}
+          vertical={"items-center justify-center"}
+          className={`w-full rounded-lg border-2 pt-1.5 ${instructorId === teacher.id ? "border-[#F5F6F7] bg-[#3575FF]" : "border-[#F5F6F7] "}`}
+          spaceIconX={2.5}
+          iconClass={"text-[#C3CAD9] "}
+          childrenClass={` ${instructorId === teacher.id ? "text-white" : "text-[#6B7A99]"}`}
+        >
+          Show on
+        </IconComponent>
+      </div>
+    </Link>
   ));
 
   const formatter = (value) => <CountUp end={value} separator="," />;
@@ -252,36 +249,24 @@ const Dashboard = () => {
 
         <div className={"space-y-5"}>
           <Form form={form} onFinish={onFinish}>
-            <ConfigProvider
-              theme={{
-                token: {
-                  fontSize: 16,
+            <Form.Item
+              name={"search"}
+              rules={[
+                {
+                  required: true,
+                  message: "Search is required!",
                 },
-              }}
+              ]}
             >
-              <Form.Item
-                name="search"
-                className={"mb-0 w-full"}
-                label={"Teacher"}
-                style={{ fontWeight: 500 }}
-              >
-                <CustomInput
-                  onChange={(e) => setSearchTeacher(e.target.value)}
-                  placeholder={"search"}
-                  classNames={"w-full sm:max-w-96"}
-                  className={"pl-10"}
-                  colorBorder={colorsObject.main}
-                >
-                  <span
-                    className={
-                      "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                    }
-                  >
-                    <AiOutlineSearch />
-                  </span>
-                </CustomInput>
-              </Form.Item>
-            </ConfigProvider>
+              <Input
+                className={"h-[50px]"}
+                placeholder={"Search"}
+                prefix={<AiOutlineSearch className={"text-xl"} />}
+                allowClear
+                enterButton="Search"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form.Item>
           </Form>
 
           <div
@@ -298,9 +283,7 @@ const Dashboard = () => {
             )}
           </div>
 
-          {ActiveTeacherCart > -1 && teacherComponents.length > 0 && (
-            <DashboardCalendar data={Teachers[ActiveTeacherCart]} />
-          )}
+          {search && <DashboardCalendar />}
         </div>
 
         <div className="bg-white px-5 lg:px-12 py-3.5 rounded-2xl shadow-xl">

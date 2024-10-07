@@ -3,7 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { Dropdown } from "antd";
 import classNames from "classnames";
 import {
@@ -21,6 +21,8 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { SlClock } from "react-icons/sl";
 import CalendarStyle from "../dashboard.module.scss";
 import InstructorAva from "../../../assets/user/instructor.jpeg";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
+import { formatPhoneNumber } from "@/modules/formatter.jsx";
 
 const items = [
   {
@@ -73,59 +75,57 @@ const items = [
   },
 ];
 
-export const DashboardCalendar = ({ data }) => {
+export const DashboardCalendar = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const localizer = momentLocalizer(moment);
-  const [eventsList, setEventsList] = useState([]);
-  const { data: timeSlot } = useRequestGetQuery({
+  const instructorId = useURLSearchParams("instructorId");
+  const firstName = useURLSearchParams("first_name");
+  const lastName = useURLSearchParams("last_name");
+  const picture = JSON.parse(useURLSearchParams("picture"));
+  const { data } = useRequestGetQuery({
     path: "/scheduling/time_slot/",
   });
-  const { data: timeRange } = useRequestGetQuery({
-    path: "/scheduling/time_range/",
-  });
+
+  const localizer = momentLocalizer(moment);
+  const [events, setEvents] = useState([]);
+
+  const EventsList = useMemo(() => {
+    return data?.filter((timeSlot) => timeSlot?.staff === instructorId);
+  }, [data, instructorId]);
 
   useEffect(() => {
-    if (timeSlot && timeRange && data?.id) {
-      const rangeTimes = [];
-      const rangeTime = [];
+    setEvents([
+      {
+        title: "Test",
+        start: new Date(),
+        end: new Date(),
+      },
+    ]);
+  }, [EventsList]);
 
-      timeSlot.forEach((item) => {
-        if (data?.id === item.staff) {
-          timeRange.forEach((item2) => {
-            if (item.slots.includes(item2.id)) {
-              rangeTimes.push(item2);
-            }
-          });
-        }
-      });
-
-      rangeTimes.forEach((item) => {
-        rangeTime.push({
-          title: item.name,
-          start: new Date(item.start),
-          end: new Date(item.end),
-          allDay: false,
-        });
-      });
-
-      setEventsList(rangeTime);
-    }
-  }, [timeSlot, timeRange, data?.id]);
-
-  const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
-    return {
+  const { formats, defaultDate, views, toolbar, components } = useMemo(
+    () => ({
       components: {
         timeGutterHeader: () => (
           <div className="flex justify-center min-h-[62px]">
             <SlClock className="w-7 text-[#C3CAD9]" />
           </div>
         ),
-        toolbar: (e) => {
-          const goTo = (value) => e.onNavigate(value);
-          const handleMode = (value) => e.onView(value);
+        toolbar: (props) => (
+          <div className="flex max-[830px]:flex-col max-[830px]:space-y-2 items-center justify-between p-7">
+            <ButtonComponent
+              borderRadius={20}
+              defaultBorderColor="#F5F6F7"
+              defaultHoverBorderColor="#F5F6F7"
+              defaultColor="#6B7A99"
+              defaultHoverColor="#6B7A99"
+              controlHeight={40}
+              paddingInline={20}
+              onClick={() => props.onNavigate("TODAY")}
+            >
+              Today
+            </ButtonComponent>
 
-          return (
-            <div className="flex items-center justify-between p-7">
+            <div className="flex items-center gap-4 sm:gap-8">
               <ButtonComponent
                 borderRadius={20}
                 defaultBorderColor="#F5F6F7"
@@ -133,85 +133,47 @@ export const DashboardCalendar = ({ data }) => {
                 defaultColor="#6B7A99"
                 defaultHoverColor="#6B7A99"
                 controlHeight={40}
-                paddingInline={20}
-                onClick={() => goTo("TODAY")}
+                paddingInline={12}
+                onClick={() => props.onNavigate("PREV")}
               >
-                Today
+                <MdKeyboardArrowLeft />
               </ButtonComponent>
 
-              <div className="flex items-center gap-8">
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor="#F5F6F7"
-                  defaultHoverBorderColor="#F5F6F7"
-                  defaultColor="#6B7A99"
-                  defaultHoverColor="#6B7A99"
-                  controlHeight={40}
-                  paddingInline={12}
-                  onClick={() => goTo("PREV")}
-                >
-                  <MdKeyboardArrowLeft />
-                </ButtonComponent>
+              <Title fontSize="text-[#6B7A99]">{props.label}</Title>
 
-                <Title fontSize="text-[#6B7A99]">{e.label}</Title>
-
-                <ButtonComponent
-                  borderRadius={20}
-                  defaultBorderColor="#F5F6F7"
-                  defaultHoverBorderColor="#F5F6F7"
-                  defaultColor="#6B7A99"
-                  defaultHoverColor="#6B7A99"
-                  controlHeight={40}
-                  paddingInline={12}
-                  onClick={() => goTo("NEXT")}
-                >
-                  <MdKeyboardArrowRight />
-                </ButtonComponent>
-              </div>
-
-              <div className="flex border border-[#26334D08]">
-                <ButtonComponent
-                  defaultBorderColor="#F5F6F7"
-                  defaultHoverBorderColor="#F5F6F7"
-                  defaultColor="#6B7A99"
-                  defaultHoverColor="#6B7A99"
-                  controlHeight={40}
-                  paddingInline={20}
-                  className="uppercase"
-                  onClick={() => handleMode("month")}
-                >
-                  MONTH
-                </ButtonComponent>
-
-                <ButtonComponent
-                  defaultBorderColor="#F5F6F7"
-                  defaultHoverBorderColor="#F5F6F7"
-                  defaultColor="#6B7A99"
-                  defaultHoverColor="#6B7A99"
-                  controlHeight={40}
-                  paddingInline={20}
-                  className="uppercase"
-                  onClick={() => handleMode("week")}
-                >
-                  WEEK
-                </ButtonComponent>
-
-                <ButtonComponent
-                  defaultBorderColor="#F5F6F7"
-                  defaultHoverBorderColor="#F5F6F7"
-                  defaultColor="#6B7A99"
-                  defaultHoverColor="#6B7A99"
-                  controlHeight={40}
-                  paddingInline={20}
-                  className="uppercase"
-                  onClick={() => handleMode("day")}
-                >
-                  DAY
-                </ButtonComponent>
-              </div>
+              <ButtonComponent
+                borderRadius={20}
+                defaultBorderColor="#F5F6F7"
+                defaultHoverBorderColor="#F5F6F7"
+                defaultColor="#6B7A99"
+                defaultHoverColor="#6B7A99"
+                controlHeight={40}
+                paddingInline={12}
+                onClick={() => props.onNavigate("NEXT")}
+              >
+                <MdKeyboardArrowRight />
+              </ButtonComponent>
             </div>
-          );
-        },
+
+            <div className="flex border border-[#26334D08]">
+              {["month", "week", "day"].map((view) => (
+                <ButtonComponent
+                  key={view}
+                  defaultBorderColor="#F5F6F7"
+                  defaultHoverBorderColor="#F5F6F7"
+                  defaultColor="#6B7A99"
+                  defaultHoverColor="#6B7A99"
+                  controlHeight={40}
+                  paddingInline={20}
+                  className="uppercase"
+                  onClick={() => props.onView(view)}
+                >
+                  {view.toUpperCase()}
+                </ButtonComponent>
+              ))}
+            </div>
+          </div>
+        ),
       },
       defaultDate: new Date(),
       formats: {
@@ -220,41 +182,43 @@ export const DashboardCalendar = ({ data }) => {
         dayFormat: (date, culture, localizer) =>
           localizer.format(date, "ddd DD", culture),
         eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
-          localizer.format(start, "hh:mm", culture) +
-          " " +
-          localizer.format(end, "hh:mm", culture),
+          `${localizer.format(start, "hh:mm", culture)} - ${localizer.format(
+            end,
+            "hh:mm",
+            culture,
+          )}`,
       },
       views: [Views.MONTH, Views.WEEK, Views.DAY],
       toolbar: true,
-    };
-  }, []);
+    }),
+    [],
+  );
 
   const eventPropGetter = useCallback(
-    (event, start, end, isSelected) => ({
-      className: `text-[#2C5A41] bg-[#29CC390D] ${isSelected ? "text-white" : ""}`,
-      style: {
-        border: "1px solid #29CC39",
-      },
+    () => ({
+      className: "text-[#2C5A41] bg-[#BDFFDB] border-[#8FDCB2]",
     }),
     [],
   );
 
   const dayPropGetter = useCallback(
-    (date) => ({
-      ...(moment(date).day() > -1 && {
-        className: classNames("bg-white", CalendarStyle["rbc-header"]),
-      }),
+    () => ({
+      className: `bg-[#fff] ${CalendarStyle["rbc-header"]}`,
     }),
     [],
   );
 
   const slotGroupPropGetter = useCallback(
-    () => ({ style: { minHeight: 80 } }),
+    () => ({
+      style: { minHeight: 80 },
+    }),
     [],
   );
 
   const slotPropGetter = useCallback(
-    () => ({ className: "px-2.5 pt-6 text-[#ADB8CC]" }),
+    () => ({
+      className: "px-2.5 pt-6 text-[#ADB8CC]",
+    }),
     [],
   );
 
@@ -264,11 +228,11 @@ export const DashboardCalendar = ({ data }) => {
         <div className="flex items-center gap-5">
           <Image
             className="w-16 h-16 overflow-hidden rounded-full"
-            src={data?.picture ?? InstructorAva}
-            srcSet={data?.picture ?? InstructorAva}
+            src={picture ?? InstructorAva}
+            srcSet={picture ?? InstructorAva}
           />
           <Title level={2} fontSize="text-2xl">
-            {data?.first_name} {data?.last_name}
+            {firstName} {lastName}
           </Title>
         </div>
 
@@ -282,13 +246,12 @@ export const DashboardCalendar = ({ data }) => {
       <div className="overflow-hidden rounded-xl bg-white flex justify-between gap-5">
         <div className="-mx-1 flex-grow pl-1">
           <Calendar
+            selectable
             localizer={localizer}
-            events={eventsList}
-            startAccessor="start"
-            endAccessor="end"
+            events={events}
             defaultView={Views.WEEK}
             defaultDate={defaultDate}
-            style={{ height: 850 }}
+            style={{ height: 810 }}
             views={views}
             formats={formats}
             toolbar={toolbar}
