@@ -14,6 +14,7 @@ from django.conf import  settings
 
 #INSTRACTOR
 class Instructor(CustomUser):
+
     STAFF_TYPE = [
         ["Instructor","Instructor"],
         ["Instructor / Teacher","Instructor/Teacher"],
