@@ -1,245 +1,241 @@
-import ButtonComponent from "@/components/button/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
-import IconComponent, { Icons } from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
-import ColorsContext from "@/context/colors.jsx";
-import { EnrollmentsSelections } from "@/modules/enrollments.jsx";
-import { InfoForm } from "@/pages/enrollment/info-form.jsx";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Button, Form, Modal, Select } from "antd";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Enrollment = () => {
-  const { data: ServicePackage } = useRequestGetQuery({
+  const [form] = Form.useForm();
+  const [SelectedPackages, setSelectedPackages] = useState([]);
+  const [CR, setCR] = useState(null);
+
+  const { data: ServicePackages } = useRequestGetQuery({
     path: "/account_management/services/service/",
   });
-
-  const { data: ServiceClass } = useRequestGetQuery({
+  const { data: ServiceClasses } = useRequestGetQuery({
     path: "/account_management/class/",
   });
 
-  const { colorsObject } = useContext(ColorsContext);
-  const { StudentInfoTypeOptions } = EnrollmentsSelections();
-  const [PackageSelection, setPackageSelection] = useState([]);
-  const [PackageTotal, setPackageTotal] = useState([]);
-  const [PackageIndexes, setPackageIndexes] = useState([]);
-  const [PackageValue, setPackageValue] = useState("");
-  const [ClassSelection, setClassSelection] = useState([]);
-  const [StudentInfoType, setStudentInfoType] = useState("");
-  const [ClassValue, setClassValue] = useState(null);
-  const [ClassItem, setClassItem] = useState(null);
-
-  useEffect(() => {
-    setPackageIndexes(PackageTotal.map((pkg) => pkg.id));
-  }, [PackageTotal]);
-
-  useEffect(() => {
-    const activePackages = ServicePackage?.filter(
-      (pkg) => pkg.status.toLowerCase() === "active",
-    ).map((pkg) => ({
-      ...pkg,
-      label: pkg.web_name,
-      value: pkg.id,
-      price: parseFloat(pkg.price),
-    }));
-
-    const activeClasses = ServiceClass?.filter(
-      (cls) => cls.status.toLowerCase() === "active",
-    ).map((cls) => ({
-      ...cls,
-      label: cls.details,
-      value: cls.id,
-    }));
-
-    setPackageSelection(activePackages);
-    setClassSelection(activeClasses);
-  }, [ServicePackage, ServiceClass]);
-
-  const handlePackage = (value) => setPackageValue(value);
-  const handleStudentInfoType = (value) => setStudentInfoType(value);
-  const handlePackageDelete = (id) => {
-    setPackageTotal((prev) => prev.filter((item) => item.id !== id));
-    setPackageValue("");
-  };
-  const handleClass = (value) => setClassValue(value);
-
-  useEffect(() => {
-    const selectedPackages = PackageSelection?.filter(
-      (item) => item.value === PackageValue,
-    );
-    setPackageTotal((prev) => [...prev, ...selectedPackages]);
-    const selectedClass = ClassSelection?.find(
-      (item) => item.id === ClassValue,
-    );
-    setClassItem(selectedClass);
-  }, [PackageValue, ClassValue]);
-
-  let totalPrice = PackageTotal.reduce((sum, { price }) => sum + price, 0);
-
-  const packageItems = PackageTotal?.map(({ price, label, id }, index) => (
-    <Fragment key={id}>
-      <div className="flex justify-between">
-        <div className="flex gap-x-2.5 items-center">
-          <Paragraph fontSize="text-base" fontWeightStrong={400}>
-            {index + 1}
-          </Paragraph>
-          <Paragraph fontSize="text-xs" fontWeightStrong={400}>
-            {label}
-          </Paragraph>
-        </div>
-        <div className="flex items-center gap-2.5">
-          <Paragraph fontSize="text-base" fontWeightStrong={400}>
-            ${price}
-          </Paragraph>
-          <IconComponent
-            className="w-5 inline-flex items-center"
-            icon={<Icons type="cross" />}
-            onClick={() => handlePackageDelete(id)}
-          />
-        </div>
-      </div>
-    </Fragment>
-  ));
-
-  const classItems = ServiceClass?.map(({ details, note, id }, index) =>
-    ClassValue === id ? (
-      <div
-        className="border-2 rounded-3xl border-indigo-500 flex items-center"
-        key={id}
-      >
-        <Paragraph
-          className="border-r-2 border-r-indigo-500 p-4"
-          fontSize="text-base"
-          fontWeightStrong={400}
-        >
-          {index + 1}
-        </Paragraph>
-        <Paragraph className="p-4" fontSize="text-base" fontWeightStrong={400}>
-          {details} | {note}
-        </Paragraph>
-      </div>
-    ) : null,
+  const classes = useMemo(
+    () =>
+      ServiceClasses?.filter((item) => item?.status === "ACTIVE").map(
+        (item) => ({
+          value: item?.id,
+          label: `${item?.details} | ${item?.note}`,
+        }),
+      ),
+    [ServiceClasses],
   );
 
+  const classesItem = useMemo(
+    () =>
+      ServiceClasses?.filter((item) => item?.id === CR).reduce(
+        (_, acc) => ({ name: `${acc?.details} | ${acc?.note}` }),
+        0,
+      ) || {},
+    [CR],
+  );
+
+  const handleCoupon = useCallback(() => {
+    Modal.info({
+      title: (
+        <Title level={2} fontSize={"text-3xl"}>
+          5% OFF
+        </Title>
+      ),
+      content: <>content</>,
+      width: 650,
+    });
+  }, []);
+
+  const filteredPackages = useMemo(() => {
+    form.setFieldValue("package", SelectedPackages);
+
+    return SelectedPackages.length !== 0
+      ? ServicePackages?.filter((pkg) =>
+          SelectedPackages.includes(pkg?.id),
+        )?.map((pkg) => ({
+          id: pkg?.id,
+          name: pkg?.name,
+          price: parseFloat(pkg?.price),
+        }))
+      : [];
+  }, [SelectedPackages, ServicePackages]);
+
+  const packages = useMemo(
+    () =>
+      ServicePackages?.filter((item) => item?.status === "ACTIVE").map(
+        (item) => ({ value: item?.id, label: item?.name }),
+      ),
+    [ServicePackages],
+  );
+
+  const filteredOptions = packages?.filter(
+    (pkg) => !SelectedPackages.includes(pkg?.value),
+  );
+
+  const onFinish = async (values) => {
+    console.log(values);
+  };
+
+  const onCancelPackage = (id) => {
+    setSelectedPackages((prev) => prev?.filter((index) => index !== id));
+  };
+
+  const onCancelCR = () => {
+    form.setFieldValue("cr", null);
+    setCR(null);
+  };
+
+  const packagesItem = filteredPackages?.map((pkg, index) => {
+    index += 1;
+    return (
+      <li key={index} className={"flex items-center justify-between gap-5"}>
+        <Paragraph>{index}</Paragraph>
+        <Paragraph className={"flex-grow"}>{pkg?.name}</Paragraph>
+        <div className={"flex items-center gap-3"}>
+          <b>${pkg?.price}</b>
+
+          <AiOutlineClose
+            className={"text-red-500 cursor-pointer"}
+            onClick={() => onCancelPackage(pkg?.id)}
+          />
+        </div>
+      </li>
+    );
+  });
+
   return (
-    <Fragment>
+    <>
       <Helmet>
         <title>New student enrollment</title>
       </Helmet>
-      <section className="px-3 md:px-11 space-y-5 max-w-full w-full">
+
+      <section className={"px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full"}>
         <Title
           level={2}
-          fontSize="text-indigo-600 text-4xl"
+          fontSize={"text-indigo-600 text-4xl"}
           fontWeightStrong={600}
-          titleMarginBottom={20}
+          titleMarginBottom={26}
         >
-          New Student Enrollment
+          New student enrollment
         </Title>
-        <div className="grid lg:grid-cols-2 gap-7">
-          <div className="bg-white p-5 rounded-3xl shadow-lg">
-            <Title
-              fontSize="text-xl"
-              fontWeightStrong={500}
-              titleMarginBottom={5}
-              level={2}
-            >
-              Package selection
-            </Title>
-            <Paragraph fontSize="text-xs text-zinc-500 mb-2.5">
-              Select the package to enroll students
-            </Paragraph>
-            <CustomSelect
-              placeholder="Package selection"
-              onChange={handlePackage}
-              options={PackageSelection}
-              value={PackageValue || undefined}
-              className="w-full mb-2.5 h-[50px]"
-              optionFontSize={14}
-              optionSelectedFontWeight={400}
-              fontSize={16}
-            />
-            {PackageTotal.length > 0 && (
-              <>
-                <div className="flex justify-between mb-2.5">
-                  <Paragraph fontWeightStrong={400} fontSize="text-base">
-                    You chosen:
-                  </Paragraph>
-                  <Paragraph fontSize="text-xs text-gray-600">
-                    Sub total ${totalPrice} Tax: $0 Coupon: $338
-                  </Paragraph>
-                </div>
-                <div className="flex flex-col gap-y-3.5 pl-4 mb-5">
-                  {packageItems}
-                </div>
-                <div className="flex justify-between">
-                  <ButtonComponent
-                    defaultBg={colorsObject.info}
-                    defaultHoverBg={colorsObject.info}
-                    paddingInline={28}
-                    controlHeight={40}
-                    borderRadius={5}
-                  >
-                    Coupon
-                  </ButtonComponent>
-                  <Paragraph fontSize="text-xl" fontWeightStrong={400}>
-                    ${totalPrice}
-                  </Paragraph>
-                </div>
-              </>
-            )}
+
+        <Form form={form} onFinish={onFinish} className={"space-y-5"}>
+          <div className="flex gap-5">
+            <div className="flex-grow">
+              <div className="bg-white rounded-2xl p-5 space-y-2.5">
+                <Title level={3} fontSize={"text-2xl"}>
+                  Package selection
+                </Title>
+                <Paragraph fontSize={"text-gray-500"}>
+                  Select the package to enroll students
+                </Paragraph>
+
+                <Form.Item
+                  name={"package"}
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please choose PACKAGE!",
+                    },
+                  ]}
+                >
+                  <Select
+                    className={"h-[50px]"}
+                    mode="multiple"
+                    placeholder="Select"
+                    value={SelectedPackages}
+                    onChange={setSelectedPackages}
+                    options={filteredOptions}
+                  />
+                </Form.Item>
+
+                {packagesItem?.length !== 0 && (
+                  <div className={"space-y-3"}>
+                    <div className="flex items-center justify-between gap-2">
+                      <Title level={4}>You choose</Title>
+                      <Paragraph fontSize={" text-gray-500"}>
+                        Sub total $
+                        {filteredPackages?.reduce(
+                          (cur, acc) => cur + acc?.price,
+                          0,
+                        )}
+                        Tax: $0 Coupon: $
+                        {filteredPackages?.reduce(
+                          (cur, acc) => cur + acc?.price,
+                          0,
+                        )}
+                      </Paragraph>
+                    </div>
+                    <ol className={"space-y-2.5"}>{packagesItem}</ol>
+
+                    <Button
+                      type={"primary"}
+                      onClick={handleCoupon}
+                      htmlType={"button"}
+                    >
+                      Coupon
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="flex-grow">
+              <div className="bg-white rounded-2xl p-5 space-y-2.5">
+                <Title level={3} fontSize={"text-2xl"}>
+                  Class selection
+                </Title>
+                <Paragraph fontSize={"text-gray-500"}>
+                  Select the package to enroll students
+                </Paragraph>
+
+                <Form.Item name={"cr"}>
+                  <Select
+                    placeholder={"Select"}
+                    className={"h-[50px]"}
+                    options={classes}
+                    onChange={setCR}
+                  />
+                </Form.Item>
+
+                {classesItem?.name && (
+                  <div className={"flex gap-3 justify-between items-center"}>
+                    <Paragraph>1</Paragraph>
+                    <Paragraph className={"flex-grow"}>
+                      {classesItem?.name}
+                    </Paragraph>
+                    <AiOutlineClose
+                      className={"w-4 text-red-500 cursor-pointer"}
+                      onClick={onCancelCR}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="bg-white p-5 rounded-3xl shadow-lg">
-            <Title
-              fontSize="text-xl"
-              fontWeightStrong={500}
-              titleMarginBottom={5}
-            >
-              Class selection
-            </Title>
-            <Paragraph fontSize="text-xs text-zinc-500 mb-2.5">
-              Select the package to enroll students
-            </Paragraph>
-            <CustomSelect
-              placeholder="Select class"
-              options={ClassSelection}
-              className="w-full mb-2.5 h-[50px]"
-              onChange={handleClass}
-            />
-            {classItems}
-          </div>
-        </div>
-        <div className="shadow-lg p-5 bg-white rounded-3xl">
-          <Title
-            fontSize="text-xl"
-            fontWeightStrong={500}
-            titleMarginBottom={5}
-          >
-            Student information type
-          </Title>
-          <Paragraph fontSize="text-xs text-zinc-500 mb-2.5">
-            Select the package to enroll students
-          </Paragraph>
-          <CustomSelect
-            placeholder="Student information type"
-            fontSize={14}
-            onChange={handleStudentInfoType}
-            options={StudentInfoTypeOptions}
-            className="mb-2.5 h-[50px] shadow-lg max-w-[570px] w-full"
-            disabled={!PackageTotal.length}
-          />
-          {StudentInfoType && PackageIndexes.length > 0 && (
-            <InfoForm
-              packages={{
-                packages: PackageIndexes,
-                total: totalPrice,
-                class: ClassItem,
-              }}
-              type={StudentInfoType}
-            />
-          )}
-        </div>
+
+          <article className="bg-white rounded-2xl p-5 space-y-2.5">
+            <Form.Item name={"information_type"}>
+              <Select
+                className={"h-[50px]"}
+                style={{
+                  width: "50%",
+                }}
+                options={[
+                  { value: "Teen", label: "Teen" },
+                  { value: "Adult", label: "Adult" },
+                  { value: "Knowledge Test", label: "Knowledge Test" },
+                  { value: "Road Test", label: "Road Test" },
+                ]}
+              />
+            </Form.Item>
+          </article>
+        </Form>
       </section>
-    </Fragment>
+    </>
   );
 };
 
