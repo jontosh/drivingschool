@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code." />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed Advanced search, student profile and search" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -250,30 +250,6 @@
       <workItem from="1727588540263" duration="1388000" />
       <workItem from="1727710439108" duration="685000" />
       <workItem from="1727759849256" duration="1186000" />
-    </task>
-    <task id="LOCAL-00096" summary="#fix #js Fixed form elements, getting and updating request and show it">
-      <option name="closed" value="true" />
-      <created>1720780220773</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1720780220773</updated>
-    </task>
-    <task id="LOCAL-00097" summary="#fix #js Refactored request for type Student, updated elements">
-      <option name="closed" value="true" />
-      <created>1720781745960</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1720781745960</updated>
-    </task>
-    <task id="LOCAL-00098" summary="#fix #js Fixed bugs to log out and success token">
-      <option name="closed" value="true" />
-      <created>1721025716897</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1721025716898</updated>
     </task>
     <task id="LOCAL-00099" summary="#fix #js Fixed bugs to auth, refactored css media on dashboard and validation to search">
       <option name="closed" value="true" />
@@ -643,7 +619,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728377503870</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code.">
+      <option name="closed" value="true" />
+      <created>1728377531004</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1728377531004</updated>
+    </task>
+    <task id="LOCAL-00146" summary="#fix #js Fixed Advanced search with connect API to get data for fields">
+      <option name="closed" value="true" />
+      <created>1728401333459</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1728401333459</updated>
+    </task>
+    <task id="LOCAL-00147" summary="#fix #js Fixed Advanced search, student profile and search">
+      <option name="closed" value="true" />
+      <created>1728411087569</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1728411087569</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,8 +662,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Optimized code and refactored structure" />
-    <MESSAGE value="#fix #jsx Optimized code and products module structure with delete and patch form data." />
     <MESSAGE value="#fix #jsx Optimized code on discount, fees and quiz-exam modules with delete and patch request data." />
     <MESSAGE value="#fix #jsx Optimized code on services module with delete and patch request data." />
     <MESSAGE value="#fix #jsx Optimized code on file management and refactored some structure." />
@@ -687,7 +685,9 @@
     <MESSAGE value="#fix #js Fixed components logic and schedule table on dashboard" />
     <MESSAGE value="#fix #js Fixed components logic and refactored Enrollment page" />
     <MESSAGE value="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code." />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code." />
+    <MESSAGE value="#fix #js Fixed Advanced search with connect API to get data for fields" />
+    <MESSAGE value="#fix #js Fixed Advanced search, student profile and search" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed Advanced search, student profile and search" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
