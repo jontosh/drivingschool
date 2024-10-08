@@ -8,339 +8,90 @@ import IconComponent from "@/components/icons";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SearchModule } from "@/modules/search.jsx";
-import ProfileStyle from "@/pages/student/student-account.module.scss";
-import { DatePicker, Form, Pagination, Table } from "antd";
-import { Formik } from "formik";
-import { Fragment, useContext, useState } from "react";
+import {
+  Alert,
+  DatePicker,
+  Form,
+  Input,
+  Pagination,
+  Radio,
+  Select,
+  Table,
+} from "antd";
+import { Fragment, useContext, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
 import { SlCloudDownload } from "react-icons/sl";
-
-const SearchFormik = () => {
-  const { colorsObject } = useContext(ColorsContext);
-  const [CheckValues, setCheckValues] = useState(false);
-  const [ShowTable, setShowTable] = useState(false);
-  const { columns, data } = SearchModule();
-  const [Current, setCurrent] = useState(1);
-  const handleChangePagination = (page) => {
-    setCurrent(page);
-  };
-
-  return (
-    <Fragment>
-      <Formik
-        initialValues={{ account: "", status: "", email: "" }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.account) {
-            errors.account = "Required";
-          }
-          if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = "Invalid email address";
-          }
-
-          Object.values(values).forEach((value) => {
-            if (value === "") {
-              setCheckValues(true);
-              setShowTable(false);
-            }
-          });
-
-          return errors;
-        }}
-        onSubmit={(values) => {
-          console.log(values);
-          Object.values(values).forEach((value) => {
-            if (value !== "") {
-              setCheckValues(false);
-              setShowTable(true);
-            }
-          });
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
-          <Form onSubmit={handleSubmit} className="bg-white p-5 rounded-xl" layout="vertical">
-            {CheckValues && (
-              <Title
-                level={3}
-                fontSize={"text-[#FF333F] text-xl"}
-                titleMarginBottom={20}
-                fontWeightStrong={500}
-              >
-                Error account cant be find please try again
-              </Title>
-            )}
-
-            {/* <div className="grid min-[1150px]:grid-cols-2 gap-5 mb-7"> */}
-
-            <div className="grid md:grid-cols-2 gap-5">
-              <div className="space-y-5">
-                <Form.Item label="Account status">
-                  <CustomSelect
-                    placeholder={"Select"}
-                    options={[
-                      {
-                        value: "Status",
-                        label: "Status",
-                      }
-                    ]}
-                    className={"h-[50px]"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Account #">
-                  <CustomInput
-                    placeholder={"Account #"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="First name">
-                  <CustomInput
-                    placeholder={"First name"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Last name">
-                  <CustomInput
-                    placeholder={"Last name"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Zip code">
-                  <CustomInput
-                    placeholder={"Zip code"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Phone">
-                  <CustomInput
-                    placeholder={"Phone"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Student City">
-                  <CustomInput
-                    placeholder={"Student City"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Year opened">
-                  <CustomInput
-                    placeholder={"Year opened"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Student address">
-                  <CustomInput
-                    placeholder={"Student address"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Permit number">
-                  <CustomInput
-                    placeholder={"Permit number"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-              </div>
-
-              <div className="space-y-5">
-                <Form.Item label="Associated staff">
-                  <CustomSelect
-                    placeholder={"Select"}
-                    options={[
-                      {
-                        value: "Status",
-                        label: "Status",
-                      }
-                    ]}
-                    className={"h-[50px]"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Account created">
-                  <DatePicker className="w-full h-[50px] border-[#667085]" />
-                </Form.Item>
-
-                <Form.Item label="Student Type">
-                  <div className="flex space-x-7">
-                    <CustomRadio name={"StudentType"}>
-                      Adult
-                    </CustomRadio>
-
-                    <CustomRadio name={"StudentType"}>
-                      Teen
-                    </CustomRadio>
-                  </div>
-                </Form.Item>
-
-                <Form.Item label="Location">
-                  <CustomSelect
-                    placeholder={"Select"}
-                    options={[
-                      {
-                        value: "Status",
-                        label: "Status",
-                      }
-                    ]}
-                    className={"h-[50px]"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="High school">
-                  <CustomSelect
-                    placeholder={"Select"}
-                    options={[
-                      {
-                        value: "Status",
-                        label: "Status",
-                      }
-                    ]}
-                    className={"h-[50px]"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="CR No">
-                  <CustomSelect
-                    placeholder={"Select"}
-                    options={[
-                      {
-                        value: "Status",
-                        label: "Status",
-                      }
-                    ]}
-                    className={"h-[50px]"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Parent name">
-                  <CustomInput
-                    placeholder={"Parent name"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-
-                <Form.Item label="Email ID">
-                  <CustomInput
-                    placeholder={"Email ID"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-                
-                <Form.Item label="Phone search">
-                  <CustomInput
-                    placeholder={"Phone search"}
-                    classNames={"w-full"}
-                  />
-                </Form.Item>
-              </div>
-            </div>
-
-            <div className="flex max-[500px]:flex-col justify-center gap-5 pt-5">
-              <ButtonComponent
-                defaultBg={"#24C18F"}
-                defaultHoverBg={"#24C18F"}
-                defaultColor={colorsObject.main}
-                defaultHoverColor={colorsObject.main}
-                borderRadius={5}
-                paddingInline={62}
-                controlHeight={40}
-                fontSize={16}
-                className={"font-medium"}
-                type={"submit"}
-              >
-                Filter
-              </ButtonComponent>
-              <ButtonComponent
-                defaultBg={colorsObject.main}
-                defaultHoverBg={colorsObject.main}
-                defaultColor={colorsObject.primary}
-                defaultHoverColor={colorsObject.primary}
-                borderRadius={5}
-                paddingInline={62}
-                controlHeight={40}
-                fontSize={16}
-                className={"font-medium"}
-                defaultBorderColor={colorsObject.primary}
-                defaultHoverBorderColor={colorsObject.primary}
-                type={"reset"}
-              >
-                Reset
-              </ButtonComponent>
-            </div>
-          </Form>
-        )}
-      </Formik>
-
-      {ShowTable && (
-        <div className={"bg-white p-5 rounded-xl"}>
-          <Title
-            fontSize={"text-2xl text-indigo-600"}
-            fontWeightStrong={500}
-            titleMarginBottom={20}
-          >
-            Result: 246
-          </Title>
-
-          <div className="flex items-center justify-between">
-            <form className={"pb-3"}>
-              <label className={"relative"}>
-                <CustomInput
-                  placeholder={"Search"}
-                  className={`w-96 pl-12 pr-4 text-sm shadow-lg`}
-                />
-
-                <span
-                  className={
-                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                  }
-                >
-                  <AiOutlineSearch />
-                </span>
-              </label>
-            </form>
-
-            <div className="flex items-center gap-4">
-              <Pagination
-                total={20}
-                pageSize={2}
-                current={Current}
-                onChange={handleChangePagination}
-              />
-
-              <IconComponent
-                icon={<SlCloudDownload />}
-                iconWidth={"border border-indigo-700 rounded p-1 shadow-lg"}
-              />
-            </div>
-          </div>
-          <div className={"-mx-5"}>
-            <Table columns={columns} dataSource={data} pagination={false} />
-          </div>
-        </div>
-      )}
-    </Fragment>
-  );
-};
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 
 const Search = () => {
+  const { colorsObject } = useContext(ColorsContext);
+  const [Visible, setVisible] = useState(false);
+  const [VisibleTable, setVisibleTable] = useState(false);
+  const [form] = Form.useForm();
+  const [Current, setCurrent] = useState(1);
+  const [Search, setSearch] = useState("");
+  const { columns, data } = SearchModule();
+
+  const { data: Instructors } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+  const { data: Locations } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
+  const { data: Schools } = useRequestGetQuery({
+    path: "/account_management/schools/",
+  });
+  const { data: Classes } = useRequestGetQuery({
+    path: "/account_management/class/",
+  });
+
+  const instructorsOptions = useMemo(
+    () =>
+      Instructors?.filter((item) => item?.status === "ACTIVE")?.map(
+        (instructor) => ({
+          value: instructor?.id,
+          label: `${instructor?.first_name} ${instructor?.last_name}`,
+        }),
+      ),
+    [Instructors],
+  );
+  const locationsOptions = useMemo(
+    () =>
+      Locations?.filter((item) => item?.status === "ACTIVE")?.map(
+        (location) => ({
+          value: location?.id,
+          label: location?.name,
+        }),
+      ),
+    [Locations],
+  );
+  const schoolsOptions = useMemo(
+    () =>
+      Schools?.filter((item) => item?.status === "ACTIVE")?.map((school) => ({
+        value: school?.id,
+        label: school?.name,
+      })),
+    [Schools],
+  );
+  const classesOptions = useMemo(
+    () =>
+      Classes?.filter((item) => item?.status === "ACTIVE")?.map((item) => ({
+        value: item?.id,
+        label: `${item?.details} | ${item?.note}`,
+      })),
+    [Classes],
+  );
+
+  const handleChangePagination = () => setCurrent(3);
+  const onFinish = async (values) => {
+    setVisible((prev) => !prev);
+    setVisibleTable((prev) => !prev);
+    console.log(values);
+  };
+
+  const onReset = () => form.resetFields();
+
   return (
     <Fragment>
       <Helmet>
@@ -357,7 +108,214 @@ const Search = () => {
           Advanced search
         </Title>
 
-        <SearchFormik />
+        <Form
+          form={form}
+          onFinish={onFinish}
+          className="bg-white p-5 rounded-xl"
+          layout="vertical"
+        >
+          {Visible && (
+            <Alert
+              showIcon
+              message="Error"
+              description="Error account cant be find please try again"
+              type="error"
+              closable
+              className={"mb-5"}
+            />
+          )}
+
+          <div className="grid md:grid-cols-2 gap-5">
+            <div className="space-y-5">
+              <Form.Item label="Account status" name={"status"}>
+                <Select
+                  placeholder={"Select"}
+                  options={[
+                    {
+                      value: "ACTIVE",
+                      label: "ACTIVE",
+                    },
+                    {
+                      value: "INACTIVE",
+                      label: "INACTIVE",
+                    },
+                    {
+                      value: "DELETED",
+                      label: "DELETED",
+                    },
+                  ]}
+                  className={"h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="Account #" name={"account"}>
+                <Input placeholder={"Account #"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="First name" name={"first_name"}>
+                <Input placeholder={"First name"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Last name" name={"last_name"}>
+                <Input placeholder={"Last name"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Zip code" name={"zip"}>
+                <Input placeholder={"Zip code"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Phone" name={"phone"}>
+                <Input placeholder={"Phone"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Student City" name={"city"}>
+                <Input placeholder={"Student City"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Year opened">
+                <DatePicker
+                  picker={"year"}
+                  placeholder={"Year opened"}
+                  className={"w-full h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="Student address" name={"address"}>
+                <Input placeholder={"Student address"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Permit number" name={"pr_number"}>
+                <Input placeholder={"Permit number"} className={"h-[50px]"} />
+              </Form.Item>
+            </div>
+
+            <div className="space-y-5">
+              <Form.Item label="Associated staff">
+                <Select
+                  placeholder={"Select"}
+                  options={instructorsOptions}
+                  className={"h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="Account created">
+                <DatePicker className="w-full h-[50px]" />
+              </Form.Item>
+
+              <Form.Item label="Student Type" name={"information_type"}>
+                <Radio.Group>
+                  <Radio value={"Adult"}>Adult</Radio>
+                  <Radio value={"Teen"}>Teen</Radio>
+                </Radio.Group>
+              </Form.Item>
+
+              <Form.Item label="Location" name={"location"}>
+                <Select
+                  placeholder={"Select"}
+                  options={locationsOptions}
+                  className={"h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="High school" name={"school"}>
+                <Select
+                  placeholder={"Select"}
+                  options={schoolsOptions}
+                  className={"h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="CR No" name={"cr"}>
+                <Select
+                  placeholder={"Select"}
+                  options={classesOptions}
+                  className={"h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="Parent name" name={"parent_name"}>
+                <Input placeholder={"Parent name"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Email ID" name={"email"}>
+                <Input placeholder={"Email ID"} className={"h-[50px]"} />
+              </Form.Item>
+
+              <Form.Item label="Phone search" name={"parent_phone"}>
+                <Input placeholder={"Phone search"} className={"h-[50px]"} />
+              </Form.Item>
+            </div>
+          </div>
+
+          <div className=" text-center space-x-5 pt-5">
+            <ButtonComponent
+              defaultBg={"#24C18F"}
+              defaultHoverBg={"#24C18F"}
+              defaultColor={colorsObject.main}
+              defaultHoverColor={colorsObject.main}
+              borderRadius={5}
+              paddingInline={62}
+              controlHeight={40}
+              fontSize={16}
+              className={"font-medium"}
+              type={"submit"}
+            >
+              Filter
+            </ButtonComponent>
+            <ButtonComponent
+              defaultBg={colorsObject.main}
+              defaultHoverBg={colorsObject.main}
+              defaultColor={colorsObject.primary}
+              defaultHoverColor={colorsObject.primary}
+              borderRadius={5}
+              paddingInline={62}
+              controlHeight={40}
+              fontSize={16}
+              className={"font-medium"}
+              defaultBorderColor={colorsObject.primary}
+              defaultHoverBorderColor={colorsObject.primary}
+              type={"reset"}
+              onClick={onReset}
+            >
+              Reset
+            </ButtonComponent>
+          </div>
+        </Form>
+        {VisibleTable && (
+          <div className={"bg-white p-5 rounded-xl space-y-5"}>
+            <Title fontSize={"text-2xl text-indigo-600"} fontWeightStrong={500}>
+              Result: 246
+            </Title>
+
+            <div className="flex items-center justify-between">
+              <Input
+                className={"h-[50px] w-1/3"}
+                placeholder={"Search"}
+                prefix={<AiOutlineSearch className={"text-xl"} />}
+                allowClear
+                enterButton="Search"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+
+              <div className="flex items-center flex-shrink-0 gap-4">
+                <Pagination
+                  total={20}
+                  pageSize={2}
+                  current={Current}
+                  onChange={handleChangePagination}
+                />
+
+                <IconComponent
+                  icon={<SlCloudDownload />}
+                  iconWidth={"border border-indigo-700 rounded p-1 shadow-lg"}
+                />
+              </div>
+            </div>
+            <div className={"-mx-5"}>
+              <Table columns={columns} dataSource={data} pagination={false} />
+            </div>
+          </div>
+        )}
       </section>
     </Fragment>
   );
