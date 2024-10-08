@@ -474,7 +474,7 @@ export const ModalEmail = ({
                     <p class="footer-text">This is an automatically generated email. Please do not reply to this email.</p>
                 `}
               onReady={(editor) => {
-                console.log("Editor is ready to use!", editor);
+                console.log("Index is ready to use!", editor);
               }}
               onChange={(event, editor) => {
                 const data = editor.getData();

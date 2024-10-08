@@ -3,7 +3,8 @@ import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import BillingStyle from "@/pages/student/student-account.module.scss";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
+import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
 
 export const StudentAccountModule = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -136,8 +137,39 @@ export const StudentAccountModule = () => {
 export const StudentAccountEnrollmentModule = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { data } = useRequestGetQuery({ path: "/student_account/enrollment/" });
-  // /account_management/services/service/
-  // /student_account/instructor/
+  const studentId = useURLSearchParams("studentId");
+  const { data: Services } = useRequestGetQuery({
+    path: "/account_management/services/service/",
+  });
+  const { data: Instructors } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+
+  const enrollments = useMemo(() => {
+    if (!Services || !Instructors || !data) return [];
+
+    return Services?.flatMap((service) =>
+      data
+        ?.filter(
+          (acc) =>
+            acc?.package?.includes(service?.id) && studentId === acc?.student,
+        )
+        .map((acc) => {
+          const instructor = Instructors?.find(
+            (staff) => staff?.id === acc?.by,
+          );
+          if (instructor) {
+            return {
+              ...acc,
+              by: `${instructor?.first_name} ${instructor?.last_name}`,
+              package: service?.name,
+            };
+          }
+          return null;
+        })
+        .filter(Boolean),
+    );
+  }, [Services, Instructors, data]);
 
   const columns = [
     {
@@ -255,20 +287,20 @@ export const StudentAccountEnrollmentModule = () => {
             placeholder={"Status"}
             options={[
               {
-                value: "Edit",
-                label: "Edit",
+                value: "ACTIVE",
+                label: "ACTIVE",
               },
               {
-                value: "Delete",
-                label: "Delete",
+                value: "DELETED",
+                label: "DELETED",
               },
               {
-                value: "Print",
-                label: "Print",
+                value: "INACTIVE",
+                label: "INACTIVE",
               },
               {
-                value: "Email",
-                label: "Email",
+                value: "PENDING",
+                label: "PENDING",
               },
             ]}
           />
@@ -277,7 +309,7 @@ export const StudentAccountEnrollmentModule = () => {
     },
   ];
 
-  return { data, columns };
+  return { data: enrollments, columns };
 };
 
 export const AccountActivitiesModule = () => {
