@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed components and refactored routing, vehicles" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,27 +48,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactoring",
-    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
-    "service.view.auto.scroll.to.source": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/opt/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
+    &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactBuddySettings">
     <option name="extensionsIgnore" value="true" />
   </component>
@@ -250,46 +250,6 @@
       <workItem from="1727588540263" duration="1388000" />
       <workItem from="1727710439108" duration="685000" />
       <workItem from="1727759849256" duration="1186000" />
-    </task>
-    <task id="LOCAL-00091" summary="#fix #jsx Refactored router link">
-      <option name="closed" value="true" />
-      <created>1720624845738</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1720624845738</updated>
-    </task>
-    <task id="LOCAL-00092" summary="#fix #jsx Fixed code in test view">
-      <option name="closed" value="true" />
-      <created>1720764552397</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1720764552398</updated>
-    </task>
-    <task id="LOCAL-00093" summary="#fix #js Fixed URL routing for NavLink components">
-      <option name="closed" value="true" />
-      <created>1720765246787</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1720765246788</updated>
-    </task>
-    <task id="LOCAL-00094" summary="#fix #js Fixed URL routing for add new Corporate time off and updated modal page content">
-      <option name="closed" value="true" />
-      <created>1720768640256</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1720768640256</updated>
-    </task>
-    <task id="LOCAL-00095" summary="#fix #js Fixed some bugs">
-      <option name="closed" value="true" />
-      <created>1720768993292</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1720768993292</updated>
     </task>
     <task id="LOCAL-00096" summary="#fix #js Fixed form elements, getting and updating request and show it">
       <option name="closed" value="true" />
@@ -643,7 +603,47 @@
       <option name="project" value="LOCAL" />
       <updated>1728220264537</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="#fix #js Fixed components and refactored routing, vehicles">
+      <option name="closed" value="true" />
+      <created>1728220294423</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1728220294423</updated>
+    </task>
+    <task id="LOCAL-00141" summary="#fix #js Fixed components logic on schedule Multi Instructor">
+      <option name="closed" value="true" />
+      <created>1728293227814</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1728293227814</updated>
+    </task>
+    <task id="LOCAL-00142" summary="#fix #js Fixed components logic and schedule table on dashboard">
+      <option name="closed" value="true" />
+      <created>1728306298276</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1728306298276</updated>
+    </task>
+    <task id="LOCAL-00143" summary="#fix #js Fixed components logic and refactored Enrollment page">
+      <option name="closed" value="true" />
+      <created>1728325451187</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1728325451187</updated>
+    </task>
+    <task id="LOCAL-00144" summary="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code.">
+      <option name="closed" value="true" />
+      <created>1728377503870</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1728377503870</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,10 +662,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Optimized code in schedule and added react-response to do media with calendar" />
-    <MESSAGE value="#fix #jsx Fixed bugs and optimized code. Created new status modal components and refactored enrollment" />
-    <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files" />
-    <MESSAGE value="#fix #jsx Fixed bugs and optimized code in js files. Refactored data in student page" />
     <MESSAGE value="#fix #jsx Optimized code and refactored structure" />
     <MESSAGE value="#fix #jsx Optimized code and products module structure with delete and patch form data." />
     <MESSAGE value="#fix #jsx Optimized code on discount, fees and quiz-exam modules with delete and patch request data." />
@@ -687,7 +683,11 @@
     <MESSAGE value="#fix #js Fixed default image for instructor and refactored logic to get schedule teachers and student" />
     <MESSAGE value="#fix #js Fixed components and optimized code" />
     <MESSAGE value="#fix #js Fixed components and refactored routing, vehicles" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed components and refactored routing, vehicles" />
+    <MESSAGE value="#fix #js Fixed components logic on schedule Multi Instructor" />
+    <MESSAGE value="#fix #js Fixed components logic and schedule table on dashboard" />
+    <MESSAGE value="#fix #js Fixed components logic and refactored Enrollment page" />
+    <MESSAGE value="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code." />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
