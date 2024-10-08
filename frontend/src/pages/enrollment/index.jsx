@@ -20,9 +20,7 @@ import {
 import { AiOutlineClose } from "react-icons/ai";
 import { CustomSelect } from "@/components/form/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-
-const ActiveData = (data = []) =>
-  data?.filter((item) => item?.status === "ACTIVE");
+import { ActiveData } from "@/hooks/filter.jsx";
 
 const Enrollment = () => {
   const { colorsObject } = useContext(ColorsContext);

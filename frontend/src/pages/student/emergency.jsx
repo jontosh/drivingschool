@@ -1,103 +1,134 @@
-import {
-  CustomCheckBox,
-  CustomInput,
-  CustomSelect,
-} from "@/components/form/index.jsx";
 import Title from "@/components/title/index.jsx";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
-import { Form, Input } from "antd";
-import { Fragment, useState, useEffect } from "react";
+import {
+  useRequestGetQuery,
+  useRequestPatchMutation,
+} from "@/redux/query/index.jsx";
+import { Checkbox, Form, Input, Modal, Select, Timeline } from "antd";
+import { useContext, useEffect, useMemo } from "react";
 import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
+import ButtonComponent from "@/components/button/index.jsx";
+import ColorsContext from "@/context/colors.jsx";
+import { ActiveData } from "@/hooks/filter.jsx";
 
 export const Emergency = () => {
-  const { data: EmergencyData, isLoading } = useRequestGetQuery({
-    path: "/student_account/emergency_contact/",
-  });
-
+  const { colorsObject } = useContext(ColorsContext);
   const studentId = useURLSearchParams("studentId");
-
-  const { data: LeadData } = useRequestGetQuery({
-    path: "/account_management/how_did_you_hear_us/",
-  });
-
-  const [LeadOptions, setLeadOptions] = useState([]);
   const [form] = Form.useForm();
 
-  // Emergency
-  useEffect(() => {
-    for (let i = 0; i < EmergencyData?.length; i++) {
-      const item = EmergencyData[i];
+  const { data, isSuccess } = useRequestGetQuery({
+    path: "/student_account/emergency_contact/",
+  });
+  const { data: Leads } = useRequestGetQuery({
+    path: "/account_management/how_did_you_hear_us/",
+  });
+  const [requestPatch, {}] = useRequestPatchMutation();
 
-      if (item?.student === studentId) {
-        form.setFieldsValue(item);
-        break;
-      }
+  const leadsOptions = useMemo(
+    () =>
+      ActiveData(Leads)?.map((item) => ({
+        value: item?.id,
+        label: item?.name,
+      })),
+    [Leads],
+  );
+
+  const emergency = useMemo(
+    () => data?.filter((item) => item?.student === studentId)[0] || {},
+    [data],
+  );
+
+  useEffect(() => {
+    if (isSuccess) {
+      form.setFieldsValue(emergency);
     }
-  }, [isLoading, studentId]);
+  }, [isSuccess]);
 
-  // LeadData
-  useEffect(() => {
-    const options = [];
+  const onFinish = async (values) => {
+    try {
+      const { error } = await requestPatch({
+        path: "/student_account/emergency_contact",
+        id: emergency?.id,
+        data: values,
+      });
 
-    for (let i = 0; i < LeadData?.length; i++) {
-      const lead = LeadData[i];
-
-      if (lead?.status?.toLowerCase() === "active") {
-        options.push({
-          ...lead,
-          value: lead?.id,
-          label: lead?.name,
+      if (error?.status >= 400) {
+        Modal.error({
+          title: "Error message",
+          content: (
+            <Timeline
+              items={Object.values(error?.data).map((item) => ({
+                children: item[0],
+              }))}
+            />
+          ),
+        });
+      } else {
+        Modal.success({
+          title: "Success message",
         });
       }
+    } catch (e) {
+      console.warn(e);
     }
-
-    setLeadOptions(options);
-  }, [LeadData]);
+  };
 
   return (
-    <Fragment>
+    <>
       <Form
         className={"bg-white shadow-2xl space-y-3 rounded-2xl p-5"}
         form={form}
         layout={"vertical"}
-        disabled={isLoading}
+        onFinish={onFinish}
       >
-        <Title fontSize={"text-2xl text-indigo-700"} fontWeightStrong={600}>
-          Emergency
-        </Title>
+        <div className="flex items-center justify-between">
+          <Title fontSize={"text-2xl text-indigo-700"} fontWeightStrong={600}>
+            Emergency
+          </Title>
+
+          <ButtonComponent
+            controlHeight={40}
+            defaultBg={colorsObject.main}
+            defaultHoverBg={colorsObject.main}
+            defaultColor={colorsObject.primary}
+            defaultActiveColor={colorsObject.primary}
+            defaultHoverColor={colorsObject.primary}
+            defaultBorderColor={colorsObject.primary}
+            paddingInline={53}
+            borderRadius={5}
+          >
+            Update
+          </ButtonComponent>
+        </div>
 
         <Form.Item
           label={"Emergency name"}
           className={"flex-grow"}
           name={"name"}
         >
-          <CustomInput placeholder={"Emergency name"} classNames={`w-full`} />
+          <Input placeholder={"Emergency name"} className={`h-[50px]`} />
         </Form.Item>
 
         <Form.Item name={"relation"} label={"Emergency relationship"}>
-          <CustomInput
+          <Input
             placeholder={"Emergency relationship"}
-            classNames={`w-full`}
+            className={`h-[50px]`}
           />
         </Form.Item>
 
         <Form.Item name={"phone"} label={"Emergency phone"}>
-          <CustomInput placeholder={"Emergency phone"} classNames={`w-full`} />
+          <Input placeholder={"Emergency phone"} className={`h-[50px]`} />
         </Form.Item>
 
         <Form.Item name={"how_did_you_hear_us"} label={"Lead"}>
-          <CustomSelect
+          <Select
             placeholder={"Lead"}
-            className={`w-full h-[50px]`}
-            options={LeadOptions}
+            className={`h-[50px]`}
+            options={leadsOptions}
           />
         </Form.Item>
 
         <Form.Item name={"medical_condition"} label={"Medial condition"}>
-          <Input.TextArea
-            className={"border-[#667085]"}
-            placeholder={"Notes"}
-          />
+          <Input.TextArea placeholder={"Notes"} />
         </Form.Item>
 
         <Form.Item
@@ -105,7 +136,7 @@ export const Emergency = () => {
           name={"wear_glass"}
           valuePropName="checked"
         >
-          <CustomCheckBox />
+          <Checkbox />
         </Form.Item>
 
         <Form.Item
@@ -113,9 +144,9 @@ export const Emergency = () => {
           name={"terms_conditions"}
           valuePropName="checked"
         >
-          <CustomCheckBox />
+          <Checkbox />
         </Form.Item>
       </Form>
-    </Fragment>
+    </>
   );
 };
