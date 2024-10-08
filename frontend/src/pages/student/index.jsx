@@ -2,7 +2,7 @@ import Title, { Paragraph } from "@/components/title/index.jsx";
 import { useFilterStatus } from "@/hooks/filter.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
-import { Form, Input, Tooltip, Select } from "antd";
+import { Form, Input, Tooltip, Select, Descriptions } from "antd";
 import { Fragment, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import {
@@ -15,6 +15,8 @@ import {
 } from "react-icons/ai";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
+import dayjs from "dayjs";
+import TableComponent from "@/components/table/index.jsx";
 
 const HeaderLinks = [
   {
@@ -44,6 +46,78 @@ const HeaderLinks = [
   {
     link: "/admin/student/account/log",
     label: "Activity Log",
+  },
+];
+
+const Enrolled = () => {
+  const columns = [
+    {
+      title: "Enrolled",
+      key: "enrolled",
+      dataIndex: "enrolled",
+    },
+    {
+      title: "Price",
+      key: "price",
+      dataIndex: "price",
+      render: (price) => `$${price}`,
+    },
+    {
+      title: "Package",
+      key: "package",
+      dataIndex: "package",
+    },
+    {
+      title: "CR date",
+      key: "cr",
+      dataIndex: "cr",
+    },
+  ];
+  const data = [
+    {
+      enrolled: "03/09/2024",
+      price: 699,
+      package: "8h in car instruction",
+    },
+  ];
+  return <TableComponent columns={columns} data={data} />;
+};
+
+const items = [
+  {
+    key: "1",
+    label: "BTW Balance:",
+    children: "8:00 Hours",
+  },
+  {
+    key: "2",
+    label: "Driwing",
+    children: "8:00 Hours",
+  },
+  {
+    key: "3",
+    label: "Web",
+    children: "8:00 Hours",
+  },
+  {
+    key: "4",
+    label: "Confirmed",
+    children: "8:00 Hours",
+  },
+  {
+    key: "5",
+    label: "Complete",
+    children: "8:00 Hours",
+  },
+  {
+    key: "6",
+    label: "Pending",
+    children: "8:00 Hours",
+  },
+  {
+    key: "7",
+    label: "Total purchased",
+    children: "8:00 Hours",
   },
 ];
 
@@ -158,11 +232,22 @@ const StudentAccount = () => {
                 </Paragraph>
               </div>
 
-              <Tooltip className={"w-9"}
+              <Tooltip
+                className={"w-9"}
                 title={
                   <div className="space-y-2.5">
-                    <p>Account created: 09/13/2023 at 1:37 pm</p>
-                    <p>Last modifled: 09/13/2023 at 1:37 pm</p>
+                    <p>
+                      Account created:{" "}
+                      {dayjs(GetStudentData?.date_joined).format(
+                        "MM/DD/YYYY [at] h:mm A",
+                      )}
+                    </p>
+                    <p>
+                      Last login:{" "}
+                      {dayjs(GetStudentData?.last_login).format(
+                        "MM/DD/YYYY [at] h:mm A",
+                      )}
+                    </p>
                   </div>
                 }
                 overlayInnerStyle={{ width: 270 }}
@@ -172,35 +257,7 @@ const StudentAccount = () => {
 
               <Tooltip
                 className={"w-9"}
-                title={
-                  <table>
-                    <thead className="flex gap-12">
-                      <th>
-                        <tr>Enrolled</tr>
-                      </th>
-                      <th>
-                        <tr>Price</tr>
-                      </th>
-                      <th>
-                        <tr>Package</tr>
-                      </th>
-                      <th>
-                        <tr>CR Date</tr>
-                      </th>
-                    </thead>
-                    <tbody className="flex gap-8">
-                      <th className="font-normal">
-                        <tr>03/09/2024</tr>
-                      </th>
-                      <th className="font-normal">
-                        <tr>$649.99</tr>
-                      </th>
-                      <th className="font-normal">
-                        <tr>8h in car instruction</tr>
-                      </th>
-                    </tbody>
-                  </table>
-                }
+                title={<Enrolled />}
                 overlayInnerStyle={{ width: 400 }}
               >
                 <AiOutlineShoppingCart className={"text-indigo-600"} />
@@ -222,15 +279,11 @@ const StudentAccount = () => {
               <Tooltip
                 className={"w-9"}
                 title={
-                  <div className="space-y-5">
-                    <p className="font-bold text-sm">BTW Balance: <span className="font-normal">8:00 Hours</span></p>
-                    <p className="font-bold text-sm">Driwing <span className="font-normal">8:00 Hours</span></p>
-                    <p className="font-bold text-sm">Web <span className="font-normal">8:00 Hours</span></p>
-                    <p className="font-bold text-sm">Confirmed <span className="font-normal">8:00 Hours</span></p>
-                    <p className="font-bold text-sm">Complete <span className="font-normal">8:00 Hours</span></p>
-                    <p className="font-bold text-sm">Pending <span className="font-normal">8:00 Hours</span></p>
-                    <p className="font-bold text-sm">Total purchased <span className="font-normal">8:00 Hours</span></p>
-                  </div>
+                  <Descriptions
+                    column={1}
+                    className={"bg-white"}
+                    items={items}
+                  />
                 }
               >
                 <AiOutlineBook className={"text-indigo-600"} />

@@ -1,12 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomCheckBox,
-  CustomInput,
-  CustomSelect,
-} from "@/components/form/index.jsx";
-import Title, { Paragraph } from "@/components/title/index.jsx";
+import { CustomSelect } from "@/components/form/index.jsx";
+import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { ModalReducer } from "@/hooks/reducer.jsx";
 import { Emergency } from "@/pages/student/emergency.jsx";
 import {
   useRequestGetQuery,
@@ -14,67 +9,73 @@ import {
   useRequestPatchMutation,
   useRequestPostMutation,
 } from "@/redux/query/index.jsx";
-import { Fragment, useContext, useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Fragment, useContext, useEffect, useMemo, useState } from "react";
 import ProfileStyle from "./student-account.module.scss";
-import { DatePicker, Dropdown, Form, Input, QRCode, Radio } from "antd";
+import {
+  Checkbox,
+  DatePicker,
+  Form,
+  Input,
+  Modal,
+  QRCode,
+  Radio,
+  Select,
+  Timeline,
+} from "antd";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import moment from "moment";
 import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
+import { ActiveData } from "@/hooks/filter.jsx";
 
 const Profile = () => {
   const { colorsObject } = useContext(ColorsContext);
   const studentId = useURLSearchParams("studentId");
   const [requestPatch] = useRequestPatchMutation();
   const [requestPost] = useRequestPostMutation();
-  const { data, isLoading } = useRequestIdQuery({
+  const { data, isLoading, isSuccess } = useRequestIdQuery({
     path: "/student_account/student",
     id: studentId,
   });
-  const { data: InstructorData } = useRequestGetQuery({
+  const { data: Instructors } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
-  const { data: LocationData } = useRequestGetQuery({
+  const { data: Locations } = useRequestGetQuery({
     path: "/account_management/location/",
   });
-  const { data: SchoolsData } = useRequestGetQuery({
+  const { data: Schools } = useRequestGetQuery({
     path: "/account_management/schools/",
   });
 
-  const [InstructorOptions, setInstructorOptions] = useState([]);
-  const [SchoolsOptions, setSchoolsOptions] = useState([]);
-  const [AssignLocationOptions, setAssignLocationOptions] = useState([]);
   const [IsMore, setIsMore] = useState(false);
-  const [IsOpen, setIsOpen] = useState(false);
-  const [state, dispatch] = useReducer(ModalReducer, { status: false });
   const [form] = Form.useForm();
 
-  const generateOptions = (data, transformFunc) =>
-    data?.filter((item) => item.status === "ACTIVE").map(transformFunc) || [];
-
-  const instructorTransform = (instructor) => ({
-    value: instructor.id,
-    label: `${instructor?.first_name} ${instructor?.last_name}`,
-  });
-
-  const locationTransform = (location) => ({
-    value: location.id,
-    label: location.name,
-  });
-
-  const schoolTransform = (school) => ({
-    value: school.id,
-    label: school.name,
-  });
+  const instructorsOptions = useMemo(
+    () =>
+      ActiveData(Instructors)?.map((item) => ({
+        value: item?.id,
+        label: `${item?.first_name} ${item?.last_name}`,
+      })),
+    [Instructors],
+  );
+  const locationsOptions = useMemo(
+    () =>
+      ActiveData(Locations)?.map((item) => ({
+        value: item?.id,
+        label: item?.name,
+      })),
+    [Locations],
+  );
+  const schoolsOptions = useMemo(
+    () =>
+      ActiveData(Schools)?.map((item) => ({
+        value: item?.id,
+        label: item?.name,
+      })),
+    [Schools],
+  );
 
   useEffect(() => {
-    setInstructorOptions(generateOptions(InstructorData, instructorTransform));
-    setAssignLocationOptions(generateOptions(LocationData, locationTransform));
-    setSchoolsOptions(generateOptions(SchoolsData, schoolTransform));
-  }, [InstructorData, LocationData, SchoolsData, isLoading]);
-
-  useEffect(() => {
-    if (!isLoading && data) {
+    if (isSuccess) {
       form.setFieldsValue({
         ...data,
         birth: moment(data.birth),
@@ -85,12 +86,12 @@ const Profile = () => {
         _payment_plan: false,
       });
     }
-  }, [isLoading, data, form]);
+  }, [isSuccess, data, form]);
 
   const handleMore = () => setIsMore((prev) => !prev);
   const handleUsernameAndPassword = async () => {
     try {
-      const response = await requestPost({
+      const { error } = await requestPost({
         path: "/communication/send_template/",
         data: {
           template: 4,
@@ -98,18 +99,20 @@ const Profile = () => {
         },
       });
 
-      if (response?.error?.status >= 400) {
-        dispatch({
-          type: "ERROR",
-          data: {},
-          open: IsOpen,
-          onEvent: () => setIsOpen(false),
+      if (error?.status >= 400) {
+        Modal.error({
+          title: "Error message",
+          content: (
+            <Timeline
+              items={Object.values(error?.data).map((item) => ({
+                children: item[0],
+              }))}
+            />
+          ),
         });
       } else {
-        dispatch({
-          type: "SUCCESS",
-          open: IsOpen,
-          onEvent: () => setIsOpen(false),
+        Modal.success({
+          title: "Success",
         });
       }
     } catch (error) {
@@ -127,35 +130,40 @@ const Profile = () => {
         extension_data: values.extension_data?.format("YYYY-MM-DD"),
       };
 
-      const res = await requestPatch({
+      const { error } = await requestPatch({
         path: "/student_account/student",
         data: formattedValues,
         id: studentId,
       });
-
-      const actionType = res?.error?.status >= 400 ? "ERROR" : "SUCCESS";
-      dispatch({
-        type: actionType,
-        data: res?.error?.data || {},
-        open: IsOpen,
-        onEvent: () => setIsOpen(false),
-      });
+      if (error?.status >= 400) {
+        Modal.error({
+          title: "Error message",
+          content: (
+            <Timeline
+              items={Object.values(error?.data).map((item) => ({
+                children: item[0],
+              }))}
+            />
+          ),
+        });
+      } else {
+        Modal.success({
+          title: "Success",
+        });
+      }
     } catch (error) {
       console.error(error);
-      dispatch({
-        type: "ERROR",
-        data: {},
-        open: IsOpen,
-        onEvent: () => setIsOpen(false),
-      });
-    } finally {
-      setIsOpen(true);
     }
   };
 
   return (
     <Fragment>
-      <Form layout={"vertical"} form={form} onFinish={onFinish}>
+      <Form
+        layout={"vertical"}
+        form={form}
+        onFinish={onFinish}
+        disabled={isLoading}
+      >
         <div className="space-y-5 min-[1200px]:space-y-0 min-[1200px]:flex min-[1200px]:flex-row items-center gap-y-7 min-[1200px]:gap-x-7 pb-6 border-b border-b-indigo-700 px-5">
           <div
             className={`rounded-2xl border-2 border-indigo-700 w-full min-[1200px]:w-[460px] overflow-hidden`}
@@ -245,10 +253,7 @@ const Profile = () => {
                     defaultHoverBg={colorsObject.info}
                     className={"w-full"}
                     borderRadius={5}
-                    onClick={() => {
-                      setIsOpen(true);
-                      setTimeout(handleUsernameAndPassword, 1000);
-                    }}
+                    onClick={handleUsernameAndPassword}
                   >
                     Username/Password
                   </ButtonComponent>
@@ -280,7 +285,7 @@ const Profile = () => {
         <div className="p-0 sm:p-5 grid lg:grid-cols-2 gap-5 max-[1000px]:grid-cols-1">
           <div className="space-y-5">
             <Form.Item name={"information_type"} label={"Student Type"}>
-              <CustomSelect
+              <Select
                 placeholder={"Type"}
                 options={[
                   { value: "Teen", label: "Teen" },
@@ -293,29 +298,23 @@ const Profile = () => {
             </Form.Item>
 
             <Form.Item name={"staff"} label={"Assign to Staff"}>
-              <CustomSelect
+              <Select
                 placeholder={"Staff"}
-                options={InstructorOptions}
+                options={instructorsOptions}
                 className={"h-[50px]"}
-                disabled={isLoading}
               />
             </Form.Item>
 
             <Form.Item name={"location"} label={"Assign To Location"}>
-              <CustomSelect
+              <Select
                 placeholder={"location"}
-                options={AssignLocationOptions}
+                options={locationsOptions}
                 className={"h-[50px]"}
-                disabled={isLoading}
               />
             </Form.Item>
 
             <Form.Item name={"id"} label={"Student ID"}>
-              <CustomInput
-                disabled={true}
-                classNames={"w-full"}
-                placeholder={"Id"}
-              />
+              <Input disabled className={"h-[50px]"} placeholder={"Id"} />
             </Form.Item>
 
             <Form.Item
@@ -328,19 +327,11 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"First Name"}
-              />
+              <Input className={"h-[50px]"} placeholder={"First name"} />
             </Form.Item>
 
             <Form.Item name={"mid_name"} label={"Middle Name"}>
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"Middle Name"}
-              />
+              <Input className={"h-[50px]"} placeholder={"Middle name"} />
             </Form.Item>
 
             <Form.Item
@@ -353,11 +344,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"last Name"}
-              />
+              <Input className={"h-[50px]"} placeholder={"Last name"} />
             </Form.Item>
 
             <Form.Item
@@ -370,11 +357,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"Address"}
-              />
+              <Input className={"h-[50px]"} placeholder={"Address"} />
             </Form.Item>
 
             <Form.Item
@@ -387,11 +370,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"City"}
-              />
+              <Input className={"h-[50px]"} placeholder={"City"} />
             </Form.Item>
 
             <Form.Item
@@ -404,11 +383,10 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomSelect
+              <Select
                 placeholder={"State"}
                 options={[{ value: "USA", label: "USA" }]}
                 className={"h-[50px]"}
-                disabled={isLoading}
               />
             </Form.Item>
 
@@ -422,11 +400,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"Zip"}
-              />
+              <Input className={"h-[50px]"} placeholder={"Zip code"} />
             </Form.Item>
 
             <Form.Item
@@ -439,19 +413,11 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"Cell Phone "}
-              />
+              <Input className={"h-[50px]"} placeholder={"Cell phone"} />
             </Form.Item>
 
             <Form.Item name={"home_phone"} label={"Home Phone"}>
-              <CustomInput
-                disabled={isLoading}
-                classNames={"w-full"}
-                placeholder={"Home Phone"}
-              />
+              <Input className={"h-[50px]"} placeholder={"Home phone"} />
             </Form.Item>
 
             <Form.Item
@@ -464,12 +430,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                type={"email"}
-                classNames={"w-full"}
-                placeholder={"Email"}
-                disabled={isLoading}
-              />
+              <Input className={"h-[50px]"} placeholder={"Email"} />
             </Form.Item>
 
             <Form.Item
@@ -482,7 +443,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <Radio.Group disabled={isLoading}>
+              <Radio.Group>
                 <Radio value="Male">Male</Radio>
                 <Radio value="Female">Female</Radio>
                 <Radio value="Other">Other</Radio>
@@ -499,8 +460,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomSelect
-                disabled={isLoading}
+              <Select
                 options={[
                   {
                     value: "He",
@@ -530,32 +490,19 @@ const Profile = () => {
                 },
               ]}
             >
-              <DatePicker
-                disabled={isLoading}
-                className={"w-full h-[50px] border-[#667085]"}
-              />
+              <DatePicker disabled={isLoading} className={"w-full h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"dl_permit"} label={"DL/Permit #"}>
-              <CustomInput
-                disabled={isLoading}
-                placeholder={"DL/Permit"}
-                classNames={"w-full"}
-              />
+              <Input placeholder={"DL/Permit"} className={"h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"dl_given_date"} label={"DL/Permit Issued"}>
-              <DatePicker
-                disabled={isLoading}
-                className={"w-full h-[50px] border-[#667085]"}
-              />
+              <DatePicker className={"w-full h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"dl_expire_date"} label={"DL Permit Expiration"}>
-              <DatePicker
-                disabled={isLoading}
-                className={"w-full h-[50px] border-[#667085]"}
-              />
+              <DatePicker disabled={isLoading} className={"w-full h-[50px] "} />
             </Form.Item>
 
             <Form.Item
@@ -563,7 +510,7 @@ const Profile = () => {
               label={"Disable Self Scheduling"}
               valuePropName="checked"
             >
-              <CustomCheckBox disabled={isLoading} />
+              <Checkbox />
             </Form.Item>
 
             <Form.Item
@@ -571,42 +518,30 @@ const Profile = () => {
               label={"Payment Plan"}
               valuePropName="checked"
             >
-              <CustomCheckBox disabled={isLoading} />
+              <Checkbox />
             </Form.Item>
 
             <Form.Item
               name={"extension_data"}
               label={"Extension Date (New Deadline)"}
             >
-              <DatePicker
-                disabled={isLoading}
-                className={"w-full h-[50px] border-[#667085]"}
-              />
+              <DatePicker disabled={isLoading} className={"w-full h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"high_school"} label={"High School"}>
-              <CustomSelect
+              <Select
                 placeholder={"High School"}
-                options={SchoolsOptions}
+                options={schoolsOptions}
                 className={"h-[50px]"}
-                disabled={isLoading}
               />
             </Form.Item>
 
             <Form.Item name={"parent_name"} label={"Parent Name"}>
-              <CustomInput
-                disabled={isLoading}
-                placeholder={"Parent Name"}
-                classNames={"w-full"}
-              />
+              <Input placeholder={"Parent Name"} className={"h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"parent_phone"} label={"Parent Phone"}>
-              <CustomInput
-                disabled={isLoading}
-                placeholder={"Parent Phone"}
-                classNames={"w-full"}
-              />
+              <Input placeholder={"Parent Phone"} className={"h-[50px]"} />
             </Form.Item>
 
             <Form.Item
@@ -618,29 +553,16 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                type={"email"}
-                placeholder={"Parent email"}
-                classNames={"w-full"}
-                disabled={isLoading}
-              />
+              <Input placeholder={"Parent email"} className={"h-[50px]"} />
             </Form.Item>
 
             {/*  ---------------- */}
             <Form.Item name={"parent_2_name"} label={"Parent Name 2"}>
-              <CustomInput
-                disabled={isLoading}
-                placeholder={"Parent Name"}
-                classNames={"w-full"}
-              />
+              <Input placeholder={"Parent Name"} className={"h-[50px]"} />
             </Form.Item>
 
             <Form.Item name={"parent_2_phone"} label={"Parent Phone 2"}>
-              <CustomInput
-                disabled={isLoading}
-                placeholder={"Parent Phone"}
-                classNames={"w-full"}
-              />
+              <Input placeholder={"Parent phone"} className={"h-[50px]"} />
             </Form.Item>
 
             <Form.Item
@@ -652,12 +574,7 @@ const Profile = () => {
                 },
               ]}
             >
-              <CustomInput
-                type={"email"}
-                placeholder={"Parent email"}
-                classNames={"w-full"}
-                disabled={isLoading}
-              />
+              <Input placeholder={"Parent email"} className={"h-[50px]"} />
             </Form.Item>
           </div>
         </div>
@@ -824,8 +741,6 @@ const Profile = () => {
           </div>
         </div>
       </Form>
-
-      {state?.modal}
     </Fragment>
   );
 };

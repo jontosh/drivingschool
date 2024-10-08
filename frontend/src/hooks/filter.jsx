@@ -25,3 +25,6 @@ export const useFilterStatus = ({ data = [], status, search }) => {
 
   return { Data: filteredData };
 };
+
+export const ActiveData = (data = []) =>
+  data?.filter((item) => item?.status === "ACTIVE");

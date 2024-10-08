@@ -1,9 +1,4 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomInput,
-  CustomRadio,
-  CustomSelect,
-} from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
