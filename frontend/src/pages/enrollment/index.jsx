@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import {
   Button,
   Checkbox,
+  ConfigProvider,
   DatePicker,
   Form,
   Input,
@@ -124,12 +125,12 @@ const Enrollment = () => {
 
     return SelectedPackages.length !== 0
       ? ServicePackages?.filter((pkg) =>
-          SelectedPackages.includes(pkg?.id),
-        )?.map((pkg) => ({
-          id: pkg?.id,
-          name: pkg?.name,
-          price: parseFloat(pkg?.price),
-        }))
+        SelectedPackages.includes(pkg?.id),
+      )?.map((pkg) => ({
+        id: pkg?.id,
+        name: pkg?.name,
+        price: parseFloat(pkg?.price),
+      }))
       : [];
   }, [SelectedPackages, ServicePackages]);
 
@@ -277,7 +278,7 @@ const Enrollment = () => {
           onFinish={onFinish}
           className={"space-y-5"}
         >
-          <div className="flex gap-5">
+          <div className="flex max-[700px]:flex-col gap-5">
             <div className="flex-grow">
               <div className="bg-white rounded-2xl p-5 space-y-2.5">
                 <Title level={3} fontSize={"text-2xl"}>
@@ -310,7 +311,7 @@ const Enrollment = () => {
                   <div className={"space-y-3"}>
                     <div className="flex items-center justify-between gap-2">
                       <Title level={4}>You choose</Title>
-                      <Paragraph fontSize={" text-gray-500"}>
+                      <Paragraph fontSize={"text-gray-500"}>
                         Sub total $
                         {filteredPackages?.reduce(
                           (cur, acc) => cur + acc?.price,
@@ -368,7 +369,7 @@ const Enrollment = () => {
           </div>
 
           <article className="bg-white rounded-2xl p-5 space-y-2.5">
-            <div className="space-y-2.5 w-1/2">
+            <div className="space-y-2.5 w-full min-[500px]:w-1/2">
               <Title level={3} fontSize={"text-2xl"}>
                 Student information type
               </Title>
@@ -399,7 +400,7 @@ const Enrollment = () => {
               {({ getFieldValue }) =>
                 getFieldValue("information_type") ? (
                   <div className={"space-y-5"}>
-                    <div className={"grid grid-cols-2 gap-5"}>
+                    <div className={"grid min-[700px]:grid-cols-2 gap-5"}>
                       <div className="space-y-5">
                         <Form.Item name={"staff"} label={"Assign to staff"}>
                           <Select
@@ -762,7 +763,7 @@ const Enrollment = () => {
                         <Form.Item name={"parent_email"} label={"Parent email"}>
                           <Input
                             type={"email"}
-                            className="wh-[50px]"
+                            className="h-[50px]"
                             placeholder={"Email"}
                           />
                         </Form.Item>
@@ -806,11 +807,11 @@ const Enrollment = () => {
                       </div>
                     </div>
 
-                    <div className="flex gap-5 justify-center">
+                    <div className="flex max-[550px]:flex-col gap-5 justify-center">
                       <Button
                         htmlType={"submit"}
                         size={"large"}
-                        className={"bg-[#24C18F] text-white"}
+                        className={"w-full min-[550px]:w-48 bg-[#24C18F] text-white"}
                       >
                         Save
                       </Button>
