@@ -90,8 +90,8 @@ export const Vehicle = () => {
 
   return (
     <Fragment>
-      <div className="p-7 bg-white rounded-xl">
-        <div className="flex items-center justify-between p-7">
+      <div className="p-3 sm:p-7 bg-white rounded-xl">
+        <div className="flex max-[600px]:flex-col items-center justify-between p-7">
           <ButtonComponent
             borderRadius={20}
             defaultBorderColor={"#F5F6F7"}
@@ -136,8 +136,8 @@ export const Vehicle = () => {
           </div>
         </div>
 
-        <div className="flex gap-5">
-          <aside className={"w-96 space-y-5"}>
+        <div className="flex max-[1350px]:flex-col gap-5">
+          <aside className={"w-full min-[1350px]:w-96 space-y-5"}>
             <VehicleSidebar defaultDate={Now} getDate={setNow} />
 
             <Form onFinish={onFinish} form={form} layout="vertical">
@@ -209,7 +209,7 @@ export const Vehicle = () => {
             </Form>
           </aside>
           {slot?.length !== 0 && (
-            <div className="flex-grow w-min flex border border-gray-400 rounded-xl overflow-x-scroll">
+            <div className="flex-grow w-full min-[1350px]:w-min flex border border-gray-400 rounded-xl overflow-x-scroll">
               {slot}
             </div>
           )}
