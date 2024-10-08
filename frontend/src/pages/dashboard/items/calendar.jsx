@@ -3,9 +3,8 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 import { Dropdown } from "antd";
-import classNames from "classnames";
 import {
   useState,
   useEffect,
@@ -22,7 +21,6 @@ import { SlClock } from "react-icons/sl";
 import CalendarStyle from "../dashboard.module.scss";
 import InstructorAva from "../../../assets/user/instructor.jpeg";
 import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
-import { formatPhoneNumber } from "@/modules/formatter.jsx";
 
 const items = [
   {
@@ -89,17 +87,22 @@ export const DashboardCalendar = () => {
   const [events, setEvents] = useState([]);
 
   const EventsList = useMemo(() => {
-    return data?.filter((timeSlot) => timeSlot?.staff === instructorId);
+    if (!data || !instructorId) return [];
+
+    return data
+      ?.filter((timeSlot) => timeSlot?.staff === instructorId)
+      ?.flatMap(
+        (timeSlot) =>
+          timeSlot?.slots?.map((slot) => ({
+            title: slot?.name,
+            start: new Date(slot?.start),
+            end: new Date(slot?.end),
+          })) || [],
+      );
   }, [data, instructorId]);
 
   useEffect(() => {
-    setEvents([
-      {
-        title: "Test",
-        start: new Date(),
-        end: new Date(),
-      },
-    ]);
+    setEvents(EventsList);
   }, [EventsList]);
 
   const { formats, defaultDate, views, toolbar, components } = useMemo(
@@ -110,7 +113,7 @@ export const DashboardCalendar = () => {
             <SlClock className="w-7 text-[#C3CAD9]" />
           </div>
         ),
-        toolbar: (props) => (
+        toolbar: ({ onNavigate, label, onView }) => (
           <div className="flex max-[830px]:flex-col max-[830px]:space-y-2 items-center justify-between p-7">
             <ButtonComponent
               borderRadius={20}
@@ -120,7 +123,7 @@ export const DashboardCalendar = () => {
               defaultHoverColor="#6B7A99"
               controlHeight={40}
               paddingInline={20}
-              onClick={() => props.onNavigate("TODAY")}
+              onClick={() => onNavigate("TODAY")}
             >
               Today
             </ButtonComponent>
@@ -134,12 +137,12 @@ export const DashboardCalendar = () => {
                 defaultHoverColor="#6B7A99"
                 controlHeight={40}
                 paddingInline={12}
-                onClick={() => props.onNavigate("PREV")}
+                onClick={() => onNavigate("PREV")}
               >
                 <MdKeyboardArrowLeft />
               </ButtonComponent>
 
-              <Title fontSize="text-[#6B7A99]">{props.label}</Title>
+              <Title fontSize="text-[#6B7A99]">{label}</Title>
 
               <ButtonComponent
                 borderRadius={20}
@@ -149,7 +152,7 @@ export const DashboardCalendar = () => {
                 defaultHoverColor="#6B7A99"
                 controlHeight={40}
                 paddingInline={12}
-                onClick={() => props.onNavigate("NEXT")}
+                onClick={() => onNavigate("NEXT")}
               >
                 <MdKeyboardArrowRight />
               </ButtonComponent>
@@ -166,7 +169,7 @@ export const DashboardCalendar = () => {
                   controlHeight={40}
                   paddingInline={20}
                   className="uppercase"
-                  onClick={() => props.onView(view)}
+                  onClick={() => onView(view)}
                 >
                   {view.toUpperCase()}
                 </ButtonComponent>
