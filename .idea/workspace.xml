@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed Advanced search, student profile and search" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed component editor and refactored student billing/enrollment page">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,6 +87,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/components/editor" />
       <recent name="$PROJECT_DIR$/frontend/src/pages/students/account" />
       <recent name="$PROJECT_DIR$/frontend/src/pages/instructor/dashboard" />
     </key>
@@ -250,14 +255,8 @@
       <workItem from="1727588540263" duration="1388000" />
       <workItem from="1727710439108" duration="685000" />
       <workItem from="1727759849256" duration="1186000" />
-    </task>
-    <task id="LOCAL-00099" summary="#fix #js Fixed bugs to auth, refactored css media on dashboard and validation to search">
-      <option name="closed" value="true" />
-      <created>1721124925548</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1721124925548</updated>
+      <workItem from="1728461320803" duration="1828000" />
+      <workItem from="1728489012603" duration="7712000" />
     </task>
     <task id="LOCAL-00100" summary="#fix #js Fixed CSS class bugs and form validation">
       <option name="closed" value="true" />
@@ -643,7 +642,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728411087569</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="#fix #js Fixed component editor and refactored student billing/enrollment page">
+      <option name="closed" value="true" />
+      <created>1728423291927</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1728423291927</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +669,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Optimized code on discount, fees and quiz-exam modules with delete and patch request data." />
     <MESSAGE value="#fix #jsx Optimized code on services module with delete and patch request data." />
     <MESSAGE value="#fix #jsx Optimized code on file management and refactored some structure." />
     <MESSAGE value="#fix #jsx Optimized code on Add staff and its module" />
@@ -687,7 +693,8 @@
     <MESSAGE value="#fix #js Fixed components logic, connected API request and refactored pages dashboard and enrollments. Optimized code." />
     <MESSAGE value="#fix #js Fixed Advanced search with connect API to get data for fields" />
     <MESSAGE value="#fix #js Fixed Advanced search, student profile and search" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed Advanced search, student profile and search" />
+    <MESSAGE value="#fix #js Fixed component editor and refactored student billing/enrollment page" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Fixed component editor and refactored student billing/enrollment page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
