@@ -3,30 +3,23 @@ import IconComponent from "@/components/icons";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SearchModule } from "@/modules/search.jsx";
-import {
-  Alert,
-  DatePicker,
-  Form,
-  Input,
-  Pagination,
-  Radio,
-  Select,
-  Table,
-} from "antd";
-import { Fragment, useContext, useMemo, useState } from "react";
+import { Alert, DatePicker, Form, Input, Radio, Select } from "antd";
+import { Fragment, useCallback, useContext, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
 import { SlCloudDownload } from "react-icons/sl";
 import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { ActiveData, useFilterStatus } from "@/hooks/filter.jsx";
+import TableComponent from "@/components/table/index.jsx";
 
 const Search = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [Visible, setVisible] = useState(false);
   const [VisibleTable, setVisibleTable] = useState(false);
+  const [Results, setResults] = useState([]);
   const [form] = Form.useForm();
-  const [Current, setCurrent] = useState(1);
   const [Search, setSearch] = useState("");
-  const { columns, data } = SearchModule();
+  const { columns } = SearchModule();
 
   const { data: Instructors } = useRequestGetQuery({
     path: "/student_account/instructor/",
@@ -40,30 +33,29 @@ const Search = () => {
   const { data: Classes } = useRequestGetQuery({
     path: "/account_management/class/",
   });
+  const { data: Students } = useRequestGetQuery({
+    path: "/student_account/student/",
+  });
 
   const instructorsOptions = useMemo(
     () =>
-      Instructors?.filter((item) => item?.status === "ACTIVE")?.map(
-        (instructor) => ({
-          value: instructor?.id,
-          label: `${instructor?.first_name} ${instructor?.last_name}`,
-        }),
-      ),
+      ActiveData(Instructors)?.map((instructor) => ({
+        value: instructor?.id,
+        label: `${instructor?.first_name} ${instructor?.last_name}`,
+      })),
     [Instructors],
   );
   const locationsOptions = useMemo(
     () =>
-      Locations?.filter((item) => item?.status === "ACTIVE")?.map(
-        (location) => ({
-          value: location?.id,
-          label: location?.name,
-        }),
-      ),
+      ActiveData(Locations)?.map((location) => ({
+        value: location?.id,
+        label: location?.name,
+      })),
     [Locations],
   );
   const schoolsOptions = useMemo(
     () =>
-      Schools?.filter((item) => item?.status === "ACTIVE")?.map((school) => ({
+      ActiveData(Schools)?.map((school) => ({
         value: school?.id,
         label: school?.name,
       })),
@@ -71,21 +63,63 @@ const Search = () => {
   );
   const classesOptions = useMemo(
     () =>
-      Classes?.filter((item) => item?.status === "ACTIVE")?.map((item) => ({
+      ActiveData(Classes)?.map((item) => ({
         value: item?.id,
         label: `${item?.details} | ${item?.note}`,
       })),
     [Classes],
   );
 
-  const handleChangePagination = () => setCurrent(3);
-  const onFinish = async (values) => {
-    setVisible((prev) => !prev);
-    setVisibleTable((prev) => !prev);
-    console.log(values);
+  const onFinish = useCallback(
+    async (values) => {
+      const results = Students?.filter((student) =>
+        Object.values(student).some((value) =>
+          value
+            ?.toString()
+            ?.toLowerCase()
+            ?.includes(
+              Object.values(values)
+                .filter(Boolean)
+                .reduce((_, acc) => acc?.toString()?.toLowerCase(), 0),
+            ),
+        ),
+      )?.map((student) => ({
+        name: `${student?.first_name} ${student?.last_name}`,
+        city: student?.city,
+        information_type: student?.information_type,
+        status: student?.status,
+        dl_permit: student?.dl_permit,
+        school: student?.high_school,
+      }));
+
+      setResults(() => results || []);
+
+      if (results?.length !== 0) {
+        setVisible(false);
+        setVisibleTable(true);
+      } else {
+        setVisible(true);
+        setVisibleTable(false);
+      }
+    },
+    [Students],
+  );
+
+  const { Data } = useFilterStatus({ data: Results, search: Search });
+
+  const onReset = () => {
+    form.resetFields();
+    setVisible(false);
+    setVisibleTable(false);
+    setSearch("");
+    setResults([]);
   };
 
-  const onReset = () => form.resetFields();
+  const onClose = () => {
+    form.resetFields();
+    setVisibleTable(false);
+    setVisible(false);
+  };
 
   return (
     <Fragment>
@@ -117,6 +151,7 @@ const Search = () => {
               type="error"
               closable
               className={"mb-5"}
+              onClose={onClose}
             />
           )}
 
@@ -141,10 +176,6 @@ const Search = () => {
                   ]}
                   className={"h-[50px]"}
                 />
-              </Form.Item>
-
-              <Form.Item label="Account #" name={"account"}>
-                <Input placeholder={"Account #"} className={"h-[50px]"} />
               </Form.Item>
 
               <Form.Item label="First name" name={"first_name"}>
@@ -257,6 +288,7 @@ const Search = () => {
             >
               Filter
             </ButtonComponent>
+
             <ButtonComponent
               defaultBg={colorsObject.main}
               defaultHoverBg={colorsObject.main}
@@ -276,10 +308,11 @@ const Search = () => {
             </ButtonComponent>
           </div>
         </Form>
+
         {VisibleTable && (
           <div className={"bg-white p-5 rounded-xl space-y-5"}>
             <Title fontSize={"text-2xl text-indigo-600"} fontWeightStrong={500}>
-              Result: 246
+              Result: {Data.length}
             </Title>
 
             <div className="flex items-center justify-between">
@@ -293,13 +326,6 @@ const Search = () => {
               />
 
               <div className="flex items-center flex-shrink-0 gap-4">
-                <Pagination
-                  total={20}
-                  pageSize={2}
-                  current={Current}
-                  onChange={handleChangePagination}
-                />
-
                 <IconComponent
                   icon={<SlCloudDownload />}
                   iconWidth={"border border-indigo-700 rounded p-1 shadow-lg"}
@@ -307,7 +333,7 @@ const Search = () => {
               </div>
             </div>
             <div className={"-mx-5"}>
-              <Table columns={columns} dataSource={data} pagination={false} />
+              <TableComponent columns={columns} data={Data} pagination />
             </div>
           </div>
         )}
