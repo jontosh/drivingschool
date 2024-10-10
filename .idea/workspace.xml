@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Fixed component editor and refactored student billing/enrollment page">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored Advanced search page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/search.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/search/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/appointment-edit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/appointment-edit.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,6 +256,7 @@
       <workItem from="1727759849256" duration="1186000" />
       <workItem from="1728461320803" duration="1828000" />
       <workItem from="1728489012603" duration="7712000" />
+      <workItem from="1728569517390" duration="13196000" />
     </task>
     <task id="LOCAL-00100" summary="#fix #js Fixed CSS class bugs and form validation">
       <option name="closed" value="true" />
