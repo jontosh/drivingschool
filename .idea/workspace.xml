@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored Appointment bulk edit to get filter data">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored Appointment bulk edit to refetch data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/appointment-edit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/appointment-edit.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/open-time-slots.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/open-time-slots.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,15 +258,7 @@
       <workItem from="1728489012603" duration="7712000" />
       <workItem from="1728569517390" duration="13677000" />
       <workItem from="1728662239794" duration="10000" />
-      <workItem from="1728667929280" duration="3373000" />
-    </task>
-    <task id="LOCAL-00101" summary="#fix #js Fixed auth bugs, select total packages and configuration vite">
-      <option name="closed" value="true" />
-      <created>1721134707883</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1721134707883</updated>
+      <workItem from="1728667929280" duration="7721000" />
     </task>
     <task id="LOCAL-00102" summary="#fix #js Fixed mobile menubar">
       <option name="closed" value="true" />
@@ -652,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728597590073</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="#fix #js Refactored Appointment bulk edit to refetch data">
+      <option name="closed" value="true" />
+      <created>1728679908899</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1728679908899</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -671,7 +671,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Optimized code on file management and refactored some structure." />
     <MESSAGE value="#fix #jsx Optimized code on Add staff and its module" />
     <MESSAGE value="#fix #jsx Fixed some bugs in code" />
     <MESSAGE value="#fix #jsx Fixed bugs and structure code" />
@@ -696,7 +695,8 @@
     <MESSAGE value="#fix #js Fixed Advanced search, student profile and search" />
     <MESSAGE value="#fix #js Fixed component editor and refactored student billing/enrollment page" />
     <MESSAGE value="#fix #js Refactored Appointment bulk edit to get filter data" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored Appointment bulk edit to get filter data" />
+    <MESSAGE value="#fix #js Refactored Appointment bulk edit to refetch data" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored Appointment bulk edit to refetch data" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
