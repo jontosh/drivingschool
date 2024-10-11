@@ -303,7 +303,7 @@ export const OpenTimeSlots = () => {
             </div>
           </div>
 
-          <div className="flex max-[500px]:flex-col justify-center gap-5 pt-5">
+          <div className="flex max-[580px]:flex-col justify-center gap-5 pt-5">
             <ButtonComponent
               defaultHoverBg={"#24C18F"}
               defaultBg={"#24C18F"}
@@ -333,13 +333,13 @@ export const OpenTimeSlots = () => {
 
       {Filter && (
         <div className={"mt-5 px-5 py-6 bg-white"}>
-          <div className={"flex justify-between items-center"}>
+          <div className={"flex max-[880px]:flex-col max-[880px]:space-y-5 justify-between items-center"}>
             <form className={"flex gap-5"}>
               <label className={"relative shadow-xl"}>
                 <CustomInput
                   colorBorder={colorsObject.primary}
                   placeholder={"Find student"}
-                  className={`w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
+                  className={`w-full min-[600px]:w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
                   classNames={"h-[50px]"}
                 />
                 <span
@@ -361,7 +361,7 @@ export const OpenTimeSlots = () => {
           </div>
 
           <div className={"-mx-5 pt-5"}>
-            <Table columns={columns} dataSource={data} pagination={false} />
+            <Table columns={columns} dataSource={data} pagination={false} scroll={{ x: 1050 }} />
           </div>
         </div>
       )}

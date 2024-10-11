@@ -273,7 +273,7 @@ const Search = () => {
             </div>
           </div>
 
-          <div className=" text-center space-x-5 pt-5">
+          <div className="flex max-[480px]:flex-col justify-center gap-5 pt-5">
             <ButtonComponent
               defaultBg={"#24C18F"}
               defaultHoverBg={"#24C18F"}
@@ -317,7 +317,7 @@ const Search = () => {
 
             <div className="flex items-center justify-between">
               <Input
-                className={"h-[50px] w-1/3"}
+                className={"h-[50px] w-2/3 md:w-1/3"}
                 placeholder={"Search"}
                 prefix={<AiOutlineSearch className={"text-xl"} />}
                 allowClear
@@ -333,7 +333,7 @@ const Search = () => {
               </div>
             </div>
             <div className={"-mx-5"}>
-              <TableComponent columns={columns} data={Data} pagination />
+              <TableComponent columns={columns} data={Data} pagination scroll={{ x: 800 }} />
             </div>
           </div>
         )}
