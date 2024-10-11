@@ -1,26 +1,120 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import {
-  CustomCheckBox,
-  CustomInput,
-  CustomSelect,
-} from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
-import { DatePicker, Form, Pagination, Table } from "antd";
-import { Fragment, useContext, useState } from "react";
+import { DeleteOutlined, FormOutlined } from "@ant-design/icons";
+import { DatePicker, Form, Input, Modal, Select, Switch, Timeline } from "antd";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { ActiveData, useFilterStatus } from "@/hooks/filter.jsx";
+import {
+  useRequestGetQuery,
+  useRequestPatchMutation,
+} from "@/redux/query/index.jsx";
+import TableComponent from "@/components/table/index.jsx";
+import dayjs from "dayjs";
+import { CheckProgress } from "@/modules/progress.jsx";
 
 export const OpenTimeSlots = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [Filter, setFilter] = useState(false);
-  const [CurrentPagination, setCurrentPagination] = useState(1);
-  const handleChangePagination = (page) => {
-    setCurrentPagination(page);
+  const [Search, setSearch] = useState("");
+  const [form] = Form.useForm();
+  const [TimeSlotList, setTimeSlotList] = useState([]);
+
+  const { data: Instructors } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+  const { data: Locations } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
+  const { data: Vehicles } = useRequestGetQuery({
+    path: "/account_management/vehicle/",
+  });
+  const { data: TimeSlots, refetch } = useRequestGetQuery({
+    path: "/scheduling/time_slot/",
+  });
+  const [requestPatch] = useRequestPatchMutation();
+
+  const instructorsOptions = useMemo(
+    () =>
+      ActiveData(Instructors)?.map((item) => ({
+        value: item?.id,
+        label: `${item?.first_name} ${item?.last_name}`,
+      })),
+    [Instructors],
+  );
+  const locationsOptions = useMemo(
+    () =>
+      ActiveData(Locations)?.map((item) => ({
+        value: item?.id,
+        label: item?.name,
+      })),
+    [Locations],
+  );
+  const vehiclesOptions = useMemo(
+    () =>
+      ActiveData(Vehicles)?.map((item) => ({
+        value: item?.id,
+        label: item?.name,
+      })),
+    [Vehicles],
+  );
+  const timeSlots = useMemo(() => {
+    const newTimeSlots = [];
+    TimeSlots?.forEach((timeSlot) => {
+      timeSlot?.slots?.forEach((slot) => {
+        newTimeSlots.push({
+          ...timeSlot,
+          time: `${dayjs(slot?.start)?.format("DD/MM/YYYY")} ${dayjs(slot?.start)?.format("hh:mm A")}-${dayjs(slot?.end)?.format("hh:mm A")}`,
+          vehicle_name: Vehicles?.find(
+            (vehicle) => vehicle?.id === timeSlot?.vehicle,
+          )?.name,
+        });
+      });
+    });
+    return newTimeSlots;
+  }, [TimeSlots]);
+
+  const { Data } = useFilterStatus({ data: TimeSlotList, search: Search });
+
+  useEffect(() => {
+    if (timeSlots?.length !== 0) {
+      setTimeSlotList(timeSlots);
+    }
+  }, [timeSlots]);
+
+  const onFinish = async (values) => {
+    const filtered = timeSlots?.filter((timeSlot) => {
+      const isInstructorValid = values.instructor === timeSlot.staff;
+      const isLocationValid = values.location === timeSlot?.location;
+      const isStatusValid = values.status === timeSlot.status;
+      const isVehicleValid = values.vehicle === timeSlot?.vehicle;
+      const isWeekdaysValid = values.weekdays?.every((day) =>
+        timeSlot.week_range.includes(day),
+      );
+
+      return (
+        isInstructorValid ||
+        isLocationValid ||
+        isStatusValid ||
+        isVehicleValid ||
+        isWeekdaysValid
+      );
+    });
+
+    setTimeSlotList(filtered);
+    setFilter(filtered?.length !== 0);
   };
 
-  const handleFilter = () => setFilter((prev) => !prev);
+  const onAdd = async () => {
+    console.log("ok");
+  };
+
+  const onReset = () => {
+    form.resetFields();
+    setFilter(false);
+  };
 
   const columns = [
     {
@@ -40,8 +134,8 @@ export const OpenTimeSlots = () => {
     },
     {
       title: "Instructor",
-      dataIndex: "instructor",
-      key: "instructor",
+      dataIndex: "staff_name",
+      key: "staff_name",
       align: "center",
       render: (instructor) => (
         <Paragraph
@@ -59,19 +153,22 @@ export const OpenTimeSlots = () => {
       dataIndex: "status",
       key: "status",
       align: "center",
-      render: (status) => (
-        <ButtonComponent
-          defaultHoverBg={status ? "#24C18F" : colorsObject.danger}
-          defaultBg={status ? "#24C18F" : colorsObject.danger}
-          defaultHoverColor={colorsObject.main}
-          defaultColor={colorsObject.main}
-          controlHeight={30}
-          borderRadius={5}
-          style={{ width: 94 }}
-        >
-          {status ? "Confirmed" : "Open"}
-        </ButtonComponent>
-      ),
+      render: (status) => {
+        const { bg, hover } = CheckProgress(status);
+        return (
+          <ButtonComponent
+            defaultHoverBg={hover}
+            defaultBg={bg}
+            defaultHoverColor={colorsObject.main}
+            defaultColor={colorsObject.main}
+            controlHeight={30}
+            borderRadius={5}
+            style={{ width: 94 }}
+          >
+            {status?.toUpperCase()}
+          </ButtonComponent>
+        );
+      },
     },
     {
       title: "Type",
@@ -90,7 +187,7 @@ export const OpenTimeSlots = () => {
     },
     {
       title: "Vehicle",
-      dataIndex: "vehicle",
+      dataIndex: "vehicle_name",
       key: "vehicle",
       align: "center",
       render: (vehicle) => (
@@ -105,8 +202,8 @@ export const OpenTimeSlots = () => {
     },
     {
       title: "Location",
-      dataIndex: "location",
-      key: "location",
+      dataIndex: "location_name",
+      key: "location_name",
       align: "center",
       render: (location) => (
         <Paragraph
@@ -120,8 +217,8 @@ export const OpenTimeSlots = () => {
     },
     {
       title: "Pickup Location",
-      dataIndex: "pickup",
-      key: "pickup",
+      dataIndex: "pu_location",
+      key: "pu_location",
       align: "center",
       render: (pickup) => (
         <Paragraph
@@ -139,57 +236,68 @@ export const OpenTimeSlots = () => {
       key: "action",
       align: "center",
       width: 110,
-      render: () => (
-        <div className={"text-center space-x-2.5"}>
-          <IconComponent
-            className={"text-xl text-red-600 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<DeleteOutlined />}
-          />
+      render: (_, record) => {
+        const onDelete = async () => {
+          try {
+            const { error } = await requestPatch({
+              path: "/scheduling/time_slot",
+              id: record?.id,
+              data: { ...record, status: "DELETED" },
+            });
 
-          <IconComponent
-            className={"text-xl text-indigo-500 border border-indigo-600"}
-            style={{
-              borderRadius: 5,
-              paddingLeft: 4,
-              paddingRight: 4,
-            }}
-            icon={<ExportOutlined />}
-          />
-        </div>
-      ),
-    },
-  ];
+            if (error?.status >= 400) {
+              Modal.error({
+                title: "Error message",
+                content: (
+                  <Timeline
+                    items={Object.values(error?.data).map((item) => ({
+                      children: item[0],
+                    }))}
+                  />
+                ),
+              });
+            } else {
+              Modal.success({
+                title: "Success message",
+                onOk: () => refetch(),
+              });
+            }
+          } catch (e) {
+            console.warn(e);
+          }
+        };
+        return (
+          <div className={"text-center space-x-2.5"}>
+            <IconComponent
+              className={"text-xl text-red-600 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<DeleteOutlined />}
+              onClick={onDelete}
+            />
 
-  const data = [
-    {
-      time: "3/25/2024 8:00 AM-11:00 AM",
-      instructor: "William",
-      status: true,
-      type: "Single Appointment",
-      vehicle: "Vehicle 1",
-      location: "Mason Location",
-      pickup: "Mason Office",
-    },
-    {
-      time: "3/25/2024 8:00 AM-11:00 AM",
-      instructor: "William",
-      status: false,
-      type: "Single Appointment",
-      vehicle: "Vehicle 1",
-      location: "Mason Location",
-      pickup: "Mason Office",
+            <IconComponent
+              className={"text-xl text-indigo-500 border border-indigo-600"}
+              style={{
+                borderRadius: 5,
+                paddingLeft: 4,
+                paddingRight: 4,
+              }}
+              icon={<FormOutlined />}
+            />
+          </div>
+        );
+      },
     },
   ];
 
   return (
-    <Fragment>
+    <>
       <div className="bg-white py-5 px-5 sm:px-9">
-        <Form layout="vertical">
+        <Form form={form} onFinish={onFinish} layout="vertical">
           <div className="grid md:grid-cols-2 gap-5">
             <div className="space-y-5">
               <div className="flex items-center space-x-5">
@@ -199,49 +307,84 @@ export const OpenTimeSlots = () => {
                   borderRadius={5}
                   paddingInline={20}
                   className={"mt-6"}
+                  type={"button"}
+                  onClick={onAdd}
                 >
                   Add new
                 </ButtonComponent>
 
-                <Form.Item label="Instructor" className="w-full m-0">
-                  <CustomSelect
+                <Form.Item
+                  label="Instructor"
+                  className="w-full m-0"
+                  name={"staff"}
+                >
+                  <Select
                     placeholder={"Select"}
-                    options={[
-                      {
-                        value: "Khaetbek",
-                        label: "Khaetbek",
-                      }
-                    ]}
+                    options={instructorsOptions}
                     className={"h-[50px]"}
                   />
                 </Form.Item>
               </div>
 
-              <Form.Item label="Select date">
-                <DatePicker className="w-full h-[50px] border-[#667085]" />
+              <Form.Item label="Select date" name={"date"}>
+                <DatePicker.RangePicker className="w-full h-[50px]" />
               </Form.Item>
 
-              <Form.Item label="Time filter">
-                <CustomSelect
+              <Form.Item label="Time filter" name={"time"}>
+                <Select
                   placeholder={"Time filter"}
                   options={[
                     {
-                      value: "8:18 PM",
-                      label: "8:18 PM",
-                    }
+                      value: "before",
+                      label: "Before noon",
+                    },
+                    {
+                      value: "after",
+                      label: "After noon",
+                    },
+                    {
+                      value: "pm",
+                      label: "After 3pm",
+                    },
                   ]}
                   className={"h-[50px]"}
                 />
               </Form.Item>
 
-              <Form.Item label="Weekdays">
-                <CustomSelect
+              <Form.Item label="Weekdays" name={"weekdays"}>
+                <Select
+                  mode="multiple"
+                  allowClear
                   placeholder={"Weekdays"}
                   options={[
                     {
                       value: "Monday",
                       label: "Monday",
-                    }
+                    },
+                    {
+                      value: "Tuesday",
+                      label: "Tuesday",
+                    },
+                    {
+                      value: "Wednesday",
+                      label: "Wednesday",
+                    },
+                    {
+                      value: "Thursday",
+                      label: "Thursday",
+                    },
+                    {
+                      value: "Friday",
+                      label: "Friday",
+                    },
+                    {
+                      value: "Saturday",
+                      label: "Saturday",
+                    },
+                    {
+                      value: "Sunday",
+                      label: "Sunday",
+                    },
                   ]}
                   className={"h-[50px]"}
                 />
@@ -249,56 +392,44 @@ export const OpenTimeSlots = () => {
             </div>
 
             <div className="space-y-5">
-              <Form.Item label="Displayed In Student Center">
-                <CustomSelect
+              <Form.Item label="Vehicle" name={"vehicle"}>
+                <Select
+                  placeholder={"Select"}
+                  options={vehiclesOptions}
+                  className={"h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="Location" name={"location"}>
+                <Select
+                  placeholder={"Select"}
+                  options={locationsOptions}
+                  className={"h-[50px]"}
+                />
+              </Form.Item>
+
+              <Form.Item label="Appointment type" name={"type"}>
+                <Select
                   placeholder={"Select"}
                   options={[
                     {
-                      value: "Status",
-                      label: "Status",
-                    }
+                      value: "Single Appointment(Driver Only)Road",
+                      label: "Single Appointment (Driver Only)",
+                    },
+                    {
+                      value: "Road Test(DriverOnly)",
+                      label: "Road Test (Driver Only)",
+                    },
                   ]}
                   className={"h-[50px]"}
                 />
               </Form.Item>
 
-              <Form.Item label="Vehicle">
-                <CustomSelect
-                  placeholder={"Select"}
-                  options={[
-                    {
-                      value: "Status",
-                      label: "Status",
-                    }
-                  ]}
-                  className={"h-[50px]"}
-                />
-              </Form.Item>
-
-              <Form.Item label="Location">
-                <CustomSelect
-                  placeholder={"Select"}
-                  options={[
-                    {
-                      value: "Status",
-                      label: "Status",
-                    }
-                  ]}
-                  className={"h-[50px]"}
-                />
-              </Form.Item>
-
-              <Form.Item label="Appointment type">
-                <CustomSelect
-                  placeholder={"Select"}
-                  options={[
-                    {
-                      value: "Status",
-                      label: "Status",
-                    }
-                  ]}
-                  className={"h-[50px]"}
-                />
+              <Form.Item
+                label="Displayed In Student Center"
+                name={"student_center"}
+              >
+                <Switch />
               </Form.Item>
             </div>
           </div>
@@ -312,7 +443,7 @@ export const OpenTimeSlots = () => {
               borderRadius={5}
               controlHeight={40}
               paddingInline={98}
-              onClick={handleFilter}
+              type={"submit"}
             >
               Filter
             </ButtonComponent>
@@ -324,6 +455,8 @@ export const OpenTimeSlots = () => {
               borderRadius={5}
               controlHeight={40}
               paddingInline={98}
+              type={"reset"}
+              onClick={onReset}
             >
               Clear
             </ButtonComponent>
@@ -333,38 +466,31 @@ export const OpenTimeSlots = () => {
 
       {Filter && (
         <div className={"mt-5 px-5 py-6 bg-white"}>
-          <div className={"flex max-[880px]:flex-col max-[880px]:space-y-5 justify-between items-center"}>
-            <form className={"flex gap-5"}>
-              <label className={"relative shadow-xl"}>
-                <CustomInput
-                  colorBorder={colorsObject.primary}
-                  placeholder={"Find student"}
-                  className={`w-full min-[600px]:w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
-                  classNames={"h-[50px]"}
-                />
-                <span
-                  className={
-                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                  }
-                >
-                  <AiOutlineSearch />
-                </span>
-              </label>
-            </form>
-
-            <Pagination
-              total={10}
-              pageSize={1}
-              current={CurrentPagination}
-              onChange={handleChangePagination}
+          <div
+            className={
+              "flex max-[880px]:flex-col max-[880px]:space-y-5 justify-between items-center"
+            }
+          >
+            <Input
+              className={"h-[50px]"}
+              placeholder={"Search"}
+              prefix={<AiOutlineSearch className={"text-xl"} />}
+              allowClear
+              enterButton="Search"
+              onChange={({ target }) => setSearch(target?.value)}
             />
           </div>
 
           <div className={"-mx-5 pt-5"}>
-            <Table columns={columns} dataSource={data} pagination={false} scroll={{ x: 1050 }} />
+            <TableComponent
+              columns={columns}
+              data={Data}
+              pagination
+              scroll={{ x: 1050 }}
+            />
           </div>
         </div>
       )}
-    </Fragment>
+    </>
   );
 };
