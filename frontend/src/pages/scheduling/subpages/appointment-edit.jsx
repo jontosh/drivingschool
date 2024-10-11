@@ -38,7 +38,7 @@ export const AppointmentEdit = () => {
   const { data: Locations } = useRequestGetQuery({
     path: "/account_management/location/",
   });
-  const { data: Appointments } = useRequestGetQuery({
+  const { data: Appointments, refetch } = useRequestGetQuery({
     path: "/scheduling/appointment/",
   });
   const { data: TimeSlots } = useRequestGetQuery({
@@ -47,7 +47,7 @@ export const AppointmentEdit = () => {
   const { data: Students } = useRequestGetQuery({
     path: "/student_account/student/",
   });
-  const [requestPatch, { reset: PatchReset }] = useRequestPatchMutation();
+  const [requestPatch] = useRequestPatchMutation();
 
   const timeSlotsOptions = useMemo(
     () =>
@@ -145,7 +145,7 @@ export const AppointmentEdit = () => {
   const { Data } = useFilterStatus({ data: AppointmentList, search: Search });
 
   const onFinish = useCallback(async (values) => {
-    const filtered = appointments.filter((appointment) => {
+    const filtered = appointments?.filter((appointment) => {
       const isInstructorValid = values.instructor === appointment.staff;
       const isLocationValid = values.location === appointment?.location;
       const isStatusValid =
@@ -201,7 +201,7 @@ export const AppointmentEdit = () => {
               title: "Success",
               onOk: () => {
                 actionForm.resetFields();
-                PatchReset();
+                refetch();
               },
             });
           }
@@ -214,7 +214,7 @@ export const AppointmentEdit = () => {
         title: "EDIT APPOINTMENTS",
         onOk: () => {
           actionForm.resetFields();
-          PatchReset();
+          refetch();
         },
         content: (
           <Form form={actionForm} layout={"vertical"} onFinish={onFinish}>
@@ -269,7 +269,7 @@ export const AppointmentEdit = () => {
           Modal.success({
             title: "Success",
             onOk: () => {
-              PatchReset();
+              refetch();
             },
           });
         }
@@ -299,7 +299,7 @@ export const AppointmentEdit = () => {
           Modal.success({
             title: "Success",
             onOk: () => {
-              PatchReset();
+              refetch();
             },
           });
         }
@@ -309,155 +309,158 @@ export const AppointmentEdit = () => {
     }
   };
 
-  const columns = [
-    {
-      title: "Date/Start and End Time",
-      dataIndex: "time",
-      key: "time",
-      align: "center",
-      render: (time) => (
-        <Paragraph
-          fontWeightStrong={500}
-          colorText={colorsObject.secondary}
-          fontSize={"text-lg"}
-        >
-          {time}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Instructor",
-      dataIndex: "instructor",
-      key: "instructor",
-      align: "center",
-      render: (instructor) => (
-        <Paragraph
-          fontWeightStrong={500}
-          colorText={colorsObject.secondary}
-          fontSize={"text-lg"}
-        >
-          {instructor}
-        </Paragraph>
-      ),
-    },
-
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      align: "center",
-      render: (status) => {
-        const { hover, bg } = CheckProgress(status);
-        return (
-          <ButtonComponent
-            defaultHoverBg={hover}
-            defaultBg={bg}
-            defaultHoverColor={colorsObject.main}
-            defaultColor={colorsObject.main}
-            controlHeight={30}
-            borderRadius={5}
-            style={{ width: 93 }}
+  const columns = useMemo(
+    () => [
+      {
+        title: "Date/Start and End Time",
+        dataIndex: "time",
+        key: "time",
+        align: "center",
+        render: (time) => (
+          <Paragraph
+            fontWeightStrong={500}
+            colorText={colorsObject.secondary}
+            fontSize={"text-lg"}
           >
-            {status?.toUpperCase()}
-          </ButtonComponent>
-        );
+            {time}
+          </Paragraph>
+        ),
       },
-    },
-    {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
-      align: "center",
-      render: () => (
-        <Paragraph
-          fontWeightStrong={500}
-          colorText={colorsObject.secondary}
-          fontSize={"text-lg"}
-        >
-          Single Appointment
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Vehicle",
-      dataIndex: "vehicle_name",
-      key: "vehicle_name",
-      align: "center",
-      render: (vehicle) => (
-        <Paragraph
-          fontWeightStrong={500}
-          colorText={colorsObject.secondary}
-          fontSize={"text-lg"}
-        >
-          {vehicle}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Location",
-      dataIndex: "location_name",
-      key: "location_name",
-      align: "center",
-      render: (location) => (
-        <Paragraph
-          fontWeightStrong={500}
-          colorText={colorsObject.secondary}
-          fontSize={"text-lg"}
-        >
-          {location}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Pickup Location",
-      dataIndex: "pu_location",
-      key: "pu_location",
-      align: "center",
-      render: (pickup) => (
-        <Paragraph
-          fontWeightStrong={500}
-          colorText={colorsObject.secondary}
-          fontSize={"text-lg"}
-        >
-          {pickup}
-        </Paragraph>
-      ),
-    },
-    {
-      title: "Student name",
-      dataIndex: "student_name",
-      key: "student_name",
-      align: "center",
-      render: (name) => (
-        <Paragraph
-          fontWeightStrong={500}
-          colorText={colorsObject.secondary}
-          fontSize={"text-lg"}
-        >
-          {name}
-        </Paragraph>
-      ),
-    },
+      {
+        title: "Instructor",
+        dataIndex: "instructor",
+        key: "instructor",
+        align: "center",
+        render: (instructor) => (
+          <Paragraph
+            fontWeightStrong={500}
+            colorText={colorsObject.secondary}
+            fontSize={"text-lg"}
+          >
+            {instructor}
+          </Paragraph>
+        ),
+      },
 
-    {
-      title: "Action",
-      key: "action",
-      align: "center",
-      render: (_, record) => (
-        <Select
-          onChange={(value) => onAction(value, record?.appointment)}
-          placeholder={"Select action"}
-          options={[
-            { value: "edit", label: "EDIT" },
-            { value: "delete", label: "DELETE" },
-            { value: "cancel", label: "CANCEL" },
-            { value: "shift", label: "SHIFT" },
-            { value: "export", label: "EXPORT" },
-          ]}
-        />
-      ),
-    },
-  ];
+      {
+        title: "Status",
+        dataIndex: "status",
+        key: "status",
+        align: "center",
+        render: (status) => {
+          const { hover, bg } = CheckProgress(status);
+          return (
+            <ButtonComponent
+              defaultHoverBg={hover}
+              defaultBg={bg}
+              defaultHoverColor={colorsObject.main}
+              defaultColor={colorsObject.main}
+              controlHeight={30}
+              borderRadius={5}
+              style={{ width: 93 }}
+            >
+              {status?.toUpperCase()}
+            </ButtonComponent>
+          );
+        },
+      },
+      {
+        title: "Type",
+        dataIndex: "type",
+        key: "type",
+        align: "center",
+        render: () => (
+          <Paragraph
+            fontWeightStrong={500}
+            colorText={colorsObject.secondary}
+            fontSize={"text-lg"}
+          >
+            Single Appointment
+          </Paragraph>
+        ),
+      },
+      {
+        title: "Vehicle",
+        dataIndex: "vehicle_name",
+        key: "vehicle_name",
+        align: "center",
+        render: (vehicle) => (
+          <Paragraph
+            fontWeightStrong={500}
+            colorText={colorsObject.secondary}
+            fontSize={"text-lg"}
+          >
+            {vehicle}
+          </Paragraph>
+        ),
+      },
+      {
+        title: "Location",
+        dataIndex: "location_name",
+        key: "location_name",
+        align: "center",
+        render: (location) => (
+          <Paragraph
+            fontWeightStrong={500}
+            colorText={colorsObject.secondary}
+            fontSize={"text-lg"}
+          >
+            {location}
+          </Paragraph>
+        ),
+      },
+      {
+        title: "Pickup Location",
+        dataIndex: "pu_location",
+        key: "pu_location",
+        align: "center",
+        render: (pickup) => (
+          <Paragraph
+            fontWeightStrong={500}
+            colorText={colorsObject.secondary}
+            fontSize={"text-lg"}
+          >
+            {pickup}
+          </Paragraph>
+        ),
+      },
+      {
+        title: "Student name",
+        dataIndex: "student_name",
+        key: "student_name",
+        align: "center",
+        render: (name) => (
+          <Paragraph
+            fontWeightStrong={500}
+            colorText={colorsObject.secondary}
+            fontSize={"text-lg"}
+          >
+            {name}
+          </Paragraph>
+        ),
+      },
+
+      {
+        title: "Action",
+        key: "action",
+        align: "center",
+        render: (_, record) => (
+          <Select
+            onChange={(value) => onAction(value, record?.appointment)}
+            placeholder={"Select action"}
+            options={[
+              { value: "edit", label: "EDIT" },
+              { value: "delete", label: "DELETE" },
+              { value: "cancel", label: "CANCEL" },
+              { value: "shift", label: "SHIFT" },
+              { value: "export", label: "EXPORT" },
+            ]}
+          />
+        ),
+      },
+    ],
+    [Appointments, TimeSlots, Students, Vehicles, Locations, refetch],
+  );
 
   return (
     <>
@@ -630,7 +633,12 @@ export const AppointmentEdit = () => {
           />
 
           <div className={"-mx-5 pt-5"}>
-            <TableComponent columns={columns} data={Data} pagination scroll={{ x: 900 }} />
+            <TableComponent
+              columns={columns}
+              data={Data}
+              pagination
+              scroll={{ x: 900 }}
+            />
           </div>
         </div>
       )}
