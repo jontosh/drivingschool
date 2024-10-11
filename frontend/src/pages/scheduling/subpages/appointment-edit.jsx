@@ -589,7 +589,7 @@ export const AppointmentEdit = () => {
           </div>
         </div>
 
-        <div className="flex max-[500px]:flex-col justify-center gap-5 pt-5">
+        <div className="flex max-[580px]:flex-col justify-center gap-5 pt-5">
           <ButtonComponent
             defaultHoverBg={"#24C18F"}
             defaultBg={"#24C18F"}
@@ -630,7 +630,7 @@ export const AppointmentEdit = () => {
           />
 
           <div className={"-mx-5 pt-5"}>
-            <TableComponent columns={columns} data={Data} pagination />
+            <TableComponent columns={columns} data={Data} pagination scroll={{ x: 900 }} />
           </div>
         </div>
       )}
