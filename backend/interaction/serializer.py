@@ -26,7 +26,7 @@ class InstructorFullSerializer(serializers.ModelSerializer):
         model = Instructor
 class TimeSlotSerializer_(serializers.ModelSerializer):
     date_range = DateRangeSerializer(read_only=True)
-    location = LocationSerializer(read_only=True)
+    location = LocationFullSerializer(read_only=True)
     vehicle = VehicleSerializer(read_only=True)
     slots = TimeRangeSerializer(many=True,read_only=True)
     staff = InstructorFullSerializer(read_only=True)
@@ -65,11 +65,17 @@ class StudentTestFullSerializer(serializers.ModelSerializer):
         fields= "__all__"
         model = StudentTest
 
-
+class ClassFullSerializer(serializers.ModelSerializer):
+    location = LocationFullSerializer(read_only=True)
+    day = TimeRangeSerializer(read_only=True,many=True)
+    teacher= InstructorFullSerializer(read_only=True)
+    class Meta:
+        fields= "__all__"
+        model = Class
 class EnrollmentSerializer_(serializers.ModelSerializer):
     package = ServicesSerializer(many=True)
     student = StudentSerializer()
-    cr = LocationSerializer()
+    cr = ClassFullSerializer()
     class Meta:
         model = Enrollment
         fields = ["student","data","code","by","price","cr","cr_start","cr_end","package"]
@@ -80,13 +86,7 @@ class AppointmentSerializer_(serializers.ModelSerializer):
         model = Appointment
         fields = ( "student", "id","time_slot")
 
-class ClassFullSerializer(serializers.ModelSerializer):
-    location = LocationFullSerializer(read_only=True)
-    day = TimeRangeSerializer(read_only=True,many=True)
-    teacher= InstructorFullSerializer(read_only=True)
-    class Meta:
-        fields= "__all__"
-        model = Class
+
 
 #EMAIL TEMPLATE
 class StudentSerializerEmail(serializers.ModelSerializer):
