@@ -9,7 +9,7 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 
-const StudentSpa = ({}) => {
+const StudentSpa = () => {
   const { title } = useParams();
   const navigate = useNavigate();
   switch (title.toLowerCase()) {

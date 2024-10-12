@@ -50,11 +50,38 @@ const HeaderLinks = [
 ];
 
 const Enrolled = () => {
+  const studentId = useURLSearchParams("studentId");
+  const { data: StudentAPI } = useRequestIdQuery({
+    path: "/page_api/student",
+    id: studentId,
+  });
+  const { data: Instructors } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+
+  const data = useMemo(() => {
+    if (!StudentAPI || !Instructors) return [];
+
+    const newEnrollments = [];
+
+    StudentAPI?.enrolments?.forEach((enrolment) => {
+      enrolment?.package?.forEach((pkg) => {
+        newEnrollments.push({
+          ...enrolment,
+          package: pkg?.name,
+          cr: enrolment?.cr?.date,
+        });
+      });
+    });
+
+    return newEnrollments;
+  }, [StudentAPI, Instructors]);
+
   const columns = [
     {
       title: "Enrolled",
-      key: "enrolled",
-      dataIndex: "enrolled",
+      key: "data",
+      dataIndex: "data",
     },
     {
       title: "Price",
@@ -73,13 +100,7 @@ const Enrolled = () => {
       dataIndex: "cr",
     },
   ];
-  const data = [
-    {
-      enrolled: "03/09/2024",
-      price: 699,
-      package: "8h in car instruction",
-    },
-  ];
+
   return <TableComponent columns={columns} data={data} />;
 };
 
@@ -137,7 +158,6 @@ const StudentAccount = () => {
 
   const { Data: filteredData } = useFilterStatus({
     data: StudentData,
-    status: null,
     search: Search,
   });
 

@@ -2,13 +2,18 @@ import { CustomSelect } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import BillingStyle from "@/pages/student/student-account.module.scss";
-import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import { useContext, useMemo } from "react";
 import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
 
 export const StudentAccountModule = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { data } = useRequestGetQuery({ path: "/student_account/bill/" });
+  const studentId = useURLSearchParams("studentId");
+
+  const { data: StudentAPI } = useRequestIdQuery({
+    path: "/page_api/student",
+    id: studentId,
+  });
 
   const columns = [
     {
@@ -31,13 +36,13 @@ export const StudentAccountModule = () => {
       dataIndex: "price",
       key: "price",
       align: "center",
-      render: (code) => (
+      render: (price) => (
         <Paragraph
           fontWeightStrong={500}
           fontSize={"text-base"}
           className={"text-center"}
         >
-          {code}
+          {price}
         </Paragraph>
       ),
     },
@@ -73,8 +78,8 @@ export const StudentAccountModule = () => {
     },
     {
       title: "Accepted by staff",
-      dataIndex: "acceptedBy",
-      key: "acceptedBy",
+      dataIndex: "staff",
+      key: "staff",
       align: "center",
       render: (by) => (
         <Paragraph
@@ -98,8 +103,6 @@ export const StudentAccountModule = () => {
       ),
     },
     {
-      title: "",
-      key: "",
       render: () => (
         <div className={"text-center"}>
           <CustomSelect
@@ -131,45 +134,39 @@ export const StudentAccountModule = () => {
     },
   ];
 
-  return { data, columns };
+  return { data: StudentAPI?.bills, columns };
 };
 
 export const StudentAccountEnrollmentModule = () => {
   const { colorsObject } = useContext(ColorsContext);
-  const { data } = useRequestGetQuery({ path: "/student_account/enrollment/" });
   const studentId = useURLSearchParams("studentId");
-  const { data: Services } = useRequestGetQuery({
-    path: "/account_management/services/service/",
-  });
+
   const { data: Instructors } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
+  const { data: StudentAPI } = useRequestIdQuery({
+    path: "/page_api/student",
+    id: studentId,
+  });
 
-  const enrollments = useMemo(() => {
-    if (!Services || !Instructors || !data) return [];
+  const enrolments = useMemo(() => {
+    if (!StudentAPI || !Instructors) return [];
 
-    return Services?.flatMap((service) =>
-      data
-        ?.filter(
-          (acc) =>
-            acc?.package?.includes(service?.id) && studentId === acc?.student,
-        )
-        .map((acc) => {
-          const instructor = Instructors?.find(
-            (staff) => staff?.id === acc?.by,
-          );
-          if (instructor) {
-            return {
-              ...acc,
-              by: `${instructor?.first_name} ${instructor?.last_name}`,
-              package: service?.name,
-            };
-          }
-          return null;
-        })
-        .filter(Boolean),
-    );
-  }, [Services, Instructors, data]);
+    const newEnrolments = [];
+    StudentAPI?.enrolments?.forEach((enrolment) => {
+      enrolment?.package?.forEach((pkg) => {
+        const staff = Instructors?.find(
+          (instructor) => instructor?.id === enrolment?.by,
+        );
+        newEnrolments.push({
+          ...enrolment,
+          package: pkg?.name,
+          by: `${staff?.first_name} ${staff?.last_name}`,
+        });
+      });
+    });
+    return newEnrolments;
+  }, [StudentAPI, Instructors]);
 
   const columns = [
     {
@@ -219,21 +216,21 @@ export const StudentAccountEnrollmentModule = () => {
     },
     {
       title: "Database Id",
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "code",
+      key: "code",
       align: "center",
-      render: (id) => (
+      render: (code) => (
         <Paragraph
           fontWeightStrong={400}
           fontSize={"text-base"}
           className={"text-center"}
         >
-          {id}
+          {code}
         </Paragraph>
       ),
     },
     {
-      title: "Data enrolled",
+      title: "Date enrolled",
       dataIndex: "data",
       key: "data",
       align: "center",
@@ -278,7 +275,7 @@ export const StudentAccountEnrollmentModule = () => {
       ),
     },
     {
-      render: () => (
+      render: (_, record) => (
         <div className={"text-center"}>
           <CustomSelect
             selectorBg={colorsObject.info}
@@ -309,7 +306,7 @@ export const StudentAccountEnrollmentModule = () => {
     },
   ];
 
-  return { data: enrollments, columns };
+  return { data: enrolments, columns };
 };
 
 export const AccountActivitiesModule = () => {

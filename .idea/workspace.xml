@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored Open time slot">
-      <change afterPath="$PROJECT_DIR$/frontend/src/modules/export-xlsx.jsx" afterDir="false" />
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored Logs with export xlsx file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/activity-logs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/activity-logs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/student-account.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/student-account.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/student-appointment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/appointments.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/billing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/billing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/student/student-spa.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/student/student-spa.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,27 +56,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;refactoring&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/khaetbek/D/works/drivingschool&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier&quot;,
-    &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/opt/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "refactoring",
+    "last_opened_file_path": "/home/khaetbek/D/works/drivingschool",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/khaetbek/D/works/drivingschool/frontend/node_modules/prettier",
+    "service.view.auto.scroll.to.source": "true",
+    "settings.editor.selected.configurable": "preferences.sourceCode.YAML",
+    "ts.external.directory.path": "/opt/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactBuddySettings">
     <option name="extensionsIgnore" value="true" />
   </component>
@@ -261,15 +263,9 @@
       <workItem from="1728489012603" duration="7712000" />
       <workItem from="1728569517390" duration="13677000" />
       <workItem from="1728662239794" duration="10000" />
-      <workItem from="1728667929280" duration="10358000" />
-    </task>
-    <task id="LOCAL-00103" summary="#fix #js Fixed mobile menubar with color and active color status">
-      <option name="closed" value="true" />
-      <created>1721213216650</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1721213216650</updated>
+      <workItem from="1728667929280" duration="10850000" />
+      <workItem from="1728751408351" duration="53000" />
+      <workItem from="1728751469749" duration="11033000" />
     </task>
     <task id="LOCAL-00104" summary="#fix #js #html Fixed HTML structure">
       <option name="closed" value="true" />
@@ -655,7 +651,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728684355115</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="#fix #js Refactored Logs with export xlsx file">
+      <option name="closed" value="true" />
+      <created>1728686968407</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1728686968407</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -674,7 +678,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fixed some bugs in code" />
     <MESSAGE value="#fix #jsx Fixed bugs and structure code" />
     <MESSAGE value="#fix #jsx Fixed bugs" />
     <MESSAGE value="#fix #jsx Fix routing and set to store" />
@@ -699,7 +702,8 @@
     <MESSAGE value="#fix #js Refactored Appointment bulk edit to get filter data" />
     <MESSAGE value="#fix #js Refactored Appointment bulk edit to refetch data" />
     <MESSAGE value="#fix #js Refactored Open time slot" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored Open time slot" />
+    <MESSAGE value="#fix #js Refactored Logs with export xlsx file" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored Logs with export xlsx file" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

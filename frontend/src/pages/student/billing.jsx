@@ -177,7 +177,7 @@ const Enrollment = () => {
           </div>
         </div>
         <div className="pt-5 -mx-10">
-          <TableComponent columns={columns} data={data} rowKey="id" />
+          <TableComponent columns={columns} data={data} />
         </div>
       </div>
     </Fragment>
@@ -186,27 +186,16 @@ const Enrollment = () => {
 
 const Billings = () => {
   const studentId = useURLSearchParams("studentId");
-  const { data: Instructor } = useRequestGetQuery({
-    path: "/student_account/instructor/",
-  });
-  const { data: Student } = useRequestIdQuery({
+  const { colorsObject } = useContext(ColorsContext);
+  const { data, columns } = StudentAccountModule();
+  const [form] = Form.useForm();
+
+  const { data: StudentAPI } = useRequestIdQuery({
     path: "/student_account/student",
     id: studentId,
   });
-  const { colorsObject } = useContext(ColorsContext);
-  const { data, columns } = StudentAccountModule();
-  const [billingData, setBillingData] = useState([]);
-  const [price, setPrice] = useState(0);
-  const [form] = Form.useForm();
 
-  useEffect(() => {
-    if (data) {
-      const studentData = data.filter((item) => item.student === studentId);
-      const totalPrice = studentData.reduce((sum, item) => sum + item.price, 0);
-      setBillingData(studentData);
-      setPrice(totalPrice);
-    }
-  }, [data, studentId]);
+  const totalPrice = data?.reduce((cur, acc) => cur + acc?.price, 0);
 
   return (
     <Fragment>
@@ -214,7 +203,7 @@ const Billings = () => {
         <div className="-mx-10 px-3 md:px-10 border-b pb-5 border-b-gray-400 flex items-center flex-col md:flex-row max-md:space-y-2.5 justify-between">
           <Title level={2} fontSize={"text-xl space-x-2"}>
             <span className="text-indigo-700">Billing</span>
-            <span className={"text-[#24C18F]"}>${price}</span>
+            <span className={"text-[#24C18F]"}>${totalPrice}</span>
           </Title>
           <div className="grid min-[500px]:grid-cols-3 gap-2 max-md:w-full">
             <ButtonComponent
@@ -236,7 +225,7 @@ const Billings = () => {
               paddingInline={29}
               fontSize={14}
               borderRadius={5}
-              onClick={() => onEmail(Student, form)}
+              onClick={() => onEmail(StudentAPI, form)}
             >
               Email
             </ButtonComponent>
@@ -255,7 +244,7 @@ const Billings = () => {
           </div>
         </div>
         <div className="pt-5 -mx-10">
-          <TableComponent columns={columns} data={billingData} />
+          <TableComponent columns={columns} data={data} />
         </div>
       </div>
     </Fragment>
