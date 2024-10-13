@@ -637,7 +637,7 @@ export const AppointmentEdit = () => {
               columns={columns}
               data={Data}
               pagination
-              scroll={{ x: 900 }}
+              scroll={{ x: 1150 }}
             />
           </div>
         </div>

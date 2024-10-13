@@ -486,7 +486,7 @@ export const OpenTimeSlots = () => {
               columns={columns}
               data={Data}
               pagination
-              scroll={{ x: 1050 }}
+              scroll={{ x: 1200 }}
             />
           </div>
         </div>

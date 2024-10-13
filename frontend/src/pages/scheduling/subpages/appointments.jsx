@@ -368,7 +368,7 @@ export const Appointments = () => {
           </div>
 
           <div className="pt-5 -mx-5">
-            <Table columns={columns} dataSource={data} pagination={false} />
+            <Table columns={columns} dataSource={data} pagination={false} scroll={{ x: 1000 }} />
           </div>
         </div>
       )}
