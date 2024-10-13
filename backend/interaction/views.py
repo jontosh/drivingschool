@@ -13,7 +13,7 @@ from collections import defaultdict
 from .serializer import TasksSerializer\
     ,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
     StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate,\
-    TemplateSerializer,SendTemplateSerializer,StudentTestFullSerializer,Template,SendTemplate,StudentTest
+    TemplateSerializer,SendTemplateSerializer,StudentTestFullSerializer,Template,SendTemplate,StudentTest,WebMessages,WebMessagesSerializer
 from django.core.mail import send_mail
 
 import  re
@@ -320,6 +320,17 @@ class TemplateViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     queryset = Template.objects.all()
     serializer_class = TemplateSerializer
+    def perform_create(self, serializer):
+        # Perform any custom logic before saving the school, e.g., validation checks
+        serializer.save()
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()
+
+class WebMessagesViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = WebMessages.objects.all()
+    serializer_class = WebMessagesSerializer
     def perform_create(self, serializer):
         # Perform any custom logic before saving the school, e.g., validation checks
         serializer.save()
