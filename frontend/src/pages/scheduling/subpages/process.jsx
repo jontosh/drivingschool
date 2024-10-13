@@ -255,7 +255,7 @@ export const Process = () => {
           </div>
 
           <div className={"-mx-5 pt-5"}>
-            <Table columns={columns} dataSource={data} pagination={false} scroll={{x: 900}} />
+            <Table columns={columns} dataSource={data} pagination={false} scroll={{ x: 1000 }} />
           </div>
         </div>
       )}
