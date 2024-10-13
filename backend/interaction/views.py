@@ -118,9 +118,9 @@ class InstructorHomeAPI(APIView):
         for i in serializer.data:
             i["time_slot"] = TimeSlotSerializer_(TimeSlot.objects.get(id=i["time_slot"]["id"])).data
         data["appointment"] = serializer.data
-        # logs = Logs.objects.filter(user__id=id)
-        # logs = LogsSerializer(logs, many=True)
-        # data[ "logs" ] = logs.data
+        logs = Logs.objects.filter(user__id=id)
+        logs = LogsSerializer(logs, many=True)
+        data[ "logs" ] = logs.data
         return Response(data)
 
 class StudentHomeAPI(APIView):

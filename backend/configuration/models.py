@@ -6,6 +6,7 @@ from colorfield.fields import ColorField
 from scheduling.models import Weekday
 import uuid
 from abstracts.models import Extra,Status
+from django.conf import settings
 # Create your models here.
 class CompanyInfo(models.Model):
     id = models.UUIDField(primary_key=True,editable=False,unique=True)
@@ -79,14 +80,9 @@ class Messages(models.Model):
     ]
     student = models.ForeignKey("Users.Student",related_name="student1_message",on_delete=models.CASCADE)
     datetime = models.DateTimeField(auto_now_add=True)
+    message = models.TextField()
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,blank=True,null=True)
     status = models.CharField(choices=STATUS,max_length=30,default="UNREAD")
-    def add_item(self, user) -> 'MessageItems':
-        from_content_type = ContentType.objects.get_for_model(user)
-        return MessageItems.objects.create(
-            message = self,
-            from_content_type=from_content_type,
-            from_object_id=user.pk,
-        )
 
 class PasswordManagement(models.Model):
     has_2AF = models.BooleanField(default=False)
