@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Tasks,Logs,LatestNews,EmailTemplate,Template,SendTemplate
+from .models import Tasks,Logs,LatestNews,EmailTemplate,Template,SendTemplate,WebMessages
 from location.views import LocationSerializer,VehicleSerializer,SchoolSerializer,Vehicle,Class,Location
 from servises.serializer import ServicesSerializer,TestSerializer,StudentQuestionSerializer,StudentTest
 from scheduling.serializer import AppointmentSerializer, DateRangeSerializer,TimeRangeSerializer,\
@@ -185,3 +185,8 @@ class SendTemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = SendTemplate
         fields = "__all__"
+
+class WebMessagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = WebMessages

@@ -13,7 +13,8 @@ from collections import defaultdict
 from .serializer import TasksSerializer\
     ,LogsSerializer,LatestNewsSerializer,EnrollmentSerializer_,TimeSlotSerializer_,AppointmentSerializer_,\
     StudentSerializerEmail,AppointmentEmailSerializer,InstructorEmailSerializer,EmailTemplateSerializer,EmailTemplate,\
-    TemplateSerializer,SendTemplateSerializer,StudentTestFullSerializer,Template,SendTemplate,StudentTest
+    TemplateSerializer,SendTemplateSerializer,StudentTestFullSerializer,Template,SendTemplate,StudentTest,WebMessages,\
+    WebMessagesSerializer
 from django.core.mail import send_mail
 
 import  re
@@ -109,10 +110,7 @@ class BillStatisticsByType(APIView):
 #PAGE API
 class InstructorHomeAPI(APIView):
     def get(self,request,id):
-        data = {
-
-        }
-        data["all_time_slots"] = []
+        data = { "all_time_slots": [ ] }
         for i in TimeSlot.objects.filter(staff__id = id):
             data["all_time_slots"].append(TimeSlotSerializer_(i).data)
         appointments  = Appointment.objects.filter(time_slot__staff_id=id)
@@ -120,6 +118,9 @@ class InstructorHomeAPI(APIView):
         for i in serializer.data:
             i["time_slot"] = TimeSlotSerializer_(TimeSlot.objects.get(id=i["time_slot"]["id"])).data
         data["appointment"] = serializer.data
+        # logs = Logs.objects.filter(user__id=id)
+        # logs = LogsSerializer(logs, many=True)
+        # data[ "logs" ] = logs.data
         return Response(data)
 
 class StudentHomeAPI(APIView):
@@ -140,6 +141,9 @@ class StudentHomeAPI(APIView):
         appointments  = Appointment.objects.filter(student__id=id)
         appointments = AppointmentSerializer_(appointments,many=True)
         data["appointments"]=appointments.data
+        logs = Logs.objects.filter(user__id=id)
+        logs = LogsSerializer(logs, many=True)
+        data[ "logs" ] = logs.data
         return Response(data)
 
 class StudentEmailTemplateView(APIView):
@@ -320,6 +324,17 @@ class TemplateViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     queryset = Template.objects.all()
     serializer_class = TemplateSerializer
+    def perform_create(self, serializer):
+        # Perform any custom logic before saving the school, e.g., validation checks
+        serializer.save()
+    def perform_update(self, serializer):
+        # Perform any custom logic before updating the school, e.g., authorization checks
+        serializer.save()
+
+class WebMessagesViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = WebMessages.objects.all()
+    serializer_class = WebMessagesSerializer
     def perform_create(self, serializer):
         # Perform any custom logic before saving the school, e.g., validation checks
         serializer.save()

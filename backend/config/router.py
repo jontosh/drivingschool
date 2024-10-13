@@ -57,6 +57,7 @@ Router = {
             "latest_news":"latest_news",
             "send_template":"send_template",
             "template":"template",
+            "web_message":"web_message"
         }
     },
     "account_management":{

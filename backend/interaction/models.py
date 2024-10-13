@@ -91,6 +91,11 @@ class SendTemplate(models.Model):
     def __str__(self):
         return f"{self.template.name} - {self.pk}"
 
+class WebMessages(Status):
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add=True,editable=False)
+    email = models.EmailField()
+    name = models.CharField(max_length=100)
 # @receiver(pre_save, sender=Logs)
 # def log_user_actions(sender, instance, **kwargs):
 #     request = kwargs['request']
