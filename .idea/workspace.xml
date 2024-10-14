@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored student account with get enrolments/bills and appointments">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored &quot;student schedule&quot;, optimized code and integration API. refactored Card schedule">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/calendar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/calendar/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/my-schedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/my-schedule.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/vehicle.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,14 +266,6 @@
       <workItem from="1728813466956" duration="1138000" />
       <workItem from="1728815308291" duration="2496000" />
       <workItem from="1728928781941" duration="4235000" />
-    </task>
-    <task id="LOCAL-00105" summary="#fix #js #html Fixed URL router to pages, fixed structure data for control dynamic change active mrnu item">
-      <option name="closed" value="true" />
-      <created>1721232119934</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1721232119934</updated>
     </task>
     <task id="LOCAL-00106" summary="#fix #js #html Fixed routing path, menu on portal student and link in other pages">
       <option name="closed" value="true" />
@@ -661,7 +651,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728764438963</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="#fix #js Refactored &quot;student schedule&quot;, optimized code and integration API. refactored Card schedule">
+      <option name="closed" value="true" />
+      <created>1728936545860</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1728936545860</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,7 +678,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fixed bugs" />
     <MESSAGE value="#fix #jsx Fix routing and set to store" />
     <MESSAGE value="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars." />
     <MESSAGE value="#fix #jsx Fixed routing and password.jsx" />
@@ -705,7 +702,8 @@
     <MESSAGE value="#fix #js Refactored Open time slot" />
     <MESSAGE value="#fix #js Refactored Logs with export xlsx file" />
     <MESSAGE value="#fix #js Refactored student account with get enrolments/bills and appointments" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored student account with get enrolments/bills and appointments" />
+    <MESSAGE value="#fix #js Refactored &quot;student schedule&quot;, optimized code and integration API. refactored Card schedule" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored &quot;student schedule&quot;, optimized code and integration API. refactored Card schedule" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
