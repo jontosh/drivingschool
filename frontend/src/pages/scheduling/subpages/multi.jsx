@@ -3,20 +3,21 @@ import IconComponent from "@/components/icons";
 import Title from "@/components/title/index.jsx";
 import { MultiSidebar } from "@/pages/scheduling/calendar/multi-sidebar.jsx";
 import { MultiTable } from "@/pages/scheduling/calendar/multi-table-calendar.jsx";
-import { Fragment, useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { LuSettings } from "react-icons/lu";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { Form, Modal, Select } from "antd";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
 import dayjs from "dayjs";
+import { ActiveData } from "@/hooks/filter.jsx";
 
 export const Multi = () => {
   const [form] = Form.useForm();
   const [Now, setNow] = useState(new Date());
   const [StudentId, setStudentId] = useState(undefined);
-  const [InstructorsSlot, setInstructorsSlot] = useState([]);
+  const [Instructors, setInstructors] = useState([]);
 
-  const { data: Instructors } = useRequestGetQuery({
+  const { data: InstructorList } = useRequestGetQuery({
     path: "/student_account/instructor/",
   });
   const { data: Students } = useRequestGetQuery({
@@ -30,61 +31,43 @@ export const Multi = () => {
 
   const instructorsOptions = useMemo(
     () =>
-      Instructors?.map((instructor) => ({
+      ActiveData(InstructorList)?.map((instructor) => ({
         value: instructor?.id,
         label: `${instructor?.first_name} ${instructor?.last_name}`,
       })),
-    [Instructors],
+    [InstructorList],
   );
 
   const studentOptions = useMemo(
     () =>
-      Students?.map((student) => ({
+      ActiveData(Students)?.map((student) => ({
         value: student?.id,
         label: `${student?.first_name} ${student?.last_name}`,
       })),
     [Students],
   );
 
-  const instructors = useMemo(() => {
-    if (isSuccess) {
-      const appointments = [];
-      for (let i = 0; i < StudentAPI?.appointments?.length; i++) {
-        const appointment = StudentAPI?.appointments[i];
-        for (let j = 0; j < appointment?.student?.length; j++) {
-          const student = appointment?.student[j];
-          for (let k = 0; k < Instructors?.length; k++) {
-            const staff = Instructors[k];
-            if (student?.staff === staff?.id) {
-              appointments.push({
-                instructor: student?.staff,
-                name: `${staff?.first_name} ${staff?.last_name}`,
-                slots: appointment?.time_slot?.slots?.map((item) => ({
-                  title: item?.name,
-                  start: new Date(item?.start),
-                  end: new Date(item?.end),
-                })),
-              });
-            }
-          }
-        }
-      }
-      return appointments;
+  const instructorsSlot = useMemo(() => {
+    if (isSuccess && Instructors.length > 0) {
+      return StudentAPI?.appointments
+        ?.filter((appointment) =>
+          Instructors.includes(appointment?.time_slot?.staff?.id),
+        )
+        ?.map((appointment) => ({
+          name: appointment?.time_slot?.staff?.first_name,
+          slots: appointment?.time_slot?.slots,
+        }));
     }
-  }, [isSuccess]);
+
+    return [];
+  }, [isSuccess, Instructors, StudentAPI]);
 
   const onFinish = async (values) => {
     setStudentId(values?.student);
-
-    setInstructorsSlot(
-      instructors?.filter(
-        (instructor, index) =>
-          instructor?.instructor === values?.instructors[index],
-      ),
-    );
+    setInstructors(values?.instructors);
   };
 
-  const slot = InstructorsSlot?.map((item, index) => (
+  const slot = instructorsSlot?.map((item, index) => (
     <MultiTable key={index} date={Now} data={item} />
   ));
 
@@ -97,7 +80,7 @@ export const Multi = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       <div className="p-3 sm:p-7 bg-white rounded-xl">
         <div className="flex max-[600px]:flex-col items-center justify-between p-7">
           <ButtonComponent
@@ -221,11 +204,13 @@ export const Multi = () => {
             </Form>
           </aside>
 
-          <div className="flex-grow w-full min-[1350px]:w-min flex border border-gray-400 rounded-xl overflow-x-scroll">
-            {slot}
-          </div>
+          {slot.length > 0 && (
+            <div className="flex-grow w-full min-[1350px]:w-min flex border border-gray-400 rounded-xl overflow-x-scroll">
+              {slot}
+            </div>
+          )}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };

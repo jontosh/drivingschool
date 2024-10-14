@@ -9,7 +9,13 @@ export const MultiTable = ({ data, date }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    setEvents(data?.slots);
+    setEvents(
+      data?.slots?.map((slot) => ({
+        title: slot?.name,
+        start: new Date(slot?.start),
+        end: new Date(slot?.end),
+      })),
+    );
   }, [data]);
 
   const { formats, defaultDate, views, toolbar, components } = useMemo(() => {
