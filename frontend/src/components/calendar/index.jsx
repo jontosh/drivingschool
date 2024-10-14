@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { format, addDays, subDays, startOfWeek } from "date-fns";
 import classNames from "classnames";
 import { Button, Tooltip } from "antd";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-export const WeeklyCalendar = () => {
+export const WeeklyCalendar = ({ day }) => {
   const [currentDay, setCurrentDay] = useState(new Date());
 
   const startOfTheWeek = startOfWeek(currentDay, { weekStartsOn: 1 });
@@ -24,13 +24,17 @@ export const WeeklyCalendar = () => {
     daysOfWeek.push(day);
   }
 
+  useEffect(() => {
+    if (typeof day === "function") day(currentDay);
+  }, [currentDay]);
+
   const weekItem = daysOfWeek.map((day) => (
     <div
       key={day}
       className={classNames(
         "text-center rounded-lg cursor-pointer hover:text-[#5F66E9]",
         format(day, "yyyy-MM-dd") === format(currentDay, "yyyy-MM-dd") &&
-        "text-[#5F66E9]",
+          "text-[#5F66E9]",
       )}
     >
       <p className="text-lg">{format(day, "eeee")}</p>

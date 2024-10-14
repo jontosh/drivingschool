@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored student account with get enrolments/bills and appointments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/modules/scheduling.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/scheduling.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/book-my-lessons.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/book-my-lessons.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/calendar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/calendar/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/items.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/my-schedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/items/my-schedule.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
