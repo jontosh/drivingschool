@@ -6,55 +6,85 @@ import {
 } from "@/redux/query/index.jsx";
 import dayjs from "dayjs";
 import { useURLSearchParams } from "@/hooks/useURLSearchParams.jsx";
+import { ActiveData } from "@/hooks/filter.jsx";
+import { Modal, Timeline } from "antd";
 
-export const SchedulingModule = (value = []) => {
+export const SchedulingModule = (values = []) => {
   const studentId = useURLSearchParams("studentId");
 
-  const { data } = useRequestGetQuery({ path: "/scheduling/time_slot/" });
-  const [requestPost] = useRequestPostMutation();
-  const customData = useMemo(() => {
-    const now = new Date();
+  const { data } = useRequestGetQuery({
+    path: "/scheduling/time_slot/",
+  });
+  const [requestPost, { reset }] = useRequestPostMutation();
 
-    return (
-      data?.reduce((acc, item) => {
-        const futureSlots =
-          item?.slots?.filter((slot) => now <= new Date(slot?.start)) || [];
+  const TimeSlot = useMemo(() => {
+    if (!data) return [];
 
-        const formattedSlots = futureSlots.map((slot) => ({
-          time_slot: item.id,
-          location: item.location,
-          staff: item.staff,
-          date: dayjs(slot?.start).format("ddd, MMM D, h:mm A"),
-          start: new Date(slot?.start),
-        }));
-
-        if (value.length !== 0) {
-          return acc.concat(
-            formattedSlots.filter(
-              (slot, index) =>
-                dayjs(value[index]).format("YYYY-MM-DD") ===
-                dayjs(slot.start).format("YYYY-MM-DD"),
-            ),
+    const openSlot = ActiveData(data)
+      ?.map((timeSlot) => {
+        if (
+          dayjs(new Date()).format("YYYY-MM-DD") <=
+          dayjs(timeSlot?.date).format("YYYY-MM-DD")
+        ) {
+          return timeSlot?.slots?.reduce(
+            (_, currentValue) => ({
+              staff: timeSlot?.staff_name,
+              date: dayjs(currentValue?.start).format("ddd, MMM D, hh:mm A"),
+              time: currentValue?.start,
+              location_name: timeSlot?.pu_location,
+              id: timeSlot?.id,
+            }),
+            0,
           );
         }
+      })
+      .filter(Boolean);
 
-        return acc.concat(formattedSlots);
-      }, []) || []
-    );
-  }, [data, value.length]);
+    if (values?.length > 0) {
+      return values
+        ?.map((value) =>
+          openSlot?.find(
+            (slot) =>
+              dayjs(slot?.time).format("YYYY-MM-DD") ===
+              dayjs(value).format("YYYY-MM-DD"),
+          ),
+        )
+        .filter(Boolean);
+    }
 
-  const onAppointment = async (values) => {
+    return openSlot;
+  }, [data, values]);
+
+  const onAppointment = async (data) => {
     try {
-      await requestPost({
+      const { error } = await requestPost({
         path: "/scheduling/appointment/",
         data: {
           status: "ACTIVE",
-          time_slot: values.time_slot,
+          time_slot: data?.id,
           student: [studentId],
         },
-      }).reset();
+      }).catch(console.error);
+
+      if (error?.status >= 400) {
+        Modal.error({
+          title: "Error message",
+          content: (
+            <Timeline
+              items={Object.values(error?.data).map((item) => ({
+                children: item[0],
+              }))}
+            />
+          ),
+        });
+      } else {
+        Modal.success({
+          title: "Success",
+          onOk: () => reset(),
+        });
+      }
     } catch (e) {
-      console.error(e);
+      console.warn(e);
     }
   };
 
@@ -74,7 +104,7 @@ export const SchedulingModule = (value = []) => {
             {record?.date}
           </Paragraph>
           <Paragraph fontSize="text-[10px]" className="mt-2.5">
-            <b>Pickup Location:</b> {record?.location}
+            <b>Pickup Location:</b> {record?.location_name}
           </Paragraph>
         </>
       ),
@@ -92,5 +122,5 @@ export const SchedulingModule = (value = []) => {
     },
   ];
 
-  return { columns, data: customData };
+  return { columns, data: TimeSlot };
 };

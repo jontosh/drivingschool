@@ -4,7 +4,7 @@ import TableComponent from "@/components/table/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { SchedulingModule } from "@/modules/scheduling.jsx";
-import { Fragment, useContext, useState, useCallback, useEffect } from "react";
+import { useContext, useState, useCallback, useEffect } from "react";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
@@ -48,18 +48,18 @@ export const BookMyLessons = () => {
 
   useEffect(() => {
     if (innerWidth >= 720) {
-      setCalendar(500)
+      setCalendar(500);
     } else if (innerWidth >= 545) {
-      setCalendar(400)
+      setCalendar(400);
     } else if (innerWidth >= 400) {
-      setCalendar(250)
+      setCalendar(250);
     } else if (innerWidth >= 300) {
-      setCalendar(225)
+      setCalendar(225);
     }
   }, [innerWidth]);
 
   return (
-    <Fragment>
+    <>
       <div className="flex max-xl:flex-col gap-5">
         <div className="space-y-5 max-w-[550px] w-full">
           <div className="border border-gray-500 px-6 py-4 rounded-lg space-y-5">
@@ -142,6 +142,6 @@ export const BookMyLessons = () => {
           </aside>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
