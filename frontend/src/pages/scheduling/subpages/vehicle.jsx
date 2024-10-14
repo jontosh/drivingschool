@@ -3,19 +3,20 @@ import IconComponent from "@/components/icons";
 import Title from "@/components/title/index.jsx";
 import { BigCalendar } from "@/pages/scheduling/calendar/big-calendar.jsx";
 import { VehicleSidebar } from "@/pages/scheduling/calendar/vehicle-sidebar.jsx";
-import { Fragment, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { LuSettings } from "react-icons/lu";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import dayjs from "dayjs";
 import { Form, Modal, Select } from "antd";
 import { useRequestGetQuery, useRequestIdQuery } from "@/redux/query/index.jsx";
+import { ActiveData } from "@/hooks/filter.jsx";
 
 export const Vehicle = () => {
   const [Now, setNow] = useState(new Date());
   const [form] = Form.useForm();
   const [StudentId, setStudentId] = useState(undefined);
-  const [VehiclesSlot, setVehiclesSlot] = useState([]);
-  const { data: Vehicles } = useRequestGetQuery({
+  const [Vehicles, setVehicles] = useState([]);
+  const { data: VehiclesList } = useRequestGetQuery({
     path: "/account_management/vehicle/",
   });
   const { data: Students } = useRequestGetQuery({
@@ -29,52 +30,44 @@ export const Vehicle = () => {
 
   const vehiclesOption = useMemo(
     () =>
-      Vehicles?.filter((item) => item.status === "ACTIVE").map((item) => ({
+      ActiveData(VehiclesList)?.map((item) => ({
         value: item?.id,
         label: item?.name,
       })),
-    [Vehicles],
+    [VehiclesList],
   );
 
   const timeSlots = useMemo(() => {
-    if (isSuccess) {
-      return StudentAPI?.appointments
-        ?.filter(
-          (appointment) => appointment?.time_slot?.vehicle?.status === "ACTIVE",
-        )
-        .map((item) => ({
-          vehicle: item?.time_slot?.vehicle?.name,
-          vehicleId: item?.time_slot?.vehicle?.id,
-          slots: item?.time_slot?.slots,
-        }));
+    const vehicles = StudentAPI?.appointments
+      ?.filter(
+        (appointment) => appointment?.time_slot?.vehicle?.status === "ACTIVE",
+      )
+      .map((item) => ({
+        vehicle: item?.time_slot?.vehicle?.name,
+        id: item?.time_slot?.vehicle?.id,
+        slots: item?.time_slot?.slots,
+      }));
+
+    if (isSuccess && Vehicles.length > 0) {
+      return vehicles?.filter((vehicle) => Vehicles.includes(vehicle?.id));
     }
-  }, [isSuccess]);
+
+    return [];
+  }, [isSuccess, StudentAPI, Vehicles]);
 
   const studentOptions = useMemo(
     () =>
-      Students?.filter((item) => item?.status === "ACTIVE").map((item) => ({
+      ActiveData(Students)?.map((item) => ({
         value: item?.id,
         label: `${item?.first_name} ${item?.last_name}`,
       })),
     [Students],
   );
 
-  const onFinish = async (values) => {
+  const onFinish = useCallback(async (values) => {
     setStudentId(values.student);
-
-    if (timeSlots?.length !== 0 && isSuccess) {
-      setVehiclesSlot(
-        values?.vehicles
-          ?.map((vehicle, index) => {
-            if (vehicle === timeSlots[index]?.vehicleId) {
-              console.log(timeSlots[index]);
-              return timeSlots[index];
-            }
-          })
-          .filter((item) => item?.vehicle),
-      );
-    }
-  };
+    setVehicles(values?.vehicles);
+  }, []);
 
   const onMore = useCallback(() => {
     Modal.info({
@@ -84,12 +77,12 @@ export const Vehicle = () => {
     });
   }, []);
 
-  const slot = VehiclesSlot?.map((item, index) => (
+  const slot = timeSlots?.map((item, index) => (
     <BigCalendar key={index} data={item} date={Now} />
   ));
 
   return (
-    <Fragment>
+    <>
       <div className="p-3 sm:p-7 bg-white rounded-xl">
         <div className="flex max-[600px]:flex-col items-center justify-between p-7">
           <ButtonComponent
@@ -215,6 +208,6 @@ export const Vehicle = () => {
           )}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
