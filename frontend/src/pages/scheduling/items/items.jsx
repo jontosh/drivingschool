@@ -3,21 +3,18 @@ import IconComponent from "@/components/icons/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import classNames from "classnames";
-import { Fragment, useContext, useState } from "react";
+import { useContext } from "react";
 import { TbEdit, TbClockFilled } from "react-icons/tb";
-import { AlertEdit } from "@/hooks/alert.jsx";
 import { TiUser } from "react-icons/ti";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import { HiLocationMarker } from "react-icons/hi";
+import dayjs from "dayjs";
 
-export const DrivingItem = ({ item, className }) => {
+export const DrivingItem = ({ item, className, editable, onClick }) => {
   const { colorsObject } = useContext(ColorsContext);
-  const [IsOpen, setIsOpen] = useState(false);
-
-  const handleEdit = () => setIsOpen((prev) => !prev);
 
   return (
-    <Fragment>
+    <>
       <div
         className={classNames(
           "bg-gray-200 pt-8 pr-2 pl-5 pb-2 rounded-lg space-y-3",
@@ -25,29 +22,17 @@ export const DrivingItem = ({ item, className }) => {
         )}
       >
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <Title level={5} fontSize={"text-sm"} fontWeightStrong={600}>
-              DRIVING
-            </Title>
-            <ButtonComponent
-              defaultColor={colorsObject.main}
-              defaultHoverColor={colorsObject.main}
-              defaultHoverBg={colorsObject.primaryHover}
-              defaultBg={colorsObject.primary}
-              controlHeight={20}
-              paddingInline={9}
-              borderRadius={5}
-              fontSize={8}
-            >
-              Change
-            </ButtonComponent>
-          </div>
+          <Title level={5} fontSize={"text-sm"} fontWeightStrong={600}>
+            {item?.title ?? "Title"}
+          </Title>
 
-          <IconComponent
-            iconWidth={"w-[18px]"}
-            icon={<TbEdit className={"text-lg"} />}
-            onClick={handleEdit}
-          />
+          {editable && (
+            <IconComponent
+              iconWidth={"w-[18px]"}
+              icon={<TbEdit className={"text-lg"} />}
+              onClick={onClick}
+            />
+          )}
         </div>
 
         <hr className={"border border-gray-500"} />
@@ -61,7 +46,7 @@ export const DrivingItem = ({ item, className }) => {
             />
 
             <Paragraph fontSize={"text-xs"} fontWeightStrong={300}>
-              Instructor: Aminov
+              Instructor: {item?.staff ?? "Not found"}
             </Paragraph>
           </li>
 
@@ -73,7 +58,9 @@ export const DrivingItem = ({ item, className }) => {
             />
 
             <Paragraph fontSize={"text-xs"} fontWeightStrong={300}>
-              Monday & Wednesday
+              {item?.week_range
+                ? item?.week_range?.join(" | ")
+                : dayjs(item?.start).format("YYYY-MM-DD")}
             </Paragraph>
           </li>
 
@@ -85,7 +72,8 @@ export const DrivingItem = ({ item, className }) => {
             />
 
             <Paragraph fontSize={"text-xs"} fontWeightStrong={300}>
-              9:00 AM - 10:30 AM
+              {item?.start ? dayjs(item?.start).format("hh:mm A") : "Not found"}{" "}
+              - {item?.end ? dayjs(item?.end).format("hh:mm A") : "Not Found"}
             </Paragraph>
           </li>
 
@@ -98,7 +86,7 @@ export const DrivingItem = ({ item, className }) => {
               />
 
               <Paragraph fontSize={"text-xs"} fontWeightStrong={300}>
-                Mason Location
+                {item?.location ?? "Not Found"}
               </Paragraph>
             </div>
 
@@ -117,8 +105,6 @@ export const DrivingItem = ({ item, className }) => {
           </li>
         </ul>
       </div>
-
-      {IsOpen && <AlertEdit setIsOpen={setIsOpen} />}
-    </Fragment>
+    </>
   );
 };
