@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-from datetime import  timedelta
+from datetime import timedelta
 from dotenv import load_dotenv
-load_dotenv()
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv( )
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve( ).parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -28,7 +28,6 @@ SECRET_KEY = 'django-insecure-3!!83upi!g+n8km1r%2g$%g=%e1+55m*b#u-ptm^+9=7gf-@xh
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
-
 
 # Application definition
 
@@ -42,13 +41,12 @@ SHARED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-#     APPS
+    #     APPS
     "rest_framework",
     'rest_framework.authtoken',
     'dj_rest_auth',
     "corsheaders",
     'drf_yasg',
-
 
 ]
 TENANT_APPS = [
@@ -58,7 +56,7 @@ TENANT_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #APPS
+    # APPS
     "mainadmin",
     "Users",
     "servises",
@@ -66,7 +64,7 @@ TENANT_APPS = [
     "configuration",
     "interaction",
     "scheduling",
-     #INSTALLED LIBRARIES
+    # INSTALLED LIBRARIES
     "colorfield",
     "creditcards",
     "rest_framework",
@@ -78,7 +76,7 @@ TENANT_APPS = [
     "multiselectfield"
 ]
 
-INSTALLED_APPS = SHARED_APPS + [ apps for apps in TENANT_APPS if apps not in SHARED_APPS]
+INSTALLED_APPS = SHARED_APPS + [ apps for apps in TENANT_APPS if apps not in SHARED_APPS ]
 
 MIDDLEWARE = [
     'django_tenants.middleware.main.TenantMainMiddleware',
@@ -98,16 +96,16 @@ ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.joinpath(str("templates"))],
+        'BACKEND':  'django.template.backends.django.DjangoTemplates',
+        'DIRS':     [ BASE_DIR.joinpath(str("templates")) ],
         'APP_DIRS': True,
-        'OPTIONS': {
+        'OPTIONS':  {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                #CUSTOM CONTEXT
+                # CUSTOM CONTEXT
                 'abstracts.custom_context.url_patterns_context',
                 'abstracts.custom_context.url_from_json',
 
@@ -118,23 +116,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.app'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': os.getenv('POSTGRES_DATABASE'),
-        'USER': os.getenv('POSTGRES_USER'),
+        'ENGINE':   'django_tenants.postgresql_backend',
+        'NAME':     os.getenv('POSTGRES_DATABASE'),
+        'USER':     os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST'),
-        'PORT': os.getenv('POSTGRES_DB_PORT'),
-        "TEST":{
-            'NAME': "drivingschool",
-            'USER': "postgres",
+        'HOST':     os.getenv('POSTGRES_HOST'),
+        'PORT':     os.getenv('POSTGRES_DB_PORT'),
+        "TEST":     {
+            'NAME':     "drivingschool",
+            'USER':     "postgres",
             'PASSWORD': "sarr43210",
-            'PORT': "5432",
+            'PORT':     "5432",
         }
     }
 }
@@ -159,7 +156,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -190,16 +186,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-            # 'rest_framework.permissions.IsAuthenticated',
-        ),
+    'DEFAULT_PERMISSION_CLASSES':     (
+        # 'rest_framework.permissions.IsAuthenticated',
+    ),
 }
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=3),
-    'ROTATE_REFRESH_TOKENS': True,
+    'ACCESS_TOKEN_LIFETIME':    timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME':   timedelta(days=3),
+    'ROTATE_REFRESH_TOKENS':    True,
     'BLACKLIST_AFTER_ROTATION': True,
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_TYPES':        ('Bearer',),
 }
 # AUTHENTICATION_BACKENDS = [
 #     # 'Users.backends.CustomUserBackend',
@@ -222,11 +218,13 @@ CORS_ALLOW_METHODS = (
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'aliyuldashev880@gmail.com'
 EMAIL_HOST_PASSWORD = 'plgs ztsa wrog jvue'
+
+# STRIPE
+STRIPE_SECRET_KEY = 'your_stripe_secret_key'
+STRIPE_PUBLISHABLE_KEY = 'your_stripe_publishable_key'

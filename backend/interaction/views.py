@@ -1,5 +1,6 @@
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.views import APIView
+from django.conf import settings
 from django.apps import apps
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -16,7 +17,9 @@ from .serializer import TasksSerializer\
     TemplateSerializer,SendTemplateSerializer,StudentTestFullSerializer,Template,SendTemplate,StudentTest,WebMessages,\
     WebMessagesSerializer
 from django.core.mail import send_mail
-
+import stripe, json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 import  re
 class TasksViewSet(viewsets.ModelViewSet):
     queryset = Tasks.objects.all()
@@ -64,6 +67,23 @@ class GetFieldNamesView(APIView):
                         field_names.append(field_name)
         return Response(field_names)
 
+
+#PAYMENT HANDLER
+@csrf_exempt
+def charge(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        try:
+            # Create a charge
+            charge = stripe.Charge.create(
+                amount=5000,  # $50.00 this is in cents
+                currency="usd",
+                source=data['stripeToken'],  # obtained from Stripe.js
+                description="Payment for Product",
+            )
+            return JsonResponse({'status': 'Payment successful'})
+        except stripe.error.StripeError as e:
+            return JsonResponse({'status': 'Payment failed', 'error': str(e)})
 
 #STATISTIC API
 class CategorizedDataAPIView(APIView):
