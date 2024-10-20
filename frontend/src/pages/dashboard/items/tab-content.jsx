@@ -3,7 +3,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { CommentOutlined, EyeOutlined } from "@ant-design/icons";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import {
   AiOutlineCloudUpload,
   AiOutlineFileUnknown,
@@ -12,6 +12,16 @@ import {
   AiOutlineSolution,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
+import {
+  useRequestGetQuery,
+  useRequestPatchMutation,
+} from "@/redux/query/index.jsx";
+import dayjs from "dayjs";
+import { Link } from "react-router-dom";
+import { retry } from "@reduxjs/toolkit/query";
+import { CheckProgress } from "@/modules/progress.jsx";
+import TableComponent from "@/components/table/index.jsx";
+import { Modal, Timeline } from "antd";
 
 const NotificationCard = ({
   icon,
@@ -80,7 +90,117 @@ export const Task = () => {
 
 export const Messages = () => {
   const { colorsObject } = useContext(ColorsContext);
-  return (
+  const { data: WebMessagesList } = useRequestGetQuery({
+    path: "/communication/web_message/",
+  });
+  const [requestPatch, { reset }] = useRequestPatchMutation();
+
+  const cols = [
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+      align: "center",
+      render: (date) => (
+        <Paragraph>{dayjs(date).format("DD/MM/YYYY [at] hh:mm A")}</Paragraph>
+      ),
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      align: "center",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      align: "center",
+      render: (email) => (
+        <Link to={"mailto:" + email} target={"_blank"}>
+          {email}
+        </Link>
+      ),
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      align: "center",
+      render: (status) => {
+        const { bg, hover } = CheckProgress(status);
+        return (
+          <ButtonComponent
+            defaultHoverBg={hover}
+            defaultBg={bg}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            paddingInline={43}
+          >
+            {status}
+          </ButtonComponent>
+        );
+      },
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      align: "center",
+      render: (_, record) => {
+        const onDone = async () => {
+          try {
+            const { error } = await requestPatch({
+              path: "/communication/web_message",
+              id: record?.id,
+              data: { ...record, status: "ACTIVE" },
+            });
+            if (error?.status >= 400) {
+              Modal.error({
+                title: "Error message",
+                content: (
+                  <Timeline
+                    items={Object.values(error?.data).map((item) => ({
+                      children: item[0],
+                    }))}
+                  />
+                ),
+              });
+            } else {
+              Modal.success({
+                title: "Success",
+                onOk: () => reset(),
+              });
+            }
+          } catch (e) {
+            console.warn(e);
+          }
+        };
+        return (
+          <ButtonComponent
+            defaultHoverBg={colorsObject.infoHover}
+            defaultBg={colorsObject.info}
+            defaultColor={colorsObject.main}
+            defaultHoverColor={colorsObject.main}
+            paddingInline={43}
+            onClick={onDone}
+          >
+            Done
+          </ButtonComponent>
+        );
+      },
+    },
+  ];
+
+  const inactiveMessages = useMemo(() => {
+    if (!WebMessagesList) return [];
+
+    return WebMessagesList?.filter((item) => item.status === "INACTIVE");
+  }, [WebMessagesList]);
+
+  return inactiveMessages.length !== 0 ? (
+    <TableComponent columns={cols} data={inactiveMessages} />
+  ) : (
     <NotificationCard
       icon={<CommentOutlined />}
       mainText="There are 0 new text messages received in the last 24 hours."

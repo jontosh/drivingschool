@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored &quot;Multi Vehicles&quot; to check schedule">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/calendar/multi-table-calendar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/multi.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/multi.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,14 +267,10 @@
       <workItem from="1728813466956" duration="1138000" />
       <workItem from="1728815308291" duration="2496000" />
       <workItem from="1728928781941" duration="4235000" />
-    </task>
-    <task id="LOCAL-00107" summary="#fix #js #html Fixed routing path, menu data, optimized code structure and other">
-      <option name="closed" value="true" />
-      <created>1721395614326</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1721395614326</updated>
+      <workItem from="1729063235918" duration="2085000" />
+      <workItem from="1729270823995" duration="7000" />
+      <workItem from="1729340365606" duration="748000" />
+      <workItem from="1729345112325" duration="2601000" />
     </task>
     <task id="LOCAL-00108" summary="#fix #jsx Fixed bug in mobile media and request loading data.">
       <option name="closed" value="true" />
@@ -660,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728938507850</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule">
+      <option name="closed" value="true" />
+      <created>1728940190229</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1728940190229</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,7 +683,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fix routing path, email-template.jsx drag-and-drop with vars." />
     <MESSAGE value="#fix #jsx Fixed routing and password.jsx" />
     <MESSAGE value="#fix #jsx Fixed get request data, updated attr img and module" />
     <MESSAGE value="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values." />
@@ -704,7 +707,8 @@
     <MESSAGE value="#fix #js Refactored student account with get enrolments/bills and appointments" />
     <MESSAGE value="#fix #js Refactored &quot;student schedule&quot;, optimized code and integration API. refactored Card schedule" />
     <MESSAGE value="#fix #js Refactored &quot;Multi Vehicles&quot; to check schedule" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored &quot;Multi Vehicles&quot; to check schedule" />
+    <MESSAGE value="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
