@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Connected Web content API">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/dashboard/items/tab-content.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/schedule/my-schedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/schedule/my-schedule.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,15 +269,7 @@
       <workItem from="1729063235918" duration="2085000" />
       <workItem from="1729270823995" duration="7000" />
       <workItem from="1729340365606" duration="748000" />
-      <workItem from="1729345112325" duration="2601000" />
-    </task>
-    <task id="LOCAL-00108" summary="#fix #jsx Fixed bug in mobile media and request loading data.">
-      <option name="closed" value="true" />
-      <created>1721398815227</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1721398815227</updated>
+      <workItem from="1729345112325" duration="4175000" />
     </task>
     <task id="LOCAL-00109" summary="#fix #jsx Fixed bugs on code structure and optimized functions.">
       <option name="closed" value="true" />
@@ -664,7 +655,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728940190229</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="#fix #js Connected Web content API">
+      <option name="closed" value="true" />
+      <created>1729406768725</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1729406768725</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +682,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fixed routing and password.jsx" />
     <MESSAGE value="#fix #jsx Fixed get request data, updated attr img and module" />
     <MESSAGE value="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values." />
     <MESSAGE value="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors." />
@@ -708,7 +706,8 @@
     <MESSAGE value="#fix #js Refactored &quot;student schedule&quot;, optimized code and integration API. refactored Card schedule" />
     <MESSAGE value="#fix #js Refactored &quot;Multi Vehicles&quot; to check schedule" />
     <MESSAGE value="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule" />
+    <MESSAGE value="#fix #js Connected Web content API" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Connected Web content API" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
