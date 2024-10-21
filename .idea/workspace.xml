@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Connected Web content API">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Connected Slot Time to schedule.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/students/schedule/my-schedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/students/schedule/my-schedule.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/process.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/process.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,6 +270,7 @@
       <workItem from="1729270823995" duration="7000" />
       <workItem from="1729340365606" duration="748000" />
       <workItem from="1729345112325" duration="4175000" />
+      <workItem from="1729533954370" duration="1219000" />
     </task>
     <task id="LOCAL-00109" summary="#fix #jsx Fixed bugs on code structure and optimized functions.">
       <option name="closed" value="true" />

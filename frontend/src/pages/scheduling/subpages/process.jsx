@@ -6,9 +6,11 @@ import {
 } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { DatePicker, Form, Pagination, Table } from "antd";
-import { Fragment, useContext, useState } from "react";
+import { DatePicker, Form, Input, Pagination, Select, Table } from "antd";
+import { Fragment, useContext, useMemo, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
+import { ActiveData, useFilterStatus } from "@/hooks/filter.jsx";
 
 export const Process = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -143,54 +145,78 @@ export const Process = () => {
     },
   ];
 
+  const { data: Locations } = useRequestGetQuery({
+    path: "/account_management/location/",
+  });
+  const { data: Instructors } = useRequestGetQuery({
+    path: "/student_account/instructor/",
+  });
+
+  const locationsOptions = useMemo(() => {
+    if (!Locations) return [];
+
+    return ActiveData(Locations)?.map((item) => ({
+      value: item?.id,
+      label: item?.name,
+    }));
+  }, [Locations]);
+
+  const instructorsOptions = useMemo(() => {
+    if (!Instructors) return [];
+
+    return ActiveData(Instructors)?.map((item) => ({
+      value: item?.id,
+      label: `${item?.firs_name} ${item?.last_name}`,
+    }));
+  }, [Instructors]);
+
+  const [form] = Form.useForm();
+  const [Search, setSearch] = useState("");
+
+  const { Data } = useFilterStatus({ search: Search, data });
+
   const handleFilter = () => setFilter((prev) => !prev);
+  const onFinish = async (values) => {
+    console.log(values);
+  };
+
   return (
     <Fragment>
       <div className="bg-white py-5 px-5 sm:px-9">
-        <Form layout="vertical">
+        <Form layout="vertical" form={form} onFinish={onFinish}>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="space-y-5">
               <Form.Item label="Appointment type">
-                <CustomSelect
+                <Select
+                  className={"h-[50px]"}
                   placeholder={"Select"}
                   options={[
                     {
                       value: "Status",
                       label: "Status",
-                    }
+                    },
                   ]}
-                  className={"h-[50px]"}
                 />
               </Form.Item>
 
               <Form.Item label="Select date">
-                <DatePicker className="w-full h-[50px] border-[#667085]" />
+                <DatePicker className="w-full h-[50px]" />
               </Form.Item>
             </div>
 
             <div className="space-y-5">
               <Form.Item label="Location">
-                <CustomSelect
+                <Select
                   placeholder={"Select"}
-                  options={[
-                    {
-                      value: "Status",
-                      label: "Status",
-                    }
-                  ]}
+                  options={locationsOptions}
                   className={"h-[50px]"}
                 />
               </Form.Item>
 
               <Form.Item label="Instructor" className="w-full m-0">
-                <CustomSelect
+                <Select
                   placeholder={"Select"}
-                  options={[
-                    {
-                      value: "Khaetbek",
-                      label: "Khaetbek",
-                    }
-                  ]}
+                  options={instructorsOptions}
                   className={"h-[50px]"}
                 />
               </Form.Item>
@@ -207,6 +233,7 @@ export const Process = () => {
               controlHeight={40}
               paddingInline={98}
               onClick={handleFilter}
+              type={"submit"}
             >
               Filter
             </ButtonComponent>
@@ -227,35 +254,22 @@ export const Process = () => {
 
       {Filter && (
         <div className={"mt-5 px-5 py-6 bg-white"}>
-          <div className={"flex max-[880px]:flex-col justify-between max-[880px]:space-y-5 items-center"}>
-            <form className={"flex gap-5"}>
-              <label className={"relative shadow-xl"}>
-                <CustomInput
-                  colorBorder={colorsObject.primary}
-                  placeholder={"Find student"}
-                  className={`w-full min-[600px]:w-96 pl-12 pr-4 py-2.5 text-sm inline-flex flex-row-reverse`}
-                  classNames={"h-[50px]"}
-                />
-                <span
-                  className={
-                    "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                  }
-                >
-                  <AiOutlineSearch />
-                </span>
-              </label>
-            </form>
-
-            <Pagination
-              total={10}
-              pageSize={1}
-              current={CurrentPagination}
-              onChange={handleChangePagination}
-            />
-          </div>
+          <Input
+            className={"h-[50px] w-1/2"}
+            placeholder={"Search"}
+            prefix={<AiOutlineSearch className={"text-xl"} />}
+            allowClear
+            enterButton="Search"
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
           <div className={"-mx-5 pt-5"}>
-            <Table columns={columns} dataSource={data} pagination={false} scroll={{ x: 1000 }} />
+            <Table
+              columns={columns}
+              dataSource={data}
+              pagination={false}
+              scroll={{ x: 1000 }}
+            />
           </div>
         </div>
       )}
