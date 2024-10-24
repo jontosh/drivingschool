@@ -7,9 +7,9 @@ import {
   useRequestDeleteMutation,
   useRequestGetQuery,
 } from "@/redux/query/index.jsx";
-import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
-import { Space } from "antd";
-import { Fragment, useEffect, useReducer, useState } from "react";
+import { DeleteOutlined, ExclamationCircleOutlined, ExportOutlined } from "@ant-design/icons";
+import { Modal, Space } from "antd";
+import { Fragment, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const FeesModule = () => {
@@ -17,32 +17,8 @@ export const FeesModule = () => {
     path: "/account_management/services/fee/",
   });
   const [state, dispatch] = useReducer(ModalReducer, { modal: null });
-  const [requestDelete, { reset }] = useRequestDeleteMutation();
-  const [Action, setAction] = useState({ id: undefined });
-  const [IsOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    dispatch({
-      type: "CONFIRM",
-      onOk: async () => {
-        try {
-          await requestDelete({
-            path: "/account_management/services/fee/" + data[Action.id]?.id,
-          })
-            .unwrap()
-            .then(() => setIsOpen(false));
-        } catch (error) {
-          console.error(error);
-        } finally {
-          reset();
-        }
-      },
-      onCancel: () => {
-        setIsOpen(false);
-      },
-      open: IsOpen,
-    });
-  }, [IsOpen, Action, data]);
+  const [requestDelete] = useRequestDeleteMutation();
+  const [action, setAction] = useState({ id: undefined });
 
   const columns = [
     {
@@ -94,7 +70,21 @@ export const FeesModule = () => {
     {
       title: "Action",
       key: "action",
-      render: (item, _, index) => {
+      render: (item) => {
+        const onDelete = () => {
+          Modal.confirm({
+            title: `Delete ${item.name}`,
+            icon: <ExclamationCircleOutlined />,
+            content: <p className="text-gray-500 text-center">You won't be able to revert this!</p>,
+            okText: 'Yes',
+            cancelText: 'No',
+            okType: 'danger',
+            onOk: () => {
+              requestDelete(item.id);
+            },
+          });
+        };
+
         return (
           <Fragment>
             <div className={"space-x-2.5"}>
@@ -106,15 +96,10 @@ export const FeesModule = () => {
                   paddingRight: 4,
                 }}
                 icon={<DeleteOutlined />}
-                onClick={() => {
-                  setIsOpen(true);
-                  setAction({ id: index });
-                }}
+                onClick={onDelete}
               />
-              {/*/admin/modals/management-service/fees*/}
-
               <Link
-                to={"/admin/modals/management-service/fees/" + item?.id}
+                to={`/admin/modals/management-service/fees/${item.id}`}
                 target={"_blank"}
               >
                 <IconComponent
@@ -128,12 +113,11 @@ export const FeesModule = () => {
                 />
               </Link>
             </div>
-            {index === Action.id && state?.modal}
           </Fragment>
         );
       },
     },
   ];
 
-  return { columns, data };
+  return { data, columns };
 };

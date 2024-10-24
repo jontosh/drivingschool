@@ -233,40 +233,9 @@ const EditFormItems = () => {
         >
           <MDEditor
             placeholder={"Text"}
-          // onChange={handleServiceNotes}
-          // previewOptions={{
-          //   rehypePlugins: [[rehypeSanitize]],
-          // }}
           />
         </Form.Item>
       </div>
-
-      {/* <div className="text-center space-x-5">
-        <ButtonComponent
-          defaultBg={colorsObject.success}
-          defaultHoverBg={colorsObject.successHover}
-          defaultColor={colorsObject.main}
-          defaultHoverColor={colorsObject.main}
-          borderRadius={5}
-          paddingInline={44}
-          type={"submit"}
-        >
-          Save
-        </ButtonComponent>
-
-        <ButtonComponent
-          defaultBg={colorsObject.main}
-          defaultHoverBg={colorsObject.main}
-          defaultBorderColor={colorsObject.primary}
-          defaultHoverBorderColor={colorsObject.primary}
-          defaultColor={colorsObject.primary}
-          defaultHoverColor={colorsObject.primary}
-          borderRadius={5}
-          paddingInline={44}
-        >
-          Cancel
-        </ButtonComponent>
-      </div> */}
     </Form>
   );
 };
