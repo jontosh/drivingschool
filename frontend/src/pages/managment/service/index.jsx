@@ -5,7 +5,7 @@ import ColorsContext from "@/context/colors.jsx";
 import { Subpages } from "@/modules/subpages.jsx";
 import ManagementStyle from "@/pages/managment/management.module.scss";
 import { setActiveNav } from "@/modules/active-nav.jsx";
-import { Pagination } from "antd";
+import { Input, Pagination } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -39,14 +39,8 @@ const Service = ({ subpage }) => {
   const { colorsObject } = useContext(ColorsContext);
   const [Status, setStatus] = useState(null);
   const [Search, setSearch] = useState(null);
-  const [CurrentPagination, setCurrentPagination] = useState(1);
-
-  const handleChangePagination = (page) => {
-    setCurrentPagination(page);
-  };
 
   const handleStatus = (value) => setStatus(value);
-  const handleSearch = (e) => setSearch(e?.target?.value?.toLowerCase());
 
   return (
     <Fragment>
@@ -124,68 +118,41 @@ const Service = ({ subpage }) => {
             </NavLink>
           </div>
           <div className={"pt-4 pb-7"} hidden={!subpage}>
-            <div className={"flex justify-between"}>
-              <form
-                className={"flex gap-x-5 items-center"}
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <label
-                  className={`relative h-[50px] rounded ${ManagementStyle["CheckModal__form-element__shadow"]}`}
-                >
-                  <CustomInput
-                    colorBorder={colorsObject.primary}
-                    placeholder={"Search"}
-                    classNames={"h-[50px]"}
-                    className={`w-96 pl-12 pr-4 text-sm ${subpage === "quiz-report" && `inline-flex flex-row-reverse`} `}
-                    onChange={handleSearch}
-                    value={Search}
-                  />
-
-                  <span
-                    className={
-                      "absolute left-4 top-1/2 w-5 h-5 -translate-y-1/2 "
-                    }
+            <div className={"flex gap-5 items-center"}>
+              <Input
+                value={Search}
+                className={"h-[50px] max-w-96"}
+                placeholder={"Search"}
+                prefix={<AiOutlineSearch className={"text-xl"} />}
+                allowClear
+                enterButton="Search"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              {subpage !== "quiz-report" && (
+                <Fragment>
+                  <ButtonComponent
+                    defaultBg={colorsObject.success}
+                    defaultHoverBg={colorsObject.successHover}
+                    defaultBorderColor={colorsObject.success}
+                    defaultHoverBorderColor={colorsObject.successHover}
+                    paddingInline={26}
+                    borderRadius={5}
+                    className={"inline-flex items-center"}
+                    href={`/admin/modals/management-service/${subpage}`}
                   >
-                    <AiOutlineSearch />
-                  </span>
-                </label>
-                {subpage !== "quiz-report" && (
-                  <Fragment>
-                    <ButtonComponent
-                      defaultBg={colorsObject.success}
-                      defaultHoverBg={colorsObject.successHover}
-                      defaultBorderColor={colorsObject.success}
-                      defaultHoverBorderColor={colorsObject.successHover}
-                      paddingInline={26}
-                      borderRadius={5}
-                      className={"inline-flex items-center"}
-                      href={`/admin/modals/management-service/${subpage}`}
-                    >
-                      Add new
-                    </ButtonComponent>
+                    Add new
+                  </ButtonComponent>
 
-                    <CustomSelect
-                      placeholder={"Status"}
-                      options={StatusSelect}
-                      className={`w-[122px] h-[40px] ${ServiceStyle["Service__select"]}`}
-                      colorBorder={"#1890FF"}
-                      selectorBg={"#1890FF"}
-                      onChange={handleStatus}
-                    />
-                  </Fragment>
-                )}
-              </form>
-
-              <div>
-                {subpage !== "quiz-report" && (
-                  <Pagination
-                    total={10}
-                    pageSize={1}
-                    current={CurrentPagination}
-                    onChange={handleChangePagination}
+                  <CustomSelect
+                    placeholder={"Status"}
+                    options={StatusSelect}
+                    className={`w-[122px] h-[40px] ${ServiceStyle["Service__select"]}`}
+                    colorBorder={"#1890FF"}
+                    selectorBg={"#1890FF"}
+                    onChange={handleStatus}
                   />
-                )}
-              </div>
+                </Fragment>
+              )}
             </div>
             <div className={"pt-5 -mx-5"}>
               <Subpages page={subpage} status={Status} search={Search} />

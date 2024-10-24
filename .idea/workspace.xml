@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Connected Slot Time to schedule.">
+    <list default="true" id="f91437a5-94a0-4504-a0b1-30a9c4bb7e03" name="Changes" comment="#fix #js Connected API and refactored component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/process.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/scheduling/subpages/process.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/managment/service/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,15 +271,8 @@
       <workItem from="1729270823995" duration="7000" />
       <workItem from="1729340365606" duration="748000" />
       <workItem from="1729345112325" duration="4175000" />
-      <workItem from="1729533954370" duration="1219000" />
-    </task>
-    <task id="LOCAL-00109" summary="#fix #jsx Fixed bugs on code structure and optimized functions.">
-      <option name="closed" value="true" />
-      <created>1721401517046</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1721401517046</updated>
+      <workItem from="1729533954370" duration="1474000" />
+      <workItem from="1729701967961" duration="1568000" />
     </task>
     <task id="LOCAL-00110" summary="#fix #jsx Fixed bugs on code structure and optimized functions, refactored test view in admin portal.">
       <option name="closed" value="true" />
@@ -664,7 +658,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729406768725</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="#fix #js Connected API and refactored component">
+      <option name="closed" value="true" />
+      <created>1729535266948</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1729535266948</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +685,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#fix #jsx Fixed get request data, updated attr img and module" />
     <MESSAGE value="#fix #jsx Fixed other bugs, refactored logic to upload files and get template values." />
     <MESSAGE value="#fix #jsx Fixed bugs to get default values from template and show it. Optimized code logic and status to get errors." />
     <MESSAGE value="#fix #js Fixed components and refactored student account pages" />
@@ -708,7 +709,8 @@
     <MESSAGE value="#fix #js Refactored &quot;Multi Vehicles&quot; to check schedule" />
     <MESSAGE value="#fix #js Refactored &quot;Multi Instructors&quot; to check schedule" />
     <MESSAGE value="#fix #js Connected Web content API" />
-    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Connected Web content API" />
+    <MESSAGE value="#fix #js Connected API and refactored component" />
+    <option name="LAST_COMMIT_MESSAGE" value="#fix #js Connected API and refactored component" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

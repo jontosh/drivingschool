@@ -6,5 +6,5 @@ export const Product = ({ status, search }) => {
   const { columns, data } = ProductModule();
   const { Data } = useFilterStatus({ data, status, search });
 
-  return <TableComponent columns={columns} data={Data} />;
+  return <TableComponent columns={columns} data={Data} pagination />;
 };

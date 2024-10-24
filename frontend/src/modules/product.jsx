@@ -1,10 +1,7 @@
 import ButtonComponent from "@/components/button/index.jsx";
-import { CustomSelect } from "@/components/form/index.jsx";
 import IconComponent from "@/components/icons/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
-import { ModalReducer } from "@/hooks/reducer.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
-import { StatusSelect } from "@/pages/managment/service/index.jsx";
 import {
   useRequestDeleteMutation,
   useRequestGetQuery,
@@ -12,224 +9,23 @@ import {
 } from "@/redux/query/index.jsx";
 import {
   DeleteOutlined,
+  ExclamationCircleOutlined,
   ExportOutlined,
   FormOutlined,
 } from "@ant-design/icons";
-import { Form, Input, InputNumber, Space } from "antd";
-import { Fragment, useEffect, useReducer, useState } from "react";
+import { Form, Space, Modal, Input, Select } from "antd";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
-
-const EditFormItems = () => {
-  return (
-    <div className={"space-y-5"}>
-      <Form.Item
-        label={"Component Name:"}
-        name={"name"}
-        rules={[
-          {
-            required: true,
-            message: "Please enter component name!",
-          },
-        ]}
-      >
-        <Input className={"w-full h-[50px] border-[#667085]"} placeholder={"Product name"} />
-      </Form.Item>
-      <Form.Item
-        label={"Item#/Code:"}
-        name={"code"}
-        rules={[
-          {
-            required: true,
-            message: "Please enter code!",
-          },
-        ]}
-      >
-        <Input className={"w-full h-[50px] border-[#667085]"} placeholder={"Item#"} />
-      </Form.Item>
-      <Form.Item
-        label={"Status:"}
-        name={"status"}
-        rules={[
-          {
-            required: true,
-            message: "Please select status!",
-          },
-        ]}
-      >
-        <CustomSelect
-          options={StatusSelect}
-          className={"w-full h-[50px]"}
-          placeholder={"status"}
-        />
-      </Form.Item>
-      <Form.Item
-        label="Public Name:"
-        name={"publicName"}
-      >
-        <Input className="wfull h-[50px] border-[#667085]" placeholder="Public Name" />
-      </Form.Item>
-      <Form.Item
-        label={"Type:"}
-        name={"type"}
-        rules={[
-          {
-            required: true,
-            message: "Please select status!",
-          },
-        ]}
-      >
-        <CustomSelect
-          options={[
-            {
-              label: "BTW",
-              value: "BTW",
-            },
-            {
-              label: "CR",
-              value: "CR",
-            },
-            {
-              label: "WEB BASED",
-              value: "WEB BASED",
-            },
-          ]}
-          className={"w-full h-[50px]"}
-          placeholder={"Please Select"}
-        />
-      </Form.Item>
-      <Form.Item
-        label={"Sub Type:"}
-        name={"subType"}
-        rules={[
-          {
-            required: true,
-            message: "Please select status!",
-          },
-        ]}
-      >
-        <CustomSelect
-          options={[
-            {
-              label: "TEEN BTW",
-              value: "TEEN BTW",
-            },
-          ]}
-          className={"w-full h-[50px]"}
-          placeholder={"Please Select"}
-        />
-      </Form.Item>
-      <Form.Item
-        label={"Driving Time:"}
-        name={"drivingTime"}
-        rules={[
-          {
-            required: true,
-            message: "Please select status!",
-          },
-        ]}
-      >
-        <div className="flex space-x-2.5">
-          <InputNumber className="w-full h-[50px] border-[#667085] py-2.5" placeholder="Hours" />
-          <CustomSelect
-            options={[
-              {
-                label: 0,
-                value: 0,
-              },
-              {
-                label: "15 minutes",
-                value: "15 minutes",
-              },
-            ]}
-            className={"w-full h-[50px]"}
-            placeholder={"Please Select"}
-          />
-        </div>
-      </Form.Item>
-      <Form.Item
-        label="Duration:"
-        name={"duration"}
-      >
-        <CustomSelect
-          options={[
-            {
-              label: "00:15",
-              value: "00:15",
-            }
-          ]}
-          className={"w-full h-[50px]"}
-          placeholder={"Please Select"}
-        />
-      </Form.Item>
-    </div>
-  );
-};
 
 export const ProductModule = () => {
   const { data: ProductData } = useRequestGetQuery({
     path: "/account_management/services/component/",
   });
 
-  const [IsOpen, setIsOpen] = useState(false);
   const [form] = Form.useForm();
-  const [state, dispatch] = useReducer(ModalReducer, { modal: null, form });
-  const [Action, setAction] = useState({ id: null, type: undefined });
 
-  const [requestDelete, { reset: DeleteReset }] = useRequestDeleteMutation();
-  const [requestPatch, { reset: PatchReset }] = useRequestPatchMutation();
-
-  const updateModalState = () => {
-    dispatch({
-      type: Action.type,
-      onOk: handleOk,
-      onCancel: () => {
-        setIsOpen(false);
-      },
-      open: IsOpen,
-      form,
-      onFinish: handleFinish,
-      children: <EditFormItems />,
-    });
-  };
-
-  const handleOk = async () => {
-    try {
-      await requestDelete({
-        path:
-          "/account_management/services/component/" +
-          ProductData[Action.id]?.id,
-      }).unwrap();
-      setIsOpen(false);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      DeleteReset();
-    }
-  };
-
-  const handleFinish = async (values) => {
-    try {
-      await requestPatch({
-        path: "/account_management/services/component",
-        id: ProductData[Action.id]?.id,
-        data: values,
-      }).unwrap();
-      setIsOpen(false);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      PatchReset();
-    }
-  };
-
-  useEffect(() => {
-    if (ProductData && Action.id !== null) {
-      form.setFieldsValue(ProductData[Action.id]);
-    }
-    if (Action.type) {
-      updateModalState();
-    }
-  }, [Action, ProductData, IsOpen]);
+  const [requestDelete] = useRequestDeleteMutation();
+  const [requestPatch] = useRequestPatchMutation();
 
   const columns = [
     {
@@ -243,7 +39,7 @@ export const ProductModule = () => {
       ),
     },
     {
-      title: "Code number",
+      title: "Code Number",
       dataIndex: "code",
       key: "code",
       render: (text) => (
@@ -267,7 +63,7 @@ export const ProductModule = () => {
       ),
     },
     {
-      title: "Sub type",
+      title: "Sub Type",
       dataIndex: "subtype_btw",
       key: "subtype_btw",
       render: (text) => (
@@ -279,7 +75,7 @@ export const ProductModule = () => {
       ),
     },
     {
-      title: "BTW HOURS",
+      title: "BTW Hours",
       dataIndex: "driving_hours",
       key: "driving_hours",
       render: (text) => (
@@ -325,41 +121,127 @@ export const ProductModule = () => {
     {
       title: "Action",
       key: "action",
-      render: (item, _, index) => (
-        <Fragment>
-          <div className="space-x-2.5">
-            <IconComponent
-              className="text-xl text-indigo-500 border border-indigo-600"
-              style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
-              icon={<FormOutlined />}
-              onClick={() => {
-                setIsOpen(true);
-                setAction({ id: index, type: "EDIT" });
-              }}
-            />
-            <IconComponent
-              className="text-xl text-red-600 border border-indigo-600"
-              style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
-              icon={<DeleteOutlined />}
-              onClick={() => {
-                setIsOpen(true);
-                setAction({ id: index, type: "CONFIRM" });
-              }}
-            />
-            <Link
-              to={"/admin/modals/management-service/product/" + item?.id}
-              target={"_blank"}
-            >
+      render: (item, { id, name }) => {
+        const onEdit = () => {
+          Modal.info({
+            title: "Edit Form",
+            width: 700,
+            content: (
+              <Form layout="vertical" form={form} className="flex gap-5">
+                <div className="w-full">
+                  <Form.Item
+                    name="name"
+                    label="Component Name:"
+                    rules={[{ required: true, message: "Name is empty" }]}
+                  >
+                    <Input placeholder="Component Name" className="h-[50px]" />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="status"
+                    label="Status:"
+                    rules={[{ required: true, message: "Status is empty" }]}
+                  >
+                    <Input placeholder="Select status" className="h-[50px]" />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="type_component"
+                    label="Type:"
+                    rules={[{ required: true, message: "Type is empty" }]}
+                  >
+                    <Select
+                      placeholder="Select status"
+                      className="h-[50px]"
+                      options={[
+                        { value: "BTW", label: "BTW" },
+                        { value: "CR", label: "CR" },
+                        { value: "WEB", label: "WEB" },
+                      ]}
+                    />
+                  </Form.Item>
+                </div>
+
+                <div className="w-full">
+                  <Form.Item
+                    name="code"
+                    label="Item#/Code:"
+                    rules={[{ required: true, message: "Code is empty" }]}
+                  >
+                    <Input placeholder="Item#/Code" className="h-[50px]" />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="public_name"
+                    label="Public Name:"
+                    rules={[{ required: true, message: "Public name is empty" }]}
+                  >
+                    <Input placeholder="Public Name" className="h-[50px]" />
+                  </Form.Item>
+
+                  <Form.Item name="subtype_web" label="Sub Type:">
+                    <Select
+                      placeholder="Please Select"
+                      className="h-[50px]"
+                      options={[
+                        { value: "EZ DRIVE", label: "EZ DRIVE" },
+                        { value: "OTHER ONLINE COURSE", label: "OTHER ONLINE COURSE" },
+                        { value: "SAFEWAY LMS", label: "SAFEWAY LMS" },
+                      ]}
+                    />
+                  </Form.Item>
+                </div>
+              </Form>
+            ),
+            onOk: () => {
+              // Add logic for updating the record
+              requestPatch({ id, ...form.getFieldsValue() });
+            },
+            onCancel: () => console.log("Cancel"),
+          });
+        };
+
+        const onDelete = () => {
+          Modal.error({
+            title: `Delete ${name}`,
+            icon: <ExclamationCircleOutlined />,
+            content: <p className="text-gray-500 text-center">You won't be able to revert this!</p>,
+            okText: 'Yes',
+            okCancel: true,
+            cancelText: 'No',
+            okType: 'danger',
+            onOk: () => {
+              requestDelete(id);
+            },
+          });
+        };
+
+        return (
+          <Fragment>
+            <div className="space-x-2.5">
               <IconComponent
                 className="text-xl text-indigo-500 border border-indigo-600"
                 style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
-                icon={<ExportOutlined />}
+                icon={<FormOutlined />}
+                onClick={onEdit}
               />
-            </Link>
-          </div>
-          {index === Action.id ? state?.modal : null}
-        </Fragment>
-      ),
+              <IconComponent
+                className="text-xl text-red-600 border border-indigo-600"
+                style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
+                icon={<DeleteOutlined />}
+                onClick={onDelete}
+              />
+              <Link to={`/admin/modals/management-service/product/${id}`} target="_blank">
+                <IconComponent
+                  className="text-xl text-indigo-500 border border-indigo-600"
+                  style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
+                  icon={<ExportOutlined />}
+                />
+              </Link>
+            </div>
+          </Fragment>
+        );
+      },
     },
   ];
 
