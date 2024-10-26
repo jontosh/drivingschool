@@ -7,12 +7,7 @@ import {
   useRequestGetQuery,
   useRequestPatchMutation,
 } from "@/redux/query/index.jsx";
-import {
-  DeleteOutlined,
-  ExclamationCircleOutlined,
-  ExportOutlined,
-  FormOutlined,
-} from "@ant-design/icons";
+import { DeleteOutlined, ExclamationCircleOutlined, ExportOutlined, FormOutlined } from "@ant-design/icons";
 import { Form, Space, Modal, Input, Select } from "antd";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
@@ -23,7 +18,6 @@ export const ProductModule = () => {
   });
 
   const [form] = Form.useForm();
-
   const [requestDelete] = useRequestDeleteMutation();
   const [requestPatch] = useRequestPatchMutation();
 
@@ -33,9 +27,7 @@ export const ProductModule = () => {
       dataIndex: "name",
       key: "name",
       render: (text) => (
-        <Paragraph fontSize="text-lg" fontWeightStrong={400}>
-          {text}
-        </Paragraph>
+        <Paragraph fontSize="text-lg" fontWeightStrong={400}>{text}</Paragraph>
       ),
     },
     {
@@ -44,9 +36,7 @@ export const ProductModule = () => {
       key: "code",
       render: (text) => (
         <div className="text-center">
-          <Paragraph fontSize="text-lg" fontWeightStrong={400}>
-            {text}
-          </Paragraph>
+          <Paragraph fontSize="text-lg" fontWeightStrong={400}>{text}</Paragraph>
         </div>
       ),
     },
@@ -56,9 +46,7 @@ export const ProductModule = () => {
       key: "type_component",
       render: (text) => (
         <div className="text-center">
-          <Paragraph fontSize="text-lg" fontWeightStrong={400}>
-            {text}
-          </Paragraph>
+          <Paragraph fontSize="text-lg" fontWeightStrong={400}>{text}</Paragraph>
         </div>
       ),
     },
@@ -68,9 +56,7 @@ export const ProductModule = () => {
       key: "subtype_btw",
       render: (text) => (
         <div className="text-center">
-          <Paragraph fontSize="text-lg" fontWeightStrong={400}>
-            {text}
-          </Paragraph>
+          <Paragraph fontSize="text-lg" fontWeightStrong={400}>{text}</Paragraph>
         </div>
       ),
     },
@@ -92,9 +78,7 @@ export const ProductModule = () => {
       key: "observation",
       render: (text) => (
         <div className="text-center">
-          <Paragraph fontSize="text-lg" fontWeightStrong={400}>
-            {text ?? 0}
-          </Paragraph>
+          <Paragraph fontSize="text-lg" fontWeightStrong={400}>{text ?? 0}</Paragraph>
         </div>
       ),
     },
@@ -121,7 +105,7 @@ export const ProductModule = () => {
     {
       title: "Action",
       key: "action",
-      render: (item, { id, name }) => {
+      render: (item) => {
         const onEdit = () => {
           Modal.info({
             title: "Edit Form",
@@ -132,26 +116,27 @@ export const ProductModule = () => {
                   <Form.Item
                     name="name"
                     label="Component Name:"
+                    initialValue={item.name}
                     rules={[{ required: true, message: "Name is empty" }]}
                   >
                     <Input placeholder="Component Name" className="h-[50px]" />
                   </Form.Item>
-
                   <Form.Item
                     name="status"
                     label="Status:"
+                    initialValue={item.status}
                     rules={[{ required: true, message: "Status is empty" }]}
                   >
                     <Input placeholder="Select status" className="h-[50px]" />
                   </Form.Item>
-
                   <Form.Item
                     name="type_component"
                     label="Type:"
+                    initialValue={item.type_component}
                     rules={[{ required: true, message: "Type is empty" }]}
                   >
                     <Select
-                      placeholder="Select status"
+                      placeholder="Select type"
                       className="h-[50px]"
                       options={[
                         { value: "BTW", label: "BTW" },
@@ -161,25 +146,24 @@ export const ProductModule = () => {
                     />
                   </Form.Item>
                 </div>
-
                 <div className="w-full">
                   <Form.Item
                     name="code"
                     label="Item#/Code:"
+                    initialValue={item.code}
                     rules={[{ required: true, message: "Code is empty" }]}
                   >
                     <Input placeholder="Item#/Code" className="h-[50px]" />
                   </Form.Item>
-
                   <Form.Item
                     name="public_name"
                     label="Public Name:"
+                    initialValue={item.public_name}
                     rules={[{ required: true, message: "Public name is empty" }]}
                   >
                     <Input placeholder="Public Name" className="h-[50px]" />
                   </Form.Item>
-
-                  <Form.Item name="subtype_web" label="Sub Type:">
+                  <Form.Item name="subtype_web" label="Sub Type:" initialValue={item.subtype_web}>
                     <Select
                       placeholder="Please Select"
                       className="h-[50px]"
@@ -193,26 +177,21 @@ export const ProductModule = () => {
                 </div>
               </Form>
             ),
-            onOk: () => {
-              // Add logic for updating the record
-              requestPatch({ id, ...form.getFieldsValue() });
+            onOk: async () => {
+              await requestPatch({ id: item.id, ...form.getFieldsValue() });
             },
-            onCancel: () => console.log("Cancel"),
           });
         };
 
         const onDelete = () => {
-          Modal.error({
-            title: `Delete ${name}`,
+          Modal.confirm({
+            title: `Delete ${item.name}`,
             icon: <ExclamationCircleOutlined />,
             content: <p className="text-gray-500 text-center">You won't be able to revert this!</p>,
-            okText: 'Yes',
-            okCancel: true,
-            cancelText: 'No',
-            okType: 'danger',
-            onOk: () => {
-              requestDelete(id);
-            },
+            okText: "Yes",
+            cancelText: "No",
+            okType: "danger",
+            onOk: () => requestDelete({ id: item.id }),
           });
         };
 
@@ -220,21 +199,18 @@ export const ProductModule = () => {
           <Fragment>
             <div className="space-x-2.5">
               <IconComponent
-                className="text-xl text-indigo-500 border border-indigo-600"
-                style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
+                className="text-xl text-indigo-500 border border-indigo-600 rounded px-1"
                 icon={<FormOutlined />}
                 onClick={onEdit}
               />
               <IconComponent
-                className="text-xl text-red-600 border border-indigo-600"
-                style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
+                className="text-xl text-red-600 border border-indigo-600 rounded px-1"
                 icon={<DeleteOutlined />}
                 onClick={onDelete}
               />
-              <Link to={`/admin/modals/management-service/product/${id}`} target="_blank">
+              <Link to={`/admin/modals/management-service/product/${item.id}`} target="_blank">
                 <IconComponent
-                  className="text-xl text-indigo-500 border border-indigo-600"
-                  style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
+                  className="text-xl text-indigo-500 border border-indigo-600 rounded px-1"
                   icon={<ExportOutlined />}
                 />
               </Link>
