@@ -7,8 +7,8 @@ import {
   useRequestDeleteMutation,
   useRequestGetQuery,
 } from "@/redux/query/index.jsx";
-import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
-import { Space } from "antd";
+import { DeleteOutlined, ExportOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { Modal, Space } from "antd";
 import { Fragment, useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -19,15 +19,17 @@ export const DiscountsModule = () => {
 
   const [state, dispatch] = useReducer(ModalReducer, { modal: null });
   const [requestDelete, { reset }] = useRequestDeleteMutation();
-  const [action, setAction] = useState({ id: undefined });
-  const [IsOpen, setIsOpen] = useState(false);
+  const [actionId, setActionId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = async () => {
+    if (actionId === null) return;
+
     try {
       await requestDelete({
-        path: "/account_management/services/discount/" + data[action.id]?.id,
+        path: `/account_management/services/discount/${data[actionId]?.id}`,
       }).unwrap();
-      setIsOpen(false);
+      setIsModalOpen(false);
     } catch (error) {
       console.error(error);
     } finally {
@@ -36,13 +38,15 @@ export const DiscountsModule = () => {
   };
 
   useEffect(() => {
-    dispatch({
-      type: "CONFIRM",
-      onOk: handleDelete,
-      onCancel: () => setIsOpen(false),
-      open: IsOpen,
-    });
-  }, [IsOpen, action.id, data]);
+    if (isModalOpen) {
+      dispatch({
+        type: "CONFIRM",
+        onOk: handleDelete,
+        onCancel: () => setIsModalOpen(false),
+        open: isModalOpen,
+      });
+    }
+  }, [isModalOpen, actionId, data]);
 
   const columns = [
     {
@@ -94,32 +98,41 @@ export const DiscountsModule = () => {
     {
       title: "Action",
       key: "action",
-      render: (item, _, index) => (
-        <Fragment>
-          <div className="space-x-2.5">
-            <IconComponent
-              className="text-xl text-red-600 border border-indigo-600"
-              style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
-              icon={<DeleteOutlined />}
-              onClick={() => {
-                setIsOpen(true);
-                setAction({ id: index });
-              }}
-            />
-            <Link
-              to={`/admin/modals/management-service/discounts/${item?.id}`}
-              target="_blank"
-            >
+      render: (item) => {
+        const onDelete = () => {
+          setActionId(item.id);
+          Modal.confirm({
+            title: `Delete ${item.name}`,
+            icon: <ExclamationCircleOutlined />,
+            content: <p className="text-gray-500 text-center">You won't be able to revert this!</p>,
+            okText: 'Yes',
+            cancelText: 'No',
+            okType: 'danger',
+            onOk: handleDelete,
+          });
+        };
+
+        return (
+          <Fragment>
+            <div className="space-x-2.5">
               <IconComponent
-                className="text-xl text-indigo-500 border border-indigo-600"
-                style={{ borderRadius: 5, paddingLeft: 4, paddingRight: 4 }}
-                icon={<ExportOutlined />}
+                className="text-xl text-red-600 border border-indigo-600 rounded-md px-1"
+                icon={<DeleteOutlined />}
+                onClick={onDelete}
               />
-            </Link>
-          </div>
-          {index === action.id && state?.modal}
-        </Fragment>
-      ),
+              <Link
+                to={`/admin/modals/management-service/discounts/${item?.id}`}
+                target="_blank"
+              >
+                <IconComponent
+                  className="text-xl text-indigo-500 border border-indigo-600 rounded-md px-1"
+                  icon={<ExportOutlined />}
+                />
+              </Link>
+            </div>
+          </Fragment>
+        );
+      },
     },
   ];
 

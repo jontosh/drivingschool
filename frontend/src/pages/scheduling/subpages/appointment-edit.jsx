@@ -143,34 +143,56 @@ export const AppointmentEdit = () => {
 	useEffect(() => {
 		setAppointmentList(appointments)
 	}, [appointments?.length])
-
+	const timeZone = (start, filter) => {
+		switch (filter) {
+			case 'before':
+				return dayjs(start, 'hh:mm A').isBefore(dayjs('12:00 PM', 'hh:mm A'))
+			case 'after':
+				return dayjs(start, 'hh:mm A').isAfter(dayjs('12:00 PM', 'hh:mm A'))
+			case 'pm':
+				return dayjs(start, 'hh:mm A').isAfter(dayjs('3:00 PM', 'hh:mm A'))
+		}
+	}
 	const { Data } = useFilterStatus({ data: AppointmentList, search: Search })
-
-	const onFinish = useCallback(async values => {
+	const onFinish = values => {
 		if (!Object.values(values).some(item => item !== undefined))
 			return setFilterError(true)
 		const filtered = appointments?.filter(appointment => {
-			const isInstructorValid = values.instructor === appointment.staff
-			const isLocationValid = values.location === appointment?.location
+			const time =
+				appointment?.time.split(' ')[1] + ' ' + appointment?.time.split(' ')[2]
+			const isInstructorValid =
+				!values.instructor || values.instructor === appointment.staff
+			const isLocationValid =
+				!values.location || values.location === appointment?.location
 			const isStatusValid =
+				!values.status ||
 				values.status?.toLowerCase() === appointment.status?.toLowerCase()
-			const isVehicleValid = values.vehicle === appointment?.vehicle
-			const isWeekdaysValid = values.weekdays?.every(day =>
-				appointment.week_range.includes(day)
-			)
+			const isVehicleValid =
+				!values.vehicle || values.vehicle === appointment?.vehicle
+			const isWeekdaysValid =
+				!values.weekdays ||
+				values.weekdays?.every(day => appointment.week_range.includes(day))
+			const isTimeFilter =
+				!values.time || timeZone(time.split('-')[0], values.time)
+			const isSelectDate =
+				!values.date ||
+				dayjs(values.date[0]).isSame(dayjs(appointment.date), 'day')
 
 			return (
-				isInstructorValid ||
-				isLocationValid ||
-				isStatusValid ||
-				isVehicleValid ||
+				isInstructorValid &&
+				isLocationValid &&
+				isStatusValid &&
+				isTimeFilter &&
+				isSelectDate &&
+				isVehicleValid &&
 				isWeekdaysValid
 			)
 		})
 
 		setAppointmentList(filtered)
+		console.log(filtered)
 		setFilter(filtered?.length !== 0)
-	}, [])
+	}
 
 	const onReset = () => {
 		form.resetFields()
@@ -636,6 +658,7 @@ export const AppointmentEdit = () => {
 
 					<div className={'-mx-5 pt-5'}>
 						<TableComponent
+							rowKey={'appointment'}
 							columns={columns}
 							data={Data}
 							pagination
