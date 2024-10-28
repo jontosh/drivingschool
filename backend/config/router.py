@@ -172,6 +172,7 @@ Router = {
             "student":"student/<str:id>/",
             "student_email_templates":"student_email_templates/<str:UUID>/",
             "instructor_email_templates":"instructor_email_templates/<str:UUID>/",
+            "charge":"charge"
 
 
 

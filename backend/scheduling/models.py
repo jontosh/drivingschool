@@ -135,7 +135,7 @@ def handle_appointment_changes(sender, instance, created=False, **kwargs):
 
 # FIXME: VIDEO LESSONS SECTIONS
 class VideoLecture(Extra, Status):
-    video = models.FileField(upload_to="video/video_lessons", blank=True)
+    video = models.URLField(default=None)
     theme = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     tests = models.ManyToManyField("VideoLectureTest", blank=True)
