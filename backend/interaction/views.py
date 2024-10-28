@@ -1,6 +1,6 @@
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.views import APIView
-from django.conf import settings
+from django.views.generic.base import TemplateView
 from django.apps import apps
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -85,6 +85,8 @@ def charge(request):
         except stripe.error.StripeError as e:
             return JsonResponse({'status': 'Payment failed', 'error': str(e)})
 
+class HomePageView(TemplateView):
+    template_name = 'stripe.html'
 #STATISTIC API
 class CategorizedDataAPIView(APIView):
     """
