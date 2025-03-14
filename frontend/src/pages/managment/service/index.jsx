@@ -96,6 +96,13 @@ const Service = ({ subpage }) => {
             </NavLink>
 
             <NavLink
+              to={"/admin/management/service/video-courses"}
+              className={setActiveNav}
+            >
+              Video Courses
+              </NavLink>
+
+            <NavLink
               to={"/admin/management/service/miscellaneous"}
               className={setActiveNav}
             >

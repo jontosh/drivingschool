@@ -8,6 +8,7 @@ import { Fees } from "@/pages/managment/service/fees.jsx";
 import { Miscellaneous } from "@/pages/managment/service/miscellaneous.jsx";
 import { Packages } from "@/pages/managment/service/packages.jsx";
 import { Product } from "@/pages/managment/service/product.jsx";
+import { VideoCourses } from "@/pages/managment/service/video-courses.jsx"; // Added import statement
 import { AllBtwHoursCompleted } from "@/pages/report/subpages/all-btw-hours-completed.jsx";
 import { AttendanceSheetReport } from "@/pages/report/subpages/attendance-sheet-report.jsx";
 import { AttendanceSignatures } from "@/pages/report/subpages/attendance-signatures.jsx";
@@ -124,6 +125,16 @@ export const Subpages = ({ page, status, search }) => {
             <title>Service - Quiz Exam</title>
           </Helmet>
           <Packages status={status} search={search} />
+        </Fragment>
+      );
+    }
+    case "video-courses": {
+      return (
+        <Fragment>
+          <Helmet>
+            <title>Service - Video Courses</title>
+          </Helmet>
+          <VideoCourses status={status} search={search} />
         </Fragment>
       );
     }
