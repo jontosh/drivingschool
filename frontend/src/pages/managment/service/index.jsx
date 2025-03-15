@@ -53,7 +53,7 @@ const Service = ({ subpage }) => {
       <Helmet>
         <title>Service management</title>
       </Helmet>
-      <section>
+      <section className="h-screen flex flex-col">
         <Title
           level={2}
           fontSize={"text-indigo-600 text-4xl"}
@@ -72,7 +72,7 @@ const Service = ({ subpage }) => {
           Service
         </Title>
 
-        <div className={"px-5 bg-white rounded-3xl"}>
+        <div className={"flex-1 overflow-auto px-5 bg-white rounded-3xl"}>
           <div className={"space-x-6 px-5 -mx-5  border-b border-b-gray-400"}>
             <NavLink
               to={"/admin/management/service/product"}
@@ -194,7 +194,7 @@ const Service = ({ subpage }) => {
                 )}
               </div>
             </div>
-            <div className={"pt-5 -mx-5"}>
+            <div className={"pt-5 -mx-5 overflow-auto"}>
               <Subpages page={subpage} status={Status} search={Search} />
             </div>
           </div>

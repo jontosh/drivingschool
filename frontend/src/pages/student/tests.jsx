@@ -74,17 +74,17 @@ export const Tests = () => {
 
   const data = [
     {
-      name: "Drive test",
+      name: "Yo'l harakati qoidalari bo'yicha test",
       date: "21.03.2024",
-      course: "Drive course",
-      score: 45,
+      course: "Yo'l harakati qoidalari",
+      score: 20,
       results: true,
     },
     {
-      name: "Drive test",
+      name: "Yo'l harakati qoidalari bo'yicha test",
       date: "21.03.2024",
-      course: "Drive course",
-      score: 45,
+      course: "Yo'l harakati qoidalari",
+      score: 20,
       results: false,
     },
   ];

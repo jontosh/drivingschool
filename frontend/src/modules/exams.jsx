@@ -80,22 +80,6 @@ export const ExamsModules = () => {
         status: "ACTIVE",
       },
       {
-        id: "2",
-        name: "Jim Green",
-        course: "Course 2",
-        question_number: 42,
-        time: 2,
-        status: "ACTIVE",
-      },
-      {
-        id: "3",
-        name: "Joe Black",
-        course: "Course 3",
-        question_number: 32,
-        time: 4,
-        status: "DELETED",
-      },
-      {
         id: "4",
         name: "Jim Red",
         course: "Course 4",

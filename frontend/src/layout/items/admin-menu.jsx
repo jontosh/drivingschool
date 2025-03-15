@@ -326,6 +326,12 @@ export const AdminMenu = ({ inlineCollapsed, style }) => {
                 </Link>
               </Menu.Item>
 
+              <Menu.Item key={"/admin/management/service/video-courses"}>
+                <Link to={"/admin/management/service/video-courses"}>
+                  Video Courses
+                </Link>
+              </Menu.Item>
+
               <Menu.Item key={"/admin/management/service/packages"}>
                 <Link to={"/admin/management/service/packages"}>
                   Services (Packages)
