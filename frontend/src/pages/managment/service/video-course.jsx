@@ -24,82 +24,41 @@ const VideoCourse = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewVideo, setPreviewVideo] = useState({});
 
-  // Fetch data (for backend API connection)
+  // Ma'lumotlarni olish (backend API ga ulanish uchun)
   useEffect(() => {
     fetchVideos();
   }, []);
 
   const fetchVideos = async () => {
     setLoading(true);
+    // Bu yerda API ga so'rov yuborish kerak
     try {
+      // Vaqtinchalik test ma'lumotlari
       setTimeout(() => {
-        const mockPlaylists = [
+        setVideos([
           {
             id: 1,
-            title: "Road Signs and Traffic Rules",
-            description: "Complete course about road signs and traffic rules. This comprehensive series covers all aspects of traffic regulations and road sign interpretations.",
-            totalDuration: "2:15:00",
-            status: "published",
-            createdBy: "John Smith",
-            videos: [
-              {
-                id: 101,
-                playlistId: 1,
-                title: "Introduction to Traffic Rules",
-                description: "Learn the fundamental traffic rules and regulations that every driver must know. This comprehensive lesson covers basic road safety principles.",
-                url: "https://player.vimeo.com/video/1066078064",
-                duration: "45:00"
-              },
-              {
-                id: 102,
-                playlistId: 1,
-                title: "Understanding Road Signs - Part 1",
-                description: "First part of our road signs series. Learn about warning signs, regulatory signs, and guide signs. Essential knowledge for safe driving.",
-                url: "https://player.vimeo.com/video/1066078064",
-                duration: "45:00"
-              },
-              {
-                id: 103,
-                playlistId: 1,
-                title: "Understanding Road Signs - Part 2",
-                description: "Second part of our road signs series. Covers advanced road signs, temporary signs, and special situation signs.",
-                url: "https://player.vimeo.com/video/1066078064",
-                duration: "45:00"
-              }
-            ]
+            title: "Avtomobil boshqarish asoslari",
+            description: "Ushbu video darsda avtomobil boshqarishning asosiy qoidalari bilan tanishasiz",
+            category: "Boshqarish",
+            url: "https://example.com/video1",
+            duration: "15:30",
+            status: "published"
           },
           {
             id: 2,
-            title: "Safe Driving Techniques",
-            description: "Master the art of safe driving with our comprehensive course. Learn essential techniques for various driving conditions.",
-            totalDuration: "1:30:00",
-            status: "published",
-            createdBy: "Sarah Johnson",
-            videos: [
-              {
-                id: 201,
-                playlistId: 2,
-                title: "Basic Driving Techniques",
-                description: "Learn the fundamental techniques of safe driving, including proper steering, braking, and acceleration.",
-                url: "https://player.vimeo.com/video/1066078064",
-                duration: "45:00"
-              },
-              {
-                id: 202,
-                playlistId: 2,
-                title: "Advanced Driving Skills",
-                description: "Master advanced driving techniques for different weather conditions and challenging situations.",
-                url: "https://player.vimeo.com/video/1066078064",
-                duration: "45:00"
-              }
-            ]
+            title: "Yo'l belgilari",
+            description: "Barcha yo'l belgilarini o'rganishga mo'ljallangan video darslik",
+            category: "Nazariya",
+            url: "https://example.com/video2",
+            duration: "23:45",
+            status: "draft"
           }
-        ];
-        setVideos(mockPlaylists);
+        ]);
         setLoading(false);
       }, 1000);
     } catch (error) {
-      message.error("Error loading data");
+      message.error("Ma'lumotlarni yuklashda xatolik yuz berdi");
       setLoading(false);
     }
   };
@@ -135,28 +94,28 @@ const VideoCourse = () => {
     
     try {
       if (editingId) {
-        // Edit video
+        // Video tahrirlash
         const updatedVideos = videos.map(item => 
           item.id === editingId ? { ...item, ...values } : item
         );
         setVideos(updatedVideos);
-        message.success("Video updated successfully");
+        message.success("Video muvaffaqiyatli yangilandi");
       } else {
-        // Add new video
+        // Yangi video qo'shish
         const newVideo = {
           id: Date.now(),
           ...values,
           status: values.status || "draft"
         };
         setVideos([...videos, newVideo]);
-        message.success("Video added successfully");
+        message.success("Video muvaffaqiyatli qo'shildi");
       }
       
       setIsModalOpen(false);
       form.resetFields();
       setEditingId(null);
     } catch (error) {
-      message.error("An error occurred");
+      message.error("Xatolik yuz berdi");
     } finally {
       setLoading(false);
     }
@@ -164,47 +123,38 @@ const VideoCourse = () => {
 
   const handleDelete = (id) => {
     Modal.confirm({
-      title: "Delete Video",
-      content: "Are you sure you want to delete this video?",
-      okText: "Yes",
-      cancelText: "No",
+      title: "Videoni o'chirish",
+      content: "Haqiqatan ham bu videoni o'chirmoqchimisiz?",
+      okText: "Ha",
+      cancelText: "Yo'q",
       onOk: () => {
         setVideos(videos.filter(item => item.id !== id));
-        message.success("Video deleted successfully");
+        message.success("Video muvaffaqiyatli o'chirildi");
       }
     });
   };
 
   const columns = [
     {
-      title: "Playlist Title",
+      title: "Video nomi",
       dataIndex: "title",
       key: "title",
       render: (text, record) => (
-        <Space direction="vertical">
-          <Space>
-            <VideoCameraOutlined />
-            <span className="font-semibold">{text}</span>
-          </Space>
-          <span className="text-gray-500">{record.description}</span>
+        <Space>
+          <VideoCameraOutlined />
+          <span>{text}</span>
         </Space>
       ),
     },
     {
-      title: "Total Duration",
-      dataIndex: "totalDuration",
-      key: "totalDuration",
+      title: "Kategoriya",
+      dataIndex: "category",
+      key: "category",
     },
     {
-      title: "Videos",
-      dataIndex: "videos",
-      key: "videos",
-      render: (videos) => videos.length,
-    },
-    {
-      title: "Created By",
-      dataIndex: "createdBy",
-      key: "createdBy",
+      title: "Davomiyligi",
+      dataIndex: "duration",
+      key: "duration",
     },
     {
       title: "Status",
@@ -212,12 +162,12 @@ const VideoCourse = () => {
       key: "status",
       render: (status) => (
         <Tag color={status === "published" ? "green" : "orange"}>
-          {status === "published" ? "Published" : "Draft"}
+          {status === "published" ? "Nashr qilingan" : "Qoralama"}
         </Tag>
       ),
     },
     {
-      title: "Actions",
+      title: "Amallar",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
@@ -245,7 +195,7 @@ const VideoCourse = () => {
   return (
     <>
       <Helmet>
-        <title>Admin - Video Courses</title>
+        <title>Admin - Video kurslar</title>
       </Helmet>
       
       <section className="px-3 sm:px-5 md:px-11 space-y-5 max-w-full w-full">
@@ -255,7 +205,7 @@ const VideoCourse = () => {
           fontWeightStrong={600}
           titleMarginBottom={26}
         >
-          Video Courses
+          Video kurslar
         </Title>
         
         <Card>
@@ -267,12 +217,12 @@ const VideoCourse = () => {
                 defaultBg="#4338ca"
                 defaultHoverBg="#3730a3"
               >
-                Add New Video
+                Yangi video qo'shish
               </ButtonComponent>
             </div>
             <div>
               <Input.Search
-                placeholder="Search..."
+                placeholder="Qidirish..."
                 style={{ width: 250 }}
               />
             </div>
@@ -288,9 +238,9 @@ const VideoCourse = () => {
         </Card>
       </section>
 
-      {/* Add/Edit Video Modal */}
+      {/* Video qo'shish/tahrirlash modali */}
       <Modal
-        title={editingId ? "Edit Video" : "Add New Video"}
+        title={editingId ? "Video tahrirlash" : "Yangi video qo'shish"}
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
@@ -304,46 +254,46 @@ const VideoCourse = () => {
           <Row gutter={16}>
             <Col span={24}>
               <Form.Item
-                label="Video Title"
+                label="Video nomi"
                 name="title"
-                rules={[{ required: true, message: "Please enter video title!" }]}
+                rules={[{ required: true, message: "Iltimos, video nomini kiriting!" }]}
               >
-                <Input placeholder="Enter video title" />
+                <Input placeholder="Video nomini kiriting" />
               </Form.Item>
             </Col>
             
             <Col span={12}>
               <Form.Item
-                label="Category"
+                label="Kategoriya"
                 name="category"
-                rules={[{ required: true, message: "Please select a category!" }]}
+                rules={[{ required: true, message: "Iltimos, kategoriyani tanlang!" }]}
               >
-                <Select placeholder="Select category">
-                  <Select.Option value="Driving">Driving</Select.Option>
-                  <Select.Option value="Theory">Theory</Select.Option>
-                  <Select.Option value="Road Signs">Road Signs</Select.Option>
-                  <Select.Option value="Safety">Safety</Select.Option>
+                <Select placeholder="Kategoriyani tanlang">
+                  <Select.Option value="Boshqarish">Boshqarish</Select.Option>
+                  <Select.Option value="Nazariya">Nazariya</Select.Option>
+                  <Select.Option value="Yo'l belgilari">Yo'l belgilari</Select.Option>
+                  <Select.Option value="Xavfsizlik">Xavfsizlik</Select.Option>
                 </Select>
               </Form.Item>
             </Col>
             
             <Col span={12}>
               <Form.Item
-                label="Duration"
+                label="Davomiyligi"
                 name="duration"
-                rules={[{ required: true, message: "Please enter video duration!" }]}
+                rules={[{ required: true, message: "Iltimos, video davomiyligini kiriting!" }]}
               >
-                <Input placeholder="Example: 15:30" />
+                <Input placeholder="Misol: 15:30" />
               </Form.Item>
             </Col>
             
             <Col span={24}>
               <Form.Item
-                label="Video Description"
+                label="Video tavsifi"
                 name="description"
-                rules={[{ required: true, message: "Please enter video description!" }]}
+                rules={[{ required: true, message: "Iltimos, video tavsifini kiriting!" }]}
               >
-                <Input.TextArea rows={4} placeholder="Brief description about the video" />
+                <Input.TextArea rows={4} placeholder="Video haqida qisqacha ma'lumot" />
               </Form.Item>
             </Col>
             
@@ -351,23 +301,23 @@ const VideoCourse = () => {
               <Form.Item
                 label="Video URL"
                 name="url"
-                rules={[{ required: true, message: "Please enter video URL!" }]}
+                rules={[{ required: true, message: "Iltimos, video URL manzilini kiriting!" }]}
               >
-                <Input placeholder="Video URL address" />
+                <Input placeholder="Video URL manzili" />
               </Form.Item>
             </Col>
 
             <Col span={24}>
               <Form.Item
                 name="video"
-                label="Upload Video"
+                label="Video yuklash"
               >
                 <Upload
                   accept="video/*"
                   maxCount={1}
                   beforeUpload={() => false}
                 >
-                  <Button icon={<UploadOutlined />}>Select video file</Button>
+                  <Button icon={<UploadOutlined />}>Video faylni tanlang</Button>
                 </Upload>
               </Form.Item>
             </Col>
@@ -379,77 +329,62 @@ const VideoCourse = () => {
                 initialValue="draft"
               >
                 <Select>
-                  <Select.Option value="published">Publish</Select.Option>
-                  <Select.Option value="draft">Save as Draft</Select.Option>
+                  <Select.Option value="published">Nashr qilish</Select.Option>
+                  <Select.Option value="draft">Qoralama saqlash</Select.Option>
                 </Select>
               </Form.Item>
             </Col>
           </Row>
           
           <div className="flex justify-end gap-2 mt-3">
-            <Button onClick={handleCancel}>Cancel</Button>
+            <Button onClick={handleCancel}>Bekor qilish</Button>
             <ButtonComponent
               htmlType="submit"
               loading={loading}
               defaultBg="#4338ca"
               defaultHoverBg="#3730a3"
             >
-              {editingId ? "Save" : "Add"}
+              {editingId ? "Saqlash" : "Qo'shish"}
             </ButtonComponent>
           </div>
         </Form>
       </Modal>
 
-      {/* Video preview modal */}
+      {/* Video preview modali */}
       <Modal
         title={previewVideo?.title}
         open={previewOpen}
         onCancel={handlePreviewCancel}
         footer={null}
-        width={1000}
+        width={800}
       >
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-xl font-semibold mb-2">{previewVideo?.title}</h3>
-            <p className="text-gray-600">{previewVideo?.description}</p>
+        <div className="space-y-4">
+          <div className="aspect-video bg-gray-200 flex items-center justify-center rounded">
+            {/* Backend ulanish bo'lganida haqiqiy video player qo'yiladi */}
+            <div className="text-center p-10">
+              <VideoCameraOutlined style={{ fontSize: 48 }} />
+              <p className="mt-2">Video player: {previewVideo?.url}</p>
+            </div>
           </div>
-
-          <div className="grid grid-cols-3 gap-4">
+          
+          <div>
+            <h4 className="font-semibold">Tavsif:</h4>
+            <p>{previewVideo?.description}</p>
+          </div>
+          
+          <div className="flex gap-3">
             <div>
-              <span className="font-medium">Total Duration:</span> {previewVideo?.totalDuration}
+              <span className="font-medium">Kategoriya:</span> {previewVideo?.category}
             </div>
             <div>
-              <span className="font-medium">Created By:</span> {previewVideo?.createdBy}
+              <span className="font-medium">Davomiyligi:</span> {previewVideo?.duration}
             </div>
             <div>
               <span className="font-medium">Status:</span>{" "}
               <Tag color={previewVideo?.status === "published" ? "green" : "orange"}>
-                {previewVideo?.status === "published" ? "Published" : "Draft"}
+                {previewVideo?.status === "published" ? "Nashr qilingan" : "Qoralama"}
               </Tag>
             </div>
-          </div>
-
-          <div className="space-y-4">
-            <h4 className="font-semibold text-lg">Videos in Playlist:</h4>
-            {previewVideo?.videos?.map((video, index) => (
-              <div key={video.id} className="border rounded-lg p-4">
-                <div className="aspect-video bg-gray-200 mb-4 rounded overflow-hidden">
-                  <iframe
-                    src={video.url}
-                    width="100%"
-                    height="250"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <h5 className="font-semibold">
-                  Lesson {index + 1}: {video.title}
-                </h5>
-                <p className="text-gray-600 mt-1">{video.description}</p>
-                <p className="text-gray-500 mt-2">Duration: {video.duration}</p>
-              </div>
-            ))}
           </div>
         </div>
       </Modal>

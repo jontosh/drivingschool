@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchVideoCourses, selectAllVideoCourses, selectVideoCoursesStatus, selectVideoCoursesError } from '@/redux/slice/video-courses';
-import { Card, Col, Row, Spin, Alert, Empty, Button } from 'antd';
+import { Card, Col, Row, Spin, Empty, Button, Progress, Typography } from 'antd';
+import { PlayCircleOutlined, BookOutlined, ClockCircleOutlined } from '@ant-design/icons';
+
+const { Title, Text } = Typography;
 
 const VideoCourses = () => {
   const dispatch = useDispatch();
@@ -61,23 +64,47 @@ const VideoCourses = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Video Courses</h1>
+      <Title level={2} className="mb-6">Video Courses</Title>
       <Row gutter={[16, 16]}>
         {courses.map((course) => (
           <Col key={course.id} xs={24} sm={12} md={8} lg={6}>
             <Card
               hoverable
+              className="h-full"
               cover={
-                <img
-                  alt={course.title}
-                  src={course.thumbnail}
-                  className="h-48 object-cover"
-                />
+                <div className="relative">
+                  <img
+                    alt={course.title}
+                    src={course.thumbnail}
+                    className="h-48 w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <PlayCircleOutlined className="text-4xl text-white" />
+                  </div>
+                </div>
               }
             >
-              <Card.Meta
-                title={course.title}
-                description={course.description}
+              <div className="mb-4">
+                <Title level={4} className="mb-2">{course.title}</Title>
+                <Text type="secondary">{course.description}</Text>
+              </div>
+              
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-1">
+                  <BookOutlined />
+                  <Text>{course.lessons} lessons</Text>
+                </div>
+                <div className="flex items-center gap-1">
+                  <ClockCircleOutlined />
+                  <Text>{course.duration}</Text>
+                </div>
+              </div>
+
+              <Progress 
+                percent={course.progress} 
+                size="small"
+                status={course.progress === 100 ? "success" : "active"}
+                format={(percent) => `${percent}% completed`}
               />
             </Card>
           </Col>

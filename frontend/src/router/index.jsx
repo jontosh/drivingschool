@@ -35,9 +35,8 @@ import StudentResource from "@/pages/students/resources/index.jsx";
 import StudentExams from "@/pages/students/resources/quiz/exams.jsx";
 import Quiz, { QuizView } from "@/pages/students/resources/quiz/index.jsx";
 import StudentResults from "@/pages/students/resources/quiz/results.jsx";
-import Test from "@/pages/students/resources/quiz/test.jsx";
+import StudentTestView from "@/pages/students/resources/quiz/test.jsx";
 import StudentSchedule from "@/pages/students/schedule/index.jsx";
-import VideoCourses from "@/pages/students/video-courses/index.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { createBrowserRouter } from "react-router-dom";
@@ -178,36 +177,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: "student/resource",
-        element: <StudentResource />,
-        children: [
-          {
-            path: "quiz/:studentId",
-            element: <Quiz />,
-            children: [
-              {
-                path: "view",
-                element: <QuizView />,
-                children: [
-                  {
-                    path: "exams",
-                    element: <StudentExams />,
-                  },
-                  {
-                    path: "results",
-                    element: <StudentResults />,
-                  },
-                  {
-                    path: "test/:testId",
-                    element: <Test />,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
     ],
   },
   {
@@ -259,32 +228,28 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "dashboard",
+        path: "dashboard/:studentId",
         element: <StudentDashboard />,
       },
       {
-        path: "account",
+        path: "account/:subpage/:studentId",
         element: <StudentAccount />,
       },
       {
-        path: "contact",
-        element: <StudentContact />,
-      },
-      {
-        path: "schedule",
-        element: <StudentSchedule />,
-      },
-      {
-        path: "resources",
-        element: <StudentResource />,
-      },
-      {
-        path: "enroll",
+        path: "enroll/:studentId",
         element: <StudentEnroll />,
       },
       {
-        path: "video-courses/:studentId",
-        element: <VideoCourses />,
+        path: "contact/:studentId",
+        element: <StudentContact />,
+      },
+      {
+        path: "schedule/:title/:studentId",
+        element: <StudentSchedule />,
+      },
+      {
+        path: "resource/:title/:studentId",
+        element: <StudentResource />,
       },
       {
         path: "resource/quiz/:studentId",
@@ -302,11 +267,11 @@ export const router = createBrowserRouter([
                 path: "results",
                 element: <StudentResults />,
               },
-              {
-                path: "test/:testId",
-                element: <Test />,
-              },
             ],
+          },
+          {
+            path: "test/:testId",
+            element: <StudentTestView />,
           },
         ],
       },
