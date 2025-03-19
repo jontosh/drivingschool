@@ -4,9 +4,11 @@ import adminSlice from "@/redux/slice/admin-slice.jsx";
 import filterSlice from "@/redux/slice/filter-slice.jsx";
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { videoCoursesReducer } from "@/redux/slice/video-courses.jsx";
 
 export const store = configureStore({
   reducer: {
+    videoCourses: videoCoursesReducer,
     admins: adminSlice,
     filter: filterSlice,
     account_management: accountManagementSlice,

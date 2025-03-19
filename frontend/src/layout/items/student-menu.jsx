@@ -3,6 +3,7 @@ import ColorsContext from "@/context/colors.jsx";
 import { ConfigProvider, Menu } from "antd";
 import { Fragment, useContext, useEffect, useState } from "react";
 import { AiOutlineAppstore, AiOutlineSolution } from "react-icons/ai";
+import { BsCameraVideo } from "react-icons/bs";
 import { FiPhone } from "react-icons/fi";
 import { IoDiamondOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
@@ -251,6 +252,22 @@ export const StudentMenu = ({ inlineCollapsed, style }) => {
               </Link>
             </Menu.Item>
           </SubMenu>
+
+          {/* Video Courses */}
+          <Menu.Item
+            icon={
+              <span className={"w-5"}>
+                <BsCameraVideo />
+              </span>
+            }
+            key={"/student/video-courses/" + (UserData?.id ?? studentId)}
+          >
+            <Link to={"/student/video-courses/" + (UserData?.id ?? studentId)}>
+              Video Courses
+            </Link>
+          </Menu.Item>
+
+          {/* Enroll */}
           <Menu.Item
             icon={
               <span className={"w-5"}>

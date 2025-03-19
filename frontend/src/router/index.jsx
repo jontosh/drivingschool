@@ -37,6 +37,7 @@ import Quiz, { QuizView } from "@/pages/students/resources/quiz/index.jsx";
 import StudentResults from "@/pages/students/resources/quiz/results.jsx";
 import Test from "@/pages/students/resources/quiz/test.jsx";
 import StudentSchedule from "@/pages/students/schedule/index.jsx";
+import VideoCourses from "@/pages/students/video-courses/index.jsx";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { createBrowserRouter } from "react-router-dom";
@@ -258,28 +259,32 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "dashboard/:studentId",
+        path: "dashboard",
         element: <StudentDashboard />,
       },
       {
-        path: "account/:subpage/:studentId",
+        path: "account",
         element: <StudentAccount />,
       },
       {
-        path: "enroll/:studentId",
-        element: <StudentEnroll />,
-      },
-      {
-        path: "contact/:studentId",
+        path: "contact",
         element: <StudentContact />,
       },
       {
-        path: "schedule/:title/:studentId",
+        path: "schedule",
         element: <StudentSchedule />,
       },
       {
-        path: "resource/:title/:studentId",
+        path: "resources",
         element: <StudentResource />,
+      },
+      {
+        path: "enroll",
+        element: <StudentEnroll />,
+      },
+      {
+        path: "video-courses/:studentId",
+        element: <VideoCourses />,
       },
       {
         path: "resource/quiz/:studentId",
