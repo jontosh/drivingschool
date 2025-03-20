@@ -41,6 +41,7 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { createBrowserRouter } from "react-router-dom";
 import { StudentResources } from "@/pages/communication/subpage/studenе-resources.jsx";
+import { default as StudentVideoCourses } from "@/pages/students/video-courses/index.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -274,6 +275,10 @@ export const router = createBrowserRouter([
             element: <StudentTestView />,
           },
         ],
+      },
+      {
+        path: "video-courses/:studentId",
+        element: <StudentVideoCourses />,
       },
     ],
   },

@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
-import { Table, Collapse, Modal, Form, Input, Space } from "antd";
+import { Table, Collapse, Modal, Form, Input, Space, Select } from "antd";
 import ButtonComponent from "@/components/button/index.jsx";
 import { AiOutlineDelete, AiOutlineEdit, AiOutlinePlus } from "react-icons/ai";
 import MDEditor from '@uiw/react-md-editor';
@@ -82,6 +82,23 @@ const VideoColumns = [
     key: "duration",
   },
   {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    render: (status) => {
+      const statusColors = {
+        ACTIVE: "text-green-600 bg-green-100",
+        INACTIVE: "text-red-600 bg-red-100",
+        INCOMING: "text-blue-600 bg-blue-100"
+      };
+      return (
+        <span className={`px-2 py-1 rounded-full ${statusColors[status]}`}>
+          {status}
+        </span>
+      );
+    }
+  },
+  {
     title: "Video",
     key: "video",
     render: (_, record) => (
@@ -151,7 +168,8 @@ export const VideoCourses = ({ status, search }) => {
             title: "Introduction to Traffic Rules",
             description: "Learn the fundamental traffic rules and regulations that every driver must know. This comprehensive lesson covers basic road safety principles.",
             videoUrl: "https://player.vimeo.com/video/1066078064",
-            duration: "45:00"
+            duration: "45:00",
+            status: "ACTIVE"
           },
           {
             id: 102,
@@ -159,7 +177,8 @@ export const VideoCourses = ({ status, search }) => {
             title: "Understanding Road Signs - Part 1",
             description: "First part of our road signs series. Learn about warning signs, regulatory signs, and guide signs. Essential knowledge for safe driving.",
             videoUrl: "https://player.vimeo.com/video/1066078064",
-            duration: "45:00"
+            duration: "45:00",
+            status: "ACTIVE"
           },
           {
             id: 103,
@@ -167,7 +186,8 @@ export const VideoCourses = ({ status, search }) => {
             title: "Understanding Road Signs - Part 2",
             description: "Second part of our road signs series. Covers advanced road signs, temporary signs, and special situation signs.",
             videoUrl: "https://player.vimeo.com/video/1066078064",
-            duration: "45:00"
+            duration: "45:00",
+            status: "INCOMING"
           }
         ]
       },
@@ -185,7 +205,8 @@ export const VideoCourses = ({ status, search }) => {
             title: "Basic Driving Techniques",
             description: "Learn the fundamental techniques of safe driving, including proper steering, braking, and acceleration.",
             videoUrl: "https://player.vimeo.com/video/1066078064",
-            duration: "45:00"
+            duration: "45:00",
+            status: "ACTIVE"
           },
           {
             id: 202,
@@ -193,7 +214,8 @@ export const VideoCourses = ({ status, search }) => {
             title: "Advanced Driving Skills",
             description: "Master advanced driving techniques for different weather conditions and challenging situations.",
             videoUrl: "https://player.vimeo.com/video/1066078064",
-            duration: "45:00"
+            duration: "45:00",
+            status: "INACTIVE"
           }
         ]
       }
@@ -232,7 +254,8 @@ export const VideoCourses = ({ status, search }) => {
     form.setFieldsValue({
       title: video.title,
       videoUrl: video.videoUrl,
-      duration: video.duration
+      duration: video.duration,
+      status: video.status
     });
     setIsModalVisible(true);
   };
@@ -295,7 +318,8 @@ export const VideoCourses = ({ status, search }) => {
           id: editingItem?.id || Date.now(),
           ...values,
           description,
-          videoUrl
+          videoUrl,
+          status: values.status
         };
 
         setPlaylists(playlists.map(playlist => {
@@ -430,6 +454,24 @@ export const VideoCourses = ({ status, search }) => {
                         width: 100
                       },
                       {
+                        title: "Status",
+                        dataIndex: "status",
+                        key: "status",
+                        width: 120,
+                        render: (status) => {
+                          const statusColors = {
+                            ACTIVE: "text-green-600 bg-green-100",
+                            INACTIVE: "text-red-600 bg-red-100",
+                            INCOMING: "text-blue-600 bg-blue-100"
+                          };
+                          return (
+                            <span className={`px-2 py-1 rounded-full ${statusColors[status]}`}>
+                              {status}
+                            </span>
+                          );
+                        }
+                      },
+                      {
                         title: "Video",
                         key: "video",
                         width: 580,
@@ -542,6 +584,19 @@ export const VideoCourses = ({ status, search }) => {
                 rules={[{ required: true, message: 'Please input duration!' }]}
               >
                 <Input placeholder="Example: 45:00" />
+              </Form.Item>
+
+              <Form.Item
+                label="Status"
+                name="status"
+                rules={[{ required: true, message: 'Please select status!' }]}
+                initialValue="ACTIVE"
+              >
+                <Select>
+                  <Select.Option value="ACTIVE">ACTIVE</Select.Option>
+                  <Select.Option value="INACTIVE">INACTIVE</Select.Option>
+                  <Select.Option value="INCOMING">INCOMING</Select.Option>
+                </Select>
               </Form.Item>
             </>
           )}

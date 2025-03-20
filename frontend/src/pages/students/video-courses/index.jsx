@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchVideoCourses, selectAllVideoCourses, selectVideoCoursesStatus, selectVideoCoursesError } from '@/redux/slice/video-courses';
+import { useParams } from 'react-router-dom';
+import { fetchVideoCourses, updateCourseProgress, selectAllVideoCourses, selectVideoCoursesStatus, selectVideoCoursesError } from '@/redux/slice/video-courses';
 import { Card, Col, Row, Spin, Empty, Button, Progress, Typography } from 'antd';
 import { PlayCircleOutlined, BookOutlined, ClockCircleOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
 const VideoCourses = () => {
+  const { studentId } = useParams();
   const dispatch = useDispatch();
   const courses = useSelector(selectAllVideoCourses);
   const status = useSelector(selectVideoCoursesStatus);
   const error = useSelector(selectVideoCoursesError);
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchVideoCourses());
+    if (status === 'idle' && studentId) {
+      dispatch(fetchVideoCourses(studentId));
     }
-  }, [status, dispatch]);
+  }, [status, dispatch, studentId]);
 
   if (status === 'loading') {
     return (
@@ -34,7 +36,7 @@ const VideoCourses = () => {
           description={
             <div className="text-center">
               <p className="text-lg mb-4">{error}</p>
-              <Button type="primary" onClick={() => dispatch(fetchVideoCourses())}>
+              <Button type="primary" onClick={() => dispatch(fetchVideoCourses(studentId))}>
                 Refresh
               </Button>
             </div>
@@ -52,7 +54,7 @@ const VideoCourses = () => {
           description={
             <div className="text-center">
               <p className="text-lg mb-4">You don't have any video courses yet</p>
-              <Button type="primary" onClick={() => dispatch(fetchVideoCourses())}>
+              <Button type="primary" onClick={() => dispatch(fetchVideoCourses(studentId))}>
                 Refresh
               </Button>
             </div>
@@ -61,6 +63,19 @@ const VideoCourses = () => {
       </div>
     );
   }
+
+  const handleUpdateProgress = (courseId, progress) => {
+    dispatch(updateCourseProgress({ studentId, courseId, progress }));
+  };
+
+  const getStatusColor = (status) => {
+    const colors = {
+      ACTIVE: 'text-green-600',
+      INACTIVE: 'text-red-600',
+      INCOMING: 'text-blue-600'
+    };
+    return colors[status] || 'text-gray-600';
+  };
 
   return (
     <div className="p-6">
@@ -89,15 +104,18 @@ const VideoCourses = () => {
                 <Text type="secondary">{course.description}</Text>
               </div>
               
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center gap-1">
-                  <BookOutlined />
-                  <Text>{course.lessons} lessons</Text>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-1">
+                    <BookOutlined />
+                    <Text>{course.lessons} lessons</Text>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <ClockCircleOutlined />
+                    <Text>{course.duration}</Text>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <ClockCircleOutlined />
-                  <Text>{course.duration}</Text>
-                </div>
+                <Text className={getStatusColor(course.status)}>{course.status}</Text>
               </div>
 
               <Progress 
@@ -105,6 +123,7 @@ const VideoCourses = () => {
                 size="small"
                 status={course.progress === 100 ? "success" : "active"}
                 format={(percent) => `${percent}% completed`}
+                onChange={(value) => handleUpdateProgress(course.id, value)}
               />
             </Card>
           </Col>
