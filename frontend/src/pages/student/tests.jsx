@@ -1,15 +1,22 @@
 import ButtonComponent from "@/components/button/index.jsx";
 import Title, { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-// import { Table } from "antd";
 import TableComponent from "@/components/table/index.jsx";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import CreateTestModal from "./create-test-modal";
 
 export const Tests = () => {
   const { colorsObject } = useContext(ColorsContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCreateTest = (testData) => {
+    console.log('New test data:', testData);
+    // API call to save test
+  };
+
   const columns = [
     {
-      title: "Name test",
+      title: "Test Name",
       dataIndex: "name",
       key: "name",
       align: "center",
@@ -31,7 +38,7 @@ export const Tests = () => {
       ),
     },
     {
-      title: "Course name",
+      title: "Course Name",
       dataIndex: "course",
       key: "course",
       align: "center",
@@ -42,7 +49,7 @@ export const Tests = () => {
       ),
     },
     {
-      title: "Overall ball",
+      title: "Overall Score",
       dataIndex: "score",
       key: "score",
       align: "center",
@@ -62,7 +69,6 @@ export const Tests = () => {
           defaultBg={results ? "#24C18F" : colorsObject.danger}
           defaultHoverBg={results ? "#24C18F" : colorsObject.danger}
           defaultColor={colorsObject.main}
-          // controlHeight={30}
           borderRadius={5}
           className={"w-[144px]"}
         >
@@ -74,33 +80,53 @@ export const Tests = () => {
 
   const data = [
     {
-      name: "Yo'l harakati qoidalari bo'yicha test",
+      name: "Road Traffic Rules Test",
       date: "21.03.2024",
-      course: "Yo'l harakati qoidalari",
+      course: "Road Traffic Rules",
       score: 20,
       results: true,
     },
     {
-      name: "Yo'l harakati qoidalari bo'yicha test",
+      name: "Road Traffic Rules Test",
       date: "21.03.2024",
-      course: "Yo'l harakati qoidalari",
+      course: "Road Traffic Rules",
       score: 20,
       results: false,
     },
   ];
+
   return (
     <div>
-      <Title
-        titleMarginBottom={20}
-        level={2}
-        fontSize={"text-indigo-700 text-xl"}
-      >
-        Quiz/Tests
-      </Title>
+      <div className="flex justify-between items-center mb-6">
+        <Title
+          titleMarginBottom={0}
+          level={2}
+          fontSize={"text-indigo-700 text-xl"}
+        >
+          Quiz/Tests
+        </Title>
+
+        <ButtonComponent
+          onClick={() => setIsModalOpen(true)}
+          defaultBg={colorsObject.primary}
+          defaultHoverBg={colorsObject.primary}
+          defaultColor={colorsObject.main}
+          borderRadius={5}
+          className="px-4"
+        >
+          Create New Test
+        </ButtonComponent>
+      </div>
 
       <div className={"-mx-5"}>
         <TableComponent columns={columns} dataSource={data} pagination={false} />
       </div>
+
+      <CreateTestModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleCreateTest}
+      />
     </div>
   );
 };

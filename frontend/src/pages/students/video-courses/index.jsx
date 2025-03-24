@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchVideoCourses, updateCourseProgress, selectAllVideoCourses, selectVideoCoursesStatus, selectVideoCoursesError } from '@/redux/slice/video-courses';
 import { Card, Col, Row, Spin, Empty, Button, Progress, Typography, List } from 'antd';
-import { PlayCircleOutlined, BookOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { PlayCircleOutlined, BookOutlined, ClockCircleOutlined, CheckCircleFilled } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
@@ -160,16 +160,22 @@ const VideoCourses = () => {
                 <List
                   dataSource={Array(selectedCourse.lessons).fill().map((_, i) => ({
                     title: `Lesson ${i + 1} - ${selectedCourse.title}`,
-                    videoUrl: selectedCourse.videoUrl
+                    videoUrl: selectedCourse.videoUrl,
+                    isCompleted: i < 4 // First 4 lessons are marked as completed
                   }))}
                   renderItem={(item, index) => (
                     <List.Item
                       className={`cursor-pointer hover:bg-gray-100 p-2 rounded ${activeLesson === index ? 'bg-gray-100' : ''}`}
                       onClick={() => handleLessonSelect(index, item.videoUrl)}
                     >
-                      <div className="flex items-center gap-2">
-                        <PlayCircleOutlined />
-                        <Text>{item.title}</Text>
+                      <div className="flex items-center gap-2 w-full justify-between">
+                        <div className="flex items-center gap-2">
+                          <PlayCircleOutlined />
+                          <Text>{item.title}</Text>
+                        </div>
+                        {item.isCompleted && (
+                          <CheckCircleFilled className="text-green-500" />
+                        )}
                       </div>
                     </List.Item>
                   )}
