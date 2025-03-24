@@ -14,11 +14,11 @@ const Exams = () => {
       key: "action",
       render: (_, record) => (
         <button
-          onClick={() => navigate(`/student/resource/quiz/${studentId}/view/test/${record.id}`)}
+          onClick={() => navigate(`/student/resource/quiz/${studentId}/demo-test`)}
           className="bg-indigo-600 text-white px-4 py-1.5 rounded hover:bg-indigo-700 transition-colors text-sm"
           disabled={record.status !== "ACTIVE"}
         >
-          Start Test
+          Start Demo Test
         </button>
       ),
     },

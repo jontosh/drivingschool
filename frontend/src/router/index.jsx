@@ -42,6 +42,7 @@ import { Helmet } from "react-helmet";
 import { createBrowserRouter } from "react-router-dom";
 import { StudentResources } from "@/pages/communication/subpage/studenе-resources.jsx";
 import { default as StudentVideoCourses } from "@/pages/students/video-courses/index.jsx";
+import DemoQuizView from "@/pages/students/resources/quiz/QuizView.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -274,6 +275,10 @@ export const router = createBrowserRouter([
             path: "test/:testId",
             element: <StudentTestView />,
           },
+          {
+            path: "demo-test",
+            element: <DemoQuizView />,
+          }
         ],
       },
       {
