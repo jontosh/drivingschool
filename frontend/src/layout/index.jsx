@@ -2,6 +2,7 @@ import IconComponent from "@/components/icons/index.jsx";
 import Image from "@/components/image/index.jsx";
 import Title from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
+import ThemeContext from "@/context/theme.jsx";
 import { Crypto } from "@/auth/crypto.jsx";
 import { AdminMenu } from "@/layout/items/admin-menu.jsx";
 import { InstructorMenu } from "@/layout/items/instructor-menu.jsx";
@@ -35,6 +36,7 @@ const Layout = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { colorsObject } = useContext(ColorsContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   const { pathname: toOrigin } = useBaseURL();
   const DropMenuItems = DropMenu(UserData?.id);
 
@@ -158,6 +160,8 @@ const Layout = () => {
             <Segmented
               className="border border-indigo-600 flex-shrink-0"
               size="large"
+              value={theme === "dark" ? "Moon" : "Sun"}
+              onChange={(value) => setTheme(value === "Moon" ? "dark" : "light")}
               options={[
                 { value: "Sun", icon: <HiOutlineSun /> },
                 { value: "Moon", icon: <BiMoon /> },

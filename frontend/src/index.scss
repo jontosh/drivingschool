@@ -2,14 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-.root {
-  min-height: 100vh;
-  font-family: "Poppins", sans-serif;
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --header-bg: #ffffff;
+  --article-bg: #F1F5F9;
 }
 
-.root {
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --header-bg: #262626;
+  --article-bg: #333333;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+#root {
   & > * {
     flex-shrink: 0;
   }
@@ -46,35 +62,12 @@ svg {
   height: auto;
 }
 
-.mode-dark {
-  color: #ffffff;
-  background-color: #262626;
+header {
+  background-color: var(--header-bg) !important;
+}
 
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  title,
-  text,
-  .Paragraph,
-  .Text,
-  .Title {
-    color: #ffffff;
-  }
-
-  input,
-  select,
-  .ant-select-selector {
-    background: #262626;
-    color: #ffffff;
-  }
-
-  input:active {
-    color: #262626;
-  }
+article {
+  background-color: var(--article-bg) !important;
 }
 
 .ant-menu-item,
