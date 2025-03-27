@@ -16,7 +16,7 @@ import Tenant from "../assets/user/tenant.jpeg";
 import { BellFilled } from "@ant-design/icons";
 import { useBaseURL } from "@/hooks/portal.jsx";
 import { default as DropMenu } from "./items/drop-menu.jsx";
-import { Badge, ConfigProvider, Dropdown, Segmented } from "antd";
+import { Badge, ConfigProvider, Dropdown, Layout as AntLayout, Popover, Segmented } from "antd";
 import { Fragment, useContext, useEffect, useState, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import { BiMoon } from "react-icons/bi";
@@ -135,11 +135,33 @@ const Layout = () => {
           )}
           {(toOrigin === "instructor" || toOrigin === "student") && (
             <Fragment>
-              <IconComponent className="text-3xl" icon={<PiNoteDuotone />} />
-              <IconComponent
-                className="text-3xl"
-                icon={<PiCurrencyCircleDollar />}
-              />
+              <Popover 
+                content={
+                  <div className="p-4">
+                    <h4 className="font-medium mb-2">Billing History</h4>
+                    <p>No billing information available yet</p>
+                  </div>
+                }
+                title="Payment History"
+                trigger="click"
+              >
+                <IconComponent className="text-3xl cursor-pointer" icon={<PiNoteDuotone />} />
+              </Popover>
+              <Popover
+                content={
+                  <div className="p-4">
+                    <h4 className="font-medium mb-2">Your Account</h4>
+                    <p>Current Balance: $0</p>
+                  </div>
+                }
+                title="Financial Information"
+                trigger="click"
+              >
+                <IconComponent
+                  className="text-3xl cursor-pointer"
+                  icon={<PiCurrencyCircleDollar />}
+                />
+              </Popover>
             </Fragment>
           )}
           <ConfigProvider
