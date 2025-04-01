@@ -2,6 +2,7 @@ import { PrivateRoute } from "@/auth/private-route.jsx";
 import Layout from "@/layout";
 import Communication from "@/pages/communication/index.jsx";
 import { EmailTemplate } from "@/pages/communication/subpage/email-template.jsx";
+import { CreateTemplate } from "@/pages/communication/subpage/create-template.jsx";
 import Configuration from "@/pages/configuration/index.jsx";
 import Dashboard from "@/pages/dashboard/index.jsx";
 import Components from "@/pages/design/components.jsx";
@@ -127,6 +128,10 @@ export const router = createBrowserRouter([
           {
             path: "email-templates/:subpage",
             element: <EmailTemplate />,
+          },
+          {
+            path: "email-templates/:subpage/create",
+            element: <CreateTemplate />,
           },
           {
             path: "student-resources/:subpage",
