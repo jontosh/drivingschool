@@ -4,7 +4,7 @@ import ButtonComponent from "@/components/button/index.jsx";
 import { setActiveNav } from "@/modules/active-nav.jsx";
 import { EmailTemplateModule } from "@/modules/email-template.jsx";
 import classNames from "classnames";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { LuMail, LuPlus } from "react-icons/lu";
 import { NavLink, useParams, useNavigate } from "react-router-dom";
@@ -23,11 +23,24 @@ export const EmailTemplate = () => {
   const { colorsObject } = useContext(ColorsContext);
   const { columns, data } = EmailTemplateModule();
 
+  // Agar subpage mavjud bo'lmasa, birinchi navigatsiya elementiga yo'naltiramiz
+  useEffect(() => {
+    if (!subpage && navLinks.length > 0) {
+      navigate(`/admin/communication/email-templates/${navLinks[0].path}`);
+    }
+  }, [subpage, navigate]);
+
   const nav = navLinks.map((link, index) => (
     <NavLink
       key={index}
       to={`/admin/communication/email-templates/${link.path}`}
       className={setActiveNav}
+      onClick={() => {
+        // Navigatsiya o'zgartirilganda subpage ham o'zgaradi
+        if (subpage !== link.path) {
+          navigate(`/admin/communication/email-templates/${link.path}`);
+        }
+      }}
     >
       {link.label}
     </NavLink>
@@ -82,6 +95,15 @@ export const EmailTemplate = () => {
             data={data}
             pagination={false}
             scroll={{ x: 800 }}
+            className={`subpage-table-${subpage}`}
+            title={() => (
+              <div className="py-2 px-4 bg-indigo-50 text-indigo-700 font-semibold">
+                {subpage === 'student-portal' && "Email Templates for Students"}
+                {subpage === 'staff-mobile' && "Mobile Email Templates for Staff"}
+                {subpage === 'admin-portal' && "Email Templates for Administrators"}
+                {subpage === 'reminders' && "Email Templates for Reminders"}
+              </div>
+            )}
           />
         </div>
       </div>
