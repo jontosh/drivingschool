@@ -167,7 +167,7 @@ export const VideoCourses = ({ status, search }) => {
             playlistId: 1,
             title: "Introduction to Traffic Rules",
             description: "Learn the fundamental traffic rules and regulations that every driver must know. This comprehensive lesson covers basic road safety principles.",
-            videoUrl: "https://player.vimeo.com/video/1066078064",
+            videoUrl: "https://player.vimeo.com/video/271721115",
             duration: "45:00",
             status: "ACTIVE"
           },
@@ -176,7 +176,7 @@ export const VideoCourses = ({ status, search }) => {
             playlistId: 1,
             title: "Understanding Road Signs - Part 1",
             description: "First part of our road signs series. Learn about warning signs, regulatory signs, and guide signs. Essential knowledge for safe driving.",
-            videoUrl: "https://player.vimeo.com/video/1066078064",
+            videoUrl: "https://player.vimeo.com/video/271721115",
             duration: "45:00",
             status: "ACTIVE"
           },
@@ -185,7 +185,7 @@ export const VideoCourses = ({ status, search }) => {
             playlistId: 1,
             title: "Understanding Road Signs - Part 2",
             description: "Second part of our road signs series. Covers advanced road signs, temporary signs, and special situation signs.",
-            videoUrl: "https://player.vimeo.com/video/1066078064",
+            videoUrl: "https://player.vimeo.com/video/271721115",
             duration: "45:00",
             status: "INCOMING"
           }
@@ -204,7 +204,7 @@ export const VideoCourses = ({ status, search }) => {
             playlistId: 2,
             title: "Basic Driving Techniques",
             description: "Learn the fundamental techniques of safe driving, including proper steering, braking, and acceleration.",
-            videoUrl: "https://player.vimeo.com/video/1066078064",
+            videoUrl: "https://player.vimeo.com/video/271721115",
             duration: "45:00",
             status: "ACTIVE"
           },
@@ -213,7 +213,7 @@ export const VideoCourses = ({ status, search }) => {
             playlistId: 2,
             title: "Advanced Driving Skills",
             description: "Master advanced driving techniques for different weather conditions and challenging situations.",
-            videoUrl: "https://player.vimeo.com/video/1066078064",
+            videoUrl: "https://player.vimeo.com/video/271721115",
             duration: "45:00",
             status: "INACTIVE"
           }
