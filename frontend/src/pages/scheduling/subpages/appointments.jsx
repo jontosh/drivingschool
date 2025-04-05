@@ -8,11 +8,15 @@ import { FormOutlined } from "@ant-design/icons";
 import { Pagination, Table } from "antd";
 import { useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const Appointments = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [Filter, setFilter] = useState(false);
   const [CurrentPagination, setCurrentPagination] = useState(1);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
@@ -237,41 +241,31 @@ export const Appointments = () => {
       <form className="bg-white py-7 px-14 shadow-xl rounded-2xl flex justify-center gap-5 flex-wrap">
         <div className="grid grid-cols-2 gap-5">
           <div className={"space-y-5 flex-grow"}>
-            <CustomInput
-              spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
-              spanText={"Start date"}
-              className={"w-full shadow-xl"}
-              placeholder={"MM/DD/YYYY"}
-              classNames={
-                "inline-flex w-full h-[50px] flex-row-reverse items-center gap-10"
-              }
-            />
-            <CustomInput
-              spanClassName={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
-              spanText={"End date"}
-              className={"w-full border shadow-xl"}
-              placeholder={"MM/DD/YYYY"}
-              classNames={
-                "inline-flex w-full h-[50px] flex-row-reverse items-center gap-10"
-              }
-            />
-            <label className={"inline-flex w-full items-center gap-10"}>
-              <span
-                className={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}
-              >
-                Type
+            <div className={"inline-flex w-full items-center gap-10"}>
+              <span className={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}>
+                Start date
               </span>
-
-              <CustomSelect
-                className={"w-full h-[50px] shadow-xl"}
-                options={[
-                  {
-                    value: 1,
-                    label: 1,
-                  },
-                ]}
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                className="w-full h-[50px] shadow-xl rounded-lg px-4 border border-gray-200 focus:outline-none focus:border-blue-500"
+                dateFormat="MM/dd/yyyy"
+                placeholderText="MM/DD/YYYY"
               />
-            </label>
+            </div>
+            <div className={"inline-flex w-full items-center gap-10"}>
+              <span className={`flex-shrink-0 relative w-20 text-right ${EnrollmentStyle["Enrollment__heavy"]}`}>
+                End date
+              </span>
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                className="w-full h-[50px] shadow-xl rounded-lg px-4 border border-gray-200 focus:outline-none focus:border-blue-500"
+                dateFormat="MM/dd/yyyy"
+                placeholderText="MM/DD/YYYY"
+                minDate={startDate}
+              />
+            </div>
           </div>
 
           <div className={"space-y-5 flex-grow"}>

@@ -19,6 +19,7 @@ import { SlCloudDownload } from "react-icons/sl";
 import { VscGraph } from "react-icons/vsc";
 import "react-circular-progressbar/dist/styles.css";
 import FileStyle from "../management.module.scss";
+import { FiDownload } from "react-icons/fi";
 
 const File = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -52,9 +53,9 @@ const File = () => {
         >
           File management
         </Title>
-        <div className="grid min-[1360px]:grid-cols-2 gap-2">
-          <div className={"space-y-5"}>
-            <div className="bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5">
+        <div className="grid min-[1360px]:grid-cols-2 gap-4">
+          <div className={"space-y-4"}>
+            <div className="bg-white rounded-3xl py-6 pl-5 pr-8 shadow-lg space-y-4">
               <IconComponent
                 classNames={"items-center"}
                 icon={<FiFileText />}
@@ -65,7 +66,7 @@ const File = () => {
                 File upload
               </IconComponent>
 
-              <div className="space-y-2 5">
+              <div className="space-y-4">
                 <div className="flex gap-3.5 items-center justify-between">
                   <ButtonComponent
                     defaultBg={colorsObject.info}
@@ -98,7 +99,7 @@ const File = () => {
                 </div>
               </div>
 
-              <div className="space-y-2 5">
+              <div className="space-y-4">
                 <div className="flex gap-3.5 items-center justify-between">
                   <ButtonComponent
                     defaultBg={colorsObject.info}
@@ -117,7 +118,7 @@ const File = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5">
+            <div className="bg-white rounded-3xl py-6 pl-5 pr-8 shadow-lg space-y-4">
               <div className="flex items-center justify-between mb-3">
                 <IconComponent
                   classNames={"items-center"}
@@ -129,7 +130,7 @@ const File = () => {
                   File category
                 </IconComponent>
 
-                <div className="space-x-2 5">
+                <div className="space-x-2.5">
                   <ButtonComponent
                     defaultBg={colorsObject.success}
                     defaultHoverBg={colorsObject.successHover}
@@ -151,11 +152,42 @@ const File = () => {
                   />
                 </div>
               </div>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="bg-white rounded-xl p-4 flex items-center justify-between border border-gray-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+                      <FiFileText className="w-6 h-6 text-blue-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium">Driver's license</h3>
+                      <p className="text-sm text-gray-500">PDF • 2.5 MB</p>
+                    </div>
+                  </div>
+                  <button className="text-gray-400 hover:text-gray-600">
+                    <FiDownload className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="bg-white rounded-xl p-4 flex items-center justify-between border border-gray-100">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+                      <FiFileText className="w-6 h-6 text-green-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium">Medical certificate</h3>
+                      <p className="text-sm text-gray-500">PDF • 1.8 MB</p>
+                    </div>
+                  </div>
+                  <button className="text-gray-400 hover:text-gray-600">
+                    <FiDownload className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
               <TableComponent columns={columns} data={Data} />
             </div>
           </div>
-          <div className={"space-y-2.5"}>
-            <div className="bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5">
+          <div className={"space-y-4"}>
+            <div className="bg-white rounded-3xl py-6 pl-5 pr-8 shadow-lg space-y-4">
               <div
                 className={`flex justify-between items-center -mx-1.5 gap-1`}
               >
@@ -198,7 +230,7 @@ const File = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 items-center">
+              <div className="grid grid-cols-3 items-center gap-4 py-4">
                 <div className="">
                   <FileChart
                     colors={[colorsObject.secondary, colorsObject.success]}
@@ -241,7 +273,7 @@ const File = () => {
 
             <div
               className={
-                "bg-white rounded-3xl py-3 pl-5 pr-8 shadow-lg space-y-2.5"
+                "bg-white rounded-3xl py-6 pl-5 pr-8 shadow-lg space-y-4"
               }
             >
               <div className="flex justify-between gap-x-2.5">
@@ -278,7 +310,7 @@ const File = () => {
                 />
               </div>
 
-              <div className="space-y-2.5 pb-2.5">
+              <div className="space-y-4 pb-4">
                 {IsRecentActivities ? "Loading..." : recentItem}
               </div>
 
