@@ -8,7 +8,7 @@ import IconComponent from "@/components/icons";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
-import { DatePicker, Form, Pagination, Table } from "antd";
+import { DatePicker, Form, Pagination, Table, Modal, message } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -16,11 +16,46 @@ export const OpenTimeSlots = () => {
   const { colorsObject } = useContext(ColorsContext);
   const [Filter, setFilter] = useState(false);
   const [CurrentPagination, setCurrentPagination] = useState(1);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [slotToDelete, setSlotToDelete] = useState(null);
+
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
 
   const handleFilter = () => setFilter((prev) => !prev);
+
+  const handleDelete = async (record) => {
+    setSlotToDelete(record);
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!slotToDelete) return;
+    
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}scheduling/time_slot/${slotToDelete.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        message.success('Time slot deleted successfully');
+        // Refresh the data
+        // You would typically call your data fetching function here
+      } else {
+        message.error('Failed to delete time slot');
+      }
+    } catch (error) {
+      console.error('Error deleting time slot:', error);
+      message.error('Error deleting time slot');
+    }
+    
+    setShowDeleteConfirm(false);
+    setSlotToDelete(null);
+  };
 
   const columns = [
     {
@@ -139,18 +174,18 @@ export const OpenTimeSlots = () => {
       key: "action",
       align: "center",
       width: 110,
-      render: () => (
+      render: (_, record) => (
         <div className={"text-center space-x-2.5"}>
           <IconComponent
-            className={"text-xl text-red-600 border border-indigo-600"}
+            className={"text-xl text-red-600 border border-indigo-600 cursor-pointer"}
             style={{
               borderRadius: 5,
               paddingLeft: 4,
               paddingRight: 4,
             }}
             icon={<DeleteOutlined />}
+            onClick={() => handleDelete(record)}
           />
-
           <IconComponent
             className={"text-xl text-indigo-500 border border-indigo-600"}
             style={{
@@ -364,6 +399,24 @@ export const OpenTimeSlots = () => {
             <Table columns={columns} dataSource={data} pagination={false} />
           </div>
         </div>
+      )}
+
+      {showDeleteConfirm && (
+        <Modal
+          title="Delete Time Slot"
+          open={showDeleteConfirm}
+          onOk={confirmDelete}
+          onCancel={() => {
+            setShowDeleteConfirm(false);
+            setSlotToDelete(null);
+          }}
+          okText="Yes, delete"
+          cancelText="Cancel"
+          okButtonProps={{ danger: true }}
+        >
+          <p>Are you sure you want to delete this time slot?</p>
+          <p>This action cannot be undone.</p>
+        </Modal>
       )}
     </Fragment>
   );

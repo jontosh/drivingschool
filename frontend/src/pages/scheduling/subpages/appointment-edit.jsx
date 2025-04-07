@@ -7,7 +7,7 @@ import {
 } from "@/components/form/index.jsx";
 import { Paragraph } from "@/components/title/index.jsx";
 import ColorsContext from "@/context/colors.jsx";
-import { DatePicker, Form, Pagination, Table } from "antd";
+import { DatePicker, Form, Pagination, Table, Modal, message } from "antd";
 import { Fragment, useContext, useRef, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -16,6 +16,9 @@ export const AppointmentEdit = () => {
   const [Filter, setFilter] = useState(false);
   const [CurrentPagination, setCurrentPagination] = useState(1);
   const [open, setOpen] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
   const handleChangePagination = (page) => {
     setCurrentPagination(page);
   };
@@ -23,15 +26,56 @@ export const AppointmentEdit = () => {
   const checkboxRef = useRef(null);
 
   const handleFilter = () => setFilter((prev) => !prev);
+  
   const handleOpen = () => {
-    // setOpen(e.target.checked);
     const selectAll = checkboxRef.current.children[0];
-
     const inputs = selectAll.querySelectorAll("input");
-
     inputs.forEach((checkbox) => {
       checkbox.checked && setOpen(checkbox.checked);
     });
+  };
+
+  const handleBulkDelete = () => {
+    if (selectedRows.length === 0) {
+      message.warning('Please select appointments to delete');
+      return;
+    }
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmDelete = async () => {
+    try {
+      const deletePromises = selectedRows.map(row => 
+        fetch(`${import.meta.env.VITE_API_URL}scheduling/appointment/${row.id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      );
+
+      const results = await Promise.all(deletePromises);
+      const allSuccessful = results.every(res => res.ok);
+
+      if (allSuccessful) {
+        message.success(`Successfully deleted ${selectedRows.length} appointments`);
+        setSelectedRows([]);
+        // Refresh data here
+      } else {
+        message.error('Failed to delete some appointments');
+      }
+    } catch (error) {
+      console.error('Error deleting appointments:', error);
+      message.error('Error deleting appointments');
+    }
+    
+    setShowDeleteConfirm(false);
+  };
+
+  const rowSelection = {
+    onChange: (_, selectedRows) => {
+      setSelectedRows(selectedRows);
+    }
   };
 
   const columns = [
@@ -418,6 +462,7 @@ export const AppointmentEdit = () => {
                 defaultHoverBg="#FF333F"
                 borderRadius={5}
                 className={"w-full"}
+                onClick={handleBulkDelete}
               >
                 Delete appointments
               </ButtonComponent>
@@ -453,6 +498,10 @@ export const AppointmentEdit = () => {
 
           <div className={"-mx-5 pt-5"}>
             <Table
+              rowSelection={{
+                type: 'checkbox',
+                ...rowSelection
+              }}
               columns={columns}
               dataSource={data}
               pagination={false}
@@ -460,6 +509,21 @@ export const AppointmentEdit = () => {
             />
           </div>
         </div>
+      )}
+
+      {showDeleteConfirm && (
+        <Modal
+          title="Delete Appointments"
+          open={showDeleteConfirm}
+          onOk={confirmDelete}
+          onCancel={() => setShowDeleteConfirm(false)}
+          okText="Yes, delete"
+          cancelText="Cancel"
+          okButtonProps={{ danger: true }}
+        >
+          <p>Are you sure you want to delete {selectedRows.length} appointments?</p>
+          <p>This action cannot be undone.</p>
+        </Modal>
       )}
     </Fragment>
   );
