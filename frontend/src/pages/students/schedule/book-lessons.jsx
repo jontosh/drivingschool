@@ -29,11 +29,11 @@ export const StudentBookLessons = () => {
 
   // Demo instructors data
   const demoInstructors = [
-    { id: 1, name: "John Smith", value: 1, experience: "10+ years", specialization: "Highway Driving" },
-    { id: 2, name: "Sarah Johnson", value: 2, experience: "8 years", specialization: "Parallel Parking" },
-    { id: 3, name: "Michael Chen", value: 3, experience: "15 years", specialization: "Defensive Driving" },
-    { id: 4, name: "Emily Rodriguez", value: 4, experience: "5 years", specialization: "City Driving" },
-    { id: 5, name: "David Wilson", value: 5, experience: "12 years", specialization: "Night Driving" },
+    { id: 1, name: "John Smith", label: "John Smith", value: 1, experience: "10+ years", specialization: "Highway Driving" },
+    { id: 2, name: "Sarah Johnson", label: "Sarah Johnson", value: 2, experience: "8 years", specialization: "Parallel Parking" },
+    { id: 3, name: "Michael Chen", label: "Michael Chen", value: 3, experience: "15 years", specialization: "Defensive Driving" },
+    { id: 4, name: "Emily Rodriguez", label: "Emily Rodriguez", value: 4, experience: "5 years", specialization: "City Driving" },
+    { id: 5, name: "David Wilson", label: "David Wilson", value: 5, experience: "12 years", specialization: "Night Driving" },
   ];
 
   // Demo time slots based on selected date
@@ -71,6 +71,7 @@ export const StudentBookLessons = () => {
         uniqueInstructors.push({
           id: appointment.instructor.id,
           name: appointment.instructor.name || `Instructor ${appointment.instructor.id}`,
+          label: appointment.instructor.name || `Instructor ${appointment.instructor.id}`,
           value: appointment.instructor.id
         });
       }
@@ -308,7 +309,8 @@ export const StudentBookLessons = () => {
                     style={{ width: '100%' }}
                     onChange={handleInstructorChange}
                     options={instructors}
-                    optionLabelProp="name"
+                    labelInValue={false}
+                    fieldNames={{ label: 'name', value: 'value' }}
                     className="w-full"
                   />
                   {selectedInstructor && (

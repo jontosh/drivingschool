@@ -5,6 +5,7 @@ import ColorsContext from "@/context/colors.jsx";
 import { DatePicker } from "antd";
 import { Fragment, useContext, useState } from "react";
 import { FiHelpCircle } from "react-icons/fi";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 
 export const ClassroomSessionDetails = ({ ...props }) => {
   const { colorsObject } = useContext(ColorsContext);
@@ -14,6 +15,18 @@ export const ClassroomSessionDetails = ({ ...props }) => {
   const [Instructor, setInstructor] = useState("");
   const [Start, setStart] = useState("");
   const [Location, setLocation] = useState("");
+
+  const { data: instructorsData, isLoading: instructorsLoading } = useRequestGetQuery({
+    path: "/account_management/staff/instructors/"
+  });
+
+  const formatInstructorOptions = (instructors) => {
+    if (!instructors || !Array.isArray(instructors)) return [];
+    return instructors.map(instructor => ({
+      value: instructor.id,
+      label: instructor.name || `${instructor.first_name} ${instructor.last_name}`.trim()
+    }));
+  };
 
   // func
   const handleStartDate = (day) => setStartDate(day["$d"]);
@@ -101,25 +114,21 @@ export const ClassroomSessionDetails = ({ ...props }) => {
 
           <label className={"space-y-1.5 w-full"}>
             <span className={"text-gray-500 w-full text-base font-normal"}>Instructor:</span>
-
-            <CustomSelect
-              style={{ width: "100%" }}
-              placeholder={"INSTRUCTOR SELECTION"}
-              className={"h-[50px]"}
-              colorBorder={"#DEE2E6"}
-              options={[
-                {
-                  value: 1,
-                  label: 1,
-                },
-                {
-                  value: 2,
-                  label: 2,
-                },
-              ]}
-              onChange={handleInstructor}
-              value={Instructor ? Instructor : undefined}
-            />
+            <div className="flex items-center gap-3">
+              <CustomSelect
+                style={{ width: "100%" }}
+                placeholder={"Select Instructor"}
+                className={"h-[50px]"}
+                colorBorder="#DEE2E6"
+                options={formatInstructorOptions(instructorsData)}
+                loading={instructorsLoading}
+                onChange={handleInstructor}
+                value={Instructor}
+              />
+              <span>
+                <FiHelpCircle className={"text-xl text-[#98A2B3]"} />
+              </span>
+            </div>
           </label>
 
           <label className={"space-y-1.5 w-full"}>

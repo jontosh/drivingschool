@@ -10,6 +10,7 @@ import { useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useRequestGetQuery } from "@/redux/query/index.jsx";
 
 export const Appointments = () => {
   const { colorsObject } = useContext(ColorsContext);
@@ -72,6 +73,19 @@ export const Appointments = () => {
     }
   };
 
+  // Function to format instructor options
+  const formatInstructorOptions = (instructors) => {
+    if (!instructors || !Array.isArray(instructors)) return [];
+    return instructors.map(instructor => ({
+      value: instructor.id,
+      label: instructor.name || `${instructor.first_name} ${instructor.last_name}`.trim(),
+    }));
+  };
+
+  const { data: instructorsData, isLoading: instructorsLoading } = useRequestGetQuery({
+    path: "/account_management/staff/instructors/"
+  });
+
   const columns = [
     {
       title: "Date",
@@ -132,8 +146,8 @@ export const Appointments = () => {
     {
       title: "Seating",
       dataIndex: "seating",
-      key: "seating",
       align: "center",
+      key: "seating",
       render: (seating) => (
         <Paragraph
           colorText={colorsObject.secondary}
@@ -147,8 +161,8 @@ export const Appointments = () => {
     {
       title: "BTW Subtype",
       dataIndex: "subtype",
-      key: "subtype",
       align: "center",
+      key: "subtype",
       render: (seating) => (
         <Paragraph
           colorText={colorsObject.secondary}
@@ -162,8 +176,8 @@ export const Appointments = () => {
     {
       title: "Student name",
       dataIndex: "studentName",
-      key: "studentName",
       align: "center",
+      key: "studentName",
       render: (seating) => (
         <Paragraph
           colorText={colorsObject.secondary}
@@ -177,15 +191,15 @@ export const Appointments = () => {
     {
       title: "Status",
       dataIndex: "status",
-      key: "status",
       align: "center",
+      key: "status",
       render: (status) => CheckStatus(status),
     },
     {
       title: "Action",
       dataIndex: "action",
-      key: "action",
       align: "center",
+      key: "action",
       render: () => (
         <IconComponent
           className={"text-xl text-indigo-700 border border-indigo-600 "}
@@ -289,15 +303,11 @@ export const Appointments = () => {
 
             <label className={"inline-flex w-full items-center gap-10"}>
               <span className={`flex-shrink-0 w-20 text-right`}>Instructor</span>
-
               <CustomSelect
                 className={"w-full h-[50px] shadow-xl"}
-                options={[
-                  {
-                    value: 1,
-                    label: 1,
-                  },
-                ]}
+                options={formatInstructorOptions(instructorsData)}
+                loading={instructorsLoading}
+                placeholder="Select instructor"
               />
             </label>
 
