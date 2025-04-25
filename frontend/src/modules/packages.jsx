@@ -5,6 +5,7 @@ import { Paragraph } from "@/components/title/index.jsx";
 import { ModalReducer } from "@/hooks/reducer.jsx";
 import { CheckProgress } from "@/modules/progress.jsx";
 import { StatusSelect } from "@/pages/managment/service/index.jsx";
+import StatusButton from "@/components/table/StatusButton.jsx";
 import {
   useRequestDeleteMutation,
   useRequestGetQuery,
@@ -389,21 +390,9 @@ export const PackagesModule = () => {
       key: "status",
       dataIndex: "status",
       align: "center",
-      render: (text) => {
-        const { bg, hover } = CheckProgress(text);
-        return (
-          <Space size={"middle"}>
-            <ButtonComponent
-              defaultBg={bg}
-              defaultHoverBg={hover}
-              borderRadius={5}
-              style={{ width: "128px" }}
-            >
-              {text.toUpperCase()}
-            </ButtonComponent>
-          </Space>
-        );
-      },
+      render: (text) => (
+        <StatusButton status={text} />
+      ),
     },
     {
       title: "Web Purchase",
