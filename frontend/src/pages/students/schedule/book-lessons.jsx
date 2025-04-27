@@ -20,10 +20,24 @@ export const StudentBookLessons = () => {
   const [calendar, setCalendar] = useState(0);
   const { studentId } = useParams();
   
+  // LocalStorage keys
+  const LS_INSTRUCTOR = 'bookLesson_instructor';
+  const LS_DATE = 'bookLesson_date';
+  const LS_TIMESLOT = 'bookLesson_timeSlot';
+
   // States for booking
-  const [selectedInstructor, setSelectedInstructor] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [selectedInstructor, setSelectedInstructor] = useState(() => {
+    const val = localStorage.getItem(LS_INSTRUCTOR);
+    return val ? JSON.parse(val) : null;
+  });
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const val = localStorage.getItem(LS_DATE);
+    return val ? new Date(val) : null;
+  });
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(() => {
+    const val = localStorage.getItem(LS_TIMESLOT);
+    return val ? JSON.parse(val) : null;
+  });
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -109,25 +123,24 @@ export const StudentBookLessons = () => {
       setValue(value);
       if (Array.isArray(value) && value.length > 0) {
         setSelectedDate(value[0]);
+        localStorage.setItem(LS_DATE, value[0].toISOString());
         fetchAvailableTimeSlots(value[0], selectedInstructor);
+        // Reset time slot when date changes
+        setSelectedTimeSlot(null);
+        localStorage.removeItem(LS_TIMESLOT);
       }
     },
-    [selectedInstructor],
+    [selectedInstructor, fetchAvailableTimeSlots],
   );
 
   // Fetch available time slots based on selected date and instructor
-  const fetchAvailableTimeSlots = async (date, instructorId) => {
+  const fetchAvailableTimeSlots = useCallback(async (date, instructorId) => {
     if (!date || !instructorId) return;
-    
     setLoading(true);
     try {
-      // Format date as YYYY-MM-DD
       const formattedDate = date.toISOString().split('T')[0];
-      
-      // Use the time_slot endpoint to get available slots
       const response = await fetch(`${import.meta.env.VITE_API_URL}scheduling/time_slot?date=${formattedDate}&instructor=${instructorId}`);
       const data = await response.json();
-      
       if (Array.isArray(data) && data.length > 0) {
         setAvailableTimeSlots(data.map(slot => ({
           id: slot.id,
@@ -135,17 +148,14 @@ export const StudentBookLessons = () => {
           value: slot.id
         })));
       } else {
-        // If no time slots returned from API, use demo time slots
         setAvailableTimeSlots(generateDemoTimeSlots(date));
       }
     } catch (error) {
-      console.error("Error fetching time slots:", error);
-      // Use demo time slots in case of error
       setAvailableTimeSlots(generateDemoTimeSlots(date));
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   // Format time from HH:MM:SS to HH:MM AM/PM
   const formatTime = (timeString) => {
@@ -162,14 +172,19 @@ export const StudentBookLessons = () => {
   // Handle instructor selection
   const handleInstructorChange = (value) => {
     setSelectedInstructor(value);
+    localStorage.setItem(LS_INSTRUCTOR, JSON.stringify(value));
     if (selectedDate) {
       fetchAvailableTimeSlots(selectedDate, value);
     }
+    // Reset time slot when instructor changes
+    setSelectedTimeSlot(null);
+    localStorage.removeItem(LS_TIMESLOT);
   };
 
   // Handle time slot selection
   const handleTimeSlotChange = (value) => {
     setSelectedTimeSlot(value);
+    localStorage.setItem(LS_TIMESLOT, JSON.stringify(value));
   };
 
   // Handle booking submission
@@ -268,6 +283,7 @@ export const StudentBookLessons = () => {
                 hideAdjacentDates
                 className={"w-full flex justify-center max-[700px]:flex-col"}
                 size={calendar}
+                aria-label="Select lesson date range"
               />
             </MediaQuery>
 
@@ -311,7 +327,9 @@ export const StudentBookLessons = () => {
                     options={instructors}
                     labelInValue={false}
                     fieldNames={{ label: 'name', value: 'value' }}
-                    className="w-full"
+                    className="w-full min-h-[48px] text-base max-[600px]:text-sm"
+                    aria-label="Select instructor"
+                    value={selectedInstructor}
                   />
                   {selectedInstructor && (
                     <div className="mt-4 bg-gray-100 p-3 rounded-md">
@@ -369,7 +387,9 @@ export const StudentBookLessons = () => {
                         onChange={handleTimeSlotChange}
                         options={availableTimeSlots}
                         optionLabelProp="time"
-                        className="w-full"
+                        className="w-full min-h-[48px] text-base max-[600px]:text-sm"
+                        aria-label="Select time slot"
+                        value={selectedTimeSlot}
                       />
                     ) : (
                       <Paragraph className="text-center py-4">
@@ -389,16 +409,17 @@ export const StudentBookLessons = () => {
               defaultHoverColor={colorsObject.main}
               defaultHoverBg={colorsObject.primaryHover}
               defaultBg={colorsObject.primary}
-              controlHeight={40}
+              controlHeight={48}
               paddingInline={43}
               borderRadius={5}
-              fontSize={16}
+              fontSize={18}
               onClick={handleBookLesson}
               disabled={!selectedInstructor || !selectedTimeSlot || isBooking}
+              aria-label="Book lesson"
+              className="w-full min-[600px]:w-auto"
             >
               {isBooking ? "BOOKING..." : "BOOK LESSON"}
             </ButtonComponent>
-
             <ButtonComponent
               defaultColor={colorsObject.black}
               defaultHoverColor={colorsObject.black}
@@ -406,16 +427,21 @@ export const StudentBookLessons = () => {
               defaultBg={colorsObject.main}
               defaultBorderColor={colorsObject.primary}
               defaultHoverBorderColor={colorsObject.primaryHover}
-              controlHeight={40}
+              controlHeight={48}
               paddingInline={43}
               borderRadius={5}
-              fontSize={16}
+              fontSize={18}
               onClick={() => {
                 setSelectedInstructor(null);
                 setSelectedTimeSlot(null);
                 setAvailableTimeSlots([]);
                 setValue(initialValue);
+                localStorage.removeItem(LS_INSTRUCTOR);
+                localStorage.removeItem(LS_DATE);
+                localStorage.removeItem(LS_TIMESLOT);
               }}
+              aria-label="Clear selection"
+              className="w-full min-[600px]:w-auto"
             >
               CLEAR SELECTION
             </ButtonComponent>
