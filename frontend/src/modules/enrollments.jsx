@@ -152,6 +152,12 @@ export const StudentAccountEnrollment = () => {
 };
 
 export const StudentAccountBilling = () => {
+  // Helper function to mask card number
+  const maskCardNumber = (number) => {
+    if (!number) return "";
+    const str = number.toString();
+    return str.length > 4 ? `**** **** **** ${str.slice(-4)}` : str;
+  };
   const column = [
     {
       title: "Date",
@@ -174,9 +180,9 @@ export const StudentAccountBilling = () => {
       ),
     },
     {
-      title: "Assept by stuff",
-      dataIndex: "stuff",
-      key: "stuff",
+      title: "Accepted by staff",
+      dataIndex: "staff",
+      key: "staff",
       render: (text) => (
         <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
           {text}
@@ -204,17 +210,37 @@ export const StudentAccountBilling = () => {
       ),
     },
     {
-      title: "Credit card Number",
+      title: "Credit Card Number",
       dataIndex: "card_number",
       key: "card_number",
       render: (text) => (
         <Paragraph fontSize={"text-lg"} fontWeightStrong={400}>
-          {text}
+          {maskCardNumber(text)}
         </Paragraph>
       ),
     },
   ];
-  const data = [];
+  const data = [
+    {
+      date: "2025-04-28",
+      amount: 200,
+      staff: "John Doe",
+      note: "Paid in full",
+      type: "Visa",
+      card_number: "1234567812345678",
+    },
+    {
+      date: "2025-04-20",
+      amount: 100,
+      staff: "Jane Smith",
+      note: "Partial payment",
+      type: "MasterCard",
+      card_number: "8765432187654321",
+    },
+  ];
 
-  return { column, data };
+  // If no data, return a single row with a message
+  const displayData = data.length ? data : [{ date: "-", amount: "-", staff: "-", note: "No records found", type: "-", card_number: "-" }];
+
+  return { column, data: displayData };
 };

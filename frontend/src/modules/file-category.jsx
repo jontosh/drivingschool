@@ -14,7 +14,7 @@ import { FormOutlined } from "@ant-design/icons";
 import { Form, Input, Switch } from "antd";
 import { Fragment, useEffect, useReducer, useState } from "react";
 
-const EditFormItems = () => {
+const EditFormItems = ({ isLoading, onReset, handleStatus, statusOptions, PackagesMock, setPackages, Packages }) => {
   return (
     <Form
       layout={"vertical"}
@@ -31,7 +31,7 @@ const EditFormItems = () => {
         ]}
       >
         <CustomInput
-          // disabled={isLoading}
+          disabled={isLoading}
           classNames={"w-full"}
           placeholder={"Category name"}
         />
@@ -50,9 +50,9 @@ const EditFormItems = () => {
         <CustomSelect
           placeholder={"Select status"}
           className={`w-full h-[50px]`}
-        // options={StatusSelect}
-        // onChange={handleStatus}
-        // disabled={isLoading}
+          options={statusOptions}
+          onChange={handleStatus}
+          disabled={isLoading}
         />
       </Form.Item>
 
@@ -61,7 +61,7 @@ const EditFormItems = () => {
           type={"url"}
           classNames={"w-full"}
           placeholder={"Link"}
-        // disabled={isLoading}
+          disabled={isLoading}
         />
       </Form.Item>
 
@@ -71,17 +71,17 @@ const EditFormItems = () => {
           maxLength={100}
           className={"border-[#667085] p-5"}
           placeholder={"Notes"}
-        // disabled={isLoading}
+          disabled={isLoading}
         />
       </Form.Item>
 
       <Form.Item name={"package"} label={"Packages:"}>
         <CustomTransfer
-          // dataSource={PackagesMock}
+          dataSource={PackagesMock}
           listHeight={200}
-        // setSelectedKeys={setPackages}
-        // selectedKeys={Packages}
-        // disabled={isLoading}
+          setSelectedKeys={setPackages}
+          selectedKeys={Packages}
+          disabled={isLoading}
         />
       </Form.Item>
 
@@ -92,7 +92,7 @@ const EditFormItems = () => {
           name={"has_portal"}
           className="max-w-[250px]"
         >
-          <Switch />
+          <Switch disabled={isLoading} />
         </Form.Item>
         <Form.Item
           label={"Must Be Uploaded to Student Account:"}
@@ -100,7 +100,7 @@ const EditFormItems = () => {
           name={"has_student_account"}
           className="max-w-[250px]"
         >
-          <Switch />
+          <Switch disabled={isLoading} />
         </Form.Item>
         <Form.Item
           label={
@@ -110,7 +110,7 @@ const EditFormItems = () => {
           name={"has_category_portal"}
           className="max-w-[250px]"
         >
-          <Switch />
+          <Switch disabled={isLoading} />
         </Form.Item>
         <Form.Item
           label={
@@ -120,11 +120,11 @@ const EditFormItems = () => {
           name={"has_teacher_portal"}
           className="max-w-[250px]"
         >
-          <Switch />
+          <Switch disabled={isLoading} />
         </Form.Item>
       </div>
 
-      {/* <div className="text-center space-x-5">
+      <div className="text-center space-x-5">
         <ButtonComponent
           defaultBg={colorsObject.success}
           defaultHoverBg={colorsObject.successHover}
@@ -133,6 +133,7 @@ const EditFormItems = () => {
           borderRadius={5}
           paddingInline={44}
           type={"submit"}
+          loading={isLoading}
         >
           Save
         </ButtonComponent>
@@ -147,16 +148,17 @@ const EditFormItems = () => {
           borderRadius={5}
           paddingInline={44}
           onClick={onReset}
+          disabled={isLoading}
         >
           Cancel
         </ButtonComponent>
-      </div> */}
+      </div>
     </Form>
   );
 };
 
 export const FileCategoryModule = () => {
-  const { data } = useRequestGetQuery({
+  const { data, isLoading, error } = useRequestGetQuery({
     path: "/student_account/file_category/",
   });
 
@@ -164,20 +166,41 @@ export const FileCategoryModule = () => {
   const [form] = Form.useForm();
   const [state, dispatch] = useReducer(ModalReducer, { modal: null, form });
   const [Action, setAction] = useState({ id: null, type: undefined });
-  const [requestDelete, { reset: DeleteReset }] = useRequestDeleteMutation();
-  const [requestPatch, { reset: PatchReset }] = useRequestPatchMutation();
+  const [requestDelete, { reset: DeleteReset, isLoading: isDeleteLoading }] = useRequestDeleteMutation();
+  const [requestPatch, { reset: PatchReset, isLoading: isPatchLoading }] = useRequestPatchMutation();
+  const [Packages, setPackages] = useState([]);
+  const PackagesMock = [];
+  const statusOptions = StatusSelect;
+
+  const handleStatus = (value) => {
+    form.setFieldsValue({ status: value });
+  };
+
+  const onReset = () => {
+    form.resetFields();
+    setIsOpen(false);
+    setAction({ id: null, type: undefined });
+  };
 
   const updateModalState = () => {
     dispatch({
       type: Action.type,
       onOk: handleOk,
-      onCancel: () => {
-        setIsOpen(false);
-      },
+      onCancel: onReset,
       open: IsOpen,
       form,
       onFinish: handleFinish,
-      children: <EditFormItems />,
+      children: (
+        <EditFormItems
+          isLoading={isPatchLoading || isDeleteLoading}
+          onReset={onReset}
+          handleStatus={handleStatus}
+          statusOptions={statusOptions}
+          PackagesMock={PackagesMock}
+          setPackages={setPackages}
+          Packages={Packages}
+        />
+      ),
     });
   };
 
@@ -212,6 +235,8 @@ export const FileCategoryModule = () => {
   useEffect(() => {
     if (data && Action.id !== null) {
       form.setFieldsValue(data[Action.id]);
+    } else {
+      form.resetFields();
     }
     if (Action.type) {
       updateModalState();
@@ -279,7 +304,6 @@ export const FileCategoryModule = () => {
                 setAction({ id: index, type: "CONFIRM" });
               }}
             />
-
             {index === Action.id ? state?.modal : null}
           </Fragment>
         );
@@ -287,5 +311,14 @@ export const FileCategoryModule = () => {
     },
   ];
 
-  return { data, columns };
+  // Table data fallback for empty state
+  const tableData = (data && data.length > 0)
+    ? data
+    : [{ name: "-", status: "-", edit: null, delete: null, key: "no-records", empty: true }];
+
+  // Error and loading state rendering
+  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (error) return <div className="text-center py-10 text-red-500">Error loading data</div>;
+
+  return { data: tableData, columns };
 };
